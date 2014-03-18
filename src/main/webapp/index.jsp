@@ -3,7 +3,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Spring MVC and Hibernate Template - Updapy</title>
+  <title>Spring MVC and Hibernate Template</title>
 
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -86,7 +86,7 @@
 <h1 class="alert alert-success">Your app is ready!</h1>
 
 <div class="page-header">
-  <h1>Get started with your Spring MVC and Hibernate Application</h1>
+  <h1>Get started with your Spring MVC and Hibernate Application - Updapy</h1>
 </div>
 
 <div style="margin-bottom: 20px">
