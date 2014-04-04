@@ -130,7 +130,7 @@
 		<p class="text-muted text-center-xs lh">
 		  <spring:message code="early.interest.description" />
 		</p>
-        <form id="earlyPersonForm" action="user/register-early" class="form-vertical">
+        <form id="earlyPersonForm" action="${root}/user/register-early" class="form-vertical">
 			<p>
 			  <c:set var="placeholder"><spring:message code="early.interest.add.field.email.tip" /></c:set>
 			  <input id="email" name="email" class="form-control" placeholder="${placeholder}" />

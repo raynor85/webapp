@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <c:set var="lang" value="${not empty param.lang ? param.lang : not empty lang ? lang : pageContext.request.locale}" scope="session" />
+<c:set var="root" value="${pageContext.request.contextPath}" scope="application" />
 
 <!DOCTYPE html>
 <html lang="${lang}">
