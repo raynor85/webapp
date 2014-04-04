@@ -13,7 +13,7 @@
 			<a class="btn btn-color" href="#early-person"><spring:message code="welcome.action" /></a>
 		  </div>
 		  <div class="alt-index">
-			<img src="<spring:url value="/resources/img/welcome/updapy-preview.jpg" />" alt="Updapy Preview">
+			<img src="<spring:url value="resources/img/welcome/updapy-preview.jpg" />" alt="Updapy Preview">
 		  </div>
 		</div>
 	  </div>
@@ -35,35 +35,35 @@
 	  <!-- Wrapper for slides -->
 	  <div class="carousel-inner">
 	    <div class="item active">
-	      <img src="<spring:url value="/resources/img/welcome/carousel-time.png" />" alt="Time">
+	      <img src="<spring:url value="resources/img/welcome/carousel-time.png" />" alt="Time">
 	      <div class="carousel-caption">
 			<h4><spring:message code="welcome.carousel.time.title" /></h4>
 			<p><spring:message code="welcome.carousel.time.description" /></p>
 	      </div>
 	    </div>
 	    <div class="item">
-	      <img src="<spring:url value="/resources/img/welcome/carousel-custom.png" />" alt="Custom">
+	      <img src="<spring:url value="resources/img/welcome/carousel-custom.png" />" alt="Custom">
 	      <div class="carousel-caption">
 			<h4><spring:message code="welcome.carousel.custom.title" /></h4>
 			<p><spring:message code="welcome.carousel.custom.description" /></p>
 	      </div>
 	    </div>
 	    <div class="item">
-	      <img src="<spring:url value="/resources/img/welcome/carousel-security.png" />" alt="Security">
+	      <img src="<spring:url value="resources/img/welcome/carousel-security.png" />" alt="Security">
 	      <div class="carousel-caption">
 			<h4><spring:message code="welcome.carousel.security.title" /></h4>
 			<p><spring:message code="welcome.carousel.security.description" /></p>
 	      </div>
 	    </div>
 	    <div class="item">
-	      <img src="<spring:url value="/resources/img/welcome/carousel-trust.png" />" alt="Trust">
+	      <img src="<spring:url value="resources/img/welcome/carousel-trust.png" />" alt="Trust">
 	      <div class="carousel-caption">
 			<h4><spring:message code="welcome.carousel.trust.title" /></h4>
 			<p><spring:message code="welcome.carousel.trust.description" /></p>
 	      </div>
 	    </div>
 	    <div class="item">
-	      <img src="<spring:url value="/resources/img/welcome/carousel-free.png" />" alt="Free">
+	      <img src="<spring:url value="resources/img/welcome/carousel-free.png" />" alt="Free">
 	      <div class="carousel-caption">
 			<h4><spring:message code="welcome.carousel.free.title" /></h4>
 			<p><spring:message code="welcome.carousel.free.description" /></p>
@@ -122,7 +122,7 @@
 	</div>
 	<div class="row crp-desc">
 	  <div class="col-sm-5 col-sm-offset-1">
-		<img src="<spring:url value="/resources/img/welcome/macbook-first.jpg" />" alt="Updapy Newsletter" class="img-responsive">
+		<img src="<spring:url value="resources/img/welcome/macbook-first.jpg" />" alt="Updapy Newsletter" class="img-responsive">
 	  </div>
 	  <div class="col-sm-5">
 		<h3 class="text-color text-center-xs"><spring:message code="early.interest.subtitle" /></h3>
