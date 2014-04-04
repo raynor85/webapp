@@ -1,14 +1,6 @@
-# Spring MVC and Hibernate template application - Updapy
+# Updapy - Update Happy!
 
-This is a template for a web application that uses Spring MVC and Hibernate. The sample code is a simple CRUD page that manipulates records for a single model object.
+Updapy is an online, free and personal Update Center, aiming at Windows users.
 
-## Running the application locally
-
-First build with:
-
-    $mvn clean install
-
-Then run it with:
-
-    $java -jar target/dependency/webapp-runner.jar target/*.war
-
+Windows Update works great for system updates, but there is no equivalent for all your personal applications (iTunes, Paint.net, Firefox...). You have to check manually if an update is available. As you have to do it on each application, this task is time-consuming and not very user-friendly.
+The purpose of Updapy is to manage all your application updates automatically by notifying you as soon they are available.
