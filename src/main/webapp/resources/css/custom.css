@@ -1221,51 +1221,86 @@ ul.list {
 /*** Carousel ***/
 
 .carousel-indicators li {
-  background-color: #999;
-  background-color: rgba(70,70,70,.25);
+	background-color: #999;
+	background-color: rgba(70,70,70,.25);
 }
 
-.carousel-indicators .active {
-  background-color: #27ae60;
+.body-green .carousel-indicators .active {
+	background-color: #27ae60;
+}
+
+.body-green .carousel-control:hover,
+.carousel-control:focus {
+	color: #27ae60;
+}
+
+.body-red .carousel-indicators .active {
+	background-color: #e74c3c;
+}
+
+.body-red .carousel-control:hover,
+.carousel-control:focus {
+	color: #e74c3c;
+}
+
+.body-blue .carousel-indicators .active {
+	background-color: #3498db;
+}
+
+.body-blue .carousel-control:hover,
+.carousel-control:focus {
+	color: #3498db;
+}
+
+.body-amethyst .carousel-indicators .active {
+	background-color: #9b59b6;
+}
+
+.body-amethyst .carousel-control:hover,
+.carousel-control:focus {
+	color: #9b59b6;
 }
 
 .carousel-caption h4 {
-  color: #333333;
-  font-size: 22px;
-  font-weight: bold;
+	color: #333333;
+	font-size: 22px;
+	font-weight: bold;
 }
 
 .carousel-caption p {
-  color: #6D7575;
-  font-size: 16px;
+	color: #6D7575;
+	font-size: 16px;
 }
 
 .carousel-caption {
-  text-align: left;
-  text-shadow: none;
-  top: 25%;
-  width: 285px;
+	text-align: left;
+	text-shadow: none;
+	top: 25%;
+	width: 285px;
 }
 
 /*.carousel-control.left {
-  background-image: none;
+	background-image: none;
 }
 
 .carousel-control.right {
-  background-image: none;
+	background-image: none;
 }*/
-
-.carousel-control:hover,
-.carousel-control:focus {
-  color: #27ae60;
-}
 
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
-  align: center;
-  margin: 0 auto;
+	align: center;
+	margin: 0 auto;
 }
 
+/*** Shadow effect on the text banner ***/
+
 .shadow {
-  text-shadow: 1px 2px 5px #000000;
+	text-shadow: 1px 2px 5px #000000;
+}
+
+/*** Add a bigger size to font-awesome ***/
+
+.fa-6x {
+	font-size: 6em;
 }

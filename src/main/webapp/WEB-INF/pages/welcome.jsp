@@ -86,7 +86,7 @@
 	<div class="row">
 	  <div class="col-sm-4">
 		<div class="crp-ft">
-		  <i class="text-color fa fa-bookmark fa-5x"></i>
+		  <i class="text-color fa fa-bookmark fa-6x"></i>
 		  <h4><spring:message code="welcome.follow.title" /></h4>
 		  <p class="text-muted lh">
 			<spring:message code="welcome.follow.description" />
@@ -95,7 +95,7 @@
 	  </div>
 	  <div class="col-sm-4">
 		<div class="crp-ft">
-		  <i class="text-color fa fa-bell fa-5x"></i>
+		  <i class="text-color fa fa-bell fa-6x"></i>
 		  <h4><spring:message code="welcome.notify.title" /></h4>
 		  <p class="text-muted lh">
 			<spring:message code="welcome.notify.description" />
@@ -104,7 +104,7 @@
 	  </div>
 	  <div class="col-sm-4">
 		<div class="crp-ft">
-		  <i class="text-color fa fa-download  fa-5x"></i>
+		  <i class="text-color fa fa-download  fa-6x"></i>
 		  <h4><spring:message code="welcome.download.title" /></h4>
 		  <p class="text-muted lh">
 			<spring:message code="welcome.download.description" />
@@ -135,10 +135,10 @@
 			  <c:set var="placeholder"><spring:message code="early.interest.add.field.email.tip" /></c:set>
 			  <input id="email" name="email" class="form-control" placeholder="${placeholder}" />
 			</p>
-			<p class="text-center-xs">
-			  <input class="btn btn-lg btn-default" value="<spring:message code="early.interest.add.button" />" onclick="ajaxRegisterEarlyPerson();" />
+			<p class="text-center-xs button-ladda">
+			  <button type="button" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxRegisterEarlyPerson();"><spring:message code="early.interest.add.button" /></button>
 			</p>
-    		<div id="earlyPersonResponse"></div> 		
+    		<div id="earlyPersonResponse"></div>
 		</form>	
 	  </div>
 	</div>
@@ -158,5 +158,6 @@
 			  }
 			});
 	};
-	</script>
-  
+	// Bind buttons
+	Ladda.bind( '.button-ladda button', { timeout: 1500 } );
+  </script>
