@@ -22,22 +22,22 @@ public class PersonController {
 	@Autowired
 	MessageUtil messageUtil;
 	
-    @Autowired
-    private PersonService personService;
-    
-    @RequestMapping(value="register-early", method=RequestMethod.POST)  
-    public @ResponseBody String registerEarlyPerson(@RequestBody String email) {  
-    	
-    	if (!EmailValidator.getInstance().isValid(email)) {
-    		return messageUtil.getSimpleMessage(invalid);
-    	}
-    	
-    	if (!personService.findByEmail(email).isEmpty()) {
-    		return messageUtil.getSimpleMessage(already);
-    	}
-    	
-    	personService.registerEarlyWithEmail(email);
+	@Autowired
+	private PersonService personService;
+	
+	@RequestMapping(value="register-early", method=RequestMethod.POST)
+	public @ResponseBody String registerEarlyPerson(@RequestBody String email) {
+		
+		if (!EmailValidator.getInstance().isValid(email)) {
+			return messageUtil.getSimpleMessage(invalid);
+		}
+		
+		if (!personService.findByEmail(email).isEmpty()) {
+			return messageUtil.getSimpleMessage(already);
+		}
+		
+		personService.registerEarlyWithEmail(email);
 		return messageUtil.getSimpleMessage(confirm);
-    }
+	}
 
 }

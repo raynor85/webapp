@@ -43,25 +43,25 @@ public class BaseEntity implements Serializable {
 		return creationDate;
 	}
 
-    public Date getUpdateDate() {
+	public Date getUpdateDate() {
 		return updateDate;
 	}
 
 	/** 
-     * Sets creationDate before insert 
-     */  
-    @PrePersist  
-    public void setCreationDate() {  
-        this.creationDate = new Date();  
-    }  
+	 * Sets creationDate before insert
+	 */
+	@PrePersist
+	public void setCreationDate() {
+		this.creationDate = new Date();
+	}  
   
-    /** 
-     * Sets updateDate before update 
-     */  
-    @PreUpdate  
-    public void setUpdateDate() {  
-        this.updateDate = new Date();  
-    } 
+	/**
+	 * Sets updateDate before update
+	 */
+	@PreUpdate
+	public void setUpdateDate() {
+		this.updateDate = new Date();
+	} 
 	
 	@Override
 	public int hashCode() {

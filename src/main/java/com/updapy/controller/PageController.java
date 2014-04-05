@@ -11,18 +11,18 @@ public class PageController {
 		return "welcome";
 	}
 	 
-    @RequestMapping("error")
-    public String errorPage() {
-    	return "error";
+	@RequestMapping("error")
+	public String errorPage() {
+		return "error";
 	}
-    
-    @RequestMapping("faq")
-    public String faqPage() {
+	
+	@RequestMapping("faq")
+	public String faqPage() {
 		return "faq";
 	}
 
-    @RequestMapping("privacy")
-    public String privacyPage() {
+	@RequestMapping("privacy")
+	public String privacyPage() {
 		return "privacy";
 	}
 

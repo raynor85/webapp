@@ -14,18 +14,18 @@ public class PersonServiceImpl implements PersonService {
 
 	@Autowired
 	PersonRepository personRepository;
-        
+		
 	@Override
-    @Transactional
+	@Transactional
 	public void registerEarlyWithEmail(String email) {
-    	Person person = new Person();
-    	person.setEarly(true);
-    	person.setEmail(email);
-    	personRepository.saveAndFlush(person);
+		Person person = new Person();
+		person.setEarly(true);
+		person.setEmail(email);
+		personRepository.saveAndFlush(person);
 	}
 
 	@Override
-    @Transactional
+	@Transactional
 	public List<Person> findByEmail(String email) {
 		return personRepository.findByEmail(email);
 	}

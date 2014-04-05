@@ -1,10 +1,3 @@
-/*------------------------------------------------------------------
-Project:	Mist
-Version:	1.1
-Created: 		27/11/2013
-Last change:	12/01/2014
--------------------------------------------------------------------*/
-
 /* ===== Style Toggle ===== */
 
 i.style-toggle-btn {
@@ -168,43 +161,43 @@ i.style-toggle-btn {
 	color: #9b59b6;
 }
 .body-green .btn-color {
-  background-color: #27ae60;
-  border-color: #229652;
+	background-color: #27ae60;
+	border-color: #229652;
 }
 .body-green .btn-color:hover,
 .body-green .btn-color:focus,
 .body-green .btn-color:active {
-  background-color: #229652;
-  border-color: #1A7440;
+	background-color: #229652;
+	border-color: #1A7440;
 }
 .body-blue .btn-color {
-  background-color: #3498db;
-  border-color: #2980b9;
+	background-color: #3498db;
+	border-color: #2980b9;
 }
 .body-blue .btn-color:hover,
 .body-blue .btn-color:focus,
 .body-blue .btn-color:active {
-  background-color: #2980b9;
-  border-color: #1D5C86;
+	background-color: #2980b9;
+	border-color: #1D5C86;
 }
 .body-red .btn-color {
-  background-color: #e74c3c;
-  border-color: #c0392b;
+	background-color: #e74c3c;
+	border-color: #c0392b;
 }
 .body-red .btn-color:hover,
 .body-red .btn-color:focus,
 .body-red .btn-color:active {
-  background-color: #c0392b;
-  border-color: #962E22;
+	background-color: #c0392b;
+	border-color: #962E22;
 }
 
 .body-amethyst .btn-color {
-  background-color: #9b59b6;
-  border-color: #8e44ad;
+	background-color: #9b59b6;
+	border-color: #8e44ad;
 }
 .body-amethyst .btn-color:hover,
 .body-amethyst .btn-color:focus,
 .body-amethyst .btn-color:active {
-  background-color: #8e44ad;
-  border-color: #6C3384;
+	background-color: #8e44ad;
+	border-color: #6C3384;
 }

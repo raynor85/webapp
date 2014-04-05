@@ -9,14 +9,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class MessageUtil {
 
-    @Resource
-    private MessageSource messageSource;
+	@Resource
+	private MessageSource messageSource;
 
-    public String getSimpleMessage(String code) {
-        return messageSource.getMessage(code, new Object[0], LocaleContextHolder.getLocale());
-    }
-    
-    public String getCustomMessage(String code, Object[] args) {
-        return messageSource.getMessage(code, args, LocaleContextHolder.getLocale());
-    }
+	public String getSimpleMessage(String code) {
+		return messageSource.getMessage(code, new Object[0], LocaleContextHolder.getLocale());
+	}
+	
+	public String getCustomMessage(String code, Object[] args) {
+		return messageSource.getMessage(code, args, LocaleContextHolder.getLocale());
+	}
 }

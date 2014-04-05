@@ -1,15 +1,8 @@
-/*------------------------------------------------------------------
-Project:	Heaven
-Version:	1.1
-Created: 		27/11/2013
-Last change:	12/01/2014
--------------------------------------------------------------------*/
-
 // Recent works thumbnail image height resize
 //===========================================
 
 $('.recent-works .thumbnail > .image').on( 'resize', function () {
-    $('.recent-works .thumbnail > .image').height( $('.recent-works .thumbnail > .image').width() / 1.6 );
+	$('.recent-works .thumbnail > .image').height( $('.recent-works .thumbnail > .image').width() / 1.6 );
 }).resize();
 
 // Sign In & Sign Out
@@ -128,18 +121,18 @@ $('#search-btn').on('click', function() {
 // Error page
 // ==========
 
-var divs = $("i.random").get().sort(function(){ 
-  return Math.round(Math.random())-0.5; //random so we get the right +/- combo
+var divs = $("i.random").get().sort(function(){
+	return Math.round(Math.random())-0.5; //random so we get the right +/- combo
 }).slice(0,1);
 $(divs).show();
 
-var divs = $("i.random2").get().sort(function(){ 
-  return Math.round(Math.random())-0.5; //random so we get the right +/- combo
+var divs = $("i.random2").get().sort(function(){
+	return Math.round(Math.random())-0.5; //random so we get the right +/- combo
 }).slice(0,1);
 $(divs).show();
 
-var divs = $("i.random3").get().sort(function(){ 
-  return Math.round(Math.random())-0.5; //random so we get the right +/- combo
+var divs = $("i.random3").get().sort(function(){
+	return Math.round(Math.random())-0.5; //random so we get the right +/- combo
 }).slice(0,1);
 $(divs).show();
 
@@ -157,18 +150,18 @@ $('.crp-ft-action').hover (function() {
 //==================================
 
 $(function(){
-    var $root = $('html, body');
+	var $root = $('html, body');
 
-    $('a').click(function() {
-        var href = $.attr(this, 'href');
-        if (href == '#early-person') {
-	        $root.animate({
-	            scrollTop: $(href).offset().top
-	        }, 500, function () {
-	            window.location.hash = href;
-	        });
-	    return false;
-        }
+	$('a').click(function() {
+		var href = $.attr(this, 'href');
+		if (href == '#early-user') {
+			$root.animate({
+				scrollTop: $(href).offset().top
+			}, 500, function () {
+				window.location.hash = href;
+			});
+		return false;
+		}
 	return true;
-    });
+	});
 });

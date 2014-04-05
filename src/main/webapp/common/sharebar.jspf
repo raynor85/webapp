@@ -12,10 +12,10 @@
 		'services' : 'facebook,twitter,google,email,more'
 	},
 	'follow' : {
-	      'services' : [
-	        {'service': 'facebook', 'id': 'updapy'},
-	        {'service': 'twitter', 'id': 'updapy'}
-	      ],
+		  'services' : [
+			{'service': 'facebook', 'id': 'updapy'},
+			{'service': 'twitter', 'id': 'updapy'}
+		  ],
 		 'offset' : {'top':'10px'}
 	}
   });

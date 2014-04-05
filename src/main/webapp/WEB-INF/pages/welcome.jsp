@@ -1,17 +1,16 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<base href="/">
 
-  <!-- Banner -->
-  <div class="crp-showcase">
+ <!-- Banner -->
+ <div class="crp-showcase">
 	<div class="container">
 	  <div class="row">
 		<div class="col-sm-12">
 		  <h1 class="text-center animated fadeInDown"><span class="logo logobig"><spring:message code="application.name" /></span> <spring:message code="application.tagline.short" /></h1>
 		  <h3 class="text-center animated fadeInDown shadow"><spring:message code="application.description" /> </h3>
 		  <div class="text-center actions animated fadeInDown delay2">
-			<a class="btn btn-color" href="#early-person"><spring:message code="welcome.action" /></a>
+			<a class="btn btn-color" href="#early-user"><spring:message code="welcome.action" /></a>
 		  </div>
 		  <div class="alt-index">
 			<img src="<spring:url value="/resources/img/welcome/updapy-preview.jpg" />" alt="Updapy Preview">
@@ -19,69 +18,68 @@
 		</div>
 	  </div>
 	</div>
-  </div>
-  
-  <div class="container">
-  
-  	<!-- Carousel -->
-	<div id="carousel-updapy" class="carousel slide" data-ride="carousel">
-	  <!-- Indicators -->
-	  <ol class="carousel-indicators">
-	    <li data-target="#carousel-updapy" data-slide-to="0" class="active"></li>
-	    <li data-target="#carousel-updapy" data-slide-to="1"></li>
-	    <li data-target="#carousel-updapy" data-slide-to="2"></li>
-	    <li data-target="#carousel-updapy" data-slide-to="3"></li>
-	    <li data-target="#carousel-updapy" data-slide-to="4"></li>
-	  </ol>
-	  <!-- Wrapper for slides -->
-	  <div class="carousel-inner">
-	    <div class="item active">
-	      <img src="<spring:url value="/resources/img/welcome/carousel-time.png" />" alt="Time">
-	      <div class="carousel-caption">
+ </div>
+
+ <!-- Carousel -->
+ <div id="carousel-updapy" class="carousel slide" data-ride="carousel">
+	<!-- Indicators -->
+	<ol class="carousel-indicators">
+	 <li data-target="#carousel-updapy" data-slide-to="0" class="active"></li>
+	 <li data-target="#carousel-updapy" data-slide-to="1"></li>
+	 <li data-target="#carousel-updapy" data-slide-to="2"></li>
+	 <li data-target="#carousel-updapy" data-slide-to="3"></li>
+	 <li data-target="#carousel-updapy" data-slide-to="4"></li>
+	</ol>
+	<!-- Wrapper for slides -->
+	<div class="carousel-inner">
+		<div class="item active">
+		  <img src="<spring:url value="/resources/img/welcome/carousel-time.png" />" alt="Time">
+		  <div class="carousel-caption">
 			<h4><spring:message code="welcome.carousel.time.title" /></h4>
 			<p><spring:message code="welcome.carousel.time.description" /></p>
-	      </div>
-	    </div>
-	    <div class="item">
-	      <img src="<spring:url value="/resources/img/welcome/carousel-custom.png" />" alt="Custom">
-	      <div class="carousel-caption">
+		  </div>
+		</div>
+		<div class="item">
+		  <img src="<spring:url value="/resources/img/welcome/carousel-custom.png" />" alt="Custom">
+		  <div class="carousel-caption">
 			<h4><spring:message code="welcome.carousel.custom.title" /></h4>
 			<p><spring:message code="welcome.carousel.custom.description" /></p>
-	      </div>
-	    </div>
-	    <div class="item">
-	      <img src="<spring:url value="/resources/img/welcome/carousel-security.png" />" alt="Security">
-	      <div class="carousel-caption">
+		  </div>
+		</div>
+		<div class="item">
+		  <img src="<spring:url value="/resources/img/welcome/carousel-security.png" />" alt="Security">
+		  <div class="carousel-caption">
 			<h4><spring:message code="welcome.carousel.security.title" /></h4>
 			<p><spring:message code="welcome.carousel.security.description" /></p>
-	      </div>
-	    </div>
-	    <div class="item">
-	      <img src="<spring:url value="/resources/img/welcome/carousel-trust.png" />" alt="Trust">
-	      <div class="carousel-caption">
+		  </div>
+		</div>
+		<div class="item">
+		  <img src="<spring:url value="/resources/img/welcome/carousel-trust.png" />" alt="Trust">
+		  <div class="carousel-caption">
 			<h4><spring:message code="welcome.carousel.trust.title" /></h4>
 			<p><spring:message code="welcome.carousel.trust.description" /></p>
-	      </div>
-	    </div>
-	    <div class="item">
-	      <img src="<spring:url value="/resources/img/welcome/carousel-free.png" />" alt="Free">
-	      <div class="carousel-caption">
+		  </div>
+		</div>
+		<div class="item">
+		  <img src="<spring:url value="/resources/img/welcome/carousel-free.png" />" alt="Free">
+		  <div class="carousel-caption">
 			<h4><spring:message code="welcome.carousel.free.title" /></h4>
 			<p><spring:message code="welcome.carousel.free.description" /></p>
-	      </div>
-	    </div>
-	  </div>
-	  <!-- Controls -->
-	  <a class="left carousel-control" href="#carousel-updapy" data-slide="prev">
-	    <span class="glyphicon glyphicon-chevron-left"></span>
-	  </a>
-	  <a class="right carousel-control" href="#carousel-updapy" data-slide="next">
-	    <span class="glyphicon glyphicon-chevron-right"></span>
-	  </a>
+		  </div>
+		</div>
 	</div>
-	
-	<div style="height:50px;"><hr></div>
+	<!-- Controls -->
+	<a class="left carousel-control" href="#carousel-updapy" data-slide="prev">
+	 <span class="glyphicon glyphicon-chevron-left"></span>
+	</a>
+	<a class="right carousel-control" href="#carousel-updapy" data-slide="next">
+	 <span class="glyphicon glyphicon-chevron-right"></span>
+	</a>
+ </div>
 
+ <div style="height:50px;"><hr></div>
+
+ <div class="container">
 	<!-- Features -->
 	<div class="row">
 	  <div class="col-sm-4">
@@ -104,7 +102,7 @@
 	  </div>
 	  <div class="col-sm-4">
 		<div class="crp-ft">
-		  <i class="text-color fa fa-download  fa-6x"></i>
+		  <i class="text-color fa fa-download fa-6x"></i>
 		  <h4><spring:message code="welcome.download.title" /></h4>
 		  <p class="text-muted lh">
 			<spring:message code="welcome.download.description" />
@@ -113,8 +111,8 @@
 	  </div>
 	</div>
 	
-	<!-- Early person -->
-	<a id="early-person"> </a>
+	<!-- Early user -->
+	<a id="early-user"> </a>
 	<div class="row">
 	  <div class="col-sm-8 col-sm-offset-2">
 		<h2 class="oswald text-center"><spring:message code="early.interest.title" /></h2>
@@ -126,38 +124,37 @@
 		<img src="<spring:url value="/resources/img/welcome/macbook-first.jpg" />" alt="Updapy Newsletter" class="img-responsive">
 	  </div>
 	  <div class="col-sm-5">
-		<h3 class="text-color text-center-xs"><spring:message code="early.interest.subtitle" /></h3>
-		<p class="text-muted text-center-xs lh">
-		  <spring:message code="early.interest.description" />
+		 <h3 class="text-color text-center-xs"><spring:message code="early.interest.subtitle" /></h3>
+		 <p class="text-muted text-center-xs lh">
+			<spring:message code="early.interest.description" />
+		 </p>
+	   <form id="earlyUserForm" action="${root}/user/register-early" class="form-vertical">
+		<p>
+		 <c:set var="placeholder"><spring:message code="early.interest.add.field.email.tip" /></c:set>
+		  <input id="email" name="email" class="form-control" placeholder="${placeholder}" />
 		</p>
-        <form id="earlyPersonForm" action="${root}/user/register-early" class="form-vertical">
-			<p>
-			  <c:set var="placeholder"><spring:message code="early.interest.add.field.email.tip" /></c:set>
-			  <input id="email" name="email" class="form-control" placeholder="${placeholder}" />
-			</p>
-			<p class="text-center-xs button-ladda">
-			  <button type="button" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxRegisterEarlyPerson();"><spring:message code="early.interest.add.button" /></button>
-			</p>
-    		<div id="earlyPersonResponse"></div>
-		</form>	
+		<p class="text-center-xs button-ladda">
+		 <button type="button" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxRegisterEarlyUser();"><spring:message code="early.interest.add.button" /></button>
+		</p>
+		<div id="earlyUserResponse"></div>
+	   </form>	
 	  </div>
 	</div>
+ </div>
 
-  </div>
-  
-  <script type="text/javascript">
-	function ajaxRegisterEarlyPerson() { 
+ <script type="text/javascript">
+	function ajaxRegisterEarlyUser() { 
 		$.ajax({
-			  type: 'POST',
-			  url: $('#earlyPersonForm').attr('action'),
-			  data: $('#email').val(), 
-			  contentType: 'text/plain',
-			  cache: false,
-			  success: function(data) {
-				  $('#earlyPersonResponse').html(data);
-			  }
-			});
+			type: 'POST',
+			url: $('#earlyUserForm').attr('action'),
+			data: $('#email').val(), 
+			contentType: 'text/plain',
+			cache: false,
+			success: function(data) {
+				$('#earlyUserResponse').html(data);
+			}
+		});
 	};
 	// Bind buttons
 	Ladda.bind( '.button-ladda button', { timeout: 1500 } );
-  </script>
+ </script>
