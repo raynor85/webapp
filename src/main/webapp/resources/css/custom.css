@@ -1230,7 +1230,7 @@ ul.list {
 }
 
 .body-green .carousel-control:hover,
-.carousel-control:focus {
+.body-green .carousel-control:focus {
 	color: #27ae60;
 }
 
@@ -1239,7 +1239,7 @@ ul.list {
 }
 
 .body-red .carousel-control:hover,
-.carousel-control:focus {
+.body-red .carousel-control:focus {
 	color: #e74c3c;
 }
 
@@ -1248,7 +1248,7 @@ ul.list {
 }
 
 .body-blue .carousel-control:hover,
-.carousel-control:focus {
+.body-blue .carousel-control:focus {
 	color: #3498db;
 }
 
@@ -1257,7 +1257,7 @@ ul.list {
 }
 
 .body-amethyst .carousel-control:hover,
-.carousel-control:focus {
+.body-amethyst .carousel-control:focus {
 	color: #9b59b6;
 }
 
