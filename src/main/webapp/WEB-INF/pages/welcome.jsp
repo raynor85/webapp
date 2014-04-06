@@ -8,7 +8,7 @@
 	  <div class="row">
 		<div class="col-sm-12">
 		  <h1 class="text-center animated fadeInDown"><span class="logo logobig"><spring:message code="application.name" /></span> <spring:message code="application.tagline.short" /></h1>
-		  <h3 class="text-center animated fadeInDown shadow"><spring:message code="application.description" /> </h3>
+		  <h3 class="text-center animated fadeInDown shadow"><spring:message code="welcome.introduction" /> </h3>
 		  <div class="text-center actions animated fadeInDown delay2">
 			<a class="btn btn-color" href="#early-user"><spring:message code="welcome.action" /></a>
 		  </div>
