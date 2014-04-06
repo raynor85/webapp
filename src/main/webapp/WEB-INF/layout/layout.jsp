@@ -15,6 +15,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
+	<meta name="google-site-verification" content="bFNzltBrYwsapKJE-g0zTlyHG8LHp4ft6LQd8BrtGeY" />
 	<meta name="description" content="<spring:message code="application.description" />">
 	<meta name="author" content="<spring:message code="application.author" />">
 	<link rel="canonical" href="<spring:message code="application.url" />" />
