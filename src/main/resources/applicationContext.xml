@@ -120,7 +120,7 @@
 					<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 					<prop key="hibernate.show_sql">false</prop>
 					<!-- change this to 'verify' before running as a production app -->
-					<prop key="hibernate.hbm2ddl.auto">create</prop>
+					<prop key="hibernate.hbm2ddl.auto">verify</prop>
 				</props>
 			</property>
 		</bean>
