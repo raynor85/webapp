@@ -1,4 +1,4 @@
-package com.updapy.model;
+package com.updapy.model.common;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,13 +14,11 @@ import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
 @MappedSuperclass
-public class BaseEntity implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public abstract class BaseEntity implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idSequence")
+    private Long id;
 
 	@Version
 	private Long version;
@@ -51,7 +49,7 @@ public class BaseEntity implements Serializable {
 	 * Sets creationDate before insert
 	 */
 	@PrePersist
-	public void setCreationDate() {
+	private void setCreationDate() {
 		this.creationDate = new Date();
 	}  
   
@@ -59,7 +57,7 @@ public class BaseEntity implements Serializable {
 	 * Sets updateDate before update
 	 */
 	@PreUpdate
-	public void setUpdateDate() {
+	private void setUpdateDate() {
 		this.updateDate = new Date();
 	} 
 	

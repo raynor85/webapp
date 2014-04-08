@@ -1,17 +1,47 @@
 package com.updapy.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+
+import com.updapy.model.common.BaseEntity;
 
 @Entity
+@SequenceGenerator(allocationSize=1, name="idSequence", sequenceName="person_seq")
 public class Person extends BaseEntity {
-
-	private static final long serialVersionUID = 1L;
 
 	private String email;
 	
+	private String password;
+	
+	private String name;
+	
 	// Early person = register before the service was available
-	private Boolean early;
+	private boolean early;
+	
+	@OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
+	private Account account;
 
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "person", cascade = CascadeType.ALL)
+	private List<HelpMessage> helpMessages;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "person", cascade = CascadeType.ALL)
+	private List<Setting> settings;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
+	private List<ApplicationRequest> requestedApps;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
+	private List<ApplicationFollow> followedApps;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
+	private List<ApplicationNotification> notifications;
+	
 	public String getEmail() {
 		return email;
 	}
@@ -20,12 +50,76 @@ public class Person extends BaseEntity {
 		this.email = email;
 	}
 
-	public Boolean getEarly() {
+	public boolean getEarly() {
 		return early;
 	}
 
-	public void setEarly(Boolean early) {
+	public void setEarly(boolean early) {
 		this.early = early;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	public List<HelpMessage> getHelpMessages() {
+		return helpMessages;
+	}
+
+	public void setHelpMessages(List<HelpMessage> helpMessages) {
+		this.helpMessages = helpMessages;
+	}
+
+	public List<Setting> getSettings() {
+		return settings;
+	}
+
+	public void setSettings(List<Setting> settings) {
+		this.settings = settings;
+	}
+
+	public List<ApplicationRequest> getRequestedApps() {
+		return requestedApps;
+	}
+
+	public void setRequestedApps(List<ApplicationRequest> requestedApps) {
+		this.requestedApps = requestedApps;
+	}
+
+	public List<ApplicationFollow> getFollowedApps() {
+		return followedApps;
+	}
+
+	public void setFollowedApps(List<ApplicationFollow> followedApps) {
+		this.followedApps = followedApps;
+	}
+
+	public List<ApplicationNotification> getNotifications() {
+		return notifications;
+	}
+
+	public void setNotifications(List<ApplicationNotification> notifications) {
+		this.notifications = notifications;
 	}
 
 }
