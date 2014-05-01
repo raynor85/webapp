@@ -10,24 +10,37 @@
 	<put-attribute name="content" value="/WEB-INF/layout/blank.jsp"/>
 	<put-attribute name="footer" value="/common/footer.jsp" />
  </definition>
+ <definition name="baseLayoutNormal" extends="baseLayout">
+	<put-attribute name="contentWrapperCss" value=" " />
+ </definition>
+ <definition name="baseLayoutInverse" extends="baseLayout">
+	<put-attribute name="contentWrapperCss" value="body-inverse" />
+ </definition>
 
 
  <!-- Single pages -->
- <definition name="welcome" extends="baseLayout">
+ <definition name="welcome" extends="baseLayoutNormal">
 	<put-attribute name="title" value="welcome.title" />
 	<put-attribute name="content" value="/WEB-INF/pages/welcome.jsp" />
  </definition>
- <definition name="error" extends="baseLayout">
+ <definition name="error" extends="baseLayoutNormal">
 	<put-attribute name="title" value="error.title" />
 	<put-attribute name="content" value="/WEB-INF/pages/error.jsp" />
  </definition>
- <definition name="faq" extends="baseLayout">
+ <definition name="faq" extends="baseLayoutNormal">
 	<put-attribute name="title" value="faq.title" />
 	<put-attribute name="content" value="/WEB-INF/pages/faq.jsp" />
  </definition>
- <definition name="privacy" extends="baseLayout">
+ <definition name="privacy" extends="baseLayoutNormal">
 	<put-attribute name="title" value="privacy.title" />
 	<put-attribute name="content" value="/WEB-INF/pages/privacy.jsp" />
  </definition>
-	
+ <definition name="sign" extends="baseLayoutInverse">
+	<put-attribute name="title" value="sign.title" />
+	<put-attribute name="content" value="/WEB-INF/pages/sign.jsp" />
+ </definition>
+ <definition name="sign-up" extends="baseLayoutInverse">
+	<put-attribute name="title" value="signup.title" />
+	<put-attribute name="content" value="/WEB-INF/pages/sign-up.jsp" />
+ </definition>	
 </tiles-definitions>

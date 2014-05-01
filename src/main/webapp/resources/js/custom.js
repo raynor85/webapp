@@ -10,21 +10,21 @@ $('.recent-works .thumbnail > .image').on( 'resize', function () {
 
 $('#sign-in').on('click', function() {
 	$("#user-bar").toggleClass("show hidden");
-	$("#user-bar").toggleClass("animated flipInX");
+	$("#user-bar").toggleClass("animated2 flipInX");
 	$("#sign-in").toggleClass("hidden show");
 	$("#sign-up").toggleClass("hidden show");
-	$("#sign-in").removeClass("animated flipInX");
-	$("#sign-up").removeClass("animated flipInX");
+	$("#sign-in").removeClass("animated2 flipInX");
+	$("#sign-up").removeClass("animated2 flipInX");
 	return false;
 });
 
 $('#sign-out').on('click', function() {
 	$("#user-bar").toggleClass("show hidden");
-	$("#user-bar").toggleClass("animated flipInX");
+	$("#user-bar").toggleClass("animated2 flipInX");
 	$("#sign-in").toggleClass("hidden show");
-	$("#sign-in").addClass("animated flipInX");
+	$("#sign-in").addClass("animated2 flipInX");
 	$("#sign-up").toggleClass("hidden show");
-	$("#sign-up").addClass("animated flipInX");
+	$("#sign-up").addClass("animated2 flipInX");
 	return false;
 });
 
@@ -91,7 +91,7 @@ $('#lost-btn').on('click', function() {
 
 $('#signed-in').on('click', function() {
 	$(".form-white > .contact-avatar > span").toggleClass("show hidden");
-	$(".form-white > .contact-avatar > img").toggleClass("show hidden animated flipInX");
+	$(".form-white > .contact-avatar > img").toggleClass("show hidden animated2 flipInX");
 	return false;
 });
 
@@ -114,7 +114,7 @@ $('#signed-in').on('click', function() {
 // =================
 $('#search-btn').on('click', function() {
 	$("#search-icon").toggleClass('fa-search fa-times margin-2');
-	$("#search-box").toggleClass('hidden show animated flipInX');
+	$("#search-box").toggleClass('hidden show animated2 flipInX');
 	return false;
 });
 
@@ -141,7 +141,7 @@ $(divs).show();
 
 $('.crp-ft-action').hover (function() {
 	$(this).children("a").toggleClass("show hidden");
-	$(this).children("a").toggleClass("animated flipInX");
+	$(this).children("a").toggleClass("animated2 flipInX");
 	return false;
 });
 

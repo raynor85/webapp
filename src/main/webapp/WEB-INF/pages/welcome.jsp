@@ -7,10 +7,10 @@
 	<div class="container">
 	  <div class="row">
 		<div class="col-sm-12">
-		  <h1 class="text-center animated fadeInDown"><span class="logo logobig"><spring:message code="application.name" /></span> <spring:message code="application.tagline.short" /></h1>
-		  <h3 class="text-center animated fadeInDown shadow"><spring:message code="welcome.introduction" /> </h3>
-		  <div class="text-center actions animated fadeInDown delay2">
-			<a class="btn btn-color" href="#early-user"><spring:message code="welcome.action" /></a>
+		  <h1 class="text-center animated2 fadeInDown"><span class="logo logobig"><spring:message code="application.name" /></span> <spring:message code="application.tagline.short" /></h1>
+		  <h3 class="text-center animated2 fadeInDown shadow"><spring:message code="welcome.introduction" /> </h3>
+		  <div class="text-center actions animated2 fadeInDown delay2">
+			<a class="btn btn-color" href="sign-up"><spring:message code="welcome.action" /></a>
 		  </div>
 		  <div class="alt-index">
 			<img src="<spring:url value="/resources/img/welcome/updapy-preview.jpg" />" alt="Updapy Preview">
@@ -111,6 +111,7 @@
 	  </div>
 	</div>
 	
+	<%--
 	<!-- Early user -->
 	<a id="early-user"> </a>
 	<div class="row">
@@ -130,8 +131,7 @@
 		 </p>
 	   <form id="earlyUserForm" action="${root}/user/register-early" class="form-vertical">
 		<p>
-		 <c:set var="placeholder"><spring:message code="early.interest.add.field.email.tip" /></c:set>
-		  <input id="email" name="email" class="form-control" placeholder="${placeholder}" />
+		  <input id="email" name="email" class="form-control" placeholder="<spring:message code="early.interest.add.field.email.tip" />" />
 		</p>
 		<p class="text-center-xs button-ladda">
 		 <button type="button" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxRegisterEarlyUser();"><spring:message code="early.interest.add.button" /></button>
@@ -140,8 +140,10 @@
 	   </form>	
 	  </div>
 	</div>
+	--%>
  </div>
 
+<%-->
  <script type="text/javascript">
 	function ajaxRegisterEarlyUser() { 
 		$.ajax({
@@ -158,3 +160,4 @@
 	// Bind buttons
 	Ladda.bind( '.button-ladda button', { timeout: 1500 } );
  </script>
+ --%>

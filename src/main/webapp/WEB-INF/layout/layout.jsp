@@ -78,7 +78,8 @@
 	<tiles:insertAttribute name="navbar" />
 
 	<!-- Content -->
-	<div class="wrapper">
+	<c:set var="contentWrapperCss"><tiles:insertAttribute name="contentWrapperCss" /></c:set>
+	<div class="wrapper ${contentWrapperCss}">
 		<tiles:insertAttribute name="content" />
 	</div>
 	

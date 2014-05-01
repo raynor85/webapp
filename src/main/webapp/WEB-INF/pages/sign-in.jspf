@@ -1,0 +1,34 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+<!-- Sign In form -->
+<div class="form-white">
+  <form role="form">
+    <div class="form-group">
+	  <label for="email"><spring:message code="sign.in.field.email" /></label>
+	  <input type="email" class="form-control" id="email" placeholder="<spring:message code="sign.in.field.email.tip" />">
+    </div>
+    <div class="form-group">
+	  <label for="password"><spring:message code="sign.in.field.password" /></label>
+	  <input type="password" class="form-control" id="password" placeholder="<spring:message code="sign.in.field.password.tip" />">
+    </div>
+    <button type="submit" class="btn btn-block btn-color btn-xxl"><spring:message code="sign.in.button" /></button>
+  </form>
+  <hr>
+  <p><a href="#" id="lost-btn"><spring:message code="sign.in.forgot.link" /></a></p>
+  <div class="hidden" id="lost-form">
+  <p><spring:message code="sign.in.forgot.description" /></p>
+	<form role="form">
+      <div class="form-group">
+	    <label for="email-lost"><spring:message code="sign.in.forgot.field.email" /></label>
+	    <input type="email" class="form-control" id="email-lost" placeholder="<spring:message code="sign.in.forgot.field.email.tip" />">
+      </div>
+	  <button type="submit" class="btn btn-default"><spring:message code="sign.in.forgot.button" /></button>
+	</form>
+  </div>
+  <div class="form-avatar hidden-xs">
+	<span class="fa-stack fa-4x">
+	  <i class="fa fa-circle fa-stack-1-7x"></i>
+	  <i class="fa fa-user fa-stack-1x"></i>
+	</span>
+  </div>
+</div>

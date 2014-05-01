@@ -12,7 +12,7 @@
 	  <div class="col-sm-12">
 		<br />
 		<div class="panel-group" id="accordion">
-			<c:forEach begin="1" end="6" var="i">
+			<c:forEach begin="1" end="11" var="i">
 				<c:set var="in" scope="page" value=""/>
 				<div class="panel panel-default">
 					<div class="panel-heading">

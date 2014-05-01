@@ -1,7 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container">
+  <div class="container container-menu">
 	<div class="navbar-header">
 	  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 		<span class="sr-only">Toggle navigation</span>
@@ -22,6 +22,12 @@
 		  </li>
 		  <li><a href="${root}/faq/"><spring:message code="menu.faq" /></a></li>
 		  <li><a href="${root}/privacy/"><spring:message code="menu.privacy" /></a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right hidden-xs">
+		  <li><div><a class="btn btn-color btn-nav-sign" href="${root}/sign/"><spring:message code="menu.sign" /></a></div></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right visible-xs">
+		  <li><div><a class="btn btn-color btn-nav-sign-xs" href="${root}/sign/"><spring:message code="menu.sign" /></a></div></li>
 		</ul>
 	</div>
   </div>
