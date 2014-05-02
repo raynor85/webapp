@@ -24,7 +24,7 @@
 
 	<!--  View resolvers and Tiles -->
 	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
+		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
 		<property name="order" value="0" />
 	</bean>
 
@@ -34,7 +34,7 @@
 		<property name="order" value="1" />
 	</bean>
 		
-	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 	  <property name="definitions">
 		<list>
 			<value>/WEB-INF/tile-defs/tiles.xml</value>
@@ -92,8 +92,10 @@
 				<props>
 					<!-- <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop> -->
 					<prop key="hibernate.show_sql">true</prop>
+					<prop key="hibernate.format_sql">true</prop>
 					<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 					<prop key="hibernate.hbm2ddl.auto">create</prop>
+					<prop key="hibernate.hbm2ddl.import_files">/sql/import.sql</prop>
 				</props>
 			</property>
 		</bean>

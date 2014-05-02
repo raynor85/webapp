@@ -14,7 +14,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+
+	<!-- Security for Ajax calls -->	
+	<meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
+
 	<meta name="google-site-verification" content="bFNzltBrYwsapKJE-g0zTlyHG8LHp4ft6LQd8BrtGeY" />
 	<meta name="keywords" content="<spring:message code="application.keywords" />">
 	<meta name="description" content="<spring:message code="application.description" />">

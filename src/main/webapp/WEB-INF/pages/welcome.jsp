@@ -145,9 +145,14 @@
 
 <%-->
  <script type="text/javascript">
-	function ajaxRegisterEarlyUser() { 
+	function ajaxRegisterEarlyUser() {
+	    var token = $("meta[name='_csrf']").attr("content");
+	    var header = $("meta[name='_csrf_header']").attr("content");
 		$.ajax({
 			type: 'POST',
+			beforeSend: function (xhr) {
+			    xhr.setRequestHeader(header, token);
+			},
 			url: $('#earlyUserForm').attr('action'),
 			data: $('#email').val(), 
 			contentType: 'text/plain',
