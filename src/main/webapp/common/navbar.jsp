@@ -1,4 +1,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>
+
+<s:authorize var="isAuthenticated" access="isAuthenticated()" />
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container container-menu">
@@ -20,15 +24,44 @@
 			  <li><a href="${root}?lang=fr"><spring:message code="menu.language.fr" /></a></li>
 			</ul>
 		  </li>
-		  <li><a href="${root}/faq/"><spring:message code="menu.faq" /></a></li>
-		  <li><a href="${root}/privacy/"><spring:message code="menu.privacy" /></a></li>
+			<c:choose>
+	    		<c:when test="${isAuthenticated}">
+	    			<li><a href="${root}/dashboard/"><spring:message code="menu.dashboard" /></a></li>
+	    		</c:when>
+	    		<c:otherwise>
+				  <li><a href="${root}/faq/"><spring:message code="menu.faq" /></a></li>
+				  <li><a href="${root}/privacy/"><spring:message code="menu.privacy" /></a></li>
+	    		</c:otherwise>
+			</c:choose>
 		</ul>
-		<ul class="nav navbar-nav navbar-right hidden-xs">
-		  <li><div><a class="btn btn-color btn-nav-sign" href="${root}/sign/"><spring:message code="menu.sign" /></a></div></li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right visible-xs">
-		  <li><div><a class="btn btn-color btn-nav-sign-xs" href="${root}/sign/"><spring:message code="menu.sign" /></a></div></li>
-		</ul>
+		<c:choose>
+    		<c:when test="${isAuthenticated}">
+			  <c:url value="/j_spring_security_logout" var="logoutUrl" />
+			  <!-- csrt for log out-->
+			  <form action="${logoutUrl}" method="post" id="logoutForm">
+			  <input type="hidden" 
+				name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
+			  </form>
+			
+			  <script>
+				function logout() {
+					document.getElementById("logoutForm").submit();
+				}
+			  </script>
+			  <ul class="nav navbar-nav navbar-right">
+			  	<li><a href="javascript:logout()" ><spring:message code="menu.logout" /></a></li>
+			  </ul>
+			</c:when>
+			<c:otherwise>
+				<ul class="nav navbar-nav navbar-right hidden-xs">
+				  <li><div><a class="btn btn-color btn-nav-sign" href="${root}/sign/"><spring:message code="menu.sign" /></a></div></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right visible-xs">
+				  <li><div><a class="btn btn-color btn-nav-sign-xs" href="${root}/sign/"><spring:message code="menu.sign" /></a></div></li>
+				</ul>
+			</c:otherwise>
+		</c:choose>
 	</div>
   </div>
 </div>

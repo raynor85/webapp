@@ -12,35 +12,50 @@
  </definition>
  <definition name="baseLayoutNormal" extends="baseLayout">
 	<put-attribute name="contentWrapperCss" value=" " />
+	<put-attribute name="sharebar" value=" " />
  </definition>
  <definition name="baseLayoutInverse" extends="baseLayout">
 	<put-attribute name="contentWrapperCss" value="body-inverse" />
+	<put-attribute name="sharebar" value=" " />
  </definition>
-
-
- <!-- Single pages -->
- <definition name="welcome" extends="baseLayoutNormal">
+ <definition name="baseLayoutWithShareNormal" extends="baseLayout">
+	<put-attribute name="contentWrapperCss" value=" " />
+	<put-attribute name="sharebar" value="/common/sharebar.jsp" />
+ </definition>
+ <definition name="baseLayoutWithShareInverse" extends="baseLayout">
+	<put-attribute name="contentWrapperCss" value="body-inverse" />
+	<put-attribute name="sharebar" value="/common/sharebar.jsp" />
+ </definition>
+ 
+ <!-- Global -->
+ <definition name="welcome" extends="baseLayoutWithShareNormal">
 	<put-attribute name="title" value="welcome.title" />
 	<put-attribute name="content" value="/WEB-INF/pages/welcome.jsp" />
  </definition>
- <definition name="error" extends="baseLayoutNormal">
+ <definition name="error" extends="baseLayoutWithShareNormal">
 	<put-attribute name="title" value="error.title" />
 	<put-attribute name="content" value="/WEB-INF/pages/error.jsp" />
  </definition>
- <definition name="faq" extends="baseLayoutNormal">
+ <definition name="faq" extends="baseLayoutWithShareNormal">
 	<put-attribute name="title" value="faq.title" />
 	<put-attribute name="content" value="/WEB-INF/pages/faq.jsp" />
  </definition>
- <definition name="privacy" extends="baseLayoutNormal">
+ <definition name="privacy" extends="baseLayoutWithShareNormal">
 	<put-attribute name="title" value="privacy.title" />
 	<put-attribute name="content" value="/WEB-INF/pages/privacy.jsp" />
  </definition>
- <definition name="sign" extends="baseLayoutInverse">
+ <definition name="sign" extends="baseLayoutWithShareInverse">
 	<put-attribute name="title" value="sign.title" />
 	<put-attribute name="content" value="/WEB-INF/pages/sign.jsp" />
  </definition>
- <definition name="sign-up" extends="baseLayoutInverse">
+ <definition name="sign-up" extends="baseLayoutWithShareInverse">
 	<put-attribute name="title" value="signup.title" />
 	<put-attribute name="content" value="/WEB-INF/pages/sign-up.jsp" />
+ </definition>	
+ 
+ <!-- Dashboard -->
+ <definition name="dashboard" extends="baseLayoutNormal">
+	<put-attribute name="title" value="dashboard.title" />
+	<put-attribute name="content" value="/WEB-INF/pages/dashboard.jsp" />
  </definition>	
 </tiles-definitions>

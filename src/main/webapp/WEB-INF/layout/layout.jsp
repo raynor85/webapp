@@ -83,7 +83,7 @@
 		<tiles:insertAttribute name="content" />
 	</div>
 	
-	<!-- footer -->
+	<!-- Footer -->
 	<tiles:insertAttribute name="footer" />
 
 	<!-- Bootstrap core JavaScript and Misc
@@ -93,5 +93,8 @@
 	<script src="<spring:url value="/resources/js/bootstrap.min.js" />"></script>
 	<script src="<spring:url value="/resources/js/custom.js" />"></script>
 	<script src="<spring:url value="/resources/js/scrolltopcontrol.js" />"></script>
-	<%@ include file="/common/sharebar.jspf" %>
+	
+	<!-- Sharebar -->
+	<tiles:insertAttribute name="sharebar" />
+	
 </body></html>
