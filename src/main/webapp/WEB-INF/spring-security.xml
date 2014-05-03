@@ -6,6 +6,8 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
  
+ <beans:import resource="classpath*:applicationContext.xml" />
+ 
  <http auto-config="true" use-expressions="true">
 	<intercept-url pattern="/dashboard**/**" access="hasRole('ROLE_USER')" />
 	<form-login 
@@ -21,9 +23,11 @@
 
  <authentication-manager>
   <authentication-provider>
-    <user-service>
-	  <user name="fabian@mail.com" password="123456" authorities="ROLE_USER" />
-    </user-service>
+	<jdbc-user-service data-source-ref="dataSource"
+	  users-by-username-query=
+	    "select email, password, active from person per, account acc, accountactivation act where per.account_id = acc.id and acc.activation_id=act.id and email = ? "
+	  authorities-by-username-query=
+	    "select email, 'ROLE_USER' from person where email = ? " />
   </authentication-provider>
  </authentication-manager>
  
