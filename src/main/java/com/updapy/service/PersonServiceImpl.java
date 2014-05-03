@@ -1,11 +1,20 @@
 package com.updapy.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,11 +28,33 @@ import com.updapy.model.enumeration.TypeHelpMessage;
 import com.updapy.repository.PersonRepository;
 
 @Service
-public class PersonServiceImpl implements PersonService {
+public class PersonServiceImpl implements PersonService, UserDetailsService {
 
 	@Autowired
 	PersonRepository personRepository;
-		
+	
+	private final String signInInvalid = "sign.in.invalid";
+	private final String signInInactive = "sign.in.inactive";
+
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+	    final Person user = personRepository.findByEmail(email); 
+	    // Check if user exist
+	    if (user == null) {
+	        throw new BadCredentialsException(signInInvalid);
+	    }
+	    // Check if user active
+	    if (!user.getAccount().getActivation().isActive()) {
+	    	throw new BadCredentialsException(signInInactive);
+	    }
+	    final Collection<? extends GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_USER");
+	    String username = user.getName();
+	    if (StringUtils.isBlank(username)) {
+	    	username = user.getEmail();
+	    }
+	    return new User(username, user.getPassword(), authorities);
+	}
+	
 	@Override
 	@Transactional
 	public void registerEarlyWithEmail(String email) {
@@ -93,7 +124,7 @@ public class PersonServiceImpl implements PersonService {
 
 	@Override
 	@Transactional
-	public List<Person> findByEmail(String email) {
+	public Person findByEmail(String email) {
 		return personRepository.findByEmail(email);
 	}
 

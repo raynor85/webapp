@@ -13,7 +13,7 @@
 	<form-login 
 	    login-page="/sign" 
 	    default-target-url="/dashboard" 
-		authentication-failure-url="/sign?error" 
+		authentication-failure-url="/sign" 
 		username-parameter="username"
 		password-parameter="password" />
 	<logout logout-success-url="/sign?logout" />
@@ -22,13 +22,7 @@
  </http>
 
  <authentication-manager>
-  <authentication-provider>
-	<jdbc-user-service data-source-ref="dataSource"
-	  users-by-username-query=
-	    "select email, password, active from person per, account acc, accountactivation act where per.account_id = acc.id and acc.activation_id=act.id and email = ? "
-	  authorities-by-username-query=
-	    "select email, 'ROLE_USER' from person where email = ? " />
-  </authentication-provider>
+   <authentication-provider user-service-ref="personServiceImpl" />
  </authentication-manager>
  
 </beans:beans>

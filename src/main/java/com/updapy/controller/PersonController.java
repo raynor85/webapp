@@ -32,7 +32,7 @@ public class PersonController {
 			return messageUtil.getSimpleMessage(invalid);
 		}
 		
-		if (!personService.findByEmail(email).isEmpty()) {
+		if (personService.findByEmail(email) != null) {
 			return messageUtil.getSimpleMessage(already);
 		}
 		

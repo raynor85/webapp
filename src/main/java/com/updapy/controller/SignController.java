@@ -12,22 +12,15 @@ import com.updapy.util.MessageUtil;
 @RequestMapping("sign")
 public class SignController {
 
-	private final String signInInvalid = "sign.in.invalid";
 	private final String signOutconfirm = "sign.out.success";
 	
 	@Autowired
 	MessageUtil messageUtil;
 	
 	@RequestMapping({"/", ""})
-	public ModelAndView signPage(
-			@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout) {
+	public ModelAndView signPage(@RequestParam(value = "logout", required = false) String logout) {
 		
 		ModelAndView model = new ModelAndView();
-		if (error != null) {
-			model.addObject("error", messageUtil.getSimpleMessage(signInInvalid));
-		}
- 
 		if (logout != null) {
 			model.addObject("msg", messageUtil.getSimpleMessage(signOutconfirm));
 		}
