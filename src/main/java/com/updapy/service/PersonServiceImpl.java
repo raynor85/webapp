@@ -14,9 +14,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.updapy.model.Account;
 import com.updapy.model.AccountActivation;
@@ -33,19 +31,19 @@ public class PersonServiceImpl implements PersonService, UserDetailsService {
 	@Autowired
 	PersonRepository personRepository;
 	
-	private final String signInInvalid = "sign.in.invalid";
-	private final String signInInactive = "sign.in.inactive";
+	private final String signInErrorInvalid = "sign.in.error.invalid";
+	private final String signInErrorInactive = "sign.in.error.inactive";
 
 	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String email) throws BadCredentialsException {
 	    final Person user = personRepository.findByEmail(email); 
 	    // Check if user exist
 	    if (user == null) {
-	        throw new BadCredentialsException(signInInvalid);
+	        throw new BadCredentialsException(signInErrorInvalid);
 	    }
 	    // Check if user active
 	    if (!user.getAccount().getActivation().isActive()) {
-	    	throw new BadCredentialsException(signInInactive);
+	    	throw new BadCredentialsException(signInErrorInactive);
 	    }
 	    final Collection<? extends GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_USER");
 	    String username = user.getName();
@@ -56,7 +54,6 @@ public class PersonServiceImpl implements PersonService, UserDetailsService {
 	}
 	
 	@Override
-	@Transactional
 	public void registerEarlyWithEmail(String email) {
 		Person person = initDefaultValuesPerson();
 		person.setEarly(true);
@@ -123,7 +120,6 @@ public class PersonServiceImpl implements PersonService, UserDetailsService {
 	}
 
 	@Override
-	@Transactional
 	public Person findByEmail(String email) {
 		return personRepository.findByEmail(email);
 	}

@@ -494,7 +494,7 @@ body {
 /* ===== Footer =====*/
 
 footer {
-	margin-bottom: 20px;
+	margin-bottom: 11px;
 }
 footer a {
 	color: #6D7575 !important;
@@ -1371,30 +1371,10 @@ ul.list {
 	font-size: 6em;
 }
 
-/*** Put the top button above sharing menu ***/
+/*** Add a smaller size to font-awesome ***/
 
-@media all and (max-width:800px) {
- #topcontrol {
-	bottom: 50px !important;
- }
-}
-
-/*** Override container values from bootstrap to have more space for addthis follow buttons ***/
-
-@media (min-width: 768px) {
-.container-menu {
-    width: 600px !important;
- }
-}
-@media (min-width: 992px) {
-.container-menu {
-    width: 820px !important;
- }
-}
-@media (min-width: 1200px) {
-.container-menu {
-    width: 1020px !important;
- }
+.fa-1-4x {
+	font-size: 1.4em;
 }
 
 /*** Because the 2x was too big ;) ***/
@@ -1406,4 +1386,8 @@ ul.list {
     position: absolute;
     text-align: center;
     width: 100%;
+}
+
+.no-underline {
+	text-decoration: none !important;
 }

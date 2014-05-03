@@ -143,7 +143,7 @@
 	--%>
  </div>
 
-<%-->
+<%--
  <script type="text/javascript">
 	function ajaxRegisterEarlyUser() {
 	    var token = $("meta[name='_csrf']").attr("content");

@@ -32,7 +32,7 @@
 	<put-attribute name="title" value="welcome.title" />
 	<put-attribute name="content" value="/WEB-INF/pages/welcome.jsp" />
  </definition>
- <definition name="error" extends="baseLayoutWithShareNormal">
+ <definition name="error" extends="baseLayoutNormal">
 	<put-attribute name="title" value="error.title" />
 	<put-attribute name="content" value="/WEB-INF/pages/error.jsp" />
  </definition>

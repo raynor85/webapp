@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!-- Sign In form -->
 <div class="form-white">
@@ -18,13 +19,13 @@
   
   <hr>
   
-  <!-- Login/out messages -->
+  <!-- Error messages -->
   <c:set var="error" value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
   <c:if test="${not empty error}">
+	<c:if test="${not fn:startsWith(error,'sign.in.error')}">
+	  <c:set var="error" value="sign.in.error.invalid" /> <!-- Default error message -->
+	</c:if>
   	<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><spring:message code="${error}" arguments="${SPRING_SECURITY_LAST_EXCEPTION.authentication.principal}"/></div>
-  </c:if>
-  <c:if test="${not empty msg}">
-    <div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>${msg}</div>
   </c:if>
 
   <p><a href="#" id="lost-btn"><spring:message code="sign.in.forgot.link" /></a></p>

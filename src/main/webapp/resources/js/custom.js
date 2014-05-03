@@ -8,6 +8,7 @@ $('.recent-works .thumbnail > .image').on( 'resize', function () {
 // Sign In & Sign Out
 // ==================
 
+/*
 $('#sign-in').on('click', function() {
 	$("#user-bar").toggleClass("show hidden");
 	$("#user-bar").toggleClass("animated2 flipInX");
@@ -27,6 +28,7 @@ $('#sign-out').on('click', function() {
 	$("#sign-up").addClass("animated2 flipInX");
 	return false;
 });
+*/
 
 // Style Toggle
 // ============
@@ -149,7 +151,8 @@ $('.crp-ft-action').hover (function() {
 // Add scrolling to specific anchors
 //==================================
 
-$(function(){
+/*
+ $(function(){
 	var $root = $('html, body');
 
 	$('a').click(function() {
@@ -165,3 +168,4 @@ $(function(){
 	return true;
 	});
 });
+*/

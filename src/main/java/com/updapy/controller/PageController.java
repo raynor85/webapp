@@ -25,7 +25,12 @@ public class PageController {
 	public String privacyPage() {
 		return "privacy";
 	}
-	
+
+	@RequestMapping("sign")
+	public String signPage() {
+		return "sign";
+	}
+
 	@RequestMapping("sign-up")
 	public String signupPage() {
 		return "sign-up";

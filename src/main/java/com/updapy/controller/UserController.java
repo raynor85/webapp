@@ -13,7 +13,7 @@ import com.updapy.util.MessageUtil;
 
 @Controller
 @RequestMapping("user")
-public class PersonController {
+public class UserController {
 
 	private final String invalid = "early.interest.add.invalid";
 	private final String already = "early.interest.add.already";

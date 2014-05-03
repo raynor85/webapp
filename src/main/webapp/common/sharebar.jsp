@@ -1,3 +1,12 @@
+<style>
+  /*** Put the top button above sharing menu ***/
+  @media all and (max-width:800px) {
+	#topcontrol {
+	  bottom: 50px !important;
+	}
+  }
+</style>
+
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-533fefd403935986"></script>
 <script type="text/javascript">
   addthis.layers({
@@ -8,15 +17,8 @@
 		'minWidth' : '0px'
 	},
 	'share' : {
-		'position' : 'left',
+		'position' : 'right',
 		'services' : 'facebook,twitter,google,email,more'
-	},
-	'follow' : {
-		  'services' : [
-			{'service': 'facebook', 'id': 'updapy'},
-			{'service': 'twitter', 'id': 'updapy'}
-		  ],
-		 'offset' : {'top':'10px'}
 	}
   });
 </script>
