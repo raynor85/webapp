@@ -9,12 +9,12 @@ import javax.persistence.SequenceGenerator;
 import com.updapy.model.common.BaseEntity;
 
 @Entity
-@SequenceGenerator(allocationSize=1, name="idSequence", sequenceName = "account_seq")
+@SequenceGenerator(allocationSize = 1, name = "idSequence", sequenceName = "account_seq")
 public class Account extends BaseEntity {
 
 	@OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
 	private AccountActivation activation;
-	
+
 	@OneToOne(optional = true)
 	private AccountRemoval removal;
 

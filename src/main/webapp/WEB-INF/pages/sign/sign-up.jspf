@@ -1,25 +1,46 @@
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- Sign Up form -->
 <div class="form-white">
-	<form role="form" id="signUpForm" action="${root}/user/register" method="POST">
-	  <div class="form-group">
-	    <label for="email"><spring:message code="sign.up.field.email" /></label>
-		<input id="email" name="email" class="form-control" placeholder="<spring:message code="sign.up.field.email.tip" />">
-	  </div>
-	  <div class="form-group">
-		<div class="row">
-		  <div class="col-sm-6">
-		  <label for="password2"><spring:message code="sign.up.field.password" /></label>
-		  <input type="password" class="form-control" id="password2" placeholder="<spring:message code="sign.up.field.password.tip" />">
-		  </div>
-		  <div class="col-sm-6">
-		  <label for="password3"><spring:message code="sign.up.field.password.repeat" /></label>
-		  <input type="password" class="form-control" id="password3" placeholder="<spring:message code="sign.up.field.password.repeat.tip" />">
-		  </div>
+	<form:form id="signUpForm" commandName="registerUser" action="${root}/user/register" method="POST">
+		<div class="form-group">
+			<label for="email"><spring:message code="sign.up.field.email" /></label>
+			<c:set var="emailPlaceholder">
+				<spring:message code="sign.up.field.email.tip" />
+			</c:set>
+			<form:input path="email" id="email" class="form-control" placeholder="${emailPlaceholder}" />
 		</div>
-	  </div>
-	  <button type="submit" class="btn btn-block btn-color btn-xxl"><spring:message code="sign.up.button" /></button>
-	  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-	</form>
+		<div class="form-group">
+			<div class="row">
+				<div class="col-sm-6">
+					<label for="password2"><spring:message code="sign.up.field.password" /></label>
+					<c:set var="passwordPlaceholder">
+						<spring:message code="sign.up.field.password.tip" />
+					</c:set>
+					<form:input type="password" path="password" id="password2" class="form-control" placeholder="${passwordPlaceholder}" />
+				</div>
+				<div class="col-sm-6">
+					<label for="password3"><spring:message code="sign.up.field.password.repeat" /></label>
+					<c:set var="passwordRepeatPlaceholder">
+						<spring:message code="sign.up.field.password.repeat.tip" />
+					</c:set>
+					<form:input type="password" path="repeatPassword" id="password3" class="form-control" placeholder="${passwordRepeatPlaceholder}" />
+				</div>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-block btn-color btn-xxl">
+			<spring:message code="sign.up.button" />
+		</button>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		<input type="hidden" name="requestUri" value="${requestUri}" />
+		<spring:hasBindErrors name="registerUser">
+			<br />
+			<div class="alert alert-danger alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				<form:errors path="*" htmlEscape="false" />
+			</div>
+		</spring:hasBindErrors>
+	</form:form>
 </div>

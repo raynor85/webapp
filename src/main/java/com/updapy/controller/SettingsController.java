@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("settings")
 public class SettingsController {
-	
-	@RequestMapping({"/", ""})
-	public String settingsPage() { 
+
+	@RequestMapping({ "/", "" })
+	public String settingsPage() {
 		return "settings";
 	}
 

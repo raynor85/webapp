@@ -1,49 +1,56 @@
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!-- Sign In form -->
 <div class="form-white">
-  <form role="form" name="loginForm" action="<c:url value='/j_spring_security_check' />" method="POST">
-    <div class="form-group">
-	  <label for="username"><spring:message code="sign.in.field.email" /></label>
-	  <input type="email" class="form-control" name="username" id="username" placeholder="<spring:message code="sign.in.field.email.tip" />">
-    </div>
-    <div class="form-group">
-	  <label for="password"><spring:message code="sign.in.field.password" /></label>
-	  <input type="password" class="form-control" name="password" id="password" placeholder="<spring:message code="sign.in.field.password.tip" />">
-    </div>
-    <button type="submit" class="btn btn-block btn-color btn-xxl"><spring:message code="sign.in.button" /></button>
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-  </form>
-  
-  <hr>
-  
-  <!-- Error messages -->
-  <c:set var="error" value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
-  <c:if test="${not empty error}">
-	<c:if test="${not fn:startsWith(error,'sign.in.error')}">
-	  <c:set var="error" value="sign.in.error.invalid" /> <!-- Default error message -->
-	</c:if>
-  	<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><spring:message code="${error}" arguments="${SPRING_SECURITY_LAST_EXCEPTION.authentication.principal}"/></div>
-  </c:if>
-
-  <p><a href="#" id="lost-btn" title="<spring:message code="sign.in.forgot.link" />"><spring:message code="sign.in.forgot.link" /></a></p>
-  <div class="hidden" id="lost-form">
-  <p><spring:message code="sign.in.forgot.description" /></p>
-	<form role="form" id="resetPasswordForm" action="${root}/user/reset" method="POST">
-      <div class="form-group">
-	    <label for="email-lost"><spring:message code="sign.in.forgot.field.email" /></label>
-	    <input type="email" class="form-control" id="email-lost" placeholder="<spring:message code="sign.in.forgot.field.email.tip" />">
-      </div>
-	  <button type="submit" class="btn btn-default"><spring:message code="sign.in.forgot.button" /></button>
-	  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	<form role="form" name="loginForm" action="<c:url value='/j_spring_security_check' />" method="POST">
+		<div class="form-group">
+			<label for="username"><spring:message code="sign.in.field.email" /></label> <input type="email" class="form-control" name="username" id="username" placeholder="<spring:message code="sign.in.field.email.tip" />">
+		</div>
+		<div class="form-group">
+			<label for="password"><spring:message code="sign.in.field.password" /></label> <input type="password" class="form-control" name="password" id="password" placeholder="<spring:message code="sign.in.field.password.tip" />">
+		</div>
+		<button type="submit" class="btn btn-block btn-color btn-xxl">
+			<spring:message code="sign.in.button" />
+		</button>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	</form>
-  </div>
-  <div class="form-avatar hidden-xs">
-	<span class="fa-stack fa-4x">
-	  <i class="fa fa-circle fa-stack-1-7x"></i>
-	  <i class="fa fa-user fa-stack-1x"></i>
-	</span>
-  </div>
+
+	<hr>
+
+	<!-- Error messages -->
+	<c:set var="error" value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
+	<c:if test="${not empty error}">
+		<c:if test="${not fn:endsWith(error,'logUser.email')}">
+			<c:set var="error" value="Invalid.logUser.email" />
+			<!-- Default error message -->
+		</c:if>
+		<div class="alert alert-danger alert-dismissable">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			<spring:message code="${error}" arguments="${SPRING_SECURITY_LAST_EXCEPTION.authentication.principal}" />
+		</div>
+	</c:if>
+
+	<p>
+		<a href="#" id="lost-btn" title="<spring:message code="sign.in.forgot.link" />"><spring:message code="sign.in.forgot.link" /></a>
+	</p>
+	<div class="hidden" id="lost-form">
+		<p>
+			<spring:message code="sign.in.forgot.description" />
+		</p>
+		<form role="form" id="resetPasswordForm" action="${root}/user/reset" method="POST">
+			<div class="form-group">
+				<label for="email-lost"><spring:message code="sign.in.forgot.field.email" /></label> <input type="email" class="form-control" id="email-lost" placeholder="<spring:message code="sign.in.forgot.field.email.tip" />">
+			</div>
+			<button type="submit" class="btn btn-default">
+				<spring:message code="sign.in.forgot.button" />
+			</button>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		</form>
+	</div>
+	<div class="form-avatar hidden-xs">
+		<span class="fa-stack fa-4x"> <i class="fa fa-circle fa-stack-1-7x"></i> <i class="fa fa-user fa-stack-1x"></i>
+		</span>
+	</div>
 </div>

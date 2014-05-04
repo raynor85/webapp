@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("dashboard")
 public class DashboardController {
 
-	@RequestMapping({"/", ""})
-	public String dashboardPage() { 
+	@RequestMapping({ "/", "" })
+	public String dashboardPage() {
 		return "dashboard";
 	}
 

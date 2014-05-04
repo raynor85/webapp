@@ -1,27 +1,23 @@
-<beans:beans xmlns="http://www.springframework.org/schema/security"
-	xmlns:beans="http://www.springframework.org/schema/beans" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans:beans xmlns="http://www.springframework.org/schema/security" xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
- 
- <beans:import resource="classpath*:applicationContext.xml" />
- 
- <http auto-config="true" use-expressions="true">
-	<intercept-url pattern="/dashboard**/**" access="hasRole('ROLE_USER')" />
-	<form-login 
-	    login-page="/sign"
-	    default-target-url="/dashboard"
-		authentication-failure-url="/sign"
-		username-parameter="username"
-		password-parameter="password" />
-	<!-- enable csrf protection -->
-	<csrf/>
- </http>
 
- <authentication-manager>
-   <authentication-provider user-service-ref="personServiceImpl" />
- </authentication-manager>
- 
+	<beans:import resource="classpath*:applicationContext.xml" />
+
+	<http auto-config="true" use-expressions="true">
+		<intercept-url pattern="/dashboard**/**" access="hasRole('ROLE_USER')" />
+		<form-login login-page="/sign"
+					default-target-url="/dashboard" 
+					authentication-failure-url="/sign" 
+					username-parameter="username" 
+					password-parameter="password" />
+		<!-- enable csrf protection -->
+		<csrf />
+	</http>
+
+	<authentication-manager>
+		<authentication-provider user-service-ref="userAuthenticateServiceImpl" />
+	</authentication-manager>
+
 </beans:beans>

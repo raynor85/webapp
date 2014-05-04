@@ -1,63 +1,105 @@
 package com.updapy.controller;
 
-import org.apache.commons.validator.routines.EmailValidator;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.updapy.service.PersonService;
+import com.updapy.form.ajax.JsonResponse;
+import com.updapy.form.model.RegisterEarlyUser;
+import com.updapy.form.model.RegisterUser;
+import com.updapy.form.validator.RegisterEarlyUserCustomValidator;
+import com.updapy.form.validator.RegisterUserCustomValidator;
+import com.updapy.service.UserService;
 import com.updapy.util.MessageUtil;
 
 @Controller
 @RequestMapping("user")
 public class UserController {
 
-	private final String invalid = "early.interest.add.invalid";
-	private final String already = "early.interest.add.already";
-	private final String confirm = "early.interest.add.confirm";
-	
 	@Autowired
 	MessageUtil messageUtil;
-	
+
 	@Autowired
-	private PersonService personService;
-	
-	@RequestMapping(value="register-early", method=RequestMethod.POST)
-	public @ResponseBody String registerEarly(@RequestBody String email) {
-		
-		if (!EmailValidator.getInstance().isValid(email)) {
-			return messageUtil.getSimpleMessage(invalid);
-		}
-		
-		if (personService.findByEmail(email) != null) {
-			return messageUtil.getSimpleMessage(already);
-		}
-		
-		personService.registerEarlyWithEmail(email);
-		return messageUtil.getSimpleMessage(confirm);
+	private UserService userService;
+
+	@Autowired
+	private RegisterUserCustomValidator registerUserCustomValidator;
+
+	@Autowired
+	private RegisterEarlyUserCustomValidator registerEarlyUserCustomValidator;
+
+	@InitBinder("registerEarlyUser")
+	private void initBinderEarly(WebDataBinder binder) {
+		binder.addValidators(registerEarlyUserCustomValidator);
 	}
-	
-	@RequestMapping(value="register", method=RequestMethod.POST)
-	public String register() {
-		// TODO : check email is valid
-		// check password are same
-		// check email is not already taken
-		// send activation email
-		return "sign-up-activate";
+
+	@InitBinder("registerUser")
+	private void initBinder(WebDataBinder binder) {
+		binder.addValidators(registerUserCustomValidator);
 	}
-	
-	@RequestMapping(value="activate")
+
+	@RequestMapping(value = "register-early", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody
+	JsonResponse registerEarly(@Valid @RequestBody RegisterEarlyUser registerEarlyUser, BindingResult result) {
+		JsonResponse jsonResponse = new JsonResponse();
+		if (result.hasErrors()) {
+			jsonResponse.setStatus("FAIL");
+			List<String> errors = new ArrayList<String>();
+			for (ObjectError error: result.getAllErrors()) {
+				errors.add(messageUtil.getSimpleMessage(error));
+			}
+			jsonResponse.setResult(errors);
+		} else {
+			userService.registerEarly(registerEarlyUser.getEmail());
+			jsonResponse.setStatus("SUCCESS");
+			jsonResponse.setResult(Arrays.asList(messageUtil.getSimpleMessage("early.interest.add.confirm")));
+		}
+		return jsonResponse;
+	}
+
+	@RequestMapping(value = "register", method = RequestMethod.POST)
+	public String register(@Valid RegisterUser registerUser, BindingResult result) {
+
+		if (result.hasErrors()) {
+			if (registerUser.getRequestUri().equals("signGlobal")) {
+				return "sign";
+			}
+			return "sign-up";
+		} else {
+
+			// TODO: Encrypt password
+
+			// TODO: Save user
+
+			// TODO: Send activation email
+			
+			return "sign-up-activate";
+		}
+	}
+
+	@RequestMapping(value = "activate")
 	public String sendActivationEmail(@RequestParam(value = "email", required = true) String email) {
 		// TODO : check account is not activated
 		// send an email
 		return "sign-up-activate-resend";
 	}
-	
-	@RequestMapping(value="reset", method=RequestMethod.POST)
+
+	@RequestMapping(value = "reset", method = RequestMethod.POST)
 	public String resetPassword() {
 		// TODO : check account is activated
 		// send an email

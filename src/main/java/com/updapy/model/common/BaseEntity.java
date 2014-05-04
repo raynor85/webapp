@@ -18,14 +18,14 @@ public abstract class BaseEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idSequence")
-    private Long id;
+	private Long id;
 
 	@Version
 	private Long version;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updateDate;
 
@@ -45,22 +45,22 @@ public abstract class BaseEntity implements Serializable {
 		return updateDate;
 	}
 
-	/** 
+	/**
 	 * Sets creationDate before insert
 	 */
 	@PrePersist
 	private void setCreationDate() {
 		this.creationDate = new Date();
-	}  
-  
+	}
+
 	/**
 	 * Sets updateDate before update
 	 */
 	@PreUpdate
 	private void setUpdateDate() {
 		this.updateDate = new Date();
-	} 
-	
+	}
+
 	@Override
 	public int hashCode() {
 		int hash = 0;

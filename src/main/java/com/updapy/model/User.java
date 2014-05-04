@@ -11,37 +11,37 @@ import javax.persistence.SequenceGenerator;
 
 import com.updapy.model.common.BaseEntity;
 
-@Entity
-@SequenceGenerator(allocationSize=1, name="idSequence", sequenceName="person_seq")
-public class Person extends BaseEntity {
+@Entity(name = "person")
+@SequenceGenerator(allocationSize = 1, name = "idSequence", sequenceName = "person_seq")
+public class User extends BaseEntity {
 
 	private String email;
-	
+
 	private String password;
-	
+
 	private String name;
-	
-	// Early person = register before the service was available
+
+	// Early user = register before the service was available
 	private boolean early;
-	
-	@OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
+
+	@OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
 	private Account account;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "person", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 	private List<HelpMessage> helpMessages;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "person", cascade = CascadeType.ALL)
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Setting> settings;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private List<ApplicationRequest> requestedApps;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private List<ApplicationFollow> followedApps;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private List<ApplicationNotification> notifications;
-	
+
 	public String getEmail() {
 		return email;
 	}

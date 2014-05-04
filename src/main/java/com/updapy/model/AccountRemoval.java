@@ -10,11 +10,11 @@ import javax.persistence.TemporalType;
 import com.updapy.model.common.BaseEntity;
 
 @Entity
-@SequenceGenerator(allocationSize=1, name="idSequence", sequenceName = "account_removal_seq")
+@SequenceGenerator(allocationSize = 1, name = "idSequence", sequenceName = "account_removal_seq")
 public class AccountRemoval extends BaseEntity {
 
 	private String feedback;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date removeDate;
 
@@ -33,5 +33,5 @@ public class AccountRemoval extends BaseEntity {
 	public void setRemoveDate(Date removeDate) {
 		this.removeDate = removeDate;
 	}
-	
+
 }

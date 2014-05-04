@@ -11,18 +11,18 @@ import javax.persistence.TemporalType;
 import com.updapy.model.common.BaseEntity;
 
 @Entity
-@SequenceGenerator(allocationSize=1, name="idSequence", sequenceName = "version_seq")
+@SequenceGenerator(allocationSize = 1, name = "idSequence", sequenceName = "version_seq")
 public class Version extends BaseEntity {
 
 	@ManyToOne(optional = false)
 	private ApplicationReference reference;
-	
+
 	private String versionNumber;
-	
+
 	private String win32Url;
-	
+
 	private String win64Url;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date versionDate;
 
@@ -65,5 +65,5 @@ public class Version extends BaseEntity {
 	public void setReference(ApplicationReference reference) {
 		this.reference = reference;
 	}
-	
+
 }

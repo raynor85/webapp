@@ -1,6 +1,6 @@
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <c:set var="lang" value="${not empty param.lang ? param.lang : not empty lang ? lang : pageContext.request.locale}" scope="session" />
 <c:set var="root" value="${pageContext.request.contextPath}" scope="application" />
@@ -8,17 +8,17 @@
 <!DOCTYPE html>
 <html lang="${lang}">
 
-  <!-- Head -->
-  <head>
-  
+<!-- Head -->
+<head>
+	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<!-- Security for Ajax calls -->	
-	<meta name="_csrf" content="${_csrf.token}"/>
-    <meta name="_csrf_header" content="${_csrf.headerName}"/>
-
+	
+	<!-- Security for Ajax calls -->
+	<meta name="_csrf" content="${_csrf.token}" />
+	<meta name="_csrf_header" content="${_csrf.headerName}" />
+	
 	<meta name="google-site-verification" content="bFNzltBrYwsapKJE-g0zTlyHG8LHp4ft6LQd8BrtGeY" />
 	<meta name="keywords" content="<spring:message code="application.keywords" />">
 	<meta name="description" content="<spring:message code="application.description" />">
@@ -47,12 +47,14 @@
 	<meta name="msapplication-square310x310logo" content="<spring:url value="/resources/img/favicon/mstile-310x310.png" />">
 	<meta name="msapplication-wide310x150logo" content="<spring:url value="/resources/img/favicon/mstile-310x150.png" />">
 	
-	<c:set var="title"><tiles:insertAttribute name="title" /></c:set>
+	<c:set var="title">
+		<tiles:insertAttribute name="title" />
+	</c:set>
 	<title><spring:message code="application.name" /> | <spring:message code="${title}" /></title>
-
+	
 	<!-- Bootstrap core CSS -->
 	<link href="<spring:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
-
+	
 	<!-- Ladda -->
 	<link href="<spring:url value="/resources/css/ladda.min.css" />" rel="stylesheet">
 	<script src="<spring:url value="/resources/js/spin.min.js" />"></script>
@@ -68,25 +70,27 @@
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-
+	
 	<!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 	<![endif]-->
-  </head>
-	
-  <body class="body-green">
+</head>
+
+<body class="body-green">
 
 	<!-- Navigation bar -->
 	<tiles:insertAttribute name="navbar" />
 
 	<!-- Content -->
-	<c:set var="contentWrapperCss"><tiles:insertAttribute name="contentWrapperCss" /></c:set>
+	<c:set var="contentWrapperCss">
+		<tiles:insertAttribute name="contentWrapperCss" />
+	</c:set>
 	<div class="wrapper ${contentWrapperCss}">
 		<tiles:insertAttribute name="content" />
 	</div>
-	
+
 	<!-- Footer -->
 	<tiles:insertAttribute name="footer" />
 
@@ -97,8 +101,9 @@
 	<script src="<spring:url value="/resources/js/bootstrap.min.js" />"></script>
 	<script src="<spring:url value="/resources/js/custom.js" />"></script>
 	<script src="<spring:url value="/resources/js/scrolltopcontrol.js" />"></script>
-	
+
 	<!-- Sharebar -->
 	<tiles:insertAttribute name="sharebar" />
-	
-</body></html>
+
+</body>
+</html>

@@ -2,6 +2,7 @@ package com.updapy.model;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -9,15 +10,16 @@ import javax.persistence.SequenceGenerator;
 import com.updapy.model.common.BaseEntity;
 
 @Entity
-@SequenceGenerator(allocationSize=1, name="idSequence", sequenceName = "application_follow_seq")
+@SequenceGenerator(allocationSize = 1, name = "idSequence", sequenceName = "application_follow_seq")
 public class ApplicationFollow extends BaseEntity {
 
 	@ManyToOne(optional = false)
-	private Person person;
-	
+	@JoinColumn(name = "person_id")
+	private User user;
+
 	@OneToOne(fetch = FetchType.EAGER, optional = false)
 	private ApplicationReference referenceApp;
-	
+
 	private boolean emailNotificationActive;
 
 	public ApplicationReference getReferenceApp() {
@@ -36,12 +38,12 @@ public class ApplicationFollow extends BaseEntity {
 		this.emailNotificationActive = emailNotificationActive;
 	}
 
-	public Person getPerson() {
-		return person;
+	public User getUser() {
+		return user;
 	}
 
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	
+
 }

@@ -1,38 +1,32 @@
 // Recent works thumbnail image height resize
 //===========================================
 
-$('.recent-works .thumbnail > .image').on( 'resize', function () {
-	$('.recent-works .thumbnail > .image').height( $('.recent-works .thumbnail > .image').width() / 1.6 );
-}).resize();
+$('.recent-works .thumbnail > .image').on(
+		'resize',
+		function() {
+			$('.recent-works .thumbnail > .image').height(
+					$('.recent-works .thumbnail > .image').width() / 1.6);
+		}).resize();
 
 // Sign In & Sign Out
 // ==================
 
 /*
-$('#sign-in').on('click', function() {
-	$("#user-bar").toggleClass("show hidden");
-	$("#user-bar").toggleClass("animated2 flipInX");
-	$("#sign-in").toggleClass("hidden show");
-	$("#sign-up").toggleClass("hidden show");
-	$("#sign-in").removeClass("animated2 flipInX");
-	$("#sign-up").removeClass("animated2 flipInX");
-	return false;
-});
-
-$('#sign-out').on('click', function() {
-	$("#user-bar").toggleClass("show hidden");
-	$("#user-bar").toggleClass("animated2 flipInX");
-	$("#sign-in").toggleClass("hidden show");
-	$("#sign-in").addClass("animated2 flipInX");
-	$("#sign-up").toggleClass("hidden show");
-	$("#sign-up").addClass("animated2 flipInX");
-	return false;
-});
-*/
+ * $('#sign-in').on('click', function() { $("#user-bar").toggleClass("show
+ * hidden"); $("#user-bar").toggleClass("animated2 flipInX");
+ * $("#sign-in").toggleClass("hidden show"); $("#sign-up").toggleClass("hidden
+ * show"); $("#sign-in").removeClass("animated2 flipInX");
+ * $("#sign-up").removeClass("animated2 flipInX"); return false; });
+ * 
+ * $('#sign-out').on('click', function() { $("#user-bar").toggleClass("show
+ * hidden"); $("#user-bar").toggleClass("animated2 flipInX");
+ * $("#sign-in").toggleClass("hidden show"); $("#sign-in").addClass("animated2
+ * flipInX"); $("#sign-up").toggleClass("hidden show");
+ * $("#sign-up").addClass("animated2 flipInX"); return false; });
+ */
 
 // Style Toggle
 // ============
-
 $('.style-toggle-btn').on('click', function() {
 	$(".style-toggle-btn").toggleClass("show hidden");
 	$(".style-toggle").toggleClass("hidden show");
@@ -91,11 +85,15 @@ $('#lost-btn').on('click', function() {
 // Contact Us
 // ==========
 
-$('#signed-in').on('click', function() {
-	$(".form-white > .contact-avatar > span").toggleClass("show hidden");
-	$(".form-white > .contact-avatar > img").toggleClass("show hidden animated2 flipInX");
-	return false;
-});
+$('#signed-in').on(
+		'click',
+		function() {
+			$(".form-white > .contact-avatar > span")
+					.toggleClass("show hidden");
+			$(".form-white > .contact-avatar > img").toggleClass(
+					"show hidden animated2 flipInX");
+			return false;
+		});
 
 $('#signed-in').on('click', function() {
 	$("#email-contact").toggleClass("show hidden");
@@ -123,49 +121,41 @@ $('#search-btn').on('click', function() {
 // Error page
 // ==========
 
-var divs = $("i.random").get().sort(function(){
-	return Math.round(Math.random())-0.5; //random so we get the right +/- combo
-}).slice(0,1);
+var divs = $("i.random").get().sort(function() {
+	return Math.round(Math.random()) - 0.5; // random so we get the right +/-
+											// combo
+}).slice(0, 1);
 $(divs).show();
 
-var divs = $("i.random2").get().sort(function(){
-	return Math.round(Math.random())-0.5; //random so we get the right +/- combo
-}).slice(0,1);
+var divs = $("i.random2").get().sort(function() {
+	return Math.round(Math.random()) - 0.5; // random so we get the right +/-
+											// combo
+}).slice(0, 1);
 $(divs).show();
 
-var divs = $("i.random3").get().sort(function(){
-	return Math.round(Math.random())-0.5; //random so we get the right +/- combo
-}).slice(0,1);
+var divs = $("i.random3").get().sort(function() {
+	return Math.round(Math.random()) - 0.5; // random so we get the right +/-
+											// combo
+}).slice(0, 1);
 $(divs).show();
 
 // Corporate Index Features
 // ========================
 
-$('.crp-ft-action').hover (function() {
+$('.crp-ft-action').hover(function() {
 	$(this).children("a").toggleClass("show hidden");
 	$(this).children("a").toggleClass("animated2 flipInX");
 	return false;
 });
 
-
 // Add scrolling to specific anchors
-//==================================
+// ==================================
 
 /*
- $(function(){
-	var $root = $('html, body');
-
-	$('a').click(function() {
-		var href = $.attr(this, 'href');
-		if (href == '#early-user') {
-			$root.animate({
-				scrollTop: $(href).offset().top
-			}, 500, function () {
-				window.location.hash = href;
-			});
-		return false;
-		}
-	return true;
-	});
-});
-*/
+ * $(function(){ var $root = $('html, body');
+ * 
+ * $('a').click(function() { var href = $.attr(this, 'href'); if (href ==
+ * '#early-user') { $root.animate({ scrollTop: $(href).offset().top }, 500,
+ * function () { window.location.hash = href; }); return false; } return true;
+ * }); });
+ */

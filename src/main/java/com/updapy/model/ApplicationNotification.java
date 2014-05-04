@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -12,15 +13,16 @@ import com.updapy.model.common.BaseEntity;
 import com.updapy.model.enumeration.TypeNofication;
 
 @Entity
-@SequenceGenerator(allocationSize=1, name="idSequence", sequenceName = "application_notification_seq")
+@SequenceGenerator(allocationSize = 1, name = "idSequence", sequenceName = "application_notification_seq")
 public class ApplicationNotification extends BaseEntity {
 
 	@ManyToOne(optional = false)
-	private Person person;
-	
+	@JoinColumn(name = "person_id")
+	private User user;
+
 	@OneToOne(fetch = FetchType.LAZY, optional = false)
 	private ApplicationReference referenceApp;
-	
+
 	private boolean read;
 
 	@Enumerated(EnumType.STRING)
@@ -50,12 +52,12 @@ public class ApplicationNotification extends BaseEntity {
 		this.type = type;
 	}
 
-	public Person getPerson() {
-		return person;
+	public User getUser() {
+		return user;
 	}
 
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	
+
 }

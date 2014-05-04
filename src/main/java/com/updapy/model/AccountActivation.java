@@ -10,16 +10,16 @@ import javax.persistence.TemporalType;
 import com.updapy.model.common.BaseEntity;
 
 @Entity
-@SequenceGenerator(allocationSize=1, name="idSequence", sequenceName = "account_activation_seq")
+@SequenceGenerator(allocationSize = 1, name = "idSequence", sequenceName = "account_activation_seq")
 public class AccountActivation extends BaseEntity {
 
 	private boolean active;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date generationKeyDate;
-	
+
 	private String key;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date activationDate;
 

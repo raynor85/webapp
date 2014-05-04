@@ -10,18 +10,18 @@ import javax.persistence.SequenceGenerator;
 import com.updapy.model.common.BaseEntity;
 
 @Entity
-@SequenceGenerator(allocationSize=1, name="idSequence", sequenceName = "application_reference_seq")
+@SequenceGenerator(allocationSize = 1, name = "idSequence", sequenceName = "application_reference_seq")
 public class ApplicationReference extends BaseEntity {
 
 	private String name;
-	
+
 	private String globalUrl;
-	
+
 	private String iconInternalUrl;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reference")
 	private List<Version> versions;
-	
+
 	private boolean active;
 
 	public String getName() {
@@ -63,5 +63,5 @@ public class ApplicationReference extends BaseEntity {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
+
 }
