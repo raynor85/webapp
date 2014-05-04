@@ -47,14 +47,21 @@ public class UserController {
 		// check password are same
 		// check email is not already taken
 		// send activation email
-		return "sign-up-confirm";
+		return "sign-up-activate";
 	}
 	
 	@RequestMapping(value="activate")
 	public String sendActivationEmail(@RequestParam(value = "email", required = true) String email) {
 		// TODO : check account is not activated
 		// send an email
-		return "sign-up-confirm-resend";
+		return "sign-up-activate-resend";
+	}
+	
+	@RequestMapping(value="reset", method=RequestMethod.POST)
+	public String resetPassword() {
+		// TODO : check account is activated
+		// send an email
+		return "sign-in-reset";
 	}
 
 }

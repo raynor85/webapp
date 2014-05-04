@@ -50,17 +50,21 @@
 	<put-attribute name="title" value="sign.title" />
 	<put-attribute name="content" value="/WEB-INF/pages/sign/sign.jsp" />
  </definition>
+ <definition name="sign-in-reset" extends="baseLayoutNormal">
+	<put-attribute name="title" value="sign.in.reset.title" />
+	<put-attribute name="content" value="/WEB-INF/pages/sign/sign-in-reset.jsp" />
+ </definition>
  <definition name="sign-up" extends="baseLayoutInverse">
 	<put-attribute name="title" value="sign.up.title" />
 	<put-attribute name="content" value="/WEB-INF/pages/sign/sign-up.jsp" />
  </definition>	
- <definition name="sign-up-confirm" extends="baseLayoutNormal">
-	<put-attribute name="title" value="sign.up.confirm.title" />
-	<put-attribute name="content" value="/WEB-INF/pages/sign/sign-up-confirm.jsp" />
+ <definition name="sign-up-activate" extends="baseLayoutNormal">
+	<put-attribute name="title" value="sign.up.activate.title" />
+	<put-attribute name="content" value="/WEB-INF/pages/sign/sign-up-activate.jsp" />
  </definition>	
- <definition name="sign-up-confirm-resend" extends="baseLayoutNormal">
-	<put-attribute name="title" value="sign.up.confirm.resend.title" />
-	<put-attribute name="content" value="/WEB-INF/pages/sign/sign-up-confirm-resend.jsp" />
+ <definition name="sign-up-activate-resend" extends="baseLayoutNormal">
+	<put-attribute name="title" value="sign.up.activate.resend.title" />
+	<put-attribute name="content" value="/WEB-INF/pages/sign/sign-up-activate-resend.jsp" />
  </definition>
  
  <!-- Dashboard -->
