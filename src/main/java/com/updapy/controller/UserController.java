@@ -27,7 +27,7 @@ public class UserController {
 	private PersonService personService;
 	
 	@RequestMapping(value="register-early", method=RequestMethod.POST)
-	public @ResponseBody String registerEarlyPerson(@RequestBody String email) {
+	public @ResponseBody String registerEarly(@RequestBody String email) {
 		
 		if (!EmailValidator.getInstance().isValid(email)) {
 			return messageUtil.getSimpleMessage(invalid);
@@ -42,7 +42,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="register", method=RequestMethod.POST)
-	public String registerPerson() {
+	public String register() {
 		// TODO : check email is valid
 		// check password are same
 		// check email is not already taken

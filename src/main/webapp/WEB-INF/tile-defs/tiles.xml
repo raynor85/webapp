@@ -44,6 +44,8 @@
 	<put-attribute name="title" value="privacy.title" />
 	<put-attribute name="content" value="/WEB-INF/pages/global/privacy.jsp" />
  </definition>
+ 
+ <!-- Sign -->
  <definition name="sign" extends="baseLayoutInverse">
 	<put-attribute name="title" value="sign.title" />
 	<put-attribute name="content" value="/WEB-INF/pages/sign/sign.jsp" />
@@ -65,5 +67,9 @@
  <definition name="dashboard" extends="baseLayoutNormal">
 	<put-attribute name="title" value="dashboard.title" />
 	<put-attribute name="content" value="/WEB-INF/pages/dashboard/dashboard.jsp" />
- </definition>	
+ </definition>
+ <definition name="settings" extends="baseLayoutInverse">
+	<put-attribute name="title" value="settings.title" />
+	<put-attribute name="content" value="/WEB-INF/pages/dashboard/settings.jsp" />
+ </definition>
 </tiles-definitions>
