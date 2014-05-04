@@ -28,7 +28,7 @@
   	<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><spring:message code="${error}" arguments="${SPRING_SECURITY_LAST_EXCEPTION.authentication.principal}"/></div>
   </c:if>
 
-  <p><a href="#" id="lost-btn"><spring:message code="sign.in.forgot.link" /></a></p>
+  <p><a href="#" id="lost-btn" title="<spring:message code="sign.in.forgot.link" />"><spring:message code="sign.in.forgot.link" /></a></p>
   <div class="hidden" id="lost-form">
   <p><spring:message code="sign.in.forgot.description" /></p>
 	<form role="form">
