@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.updapy.service.PersonService;
@@ -38,6 +39,22 @@ public class UserController {
 		
 		personService.registerEarlyWithEmail(email);
 		return messageUtil.getSimpleMessage(confirm);
+	}
+	
+	@RequestMapping(value="register", method=RequestMethod.POST)
+	public String registerPerson() {
+		// TODO : check email is valid
+		// check password are same
+		// check email is not already taken
+		// send activation email
+		return "sign-up-confirm";
+	}
+	
+	@RequestMapping(value="activate")
+	public String sendActivationEmail(@RequestParam(value = "email", required = true) String email) {
+		// TODO : check account is not activated
+		// send an email
+		return "sign-up-confirm-resend";
 	}
 
 }

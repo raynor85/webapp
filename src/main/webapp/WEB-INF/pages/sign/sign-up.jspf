@@ -2,10 +2,10 @@
 
 <!-- Sign Up form -->
 <div class="form-white">
-	<form role="form">
+	<form role="form" id="signUpForm" action="${root}/user/register" method="POST">
 	  <div class="form-group">
-	    <label for="email2"><spring:message code="sign.up.field.email" /></label>
-		<input type="email" class="form-control" id="email2" placeholder="<spring:message code="sign.up.field.email.tip" />">
+	    <label for="email"><spring:message code="sign.up.field.email" /></label>
+		<input id="email" name="email" class="form-control" placeholder="<spring:message code="sign.up.field.email.tip" />">
 	  </div>
 	  <div class="form-group">
 		<div class="row">
@@ -14,11 +14,12 @@
 		  <input type="password" class="form-control" id="password2" placeholder="<spring:message code="sign.up.field.password.tip" />">
 		  </div>
 		  <div class="col-sm-6">
-		  <label for="password2"><spring:message code="sign.up.field.password.repeat" /></label>
+		  <label for="password3"><spring:message code="sign.up.field.password.repeat" /></label>
 		  <input type="password" class="form-control" id="password3" placeholder="<spring:message code="sign.up.field.password.repeat.tip" />">
 		  </div>
 		</div>
 	  </div>
 	  <button type="submit" class="btn btn-block btn-color btn-xxl"><spring:message code="sign.up.button" /></button>
+	  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	</form>
 </div>

@@ -35,4 +35,9 @@ public class PageController {
 	public String signupPage() {
 		return "sign-up";
 	}
+	
+	@RequestMapping("sign-up-confirm")
+	public String signupConfirmPage() {
+		return "sign-up-confirm";
+	}
 }

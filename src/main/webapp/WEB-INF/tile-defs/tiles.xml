@@ -30,32 +30,40 @@
  <!-- Global -->
  <definition name="welcome" extends="baseLayoutWithShareNormal">
 	<put-attribute name="title" value="welcome.title" />
-	<put-attribute name="content" value="/WEB-INF/pages/welcome.jsp" />
+	<put-attribute name="content" value="/WEB-INF/pages/global/welcome.jsp" />
  </definition>
  <definition name="error" extends="baseLayoutNormal">
 	<put-attribute name="title" value="error.title" />
-	<put-attribute name="content" value="/WEB-INF/pages/error.jsp" />
+	<put-attribute name="content" value="/WEB-INF/pages/global/error.jsp" />
  </definition>
  <definition name="faq" extends="baseLayoutWithShareNormal">
 	<put-attribute name="title" value="faq.title" />
-	<put-attribute name="content" value="/WEB-INF/pages/faq.jsp" />
+	<put-attribute name="content" value="/WEB-INF/pages/global/faq.jsp" />
  </definition>
  <definition name="privacy" extends="baseLayoutWithShareNormal">
 	<put-attribute name="title" value="privacy.title" />
-	<put-attribute name="content" value="/WEB-INF/pages/privacy.jsp" />
+	<put-attribute name="content" value="/WEB-INF/pages/global/privacy.jsp" />
  </definition>
- <definition name="sign" extends="baseLayoutWithShareInverse">
+ <definition name="sign" extends="baseLayoutInverse">
 	<put-attribute name="title" value="sign.title" />
-	<put-attribute name="content" value="/WEB-INF/pages/sign.jsp" />
+	<put-attribute name="content" value="/WEB-INF/pages/sign/sign.jsp" />
  </definition>
- <definition name="sign-up" extends="baseLayoutWithShareInverse">
-	<put-attribute name="title" value="signup.title" />
-	<put-attribute name="content" value="/WEB-INF/pages/sign-up.jsp" />
+ <definition name="sign-up" extends="baseLayoutInverse">
+	<put-attribute name="title" value="sign.up.title" />
+	<put-attribute name="content" value="/WEB-INF/pages/sign/sign-up.jsp" />
  </definition>	
+ <definition name="sign-up-confirm" extends="baseLayoutNormal">
+	<put-attribute name="title" value="sign.up.confirm.title" />
+	<put-attribute name="content" value="/WEB-INF/pages/sign/sign-up-confirm.jsp" />
+ </definition>	
+ <definition name="sign-up-confirm-resend" extends="baseLayoutNormal">
+	<put-attribute name="title" value="sign.up.confirm.resend.title" />
+	<put-attribute name="content" value="/WEB-INF/pages/sign/sign-up-confirm-resend.jsp" />
+ </definition>
  
  <!-- Dashboard -->
  <definition name="dashboard" extends="baseLayoutNormal">
 	<put-attribute name="title" value="dashboard.title" />
-	<put-attribute name="content" value="/WEB-INF/pages/dashboard.jsp" />
+	<put-attribute name="content" value="/WEB-INF/pages/dashboard/dashboard.jsp" />
  </definition>	
 </tiles-definitions>
