@@ -15,7 +15,14 @@
 					<spring:message code="welcome.introduction" />
 				</h3>
 				<div class="text-center actions animated2 fadeInDown delay2">
-					<a class="btn btn-color" href="sign-up"><spring:message code="welcome.action" /></a>
+					<c:choose>
+						<c:when test="${phase == 'early'}">
+							<a class="btn btn-color" href="#early-user"><spring:message code="welcome.action.early" /></a>
+						</c:when>
+						<c:otherwise>
+							<a class="btn btn-color" href="sign-up"><spring:message code="welcome.action" /></a>
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<div class="alt-index">
 					<img src="<spring:url value="/resources/img/welcome/updapy-preview.jpg" />" alt="Updapy Preview">
@@ -141,85 +148,86 @@
 		</div>
 	</div>
 
-	<%--
-	<!-- Early user -->
-	<a id="early-user"> </a>
-	<div class="row">
-		<div class="col-sm-8 col-sm-offset-2">
-			<h2 class="oswald text-center">
-				<spring:message code="early.interest.title" />
-			</h2>
-			<hr>
+	<c:if test="${phase == 'early'}">
+		<!-- Early user -->
+		<a id="early-user"> </a>
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+				<h2 class="oswald text-center">
+					<spring:message code="early.interest.title" />
+				</h2>
+				<hr>
+			</div>
 		</div>
-	</div>
-	<div class="row crp-desc">
-		<div class="col-sm-5 col-sm-offset-1">
-			<img src="<spring:url value="/resources/img/welcome/macbook-first.jpg" />" alt="Updapy Newsletter" class="img-responsive">
-		</div>
-		<div class="col-sm-5">
-			<h3 class="text-color text-center-xs">
-				<spring:message code="early.interest.subtitle" />
-			</h3>
-			<p class="text-muted text-center-xs lh">
-				<spring:message code="early.interest.description" />
-			</p>
-			<form:form id="earlyUserForm" commandName="registerEarlyUser" action="${root}/user/register-early" class="form-vertical">
-				<p>
-					<c:set var="emailPlaceholder">
-						<spring:message code="early.interest.add.field.email.tip" />
-					</c:set>
-					<form:input path="email" id="email" class="form-control" placeholder="${emailPlaceholder}" />
+		<div class="row crp-desc">
+			<div class="col-sm-5 col-sm-offset-1">
+				<img src="<spring:url value="/resources/img/welcome/macbook-first.jpg" />" alt="Updapy Newsletter" class="img-responsive">
+			</div>
+			<div class="col-sm-5">
+				<h3 class="text-color text-center-xs">
+					<spring:message code="early.interest.subtitle" />
+				</h3>
+				<p class="text-muted text-center-xs lh">
+					<spring:message code="early.interest.description" />
 				</p>
-				<p class="text-center-xs button-ladda">
-					<button type="button" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxRegisterEarlyUser();">
-						<spring:message code="early.interest.add.button" />
-					</button>
-				</p>
-				<div id="earlyUserResponse"></div>
-			</form:form>
+				<form:form id="earlyUserForm" commandName="registerEarlyUser" action="${root}/user/register-early" class="form-vertical">
+					<p>
+						<c:set var="emailPlaceholder">
+							<spring:message code="early.interest.add.field.email.tip" />
+						</c:set>
+						<form:input path="email" id="email" class="form-control" placeholder="${emailPlaceholder}" />
+					</p>
+					<p class="text-center-xs button-ladda">
+						<button type="button" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxRegisterEarlyUser();">
+							<spring:message code="early.interest.add.button" />
+						</button>
+					</p>
+					<div id="earlyUserResponse"></div>
+				</form:form>
+			</div>
 		</div>
-	</div>
- --%>
+	</c:if>
 </div>
 
-<%-- 
-<script type="text/javascript">
-	function ajaxRegisterEarlyUser() {
-		var token = $("meta[name='_csrf']").attr("content");
-		var header = $("meta[name='_csrf_header']").attr("content");
-		var json = {
-			"email" : $('#email').val()
+<c:if test="${phase == 'early'}">
+	<script type="text/javascript">
+		function ajaxRegisterEarlyUser() {
+			var token = $("meta[name='_csrf']").attr("content");
+			var header = $("meta[name='_csrf_header']").attr("content");
+			var json = {
+				"email" : $('#email').val()
+			};
+			$
+					.ajax({
+						type : 'POST',
+						beforeSend : function(xhr) {
+							xhr.setRequestHeader(header, token);
+						},
+						url : $('#earlyUserForm').attr('action'),
+						data : JSON.stringify(json),
+						contentType : 'application/json',
+						cache : false,
+						success : function(response) {
+							var type;
+							if (response.status == "SUCCESS") {
+								type = "success";
+							} else if (response.status == "FAIL") {
+								type = "danger";
+							}
+							responseInDiv = "<div class='alert alert-" + type + " alert-dismissable'>";
+							responseInDiv += "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+							for (var i = 0; i < response.result.length; i++) {
+								responseInDiv += response.result[i] + "<br />";
+							}
+							responseInDiv += "</div>";
+							$('#earlyUserResponse').html(responseInDiv);
+						}
+					});
 		};
-		$
-				.ajax({
-					type : 'POST',
-					beforeSend : function(xhr) {
-						xhr.setRequestHeader(header, token);
-					},
-					url : $('#earlyUserForm').attr('action'),
-					data : JSON.stringify(json),
-					contentType : 'application/json',
-					cache : false,
-					success : function(response) {
-						var type;
-						if (response.status == "SUCCESS") {
-							type = "success";
-						} else if (response.status == "FAIL") {
-							type = "danger";
-						}
-						responseInDiv = "<div class='alert alert-" + type + " alert-dismissable'>";
-						responseInDiv += "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
-						for (var i = 0; i < response.result.length; i++) {
-							responseInDiv += response.result[i] + "<br />";
-						}
-						responseInDiv += "</div>";
-						$('#earlyUserResponse').html(responseInDiv);
-					}
-				});
-	};
-	// Bind buttons
-	Ladda.bind('.button-ladda button', {
-		timeout : 1500
-	});
-</script>
- --%>
+		// Bind buttons
+		Ladda.bind('.button-ladda button', {
+			timeout : 1500
+		});
+	</script>
+</c:if>
+

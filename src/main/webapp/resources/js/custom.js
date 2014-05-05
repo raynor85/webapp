@@ -123,19 +123,19 @@ $('#search-btn').on('click', function() {
 
 var divs = $("i.random").get().sort(function() {
 	return Math.round(Math.random()) - 0.5; // random so we get the right +/-
-											// combo
+	// combo
 }).slice(0, 1);
 $(divs).show();
 
 var divs = $("i.random2").get().sort(function() {
 	return Math.round(Math.random()) - 0.5; // random so we get the right +/-
-											// combo
+	// combo
 }).slice(0, 1);
 $(divs).show();
 
 var divs = $("i.random3").get().sort(function() {
 	return Math.round(Math.random()) - 0.5; // random so we get the right +/-
-											// combo
+	// combo
 }).slice(0, 1);
 $(divs).show();
 
@@ -151,11 +151,19 @@ $('.crp-ft-action').hover(function() {
 // Add scrolling to specific anchors
 // ==================================
 
-/*
- * $(function(){ var $root = $('html, body');
- * 
- * $('a').click(function() { var href = $.attr(this, 'href'); if (href ==
- * '#early-user') { $root.animate({ scrollTop: $(href).offset().top }, 500,
- * function () { window.location.hash = href; }); return false; } return true;
- * }); });
- */
+$(function() {
+	var $root = $('html, body');
+
+	$('a').click(function() {
+		var href = $.attr(this, 'href');
+		if (href == '#early-user') {
+			$root.animate({
+				scrollTop : $(href).offset().top
+			}, 500, function() {
+				window.location.hash = href;
+			});
+			return false;
+		}
+		return true;
+	});
+});

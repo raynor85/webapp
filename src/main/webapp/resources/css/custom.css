@@ -1186,7 +1186,7 @@ a.carousel-arrow-next {
 
 @media ( max-width : 767px) { /* Adjusting for xs devices */
 	.crp-showcase {
-		padding-bottom: 70px;
+		padding-bottom: 50px;
 	}
 	.crp-showcase h1 {
 		font-size: 36px;

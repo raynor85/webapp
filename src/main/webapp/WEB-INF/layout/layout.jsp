@@ -4,6 +4,7 @@
 
 <c:set var="lang" value="${not empty param.lang ? param.lang : not empty lang ? lang : pageContext.request.locale}" scope="session" />
 <c:set var="root" value="${pageContext.request.contextPath}" scope="application" />
+<c:set var="phase" scope="application"><spring:message code="phase.name" /></c:set>
 
 <!DOCTYPE html>
 <html lang="${lang}">

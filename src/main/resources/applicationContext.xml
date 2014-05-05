@@ -1,11 +1,12 @@
-<?xml  version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-						   http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
-						   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-						   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-						   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
-						   http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+		xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xsi:schemaLocation="http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+                            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+                            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<context:annotation-config />
 	<context:component-scan base-package="com.updapy" />
@@ -36,12 +37,6 @@
 		</property>
 	</bean>
 
-	<!-- Messages and i18n -->
-	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basenames" value="classpath:i18n/messages,classpath:i18n/validation,classpath:messages" />
-		<property name="defaultEncoding" value="UTF-8" />
-	</bean>
-
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
 		<property name="defaultLocale" value="en" />
 	</bean>
@@ -63,6 +58,13 @@
 	</bean>
 
 	<beans profile="default">
+		
+		<!-- Messages and i18n -->
+		<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+			<property name="basenames" value="classpath:i18n/messages,classpath:i18n/validation,classpath:messages,classpath:project_dev" />
+			<property name="defaultEncoding" value="UTF-8" />
+		</bean>
+
 		<!-- <jdbc:embedded-database id="dataSource"/> -->
 		<bean class="java.net.URI" id="dbUrl">
 			<constructor-arg value="#{systemEnvironment['DATABASE_URL']}" />
@@ -94,6 +96,13 @@
 	</beans>
 
 	<beans profile="prod">
+	
+		<!-- Messages and i18n -->
+		<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+			<property name="basenames" value="classpath:i18n/messages,classpath:i18n/validation,classpath:messages,classpath:project_prod" />
+			<property name="defaultEncoding" value="UTF-8" />
+		</bean>
+		
 		<bean class="java.net.URI" id="dbUrl">
 			<constructor-arg value="#{systemEnvironment['DATABASE_URL']}" />
 		</bean>
