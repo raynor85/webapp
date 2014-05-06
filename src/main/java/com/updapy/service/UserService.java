@@ -7,5 +7,7 @@ public interface UserService {
 	User findByEmail(String email);
 
 	void registerEarly(String email);
+	
+	void register(User user);
 
 }

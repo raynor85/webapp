@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ import com.updapy.form.model.RegisterEarlyUser;
 import com.updapy.form.model.RegisterUser;
 import com.updapy.form.validator.RegisterEarlyUserCustomValidator;
 import com.updapy.form.validator.RegisterUserCustomValidator;
+import com.updapy.model.User;
 import com.updapy.service.UserService;
 import com.updapy.util.MessageUtil;
 
@@ -33,6 +35,9 @@ public class UserController {
 
 	@Autowired
 	MessageUtil messageUtil;
+	
+	@Autowired
+	DozerBeanMapper dozerMapper;
 
 	@Autowired
 	private UserService userService;
@@ -81,13 +86,8 @@ public class UserController {
 			}
 			return "sign-up";
 		} else {
-
-			// TODO: Encrypt password
-
-			// TODO: Save user
-
+			userService.register(dozerMapper.map(registerUser, User.class));
 			// TODO: Send activation email
-			
 			return "sign-up-activate";
 		}
 	}
