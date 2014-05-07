@@ -6,6 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.updapy.form.model.RegisterEarlyUser;
 import com.updapy.form.model.RegisterUser;
+import com.updapy.form.model.ResetUser;
 
 @Controller
 public class PageController {
@@ -32,7 +33,10 @@ public class PageController {
 
 	@RequestMapping("sign")
 	public ModelAndView signPage() {
-		return new ModelAndView("sign", "registerUser", new RegisterUser());
+		ModelAndView modelAndView = new ModelAndView("sign");
+		modelAndView.addObject("resetUser", new ResetUser());
+		modelAndView.addObject("registerUser", new RegisterUser());
+		return modelAndView;
 	}
 
 	@RequestMapping("sign-up")

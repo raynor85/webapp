@@ -20,7 +20,7 @@
 							<a class="btn btn-color" href="#early-user"><spring:message code="welcome.action.early" /></a>
 						</c:when>
 						<c:otherwise>
-							<a class="btn btn-color" href="sign-up"><spring:message code="welcome.action" /></a>
+							<a class="btn btn-color" href="${root}/sign-up/"><spring:message code="welcome.action" /></a>
 						</c:otherwise>
 					</c:choose>
 				</div>

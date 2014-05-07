@@ -10,7 +10,6 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.updapy.model.User;
 import com.updapy.repository.UserRepository;
@@ -25,7 +24,6 @@ public class UserAuthenticateServiceImpl implements UserDetailsService {
 	private final String emailInactive = "Inactive.logUser.email";
 
 	@Override
-	@Transactional
 	public UserDetails loadUserByUsername(String email) throws BadCredentialsException {
 		final User user = userRepository.findByEmail(email);
 		// Check if user exist

@@ -1,6 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!-- Sign In form -->
 <div class="form-white">
@@ -28,7 +29,7 @@
 		</c:if>
 		<div class="alert alert-danger alert-dismissable">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			<spring:message code="${error}" arguments="${SPRING_SECURITY_LAST_EXCEPTION.authentication.principal}" />
+			<spring:message code="${error}" arguments="${root},${SPRING_SECURITY_LAST_EXCEPTION.authentication.principal}" />
 		</div>
 	</c:if>
 
@@ -39,18 +40,58 @@
 		<p>
 			<spring:message code="sign.in.forgot.description" />
 		</p>
-		<form role="form" id="resetPasswordForm" action="${root}/user/reset" method="POST">
+		<form:form id="resetPasswordUserForm" commandName="resetUser" action="${root}/user/reset/send">
 			<div class="form-group">
-				<label for="email-lost"><spring:message code="sign.in.forgot.field.email" /></label> <input type="email" class="form-control" id="email-lost" placeholder="<spring:message code="sign.in.forgot.field.email.tip" />">
+				<label for="email-lost"><spring:message code="sign.in.forgot.field.email" /></label>
+				<c:set var="emailPlaceholder">
+					<spring:message code="sign.in.forgot.field.email.tip" />
+				</c:set>
+				<form:input path="email" class="form-control" id="email-lost" placeholder="${emailPlaceholder}" />
 			</div>
-			<button type="submit" class="btn btn-default">
+			<button type="button" class="btn btn-default" onclick="ajaxResetPasswordUser();">
 				<spring:message code="sign.in.forgot.button" />
 			</button>
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-		</form>
+			<div id="resetPasswordUserResponse"></div>
+		</form:form>
 	</div>
 	<div class="form-avatar hidden-xs">
 		<span class="fa-stack fa-4x"> <i class="fa fa-circle fa-stack-1-7x"></i> <i class="fa fa-user fa-stack-1x"></i>
 		</span>
 	</div>
 </div>
+
+<script type="text/javascript">
+	function ajaxResetPasswordUser() {
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		var json = {
+			"email" : $('#email-lost').val()
+		};
+		$
+				.ajax({
+					type : 'POST',
+					beforeSend : function(xhr) {
+						xhr.setRequestHeader(header, token);
+					},
+					url : $('#resetPasswordUserForm').attr('action'),
+					data : JSON.stringify(json),
+					contentType : 'application/json',
+					cache : false,
+					success : function(response) {
+						var type;
+						if (response.status == "SUCCESS") {
+							type = "success";
+						} else if (response.status == "FAIL") {
+							type = "danger";
+						}
+						responseInDiv = "<br /><div class='alert alert-" + type + " alert-dismissable'>";
+						responseInDiv += "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+						for (var i = 0; i < response.result.length; i++) {
+							responseInDiv += response.result[i] + "<br />";
+						}
+						responseInDiv += "</div>";
+						$('#resetPasswordUserResponse').html(responseInDiv);
+					}
+				});
+	};
+</script>

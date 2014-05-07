@@ -9,14 +9,10 @@
 			</h3>
 			<hr>
 			<div class="col-sm-12">
-				<spring:message code="sign.up.activate.description" arguments="test" />
-				<br />
-				<br />
-				<br />
-
+				<spring:message code="sign.up.activate.description" arguments="${email}" />
+				<br /> <br /> <br />
 				<spring:message code="sign.up.activate.send.description" />
-				<br />
-				<br /> <a class="btn btn-color" href="${root}/user/activate?email=test"><spring:message code="sign.up.activate.send.button" /></a>
+				<br /> <br /> <a class="btn btn-color" href="${root}/user/activate/send?email=${email}"><spring:message code="sign.up.activate.send.button" /></a>
 			</div>
 		</div>
 	</div>

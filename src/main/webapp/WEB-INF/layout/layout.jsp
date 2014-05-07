@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<c:set var="lang" value="${not empty param.lang ? param.lang : not empty lang ? lang : pageContext.request.locale}" scope="session" />
-<c:set var="root" value="${pageContext.request.contextPath}" scope="application" />
+<c:set var="lang" scope="session" value="${not empty param.lang ? param.lang : not empty lang ? lang : pageContext.request.locale}" />
+<c:set var="root" scope="application"><spring:message code="application.root.url" /></c:set>
 <c:set var="phase" scope="application"><spring:message code="phase.name" /></c:set>
 
 <!DOCTYPE html>
@@ -24,7 +24,7 @@
 	<meta name="keywords" content="<spring:message code="application.keywords" />">
 	<meta name="description" content="<spring:message code="application.description" />">
 	<meta name="author" content="<spring:message code="application.author" />">
-	<link rel="canonical" href="<spring:message code="application.url" />" />
+	<link rel="canonical" href="${root}" />
 	
 	<link rel="shortcut icon" href="<spring:url value="/resources/img/favicon/favicon.ico" />">
 	<link rel="apple-touch-icon" sizes="57x57" href="<spring:url value="/resources/img/favicon/apple-touch-icon-57x57.png" />">

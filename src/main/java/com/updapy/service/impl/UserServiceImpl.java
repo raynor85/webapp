@@ -34,21 +34,39 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void registerEarly(String email) {
+	public User registerEarly(String email) {
 		User user = new User();
 		fillDefaultValuesUser(user);
 		user.setEarly(true);
 		user.setEmail(email);
-		userRepository.saveAndFlush(user);
+		return save(user);
 	}
 
 	@Override
-	public void register(User user) {
+	public User register(User user) {
 		fillDefaultValuesUser(user);
 		// Encrypt password
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setEarly(false);
-		userRepository.saveAndFlush(user);
+		return save(user);
+	}
+
+	@Override
+	public String generateNewKey(User user) {
+		String newKey = generateNewKeyWithoutSaving(user);
+		save(user);
+		return newKey;
+	}
+
+	private String generateNewKeyWithoutSaving(User user) {
+		String newKey = RandomStringUtils.random(50, "0123456789abcdefghijklmnopqrstuvwxyz");
+		user.getAccount().getActivation().setKey(newKey);
+		user.getAccount().getActivation().setGenerationKeyDate(new Date());
+		return newKey;
+	}
+
+	private User save(User user) {
+		return userRepository.saveAndFlush(user);
 	}
 
 	private void fillDefaultValuesUser(User user) {
@@ -62,11 +80,10 @@ public class UserServiceImpl implements UserService {
 		AccountActivation accountActivation = new AccountActivation();
 		// not yet activate
 		accountActivation.setActive(false);
-		// generate the key
-		accountActivation.setKey(RandomStringUtils.random(50, "0123456789abcdefghijklmnopqrstuvwxyz"));
-		accountActivation.setGenerationKeyDate(new Date());
 		account.setActivation(accountActivation);
 		user.setAccount(account);
+		// generate the key
+		generateNewKeyWithoutSaving(user);
 	}
 
 	private void fillDefaultValuesSettings(User user) {
@@ -117,6 +134,14 @@ public class UserServiceImpl implements UserService {
 		helpMessageSearchHowTo.setUser(user);
 		defaultHelpMessages.add(helpMessageSearchHowTo);
 		user.setHelpMessages(defaultHelpMessages);
+	}
+
+	@Override
+	public User activate(User user) {
+		AccountActivation accountActivation = user.getAccount().getActivation();
+		accountActivation.setActivationDate(new Date());
+		accountActivation.setActive(true);
+		return save(user);
 	}
 
 }

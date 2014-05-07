@@ -25,7 +25,7 @@
 					<spring:message code="error.description.short" />
 				</h3>
 				<p class="text-center text-muted">
-					<spring:message code="error.description.long" />
+					<spring:message code="error.description.long" arguments="${root}" />
 				</p>
 			</div>
 		</div>

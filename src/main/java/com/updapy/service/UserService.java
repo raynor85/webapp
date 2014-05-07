@@ -6,8 +6,12 @@ public interface UserService {
 
 	User findByEmail(String email);
 
-	void registerEarly(String email);
-	
-	void register(User user);
+	User registerEarly(String email);
+
+	User register(User user);
+
+	String generateNewKey(User user);
+
+	User activate(User user);
 
 }

@@ -36,9 +36,12 @@
 						<c:if test="${i == 1}">
 							<c:set var="in" value="in" />
 						</c:if>
+						<c:if test="${i == 11}">
+							<c:set var="arguments" value="${root}" />
+						</c:if>
 						<div id="collapse${i}" class="panel-collapse collapse ${in}">
 							<div class="panel-body">
-								<spring:message code="faq.answer.${i}" />
+								<spring:message code="faq.answer.${i}" arguments="${arguments}" />
 							</div>
 						</div>
 					</div>

@@ -68,6 +68,18 @@
 		<put-attribute name="title" value="sign.up.activate.resend.title" />
 		<put-attribute name="content" value="/WEB-INF/pages/sign/sign-up-activate-resend.jsp" />
 	</definition>
+	<definition name="sign-up-complete" extends="baseLayoutNormal">
+		<put-attribute name="title" value="sign.up.complete.title" />
+		<put-attribute name="content" value="/WEB-INF/pages/sign/sign-up-complete.jsp" />
+	</definition>
+	<definition name="error-activate-link" extends="baseLayoutNormal">
+		<put-attribute name="title" value="sign.up.activate.error.link.title" />
+		<put-attribute name="content" value="/WEB-INF/pages/sign/sign-up-activate-error-link.jsp" />
+	</definition>
+	<definition name="error-activate-send" extends="baseLayoutNormal">
+		<put-attribute name="title" value="sign.up.activate.error.send.title" />
+		<put-attribute name="content" value="/WEB-INF/pages/sign/sign-up-activate-error-send.jsp" />
+	</definition>
 
 	<!-- Dashboard -->
 	<definition name="dashboard" extends="baseLayoutNormal">

@@ -24,7 +24,7 @@ public class User extends BaseEntity {
 	// Early user = register before the service was available
 	private boolean early;
 
-	@OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
 	private Account account;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
