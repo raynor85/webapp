@@ -16,8 +16,8 @@
 			<ul class="nav navbar-nav">
 				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="menu.language" /> <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="${root}?lang=en"><spring:message code="menu.language.en" /></a></li>
-						<li><a href="${root}?lang=fr"><spring:message code="menu.language.fr" /></a></li>
+						<li><a href="?lang=en"><spring:message code="menu.language.en" /></a></li>
+						<li><a href="?lang=fr"><spring:message code="menu.language.fr" /></a></li>
 					</ul></li>
 				<li><a href="${root}/faq/"><spring:message code="menu.faq" /></a></li>
 				<li><a href="${root}/privacy/"><spring:message code="menu.privacy" /></a></li>
