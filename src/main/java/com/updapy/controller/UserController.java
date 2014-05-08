@@ -32,6 +32,7 @@ import com.updapy.form.validator.RegisterUserCustomValidator;
 import com.updapy.form.validator.ResetUserCustomValidator;
 import com.updapy.form.validator.ResetUserEmailCustomValidator;
 import com.updapy.model.User;
+import com.updapy.service.MailSenderService;
 import com.updapy.service.UserService;
 import com.updapy.util.MessageUtil;
 
@@ -49,6 +50,9 @@ public class UserController {
 	private UserService userService;
 
 	@Autowired
+	private MailSenderService mailSenderService;
+
+	@Autowired
 	private RegisterUserCustomValidator registerUserCustomValidator;
 
 	@Autowired
@@ -56,10 +60,10 @@ public class UserController {
 
 	@Autowired
 	private ResetUserEmailCustomValidator resetUserEmailCustomValidator;
-	
+
 	@Autowired
 	private ResetUserCustomValidator resetUserCustomValidator;
-	
+
 	@InitBinder("registerEarlyUser")
 	private void initBinderEarly(WebDataBinder binder) {
 		binder.addValidators(registerEarlyUserCustomValidator);
@@ -74,7 +78,7 @@ public class UserController {
 	private void initBinderResetPassword(WebDataBinder binder) {
 		binder.addValidators(resetUserEmailCustomValidator);
 	}
-	
+
 	@InitBinder("resetUser")
 	private void initBinderResetPasswordConfirm(WebDataBinder binder) {
 		binder.addValidators(resetUserCustomValidator);
@@ -112,7 +116,7 @@ public class UserController {
 			return modelAndView;
 		} else {
 			User user = userService.register(dozerMapper.map(registerUser, User.class));
-			sendActivationLinkEmail(user.getEmail(), user.getAccount().getActivation().getKey());
+			mailSenderService.sendActivationLink(user.getEmail(), user.getAccount().getActivation().getKey());
 			modelAndView.setViewName("sign-up-activate");
 			return modelAndView;
 		}
@@ -129,15 +133,9 @@ public class UserController {
 			return modelAndView;
 		}
 		String newKey = userService.generateNewKey(user);
-		sendActivationLinkEmail(email, newKey);
+		mailSenderService.sendActivationLink(email, newKey);
 		modelAndView.setViewName("sign-up-activate-resend");
 		return modelAndView;
-	}
-
-	private void sendActivationLinkEmail(String email, String key) {
-		// TODO send email here with a dedicated service
-		String link = messageUtil.getSimpleMessage("application.root.url") + "/user/activate?email=" + email + "&key=" + key;
-		System.out.println("Send an email with the link: " + link);
 	}
 
 	@RequestMapping(value = "activate")
@@ -168,17 +166,11 @@ public class UserController {
 		} else {
 			String email = resetUserEmail.getEmail();
 			String newKey = userService.generateNewKey(userService.findByEmail(email));
-			sendResetPasswordEmail(email, newKey);
+			mailSenderService.sendResetPasswordLink(email, newKey);
 			jsonResponse.setStatus("SUCCESS");
 			jsonResponse.setResult(Arrays.asList(messageUtil.getSimpleMessage("sign.in.forgot.send.confirm")));
 		}
 		return jsonResponse;
-	}
-
-	private void sendResetPasswordEmail(String email, String key) {
-		// TODO send email here with a dedicated service
-		String link = messageUtil.getSimpleMessage("application.root.url") + "/user/resetpassword?email=" + email + "&key=" + key;
-		System.out.println("Send an email with the link: " + link);
 	}
 
 	@RequestMapping(value = "resetpassword")

@@ -15,6 +15,11 @@
 	<mvc:resources mapping="/resources/**" location="/resources/" order="3" />
 	<mvc:annotation-driven />
 
+	<!-- Velocity -->
+	<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="resourceLoaderPath" value="/WEB-INF/velocity/" />
+	</bean>
+
 	<!-- View resolvers and Tiles -->
 	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
@@ -68,7 +73,7 @@
 
 		<!-- Messages and i18n -->
 		<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-			<property name="basenames" value="classpath:i18n/messages,classpath:i18n/validation,classpath:messages,classpath:project_dev" />
+			<property name="basenames" value="classpath:i18n/messages,classpath:i18n/validation,classpath:i18n/email,classpath:messages,classpath:project_dev" />
 			<property name="defaultEncoding" value="UTF-8" />
 		</bean>
 
@@ -106,7 +111,7 @@
 
 		<!-- Messages and i18n -->
 		<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-			<property name="basenames" value="classpath:i18n/messages,classpath:i18n/validation,classpath:messages,classpath:project_prod" />
+			<property name="basenames" value="classpath:i18n/messages,classpath:i18n/validation,classpath:i18n/email,classpath:messages,classpath:project_prod" />
 			<property name="defaultEncoding" value="UTF-8" />
 		</bean>
 
