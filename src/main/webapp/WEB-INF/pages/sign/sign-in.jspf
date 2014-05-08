@@ -7,7 +7,7 @@
 <div class="form-white">
 	<form role="form" name="loginForm" action="<c:url value='/j_spring_security_check' />" method="POST">
 		<div class="form-group">
-			<label for="username"><spring:message code="sign.in.field.email" /></label> <input type="email" class="form-control" name="username" id="username" placeholder="<spring:message code="sign.in.field.email.tip" />">
+			<label for="username"><spring:message code="sign.in.field.email" /></label> <input type="email" class="form-control" name="username" id="username" placeholder="<spring:message code="sign.in.field.email.tip" />" value="${SPRING_SECURITY_LAST_EXCEPTION.authentication.principal}">
 		</div>
 		<div class="form-group">
 			<label for="password"><spring:message code="sign.in.field.password" /></label> <input type="password" class="form-control" name="password" id="password" placeholder="<spring:message code="sign.in.field.password.tip" />">
@@ -40,13 +40,13 @@
 		<p>
 			<spring:message code="sign.in.forgot.description" />
 		</p>
-		<form:form id="resetPasswordUserForm" commandName="resetUser" action="${root}/user/reset/send">
+		<form:form id="resetPasswordUserForm" commandName="resetUserEmail" action="${root}/user/reset/send">
 			<div class="form-group">
 				<label for="email-lost"><spring:message code="sign.in.forgot.field.email" /></label>
 				<c:set var="emailPlaceholder">
 					<spring:message code="sign.in.forgot.field.email.tip" />
 				</c:set>
-				<form:input path="email" class="form-control" id="email-lost" placeholder="${emailPlaceholder}" />
+				<form:input path="email" class="form-control" id="email-lost" placeholder="${emailPlaceholder}" value="${SPRING_SECURITY_LAST_EXCEPTION.authentication.principal}" />
 			</div>
 			<button type="button" class="btn btn-default" onclick="ajaxResetPasswordUser();">
 				<spring:message code="sign.in.forgot.button" />

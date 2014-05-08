@@ -26,9 +26,11 @@ import com.updapy.form.ajax.JsonResponse;
 import com.updapy.form.model.RegisterEarlyUser;
 import com.updapy.form.model.RegisterUser;
 import com.updapy.form.model.ResetUser;
+import com.updapy.form.model.ResetUserEmail;
 import com.updapy.form.validator.RegisterEarlyUserCustomValidator;
 import com.updapy.form.validator.RegisterUserCustomValidator;
 import com.updapy.form.validator.ResetUserCustomValidator;
+import com.updapy.form.validator.ResetUserEmailCustomValidator;
 import com.updapy.model.User;
 import com.updapy.service.UserService;
 import com.updapy.util.MessageUtil;
@@ -53,8 +55,11 @@ public class UserController {
 	private RegisterEarlyUserCustomValidator registerEarlyUserCustomValidator;
 
 	@Autowired
+	private ResetUserEmailCustomValidator resetUserEmailCustomValidator;
+	
+	@Autowired
 	private ResetUserCustomValidator resetUserCustomValidator;
-
+	
 	@InitBinder("registerEarlyUser")
 	private void initBinderEarly(WebDataBinder binder) {
 		binder.addValidators(registerEarlyUserCustomValidator);
@@ -65,8 +70,13 @@ public class UserController {
 		binder.addValidators(registerUserCustomValidator);
 	}
 
+	@InitBinder("resetUserEmail")
+	private void initBinderResetPassword(WebDataBinder binder) {
+		binder.addValidators(resetUserEmailCustomValidator);
+	}
+	
 	@InitBinder("resetUser")
-	private void initBinderReset(WebDataBinder binder) {
+	private void initBinderResetPasswordConfirm(WebDataBinder binder) {
 		binder.addValidators(resetUserCustomValidator);
 	}
 
@@ -95,7 +105,7 @@ public class UserController {
 		if (result.hasErrors()) {
 			if (registerUser.getRequestUri().equals("signGlobal")) {
 				modelAndView.setViewName("sign");
-				modelAndView.addObject("resetUser", new ResetUser());
+				modelAndView.addObject("resetUserEmail", new ResetUserEmail());
 				return modelAndView;
 			}
 			modelAndView.setViewName("sign-up");
@@ -146,7 +156,7 @@ public class UserController {
 
 	@RequestMapping(value = "reset/send", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
-	JsonResponse sendResetPasswordEmail(@Valid @RequestBody ResetUser resetUser, BindingResult result) {
+	JsonResponse sendResetPasswordEmail(@Valid @RequestBody ResetUserEmail resetUserEmail, BindingResult result) {
 		JsonResponse jsonResponse = new JsonResponse();
 		if (result.hasErrors()) {
 			jsonResponse.setStatus("FAIL");
@@ -156,7 +166,7 @@ public class UserController {
 			}
 			jsonResponse.setResult(errors);
 		} else {
-			String email = resetUser.getEmail();
+			String email = resetUserEmail.getEmail();
 			String newKey = userService.generateNewKey(userService.findByEmail(email));
 			sendResetPasswordEmail(email, newKey);
 			jsonResponse.setStatus("SUCCESS");
@@ -167,14 +177,35 @@ public class UserController {
 
 	private void sendResetPasswordEmail(String email, String key) {
 		// TODO send email here with a dedicated service
-		String link = messageUtil.getSimpleMessage("application.root.url") + "/user/reset?email=" + email + "&key=" + key;
+		String link = messageUtil.getSimpleMessage("application.root.url") + "/user/resetpassword?email=" + email + "&key=" + key;
 		System.out.println("Send an email with the link: " + link);
 	}
 
-	@RequestMapping(value = "reset")
-	public String resetPassword(@RequestParam(value = "email", required = true) String email, @RequestParam(value = "key", required = true) String key) {
-		// TODO : reset password
-		return "";
+	@RequestMapping(value = "resetpassword")
+	public ModelAndView resetPassword(@RequestParam(value = "email", required = true) String email, @RequestParam(value = "key", required = true) String key) {
+		User user = userService.findByEmail(email);
+		if (user == null // user not found
+				|| !user.getAccount().getActivation().getKey().equals(key) // different key
+				|| new DateTime().plusHours(1).isBefore(new DateTime(user.getAccount().getActivation().getGenerationKeyDate())) // key is expired (validity is 1h)
+		) {
+			return new ModelAndView("error-reset-link");
+		}
+		ModelAndView modelAndView = new ModelAndView("sign-in-reset");
+		ResetUser resetUser = new ResetUser();
+		resetUser.setEmail(email);
+		resetUser.setKey(key);
+		modelAndView.addObject("resetUser", resetUser);
+		return modelAndView;
 	}
 
+	@RequestMapping(value = "reset", method = RequestMethod.POST)
+	public String resetPasswordConfirm(@Valid ResetUser resetUser, BindingResult result) {
+		if (result.hasErrors()) {
+			return "sign-in-reset";
+		} else {
+			User user = userService.findByEmail(resetUser.getEmail());
+			userService.updatePassword(user, resetUser.getNewPassword());
+			return "reset-complete";
+		}
+	}
 }

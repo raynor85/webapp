@@ -14,4 +14,6 @@ public interface UserService {
 
 	User activate(User user);
 
+	User updatePassword(User user, String newPassword);
+
 }

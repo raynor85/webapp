@@ -38,6 +38,10 @@
 		<put-attribute name="title" value="error.title" />
 		<put-attribute name="content" value="/WEB-INF/pages/global/error.jsp" />
 	</definition>
+	<definition name="error-404" extends="baseLayoutNormal">
+		<put-attribute name="title" value="error.404.title" />
+		<put-attribute name="content" value="/WEB-INF/pages/global/error-404.jsp" />
+	</definition>
 	<definition name="faq" extends="baseLayoutWithShareNormal">
 		<put-attribute name="title" value="faq.title" />
 		<put-attribute name="content" value="/WEB-INF/pages/global/faq.jsp" />
@@ -52,9 +56,17 @@
 		<put-attribute name="title" value="sign.title" />
 		<put-attribute name="content" value="/WEB-INF/pages/sign/sign.jsp" />
 	</definition>
-	<definition name="sign-in-reset" extends="baseLayoutNormal">
+	<definition name="sign-in-reset" extends="baseLayoutInverse">
 		<put-attribute name="title" value="sign.in.reset.title" />
 		<put-attribute name="content" value="/WEB-INF/pages/sign/sign-in-reset.jsp" />
+	</definition>
+	<definition name="reset-complete" extends="baseLayoutNormal">
+		<put-attribute name="title" value="sign.in.reset.complete.title" />
+		<put-attribute name="content" value="/WEB-INF/pages/sign/sign-in-reset-complete.jsp" />
+	</definition>
+	<definition name="error-reset-link" extends="baseLayoutNormal">
+		<put-attribute name="title" value="sign.in.reset.error.link.title" />
+		<put-attribute name="content" value="/WEB-INF/pages/sign/sign-in-reset-error-link.jsp" />
 	</definition>
 	<definition name="sign-up" extends="baseLayoutInverse">
 		<put-attribute name="title" value="sign.up.title" />

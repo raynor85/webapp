@@ -5,29 +5,28 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import com.updapy.form.model.ResetUser;
+import com.updapy.form.model.ResetUserEmail;
 import com.updapy.service.UserService;
 
 @Component
-public class ResetUserCustomValidator implements Validator {
+public class ResetUserEmailCustomValidator implements Validator {
 
 	@Autowired
 	private UserService userService;
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return ResetUser.class.isAssignableFrom(clazz);
+		return ResetUserEmail.class.isAssignableFrom(clazz);
 	}
 
 	@Override
 	public void validate(Object target, Errors errors) {
 
-		ResetUser resetUser = (ResetUser) target;
+		ResetUserEmail resetUserEmail = (ResetUserEmail) target;
 
-		if (!(resetUser.getNewPassword().equals(resetUser.getRepeatNewPassword()))) {
-			errors.rejectValue("newPassword", "Mismatch.resetUser.newPassword");
+		if (userService.findByEmail(resetUserEmail.getEmail()) == null) {
+			errors.rejectValue("email", "NotFound.resetUserEmail.email");
 		}
-
 	}
 
 }

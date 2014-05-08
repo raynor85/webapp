@@ -45,7 +45,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User register(User user) {
 		fillDefaultValuesUser(user);
-		// Encrypt password
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setEarly(false);
 		return save(user);
@@ -141,6 +140,13 @@ public class UserServiceImpl implements UserService {
 		AccountActivation accountActivation = user.getAccount().getActivation();
 		accountActivation.setActivationDate(new Date());
 		accountActivation.setActive(true);
+		return save(user);
+	}
+
+	@Override
+	public User updatePassword(User user, String newPassword) {
+		user.setPassword(passwordEncoder.encode(newPassword));
+		generateNewKeyWithoutSaving(user); // to invalidate the reset link
 		return save(user);
 	}
 
