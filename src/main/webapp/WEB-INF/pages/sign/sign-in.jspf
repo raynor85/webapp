@@ -48,7 +48,7 @@
 				</c:set>
 				<form:input path="email" class="form-control" id="email-lost" placeholder="${emailPlaceholder}" value="${SPRING_SECURITY_LAST_EXCEPTION.authentication.principal}" />
 			</div>
-			<button type="button" class="btn btn-default" onclick="ajaxResetPasswordUser();">
+			<button type="button" class="btn-default ladda-button ladda-button-small" data-spinner-color="#000000" data-style="zoom-in" onclick="ajaxResetPasswordUser();">
 				<spring:message code="sign.in.forgot.button" />
 			</button>
 			<div id="resetPasswordUserResponse"></div>
@@ -94,4 +94,8 @@
 					}
 				});
 	};
+	// Bind buttons
+	Ladda.bind('.ladda-button', {
+		timeout : 1500
+	});
 </script>

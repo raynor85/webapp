@@ -168,6 +168,23 @@ i.style-toggle-btn {
 
 .btn-default {
 	color: #333 !important;
+	background-color: #fff !important;
+	border-color: #ccc !important;
+}
+
+.btn-default:hover,.btn-default:focus,.btn-default:active,.btn-default.active,.open .dropdown-toggle.btn-default {
+	color: #333 !important;
+	background-color: #ebebeb !important;
+	border-color: #adadad !important;
+}
+
+.btn-default:active,.btn-default.active,.open .dropdown-toggle.btn-default {
+	background-image: none !important;
+}
+
+.ladda-button-small {
+	font-size: 15px !important;
+    padding: 5px 14px !important;
 }
 
 .body-green .btn-link:hover {
