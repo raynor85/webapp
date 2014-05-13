@@ -41,11 +41,7 @@
 		<!-- Sets the url of the registration - use in case the sign in has failed -->
 		<beans:property name="signupUrl" value="/user/register/" />
 		<!-- Sets the url of the dashboard - use in case the sign in has succeed -->
-		<beans:property name="authenticationSuccessHandler">
-			<beans:bean class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
-				<beans:property name="defaultTargetUrl" value="/dashboard/" />
-			</beans:bean>
-		</beans:property>
+		<beans:property name="postLoginUrl" value="/dashboard/" />
 	</beans:bean>
 
 	<!-- This bean encrypts the authorization details of the connection -->
