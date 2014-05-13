@@ -2,100 +2,110 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-<!-- Sign In form -->
-<div class="form-white">
-	<form role="form" name="loginForm" action="<c:url value='/j_spring_security_check' />" method="POST">
-		<div class="form-group">
-			<label for="username"><spring:message code="sign.in.field.email" /></label> <input type="email" class="form-control" name="username" id="username" placeholder="<spring:message code="sign.in.field.email.tip" />" value="${SPRING_SECURITY_LAST_EXCEPTION.authentication.principal}">
-		</div>
-		<div class="form-group">
-			<label for="password"><spring:message code="sign.in.field.password" /></label> <input type="password" class="form-control" name="password" id="password" placeholder="<spring:message code="sign.in.field.password.tip" />">
-		</div>
-		<button type="submit" class="btn btn-block btn-color btn-xxl">
-			<spring:message code="sign.in.button" />
-		</button>
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-	</form>
-
-	<hr>
-
-	<!-- Error messages -->
-	<c:set var="error" value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
-	<c:if test="${not empty error}">
-		<c:if test="${not fn:endsWith(error,'logUser.email')}">
-			<c:set var="error" value="Invalid.logUser.email" />
-			<!-- Default error message -->
-		</c:if>
-		<div class="alert alert-danger alert-dismissable">
-			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			<spring:message code="${error}" arguments="${root},${SPRING_SECURITY_LAST_EXCEPTION.authentication.principal}" />
-		</div>
-	</c:if>
-
-	<p>
-		<a href="#" id="lost-btn" title="<spring:message code="sign.in.forgot.link" />"><spring:message code="sign.in.forgot.link" /></a>
-	</p>
-	<div class="hidden" id="lost-form">
-		<p>
-			<spring:message code="sign.in.forgot.description" />
-		</p>
-		<form:form id="resetPasswordUserForm" commandName="resetUserEmail" action="${root}/user/reset/send">
+<sec:authorize access="isAnonymous()">
+	<!-- Sign In form -->
+	<div class="form-white">
+		<form role="form" name="loginForm" action="<c:url value='/j_spring_security_check' />" method="POST">
 			<div class="form-group">
-				<label for="email-lost"><spring:message code="sign.in.forgot.field.email" /></label>
-				<c:set var="emailPlaceholder">
-					<spring:message code="sign.in.forgot.field.email.tip" />
-				</c:set>
-				<form:input path="email" class="form-control" id="email-lost" placeholder="${emailPlaceholder}" value="${SPRING_SECURITY_LAST_EXCEPTION.authentication.principal}" />
+				<label for="username"><spring:message code="sign.in.field.email" /></label> <input type="email" class="form-control" name="username" id="username" placeholder="<spring:message code="sign.in.field.email.tip" />" value="${SPRING_SECURITY_LAST_EXCEPTION.authentication.principal}">
 			</div>
-			<button type="button" class="btn-default ladda-button ladda-button-small" data-spinner-color="#000000" data-style="zoom-in" onclick="ajaxResetPasswordUser();">
-				<spring:message code="sign.in.forgot.button" />
+			<div class="form-group">
+				<label for="password"><spring:message code="sign.in.field.password" /></label> <input type="password" class="form-control" name="password" id="password" placeholder="<spring:message code="sign.in.field.password.tip" />">
+			</div>
+			<button type="submit" class="btn btn-block btn-color btn-xxl">
+				<spring:message code="sign.in.button" />
 			</button>
-			<div id="resetPasswordUserResponse"></div>
-		</form:form>
-	</div>
-	<div class="form-avatar hidden-xs">
-		<span class="fa-stack fa-4x"> <i class="fa fa-circle fa-stack-1-7x"></i> <i class="fa fa-user fa-stack-1x"></i>
-		</span>
-	</div>
-</div>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		</form>
 
-<script type="text/javascript">
-	function ajaxResetPasswordUser() {
-		var token = $("meta[name='_csrf']").attr("content");
-		var header = $("meta[name='_csrf_header']").attr("content");
-		var json = {
-			"email" : $('#email-lost').val()
+		<hr>
+
+		<!-- Error messages -->
+		<c:set var="error" value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
+		<c:if test="${not empty error}">
+			<c:if test="${not fn:endsWith(error,'logUser.email')}">
+				<c:set var="error" value="Invalid.logUser.email" />
+				<!-- Default error message -->
+			</c:if>
+			<div class="alert alert-danger alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				<spring:message code="${error}" arguments="${root},${SPRING_SECURITY_LAST_EXCEPTION.authentication.principal}" />
+			</div>
+		</c:if>
+
+		<p>
+			<a href="#" id="lost-btn" title="<spring:message code="sign.in.forgot.link" />"><spring:message code="sign.in.forgot.link" /></a>
+		</p>
+		<div class="hidden" id="lost-form">
+			<p>
+				<spring:message code="sign.in.forgot.description" />
+			</p>
+			<form:form id="resetPasswordUserForm" commandName="resetUserEmail" action="${root}/user/reset/send">
+				<div class="form-group">
+					<label for="email-lost"><spring:message code="sign.in.forgot.field.email" /></label>
+					<c:set var="emailPlaceholder">
+						<spring:message code="sign.in.forgot.field.email.tip" />
+					</c:set>
+					<form:input path="email" class="form-control" id="email-lost" placeholder="${emailPlaceholder}" value="${SPRING_SECURITY_LAST_EXCEPTION.authentication.principal}" />
+				</div>
+				<button type="button" class="btn-default ladda-button ladda-button-small" data-spinner-color="#000000" data-style="zoom-in" onclick="ajaxResetPasswordUser();">
+					<spring:message code="sign.in.forgot.button" />
+				</button>
+				<div id="resetPasswordUserResponse"></div>
+			</form:form>
+		</div>
+		<div class="form-avatar hidden-xs">
+			<span class="fa-stack fa-4x"> <i class="fa fa-circle fa-stack-1-7x"></i> <i class="fa fa-user fa-stack-1x"></i>
+			</span>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		function ajaxResetPasswordUser() {
+			var token = $("meta[name='_csrf']").attr("content");
+			var header = $("meta[name='_csrf_header']").attr("content");
+			var json = {
+				"email" : $('#email-lost').val()
+			};
+			$
+					.ajax({
+						type : 'POST',
+						beforeSend : function(xhr) {
+							xhr.setRequestHeader(header, token);
+						},
+						url : $('#resetPasswordUserForm').attr('action'),
+						data : JSON.stringify(json),
+						contentType : 'application/json',
+						cache : false,
+						success : function(response) {
+							var type;
+							if (response.status == "SUCCESS") {
+								type = "success";
+							} else if (response.status == "FAIL") {
+								type = "danger";
+							}
+							responseInDiv = "<br /><div class='alert alert-" + type + " alert-dismissable'>";
+							responseInDiv += "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+							for (var i = 0; i < response.result.length; i++) {
+								responseInDiv += response.result[i] + "<br />";
+							}
+							responseInDiv += "</div>";
+							$('#resetPasswordUserResponse').html(responseInDiv);
+						}
+					});
 		};
-		$
-				.ajax({
-					type : 'POST',
-					beforeSend : function(xhr) {
-						xhr.setRequestHeader(header, token);
-					},
-					url : $('#resetPasswordUserForm').attr('action'),
-					data : JSON.stringify(json),
-					contentType : 'application/json',
-					cache : false,
-					success : function(response) {
-						var type;
-						if (response.status == "SUCCESS") {
-							type = "success";
-						} else if (response.status == "FAIL") {
-							type = "danger";
-						}
-						responseInDiv = "<br /><div class='alert alert-" + type + " alert-dismissable'>";
-						responseInDiv += "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
-						for (var i = 0; i < response.result.length; i++) {
-							responseInDiv += response.result[i] + "<br />";
-						}
-						responseInDiv += "</div>";
-						$('#resetPasswordUserResponse').html(responseInDiv);
-					}
-				});
-	};
-	// Bind buttons
-	Ladda.bind('.ladda-button', {
-		timeout : 1500
-	});
-</script>
+		// Bind buttons
+		Ladda.bind('.ladda-button', {
+			timeout : 1500
+		});
+	</script>
+</sec:authorize>
+<sec:authorize access="isAuthenticated()">
+	<div class="form-white">
+		<p>
+			<spring:message code="sign.in.authenticated.user" />
+		</p>
+	</div>
+</sec:authorize>

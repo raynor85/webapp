@@ -20,7 +20,7 @@ public class PageController {
 	public String error404Page() {
 		return "error-404";
 	}
-	
+
 	@RequestMapping("error")
 	public String errorPage() {
 		return "error";
@@ -36,7 +36,7 @@ public class PageController {
 		return "privacy";
 	}
 
-	@RequestMapping("sign")
+	@RequestMapping({ "sign", "signin" })
 	public ModelAndView signPage() {
 		ModelAndView modelAndView = new ModelAndView("sign");
 		modelAndView.addObject("resetUserEmail", new ResetUserEmail());
@@ -44,7 +44,7 @@ public class PageController {
 		return modelAndView;
 	}
 
-	@RequestMapping("sign-up")
+	@RequestMapping({ "sign-up", "signup" })
 	public ModelAndView signupPage() {
 		return new ModelAndView("sign-up", "registerUser", new RegisterUser());
 	}

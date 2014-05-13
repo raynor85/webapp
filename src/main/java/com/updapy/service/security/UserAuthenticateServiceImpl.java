@@ -1,8 +1,7 @@
-package com.updapy.service.impl;
+package com.updapy.service.security;
 
 import java.util.Collection;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
@@ -35,11 +34,7 @@ public class UserAuthenticateServiceImpl implements UserDetailsService {
 			throw new BadCredentialsException(emailInactive);
 		}
 		final Collection<? extends GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_USER");
-		String username = user.getName();
-		if (StringUtils.isBlank(username)) {
-			username = user.getEmail();
-		}
-		return new org.springframework.security.core.userdetails.User(username, user.getPassword(), authorities);
+		return UpdapyUser.createUpdapyUser(user, authorities);
 	}
 
 }

@@ -5,6 +5,11 @@ DELETE FROM person;
 DELETE FROM account;
 DELETE FROM accountactivation;
 
+-- Social table
+DROP TABLE IF EXISTS UserConnection;
+CREATE TABLE UserConnection (userId VARCHAR(255) NOT null, providerId VARCHAR(255) NOT null, providerUserId VARCHAR(255), rank int NOT null, displayName VARCHAR(255), profileUrl VARCHAR(512), imageUrl VARCHAR(512), accessToken VARCHAR(255) NOT null, secret VARCHAR(255), refreshToken VARCHAR(255), expireTime bigint, PRIMARY KEY (userId, providerId, providerUserId));
+CREATE UNIQUE INDEX UserConnectionRank ON UserConnection(userId, providerId, rank);
+
 -- Test data
 -- test@updapy.com / UpdapyPwd
 INSERT INTO accountactivation(id, creationdate, updatedate, version, activationdate, active, generationkeydate, key) VALUES (nextval('account_activation_seq'), now(), null, 0, now(), true, now(), 'i8v3wb35qz17pxfa0exzmoy18gsmwwwzobhu5ne2nubb1hxs3i');

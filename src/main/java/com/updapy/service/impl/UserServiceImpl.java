@@ -7,6 +7,9 @@ import java.util.List;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.social.connect.Connection;
+import org.springframework.social.connect.ConnectionKey;
+import org.springframework.social.connect.UserProfile;
 import org.springframework.stereotype.Service;
 
 import com.updapy.model.Account;
@@ -15,6 +18,7 @@ import com.updapy.model.HelpMessage;
 import com.updapy.model.Setting;
 import com.updapy.model.User;
 import com.updapy.model.enumeration.Parameter;
+import com.updapy.model.enumeration.SocialMediaService;
 import com.updapy.model.enumeration.TypeHelpMessage;
 import com.updapy.repository.UserRepository;
 import com.updapy.service.UserService;
@@ -147,6 +151,25 @@ public class UserServiceImpl implements UserService {
 	public User updatePassword(User user, String newPassword) {
 		user.setPassword(passwordEncoder.encode(newPassword));
 		generateNewKeyWithoutSaving(user); // to invalidate the reset link
+		return save(user);
+	}
+
+	@Override
+	public User registerSocial(Connection<?> connection) {
+		if (connection == null) {
+			return null;
+		}
+		UserProfile profile = connection.fetchUserProfile();
+		if (profile == null || profile.getEmail() == null) {
+			return null;
+		}
+		User user = new User();
+		fillDefaultValuesUser(user);
+		user.getAccount().getActivation().setActive(true); // active by default
+		user.setEmail(profile.getEmail());
+		user.setName(profile.getName());
+		ConnectionKey providerKey = connection.getKey();
+		user.setSocialMediaService(SocialMediaService.valueOf(providerKey.getProviderId().toUpperCase()));
 		return save(user);
 	}
 

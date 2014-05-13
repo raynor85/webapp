@@ -10,7 +10,10 @@ import org.dozer.DozerBeanMapper;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.social.connect.Connection;
+import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.updapy.form.ajax.JsonResponse;
@@ -34,6 +38,7 @@ import com.updapy.form.validator.ResetUserEmailCustomValidator;
 import com.updapy.model.User;
 import com.updapy.service.MailSenderService;
 import com.updapy.service.UserService;
+import com.updapy.service.security.SecurityUtil;
 import com.updapy.util.MessageUtil;
 
 @Controller
@@ -104,7 +109,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "register", method = RequestMethod.POST)
-	public ModelAndView register(@Valid RegisterUser registerUser, BindingResult result) {
+	public ModelAndView registerNormal(@Valid RegisterUser registerUser, BindingResult result) {
 		ModelAndView modelAndView = new ModelAndView("", "email", registerUser.getEmail());
 		if (result.hasErrors()) {
 			if (registerUser.getRequestUri().equals("signGlobal")) {
@@ -120,6 +125,18 @@ public class UserController {
 			modelAndView.setViewName("sign-up-activate");
 			return modelAndView;
 		}
+	}
+
+	@RequestMapping(value = "register", method = RequestMethod.GET)
+	public String registerSocial(WebRequest request, Model model, ProviderSignInUtils providerSignInUtils) {
+		Connection<?> connection = providerSignInUtils.getConnectionFromSession(request);
+		User user = userService.registerSocial(connection);
+		if (user != null) {
+			providerSignInUtils.doPostSignUp(user.getEmail(), request);
+			SecurityUtil.logInSocialUser(user);
+			return "sign-up-social-complete";
+		}
+		return "error-social";
 	}
 
 	@RequestMapping(value = "activate/send")

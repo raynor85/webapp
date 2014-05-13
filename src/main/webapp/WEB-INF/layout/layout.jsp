@@ -55,6 +55,7 @@
 	
 	<!-- Bootstrap core CSS -->
 	<link href="<spring:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
+	<link href="<spring:url value="/resources/css/social-buttons-3.css" />" rel="stylesheet">
 	
 	<!-- Ladda -->
 	<link href="<spring:url value="/resources/css/ladda.min.css" />" rel="stylesheet">

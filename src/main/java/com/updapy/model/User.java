@@ -4,12 +4,15 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import com.updapy.model.common.BaseEntity;
+import com.updapy.model.enumeration.SocialMediaService;
 
 @Entity(name = "person")
 @SequenceGenerator(allocationSize = 1, name = "idSequence", sequenceName = "person_seq")
@@ -20,6 +23,9 @@ public class User extends BaseEntity {
 	private String password;
 
 	private String name;
+
+	@Enumerated(EnumType.STRING)
+	private SocialMediaService socialMediaService;
 
 	// Early user = register before the service was available
 	private boolean early;
@@ -120,6 +126,18 @@ public class User extends BaseEntity {
 
 	public void setNotifications(List<ApplicationNotification> notifications) {
 		this.notifications = notifications;
+	}
+
+	public SocialMediaService getSocialMediaService() {
+		return socialMediaService;
+	}
+
+	public void setSocialMediaService(SocialMediaService socialMediaService) {
+		this.socialMediaService = socialMediaService;
+	}
+
+	public boolean isSocialUser() {
+		return socialMediaService != null;
 	}
 
 }

@@ -11,6 +11,13 @@
 				<spring:message code="sign.up.subtitle" />
 			</p>
 			<%@ include file="sign-up.jspf"%>
+			<h3>
+				<spring:message code="sign.social.title" />
+			</h3>
+			<p class="text-muted">
+				<spring:message code="sign.social.subtitle" />
+			</p>
+			<%@ include file="sign-social.jspf"%>
 		</div>
 	</div>
 </div>

@@ -1,5 +1,7 @@
 package com.updapy.service;
 
+import org.springframework.social.connect.Connection;
+
 import com.updapy.model.User;
 
 public interface UserService {
@@ -9,6 +11,8 @@ public interface UserService {
 	User registerEarly(String email);
 
 	User register(User user);
+	
+	User registerSocial(Connection<?> connection);
 
 	String generateNewKey(User user);
 
