@@ -5,7 +5,7 @@
 
 <sec:authorize access="isAnonymous()">
 	<!-- Sign Up form -->
-	<div class="form-white">
+	<div class="form-white-sign">
 		<form:form id="signUpForm" commandName="registerUser" action="${root}/user/register" method="POST">
 			<div class="form-group">
 				<label for="email"><spring:message code="sign.up.field.email" /></label>
@@ -48,7 +48,7 @@
 	</div>
 </sec:authorize>
 <sec:authorize access="isAuthenticated()">
-	<div class="form-white">
+	<div class="form-white-sign">
 		<p>
 			<spring:message code="sign.up.authenticated.user" />
 		</p>

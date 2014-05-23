@@ -10,8 +10,11 @@ import com.updapy.model.User;
 
 public class UpdapyUser extends SocialUser {
 
-	public UpdapyUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+	private String email;
+
+	public UpdapyUser(String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, authorities);
+		this.email = email;
 	}
 
 	public static UpdapyUser createUpdapyUser(User user, Collection<? extends GrantedAuthority> authorities) {
@@ -19,11 +22,16 @@ public class UpdapyUser extends SocialUser {
 		if (user.isSocialUser()) {
 			password = "socialUser";
 		}
+		String email = user.getEmail();
 		String username = user.getName();
 		if (StringUtils.isBlank(username)) {
-			username = user.getEmail();
+			username = email;
 		}
-		return new UpdapyUser(username, password, authorities);
+		return new UpdapyUser(username, email, password, authorities);
+	}
+
+	public String getEmail() {
+		return email;
 	}
 
 }

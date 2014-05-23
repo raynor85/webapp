@@ -9,8 +9,8 @@
 		<!-- Enable csrf protection -->
 		<csrf />
 		<form-login login-page="/sign/" default-target-url="/dashboard/" authentication-failure-url="/sign/" username-parameter="username" password-parameter="password" />
-		<!-- Dashboard is protected -->
 		<intercept-url pattern="/dashboard**/**" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/settings**/**" access="hasRole('ROLE_USER')" />
 		<!-- Adds social authentication filter to the Spring Security filter chain. -->
 		<custom-filter ref="socialAuthenticationFilter" before="PRE_AUTH_FILTER" />
 	</http>

@@ -167,3 +167,46 @@ $(function() {
 		return true;
 	});
 });
+
+// Ajax call
+// ==================================
+
+function ajaxCall(form, json, divResult, jsToExecuteWhenSucess) {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	$
+			.ajax({
+				type : 'POST',
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader(header, token);
+				},
+				url : $(form).attr('action'),
+				data : JSON.stringify(json),
+				contentType : 'application/json',
+				cache : false,
+				success : function(response) {
+					var type = "";
+					if (response.status == "SUCCESS") {
+						jsToExecuteWhenSucess();
+						type = "success";
+					} else if (response.status == "FAIL") {
+						type = "danger";
+					}
+					responseInDiv = "<br /><div class='alert alert-" + type
+							+ " alert-dismissable'>";
+					responseInDiv += "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+					for (var i = 0; i < response.result.length; i++) {
+						responseInDiv += response.result[i] + "<br />";
+					}
+					responseInDiv += "</div>";
+					$(divResult).html(responseInDiv);
+				}
+			});
+};
+
+// Ladda buttons style
+// ==================================
+
+Ladda.bind('.ladda-button', {
+	timeout : 1500
+});

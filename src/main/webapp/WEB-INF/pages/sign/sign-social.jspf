@@ -3,7 +3,7 @@
 
 <sec:authorize access="isAnonymous()">
 	<!-- Social Sign In Buttons -->
-	<div class="form-white">
+	<div class="form-white-sign">
 		<div class="row social-button-row">
 			<div class="col-lg-4">
 				<!-- Add Facebook sign in button -->

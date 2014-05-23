@@ -14,7 +14,7 @@
 			<spring:message code="sign.in.reset.description" />
 			<br />
 			<br />
-			<div class="form-white">
+			<div class="form-white-sign">
 				<form:form id="resetPasswordForm" commandName="resetUser" action="${root}/user/reset" method="POST">
 					<div class="form-group">
 						<label for="newPassword"><spring:message code="sign.in.reset.field.password" /></label>

@@ -40,7 +40,10 @@
 						</script>
 						<ul class="nav navbar-nav navbar-right hidden-xs">
 							<li id="user-bar"><span class="user-bar-avatar pull-right"> <img src="<spring:url value="/resources/img/dashboard/user-normal.png" />" alt="User default avatar">
-							</span> <a class="pull-right"><c:out value="${pageContext.request.userPrincipal.name}" /></a> <span class="pull-right user-bar-icons"> <a href="javascript:logout()" title="<spring:message code="menu.logout" />"><i class="fa fa-sign-out" id="sign-out"></i></a> <a href="${root}/settings/" title="<spring:message code="menu.settings" />"><i class="fa fa-cog"></i></a>
+							</span> <a class="pull-right" id="username"> <c:set var="username">
+										<sec:authentication property="principal.username" />
+									</c:set> <c:out value="${username}" escapeXml="false" />
+							</a> <span class="pull-right user-bar-icons"> <a href="javascript:logout()" title="<spring:message code="menu.logout" />"><i class="fa fa-sign-out" id="sign-out"></i></a> <a href="${root}/settings/" title="<spring:message code="menu.settings" />"><i class="fa fa-cog"></i></a>
 							</span></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right visible-xs">

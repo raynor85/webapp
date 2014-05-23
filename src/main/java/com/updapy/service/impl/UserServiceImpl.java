@@ -22,6 +22,7 @@ import com.updapy.model.enumeration.SocialMediaService;
 import com.updapy.model.enumeration.TypeHelpMessage;
 import com.updapy.repository.UserRepository;
 import com.updapy.service.UserService;
+import com.updapy.service.security.SecurityUtils;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -31,6 +32,11 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
+
+	@Override
+	public User getCurrentUser() {
+		return findByEmail(SecurityUtils.getEmailCurrentUser());
+	}
 
 	@Override
 	public User findByEmail(String email) {
@@ -66,10 +72,6 @@ public class UserServiceImpl implements UserService {
 		user.getAccount().getActivation().setKey(newKey);
 		user.getAccount().getActivation().setGenerationKeyDate(new Date());
 		return newKey;
-	}
-
-	private User save(User user) {
-		return userRepository.saveAndFlush(user);
 	}
 
 	private void fillDefaultValuesUser(User user) {
@@ -171,6 +173,11 @@ public class UserServiceImpl implements UserService {
 		ConnectionKey providerKey = connection.getKey();
 		user.setSocialMediaService(SocialMediaService.valueOf(providerKey.getProviderId().toUpperCase()));
 		return save(user);
+	}
+
+	@Override
+	public User save(User user) {
+		return userRepository.saveAndFlush(user);
 	}
 
 }

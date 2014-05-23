@@ -22,13 +22,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
 import com.updapy.service.MailSenderService;
-import com.updapy.util.MessageUtil;
+import com.updapy.util.MessageUtils;
 
 @Service
 public class MailSenderServiceImpl implements MailSenderService {
 
 	@Autowired
-	MessageUtil messageUtil;
+	MessageUtils messageUtils;
 
 	@Autowired
 	VelocityEngine velocityEngine;
@@ -38,19 +38,19 @@ public class MailSenderServiceImpl implements MailSenderService {
 	private static final String SMTP_AUTH_PWD = System.getenv("SENDGRID_PASSWORD");
 
 	public boolean sendActivationLink(String email, String key) {
-		String link = messageUtil.getSimpleMessage("application.root.url") + "/user/activate?email=" + email + "&key=" + key;
-		String fromEmail = messageUtil.getSimpleMessage("email.noreply");
-		String subject = messageUtil.getSimpleMessage("email.activate.subject");
+		String link = messageUtils.getSimpleMessage("application.root.url") + "/user/activate?email=" + email + "&key=" + key;
+		String fromEmail = messageUtils.getSimpleMessage("email.noreply");
+		String subject = messageUtils.getSimpleMessage("email.activate.subject");
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("lang", messageUtil.getSimpleMessage("email.lang"));
-		model.put("title", messageUtil.getSimpleMessage("email.activate.content.title"));
-		model.put("text1", messageUtil.getSimpleMessage("email.activate.content.text1"));
-		model.put("button", messageUtil.getSimpleMessage("email.activate.content.button"));
-		model.put("text2", messageUtil.getSimpleMessage("email.activate.content.text2"));
+		model.put("lang", messageUtils.getSimpleMessage("email.lang"));
+		model.put("title", messageUtils.getSimpleMessage("email.activate.content.title"));
+		model.put("text1", messageUtils.getSimpleMessage("email.activate.content.text1"));
+		model.put("button", messageUtils.getSimpleMessage("email.activate.content.button"));
+		model.put("text2", messageUtils.getSimpleMessage("email.activate.content.text2"));
 		model.put("link", link);
 		model.put("text3", "");
-		model.put("follow1", messageUtil.getSimpleMessage("email.follow.part1"));
-		model.put("follow2", messageUtil.getSimpleMessage("email.follow.part2"));
+		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1"));
+		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2"));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "reset-activate-account.vm", "UTF-8", model);
 		try {
 			send(fromEmail, email, subject, message);
@@ -61,19 +61,19 @@ public class MailSenderServiceImpl implements MailSenderService {
 	}
 
 	public boolean sendResetPasswordLink(String email, String key) {
-		String link = messageUtil.getSimpleMessage("application.root.url") + "/user/resetpassword?email=" + email + "&key=" + key;
-		String fromEmail = messageUtil.getSimpleMessage("email.noreply");
-		String subject = messageUtil.getSimpleMessage("email.reset.subject");
+		String link = messageUtils.getSimpleMessage("application.root.url") + "/user/resetpassword?email=" + email + "&key=" + key;
+		String fromEmail = messageUtils.getSimpleMessage("email.noreply");
+		String subject = messageUtils.getSimpleMessage("email.reset.subject");
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("lang", messageUtil.getSimpleMessage("email.lang"));
-		model.put("title", messageUtil.getSimpleMessage("email.reset.content.title"));
-		model.put("text1", messageUtil.getSimpleMessage("email.reset.content.text1"));
-		model.put("button", messageUtil.getSimpleMessage("email.reset.content.button"));
-		model.put("text2", messageUtil.getSimpleMessage("email.reset.content.text2"));
+		model.put("lang", messageUtils.getSimpleMessage("email.lang"));
+		model.put("title", messageUtils.getSimpleMessage("email.reset.content.title"));
+		model.put("text1", messageUtils.getSimpleMessage("email.reset.content.text1"));
+		model.put("button", messageUtils.getSimpleMessage("email.reset.content.button"));
+		model.put("text2", messageUtils.getSimpleMessage("email.reset.content.text2"));
 		model.put("link", link);
-		model.put("text3", messageUtil.getSimpleMessage("email.reset.content.text3"));
-		model.put("follow1", messageUtil.getSimpleMessage("email.follow.part1"));
-		model.put("follow2", messageUtil.getSimpleMessage("email.follow.part2"));
+		model.put("text3", messageUtils.getSimpleMessage("email.reset.content.text3"));
+		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1"));
+		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2"));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "reset-activate-account.vm", "UTF-8", model);
 		try {
 			send(fromEmail, email, subject, message);
@@ -105,7 +105,7 @@ public class MailSenderServiceImpl implements MailSenderService {
 		multipart.addBodyPart(bodyPart);
 
 		message.setContent(multipart);
-		message.setFrom(new InternetAddress(fromEmail, messageUtil.getSimpleMessage("application.name")));
+		message.setFrom(new InternetAddress(fromEmail, messageUtils.getSimpleMessage("application.name")));
 		message.setSubject(subject);
 		message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
 

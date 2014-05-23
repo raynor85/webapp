@@ -1,9 +1,5 @@
 package com.updapy.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.dozer.DozerBeanMapper;
@@ -13,9 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,15 +32,15 @@ import com.updapy.form.validator.ResetUserEmailCustomValidator;
 import com.updapy.model.User;
 import com.updapy.service.MailSenderService;
 import com.updapy.service.UserService;
-import com.updapy.service.security.SecurityUtil;
-import com.updapy.util.MessageUtil;
+import com.updapy.service.security.SecurityUtils;
+import com.updapy.util.JsonResponseUtils;
 
 @Controller
 @RequestMapping("user")
 public class UserController {
 
 	@Autowired
-	MessageUtil messageUtil;
+	JsonResponseUtils jsonResponseUtils;
 
 	@Autowired
 	DozerBeanMapper dozerMapper;
@@ -75,7 +69,7 @@ public class UserController {
 	}
 
 	@InitBinder("registerUser")
-	private void initBinder(WebDataBinder binder) {
+	private void initBinderRegisterUser(WebDataBinder binder) {
 		binder.addValidators(registerUserCustomValidator);
 	}
 
@@ -92,20 +86,12 @@ public class UserController {
 	@RequestMapping(value = "register-early", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	JsonResponse registerEarly(@Valid @RequestBody RegisterEarlyUser registerEarlyUser, BindingResult result) {
-		JsonResponse jsonResponse = new JsonResponse();
 		if (result.hasErrors()) {
-			jsonResponse.setStatus("FAIL");
-			List<String> errors = new ArrayList<String>();
-			for (ObjectError error : result.getAllErrors()) {
-				errors.add(messageUtil.getSimpleMessage(error));
-			}
-			jsonResponse.setResult(errors);
+			return jsonResponseUtils.buildFailedJsonResponseFromErrorObject(result.getAllErrors());
 		} else {
 			userService.registerEarly(registerEarlyUser.getEmail());
-			jsonResponse.setStatus("SUCCESS");
-			jsonResponse.setResult(Arrays.asList(messageUtil.getSimpleMessage("early.interest.add.confirm")));
+			return jsonResponseUtils.buildSuccessfulJsonResponse("early.interest.add.confirm");
 		}
-		return jsonResponse;
 	}
 
 	@RequestMapping(value = "register", method = RequestMethod.POST)
@@ -128,12 +114,12 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "register", method = RequestMethod.GET)
-	public String registerSocial(WebRequest request, Model model, ProviderSignInUtils providerSignInUtils) {
+	public String registerSocial(WebRequest request, ProviderSignInUtils providerSignInUtils) {
 		Connection<?> connection = providerSignInUtils.getConnectionFromSession(request);
 		User user = userService.registerSocial(connection);
 		if (user != null) {
 			providerSignInUtils.doPostSignUp(user.getEmail(), request);
-			SecurityUtil.logInSocialUser(user);
+			SecurityUtils.logInSocialUser(user);
 			return "sign-up-social-complete";
 		}
 		return "error-social";
@@ -172,22 +158,18 @@ public class UserController {
 	@RequestMapping(value = "reset/send", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	JsonResponse sendResetPasswordEmail(@Valid @RequestBody ResetUserEmail resetUserEmail, BindingResult result) {
-		JsonResponse jsonResponse = new JsonResponse();
 		if (result.hasErrors()) {
-			jsonResponse.setStatus("FAIL");
-			List<String> errors = new ArrayList<String>();
-			for (ObjectError error : result.getAllErrors()) {
-				errors.add(messageUtil.getSimpleMessage(error));
-			}
-			jsonResponse.setResult(errors);
+			return jsonResponseUtils.buildFailedJsonResponseFromErrorObject(result.getAllErrors());
 		} else {
 			String email = resetUserEmail.getEmail();
-			String newKey = userService.generateNewKey(userService.findByEmail(email));
+			User user = userService.findByEmail(email);
+			if (user.isSocialUser()) { // user is social, so no password
+				return jsonResponseUtils.buildFailedJsonResponse("NotFound.resetUserEmail.email");
+			}
+			String newKey = userService.generateNewKey(user);
 			mailSenderService.sendResetPasswordLink(email, newKey);
-			jsonResponse.setStatus("SUCCESS");
-			jsonResponse.setResult(Arrays.asList(messageUtil.getSimpleMessage("sign.in.forgot.send.confirm")));
+			return jsonResponseUtils.buildSuccessfulJsonResponse("sign.in.forgot.send.confirm");
 		}
-		return jsonResponse;
 	}
 
 	@RequestMapping(value = "resetpassword")

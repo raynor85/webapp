@@ -548,7 +548,7 @@ footer a:hover {
 }
 
 /* ===== Sign In & Sign Up ===== */
-.form-white {
+.form-white-sign {
 	background: #FFF;
 	border: 1px solid #DDD;
 	padding: 30px 20px;
@@ -556,15 +556,24 @@ footer a:hover {
 	position: relative;
 }
 
-.form-white>.form-avatar {
+.form-white-sign>.form-avatar {
 	position: absolute;
 	top: -56px;
 	right: -71px;
 	z-index: 1;
 }
 
-.form-white>.form-avatar i.fa-circle {
+.form-white-sign>.form-avatar i.fa-circle {
 	color: #ecf0f1;
+}
+
+/* ===== Settings ===== */
+.form-white {
+	background: #FFF;
+	border: 1px solid #DDD;
+	padding: 10px 20px;
+	margin: 0 0 10px 0;
+	position: relative;
 }
 
 /* ===== About Us ===== */

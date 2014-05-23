@@ -6,7 +6,7 @@
 
 <sec:authorize access="isAnonymous()">
 	<!-- Sign In form -->
-	<div class="form-white">
+	<div class="form-white-sign">
 		<form role="form" name="loginForm" action="<c:url value='/j_spring_security_check' />" method="POST">
 			<div class="form-group">
 				<label for="username"><spring:message code="sign.in.field.email" /></label> <input type="email" class="form-control" name="username" id="username" placeholder="<spring:message code="sign.in.field.email.tip" />" value="${SPRING_SECURITY_LAST_EXCEPTION.authentication.principal}">
@@ -42,7 +42,7 @@
 			<p>
 				<spring:message code="sign.in.forgot.description" />
 			</p>
-			<form:form id="resetPasswordUserForm" commandName="resetUserEmail" action="${root}/user/reset/send">
+			<form:form id="resetUserEmailForm" commandName="resetUserEmail" action="${root}/user/reset/send">
 				<div class="form-group">
 					<label for="email-lost"><spring:message code="sign.in.forgot.field.email" /></label>
 					<c:set var="emailPlaceholder">
@@ -50,10 +50,10 @@
 					</c:set>
 					<form:input path="email" class="form-control" id="email-lost" placeholder="${emailPlaceholder}" value="${SPRING_SECURITY_LAST_EXCEPTION.authentication.principal}" />
 				</div>
-				<button type="button" class="btn-default ladda-button ladda-button-small" data-spinner-color="#000000" data-style="zoom-in" onclick="ajaxResetPasswordUser();">
+				<button type="button" class="btn-default ladda-button ladda-button-small" data-spinner-color="#000000" data-style="zoom-in" onclick="ajaxResetUserEmail();">
 					<spring:message code="sign.in.forgot.button" />
 				</button>
-				<div id="resetPasswordUserResponse"></div>
+				<div id="resetUserEmailResponse"></div>
 			</form:form>
 		</div>
 		<div class="form-avatar hidden-xs">
@@ -63,47 +63,18 @@
 	</div>
 
 	<script type="text/javascript">
-		function ajaxResetPasswordUser() {
-			var token = $("meta[name='_csrf']").attr("content");
-			var header = $("meta[name='_csrf_header']").attr("content");
+		function ajaxResetUserEmail() {
 			var json = {
-				"email" : $('#email-lost').val()
+				"email" : $("#email-lost").val()
 			};
-			$
-					.ajax({
-						type : 'POST',
-						beforeSend : function(xhr) {
-							xhr.setRequestHeader(header, token);
-						},
-						url : $('#resetPasswordUserForm').attr('action'),
-						data : JSON.stringify(json),
-						contentType : 'application/json',
-						cache : false,
-						success : function(response) {
-							var type;
-							if (response.status == "SUCCESS") {
-								type = "success";
-							} else if (response.status == "FAIL") {
-								type = "danger";
-							}
-							responseInDiv = "<br /><div class='alert alert-" + type + " alert-dismissable'>";
-							responseInDiv += "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
-							for (var i = 0; i < response.result.length; i++) {
-								responseInDiv += response.result[i] + "<br />";
-							}
-							responseInDiv += "</div>";
-							$('#resetPasswordUserResponse').html(responseInDiv);
-						}
-					});
+			ajaxCall("#resetUserEmailForm", json,
+					"#resetUserEmailResponse");
 		};
-		// Bind buttons
-		Ladda.bind('.ladda-button', {
-			timeout : 1500
-		});
 	</script>
 </sec:authorize>
+
 <sec:authorize access="isAuthenticated()">
-	<div class="form-white">
+	<div class="form-white-sign">
 		<p>
 			<spring:message code="sign.in.authenticated.user" />
 		</p>

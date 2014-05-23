@@ -170,7 +170,7 @@
 				<p class="text-muted text-center-xs lh">
 					<spring:message code="early.interest.description" />
 				</p>
-				<form:form id="earlyUserForm" commandName="registerEarlyUser" action="${root}/user/register-early" class="form-vertical">
+				<form:form id="registerEarlyUserForm" commandName="registerEarlyUser" action="${root}/user/register-early" class="form-vertical">
 					<p>
 						<c:set var="emailPlaceholder">
 							<spring:message code="early.interest.add.field.email.tip" />
@@ -182,7 +182,7 @@
 							<spring:message code="early.interest.add.button" />
 						</button>
 					</p>
-					<div id="earlyUserResponse"></div>
+					<div id="registerEarlyUserResponse"></div>
 				</form:form>
 			</div>
 		</div>
@@ -192,42 +192,11 @@
 <c:if test="${phase == 'early'}">
 	<script type="text/javascript">
 		function ajaxRegisterEarlyUser() {
-			var token = $("meta[name='_csrf']").attr("content");
-			var header = $("meta[name='_csrf_header']").attr("content");
 			var json = {
-				"email" : $('#email').val()
+				"email" : $("#email").val()
 			};
-			$
-					.ajax({
-						type : 'POST',
-						beforeSend : function(xhr) {
-							xhr.setRequestHeader(header, token);
-						},
-						url : $('#earlyUserForm').attr('action'),
-						data : JSON.stringify(json),
-						contentType : 'application/json',
-						cache : false,
-						success : function(response) {
-							var type;
-							if (response.status == "SUCCESS") {
-								type = "success";
-							} else if (response.status == "FAIL") {
-								type = "danger";
-							}
-							responseInDiv = "<div class='alert alert-" + type + " alert-dismissable'>";
-							responseInDiv += "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
-							for (var i = 0; i < response.result.length; i++) {
-								responseInDiv += response.result[i] + "<br />";
-							}
-							responseInDiv += "</div>";
-							$('#earlyUserResponse').html(responseInDiv);
-						}
-					});
+			ajaxCall("#registerEarlyUserForm", json, "#registerEarlyUserResponse");
 		};
-		// Bind buttons
-		Ladda.bind('.button-ladda button', {
-			timeout : 1500
-		});
 	</script>
 </c:if>
 
