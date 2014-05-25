@@ -1,5 +1,6 @@
 package com.updapy.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -8,8 +9,9 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.updapy.model.common.BaseEntity;
 import com.updapy.model.enumeration.SocialMediaService;
@@ -30,8 +32,15 @@ public class User extends BaseEntity {
 	// Early user = register before the service was available
 	private boolean early;
 
-	@OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
-	private Account account;
+	private boolean active;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date generationKeyDate;
+
+	private String key;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date activationDate;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 	private List<HelpMessage> helpMessages;
@@ -78,14 +87,6 @@ public class User extends BaseEntity {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
 	}
 
 	public List<HelpMessage> getHelpMessages() {
@@ -136,8 +137,39 @@ public class User extends BaseEntity {
 		this.socialMediaService = socialMediaService;
 	}
 
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public Date getGenerationKeyDate() {
+		return generationKeyDate;
+	}
+
+	public void setGenerationKeyDate(Date generationKeyDate) {
+		this.generationKeyDate = generationKeyDate;
+	}
+
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
+
+	public Date getActivationDate() {
+		return activationDate;
+	}
+
+	public void setActivationDate(Date activationDate) {
+		this.activationDate = activationDate;
+	}
+
 	public boolean isSocialUser() {
 		return socialMediaService != null;
 	}
-
 }

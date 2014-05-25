@@ -103,6 +103,10 @@
 		ajaxCall('#updateSettingsForm', json, '#updateSettingsResponse',
 				refreshUsername);
 	};
+	$("#updateSettingsForm").submit(function() {
+		ajaxUpdateSettings();
+		return false;
+	});
 	var refreshUsername = function() {
 		var newName = $("#name").val();
 		var currentName = $("#username").text();

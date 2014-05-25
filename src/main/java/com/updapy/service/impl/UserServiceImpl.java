@@ -12,8 +12,6 @@ import org.springframework.social.connect.ConnectionKey;
 import org.springframework.social.connect.UserProfile;
 import org.springframework.stereotype.Service;
 
-import com.updapy.model.Account;
-import com.updapy.model.AccountActivation;
 import com.updapy.model.HelpMessage;
 import com.updapy.model.Setting;
 import com.updapy.model.User;
@@ -69,8 +67,8 @@ public class UserServiceImpl implements UserService {
 
 	private String generateNewKeyWithoutSaving(User user) {
 		String newKey = RandomStringUtils.random(50, "0123456789abcdefghijklmnopqrstuvwxyz");
-		user.getAccount().getActivation().setKey(newKey);
-		user.getAccount().getActivation().setGenerationKeyDate(new Date());
+		user.setKey(newKey);
+		user.setGenerationKeyDate(new Date());
 		return newKey;
 	}
 
@@ -81,12 +79,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	private void fillDefaultValuesAccount(User user) {
-		Account account = new Account();
-		AccountActivation accountActivation = new AccountActivation();
 		// not yet activate
-		accountActivation.setActive(false);
-		account.setActivation(accountActivation);
-		user.setAccount(account);
+		user.setActive(false);
 		// generate the key
 		generateNewKeyWithoutSaving(user);
 	}
@@ -143,9 +137,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User activate(User user) {
-		AccountActivation accountActivation = user.getAccount().getActivation();
-		accountActivation.setActivationDate(new Date());
-		accountActivation.setActive(true);
+		user.setActivationDate(new Date());
+		user.setActive(true);
 		return save(user);
 	}
 
@@ -167,7 +160,7 @@ public class UserServiceImpl implements UserService {
 		}
 		User user = new User();
 		fillDefaultValuesUser(user);
-		user.getAccount().getActivation().setActive(true); // active by default
+		user.setActive(true); // active by default
 		user.setEmail(profile.getEmail());
 		user.setName(profile.getName());
 		ConnectionKey providerKey = connection.getKey();

@@ -67,9 +67,12 @@
 			var json = {
 				"email" : $("#email-lost").val()
 			};
-			ajaxCall("#resetUserEmailForm", json,
-					"#resetUserEmailResponse");
+			ajaxCall("#resetUserEmailForm", json, "#resetUserEmailResponse");
 		};
+		$("#resetUserEmailForm").submit(function() {
+			ajaxResetUserEmail();
+			return false;
+		});
 	</script>
 </sec:authorize>
 

@@ -15,3 +15,11 @@
 		</div>
 	</div>
 </sec:authorize>
+
+<sec:authorize access="isAuthenticated()">
+	<div class="form-white-sign">
+		<p>
+			<spring:message code="sign.in.authenticated.user" />
+		</p>
+	</div>
+</sec:authorize>

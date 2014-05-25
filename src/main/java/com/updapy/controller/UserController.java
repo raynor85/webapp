@@ -107,7 +107,7 @@ public class UserController {
 			return modelAndView;
 		} else {
 			User user = userService.register(dozerMapper.map(registerUser, User.class));
-			mailSenderService.sendActivationLink(user.getEmail(), user.getAccount().getActivation().getKey());
+			mailSenderService.sendActivationLink(user.getEmail(), user.getKey());
 			modelAndView.setViewName("sign-up-activate");
 			return modelAndView;
 		}
@@ -130,7 +130,7 @@ public class UserController {
 		ModelAndView modelAndView = new ModelAndView("", "email", email);
 		User user = userService.findByEmail(email);
 		if (user == null // user not found
-				|| user.getAccount().getActivation().isActive() // account already active
+				|| user.isActive() // account already active
 		) {
 			modelAndView.setViewName("error-activate-send");
 			return modelAndView;
@@ -145,9 +145,9 @@ public class UserController {
 	public String activate(@RequestParam(value = "email", required = true) String email, @RequestParam(value = "key", required = true) String key) {
 		User user = userService.findByEmail(email);
 		if (user == null // user not found
-				|| user.getAccount().getActivation().isActive() // account already active
-				|| !user.getAccount().getActivation().getKey().equals(key) // different key
-				|| new DateTime().plusHours(1).isBefore(new DateTime(user.getAccount().getActivation().getGenerationKeyDate())) // key is expired (validity is 1h)
+				|| user.isActive() // account already active
+				|| !user.getKey().equals(key) // different key
+				|| new DateTime().plusHours(1).isBefore(new DateTime(user.getGenerationKeyDate())) // key is expired (validity is 1h)
 		) {
 			return "error-activate-link";
 		}
@@ -176,8 +176,8 @@ public class UserController {
 	public ModelAndView resetPassword(@RequestParam(value = "email", required = true) String email, @RequestParam(value = "key", required = true) String key) {
 		User user = userService.findByEmail(email);
 		if (user == null // user not found
-				|| !user.getAccount().getActivation().getKey().equals(key) // different key
-				|| new DateTime().plusHours(1).isBefore(new DateTime(user.getAccount().getActivation().getGenerationKeyDate())) // key is expired (validity is 1h)
+				|| !user.getKey().equals(key) // different key
+				|| new DateTime().plusHours(1).isBefore(new DateTime(user.getGenerationKeyDate())) // key is expired (validity is 1h)
 		) {
 			return new ModelAndView("error-reset-link");
 		}

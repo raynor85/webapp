@@ -1,6 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!-- Banner -->
 <div class="crp-showcase">
@@ -14,16 +15,29 @@
 				<h3 class="text-center animated2 fadeInDown shadow">
 					<spring:message code="welcome.introduction" />
 				</h3>
-				<div class="text-center actions animated2 fadeInDown delay2">
-					<c:choose>
-						<c:when test="${phase == 'early'}">
-							<a class="btn btn-color" href="#early-user"><spring:message code="welcome.action.early" /></a>
-						</c:when>
-						<c:otherwise>
-							<a class="btn btn-color" href="${root}/sign-up/"><spring:message code="welcome.action" /></a>
-						</c:otherwise>
-					</c:choose>
-				</div>
+				<sec:authorize access="isAnonymous()">
+					<div class="text-center actions animated2 fadeInDown delay2">
+						<c:choose>
+							<c:when test="${phase == 'early'}">
+								<a class="btn btn-color" href="#early-user"><spring:message code="welcome.action.early" /></a>
+							</c:when>
+							<c:otherwise>
+								<a class="btn btn-color" href="${root}/sign-up/"><spring:message code="welcome.action" /></a>
+							</c:otherwise>
+						</c:choose>
+
+					</div>
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+					<div>
+						<div>
+							<h2 class="text-center animated2 fadeInDown shadow delay4">
+								<spring:message code="welcome.thanks" />
+							</h2>
+						</div>
+						<div id="arrowShare" class="animated2 wobble delay10"></div>
+					</div>
+				</sec:authorize>
 				<div class="alt-index">
 					<img src="<spring:url value="/resources/img/welcome/updapy-preview.jpg" />" alt="Updapy Preview">
 				</div>
@@ -195,8 +209,13 @@
 			var json = {
 				"email" : $("#email").val()
 			};
-			ajaxCall("#registerEarlyUserForm", json, "#registerEarlyUserResponse");
+			ajaxCall("#registerEarlyUserForm", json,
+					"#registerEarlyUserResponse");
 		};
+		$("#registerEarlyUserForm").submit(function() {
+			ajaxRegisterEarlyUser();
+			return false;
+		});
 	</script>
 </c:if>
 

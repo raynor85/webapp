@@ -30,7 +30,7 @@ public class UserAuthenticateServiceImpl implements UserDetailsService {
 			throw new BadCredentialsException(emailInvalid);
 		}
 		// Check if user active
-		if (!user.getAccount().getActivation().isActive()) {
+		if (!user.isActive()) {
 			throw new BadCredentialsException(emailInactive);
 		}
 		final Collection<? extends GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_USER");

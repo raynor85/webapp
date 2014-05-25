@@ -29,26 +29,32 @@
 		<put-attribute name="sharebar" value="/common/sharebar.jsp" />
 	</definition>
 
-	<!-- Global -->
-	<definition name="welcome" extends="baseLayoutWithShareNormal">
-		<put-attribute name="title" value="welcome.title" />
-		<put-attribute name="content" value="/WEB-INF/pages/global/welcome.jsp" />
-	</definition>
+	<!-- Error -->
 	<definition name="error" extends="baseLayoutNormal">
 		<put-attribute name="title" value="error.title" />
-		<put-attribute name="content" value="/WEB-INF/pages/global/error.jsp" />
+		<put-attribute name="content" value="/WEB-INF/pages/error/error.jsp" />
 	</definition>
 	<definition name="error-404" extends="baseLayoutNormal">
 		<put-attribute name="title" value="error.404.title" />
-		<put-attribute name="content" value="/WEB-INF/pages/global/error-404.jsp" />
+		<put-attribute name="content" value="/WEB-INF/pages/error/error-404.jsp" />
 	</definition>
+
+	<!-- Welcome -->
+	<definition name="welcome" extends="baseLayoutWithShareNormal">
+		<put-attribute name="title" value="welcome.title" />
+		<put-attribute name="content" value="/WEB-INF/pages/welcome/welcome.jsp" />
+	</definition>
+	
+	<!-- FAQ -->
 	<definition name="faq" extends="baseLayoutWithShareNormal">
 		<put-attribute name="title" value="faq.title" />
-		<put-attribute name="content" value="/WEB-INF/pages/global/faq.jsp" />
+		<put-attribute name="content" value="/WEB-INF/pages/faq/faq.jsp" />
 	</definition>
+	
+	<!-- Privacy -->
 	<definition name="privacy" extends="baseLayoutWithShareNormal">
 		<put-attribute name="title" value="privacy.title" />
-		<put-attribute name="content" value="/WEB-INF/pages/global/privacy.jsp" />
+		<put-attribute name="content" value="/WEB-INF/pages/privacy/privacy.jsp" />
 	</definition>
 
 	<!-- Sign -->
@@ -106,9 +112,11 @@
 		<put-attribute name="title" value="dashboard.title" />
 		<put-attribute name="content" value="/WEB-INF/pages/dashboard/dashboard.jsp" />
 	</definition>
+
+	<!-- Settings -->
 	<definition name="settings" extends="baseLayoutInverse">
 		<put-attribute name="title" value="settings.title" />
-		<put-attribute name="content" value="/WEB-INF/pages/dashboard/settings.jsp" />
+		<put-attribute name="content" value="/WEB-INF/pages/settings/settings.jsp" />
 	</definition>
 
 </tiles-definitions>

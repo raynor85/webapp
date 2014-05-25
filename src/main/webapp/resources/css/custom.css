@@ -30,6 +30,10 @@ body {
 	border-color: #ddd;
 }
 
+.no-underline {
+	text-decoration: none !important;
+}
+
 /* ===== Logo ===== */
 .navbar-brand {
 	font-family: 'Lobster', cursive;
@@ -1195,7 +1199,7 @@ a.carousel-arrow-next {
 
 @media ( max-width : 767px) { /* Adjusting for xs devices */
 	.crp-showcase {
-		padding-bottom: 50px;
+		padding-bottom: 30px;
 	}
 	.crp-showcase h1 {
 		font-size: 36px;
@@ -1497,6 +1501,23 @@ ul.list {
 	width: 100%;
 }
 
-.no-underline {
-	text-decoration: none !important;
+/*** Arrow ***/
+#arrowShare {
+	margin-top: -100px;
+	float: right;
+	width: 185px;
+	height: 98px;
+	background-image: url("../img/welcome/arrow.png");
+}
+
+@media all and (max-width:990px) {
+	#arrowShare {
+		margin-top: -150px !important;
+	}
+}
+
+@media all and (max-width:800px) {
+	#arrowShare {
+		display: none;
+	}
 }
