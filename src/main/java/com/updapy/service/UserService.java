@@ -1,9 +1,11 @@
 package com.updapy.service;
 
 import org.springframework.social.connect.Connection;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.updapy.model.User;
 
+@Transactional
 public interface UserService {
 
 	User getCurrentUser();
@@ -22,6 +24,10 @@ public interface UserService {
 
 	User updatePassword(User user, String newPassword);
 
+	User updateCurrentPassword(String newPassword);
+
 	User save(User user);
+
+	boolean isCurrentPassword(String password);
 
 }

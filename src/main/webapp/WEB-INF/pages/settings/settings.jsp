@@ -7,6 +7,8 @@
 
 	<div class="form-white">
 		<form:form id="updateSettingsForm" commandName="updateSettings" action="${root}/settings/update" class="form-horizontal">
+			<div id="updateSettingsResponse"></div>
+			<div id="successPasswordUserResponse"></div>
 			<h3>
 				<spring:message code="settings.profile.title" />
 				<small><spring:message code="settings.profile.subtitle" /></small>
@@ -27,6 +29,9 @@
 						</c:set>
 						<c:out value="${email}" escapeXml="false" />
 					</p>
+				</div>
+				<div class="col-lg-3 pull-right">
+					<a href="#" data-toggle="modal" data-target="#changePasswordModal" title="<spring:message code="settings.profile.changePassword.link" />"><spring:message code="settings.profile.changePassword.link" /></a>
 				</div>
 			</div>
 			<br />
@@ -84,8 +89,55 @@
 					<spring:message code="settings.save.button" />
 				</button>
 			</p>
-			<div id="updateSettingsResponse"></div>
 		</form:form>
+	</div>
+</div>
+
+<!-- Modal: Change password -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form:form id="changePasswordUserForm" modelAttribute="changePasswordUser" commandName="changePasswordUser" action="${root}/settings/changePassword">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="changePasswordModalLabel">
+						<spring:message code="settings.profile.changePassword.title" />
+					</h4>
+				</div>
+				<div class="modal-body">
+					<div id="changePasswordUserResponse"></div>
+					<div class="form-group">
+						<label for="currentPassword"><spring:message code="settings.profile.changePassword.field.current.password" /></label>
+						<c:set var="currentPasswordPlaceholder">
+							<spring:message code="settings.profile.changePassword.field.current.password.tip" />
+						</c:set>
+						<form:input type="password" path="currentPassword" class="form-control" id="currentPassword" placeholder="${currentPasswordPlaceholder}" />
+					</div>
+					<div class="form-group">
+						<label for="newPassword"><spring:message code="settings.profile.changePassword.field.new.password" /></label>
+						<c:set var="newPasswordPlaceholder">
+							<spring:message code="settings.profile.changePassword.field.new.password.tip" />
+						</c:set>
+						<form:input type="password" path="newPassword" class="form-control" id="newPassword" placeholder="${newPasswordPlaceholder}" />
+					</div>
+					<div class="form-group">
+						<label for="repeatNewPassword"><spring:message code="settings.profile.changePassword.field.repeat.password" /></label>
+						<c:set var="repeatPasswordPlaceholder">
+							<spring:message code="settings.profile.changePassword.field.repeat.password.tip" />
+						</c:set>
+						<form:input type="password" path="repeatNewPassword" class="form-control" id="repeatNewPassword" placeholder="${repeatPasswordPlaceholder}" />
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<spring:message code="settings.profile.changePassword.button.cancel" />
+					</button>
+					<button type="button" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxChangePasswordUser();">
+						<spring:message code="settings.profile.changePassword.button.confirm" />
+					</button>
+				</div>
+			</form:form>
+		</div>
 	</div>
 </div>
 
@@ -100,7 +152,7 @@
 			"emailNewsletter" : $("input[name='emailNewsletter']:checked")
 					.val()
 		};
-		ajaxCall('#updateSettingsForm', json, '#updateSettingsResponse',
+		ajaxCall("#updateSettingsForm", json, "#updateSettingsResponse",
 				refreshUsername);
 	};
 	$("#updateSettingsForm").submit(function() {
@@ -117,7 +169,27 @@
 		if (newName != currentName) {
 			$("#username").html(newName);
 		}
-	}
+	};
+	function ajaxChangePasswordUser() {
+		var json = {
+			"currentPassword" : $("#currentPassword").val(),
+			"newPassword" : $("#newPassword").val(),
+			"repeatNewPassword" : $("#repeatNewPassword").val()
+		};
+		ajaxCall("#changePasswordUserForm", json,
+				"#changePasswordUserResponse", confirmChangePassword);
+	};
+	$("#changePasswordUserForm").submit(function() {
+		ajaxChangePasswordUser();
+		return false;
+	});
+	var confirmChangePassword = function() {
+		// close modal
+		$("#changePasswordModal").modal("hide");
+		// display success
+		$("#successPasswordUserResponse").html(
+				$("#changePasswordUserResponse").html());
+	};
 	function updateEmailOptions() {
 		var emailActive = $("input[name='emailAlert']:checked").val();
 		if (emailActive === "true") {

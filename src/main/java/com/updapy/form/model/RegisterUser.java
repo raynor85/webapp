@@ -16,7 +16,6 @@ public class RegisterUser {
 	private String password;
 
 	@NotEmpty
-	@Size(min = 8, max = 25)
 	private String repeatPassword;
 
 	private String requestUri;

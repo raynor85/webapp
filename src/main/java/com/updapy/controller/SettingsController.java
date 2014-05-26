@@ -7,8 +7,10 @@ import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.updapy.form.ajax.JsonResponse;
+import com.updapy.form.model.ChangePasswordUser;
 import com.updapy.form.model.UpdateSettings;
 import com.updapy.model.User;
 import com.updapy.service.SettingsService;
@@ -24,7 +27,6 @@ import com.updapy.service.security.SecurityUtils;
 import com.updapy.util.JsonResponseUtils;
 
 @Controller
-@Transactional
 @RequestMapping("settings")
 public class SettingsController {
 
@@ -40,9 +42,20 @@ public class SettingsController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private Validator changePasswordUserCustomValidator;
+
+	@InitBinder("changePasswordUser")
+	private void initBinderChangePassword(WebDataBinder binder) {
+		binder.addValidators(changePasswordUserCustomValidator);
+	}
+
 	@RequestMapping({ "/", "" })
 	public ModelAndView settingsPage() {
-		return new ModelAndView("settings", "updateSettings", settingsService.getSettings(userService.getCurrentUser()));
+		ModelAndView modelAndView = new ModelAndView("settings");
+		modelAndView.addObject("updateSettings", settingsService.getCurrentSettings());
+		modelAndView.addObject("changePasswordUser", new ChangePasswordUser());
+		return modelAndView;
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -51,14 +64,24 @@ public class SettingsController {
 		if (result.hasErrors()) {
 			return jsonResponseUtils.buildFailedJsonResponseFromErrorObject(result.getAllErrors());
 		} else {
-			User user = userService.getCurrentUser();
-			String currentName = user.getName();
-			settingsService.updateSettings(user, updateSettings);
+			String currentName = userService.getCurrentUser().getName();
+			User user = settingsService.updateCurrentSettings(updateSettings);
 			String newName = (user.getName() == null) ? user.getEmail() : user.getName();
 			if (!StringUtils.equals(currentName, newName)) {
 				SecurityUtils.reloadUsername(newName);
 			}
 			return jsonResponseUtils.buildSuccessfulJsonResponse("settings.save.confirm");
+		}
+	}
+
+	@RequestMapping(value = "changePassword", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody
+	JsonResponse changePassword(@Valid @RequestBody ChangePasswordUser changePasswordUser, BindingResult result) {
+		if (result.hasErrors()) {
+			return jsonResponseUtils.buildFailedJsonResponseFromErrorObject(result.getAllErrors());
+		} else {
+			userService.updateCurrentPassword(changePasswordUser.getNewPassword());
+			return jsonResponseUtils.buildSuccessfulJsonResponse("settings.profile.changePassword.confirm");
 		}
 	}
 

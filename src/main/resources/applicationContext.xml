@@ -7,14 +7,14 @@
                         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 						http://www.springframework.org/schema/social http://www.springframework.org/schema/social/spring-social.xsd">
 
-	<context:annotation-config />
+	<mvc:annotation-driven />
+
 	<context:component-scan base-package="com.updapy" />
 
 	<mvc:resources mapping="/robots.txt" location="/robots.txt" order="0" />
 	<mvc:resources mapping="/sitemap.xml" location="/sitemap.xml" order="1" />
 	<mvc:resources mapping="/favicon.ico" location="/favicon.ico" order="2" />
 	<mvc:resources mapping="/resources/**" location="/resources/" order="3" />
-	<mvc:annotation-driven />
 
 	<!-- Velocity -->
 	<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
@@ -149,7 +149,7 @@
 				<props>
 					<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 					<prop key="hibernate.show_sql">false</prop>
-					<prop key="hibernate.hbm2ddl.auto">create</prop>
+					<prop key="hibernate.hbm2ddl.auto">validate</prop>
 				</props>
 			</property>
 		</bean>

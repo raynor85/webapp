@@ -187,7 +187,6 @@ function ajaxCall(form, json, divResult, jsToExecuteWhenSucess) {
 				success : function(response) {
 					var type = "";
 					if (response.status == "SUCCESS") {
-						jsToExecuteWhenSucess();
 						type = "success";
 					} else if (response.status == "FAIL") {
 						type = "danger";
@@ -200,6 +199,9 @@ function ajaxCall(form, json, divResult, jsToExecuteWhenSucess) {
 					}
 					responseInDiv += "</div>";
 					$(divResult).html(responseInDiv);
+					if (response.status == "SUCCESS") {
+						jsToExecuteWhenSucess();
+					}
 				}
 			});
 };

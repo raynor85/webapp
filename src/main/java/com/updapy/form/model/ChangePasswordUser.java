@@ -4,7 +4,10 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class ResetUser {
+public class ChangePasswordUser {
+
+	@NotEmpty
+	private String currentPassword;
 
 	@NotEmpty
 	@Size(min = 8, max = 25)
@@ -13,9 +16,13 @@ public class ResetUser {
 	@NotEmpty
 	private String repeatNewPassword;
 
-	private String email;
+	public String getCurrentPassword() {
+		return currentPassword;
+	}
 
-	private String key;
+	public void setCurrentPassword(String currentPassword) {
+		this.currentPassword = currentPassword;
+	}
 
 	public String getNewPassword() {
 		return newPassword;
@@ -31,22 +38,6 @@ public class ResetUser {
 
 	public void setRepeatNewPassword(String repeatNewPassword) {
 		this.repeatNewPassword = repeatNewPassword;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getKey() {
-		return key;
-	}
-
-	public void setKey(String key) {
-		this.key = key;
 	}
 
 }

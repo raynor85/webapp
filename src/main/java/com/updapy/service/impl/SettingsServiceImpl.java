@@ -64,4 +64,14 @@ public class SettingsServiceImpl implements SettingsService {
 		return updateSettings;
 	}
 
+	@Override
+	public UpdateSettings getCurrentSettings() {
+		return getSettings(userService.getCurrentUser());
+	}
+
+	@Override
+	public User updateCurrentSettings(UpdateSettings newSettings) {
+		return updateSettings(userService.getCurrentUser(), newSettings);
+	}
+
 }

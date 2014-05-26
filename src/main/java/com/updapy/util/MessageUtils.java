@@ -34,7 +34,7 @@ public class MessageUtils {
 		String[] codes = error.getCodes();
 		for (String code : codes) {
 			try {
-				return messageSource.getMessage(code, new Object[0], LocaleContextHolder.getLocale());
+				return messageSource.getMessage(code, error.getArguments(), LocaleContextHolder.getLocale());
 			} catch (NoSuchMessageException e) {
 				// Do nothing
 			}

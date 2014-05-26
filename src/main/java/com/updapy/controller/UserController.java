@@ -10,6 +10,7 @@ import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,10 +26,6 @@ import com.updapy.form.model.RegisterEarlyUser;
 import com.updapy.form.model.RegisterUser;
 import com.updapy.form.model.ResetUser;
 import com.updapy.form.model.ResetUserEmail;
-import com.updapy.form.validator.RegisterEarlyUserCustomValidator;
-import com.updapy.form.validator.RegisterUserCustomValidator;
-import com.updapy.form.validator.ResetUserCustomValidator;
-import com.updapy.form.validator.ResetUserEmailCustomValidator;
 import com.updapy.model.User;
 import com.updapy.service.MailSenderService;
 import com.updapy.service.UserService;
@@ -52,16 +49,16 @@ public class UserController {
 	private MailSenderService mailSenderService;
 
 	@Autowired
-	private RegisterUserCustomValidator registerUserCustomValidator;
+	private Validator registerUserCustomValidator;
 
 	@Autowired
-	private RegisterEarlyUserCustomValidator registerEarlyUserCustomValidator;
+	private Validator registerEarlyUserCustomValidator;
 
 	@Autowired
-	private ResetUserEmailCustomValidator resetUserEmailCustomValidator;
+	private Validator resetUserEmailCustomValidator;
 
 	@Autowired
-	private ResetUserCustomValidator resetUserCustomValidator;
+	private Validator resetUserCustomValidator;
 
 	@InitBinder("registerEarlyUser")
 	private void initBinderEarly(WebDataBinder binder) {

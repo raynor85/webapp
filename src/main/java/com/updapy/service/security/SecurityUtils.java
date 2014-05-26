@@ -2,6 +2,7 @@ package com.updapy.service.security;
 
 import java.util.Collection;
 
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,6 +22,17 @@ public class SecurityUtils {
 
 	public static String getEmailCurrentUser() {
 		return ((UpdapyUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getEmail();
+	}
+
+	public static boolean isPasswordCorrectForCurrentUser(AuthenticationManager authenticationManager, String password) {
+		UpdapyUser currentUpdapyUser = ((UpdapyUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+		try {
+			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(currentUpdapyUser.getEmail(), password);
+			Authentication authentication = authenticationManager.authenticate(token);
+			return authentication.isAuthenticated();
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	public static void reloadUsername(String newUsername) {

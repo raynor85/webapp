@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionKey;
@@ -27,6 +28,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserRepository userRepository;
+
+	@Autowired
+	AuthenticationManager authenticationManager;
 
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
@@ -150,6 +154,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public User updateCurrentPassword(String newPassword) {
+		return updatePassword(getCurrentUser(), newPassword);
+	}
+
+	@Override
 	public User registerSocial(Connection<?> connection) {
 		if (connection == null) {
 			return null;
@@ -171,6 +180,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User save(User user) {
 		return userRepository.saveAndFlush(user);
+	}
+
+	@Override
+	public boolean isCurrentPassword(String password) {
+		return SecurityUtils.isPasswordCorrectForCurrentUser(authenticationManager, password);
 	}
 
 }
