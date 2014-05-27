@@ -30,4 +30,8 @@ public interface UserService {
 
 	boolean isCurrentPassword(String password);
 
+	boolean delete(User user);
+	
+	boolean deleteCurrentUser();
+
 }

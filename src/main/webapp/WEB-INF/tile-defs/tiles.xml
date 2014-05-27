@@ -118,5 +118,13 @@
 		<put-attribute name="title" value="settings.title" />
 		<put-attribute name="content" value="/WEB-INF/pages/settings/settings.jsp" />
 	</definition>
+	<definition name="delete-account-complete" extends="baseLayoutNormal">
+		<put-attribute name="title" value="settings.account.delete.complete.title" />
+		<put-attribute name="content" value="/WEB-INF/pages/settings/delete-account-complete.jsp" />
+	</definition>
+	<definition name="error-delete" extends="baseLayoutNormal">
+		<put-attribute name="title" value="settings.account.delete.error.title" />
+		<put-attribute name="content" value="/WEB-INF/pages/settings/delete-account-error.jsp" />
+	</definition>
 
 </tiles-definitions>

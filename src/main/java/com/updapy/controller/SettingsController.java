@@ -1,5 +1,7 @@
 package com.updapy.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.apache.commons.lang.StringUtils;
@@ -19,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.updapy.form.ajax.JsonResponse;
 import com.updapy.form.model.ChangePasswordUser;
+import com.updapy.form.model.DeleteAccount;
 import com.updapy.form.model.UpdateSettings;
 import com.updapy.model.User;
 import com.updapy.service.SettingsService;
@@ -55,6 +58,7 @@ public class SettingsController {
 		ModelAndView modelAndView = new ModelAndView("settings");
 		modelAndView.addObject("updateSettings", settingsService.getCurrentSettings());
 		modelAndView.addObject("changePasswordUser", new ChangePasswordUser());
+		modelAndView.addObject("deleteAccount", new DeleteAccount());
 		return modelAndView;
 	}
 
@@ -82,6 +86,18 @@ public class SettingsController {
 		} else {
 			userService.updateCurrentPassword(changePasswordUser.getNewPassword());
 			return jsonResponseUtils.buildSuccessfulJsonResponse("settings.profile.changePassword.confirm");
+		}
+	}
+
+	@RequestMapping(value = "deleteAccount", method = RequestMethod.POST)
+	public String deleteAccount(DeleteAccount deleteAccount, HttpServletRequest request, HttpServletResponse response) {
+		settingsService.addFeedback(deleteAccount.getFeedback());
+		boolean isDeleted = userService.deleteCurrentUser();
+		if (isDeleted) {
+			SecurityUtils.logout(request, response);
+			return "delete-account-complete";
+		} else {
+			return "error-delete";
 		}
 	}
 

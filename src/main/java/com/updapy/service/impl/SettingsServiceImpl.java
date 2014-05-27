@@ -1,13 +1,17 @@
 package com.updapy.service.impl;
 
+import java.util.Date;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.updapy.form.model.UpdateSettings;
+import com.updapy.model.AccountRemoval;
 import com.updapy.model.Setting;
 import com.updapy.model.User;
 import com.updapy.model.enumeration.Parameter;
+import com.updapy.repository.AccountRemovalRepository;
 import com.updapy.service.SettingsService;
 import com.updapy.service.UserService;
 
@@ -16,6 +20,9 @@ public class SettingsServiceImpl implements SettingsService {
 
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	AccountRemovalRepository accountRemovalRepository;
 
 	@Override
 	public User updateSettings(User user, UpdateSettings newSettings) {
@@ -72,6 +79,14 @@ public class SettingsServiceImpl implements SettingsService {
 	@Override
 	public User updateCurrentSettings(UpdateSettings newSettings) {
 		return updateSettings(userService.getCurrentUser(), newSettings);
+	}
+
+	@Override
+	public AccountRemoval addFeedback(String feedback) {
+		AccountRemoval accountRemoval = new AccountRemoval();
+		accountRemoval.setFeedback(feedback);
+		accountRemoval.setRemoveDate(new Date());
+		return accountRemovalRepository.saveAndFlush(accountRemoval);
 	}
 
 }

@@ -16,9 +16,11 @@ import org.springframework.stereotype.Service;
 import com.updapy.model.HelpMessage;
 import com.updapy.model.Setting;
 import com.updapy.model.User;
+import com.updapy.model.UserConnection;
 import com.updapy.model.enumeration.Parameter;
 import com.updapy.model.enumeration.SocialMediaService;
 import com.updapy.model.enumeration.TypeHelpMessage;
+import com.updapy.repository.UserConnectionRepository;
 import com.updapy.repository.UserRepository;
 import com.updapy.service.UserService;
 import com.updapy.service.security.SecurityUtils;
@@ -28,6 +30,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserRepository userRepository;
+
+	@Autowired
+	UserConnectionRepository userConnectionRepository;
 
 	@Autowired
 	AuthenticationManager authenticationManager;
@@ -167,14 +172,25 @@ public class UserServiceImpl implements UserService {
 		if (profile == null || profile.getEmail() == null) {
 			return null;
 		}
+		User userExisting = userRepository.findByEmail(profile.getEmail());
+		if (userExisting != null) {
+			// user is already existing, overwrite some parameters
+			userExisting.setName(profile.getName());
+			userExisting.setSocialMediaService(getSocialMediaService(connection));
+			return save(userExisting);
+		}
 		User user = new User();
 		fillDefaultValuesUser(user);
 		user.setActive(true); // active by default
 		user.setEmail(profile.getEmail());
 		user.setName(profile.getName());
-		ConnectionKey providerKey = connection.getKey();
-		user.setSocialMediaService(SocialMediaService.valueOf(providerKey.getProviderId().toUpperCase()));
+		user.setSocialMediaService(getSocialMediaService(connection));
 		return save(user);
+	}
+
+	private SocialMediaService getSocialMediaService(Connection<?> connection) {
+		ConnectionKey providerKey = connection.getKey();
+		return SocialMediaService.valueOf(providerKey.getProviderId().toUpperCase());
 	}
 
 	@Override
@@ -185,6 +201,27 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean isCurrentPassword(String password) {
 		return SecurityUtils.isPasswordCorrectForCurrentUser(authenticationManager, password);
+	}
+
+	@Override
+	public boolean delete(User user) {
+		try {
+			// remove social data
+			UserConnection userConnection = userConnectionRepository.findByUserConnectionIdUserId(user.getEmail());
+			if (userConnection != null) {
+				userConnectionRepository.delete(userConnection);
+			}
+			// remove other data
+			userRepository.delete(user);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean deleteCurrentUser() {
+		return delete(getCurrentUser());
 	}
 
 }

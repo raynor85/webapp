@@ -3,6 +3,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
+<c:set var="isSocialUser">
+	<sec:authentication property="principal.socialUser" />
+</c:set>
+
 <div class="container">
 
 	<div class="form-white">
@@ -30,9 +34,11 @@
 						<c:out value="${email}" escapeXml="false" />
 					</p>
 				</div>
-				<div class="col-lg-3 pull-right">
-					<a href="#" data-toggle="modal" data-target="#changePasswordModal" title="<spring:message code="settings.profile.changePassword.link" />"><spring:message code="settings.profile.changePassword.link" /></a>
-				</div>
+				<c:if test="${not isSocialUser}">
+					<div class="col-lg-3 pull-right">
+						<a href="#" data-toggle="modal" data-target="#changePasswordModal" title="<spring:message code="settings.profile.changePassword.link" />"><spring:message code="settings.profile.changePassword.link" /></a>
+					</div>
+				</c:if>
 			</div>
 			<br />
 			<h3>
@@ -84,62 +90,110 @@
 				</div>
 			</div>
 			<br />
-			<p class="text-center-xs button-ladda">
-				<button type="button" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxUpdateSettings();">
-					<spring:message code="settings.save.button" />
-				</button>
-			</p>
+			<div class="row">
+				<div class="col-sm-5">
+					<p class="text-center-xs button-ladda">
+						<button type="button" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxUpdateSettings();">
+							<spring:message code="settings.save.button" />
+						</button>
+					</p>
+				</div>
+				<div id="deleteAccountLink" class="col-lg-3 pull-right">
+					<a href="#" data-toggle="modal" data-target="#deleteAccountModal" title="<spring:message code="settings.account.delete.link" />"><spring:message code="settings.account.delete.link" /></a>
+				</div>
+			</div>
 		</form:form>
 	</div>
 </div>
 
-<!-- Modal: Change password -->
-<div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+<c:if test="${not isSocialUser}">
+	<!-- Modal: Change password -->
+	<div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form:form id="changePasswordUserForm" commandName="changePasswordUser" action="${root}/settings/changePassword">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="changePasswordModalLabel">
+							<spring:message code="settings.profile.changePassword.title" />
+						</h4>
+					</div>
+					<div class="modal-body">
+						<div id="changePasswordUserResponse"></div>
+						<div class="form-group">
+							<label for="currentPassword"><spring:message code="settings.profile.changePassword.field.current.password" /></label>
+							<c:set var="currentPasswordPlaceholder">
+								<spring:message code="settings.profile.changePassword.field.current.password.tip" />
+							</c:set>
+							<form:input type="password" path="currentPassword" class="form-control" id="currentPassword" placeholder="${currentPasswordPlaceholder}" />
+						</div>
+						<div class="form-group">
+							<label for="newPassword"><spring:message code="settings.profile.changePassword.field.new.password" /></label>
+							<c:set var="newPasswordPlaceholder">
+								<spring:message code="settings.profile.changePassword.field.new.password.tip" />
+							</c:set>
+							<form:input type="password" path="newPassword" class="form-control" id="newPassword" placeholder="${newPasswordPlaceholder}" />
+						</div>
+						<div class="form-group">
+							<label for="repeatNewPassword"><spring:message code="settings.profile.changePassword.field.repeat.password" /></label>
+							<c:set var="repeatPasswordPlaceholder">
+								<spring:message code="settings.profile.changePassword.field.repeat.password.tip" />
+							</c:set>
+							<form:input type="password" path="repeatNewPassword" class="form-control" id="repeatNewPassword" placeholder="${repeatPasswordPlaceholder}" />
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default pull-left" data-dismiss="modal" style="margin-top: 21px;">
+							<spring:message code="settings.profile.changePassword.button.cancel" />
+						</button>
+						<button type="button" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxChangePasswordUser();">
+							<spring:message code="settings.profile.changePassword.button.confirm" />
+						</button>
+					</div>
+				</form:form>
+			</div>
+		</div>
+	</div>
+</c:if>
+
+<!-- Modal: Delete account -->
+<div class="modal fade" id="deleteAccountModal" tabindex="-1" role="dialog" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form:form id="changePasswordUserForm" modelAttribute="changePasswordUser" commandName="changePasswordUser" action="${root}/settings/changePassword">
+			<form:form id="deleteAccountForm" commandName="deleteAccount" action="${root}/settings/deleteAccount">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="changePasswordModalLabel">
-						<spring:message code="settings.profile.changePassword.title" />
+					<h4 class="modal-title" id="deleteAccountModalLabel">
+						<spring:message code="settings.account.delete.title" />
 					</h4>
 				</div>
 				<div class="modal-body">
-					<div id="changePasswordUserResponse"></div>
-					<div class="form-group">
-						<label for="currentPassword"><spring:message code="settings.profile.changePassword.field.current.password" /></label>
-						<c:set var="currentPasswordPlaceholder">
-							<spring:message code="settings.profile.changePassword.field.current.password.tip" />
-						</c:set>
-						<form:input type="password" path="currentPassword" class="form-control" id="currentPassword" placeholder="${currentPasswordPlaceholder}" />
+					<div class="alert alert-danger">
+						<spring:message code="settings.account.delete.field.warning" />
 					</div>
+					<spring:message code="settings.account.delete.field.feedback" />
+					<br /> <br />
 					<div class="form-group">
-						<label for="newPassword"><spring:message code="settings.profile.changePassword.field.new.password" /></label>
-						<c:set var="newPasswordPlaceholder">
-							<spring:message code="settings.profile.changePassword.field.new.password.tip" />
+						<c:set var="feedbackPlaceholder">
+							<spring:message code="settings.account.delete.field.feedback.tip" />
 						</c:set>
-						<form:input type="password" path="newPassword" class="form-control" id="newPassword" placeholder="${newPasswordPlaceholder}" />
+						<form:textarea rows="3" path="feedback" class="form-control" id="feedback" placeholder="${feedbackPlaceholder}" />
 					</div>
-					<div class="form-group">
-						<label for="repeatNewPassword"><spring:message code="settings.profile.changePassword.field.repeat.password" /></label>
-						<c:set var="repeatPasswordPlaceholder">
-							<spring:message code="settings.profile.changePassword.field.repeat.password.tip" />
-						</c:set>
-						<form:input type="password" path="repeatNewPassword" class="form-control" id="repeatNewPassword" placeholder="${repeatPasswordPlaceholder}" />
-					</div>
+					<spring:message code="settings.account.delete.field.feedback.description" />
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">
-						<spring:message code="settings.profile.changePassword.button.cancel" />
+					<button type="button" class="btn btn-default pull-left" data-dismiss="modal">
+						<spring:message code="settings.account.delete.button.cancel" />
 					</button>
-					<button type="button" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxChangePasswordUser();">
-						<spring:message code="settings.profile.changePassword.button.confirm" />
+					<button type="submit" class="btn btn-danger">
+						<spring:message code="settings.account.delete.button.confirm" />
 					</button>
 				</div>
 			</form:form>
 		</div>
 	</div>
 </div>
+
 
 <script type="text/javascript">
 	function ajaxUpdateSettings() {

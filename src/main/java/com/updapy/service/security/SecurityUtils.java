@@ -2,12 +2,16 @@ package com.updapy.service.security;
 
 import java.util.Collection;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 
 import com.updapy.model.User;
 
@@ -37,9 +41,16 @@ public class SecurityUtils {
 
 	public static void reloadUsername(String newUsername) {
 		UpdapyUser currentUpdapyUser = ((UpdapyUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-		UpdapyUser newUpdapyUser = new UpdapyUser(newUsername, currentUpdapyUser.getEmail(), "reloadUser", currentUpdapyUser.getAuthorities());
+		UpdapyUser newUpdapyUser = new UpdapyUser(newUsername, currentUpdapyUser.getEmail(), currentUpdapyUser.isSocialUser(), "reloadUser", currentUpdapyUser.getAuthorities());
 		Authentication authentication = new UsernamePasswordAuthenticationToken(newUpdapyUser, newUpdapyUser.getPassword(), newUpdapyUser.getAuthorities());
 		SecurityContextHolder.getContext().setAuthentication(authentication);
+	}
+
+	public static void logout(HttpServletRequest request, HttpServletResponse response) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
 	}
 
 }

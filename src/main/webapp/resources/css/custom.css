@@ -1521,3 +1521,12 @@ ul.list {
 		display: none;
 	}
 }
+
+/*** Delete account ***/
+#deleteAccountLink {
+	margin-top: 15px;
+}
+
+#deleteAccountLink a {
+	color: #999
+}

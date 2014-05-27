@@ -2,11 +2,11 @@
 DELETE FROM setting;
 DELETE FROM helpmessage;
 DELETE FROM person;
+DELETE FROM userconnection;
 
--- Social table
-DROP TABLE IF EXISTS UserConnection;
-CREATE TABLE UserConnection (userId VARCHAR(255) NOT null, providerId VARCHAR(255) NOT null, providerUserId VARCHAR(255), rank int NOT null, displayName VARCHAR(255), profileUrl VARCHAR(512), imageUrl VARCHAR(512), accessToken VARCHAR(255) NOT null, secret VARCHAR(255), refreshToken VARCHAR(255), expireTime bigint, PRIMARY KEY (userId, providerId, providerUserId));
-CREATE UNIQUE INDEX UserConnectionRank ON UserConnection(userId, providerId, rank);
+-- Indexes
+CREATE UNIQUE INDEX userconnectionrank ON userconnection(userid, providerid, rank);
+CREATE UNIQUE INDEX personemail ON person(email);
 
 -- Test data
 -- test@updapy.com / UpdapyPwd

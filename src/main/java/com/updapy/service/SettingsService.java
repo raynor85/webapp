@@ -3,6 +3,7 @@ package com.updapy.service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.updapy.form.model.UpdateSettings;
+import com.updapy.model.AccountRemoval;
 import com.updapy.model.User;
 
 @Transactional
@@ -15,5 +16,7 @@ public interface SettingsService {
 	UpdateSettings getSettings(User user);
 
 	UpdateSettings getCurrentSettings();
+
+	AccountRemoval addFeedback(String feedback);
 
 }
