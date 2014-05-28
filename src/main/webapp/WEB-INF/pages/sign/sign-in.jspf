@@ -50,7 +50,7 @@
 					</c:set>
 					<form:input path="email" class="form-control" id="email-lost" placeholder="${emailPlaceholder}" value="${SPRING_SECURITY_LAST_EXCEPTION.authentication.principal}" />
 				</div>
-				<button type="button" class="btn-default ladda-button ladda-button-small" data-spinner-color="#000000" data-style="zoom-in" onclick="ajaxResetUserEmail();">
+				<button type="button" id="resetUserEmailButton" class="btn-default ladda-button ladda-button-small" data-spinner-color="#000000" data-style="zoom-in" onclick="ajaxResetUserEmail();">
 					<spring:message code="sign.in.forgot.button" />
 				</button>
 				<div id="resetUserEmailResponse"></div>
@@ -67,7 +67,8 @@
 			var json = {
 				"email" : $("#email-lost").val()
 			};
-			ajaxCall("#resetUserEmailForm", json, "#resetUserEmailResponse");
+			ajaxCall("#resetUserEmailButton", "#resetUserEmailForm", json,
+					"#resetUserEmailResponse");
 		};
 		$("#resetUserEmailForm").submit(function() {
 			ajaxResetUserEmail();

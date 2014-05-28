@@ -93,7 +93,7 @@
 			<div class="row">
 				<div class="col-sm-5">
 					<p class="text-center-xs button-ladda">
-						<button type="button" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxUpdateSettings();">
+						<button type="button" id="updateSettingsButton" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxUpdateSettings();">
 							<spring:message code="settings.save.button" />
 						</button>
 					</p>
@@ -146,7 +146,7 @@
 						<button type="button" class="btn btn-default pull-left" data-dismiss="modal" style="margin-top: 21px;">
 							<spring:message code="settings.profile.changePassword.button.cancel" />
 						</button>
-						<button type="button" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxChangePasswordUser();">
+						<button type="button" id="changePasswordUserButton" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxChangePasswordUser();">
 							<spring:message code="settings.profile.changePassword.button.confirm" />
 						</button>
 					</div>
@@ -206,8 +206,8 @@
 			"emailNewsletter" : $("input[name='emailNewsletter']:checked")
 					.val()
 		};
-		ajaxCall("#updateSettingsForm", json, "#updateSettingsResponse",
-				refreshUsername);
+		ajaxCall("#updateSettingsButton", "#updateSettingsForm", json,
+				"#updateSettingsResponse", refreshUsername);
 	};
 	$("#updateSettingsForm").submit(function() {
 		ajaxUpdateSettings();
@@ -230,7 +230,7 @@
 			"newPassword" : $("#newPassword").val(),
 			"repeatNewPassword" : $("#repeatNewPassword").val()
 		};
-		ajaxCall("#changePasswordUserForm", json,
+		ajaxCall("#changePasswordUserButton", "#changePasswordUserForm", json,
 				"#changePasswordUserResponse", confirmChangePassword);
 	};
 	$("#changePasswordUserForm").submit(function() {

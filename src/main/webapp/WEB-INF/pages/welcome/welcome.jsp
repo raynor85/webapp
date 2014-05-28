@@ -192,7 +192,7 @@
 						<form:input path="email" id="email" class="form-control" placeholder="${emailPlaceholder}" />
 					</p>
 					<p class="text-center-xs button-ladda">
-						<button type="button" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxRegisterEarlyUser();">
+						<button type="button" id="registerEarlyUserButton" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxRegisterEarlyUser();">
 							<spring:message code="early.interest.add.button" />
 						</button>
 					</p>
@@ -209,8 +209,8 @@
 			var json = {
 				"email" : $("#email").val()
 			};
-			ajaxCall("#registerEarlyUserForm", json,
-					"#registerEarlyUserResponse");
+			ajaxCall("#registerEarlyUserButton", "#registerEarlyUserForm",
+					json, "#registerEarlyUserResponse");
 		};
 		$("#registerEarlyUserForm").submit(function() {
 			ajaxRegisterEarlyUser();

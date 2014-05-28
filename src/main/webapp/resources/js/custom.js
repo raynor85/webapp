@@ -171,9 +171,11 @@ $(function() {
 // Ajax call
 // ==================================
 
-function ajaxCall(form, json, divResult, jsToExecuteWhenSucess) {
+function ajaxCall(button, form, json, divResult, jsToExecuteWhenSucess) {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
+	var l = Ladda.create(document.querySelector(button));
+	l.start();
 	$
 			.ajax({
 				type : 'POST',
@@ -202,6 +204,7 @@ function ajaxCall(form, json, divResult, jsToExecuteWhenSucess) {
 					if (response.status == "SUCCESS") {
 						jsToExecuteWhenSucess();
 					}
+					l.stop();
 				}
 			});
 };
@@ -209,6 +212,4 @@ function ajaxCall(form, json, divResult, jsToExecuteWhenSucess) {
 // Ladda buttons style
 // ==================================
 
-Ladda.bind('.ladda-button', {
-	timeout : 1500
-});
+Ladda.bind('.ladda-button');
