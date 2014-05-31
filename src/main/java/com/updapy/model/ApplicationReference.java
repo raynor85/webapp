@@ -17,10 +17,10 @@ public class ApplicationReference extends BaseEntity {
 
 	private String globalUrl;
 
-	private String iconInternalUrl;
+	private String iconFilename;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reference")
-	private List<Version> versions;
+	private List<ApplicationVersion> versions;
 
 	private boolean active;
 
@@ -40,19 +40,19 @@ public class ApplicationReference extends BaseEntity {
 		this.globalUrl = globalUrl;
 	}
 
-	public String getIconInternalUrl() {
-		return iconInternalUrl;
+	public String getIconFilename() {
+		return iconFilename;
 	}
 
-	public void setIconInternalUrl(String iconInternalUrl) {
-		this.iconInternalUrl = iconInternalUrl;
+	public void setIconFilename(String iconFilename) {
+		this.iconFilename = iconFilename;
 	}
 
-	public List<Version> getVersions() {
+	public List<ApplicationVersion> getVersions() {
 		return versions;
 	}
 
-	public void setVersions(List<Version> versions) {
+	public void setVersions(List<ApplicationVersion> versions) {
 		this.versions = versions;
 	}
 

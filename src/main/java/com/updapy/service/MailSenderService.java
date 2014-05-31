@@ -6,4 +6,6 @@ public interface MailSenderService {
 
 	boolean sendResetPasswordLink(String email, String key);
 
+	boolean sendAdminConnectionError(String url);
+
 }

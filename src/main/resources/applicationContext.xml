@@ -114,7 +114,7 @@
 			<property name="jpaProperties">
 				<props>
 					<!-- <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop> -->
-					<prop key="hibernate.show_sql">true</prop>
+					<prop key="hibernate.show_sql">false</prop>
 					<prop key="hibernate.format_sql">true</prop>
 					<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 					<prop key="hibernate.hbm2ddl.import_files">/sql/import.sql</prop>
@@ -151,7 +151,7 @@
 				<props>
 					<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 					<prop key="hibernate.show_sql">false</prop>
-					<prop key="hibernate.hbm2ddl.auto">validate</prop>
+					<prop key="hibernate.hbm2ddl.auto">create</prop>
 				</props>
 			</property>
 		</bean>

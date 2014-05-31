@@ -76,13 +76,14 @@
 </c:set>
 <title><spring:message code="application.name" /> | <spring:message code="${title}" /></title>
 
-<!-- Bootstrap core CSS -->
-<link href="<spring:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
-<link href="<spring:url value="/resources/css/social-buttons-3.css" />" rel="stylesheet">
-
 <!-- JQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="<spring:url value="/resources/js/jquery.color.min.js" />"></script>
+
+<!-- Bootstrap -->
+<link href="<spring:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
+<link href="<spring:url value="/resources/css/social-buttons-3.css" />" rel="stylesheet">
+<script src="<spring:url value="/resources/js/bootstrap.min.js" />"></script>
 
 <!-- Ladda -->
 <link href="<spring:url value="/resources/css/ladda.min.css" />" rel="stylesheet">
@@ -126,7 +127,6 @@
 	<!-- Bootstrap core JavaScript and Misc
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="<spring:url value="/resources/js/bootstrap.min.js" />"></script>
 	<script src="<spring:url value="/resources/js/custom.js" />"></script>
 	<script src="<spring:url value="/resources/js/scrolltopcontrol.js" />"></script>
 

@@ -33,6 +33,7 @@ public class MailSenderServiceImpl implements MailSenderService {
 	@Autowired
 	VelocityEngine velocityEngine;
 
+	private static final String ADMIN_EMAIL = System.getenv("ADMIN_EMAIL");
 	private static final String SMTP_HOST_NAME = "smtp.sendgrid.net";
 	private static final String SMTP_AUTH_USER = System.getenv("SENDGRID_USERNAME");
 	private static final String SMTP_AUTH_PWD = System.getenv("SENDGRID_PASSWORD");
@@ -119,6 +120,22 @@ public class MailSenderServiceImpl implements MailSenderService {
 			String username = SMTP_AUTH_USER;
 			String password = SMTP_AUTH_PWD;
 			return new PasswordAuthentication(username, password);
+		}
+	}
+
+	@Override
+	public boolean sendAdminConnectionError(String url) {
+		String subject = messageUtils.getSimpleMessage("email.error.subject");
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("lang", messageUtils.getSimpleMessage("email.lang"));
+		model.put("title", messageUtils.getSimpleMessage("email.error.connection.content.title"));
+		model.put("text", messageUtils.getCustomMessage("email.error.connection.content.text", new String[] { url }));
+		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "error.vm", "UTF-8", model);
+		try {
+			send(ADMIN_EMAIL, ADMIN_EMAIL, subject, message);
+			return true;
+		} catch (Exception e) {
+			return false;
 		}
 	}
 }

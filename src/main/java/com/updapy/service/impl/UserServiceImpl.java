@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.social.connect.Connection;
@@ -17,6 +18,7 @@ import com.updapy.model.HelpMessage;
 import com.updapy.model.Setting;
 import com.updapy.model.User;
 import com.updapy.model.UserConnection;
+import com.updapy.model.enumeration.Lang;
 import com.updapy.model.enumeration.Parameter;
 import com.updapy.model.enumeration.SocialMediaService;
 import com.updapy.model.enumeration.TypeHelpMessage;
@@ -68,16 +70,21 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String generateNewKey(User user) {
-		String newKey = generateNewKeyWithoutSaving(user);
+	public String generateNewAccountKey(User user) {
+		String newKey = generateNewAccountKeyWithoutSaving(user);
 		save(user);
 		return newKey;
 	}
 
-	private String generateNewKeyWithoutSaving(User user) {
+	private String generateNewAccountKeyWithoutSaving(User user) {
+		String newKey = generateKey();
+		user.setAccountKey(newKey);
+		user.setGenerationAccountKeyDate(new Date());
+		return newKey;
+	}
+
+	private String generateKey() {
 		String newKey = RandomStringUtils.random(50, "0123456789abcdefghijklmnopqrstuvwxyz");
-		user.setKey(newKey);
-		user.setGenerationKeyDate(new Date());
 		return newKey;
 	}
 
@@ -90,8 +97,13 @@ public class UserServiceImpl implements UserService {
 	private void fillDefaultValuesAccount(User user) {
 		// not yet activate
 		user.setActive(false);
-		// generate the key
-		generateNewKeyWithoutSaving(user);
+		// generate keys
+		user.setRestKey(generateKey());
+		user.setGenerationRestKeyDate(new Date());
+		generateNewAccountKeyWithoutSaving(user);
+		// language
+		Lang currentLang = Lang.valueOf(LocaleContextHolder.getLocale().getISO3Language());
+		user.setLang(currentLang);
 	}
 
 	private void fillDefaultValuesSettings(User user) {
@@ -154,7 +166,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User updatePassword(User user, String newPassword) {
 		user.setPassword(passwordEncoder.encode(newPassword));
-		generateNewKeyWithoutSaving(user); // to invalidate the reset link
+		generateNewAccountKeyWithoutSaving(user); // to invalidate the reset link
 		return save(user);
 	}
 

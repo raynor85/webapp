@@ -2,9 +2,14 @@ package com.updapy.form.model;
 
 import javax.validation.constraints.NotNull;
 
+import com.updapy.model.enumeration.Lang;
+
 public class UpdateSettings {
 
 	private String name;
+
+	@NotNull
+	private Lang lang;
 
 	@NotNull
 	private boolean emailAlert;
@@ -56,6 +61,14 @@ public class UpdateSettings {
 
 	public void setEmailNewsletter(boolean emailNewsletter) {
 		this.emailNewsletter = emailNewsletter;
+	}
+
+	public Lang getLang() {
+		return lang;
+	}
+
+	public void setLang(Lang lang) {
+		this.lang = lang;
 	}
 
 }

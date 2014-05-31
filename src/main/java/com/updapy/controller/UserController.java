@@ -104,7 +104,7 @@ public class UserController {
 			return modelAndView;
 		} else {
 			User user = userService.register(dozerMapper.map(registerUser, User.class));
-			mailSenderService.sendActivationLink(user.getEmail(), user.getKey());
+			mailSenderService.sendActivationLink(user.getEmail(), user.getAccountKey());
 			modelAndView.setViewName("sign-up-activate");
 			return modelAndView;
 		}
@@ -132,7 +132,7 @@ public class UserController {
 			modelAndView.setViewName("error-activate-send");
 			return modelAndView;
 		}
-		String newKey = userService.generateNewKey(user);
+		String newKey = userService.generateNewAccountKey(user);
 		mailSenderService.sendActivationLink(email, newKey);
 		modelAndView.setViewName("sign-up-activate-resend");
 		return modelAndView;
@@ -143,8 +143,8 @@ public class UserController {
 		User user = userService.findByEmail(email);
 		if (user == null // user not found
 				|| user.isActive() // account already active
-				|| !user.getKey().equals(key) // different key
-				|| new DateTime().plusHours(1).isBefore(new DateTime(user.getGenerationKeyDate())) // key is expired (validity is 1h)
+				|| !user.getAccountKey().equals(key) // different key
+				|| new DateTime().plusHours(1).isBefore(new DateTime(user.getGenerationAccountKeyDate())) // key is expired (validity is 1h)
 		) {
 			return "error-activate-link";
 		}
@@ -163,7 +163,7 @@ public class UserController {
 			if (user.isSocialUser()) { // user is social, so no password
 				return jsonResponseUtils.buildFailedJsonResponse("NotFound.resetUserEmail.email");
 			}
-			String newKey = userService.generateNewKey(user);
+			String newKey = userService.generateNewAccountKey(user);
 			mailSenderService.sendResetPasswordLink(email, newKey);
 			return jsonResponseUtils.buildSuccessfulJsonResponse("sign.in.forgot.send.confirm");
 		}
@@ -173,8 +173,8 @@ public class UserController {
 	public ModelAndView resetPassword(@RequestParam(value = "email", required = true) String email, @RequestParam(value = "key", required = true) String key) {
 		User user = userService.findByEmail(email);
 		if (user == null // user not found
-				|| !user.getKey().equals(key) // different key
-				|| new DateTime().plusHours(1).isBefore(new DateTime(user.getGenerationKeyDate())) // key is expired (validity is 1h)
+				|| !user.getAccountKey().equals(key) // different key
+				|| new DateTime().plusHours(1).isBefore(new DateTime(user.getGenerationAccountKeyDate())) // key is expired (validity is 1h)
 		) {
 			return new ModelAndView("error-reset-link");
 		}

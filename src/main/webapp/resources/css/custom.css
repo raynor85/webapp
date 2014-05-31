@@ -1530,3 +1530,9 @@ ul.list {
 #deleteAccountLink a {
 	color: #999
 }
+
+/*** Tooltip for favorite language ***/
+#langDiv .tooltip-inner {
+    width: 200px;
+}
+

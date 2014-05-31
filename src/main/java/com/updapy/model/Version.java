@@ -1,69 +1,48 @@
 package com.updapy.model;
 
-import java.util.Date;
+public class Version implements Comparable<Version> {
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+	private String version;
 
-import com.updapy.model.common.BaseEntity;
-
-@Entity
-@SequenceGenerator(allocationSize = 1, name = "idSequence", sequenceName = "version_seq")
-public class Version extends BaseEntity {
-
-	@ManyToOne(optional = false)
-	private ApplicationReference reference;
-
-	private String versionNumber;
-
-	private String win32Url;
-
-	private String win64Url;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date versionDate;
-
-	public String getVersionNumber() {
-		return versionNumber;
+	public final String get() {
+		return this.version;
 	}
 
-	public void setVersionNumber(String versionNumber) {
-		this.versionNumber = versionNumber;
+	public Version(String version) {
+		if (version == null)
+			throw new IllegalArgumentException("Version can not be null");
+		if (!version.matches("[0-9]+(\\.[0-9]+)*"))
+			throw new IllegalArgumentException("Invalid version format");
+		this.version = version;
 	}
 
-	public String getWin32Url() {
-		return win32Url;
+	@Override
+	public int compareTo(Version that) {
+		if (that == null)
+			return 1;
+		String[] thisParts = this.get().split("\\.");
+		String[] thatParts = that.get().split("\\.");
+		int length = Math.max(thisParts.length, thatParts.length);
+		for (int i = 0; i < length; i++) {
+			int thisPart = i < thisParts.length ? Integer.parseInt(thisParts[i]) : 0;
+			int thatPart = i < thatParts.length ? Integer.parseInt(thatParts[i]) : 0;
+			if (thisPart < thatPart)
+				return -1;
+			if (thisPart > thatPart)
+				return 1;
+		}
+		return 0;
 	}
 
-	public void setWin32Url(String win32Url) {
-		this.win32Url = win32Url;
-	}
-
-	public String getWin64Url() {
-		return win64Url;
-	}
-
-	public void setWin64Url(String win64Url) {
-		this.win64Url = win64Url;
-	}
-
-	public Date getVersionDate() {
-		return versionDate;
-	}
-
-	public void setVersionDate(Date versionDate) {
-		this.versionDate = versionDate;
-	}
-
-	public ApplicationReference getReference() {
-		return reference;
-	}
-
-	public void setReference(ApplicationReference reference) {
-		this.reference = reference;
+	@Override
+	public boolean equals(Object that) {
+		if (this == that)
+			return true;
+		if (that == null)
+			return false;
+		if (this.getClass() != that.getClass())
+			return false;
+		return this.compareTo((Version) that) == 0;
 	}
 
 }

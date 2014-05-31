@@ -7,7 +7,7 @@
 	<sec:authentication property="principal.socialUser" />
 </c:set>
 
-<div class="container">
+<div class="container-fluid">
 
 	<div class="form-white">
 		<form:form id="updateSettingsForm" commandName="updateSettings" action="${root}/settings/update" class="form-horizontal">
@@ -19,13 +19,31 @@
 			</h3>
 			<hr>
 			<div class="form-group">
-				<label for="name" class="col-sm-1 control-label"><spring:message code="settings.profile.field.name" /></label>
-				<div class="col-sm-5">
+				<label for="name" class="col-sm-2 control-label" style="width: 100px;"><spring:message code="settings.profile.field.name" /></label>
+				<div class="col-sm-10">
 					<form:input class="form-control" path="name" id="name" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="email" class="col-sm-1 control-label"><spring:message code="settings.profile.field.email" /></label>
+				<label for="lang" class="col-sm-2 control-label" style="width: 100px;"><spring:message code="settings.profile.field.lang" /></label>
+				<div id="langDiv" class="col-sm-4">
+					<c:set var="tooltipLang">
+						<spring:message code="settings.profile.field.lang.tip" />
+					</c:set>
+					<form:select class="form-control" path="lang" id="lang" data-toggle="tooltip" data-placement="top" title="${tooltipLang}" data-html="true">
+						<c:set var="englishLang">
+							<spring:message code="settings.profile.field.lang.english" />
+						</c:set>
+						<c:set var="frenchLang">
+							<spring:message code="settings.profile.field.lang.french" />
+						</c:set>
+						<form:option value="eng" label="${englishLang}" htmlEscape="false" />
+						<form:option value="fra" label="${frenchLang}" htmlEscape="false" />
+					</form:select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="email" class="col-sm-2 control-label" style="width: 100px;"><spring:message code="settings.profile.field.email" /></label>
 				<div class="col-sm-5">
 					<p class="form-control-static">
 						<c:set var="email">
@@ -196,9 +214,11 @@
 
 
 <script type="text/javascript">
+	$("#lang").tooltip();
 	function ajaxUpdateSettings() {
 		var json = {
 			"name" : $("#name").val(),
+			"lang" : $("#lang").val(),
 			"emailAlert" : $("input[name='emailAlert']:checked").val(),
 			"emailEachUpdate" : $("input[name='emailEachUpdate']:checked")
 					.val(),

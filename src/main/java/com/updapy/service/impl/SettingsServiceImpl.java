@@ -27,6 +27,7 @@ public class SettingsServiceImpl implements SettingsService {
 	@Override
 	public User updateSettings(User user, UpdateSettings newSettings) {
 		user.setName(StringUtils.trimToNull(newSettings.getName()));
+		user.setLang(newSettings.getLang());
 		for (Setting setting : user.getSettings()) {
 			Parameter parameter = setting.getParameter();
 			switch (parameter) {
@@ -51,6 +52,7 @@ public class SettingsServiceImpl implements SettingsService {
 	public UpdateSettings getSettings(User user) {
 		UpdateSettings updateSettings = new UpdateSettings();
 		updateSettings.setName(user.getName());
+		updateSettings.setLang(user.getLang());
 		for (Setting setting : user.getSettings()) {
 			Parameter parameter = setting.getParameter();
 			switch (parameter) {

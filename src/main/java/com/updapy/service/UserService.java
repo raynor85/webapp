@@ -18,7 +18,7 @@ public interface UserService {
 
 	User registerSocial(Connection<?> connection);
 
-	String generateNewKey(User user);
+	String generateNewAccountKey(User user);
 
 	User activate(User user);
 
@@ -31,7 +31,7 @@ public interface UserService {
 	boolean isCurrentPassword(String password);
 
 	boolean delete(User user);
-	
+
 	boolean deleteCurrentUser();
 
 }

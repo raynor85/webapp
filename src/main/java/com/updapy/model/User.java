@@ -14,6 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.updapy.model.common.BaseEntity;
+import com.updapy.model.enumeration.Lang;
 import com.updapy.model.enumeration.SocialMediaService;
 
 @Entity(name = "person")
@@ -29,15 +30,23 @@ public class User extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	private SocialMediaService socialMediaService;
 
+	@Enumerated(EnumType.STRING)
+	private Lang lang;
+
 	// Early user = register before the service was available
 	private boolean early;
 
 	private boolean active;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date generationKeyDate;
+	private Date generationAccountKeyDate;
 
-	private String key;
+	private String accountKey;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date generationRestKeyDate;
+
+	private String restKey;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date activationDate;
@@ -145,20 +154,36 @@ public class User extends BaseEntity {
 		this.active = active;
 	}
 
-	public Date getGenerationKeyDate() {
-		return generationKeyDate;
+	public Date getGenerationAccountKeyDate() {
+		return generationAccountKeyDate;
 	}
 
-	public void setGenerationKeyDate(Date generationKeyDate) {
-		this.generationKeyDate = generationKeyDate;
+	public void setGenerationAccountKeyDate(Date generationAccountKeyDate) {
+		this.generationAccountKeyDate = generationAccountKeyDate;
 	}
 
-	public String getKey() {
-		return key;
+	public String getAccountKey() {
+		return accountKey;
 	}
 
-	public void setKey(String key) {
-		this.key = key;
+	public void setAccountKey(String accountKey) {
+		this.accountKey = accountKey;
+	}
+
+	public Date getGenerationRestKeyDate() {
+		return generationRestKeyDate;
+	}
+
+	public void setGenerationRestKeyDate(Date generationRestKeyDate) {
+		this.generationRestKeyDate = generationRestKeyDate;
+	}
+
+	public String getRestKey() {
+		return restKey;
+	}
+
+	public void setRestKey(String restKey) {
+		this.restKey = restKey;
 	}
 
 	public Date getActivationDate() {
@@ -172,4 +197,13 @@ public class User extends BaseEntity {
 	public boolean isSocialUser() {
 		return socialMediaService != null;
 	}
+
+	public Lang getLang() {
+		return lang;
+	}
+
+	public void setLang(Lang lang) {
+		this.lang = lang;
+	}
+
 }
