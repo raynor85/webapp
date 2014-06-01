@@ -8,4 +8,6 @@ public interface MailSenderService {
 
 	boolean sendAdminConnectionError(String url);
 
+	boolean sendAdminRetrieverError(String applicationName);
+
 }

@@ -3,16 +3,29 @@ DELETE FROM setting;
 DELETE FROM helpmessage;
 DELETE FROM person;
 DELETE FROM userconnection;
+--DELETE FROM applicationversion;
+DELETE FROM applicationreference;
 
 -- Indexes
 CREATE UNIQUE INDEX userconnectionrank ON userconnection(userid, providerid, rank);
 CREATE UNIQUE INDEX personemail ON person(email);
 
 -- Application references
-INSERT INTO applicationreference(id, creationdate, updatedate, version, active, globalurl, iconfilename, name) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cdn.mozilla.net/pub/mozilla.org/firefox/releases/latest/', 'firefox.png', 'Firefox');
-INSERT INTO applicationversion(id, creationdate, updatedate, version, versiondate, versionnumber, win32urlen, win64urlen, win32urlfr, win64urlfr, reference_id) VALUES (nextval('application_version_seq'), now(), null, 0, '2014-04-29 00:00:00.000', '29.0', 'http://download.cdn.mozilla.net/pub/mozilla.org/firefox/releases/29.0/win32/en-US/Firefox%20Setup%2029.0.exe', null, 'http://download.cdn.mozilla.net/pub/mozilla.org/firefox/releases/29.0/win32/fr/Firefox%20Setup%2029.0.exe', null, currval('application_reference_seq'));
-INSERT INTO applicationversion(id, creationdate, updatedate, version, versiondate, versionnumber, win32urlen, win64urlen, win32urlfr, win64urlfr, reference_id) VALUES (nextval('application_version_seq'), now(), null, 0, '2014-05-07 00:00:00.000', '29.0.1', 'http://download.cdn.mozilla.net/pub/mozilla.org/firefox/releases/29.0.1/win32/en-US/Firefox%20Setup%2029.0.1.exe', null, 'http://download.cdn.mozilla.net/pub/mozilla.org/firefox/releases/29.0.1/win32/fr/Firefox%20Setup%2029.0.1.exe', null, currval('application_reference_seq'));
-INSERT INTO applicationreference(id, creationdate, updatedate, version, active, globalurl, iconfilename, name) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.apple.com/itunes/download/', 'itunes.png', 'iTunes');
+-- Mozilla Firefox
+INSERT INTO applicationreference(id, creationdate, updatedate, version, active, globalurl, iconfilename, name) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.mozilla.org/en-US/firefox/all/', 'firefox.png', 'Firefox');
+--INSERT INTO applicationversion(id, creationdate, updatedate, version, versiondate, versionnumber, win32urlen, win64urlen, win32urlfr, win64urlfr, reference_id) VALUES (nextval('application_version_seq'), now(), null, 0, '2014-04-29 00:00:00.000', '29.0', 'https://download.mozilla.org/?product=firefox-29.0-SSL&os=win&lang=en-US', null, 'https://download.mozilla.org/?product=firefox-29.0-SSL&os=win&lang=fr', null, currval('application_reference_seq'));
+--INSERT INTO applicationversion(id, creationdate, updatedate, version, versiondate, versionnumber, win32urlen, win64urlen, win32urlfr, win64urlfr, reference_id) VALUES (nextval('application_version_seq'), now(), null, 0, '2014-05-07 00:00:00.000', '29.0.1', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=en-US', null, 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=fr', null, currval('application_reference_seq'));
+-- Paint.NET
+INSERT INTO applicationreference(id, creationdate, updatedate, version, active, globalurl, iconfilename, name) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.getpaint.net/download.html', 'paintnet.png', 'Paint.NET');
+-- Notepad++
+-- Gimp
+-- Adobe Reader
+-- WinMerge
+-- VLC
+-- Media Player Classic
+-- CCleaner
+-- Filezilla
+-- Chromium
 
 -- Users
 -- test@updapy.com / UpdapyPwd

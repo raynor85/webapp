@@ -17,6 +17,8 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 import org.apache.velocity.app.VelocityEngine;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.velocity.VelocityEngineUtils;
@@ -26,6 +28,8 @@ import com.updapy.util.MessageUtils;
 
 @Service
 public class MailSenderServiceImpl implements MailSenderService {
+
+	Logger log = LoggerFactory.getLogger(MailSenderServiceImpl.class);
 
 	@Autowired
 	MessageUtils messageUtils;
@@ -85,6 +89,11 @@ public class MailSenderServiceImpl implements MailSenderService {
 	}
 
 	private void send(String fromEmail, String toEmail, String subject, String htmlContent) throws Exception {
+		if (messageUtils.getSimpleMessage("environnement").equals("dev")) {
+			// skip email sending
+			log.info("Sending email to '{}' with subject '{}' and content '{}'", toEmail, subject, htmlContent);
+			return;
+		}
 		Properties props = new Properties();
 		props.put("mail.transport.protocol", "smtp");
 		props.put("mail.smtp.host", SMTP_HOST_NAME);
@@ -130,6 +139,22 @@ public class MailSenderServiceImpl implements MailSenderService {
 		model.put("lang", messageUtils.getSimpleMessage("email.lang"));
 		model.put("title", messageUtils.getSimpleMessage("email.error.connection.content.title"));
 		model.put("text", messageUtils.getCustomMessage("email.error.connection.content.text", new String[] { url }));
+		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "error.vm", "UTF-8", model);
+		try {
+			send(ADMIN_EMAIL, ADMIN_EMAIL, subject, message);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean sendAdminRetrieverError(String applicationName) {
+		String subject = messageUtils.getSimpleMessage("email.error.subject");
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("lang", messageUtils.getSimpleMessage("email.lang"));
+		model.put("title", messageUtils.getSimpleMessage("email.error.retriever.content.title"));
+		model.put("text", messageUtils.getCustomMessage("email.error.retriever.content.text", new String[] { applicationName }));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "error.vm", "UTF-8", model);
 		try {
 			send(ADMIN_EMAIL, ADMIN_EMAIL, subject, message);

@@ -1,6 +1,7 @@
 package com.updapy.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
@@ -12,6 +13,7 @@ import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.service.MailSenderService;
 import com.updapy.service.RemoteService;
+import com.updapy.service.retriever.RemoteRetriever;
 
 @Service
 public class RemoteServiceImpl implements RemoteService {
@@ -19,55 +21,51 @@ public class RemoteServiceImpl implements RemoteService {
 	@Autowired
 	MailSenderService mailSenderService;
 
+	@Autowired
+	List<RemoteRetriever> remoteRetrievers;
+
 	@Override
 	public ApplicationVersion retrieveRemoteLatestVersion(ApplicationReference reference) {
-		ApplicationVersion applicationVersion = new ApplicationVersion();
-		Document doc = null;
-		try {
-			doc = Jsoup.connect(reference.getGlobalUrl()).get();
-		} catch (Exception e) {
-			mailSenderService.sendAdminConnectionError(reference.getGlobalUrl());
+		Document doc = retrieveHtmlDocument(reference.getGlobalUrl());
+		if (doc == null) {
 			return null;
 		}
+
+		ApplicationVersion applicationVersion = new ApplicationVersion();
 		applicationVersion.setReference(reference);
 		applicationVersion.setVersionDate(new Date());
-		applicationVersion.setVersionNumber(findVersionNumber(doc));
-		applicationVersion.setWin32UrlEn(findWin32UrlEn(doc));
-		applicationVersion.setWin32UrlFr(findWin32UrlFr(doc));
-		applicationVersion.setWin64UrlEn(findWin64UrlEn(doc));
-		applicationVersion.setWin64UrlFr(findWin64UrlFr(doc));
+
+		retrieveInformation: {
+			for (RemoteRetriever remoteRetriever : remoteRetrievers) {
+				if (remoteRetriever.support(reference)) {
+					applicationVersion.setVersionNumber(remoteRetriever.retrieveVersionNumber(doc));
+					applicationVersion.setWin32UrlEn(remoteRetriever.retrieveWin32UrlEn(doc));
+					applicationVersion.setWin32UrlFr(remoteRetriever.retrieveWin32UrlFr(doc));
+					applicationVersion.setWin64UrlEn(remoteRetriever.retrieveWin64UrlEn(doc));
+					applicationVersion.setWin64UrlFr(remoteRetriever.retrieveWin64UrlFr(doc));
+					break retrieveInformation;
+				}
+			}
+		}
 
 		if (StringUtils.isBlank(applicationVersion.getVersionNumber()) || StringUtils.isBlank(applicationVersion.getWin32UrlEn())) {
-			// The version is not valid
+			// remote version not valid
+			mailSenderService.sendAdminRetrieverError(reference.getName());
 			return null;
 		}
 
 		return applicationVersion;
 	}
 
-	private String findWin64UrlFr(Document doc) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private String findWin64UrlEn(Document doc) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private String findWin32UrlFr(Document doc) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private String findWin32UrlEn(Document doc) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private String findVersionNumber(Document doc) {
-		// TODO Auto-generated method stub
-		return null;
+	private Document retrieveHtmlDocument(String url) {
+		Document doc = null;
+		try {
+			doc = Jsoup.connect(url).get();
+		} catch (Exception e) {
+			mailSenderService.sendAdminConnectionError(url);
+			return null;
+		}
+		return doc;
 	}
 
 }

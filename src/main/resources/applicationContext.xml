@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans" xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:social="http://www.springframework.org/schema/social" xmlns:task="http://www.springframework.org/schema/task"
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans" xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:social="http://www.springframework.org/schema/social" xmlns:task="http://www.springframework.org/schema/task" xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 						http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
                         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
                         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
                         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 						http://www.springframework.org/schema/social http://www.springframework.org/schema/social/spring-social.xsd
-						http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+						http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+						http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
 	<mvc:annotation-driven />
 	<task:annotation-driven />
@@ -86,6 +87,12 @@
 	</bean>
 	<social:jdbc-connection-repository /> <!-- Save social connections in database -->
 
+	<!-- Remote retrievers -->
+	<util:list id="remoteRetrievers">
+		<ref bean="firefoxRemoteRetriever" />
+		<ref bean="paintNetRemoteRetriever" />
+	</util:list>
+
 	<beans profile="default">
 
 		<!-- Messages and i18n -->
@@ -151,7 +158,7 @@
 				<props>
 					<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 					<prop key="hibernate.show_sql">false</prop>
-					<prop key="hibernate.hbm2ddl.auto">create</prop>
+					<prop key="hibernate.hbm2ddl.auto">validate</prop>
 				</props>
 			</property>
 		</bean>
