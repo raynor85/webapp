@@ -60,7 +60,7 @@ public class RemoteServiceImpl implements RemoteService {
 	private Document retrieveHtmlDocument(String url) {
 		Document doc = null;
 		try {
-			doc = Jsoup.connect(url).get();
+			doc = Jsoup.connect(url).timeout(15 * 1000).get();
 		} catch (Exception e) {
 			mailSenderService.sendAdminConnectionError(url);
 			return null;

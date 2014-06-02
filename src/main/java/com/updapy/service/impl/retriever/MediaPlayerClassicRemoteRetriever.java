@@ -9,13 +9,11 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParseUtils;
 
 @Component
-public class PaintNetRemoteRetriever implements RemoteRetriever {
-
-	static final String ROOT_DOWNLOAD_WEBSITE = "http://www.dotpdn.com";
+public class MediaPlayerClassicRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("Paint.NET");
+		return applicationReference.getName().equalsIgnoreCase("Media Player Classic");
 	}
 
 	@Override
@@ -25,7 +23,7 @@ public class PaintNetRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return null;
+		return doc.select("a:contains(installer)[href*=x64]").attr("href");
 	}
 
 	@Override
@@ -35,12 +33,12 @@ public class PaintNetRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + StringUtils.removeStart(doc.select("a:contains(Paint.NET)").first().attr("href"), "..");
+		return doc.select("a:contains(installer)[href*=x86]").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParseUtils.extractVersionNumberFromString(doc.select("a:contains(Paint.NET)").first().text());
+		return ParseUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("p:contains(latest stable build of is)").text(), "was compiled from.*$"));
 	}
 
 }

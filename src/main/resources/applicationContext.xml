@@ -91,6 +91,14 @@
 	<util:list id="remoteRetrievers">
 		<ref bean="firefoxRemoteRetriever" />
 		<ref bean="paintNetRemoteRetriever" />
+		<ref bean="notepadPlusPlusRemoteRetriever" />
+		<ref bean="gimpRemoteRetriever" />
+		<ref bean="adobeReaderRemoteRetriever" />
+		<ref bean="vlcMediaPlayerRemoteRetriever" />
+		<ref bean="mediaPlayerClassicRemoteRetriever" />
+		<ref bean="ccleanerRemoteRetriever" />
+		<ref bean="filezillaRemoteRetriever" />
+		<ref bean="chromiumRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

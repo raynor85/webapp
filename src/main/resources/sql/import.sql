@@ -3,7 +3,6 @@ DELETE FROM setting;
 DELETE FROM helpmessage;
 DELETE FROM person;
 DELETE FROM userconnection;
---DELETE FROM applicationversion;
 DELETE FROM applicationreference;
 
 -- Indexes
@@ -13,19 +12,24 @@ CREATE UNIQUE INDEX personemail ON person(email);
 -- Application references
 -- Mozilla Firefox
 INSERT INTO applicationreference(id, creationdate, updatedate, version, active, globalurl, iconfilename, name) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.mozilla.org/en-US/firefox/all/', 'firefox.png', 'Firefox');
---INSERT INTO applicationversion(id, creationdate, updatedate, version, versiondate, versionnumber, win32urlen, win64urlen, win32urlfr, win64urlfr, reference_id) VALUES (nextval('application_version_seq'), now(), null, 0, '2014-04-29 00:00:00.000', '29.0', 'https://download.mozilla.org/?product=firefox-29.0-SSL&os=win&lang=en-US', null, 'https://download.mozilla.org/?product=firefox-29.0-SSL&os=win&lang=fr', null, currval('application_reference_seq'));
---INSERT INTO applicationversion(id, creationdate, updatedate, version, versiondate, versionnumber, win32urlen, win64urlen, win32urlfr, win64urlfr, reference_id) VALUES (nextval('application_version_seq'), now(), null, 0, '2014-05-07 00:00:00.000', '29.0.1', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=en-US', null, 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=fr', null, currval('application_reference_seq'));
 -- Paint.NET
 INSERT INTO applicationreference(id, creationdate, updatedate, version, active, globalurl, iconfilename, name) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.dotpdn.com/downloads/pdn.html', 'paintnet.png', 'Paint.NET');
 -- Notepad++
+INSERT INTO applicationreference(id, creationdate, updatedate, version, active, globalurl, iconfilename, name) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://notepad-plus-plus.org/download/', 'notepadplusplus.png', 'Notepad++');
 -- Gimp
+INSERT INTO applicationreference(id, creationdate, updatedate, version, active, globalurl, iconfilename, name) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.gimp.org/downloads/', 'gimp.png', 'GIMP');
 -- Adobe Reader
--- WinMerge
+INSERT INTO applicationreference(id, creationdate, updatedate, version, active, globalurl, iconfilename, name) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.adobe.com/support/downloads/product.jsp?product=10&platform=windows', 'adobereader.png', 'Adobe Reader');
 -- VLC
+INSERT INTO applicationreference(id, creationdate, updatedate, version, active, globalurl, iconfilename, name) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.videolan.org/vlc/download-windows.html', 'vlcmediaplayer.png', 'VLC Media Player');
 -- Media Player Classic
+INSERT INTO applicationreference(id, creationdate, updatedate, version, active, globalurl, iconfilename, name) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://mpc-hc.org/downloads/', 'mpclassic.png', 'Media Player Classic');
 -- CCleaner
+INSERT INTO applicationreference(id, creationdate, updatedate, version, active, globalurl, iconfilename, name) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.piriform.com/ccleaner/download', 'ccleaner.png', 'CCleaner');
 -- Filezilla
--- Chromium
+INSERT INTO applicationreference(id, creationdate, updatedate, version, active, globalurl, iconfilename, name) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://filezilla-project.org/download.php?show_all=1', 'filezilla.png', 'Filezilla');
+-- Chrome
+INSERT INTO applicationreference(id, creationdate, updatedate, version, active, globalurl, iconfilename, name) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://chromium.woolyss.com/download/', 'chromium.png', 'Chromium');
 
 -- Users
 -- test@updapy.com / UpdapyPwd

@@ -9,13 +9,11 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParseUtils;
 
 @Component
-public class PaintNetRemoteRetriever implements RemoteRetriever {
-
-	static final String ROOT_DOWNLOAD_WEBSITE = "http://www.dotpdn.com";
+public class ChromiumRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("Paint.NET");
+		return applicationReference.getName().equalsIgnoreCase("Chromium");
 	}
 
 	@Override
@@ -25,7 +23,7 @@ public class PaintNetRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return null;
+		return doc.select("a:contains(Chromium 64-bit (.exe))").attr("href");
 	}
 
 	@Override
@@ -35,12 +33,12 @@ public class PaintNetRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + StringUtils.removeStart(doc.select("a:contains(Paint.NET)").first().attr("href"), "..");
+		return doc.select("a:contains(Chromium 32-bit (.exe))").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParseUtils.extractVersionNumberFromString(doc.select("a:contains(Paint.NET)").first().text());
+		return ParseUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(doc.select(".os").select("p").get(1).text(), "Revision.*"), ".*Version"));
 	}
 
 }

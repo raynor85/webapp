@@ -242,6 +242,7 @@
 		var json = {
 			"name" : $("#name").val(),
 			"lang" : $("#lang").val(),
+			"osVersion" : $("#osVersion").val(),
 			"emailAlert" : $("input[name='emailAlert']:checked").val(),
 			"emailEachUpdate" : $("input[name='emailEachUpdate']:checked")
 					.val(),

@@ -1,6 +1,5 @@
 package com.updapy.service.impl.retriever;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -9,13 +8,11 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParseUtils;
 
 @Component
-public class PaintNetRemoteRetriever implements RemoteRetriever {
-
-	static final String ROOT_DOWNLOAD_WEBSITE = "http://www.dotpdn.com";
+public class VlcMediaPlayerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("Paint.NET");
+		return applicationReference.getName().equalsIgnoreCase("VLC Media Player");
 	}
 
 	@Override
@@ -25,7 +22,7 @@ public class PaintNetRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return null;
+		return doc.select("a[href*=win64]").attr("href");
 	}
 
 	@Override
@@ -35,12 +32,12 @@ public class PaintNetRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + StringUtils.removeStart(doc.select("a:contains(Paint.NET)").first().attr("href"), "..");
+		return doc.select("a[href*=win32]").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParseUtils.extractVersionNumberFromString(doc.select("a:contains(Paint.NET)").first().text());
+		return ParseUtils.extractVersionNumberFromString(doc.select("h1:contains(Download latest)").text());
 	}
 
 }
