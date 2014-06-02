@@ -10,7 +10,7 @@ CREATE UNIQUE INDEX userconnectionrank ON userconnection(userid, providerid, ran
 CREATE UNIQUE INDEX personemail ON person(email);
 
 -- Application references
--- Mozilla Firefox
+-- Firefox
 INSERT INTO applicationreference(id, creationdate, updatedate, version, active, globalurl, iconfilename, name) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.mozilla.org/en-US/firefox/all/', 'firefox.png', 'Firefox');
 -- Paint.NET
 INSERT INTO applicationreference(id, creationdate, updatedate, version, active, globalurl, iconfilename, name) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.dotpdn.com/downloads/pdn.html', 'paintnet.png', 'Paint.NET');

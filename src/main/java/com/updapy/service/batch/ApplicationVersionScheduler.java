@@ -28,8 +28,8 @@ public class ApplicationVersionScheduler {
 	@Autowired
 	RemoteService remoteService;
 
-	// fire every hour
-	@Scheduled(cron = "0 0 * * * *")
+	// fire twice a day
+	@Scheduled(cron = "0 0 0,12 * * *")
 	//@Scheduled(fixedDelay = 2000000) // fire at start - testing purpose
 	public void updateApplicationRepository() {
 		log.info("> Applications repository update started");
