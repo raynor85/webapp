@@ -3,6 +3,7 @@ package com.updapy.form.model;
 import javax.validation.constraints.NotNull;
 
 import com.updapy.model.enumeration.Lang;
+import com.updapy.model.enumeration.OsVersion;
 
 public class UpdateSettings {
 
@@ -10,6 +11,9 @@ public class UpdateSettings {
 
 	@NotNull
 	private Lang lang;
+
+	@NotNull
+	private OsVersion osVersion;
 
 	@NotNull
 	private boolean emailAlert;
@@ -69,6 +73,14 @@ public class UpdateSettings {
 
 	public void setLang(Lang lang) {
 		this.lang = lang;
+	}
+
+	public OsVersion getOsVersion() {
+		return osVersion;
+	}
+
+	public void setOsVersion(OsVersion osVersion) {
+		this.osVersion = osVersion;
 	}
 
 }

@@ -28,6 +28,7 @@ public class SettingsServiceImpl implements SettingsService {
 	public User updateSettings(User user, UpdateSettings newSettings) {
 		user.setName(StringUtils.trimToNull(newSettings.getName()));
 		user.setLang(newSettings.getLang());
+		user.setOsVersion(newSettings.getOsVersion());
 		for (Setting setting : user.getSettings()) {
 			Parameter parameter = setting.getParameter();
 			switch (parameter) {
@@ -53,6 +54,7 @@ public class SettingsServiceImpl implements SettingsService {
 		UpdateSettings updateSettings = new UpdateSettings();
 		updateSettings.setName(user.getName());
 		updateSettings.setLang(user.getLang());
+		updateSettings.setOsVersion(user.getOsVersion());
 		for (Setting setting : user.getSettings()) {
 			Parameter parameter = setting.getParameter();
 			switch (parameter) {

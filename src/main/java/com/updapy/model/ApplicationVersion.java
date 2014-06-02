@@ -90,4 +90,13 @@ public class ApplicationVersion extends BaseEntity {
 		return new Version(versionNumber);
 	}
 
+	public boolean isValidVersionNumber() {
+		try {
+			getFormatedVersionNumber();
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
 }

@@ -16,7 +16,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, version, active, 
 --INSERT INTO applicationversion(id, creationdate, updatedate, version, versiondate, versionnumber, win32urlen, win64urlen, win32urlfr, win64urlfr, reference_id) VALUES (nextval('application_version_seq'), now(), null, 0, '2014-04-29 00:00:00.000', '29.0', 'https://download.mozilla.org/?product=firefox-29.0-SSL&os=win&lang=en-US', null, 'https://download.mozilla.org/?product=firefox-29.0-SSL&os=win&lang=fr', null, currval('application_reference_seq'));
 --INSERT INTO applicationversion(id, creationdate, updatedate, version, versiondate, versionnumber, win32urlen, win64urlen, win32urlfr, win64urlfr, reference_id) VALUES (nextval('application_version_seq'), now(), null, 0, '2014-05-07 00:00:00.000', '29.0.1', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=en-US', null, 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=fr', null, currval('application_reference_seq'));
 -- Paint.NET
-INSERT INTO applicationreference(id, creationdate, updatedate, version, active, globalurl, iconfilename, name) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.getpaint.net/download.html', 'paintnet.png', 'Paint.NET');
+INSERT INTO applicationreference(id, creationdate, updatedate, version, active, globalurl, iconfilename, name) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.dotpdn.com/downloads/pdn.html', 'paintnet.png', 'Paint.NET');
 -- Notepad++
 -- Gimp
 -- Adobe Reader
@@ -29,7 +29,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, version, active, 
 
 -- Users
 -- test@updapy.com / UpdapyPwd
-INSERT INTO person(id, creationdate, updatedate, version, early, email, name, password, activationdate, active, lang, generationaccountkeydate, accountkey, generationrestkeydate, restkey) VALUES (nextval('person_seq'), now(), null, 0, false, 'test@updapy.com', 'Updapy', '$2a$10$faNVhJX.ZrvmpklDMFa.4OBWwG4GbYEQCFzTPaR9hJ.aHYU7zCRrC', now(), true, 'eng', now(), 'i8v3wb35qz17pxfa0exzmoy18gsmwwwzobhu5ne2nubb1hxs3i', now(), 'b06klbu3k7c582bjxmfd96psqg6katy6usrs067ge77bnleo0u');
+INSERT INTO person(id, creationdate, updatedate, version, early, email, name, password, activationdate, active, lang, osversion, generationaccountkeydate, accountkey, generationrestkeydate, restkey) VALUES (nextval('person_seq'), now(), null, 0, false, 'test@updapy.com', 'Updapy', '$2a$10$faNVhJX.ZrvmpklDMFa.4OBWwG4GbYEQCFzTPaR9hJ.aHYU7zCRrC', now(), true, 'eng', 'WIN_32_BITS', now(), 'i8v3wb35qz17pxfa0exzmoy18gsmwwwzobhu5ne2nubb1hxs3i', now(), 'b06klbu3k7c582bjxmfd96psqg6katy6usrs067ge77bnleo0u');
 INSERT INTO helpmessage(id, creationdate, updatedate, version, hidden, type, person_id) VALUES (nextval('help_message_seq'), now(), null, 0, false, 'DASHBOARD_HOW_TO', currval('person_seq'));
 INSERT INTO helpmessage(id, creationdate, updatedate, version, hidden, type, person_id) VALUES (nextval('help_message_seq'), now(), null, 0, false, 'DASHBOARD_ALERT_DISABLED', currval('person_seq'));
 INSERT INTO helpmessage(id, creationdate, updatedate, version, hidden, type, person_id) VALUES (nextval('help_message_seq'), now(), null, 0, false, 'SEARCH_HOW_TO', currval('person_seq'));

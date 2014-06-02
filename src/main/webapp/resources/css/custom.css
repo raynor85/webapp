@@ -195,12 +195,17 @@ body {
 
 /* Navbar menu dropdown */
 .dropdown-menu>li>a {
-	padding: 10px 20px;
+	padding: 7px 15px;
 	border-bottom: 1px dashed #E5E5E5;
 }
 
 .dropdown-menu>li:last-child>a {
 	border-bottom: 0;
+}
+
+.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus {
+	color: #005724 !important;
+	background-color: #E2F0E7 !important;
 }
 
 /* ===== Jumbotron ===== */
@@ -1533,6 +1538,5 @@ ul.list {
 
 /*** Tooltip for favorite language ***/
 #langDiv .tooltip-inner {
-    width: 200px;
+	width: 200px;
 }
-

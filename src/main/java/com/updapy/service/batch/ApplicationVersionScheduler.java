@@ -30,7 +30,7 @@ public class ApplicationVersionScheduler {
 
 	// fire every hour
 	@Scheduled(cron = "0 0 * * * *")
-	// @Scheduled(fixedDelay = 2000000) // fire at start - testing purpose
+	//@Scheduled(fixedDelay = 2000000) // fire at start - testing purpose
 	public void updateApplicationRepository() {
 		log.info("> Applications repository update started");
 		List<ApplicationReference> applicationReferences = applicationReferenceRepository.findAll();

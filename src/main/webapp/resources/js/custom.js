@@ -193,13 +193,13 @@ function ajaxCall(button, form, json, divResult, jsToExecuteWhenSucess) {
 					} else if (response.status == "FAIL") {
 						type = "danger";
 					}
-					responseInDiv = "<p><div class='alert alert-" + type
+					responseInDiv = "<div class='alert alert-" + type
 							+ " alert-dismissable'>";
 					responseInDiv += "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
 					for (var i = 0; i < response.result.length; i++) {
 						responseInDiv += response.result[i] + "<br />";
 					}
-					responseInDiv += "</div></p>";
+					responseInDiv += "</div><br />";
 					$(divResult).html(responseInDiv);
 					if (response.status == "SUCCESS") {
 						jsToExecuteWhenSucess();

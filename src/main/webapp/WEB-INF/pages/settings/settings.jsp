@@ -7,7 +7,7 @@
 	<sec:authentication property="principal.socialUser" />
 </c:set>
 
-<div class="container-fluid">
+<div class="container">
 
 	<div class="form-white">
 		<form:form id="updateSettingsForm" commandName="updateSettings" action="${root}/settings/update" class="form-horizontal">
@@ -19,31 +19,13 @@
 			</h3>
 			<hr>
 			<div class="form-group">
-				<label for="name" class="col-sm-2 control-label" style="width: 100px;"><spring:message code="settings.profile.field.name" /></label>
-				<div class="col-sm-10">
-					<form:input class="form-control" path="name" id="name" />
+				<label for="name" class="col-sm-2 control-label" style="min-width: 130px;"><spring:message code="settings.profile.field.name" /></label>
+				<div class="col-sm-8">
+					<form:input class="form-control" path="name" id="name" maxlength="255" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="lang" class="col-sm-2 control-label" style="width: 100px;"><spring:message code="settings.profile.field.lang" /></label>
-				<div id="langDiv" class="col-sm-4">
-					<c:set var="tooltipLang">
-						<spring:message code="settings.profile.field.lang.tip" />
-					</c:set>
-					<form:select class="form-control" path="lang" id="lang" data-toggle="tooltip" data-placement="top" title="${tooltipLang}" data-html="true">
-						<c:set var="englishLang">
-							<spring:message code="settings.profile.field.lang.english" />
-						</c:set>
-						<c:set var="frenchLang">
-							<spring:message code="settings.profile.field.lang.french" />
-						</c:set>
-						<form:option value="eng" label="${englishLang}" htmlEscape="false" />
-						<form:option value="fra" label="${frenchLang}" htmlEscape="false" />
-					</form:select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="email" class="col-sm-2 control-label" style="width: 100px;"><spring:message code="settings.profile.field.email" /></label>
+				<label for="email" class="col-sm-2 control-label" style="min-width: 130px;"><spring:message code="settings.profile.field.email" /></label>
 				<div class="col-sm-5">
 					<p class="form-control-static">
 						<c:set var="email">
@@ -59,6 +41,47 @@
 				</c:if>
 			</div>
 			<br />
+
+			<h3>
+				<spring:message code="settings.update.title" />
+				<small><spring:message code="settings.update.subtitle" /></small>
+			</h3>
+			<hr>
+			<div class="alert alert-info">
+				<spring:message code="settings.update.tip" />
+			</div>
+			<div class="form-group">
+				<label for="lang" class="col-sm-2 control-label" style="min-width: 130px;"><spring:message code="settings.update.field.lang" /></label>
+				<div id="langDiv" class="col-sm-4">
+					<form:select class="form-control selectpicker" path="lang" id="lang">
+						<c:set var="englishLang">
+							<spring:message code="settings.update.field.lang.english" />
+						</c:set>
+						<c:set var="frenchLang">
+							<spring:message code="settings.update.field.lang.french" />
+						</c:set>
+						<form:option value="eng" label="${englishLang}" htmlEscape="false" />
+						<form:option value="fra" label="${frenchLang}" htmlEscape="false" />
+					</form:select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="osVersion" class="col-sm-2 control-label" style="min-width: 130px;"><spring:message code="settings.update.field.osVersion" /></label>
+				<div id="osVersionDiv" class="col-sm-4">
+					<form:select class="form-control selectpicker" path="osVersion" id="osVersion">
+						<c:set var="win32BitsOsVersion">
+							<spring:message code="settings.update.field.osVersion.win32" />
+						</c:set>
+						<c:set var="win64BitsOsVersion">
+							<spring:message code="settings.update.field.osVersion.win64" />
+						</c:set>
+						<form:option value="WIN_32_BITS" label="${win32BitsOsVersion}" htmlEscape="false" />
+						<form:option value="WIN_64_BITS" label="${win64BitsOsVersion}" htmlEscape="false" />
+					</form:select>
+				</div>
+			</div>
+			<br />
+
 			<h3>
 				<spring:message code="settings.emails.title" />
 				<small><spring:message code="settings.emails.subtitle" /></small>
@@ -214,7 +237,7 @@
 
 
 <script type="text/javascript">
-	$("#lang").tooltip();
+	$(".selectpicker").selectpicker();
 	function ajaxUpdateSettings() {
 		var json = {
 			"name" : $("#name").val(),

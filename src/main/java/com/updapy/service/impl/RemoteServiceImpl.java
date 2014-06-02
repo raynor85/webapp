@@ -48,7 +48,7 @@ public class RemoteServiceImpl implements RemoteService {
 			}
 		}
 
-		if (StringUtils.isBlank(applicationVersion.getVersionNumber()) || StringUtils.isBlank(applicationVersion.getWin32UrlEn())) {
+		if (StringUtils.isBlank(applicationVersion.getVersionNumber()) || StringUtils.isBlank(applicationVersion.getWin32UrlEn()) || !applicationVersion.isValidVersionNumber()) {
 			// remote version not valid
 			mailSenderService.sendAdminRetrieverError(reference.getName());
 			return null;

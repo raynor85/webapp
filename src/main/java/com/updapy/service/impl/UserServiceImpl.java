@@ -19,6 +19,7 @@ import com.updapy.model.Setting;
 import com.updapy.model.User;
 import com.updapy.model.UserConnection;
 import com.updapy.model.enumeration.Lang;
+import com.updapy.model.enumeration.OsVersion;
 import com.updapy.model.enumeration.Parameter;
 import com.updapy.model.enumeration.SocialMediaService;
 import com.updapy.model.enumeration.TypeHelpMessage;
@@ -104,6 +105,8 @@ public class UserServiceImpl implements UserService {
 		// language
 		Lang currentLang = Lang.valueOf(LocaleContextHolder.getLocale().getISO3Language());
 		user.setLang(currentLang);
+		// os version
+		user.setOsVersion(OsVersion.WIN_32_BITS);
 	}
 
 	private void fillDefaultValuesSettings(User user) {

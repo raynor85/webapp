@@ -77,13 +77,15 @@
 <title><spring:message code="application.name" /> | <spring:message code="${title}" /></title>
 
 <!-- JQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="<spring:url value="/resources/js/jquery.color.min.js" />"></script>
 
 <!-- Bootstrap -->
 <link href="<spring:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
 <link href="<spring:url value="/resources/css/social-buttons-3.css" />" rel="stylesheet">
 <script src="<spring:url value="/resources/js/bootstrap.min.js" />"></script>
+<link href="<spring:url value="/resources/css/bootstrap-select.min.css" />" rel="stylesheet">
+<script src="<spring:url value="/resources/js/bootstrap-select.min.js" />"></script>
 
 <!-- Ladda -->
 <link href="<spring:url value="/resources/css/ladda.min.css" />" rel="stylesheet">
@@ -97,14 +99,14 @@
 
 <!-- Resources -->
 <link href="<spring:url value="/resources/css/animate.css" />" rel="stylesheet">
-<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 
 <!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
-	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+	  <script src="//cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
+	  <script src="//cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 </head>
 
