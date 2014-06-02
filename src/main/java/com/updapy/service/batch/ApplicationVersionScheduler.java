@@ -33,7 +33,7 @@ public class ApplicationVersionScheduler {
 	//@Scheduled(fixedDelay = 2000000) // fire at start - testing purpose
 	public void updateApplicationRepository() {
 		log.info("> Applications repository update started");
-		List<ApplicationReference> applicationReferences = applicationReferenceRepository.findAll();
+		List<ApplicationReference> applicationReferences = applicationReferenceRepository.findByActiveTrue();
 		for (ApplicationReference applicationReference : applicationReferences) {
 			checkNewVersionApplicationReference(applicationReference);
 		}
