@@ -8,11 +8,13 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParseUtils;
 
 @Component
-public class FilezillaRemoteRetriever implements RemoteRetriever {
+public class AdobePhotoshopRemoteRetriever implements RemoteRetriever {
+
+	static final String ROOT_DOWNLOAD_WEBSITE = "http://www.adobe.com/support/downloads/";
 
 	@Override
 	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("Filezilla");
+		return applicationReference.getName().equalsIgnoreCase("Adobe Photoshop");
 	}
 
 	@Override
@@ -32,12 +34,12 @@ public class FilezillaRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a:contains(win32-setup)[href*=win32-setup]").attr("href");
+		return ROOT_DOWNLOAD_WEBSITE + doc.select("table").get(0).select("a:contains(Adobe Photoshop)[href*=ftpID]").first().attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParseUtils.extractVersionNumberFromString(doc.select("p:contains(The latest stable version)").text());
+		return ParseUtils.extractVersionNumberFromString(doc.select("table").get(0).select("a:contains(Adobe Photoshop)[href*=ftpID]").first().text());
 	}
 
 }

@@ -8,11 +8,11 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParseUtils;
 
 @Component
-public class FilezillaRemoteRetriever implements RemoteRetriever {
+public class ItunesRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("Filezilla");
+		return applicationReference.getName().equalsIgnoreCase("iTunes");
 	}
 
 	@Override
@@ -22,7 +22,7 @@ public class FilezillaRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return null;
+		return doc.select("[id=system_OS_Hide_Show:6:win:64bit:radio:binaryUrl]").attr("value");
 	}
 
 	@Override
@@ -32,12 +32,12 @@ public class FilezillaRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a:contains(win32-setup)[href*=win32-setup]").attr("href");
+		return doc.select("[id=system_OS_Hide_Show:4:win:radio:binaryUrl]").attr("value");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParseUtils.extractVersionNumberFromString(doc.select("p:contains(The latest stable version)").text());
+		return ParseUtils.extractVersionNumberFromString(doc.select("label.platform:contains(for Windows)").first().text());
 	}
 
 }

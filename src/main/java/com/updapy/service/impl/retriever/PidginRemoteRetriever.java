@@ -1,5 +1,6 @@
 package com.updapy.service.impl.retriever;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -8,11 +9,11 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParseUtils;
 
 @Component
-public class FilezillaRemoteRetriever implements RemoteRetriever {
+public class PidginRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("Filezilla");
+		return applicationReference.getName().equalsIgnoreCase("Pidgin");
 	}
 
 	@Override
@@ -32,12 +33,12 @@ public class FilezillaRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a:contains(win32-setup)[href*=win32-setup]").attr("href");
+		return doc.select("a:contains(Download Now)").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParseUtils.extractVersionNumberFromString(doc.select("p:contains(The latest stable version)").text());
+		return ParseUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(doc.select("a:contains(Download Now)").attr("href"), "^.*/Pidgin/"), "/pidgin.*$"));
 	}
 
 }

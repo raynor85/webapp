@@ -34,12 +34,12 @@ public class AdobeReaderRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + doc.select("a:contains(Adobe Reader)[href*=ftpID]").first().attr("href");
+		return ROOT_DOWNLOAD_WEBSITE + doc.select("table").get(1).select("a:contains(Adobe Reader)[href*=ftpID]").first().attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParseUtils.extractVersionNumberFromString(doc.select("a:contains(Adobe Reader)[href*=ftpID]").first().text());
+		return ParseUtils.extractVersionNumberFromString(doc.select("table").get(1).select("a:contains(Adobe Reader)[href*=ftpID]").first().text());
 	}
 
 }

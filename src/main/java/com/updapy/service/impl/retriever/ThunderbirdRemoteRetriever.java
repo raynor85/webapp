@@ -8,11 +8,11 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParseUtils;
 
 @Component
-public class FilezillaRemoteRetriever implements RemoteRetriever {
+public class ThunderbirdRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("Filezilla");
+		return applicationReference.getName().equalsIgnoreCase("Thunderbird");
 	}
 
 	@Override
@@ -27,17 +27,17 @@ public class FilezillaRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlFr(Document doc) {
-		return null;
+		return doc.select("#fr").select("a.download-windows").attr("href");
 	}
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a:contains(win32-setup)[href*=win32-setup]").attr("href");
+		return doc.select("#en-US").select("a.download-windows").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParseUtils.extractVersionNumberFromString(doc.select("p:contains(The latest stable version)").text());
+		return ParseUtils.extractVersionNumberFromString(doc.select("td.curVersion").first().text());
 	}
 
 }

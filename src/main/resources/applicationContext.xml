@@ -99,6 +99,16 @@
 		<ref bean="ccleanerRemoteRetriever" />
 		<ref bean="filezillaRemoteRetriever" />
 		<ref bean="chromiumRemoteRetriever" />
+		<ref bean="adobePhotoshopRemoteRetriever" />
+		<ref bean="sevenZipRemoteRetriever" />
+		<ref bean="thunderbirdRemoteRetriever" />
+		<ref bean="pidginRemoteRetriever" />
+		<ref bean="kLiteCodecPackRemoteRetriever" />
+		<ref bean="songbirdRemoteRetriever" />
+		<ref bean="picassaRemoteRetriever" />
+		<ref bean="itunesRemoteRetriever" />
+		<ref bean="winmergeRemoteRetriever" />
+		<ref bean="pdfCreatorRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
