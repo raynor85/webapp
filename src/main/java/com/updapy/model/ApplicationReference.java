@@ -2,6 +2,7 @@ package com.updapy.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -13,6 +14,7 @@ import com.updapy.model.common.BaseEntity;
 @SequenceGenerator(allocationSize = 1, name = "idSequence", sequenceName = "application_reference_seq")
 public class ApplicationReference extends BaseEntity {
 
+	@Column(unique = true)
 	private String name;
 
 	private String globalUrl;

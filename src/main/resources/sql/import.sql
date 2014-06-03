@@ -3,11 +3,13 @@ DELETE FROM setting;
 DELETE FROM helpmessage;
 DELETE FROM person;
 DELETE FROM userconnection;
+DELETE FROM applicationversion;
 DELETE FROM applicationreference;
 
 -- Indexes
 CREATE UNIQUE INDEX userconnectionrank ON userconnection(userid, providerid, rank);
 CREATE UNIQUE INDEX personemail ON person(email);
+CREATE UNIQUE INDEX applicationreferencename ON applicationreference(name);
 
 -- Application references
 -- Firefox

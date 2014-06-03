@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -22,6 +23,7 @@ import com.updapy.model.enumeration.SocialMediaService;
 @SequenceGenerator(allocationSize = 1, name = "idSequence", sequenceName = "person_seq")
 public class User extends BaseEntity {
 
+	@Column(unique = true)
 	private String email;
 
 	private String password;
