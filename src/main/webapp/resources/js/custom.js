@@ -171,7 +171,7 @@ $(function() {
 // Ajax call
 // ==================================
 
-function ajaxCall(button, form, json, divResult, jsToExecuteWhenSucess) {
+function ajaxCallPost(button, form, json, divResult, jsToExecuteWhenSucess) {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
 	var l = Ladda.create(document.querySelector(button));
@@ -209,7 +209,26 @@ function ajaxCall(button, form, json, divResult, jsToExecuteWhenSucess) {
 			});
 };
 
+function ajaxCallGetAndRefresh(elementNameToGet, elementIdToUpdate) {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	$.ajax({
+		type : 'GET',
+		beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		},
+		url : 'get' + elementNameToGet,
+		contentType : 'text',
+		cache : false,
+		success : function(response) {
+			$(elementIdToUpdate).val(response);
+		}
+	});
+};
+
 // Ladda buttons style
 // ==================================
 
-Ladda.bind('.ladda-button');
+Ladda.bind('.ladda-button', {
+	timeout : 0
+});

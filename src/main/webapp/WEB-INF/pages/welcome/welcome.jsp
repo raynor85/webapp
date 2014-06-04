@@ -1,7 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!-- Banner -->
 <div class="crp-showcase">
@@ -15,7 +14,7 @@
 				<h3 class="text-center animated2 fadeInDown shadow">
 					<spring:message code="welcome.introduction" />
 				</h3>
-				<sec:authorize access="isAnonymous()">
+				<c:if test="${not isAuthenticated}">
 					<div class="text-center actions animated2 fadeInDown delay2">
 						<c:choose>
 							<c:when test="${phase == 'early'}">
@@ -27,8 +26,8 @@
 						</c:choose>
 
 					</div>
-				</sec:authorize>
-				<sec:authorize access="isAuthenticated()">
+				</c:if>
+				<c:if test="${isAuthenticated}">
 					<div>
 						<div>
 							<h2 class="text-center animated2 fadeInDown shadow delay4">
@@ -37,7 +36,7 @@
 						</div>
 						<div id="arrowShare" class="animated2 wobble delay10"></div>
 					</div>
-				</sec:authorize>
+				</c:if>
 				<div class="alt-index">
 					<img src="<spring:url value="/resources/img/welcome/updapy-preview.jpg" />" alt="Updapy Preview">
 				</div>
@@ -209,7 +208,7 @@
 			var json = {
 				"email" : $("#email").val()
 			};
-			ajaxCall("#registerEarlyUserButton", "#registerEarlyUserForm",
+			ajaxCallPost("#registerEarlyUserButton", "#registerEarlyUserForm",
 					json, "#registerEarlyUserResponse");
 		};
 		$("#registerEarlyUserForm").submit(function() {

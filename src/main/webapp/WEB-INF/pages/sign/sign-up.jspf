@@ -1,9 +1,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-<sec:authorize access="isAnonymous()">
+<c:if test="${not isAuthenticated}">
 	<!-- Sign Up form -->
 	<div class="form-white-sign">
 		<form:form id="signUpForm" commandName="registerUser" action="${root}/user/register" method="POST">
@@ -46,12 +45,12 @@
 			</spring:hasBindErrors>
 		</form:form>
 	</div>
-</sec:authorize>
-<sec:authorize access="isAuthenticated()">
+</c:if>
+<c:if test="${isAuthenticated}">
 	<div class="form-white-sign">
 		<p>
 			<spring:message code="sign.up.authenticated.user" />
 		</p>
 	</div>
-</sec:authorize>
+</c:if>
 

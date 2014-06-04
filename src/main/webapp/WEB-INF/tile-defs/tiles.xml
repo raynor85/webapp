@@ -126,5 +126,11 @@
 		<put-attribute name="title" value="settings.account.delete.error.title" />
 		<put-attribute name="content" value="/WEB-INF/pages/settings/delete-account-error.jsp" />
 	</definition>
+	
+	<!-- Developers -->
+	<definition name="developers" extends="baseLayoutNormal">
+		<put-attribute name="title" value="developers.title" />
+		<put-attribute name="content" value="/WEB-INF/pages/developers/developers.jsp" />
+	</definition>
 
 </tiles-definitions>

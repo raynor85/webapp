@@ -27,12 +27,10 @@
 			<div class="form-group">
 				<label for="email" class="col-sm-2 control-label" style="min-width: 130px;"><spring:message code="settings.profile.field.email" /></label>
 				<div class="col-sm-5">
-					<p class="form-control-static">
-						<c:set var="email">
-							<sec:authentication property="principal.email" />
-						</c:set>
-						<c:out value="${email}" escapeXml="false" />
-					</p>
+					<c:set var="email">
+						<sec:authentication property="principal.email" />
+					</c:set>
+					<input class="form-control" value="${email}" readonly="true" />
 				</div>
 				<c:if test="${not isSocialUser}">
 					<div class="col-lg-3 pull-right">
@@ -250,7 +248,7 @@
 			"emailNewsletter" : $("input[name='emailNewsletter']:checked")
 					.val()
 		};
-		ajaxCall("#updateSettingsButton", "#updateSettingsForm", json,
+		ajaxCallPost("#updateSettingsButton", "#updateSettingsForm", json,
 				"#updateSettingsResponse", refreshUsername);
 	};
 	$("#updateSettingsForm").submit(function() {
@@ -274,8 +272,8 @@
 			"newPassword" : $("#newPassword").val(),
 			"repeatNewPassword" : $("#repeatNewPassword").val()
 		};
-		ajaxCall("#changePasswordUserButton", "#changePasswordUserForm", json,
-				"#changePasswordUserResponse", confirmChangePassword);
+		ajaxCallPost("#changePasswordUserButton", "#changePasswordUserForm",
+				json, "#changePasswordUserResponse", confirmChangePassword);
 	};
 	$("#changePasswordUserForm").submit(function() {
 		ajaxChangePasswordUser();

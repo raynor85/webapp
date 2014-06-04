@@ -1,0 +1,144 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+<div class="form-white">
+	<form:form id="resetUserApiKeyForm" commandName="resetUserApiKey" action="${root}/developers/resetApiKey" class="form-horizontal">
+		<div id="resetUserApiKeyResponse"></div>
+		<h4>
+			<spring:message code="developers.api.apiKey.subtitle" />
+		</h4>
+		<hr>
+		<spring:message code="developers.api.apiKey.description" />
+		<br />
+		<br />
+		<div class="form-group">
+			<div class="col-sm-7">
+				<form:input class="form-control" path="apiKey" id="apiKey" readonly="true" />
+			</div>
+			<div class="col-sm-1">
+				<p class="button-center-xs button-ladda">
+					<button type="button" id="resetUserApiKeyButton" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxResetUserApiKey();">
+						<spring:message code="developers.api.apiKey.reset.button" />
+					</button>
+				</p>
+			</div>
+		</div>
+		<br />
+		<h4>
+			<spring:message code="developers.api.documentation.subtitle" />
+		</h4>
+		<hr>
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr class="active">
+						<th><spring:message code="developers.api.documentation.table.head.resource" /></th>
+						<th><spring:message code="developers.api.documentation.table.head.description" /></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-toggle="collapse" data-target="#getApplicationNames" class="accordion-toggle" style="cursor: pointer;">
+						<td><a href="#"><spring:message code="developers.api.documentation.table.getApplicationNames.resource" /></a></td>
+						<td><spring:message code="developers.api.documentation.table.getApplicationNames.description" /></td>
+					</tr>
+					<tr>
+						<td colspan="2" class="hiddenRow">
+							<div class="accordion-body collapse" id="getApplicationNames">
+								<table class="table table-inner">
+									<tr>
+										<td colspan="2"><strong><spring:message code="developers.api.documentation.table.head.parameter" /></strong></td>
+									</tr>
+									<tr>
+										<td><spring:message code="developers.api.documentation.table.getApplicationNames.parameter1.name" /></td>
+										<td><spring:message code="developers.api.documentation.table.getApplicationNames.parameter1.description" /></td>
+									</tr>
+									<tr>
+										<td colspan="2"><strong><spring:message code="developers.api.documentation.table.head.example" /></strong></td>
+									</tr>
+									<tr>
+										<td><spring:message code="developers.api.documentation.table.head.example.request" /></td>
+										<td><em><spring:message code="developers.api.documentation.table.getApplicationNames.example.request" /></em></td>
+									</tr>
+									<tr>
+										<td><spring:message code="developers.api.documentation.table.head.example.response" /></td>
+										<td><em><spring:message code="developers.api.documentation.table.getApplicationNames.example.response" /></em></td>
+									</tr>
+								</table>
+							</div>
+						</td>
+					</tr>
+					<tr data-toggle="collapse" data-target="#getLastVersion" class="accordion-toggle" style="cursor: pointer;">
+						<td><a href="#"><spring:message code="developers.api.documentation.table.getLastVersion.resource" /></a></td>
+						<td><spring:message code="developers.api.documentation.table.getLastVersion.description" /></td>
+					</tr>
+					<tr>
+						<td colspan="2" class="hiddenRow">
+							<div class="accordion-body collapse" id="getLastVersion">
+								<table class="table table-inner">
+									<tr>
+										<td colspan="2"><strong><spring:message code="developers.api.documentation.table.head.parameter" /></strong></td>
+									</tr>
+									<tr>
+										<td><spring:message code="developers.api.documentation.table.getLastVersion.parameter1.name" /></td>
+										<td><spring:message code="developers.api.documentation.table.getLastVersion.parameter1.description" /></td>
+									</tr>
+									<tr>
+										<td><spring:message code="developers.api.documentation.table.getLastVersion.parameter2.name" /></td>
+										<td><spring:message code="developers.api.documentation.table.getLastVersion.parameter2.description" /></td>
+									</tr>
+									<tr>
+										<td colspan="2"><strong><spring:message code="developers.api.documentation.table.head.example" /></strong></td>
+									</tr>
+									<tr>
+										<td><spring:message code="developers.api.documentation.table.head.example.request" /></td>
+										<td><em><spring:message code="developers.api.documentation.table.getLastVersion.example.request" /></em></td>
+									</tr>
+									<tr>
+										<td><spring:message code="developers.api.documentation.table.head.example.response" /></td>
+										<td><em><spring:message code="developers.api.documentation.table.getLastVersion.example.response" /></em></td>
+									</tr>
+								</table>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</form:form>
+</div>
+
+<script type="text/javascript">
+	function ajaxResetUserApiKey() {
+		bootbox
+				.dialog({
+					title : "<spring:message code='developers.api.apiKey.reset.dialog.title' />",
+					message : "<spring:message code='developers.api.apiKey.reset.dialog.content' />",
+					buttons : {
+						cancel : {
+							label : "<spring:message code='developers.api.apiKey.reset.dialog.cancel' />",
+							className : "btn-default pull-left",
+							callback : function() {
+								return;
+							}
+						},
+						main : {
+							label : "<spring:message code='developers.api.apiKey.reset.dialog.confirm' />",
+							className : "btn-color",
+							callback : function() {
+								ajaxCallPost("#resetUserApiKeyButton",
+										"#resetUserApiKeyForm", null,
+										"#resetUserApiKeyResponse",
+										refreshApiKey);
+							}
+						}
+					}
+				});
+	};
+	$("#resetUserApiKeyForm").submit(function() {
+		ajaxResetUserApiKey();
+		return false;
+	});
+	var refreshApiKey = function() {
+		ajaxCallGetAndRefresh("ApiKey", "#apiKey");
+	};
+</script>

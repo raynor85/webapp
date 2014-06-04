@@ -50,9 +50,9 @@ public class User extends BaseEntity {
 	private String accountKey;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date generationRestKeyDate;
+	private Date generationApiKeyDate;
 
-	private String restKey;
+	private String apiKey;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date activationDate;
@@ -176,20 +176,20 @@ public class User extends BaseEntity {
 		this.accountKey = accountKey;
 	}
 
-	public Date getGenerationRestKeyDate() {
-		return generationRestKeyDate;
+	public Date getGenerationApiKeyDate() {
+		return generationApiKeyDate;
 	}
 
-	public void setGenerationRestKeyDate(Date generationRestKeyDate) {
-		this.generationRestKeyDate = generationRestKeyDate;
+	public void setGenerationApiKeyDate(Date generationApiKeyDate) {
+		this.generationApiKeyDate = generationApiKeyDate;
 	}
 
-	public String getRestKey() {
-		return restKey;
+	public String getApiKey() {
+		return apiKey;
 	}
 
-	public void setRestKey(String restKey) {
-		this.restKey = restKey;
+	public void setApiKey(String apiKey) {
+		this.apiKey = apiKey;
 	}
 
 	public Date getActivationDate() {

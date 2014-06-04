@@ -91,6 +91,18 @@ hr.double-margin {
 	}
 }
 
+.button-center-xs {
+	text-align: left;
+	margin-top: -10px;
+}
+
+@media ( max-width : 767px) {
+	.button-center-xs {
+		text-align: center;
+		margin-top: 10px;
+	}
+}
+
 hr.inverse {
 	border-color: #DDD;
 }

@@ -10,6 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 
@@ -25,7 +26,11 @@ public class SecurityUtils {
 	}
 
 	public static String getEmailCurrentUser() {
-		return ((UpdapyUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getEmail();
+		Authentication authentification = SecurityContextHolder.getContext().getAuthentication();
+		if (authentification.getAuthorities().size() == 1 && authentification.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ANONYMOUS"))) {
+			return null;
+		}
+		return ((UpdapyUser) authentification.getPrincipal()).getEmail();
 	}
 
 	public static boolean isPasswordCorrectForCurrentUser(AuthenticationManager authenticationManager, String password) {

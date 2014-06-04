@@ -1,7 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-<sec:authorize access="isAnonymous()">
+<c:if test="${not isAuthenticated}">
 	<!-- Social Sign In Buttons -->
 	<div class="form-white-sign">
 		<div class="row social-button-row">
@@ -14,12 +13,12 @@
 			</div>
 		</div>
 	</div>
-</sec:authorize>
+</c:if>
 
-<sec:authorize access="isAuthenticated()">
+<c:if test="${isAuthenticated}">
 	<div class="form-white-sign">
 		<p>
 			<spring:message code="sign.in.authenticated.user" />
 		</p>
 	</div>
-</sec:authorize>
+</c:if>

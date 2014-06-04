@@ -77,6 +77,11 @@ public class UserServiceImpl implements UserService {
 		return newKey;
 	}
 
+	@Override
+	public String generateCurrentNewApiKey() {
+		return generateNewApiKey(getCurrentUser());
+	}
+
 	private String generateNewAccountKeyWithoutSaving(User user) {
 		String newKey = generateKey();
 		user.setAccountKey(newKey);
@@ -99,14 +104,26 @@ public class UserServiceImpl implements UserService {
 		// not yet activate
 		user.setActive(false);
 		// generate keys
-		user.setRestKey(generateKey());
-		user.setGenerationRestKeyDate(new Date());
+		generateNewApiKeyWithoutSaving(user);
 		generateNewAccountKeyWithoutSaving(user);
 		// language
 		Lang currentLang = Lang.valueOf(LocaleContextHolder.getLocale().getISO3Language());
 		user.setLang(currentLang);
 		// os version
 		user.setOsVersion(OsVersion.WIN_32_BITS);
+	}
+
+	private String generateNewApiKey(User user) {
+		String newKey = generateNewApiKeyWithoutSaving(user);
+		save(user);
+		return newKey;
+	}
+
+	private String generateNewApiKeyWithoutSaving(User user) {
+		String newKey = generateKey();
+		user.setApiKey(newKey);
+		user.setGenerationApiKeyDate(new Date());
+		return newKey;
 	}
 
 	private void fillDefaultValuesSettings(User user) {

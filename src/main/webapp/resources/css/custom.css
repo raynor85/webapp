@@ -1540,3 +1540,21 @@ ul.list {
 #langDiv .tooltip-inner {
 	width: 200px;
 }
+
+/*** Tables ***/
+.table-inner {
+	width: 70%;
+	margin: 0 auto;
+}
+
+.table-hover>tbody>tr:hover>td {
+	background-color: #E2F0E7
+}
+
+.table-hover>tbody>tr>td {
+	vertical-align: middle;
+}
+
+.hiddenRow {
+	background-color: #FFFFFF !important;
+}

@@ -2,9 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-<sec:authorize access="isAnonymous()">
+<c:if test="${not isAuthenticated}">
 	<!-- Sign In form -->
 	<div class="form-white-sign">
 		<form role="form" name="loginForm" action="<c:url value='/j_spring_security_check' />" method="POST">
@@ -67,7 +66,7 @@
 			var json = {
 				"email" : $("#email-lost").val()
 			};
-			ajaxCall("#resetUserEmailButton", "#resetUserEmailForm", json,
+			ajaxCallPost("#resetUserEmailButton", "#resetUserEmailForm", json,
 					"#resetUserEmailResponse");
 		};
 		$("#resetUserEmailForm").submit(function() {
@@ -75,12 +74,12 @@
 			return false;
 		});
 	</script>
-</sec:authorize>
+</c:if>
 
-<sec:authorize access="isAuthenticated()">
+<c:if test="${isAuthenticated}">
 	<div class="form-white-sign">
 		<p>
 			<spring:message code="sign.in.authenticated.user" />
 		</p>
 	</div>
-</sec:authorize>
+</c:if>

@@ -1,6 +1,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <c:set var="lang" scope="session" value="${not empty param.lang ? param.lang : not empty lang ? lang : pageContext.request.locale}" />
 <c:set var="root" scope="application">
@@ -9,6 +10,10 @@
 <c:set var="phase" scope="application">
 	<spring:message code="phase.name" />
 </c:set>
+<c:set var="isAuthenticated" value="false" scope="session" />
+<sec:authorize access="isAuthenticated()">
+	<c:set var="isAuthenticated" value="true" scope="session" />
+</sec:authorize>
 
 <!DOCTYPE html>
 <html lang="${lang}">
@@ -86,6 +91,7 @@
 <script src="<spring:url value="/resources/js/bootstrap.min.js" />"></script>
 <link href="<spring:url value="/resources/css/bootstrap-select.min.css" />" rel="stylesheet">
 <script src="<spring:url value="/resources/js/bootstrap-select.min.js" />"></script>
+<script src="<spring:url value="/resources/js/bootbox.min.js" />"></script>
 
 <!-- Ladda -->
 <link href="<spring:url value="/resources/css/ladda.min.css" />" rel="stylesheet">

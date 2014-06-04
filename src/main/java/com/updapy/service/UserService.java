@@ -19,6 +19,8 @@ public interface UserService {
 	User registerSocial(Connection<?> connection);
 
 	String generateNewAccountKey(User user);
+	
+	String generateCurrentNewApiKey();
 
 	User activate(User user);
 
