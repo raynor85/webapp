@@ -9,13 +9,13 @@
 				<small><spring:message code="developers.subtitle" /></small>
 			</h3>
 			<hr>
-			<c:if test="${not isAuthenticated}">
+			<c:if test="${not isAuthenticated && phase != 'early'}">
 				<div class="alert alert-info">
 					<spring:message code="developers.accountNeeded" />
 				</div>
 			</c:if>
 			<spring:message code="developers.description" />
-			<c:if test="${not isAuthenticated}">
+			<c:if test="${not isAuthenticated && phase != 'early'}">
 				<br />
 				<br />
 				<a class="btn btn-color" href="${root}/sign-up"><spring:message code="welcome.action" /></a>
