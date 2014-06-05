@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
-import com.updapy.util.ParseUtils;
+import com.updapy.util.ParsingUtils;
 
 @Component
 public class PidginRemoteRetriever implements RemoteRetriever {
@@ -38,7 +38,7 @@ public class PidginRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParseUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(doc.select("a:contains(Download Now)").attr("href"), "^.*/Pidgin/"), "/pidgin.*$"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(doc.select("a:contains(Download Now)").attr("href"), "^.*/Pidgin/"), "/pidgin.*$"));
 	}
 
 }

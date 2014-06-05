@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans" xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:social="http://www.springframework.org/schema/social" xmlns:task="http://www.springframework.org/schema/task" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:cache="http://www.springframework.org/schema/cache"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 						http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
                         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
@@ -7,10 +8,12 @@
                         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 						http://www.springframework.org/schema/social http://www.springframework.org/schema/social/spring-social.xsd
 						http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
-						http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+						http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+						http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
 
 	<mvc:annotation-driven />
 	<task:annotation-driven />
+	<cache:annotation-driven />
 
 	<context:component-scan base-package="com.updapy" />
 
@@ -18,6 +21,16 @@
 	<mvc:resources mapping="/sitemap.xml" location="/sitemap.xml" order="1" />
 	<mvc:resources mapping="/favicon.ico" location="/favicon.ico" order="2" />
 	<mvc:resources mapping="/resources/**" location="/resources/" order="3" />
+
+	<!-- Cache -->
+	<bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+		<property name="caches">
+			<set>
+				<bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" name="applicationNames" />
+				<bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" name="applicationVersions" />
+			</set>
+		</property>
+	</bean>
 
 	<!-- Velocity -->
 	<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
@@ -139,7 +152,7 @@
 			<property name="jpaProperties">
 				<props>
 					<!-- <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop> -->
-					<prop key="hibernate.show_sql">false</prop>
+					<prop key="hibernate.show_sql">true</prop>
 					<prop key="hibernate.format_sql">true</prop>
 					<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 					<prop key="hibernate.hbm2ddl.import_files">/sql/import.sql</prop>

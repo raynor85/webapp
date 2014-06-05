@@ -57,11 +57,11 @@
 									</tr>
 									<tr>
 										<td><spring:message code="developers.api.documentation.table.head.example.request" /></td>
-										<td><em><spring:message code="developers.api.documentation.table.getApplicationNames.example.request" /></em></td>
+										<td><em><spring:message code="developers.api.documentation.table.getApplicationNames.example.request" arguments="${root}" /></em></td>
 									</tr>
 									<tr>
 										<td><spring:message code="developers.api.documentation.table.head.example.response" /></td>
-										<td><em><spring:message code="developers.api.documentation.table.getApplicationNames.example.response" /></em></td>
+										<td><pre><code><spring:message code="developers.api.documentation.table.getApplicationNames.example.response" /></code></pre></td>
 									</tr>
 								</table>
 							</div>
@@ -91,11 +91,11 @@
 									</tr>
 									<tr>
 										<td><spring:message code="developers.api.documentation.table.head.example.request" /></td>
-										<td><em><spring:message code="developers.api.documentation.table.getLastVersion.example.request" /></em></td>
+										<td><em><spring:message code="developers.api.documentation.table.getLastVersion.example.request" arguments="${root}" /></em></td>
 									</tr>
 									<tr>
 										<td><spring:message code="developers.api.documentation.table.head.example.response" /></td>
-										<td><em><spring:message code="developers.api.documentation.table.getLastVersion.example.response" /></em></td>
+										<td><pre><code><spring:message code="developers.api.documentation.table.getLastVersion.example.response" /></code></pre></td>
 									</tr>
 								</table>
 							</div>

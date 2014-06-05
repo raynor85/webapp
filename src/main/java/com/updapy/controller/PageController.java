@@ -21,6 +21,11 @@ public class PageController {
 		return "error-404";
 	}
 
+	@RequestMapping("error-403")
+	public String error403Page() {
+		return "error-403";
+	}
+
 	@RequestMapping("error")
 	public String errorPage() {
 		return "error";

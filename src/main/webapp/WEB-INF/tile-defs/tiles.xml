@@ -38,19 +38,23 @@
 		<put-attribute name="title" value="error.404.title" />
 		<put-attribute name="content" value="/WEB-INF/pages/error/error-404.jsp" />
 	</definition>
+	<definition name="error-403" extends="baseLayoutNormal">
+		<put-attribute name="title" value="error.403.title" />
+		<put-attribute name="content" value="/WEB-INF/pages/error/error-403.jsp" />
+	</definition>
 
 	<!-- Welcome -->
 	<definition name="welcome" extends="baseLayoutWithShareNormal">
 		<put-attribute name="title" value="welcome.title" />
 		<put-attribute name="content" value="/WEB-INF/pages/welcome/welcome.jsp" />
 	</definition>
-	
+
 	<!-- FAQ -->
 	<definition name="faq" extends="baseLayoutWithShareNormal">
 		<put-attribute name="title" value="faq.title" />
 		<put-attribute name="content" value="/WEB-INF/pages/faq/faq.jsp" />
 	</definition>
-	
+
 	<!-- Privacy -->
 	<definition name="privacy" extends="baseLayoutWithShareNormal">
 		<put-attribute name="title" value="privacy.title" />
@@ -126,7 +130,7 @@
 		<put-attribute name="title" value="settings.account.delete.error.title" />
 		<put-attribute name="content" value="/WEB-INF/pages/settings/delete-account-error.jsp" />
 	</definition>
-	
+
 	<!-- Developers -->
 	<definition name="developers" extends="baseLayoutNormal">
 		<put-attribute name="title" value="developers.title" />

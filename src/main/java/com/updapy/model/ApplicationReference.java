@@ -17,6 +17,9 @@ public class ApplicationReference extends BaseEntity {
 	@Column(unique = true)
 	private String name;
 
+	@Column(unique = true)
+	private String apiName;
+
 	private String globalUrl;
 
 	private String iconFilename;
@@ -64,6 +67,14 @@ public class ApplicationReference extends BaseEntity {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public String getApiName() {
+		return apiName;
+	}
+
+	public void setApiName(String apiName) {
+		this.apiName = apiName;
 	}
 
 }

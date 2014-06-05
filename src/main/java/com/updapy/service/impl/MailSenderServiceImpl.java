@@ -29,19 +29,20 @@ import com.updapy.util.MessageUtils;
 @Service
 public class MailSenderServiceImpl implements MailSenderService {
 
-	Logger log = LoggerFactory.getLogger(MailSenderServiceImpl.class);
+	private Logger log = LoggerFactory.getLogger(MailSenderServiceImpl.class);
 
 	@Autowired
-	MessageUtils messageUtils;
+	private MessageUtils messageUtils;
 
 	@Autowired
-	VelocityEngine velocityEngine;
+	private VelocityEngine velocityEngine;
 
 	private static final String ADMIN_EMAIL = System.getenv("ADMIN_EMAIL");
 	private static final String SMTP_HOST_NAME = "smtp.sendgrid.net";
 	private static final String SMTP_AUTH_USER = System.getenv("SENDGRID_USERNAME");
 	private static final String SMTP_AUTH_PWD = System.getenv("SENDGRID_PASSWORD");
 
+	@Override
 	public boolean sendActivationLink(String email, String key) {
 		String link = messageUtils.getSimpleMessage("application.root.url") + "/user/activate?email=" + email + "&key=" + key;
 		String fromEmail = messageUtils.getSimpleMessage("email.noreply");
@@ -65,6 +66,7 @@ public class MailSenderServiceImpl implements MailSenderService {
 		}
 	}
 
+	@Override
 	public boolean sendResetPasswordLink(String email, String key) {
 		String link = messageUtils.getSimpleMessage("application.root.url") + "/user/resetpassword?email=" + email + "&key=" + key;
 		String fromEmail = messageUtils.getSimpleMessage("email.noreply");

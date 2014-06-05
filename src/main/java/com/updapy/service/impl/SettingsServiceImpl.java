@@ -19,10 +19,10 @@ import com.updapy.service.UserService;
 public class SettingsServiceImpl implements SettingsService {
 
 	@Autowired
-	UserService userService;
+	private UserService userService;
 
 	@Autowired
-	AccountRemovalRepository accountRemovalRepository;
+	private AccountRemovalRepository accountRemovalRepository;
 
 	@Override
 	public User updateSettings(User user, UpdateSettings newSettings) {

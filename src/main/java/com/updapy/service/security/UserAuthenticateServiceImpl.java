@@ -17,7 +17,7 @@ import com.updapy.repository.UserRepository;
 public class UserAuthenticateServiceImpl implements UserDetailsService {
 
 	@Autowired
-	UserRepository userRepository;
+	private UserRepository userRepository;
 
 	private final String emailInvalid = "Invalid.logUser.email";
 	private final String emailInactive = "Inactive.logUser.email";

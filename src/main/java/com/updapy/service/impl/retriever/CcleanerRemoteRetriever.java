@@ -5,12 +5,12 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
-import com.updapy.util.ParseUtils;
+import com.updapy.util.ParsingUtils;
 
 @Component
 public class CcleanerRemoteRetriever implements RemoteRetriever {
 
-	static final String ROOT_DOWNLOAD_WEBSITE = "http://www.piriform.com/";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.piriform.com/";
 
 	@Override
 	public boolean support(ApplicationReference applicationReference) {
@@ -39,7 +39,7 @@ public class CcleanerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParseUtils.extractVersionNumberFromString(doc.select("#releasenotesContent").select("strong").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("#releasenotesContent").select("strong").text());
 	}
 
 }

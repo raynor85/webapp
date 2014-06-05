@@ -17,7 +17,7 @@ public class JsonResponseUtils {
 	private static String STATUS_SUCCESS = "SUCCESS";
 
 	@Autowired
-	MessageUtils messageUtils;
+	private MessageUtils messageUtils;
 
 	public JsonResponse buildFailedJsonResponse(String messageKey) {
 		JsonResponse jsonResponse = new JsonResponse();

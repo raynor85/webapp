@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
-import com.updapy.util.ParseUtils;
+import com.updapy.util.ParsingUtils;
 
 @Component
 public class MediaPlayerClassicRemoteRetriever implements RemoteRetriever {
@@ -38,7 +38,7 @@ public class MediaPlayerClassicRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParseUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("p:contains(latest stable build of is)").text(), "was compiled from.*$"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("p:contains(latest stable build of is)").text(), "was compiled from.*$"));
 	}
 
 }

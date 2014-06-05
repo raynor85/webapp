@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class SocialUserAuthenticateServiceImpl implements SocialUserDetailsService {
 
 	@Autowired
-	UserAuthenticateServiceImpl userAuthenticateServiceImpl;
+	private UserAuthenticateServiceImpl userAuthenticateServiceImpl;
 
 	@Override
 	public SocialUserDetails loadUserByUserId(String userId) throws UsernameNotFoundException, DataAccessException {

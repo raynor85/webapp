@@ -10,4 +10,6 @@ public interface ApplicationReferenceRepository extends JpaRepository<Applicatio
 
 	List<ApplicationReference> findByActiveTrue();
 
+	ApplicationReference findByApiNameAndActiveTrue(String apiName);
+
 }

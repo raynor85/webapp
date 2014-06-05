@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.apache.commons.lang.StringUtils;
-import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -34,10 +33,7 @@ import com.updapy.util.JsonResponseUtils;
 public class SettingsController {
 
 	@Autowired
-	JsonResponseUtils jsonResponseUtils;
-
-	@Autowired
-	DozerBeanMapper dozerMapper;
+	private JsonResponseUtils jsonResponseUtils;
 
 	@Autowired
 	private SettingsService settingsService;

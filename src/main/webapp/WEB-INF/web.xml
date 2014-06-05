@@ -9,6 +9,10 @@
 		<location>/error-404</location>
 	</error-page>
 	<error-page>
+		<error-code>403</error-code>
+		<location>/error-403</location>
+	</error-page>
+	<error-page>
 		<location>/error</location>
 	</error-page>
 

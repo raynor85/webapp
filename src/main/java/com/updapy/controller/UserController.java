@@ -2,7 +2,6 @@ package com.updapy.controller;
 
 import javax.validation.Valid;
 
-import org.dozer.DozerBeanMapper;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -30,6 +29,7 @@ import com.updapy.model.User;
 import com.updapy.service.MailSenderService;
 import com.updapy.service.UserService;
 import com.updapy.service.security.SecurityUtils;
+import com.updapy.util.DozerHelper;
 import com.updapy.util.JsonResponseUtils;
 
 @Controller
@@ -37,10 +37,10 @@ import com.updapy.util.JsonResponseUtils;
 public class UserController {
 
 	@Autowired
-	JsonResponseUtils jsonResponseUtils;
+	private JsonResponseUtils jsonResponseUtils;
 
 	@Autowired
-	DozerBeanMapper dozerMapper;
+	private DozerHelper dozerHelper;
 
 	@Autowired
 	private UserService userService;
@@ -103,7 +103,7 @@ public class UserController {
 			modelAndView.setViewName("sign-up");
 			return modelAndView;
 		} else {
-			User user = userService.register(dozerMapper.map(registerUser, User.class));
+			User user = userService.register(dozerHelper.map(registerUser, User.class));
 			mailSenderService.sendActivationLink(user.getEmail(), user.getAccountKey());
 			modelAndView.setViewName("sign-up-activate");
 			return modelAndView;

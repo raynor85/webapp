@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
-import com.updapy.util.ParseUtils;
+import com.updapy.util.ParsingUtils;
 
 @Component
 public class ChromiumRemoteRetriever implements RemoteRetriever {
@@ -38,7 +38,7 @@ public class ChromiumRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParseUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(doc.select(".os").select("p").get(1).text(), "Revision.*"), ".*Version"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(doc.select(".os").select("p").get(1).text(), "Revision.*"), ".*Version"));
 	}
 
 }

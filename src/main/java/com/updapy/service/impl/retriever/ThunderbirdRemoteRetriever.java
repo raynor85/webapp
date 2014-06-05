@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
-import com.updapy.util.ParseUtils;
+import com.updapy.util.ParsingUtils;
 
 @Component
 public class ThunderbirdRemoteRetriever implements RemoteRetriever {
@@ -37,7 +37,7 @@ public class ThunderbirdRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParseUtils.extractVersionNumberFromString(doc.select("td.curVersion").first().text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("td.curVersion").first().text());
 	}
 
 }

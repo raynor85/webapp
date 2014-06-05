@@ -6,12 +6,12 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
-import com.updapy.util.ParseUtils;
+import com.updapy.util.ParsingUtils;
 
 @Component
 public class SongbirdRemoteRetriever implements RemoteRetriever {
 
-	static final String ROOT_DOWNLOAD_WEBSITE = "http://sourceforge.net";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://sourceforge.net";
 
 	@Override
 	public boolean support(ApplicationReference applicationReference) {
@@ -40,7 +40,7 @@ public class SongbirdRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParseUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(doc.select("a:contains(Download Songbird)").attr("title"), "^.*Download /Songbird"), "/Songbird.*$"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(doc.select("a:contains(Download Songbird)").attr("title"), "^.*Download /Songbird"), "/Songbird.*$"));
 	}
 
 }

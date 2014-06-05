@@ -19,10 +19,10 @@ import com.updapy.service.retriever.RemoteRetriever;
 public class RemoteServiceImpl implements RemoteService {
 
 	@Autowired
-	MailSenderService mailSenderService;
+	private MailSenderService mailSenderService;
 
 	@Autowired
-	List<RemoteRetriever> remoteRetrievers;
+	private List<RemoteRetriever> remoteRetrievers;
 
 	@Override
 	public ApplicationVersion retrieveRemoteLatestVersion(ApplicationReference reference) {

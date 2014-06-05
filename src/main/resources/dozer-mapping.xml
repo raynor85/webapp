@@ -4,13 +4,23 @@
 	<mapping>
 		<class-a>com.updapy.form.model.RegisterUser</class-a>
 		<class-b>com.updapy.model.User</class-b>
+	</mapping>
+
+	<mapping>
+		<class-a>com.updapy.model.ApplicationReference</class-a>
+		<class-b>com.updapy.api.model.ApplicationName</class-b>
 		<field>
-			<a>email</a>
-			<b>email</b>
+			<a>name</a>
+			<b>realName</b>
 		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.updapy.model.ApplicationVersion</class-a>
+		<class-b>com.updapy.api.model.LatestApplicationVersion</class-b>
 		<field>
-			<a>password</a>
-			<b>password</b>
+			<a>reference.name</a>
+			<b>applicationName</b>
 		</field>
 	</mapping>
 

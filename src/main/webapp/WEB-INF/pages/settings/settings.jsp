@@ -256,6 +256,7 @@
 		return false;
 	});
 	var refreshUsername = function() {
+		$("html, body").scrollTop(0);
 		var newName = $("#name").val();
 		var currentName = $("#username").text();
 		if (!$.trim(newName)) {

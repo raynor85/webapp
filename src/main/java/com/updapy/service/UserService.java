@@ -19,7 +19,7 @@ public interface UserService {
 	User registerSocial(Connection<?> connection);
 
 	String generateNewAccountKey(User user);
-	
+
 	String generateCurrentNewApiKey();
 
 	User activate(User user);
@@ -35,5 +35,7 @@ public interface UserService {
 	boolean delete(User user);
 
 	boolean deleteCurrentUser();
+
+	boolean isValidApiKey(String key);
 
 }

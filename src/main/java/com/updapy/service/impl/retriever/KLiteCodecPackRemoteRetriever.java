@@ -5,12 +5,12 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
-import com.updapy.util.ParseUtils;
+import com.updapy.util.ParsingUtils;
 
 @Component(value = "kLiteCodecPackRemoteRetriever")
 public class KLiteCodecPackRemoteRetriever implements RemoteRetriever {
 
-	static final String ROOT_DOWNLOAD_WEBSITE = "http://www.free-codecs.com/";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.free-codecs.com/";
 
 	@Override
 	public boolean support(ApplicationReference applicationReference) {
@@ -39,7 +39,7 @@ public class KLiteCodecPackRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParseUtils.extractVersionNumberFromString(doc.select("#softwareName").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("#softwareName").text());
 	}
 
 }

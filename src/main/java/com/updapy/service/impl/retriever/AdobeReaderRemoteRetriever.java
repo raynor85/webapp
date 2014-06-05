@@ -5,12 +5,12 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
-import com.updapy.util.ParseUtils;
+import com.updapy.util.ParsingUtils;
 
 @Component
 public class AdobeReaderRemoteRetriever implements RemoteRetriever {
 
-	static final String ROOT_DOWNLOAD_WEBSITE = "http://www.adobe.com/support/downloads/";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.adobe.com/support/downloads/";
 
 	@Override
 	public boolean support(ApplicationReference applicationReference) {
@@ -39,7 +39,7 @@ public class AdobeReaderRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParseUtils.extractVersionNumberFromString(doc.select("table").get(1).select("a:contains(Adobe Reader)[href*=ftpID]").first().text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("table").get(1).select("a:contains(Adobe Reader)[href*=ftpID]").first().text());
 	}
 
 }

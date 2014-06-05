@@ -18,7 +18,7 @@ import com.updapy.util.JsonResponseUtils;
 public class DevelopersController {
 
 	@Autowired
-	JsonResponseUtils jsonResponseUtils;
+	private JsonResponseUtils jsonResponseUtils;
 
 	@Autowired
 	private UserService userService;

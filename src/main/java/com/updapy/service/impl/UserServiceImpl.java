@@ -32,16 +32,16 @@ import com.updapy.service.security.SecurityUtils;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	UserRepository userRepository;
+	private UserRepository userRepository;
 
 	@Autowired
-	UserConnectionRepository userConnectionRepository;
+	private UserConnectionRepository userConnectionRepository;
 
 	@Autowired
-	AuthenticationManager authenticationManager;
+	private AuthenticationManager authenticationManager;
 
 	@Autowired
-	BCryptPasswordEncoder passwordEncoder;
+	private BCryptPasswordEncoder passwordEncoder;
 
 	@Override
 	public User getCurrentUser() {
@@ -254,6 +254,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean deleteCurrentUser() {
 		return delete(getCurrentUser());
+	}
+
+	@Override
+	public boolean isValidApiKey(String key) {
+		return userRepository.findByApiKey(key) != null;
 	}
 
 }

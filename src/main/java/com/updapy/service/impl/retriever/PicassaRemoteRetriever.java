@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
-import com.updapy.util.ParseUtils;
+import com.updapy.util.ParsingUtils;
 
 @Component
 public class PicassaRemoteRetriever implements RemoteRetriever {
@@ -37,7 +37,7 @@ public class PicassaRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParseUtils.extractVersionNumberFromString(doc.select("h2:contains(Picasa)").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("h2:contains(Picasa)").text());
 	}
 
 }

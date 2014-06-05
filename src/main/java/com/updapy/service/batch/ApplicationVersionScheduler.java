@@ -10,40 +10,36 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
-import com.updapy.repository.ApplicationReferenceRepository;
-import com.updapy.repository.ApplicationVersionRepository;
+import com.updapy.service.ApplicationService;
 import com.updapy.service.RemoteService;
 
 @Component
 public class ApplicationVersionScheduler {
 
-	Logger log = LoggerFactory.getLogger(ApplicationVersionScheduler.class);
+	private Logger log = LoggerFactory.getLogger(ApplicationVersionScheduler.class);
 
 	@Autowired
-	ApplicationReferenceRepository applicationReferenceRepository;
+	private ApplicationService applicationService;
 
 	@Autowired
-	ApplicationVersionRepository applicationVersionRepository;
-
-	@Autowired
-	RemoteService remoteService;
+	private RemoteService remoteService;
 
 	// fire twice a day
 	@Scheduled(cron = "0 0 0,12 * * *")
-	//@Scheduled(fixedDelay = 2000000) // fire at start - testing purpose
+	// @Scheduled(fixedDelay = 500000) - fire at start - testing purpose
 	public void updateApplicationRepository() {
 		log.info("> Applications repository update started");
-		List<ApplicationReference> applicationReferences = applicationReferenceRepository.findByActiveTrue();
+		List<ApplicationReference> applicationReferences = applicationService.getApplicationReferences();
 		for (ApplicationReference applicationReference : applicationReferences) {
 			checkNewVersionApplicationReference(applicationReference);
 		}
 		log.info("< Applications repository updated sucessfully.");
 	}
 
-	private void checkNewVersionApplicationReference(ApplicationReference applicationReference) {
+	public void checkNewVersionApplicationReference(ApplicationReference applicationReference) {
 		log.info(">> Checking new version of '{}'", applicationReference.getName());
 
-		ApplicationVersion latestApplicationVersion = applicationVersionRepository.findLatestByApplicationReference(applicationReference);
+		ApplicationVersion latestApplicationVersion = applicationService.getLatestApplicationVersionNoCache(applicationReference);
 		ApplicationVersion latestRemoteApplicationVersion = remoteService.retrieveRemoteLatestVersion(applicationReference);
 
 		if (log.isInfoEnabled()) {
@@ -55,20 +51,15 @@ public class ApplicationVersionScheduler {
 
 		if (latestApplicationVersion == null && latestRemoteApplicationVersion != null) {
 			// this is the first time we got a version
-			addApplicationVersion(latestRemoteApplicationVersion);
+			applicationService.addApplicationVersion(latestRemoteApplicationVersion);
 		}
 
 		if (latestApplicationVersion != null && latestRemoteApplicationVersion != null) {
 			if (latestApplicationVersion.getFormatedVersionNumber().compareTo(latestRemoteApplicationVersion.getFormatedVersionNumber()) == -1) {
 				// new version available
-				addApplicationVersion(latestRemoteApplicationVersion);
+				applicationService.addApplicationVersion(latestRemoteApplicationVersion);
 			}
 		}
-	}
-
-	private void addApplicationVersion(ApplicationVersion latestRemoteApplicationVersion) {
-		applicationVersionRepository.saveAndFlush(latestRemoteApplicationVersion);
-		log.info("New version added successfully.");
 	}
 
 }

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
-import com.updapy.util.ParseUtils;
+import com.updapy.util.ParsingUtils;
 
 @Component
 public class GimpRemoteRetriever implements RemoteRetriever {
@@ -37,7 +37,7 @@ public class GimpRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParseUtils.extractVersionNumberFromString(doc.select("a:contains(Download GIMP)[href*=windows]").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("a:contains(Download GIMP)[href*=windows]").text());
 	}
 
 }

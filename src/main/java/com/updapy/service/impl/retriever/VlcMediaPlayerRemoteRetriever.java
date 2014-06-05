@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
-import com.updapy.util.ParseUtils;
+import com.updapy.util.ParsingUtils;
 
 @Component
 public class VlcMediaPlayerRemoteRetriever implements RemoteRetriever {
@@ -37,7 +37,7 @@ public class VlcMediaPlayerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParseUtils.extractVersionNumberFromString(doc.select("h1:contains(Download latest)").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("h1:contains(Download latest)").text());
 	}
 
 }
