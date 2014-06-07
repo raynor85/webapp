@@ -4,6 +4,8 @@ public class LatestApplicationVersion {
 
 	private String applicationName;
 
+	private String versionDate;
+
 	private String versionNumber;
 
 	private String win32UrlEn;
@@ -60,6 +62,14 @@ public class LatestApplicationVersion {
 
 	public void setWin64UrlFr(String win64UrlFr) {
 		this.win64UrlFr = win64UrlFr;
+	}
+
+	public String getVersionDate() {
+		return versionDate;
+	}
+
+	public void setVersionDate(String versionDate) {
+		this.versionDate = versionDate;
 	}
 
 }
