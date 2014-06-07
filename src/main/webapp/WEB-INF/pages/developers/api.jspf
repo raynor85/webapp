@@ -116,14 +116,14 @@
 					buttons : {
 						cancel : {
 							label : "<spring:message code='developers.api.apiKey.reset.dialog.cancel' />",
-							className : "btn-default pull-left",
+							className : "btn-default pull-left btn-cancel-next-ladda",
 							callback : function() {
 								return;
 							}
 						},
 						main : {
 							label : "<spring:message code='developers.api.apiKey.reset.dialog.confirm' />",
-							className : "btn-color",
+							className : "btn-color ladda-button",
 							callback : function() {
 								ajaxCallPost("#resetUserApiKeyButton",
 										"#resetUserApiKeyForm", null,

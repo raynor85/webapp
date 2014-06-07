@@ -209,7 +209,7 @@
 				"email" : $("#email").val()
 			};
 			ajaxCallPost("#registerEarlyUserButton", "#registerEarlyUserForm",
-					json, "#registerEarlyUserResponse");
+					json, "#registerEarlyUserResponse", null, true);
 		};
 		$("#registerEarlyUserForm").submit(function() {
 			ajaxRegisterEarlyUser();
