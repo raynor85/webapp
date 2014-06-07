@@ -274,7 +274,7 @@
 			"repeatNewPassword" : $("#repeatNewPassword").val()
 		};
 		ajaxCallPost("#changePasswordUserButton", "#changePasswordUserForm",
-				json, "#changePasswordUserResponse", confirmChangePassword);
+				json, "#changePasswordUserResponse", confirmChangePassword, true);
 	};
 	$("#changePasswordUserForm").submit(function() {
 		ajaxChangePasswordUser();

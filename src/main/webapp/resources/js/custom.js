@@ -171,7 +171,8 @@ $(function() {
 // Ajax call
 // ==================================
 
-function ajaxCallPost(button, form, json, divResult, jsToExecuteWhenSucess) {
+function ajaxCallPost(button, form, json, divResult, jsToExecuteWhenSucess,
+		noSpaceBefore) {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
 	var l = Ladda.create(document.querySelector(button));
@@ -193,7 +194,12 @@ function ajaxCallPost(button, form, json, divResult, jsToExecuteWhenSucess) {
 					} else if (response.status == "FAIL") {
 						type = "danger";
 					}
-					responseInDiv = "<br /><div class='alert alert-" + type
+					if (Boolean(noSpaceBefore)) {
+						responseInDiv = "";
+					} else {
+						responseInDiv = "<br />";
+					}
+					responseInDiv += "<div class='alert alert-" + type
 							+ " alert-dismissable'>";
 					responseInDiv += "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
 					for (var i = 0; i < response.result.length; i++) {
