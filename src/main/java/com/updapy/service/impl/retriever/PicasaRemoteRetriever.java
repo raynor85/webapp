@@ -8,11 +8,11 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class PicassaRemoteRetriever implements RemoteRetriever {
+public class PicasaRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("Picassa");
+		return applicationReference.getName().equalsIgnoreCase("Picasa");
 	}
 
 	@Override

@@ -118,7 +118,7 @@
 		<ref bean="pidginRemoteRetriever" />
 		<ref bean="kLiteCodecPackRemoteRetriever" />
 		<ref bean="songbirdRemoteRetriever" />
-		<ref bean="picassaRemoteRetriever" />
+		<ref bean="picasaRemoteRetriever" />
 		<ref bean="itunesRemoteRetriever" />
 		<ref bean="winmergeRemoteRetriever" />
 		<ref bean="pdfCreatorRemoteRetriever" />

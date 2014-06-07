@@ -7,9 +7,9 @@
  */
 
 .btn-facebook {
-  color: #ffffff;
-  background-color: #133783;
-  border-color: #133783;
+  color: #ffffff !important;
+  background-color: #133783 !important;
+  border-color: #133783 !important;
 }
 
 .btn-facebook:hover,
@@ -17,9 +17,9 @@
 .btn-facebook:active,
 .btn-facebook.active,
 .open .dropdown-toggle.btn-facebook {
-  color: #ffffff;
-  background-color: #0e285f;
-  border-color: #0b214e;
+  color: #ffffff !important;
+  background-color: #0e285f !important;
+  border-color: #0b214e !important;
 }
 
 .btn-facebook:active,

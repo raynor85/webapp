@@ -182,11 +182,6 @@ i.style-toggle-btn {
 	background-image: none !important;
 }
 
-.ladda-button-small {
-	font-size: 15px !important;
-    padding: 5px 14px !important;
-}
-
 .body-green .btn-link:hover {
 	color: #27ae60;
 }

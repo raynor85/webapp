@@ -13,7 +13,7 @@
 			<div class="form-group">
 				<label for="password"><spring:message code="sign.in.field.password" /></label> <input type="password" class="form-control" name="password" id="password" placeholder="<spring:message code="sign.in.field.password.tip" />">
 			</div>
-			<button type="submit" class="btn btn-block btn-color btn-xxl">
+			<button type="submit" class="btn-block btn-color ladda-button">
 				<spring:message code="sign.in.button" />
 			</button>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

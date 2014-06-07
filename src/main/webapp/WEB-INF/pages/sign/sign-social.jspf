@@ -1,15 +1,14 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:if test="${not isAuthenticated}">
 	<!-- Social Sign In Buttons -->
 	<div class="form-white-sign">
 		<div class="row social-button-row">
-			<div class="col-lg-4">
+			<div class="col-lg-12">
 				<!-- Add Facebook sign in button -->
-				<a href="<c:url value="/auth/facebook"/>"><button class="btn btn-facebook">
-						<i class="fa fa-facebook"></i>&nbsp; I &nbsp;
-						<spring:message code="sign.social.facebook" />
-					</button></a>
+				<a class="btn btn-block ladda-button btn-facebook" href="<c:url value="/auth/facebook"/>"> <i class="fa fa-facebook"></i>&nbsp; I &nbsp; <spring:message code="sign.social.facebook" />
+				</a>
 			</div>
 		</div>
 	</div>

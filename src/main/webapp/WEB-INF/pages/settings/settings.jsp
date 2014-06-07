@@ -182,7 +182,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default pull-left" data-dismiss="modal" style="margin-top: 21px;">
+						<button type="button" class="btn btn-default pull-left btn-cancel-next-ladda" data-dismiss="modal">
 							<spring:message code="settings.profile.changePassword.button.cancel" />
 						</button>
 						<button type="button" id="changePasswordUserButton" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxChangePasswordUser();">

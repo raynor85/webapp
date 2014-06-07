@@ -18,7 +18,8 @@
 			<c:if test="${not isAuthenticated && phase != 'early'}">
 				<br />
 				<br />
-				<a class="btn btn-color" href="${root}/sign-up"><spring:message code="welcome.action" /></a>
+				<br />
+				<a class="btn-color ladda-button" href="${root}/sign-up"><spring:message code="welcome.action" /></a>
 			</c:if>
 
 		</div>

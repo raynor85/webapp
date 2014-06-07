@@ -30,7 +30,7 @@
 						</c:set>
 						<form:input type="password" path="repeatNewPassword" id="repeatNewPassword" class="form-control" placeholder="${passwordRepeatPlaceholder}" />
 					</div>
-					<button type="submit" class="btn btn-block btn-color btn-xxl">
+					<button type="submit" class="btn-block btn-color ladda-button">
 						<spring:message code="sign.in.reset.button" />
 					</button>
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

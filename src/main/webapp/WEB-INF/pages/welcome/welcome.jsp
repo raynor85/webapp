@@ -18,10 +18,10 @@
 					<div class="text-center actions animated2 fadeInDown delay2">
 						<c:choose>
 							<c:when test="${phase == 'early'}">
-								<a class="btn btn-color" href="#early-user"><spring:message code="welcome.action.early" /></a>
+								<a class="btn btn-color ladda-button" href="#early-user"><spring:message code="welcome.action.early" /></a>
 							</c:when>
 							<c:otherwise>
-								<a class="btn btn-color" href="${root}/sign-up/"><spring:message code="welcome.action" /></a>
+								<a class="btn btn-color ladda-button" href="${root}/sign-up/"><spring:message code="welcome.action" /></a>
 							</c:otherwise>
 						</c:choose>
 

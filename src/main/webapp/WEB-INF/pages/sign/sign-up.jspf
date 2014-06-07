@@ -31,7 +31,7 @@
 					</div>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-block btn-color btn-xxl">
+			<button type="submit" class="btn-block btn-color ladda-button">
 				<spring:message code="sign.up.button" />
 			</button>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
