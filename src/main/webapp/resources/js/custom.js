@@ -225,10 +225,3 @@ function ajaxCallGetAndRefresh(elementNameToGet, elementIdToUpdate) {
 		}
 	});
 };
-
-// Ladda buttons style
-// ==================================
-
-Ladda.bind('.ladda-button', {
-	timeout : 0
-});
