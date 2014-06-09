@@ -93,4 +93,16 @@ public class SettingsServiceImpl implements SettingsService {
 		return accountRemovalRepository.saveAndFlush(accountRemoval);
 	}
 
+	@Override
+	public boolean isEmailDisabled() {
+		return !isEmailActive();
+	}
+
+	public boolean isEmailActive() {
+		UpdateSettings settings = getCurrentSettings();
+		if (!settings.isEmailAlert() || (settings.isEmailAlert() && (!settings.isEmailEachUpdate() && !settings.isEmailWeekly()))) {
+			return false;
+		}
+		return true;
+	}
 }

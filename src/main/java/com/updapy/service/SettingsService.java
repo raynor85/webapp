@@ -19,4 +19,6 @@ public interface SettingsService {
 
 	AccountRemoval addFeedback(String feedback);
 
+	boolean isEmailDisabled();
+
 }

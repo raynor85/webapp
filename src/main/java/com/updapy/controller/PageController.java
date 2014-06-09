@@ -16,12 +16,12 @@ public class PageController {
 		return new ModelAndView("welcome", "registerEarlyUser", new RegisterEarlyUser());
 	}
 
-	@RequestMapping("error-404")
+	@RequestMapping("error/404")
 	public String error404Page() {
 		return "error-404";
 	}
 
-	@RequestMapping("error-403")
+	@RequestMapping("error/403")
 	public String error403Page() {
 		return "error-403";
 	}
@@ -54,7 +54,7 @@ public class PageController {
 		return new ModelAndView("sign-up", "registerUser", new RegisterUser());
 	}
 
-	@RequestMapping("sign-up-activate")
+	@RequestMapping("signup/activate")
 	public String signupActivatePage() {
 		return "sign-up-activate";
 	}

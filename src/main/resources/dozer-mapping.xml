@@ -24,4 +24,21 @@
 		</field>
 	</mapping>
 
+	<mapping>
+		<class-a>com.updapy.model.ApplicationVersion</class-a>
+		<class-b>com.updapy.form.model.CurrentFollowApplication</class-b>
+		<field>
+			<a>reference.name</a>
+			<b>applicationName</b>
+		</field>
+		<field>
+			<a>reference.apiName</a>
+			<b>apiName</b>
+		</field>
+		<field>
+			<a>reference.iconFilename</a>
+			<b>iconFilename</b>
+		</field>
+	</mapping>
+
 </mappings>

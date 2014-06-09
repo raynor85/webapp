@@ -173,17 +173,25 @@ $(function() {
 
 function ajaxCallPost(button, form, json, divResult, jsToExecuteWhenSucess,
 		noSpaceBefore) {
+	ajaxCallPostWithUrl(button, $(form).attr('action'), json, divResult,
+			jsToExecuteWhenSucess, noSpaceBefore)
+}
+
+function ajaxCallPostWithUrl(button, urlAction, json, divResult,
+		jsToExecuteWhenSucess, noSpaceBefore) {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
-	var l = Ladda.create(document.querySelector(button));
-	l.start();
+	if (button != null) {
+		var l = Ladda.create(document.querySelector(button));
+		l.start();
+	}
 	$
 			.ajax({
 				type : 'POST',
 				beforeSend : function(xhr) {
 					xhr.setRequestHeader(header, token);
 				},
-				url : $(form).attr('action'),
+				url : urlAction,
 				data : JSON.stringify(json),
 				contentType : 'application/json',
 				cache : false,
@@ -207,10 +215,13 @@ function ajaxCallPost(button, form, json, divResult, jsToExecuteWhenSucess,
 					}
 					responseInDiv += "</div>";
 					$(divResult).html(responseInDiv);
-					if (response.status == "SUCCESS") {
+					if (response.status == "SUCCESS"
+							&& jsToExecuteWhenSucess != null) {
 						jsToExecuteWhenSucess();
 					}
-					l.stop();
+					if (button != null) {
+						l.stop();
+					}
 				}
 			});
 };
@@ -223,7 +234,7 @@ function ajaxCallGetAndRefresh(elementNameToGet, elementIdToUpdate) {
 		beforeSend : function(xhr) {
 			xhr.setRequestHeader(header, token);
 		},
-		url : 'get' + elementNameToGet,
+		url : elementNameToGet + '/get',
 		contentType : 'text',
 		cache : false,
 		success : function(response) {

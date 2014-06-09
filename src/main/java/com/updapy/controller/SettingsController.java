@@ -74,7 +74,7 @@ public class SettingsController {
 		}
 	}
 
-	@RequestMapping(value = "changePassword", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "updapte/password", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	JsonResponse changePassword(@Valid @RequestBody ChangePasswordUser changePasswordUser, BindingResult result) {
 		if (result.hasErrors()) {
@@ -85,7 +85,7 @@ public class SettingsController {
 		}
 	}
 
-	@RequestMapping(value = "deleteAccount", method = RequestMethod.POST)
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	public String deleteAccount(DeleteAccount deleteAccount, HttpServletRequest request, HttpServletResponse response) {
 		settingsService.addFeedback(deleteAccount.getFeedback());
 		boolean isDeleted = userService.deleteCurrentUser();

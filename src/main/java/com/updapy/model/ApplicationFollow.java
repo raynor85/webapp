@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import com.updapy.model.common.BaseEntity;
@@ -17,7 +16,7 @@ public class ApplicationFollow extends BaseEntity {
 	@JoinColumn(name = "person_id")
 	private User user;
 
-	@OneToOne(fetch = FetchType.EAGER, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	private ApplicationReference referenceApp;
 
 	private boolean emailNotificationActive;

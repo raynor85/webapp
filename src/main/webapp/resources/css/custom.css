@@ -1358,6 +1358,19 @@ ul.list {
 	list-style-type: none;
 }
 
+/*** Switch ***/
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary,.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary {
+	background-color: #27ae60 !important;
+}
+
+.bootstrap-switch.bootstrap-switch-focused {
+	border-color: #27ae60 !important;
+}
+
+div.form-group div.col-sm-3 {
+	padding-top: 10px;
+}
+
 /*** Carousel ***/
 .carousel-indicators li {
 	background-color: #999;
@@ -1557,4 +1570,72 @@ ul.list {
 
 .hiddenRow {
 	background-color: #FFFFFF !important;
+}
+
+/*** Follow new apps ***/
+div.newFollowApplicationContainer {
+	height: 110px;
+	position: relative;
+}
+
+div.newFollowApplicationContainer div.application {
+	height: 85%;
+	left: 26%;
+	margin: -19% 0 0 -22%;
+	position: absolute;
+	text-align: center;
+	top: 50%;
+	width: 91%;
+	padding: 5px;
+}
+
+div.newFollowApplicationContainer div.application:hover {
+	color: #005724;
+	background-color: #E2F0E7;
+	cursor: pointer;
+	border-radius: 6px;
+}
+
+div.newFollowApplicationContainer div.application:active,div.application-selected {
+	color: #005724 !important;
+	background-color: #C2EFD2 !important;
+	border-radius: 6px !important;
+}
+
+div.newFollowApplicationContainer div.application div.title {
+	margin-top: 5px;
+	font-size: 13px;
+}
+
+/*** Current apps followed ***/
+div.currentFollowApplicationContainer {
+	min-width: 175px
+}
+
+div.currentFollowApplicationContainer div.application {
+	text-align: center;
+	height: 200px;
+}
+
+div.currentFollowApplicationContainer div.application div.title {
+	margin-top: 5px;
+	font-size: 13px;
+	margin-left: -15px;
+}
+
+div.currentFollowApplicationContainer div.application:hover {
+	text-decoration: underline;
+	color: #27AE60;
+	cursor: pointer;
+}
+
+img.shadowHover {
+	opacity: 0.9;
+}
+
+img.shadowHover:hover {
+	png-shadow: 1px 1px 2px #222;
+	-webkit-filter: drop-shadow(1px 1px 2px #222);
+	filter: drop-shadow(1px 1px 2px #222);
+	opacity: 1;
 }

@@ -21,7 +21,7 @@
 								<a class="btn btn-color ladda-button" href="#early-user"><spring:message code="welcome.action.early" /></a>
 							</c:when>
 							<c:otherwise>
-								<a class="btn btn-color ladda-button" href="${root}/sign-up/"><spring:message code="welcome.action" /></a>
+								<a class="btn btn-color ladda-button" href="${root}/signup/"><spring:message code="welcome.action" /></a>
 							</c:otherwise>
 						</c:choose>
 
@@ -183,7 +183,7 @@
 				<p class="text-muted text-center-xs lh">
 					<spring:message code="early.interest.description" />
 				</p>
-				<form:form id="registerEarlyUserForm" commandName="registerEarlyUser" action="${root}/user/register-early" class="form-vertical">
+				<form:form id="registerEarlyUserForm" commandName="registerEarlyUser" action="${root}/user/register/early" class="form-vertical">
 					<p>
 						<c:set var="emailPlaceholder">
 							<spring:message code="early.interest.add.field.email.tip" />

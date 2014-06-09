@@ -33,14 +33,14 @@ public class DevelopersController {
 		return new ModelAndView("developers", "resetUserApiKey", resetUserApiKey);
 	}
 
-	@RequestMapping(value = "resetApiKey", method = RequestMethod.POST)
+	@RequestMapping(value = "apikey/reset", method = RequestMethod.POST)
 	public @ResponseBody
 	JsonResponse resetApiKey() {
 		userService.generateCurrentNewApiKey();
 		return jsonResponseUtils.buildSuccessfulJsonResponse("developers.api.apiKey.reset.confirm");
 	}
 
-	@RequestMapping(value = "getApiKey")
+	@RequestMapping(value = "apikey/get")
 	public @ResponseBody
 	String getApiKey() {
 		return userService.getCurrentUser().getApiKey();

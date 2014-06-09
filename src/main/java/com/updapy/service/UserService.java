@@ -1,9 +1,15 @@
 package com.updapy.service;
 
+import java.util.List;
+
 import org.springframework.social.connect.Connection;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.updapy.model.ApplicationFollow;
+import com.updapy.model.ApplicationReference;
+import com.updapy.model.ApplicationVersion;
 import com.updapy.model.User;
+import com.updapy.model.enumeration.TypeHelpMessage;
 
 @Transactional
 public interface UserService {
@@ -37,5 +43,23 @@ public interface UserService {
 	boolean deleteCurrentUser();
 
 	boolean isValidApiKey(String key);
+
+	List<ApplicationFollow> getFollowedApplications();
+
+	List<ApplicationFollow> addApplicationsToFollow(List<String> apiNamesToFollow);
+
+	boolean deleteApplicationToFollow(String apiName);
+
+	boolean disableEmailAlertApplicationToFollow(String apiName);
+
+	boolean enableEmailAlertApplicationToFollow(String apiName);
+
+	List<ApplicationReference> getLeftApplications();
+
+	String getDownloadUrlMatchingSettings(ApplicationVersion applicationVersion);
+
+	boolean isMessageDismissed(TypeHelpMessage typeHelpMessage);
+
+	void dismissMessage(TypeHelpMessage typeHelpMessage);
 
 }

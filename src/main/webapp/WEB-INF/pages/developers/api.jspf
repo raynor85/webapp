@@ -2,7 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div class="form-white">
-	<form:form id="resetUserApiKeyForm" commandName="resetUserApiKey" action="${root}/developers/resetApiKey" class="form-horizontal">
+	<form:form id="resetUserApiKeyForm" commandName="resetUserApiKey" action="${root}/developers/apikey/reset" class="form-horizontal">
 		<div id="resetUserApiKeyResponse"></div>
 		<h4>
 			<spring:message code="developers.api.apiKey.subtitle" />
@@ -139,6 +139,6 @@
 		return false;
 	});
 	var refreshApiKey = function() {
-		ajaxCallGetAndRefresh("ApiKey", "#apiKey");
+		ajaxCallGetAndRefresh("apikey", "#apiKey");
 	};
 </script>

@@ -6,7 +6,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import com.updapy.model.common.BaseEntity;
@@ -20,7 +19,7 @@ public class ApplicationNotification extends BaseEntity {
 	@JoinColumn(name = "person_id")
 	private User user;
 
-	@OneToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	private ApplicationReference referenceApp;
 
 	private boolean read;

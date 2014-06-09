@@ -85,13 +85,15 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="<spring:url value="/resources/js/jquery.color.min.js" />"></script>
 
-<!-- Bootstrap -->
+<!-- Bootstrap and plugins -->
 <link href="<spring:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
-<link href="<spring:url value="/resources/css/social-buttons-3.css" />" rel="stylesheet">
 <script src="<spring:url value="/resources/js/bootstrap.min.js" />"></script>
+<link href="<spring:url value="/resources/css/social-buttons-3.css" />" rel="stylesheet">
 <link href="<spring:url value="/resources/css/bootstrap-select.min.css" />" rel="stylesheet">
 <script src="<spring:url value="/resources/js/bootstrap-select.min.js" />"></script>
 <script src="<spring:url value="/resources/js/bootbox.min.js" />"></script>
+<link href="<spring:url value="/resources/css/bootstrap-switch.min.css" />" rel="stylesheet">
+<script src="<spring:url value="/resources/js/bootstrap-switch.min.js" />"></script>
 
 <!-- Ladda -->
 <link href="<spring:url value="/resources/css/ladda.min.css" />" rel="stylesheet">

@@ -20,8 +20,8 @@
 			<hr>
 			<div class="form-group">
 				<label for="name" class="col-sm-2 control-label" style="min-width: 130px;"><spring:message code="settings.profile.field.name" /></label>
-				<div class="col-sm-8">
-					<form:input class="form-control" path="name" id="name" maxlength="255" />
+				<div class="col-sm-5">
+					<form:input class="form-control" path="name" id="name" maxlength="35" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -85,36 +85,36 @@
 				<small><spring:message code="settings.emails.subtitle" /></small>
 			</h3>
 			<hr>
+			<c:set var="enable">
+				<spring:message code="settings.emails.radio.enable" />
+			</c:set>
+			<c:set var="disable">
+				<spring:message code="settings.emails.radio.disable" />
+			</c:set>
 			<div class="form-group">
 				<div class="col-sm-12">
 					<spring:message code="settings.emails.radio.email.alert.title" />
 				</div>
 				<div class="col-sm-3">
-					<label class="radio-inline"> <form:radiobutton path="emailAlert" id="emailAlertEnable" value="true" onclick="updateEmailOptions();" /> <spring:message code="settings.emails.radio.enable" />
-					</label> <label class="radio-inline"> <form:radiobutton path="emailAlert" id="emailAlertDisable" value="false" onclick="updateEmailOptions();" /> <spring:message code="settings.emails.radio.disable" />
-					</label>
+					<form:checkbox data-off-text="${disable}" data-on-text="${enable}" path="emailAlert" onchange="updateEmailOptions();" />
 				</div>
 			</div>
 			<div style="height: 8px"></div>
 			<div class="form-group">
-				<div class="col-sm-12" id="emailOptionEachUpdateTitle">
+				<div class="col-sm-12" id="emailSubOptionEachUpdateTitle">
 					<spring:message code="settings.emails.radio.email.each.title" />
 				</div>
 				<div class="col-sm-3">
-					<label class="radio-inline" id="emailOptionEachUpdateLabelEnable"> <form:radiobutton path="emailEachUpdate" id="emailOptionEachUpdateEnable" value="true" /> <spring:message code="settings.emails.radio.enable" />
-					</label> <label class="radio-inline" id="emailOptionEachUpdateLabelDisable"> <form:radiobutton path="emailEachUpdate" id="emailOptionEachUpdateDisable" value="false" /> <spring:message code="settings.emails.radio.disable" />
-					</label>
+					<form:checkbox data-off-text="${disable}" data-on-text="${enable}" path="emailEachUpdate" id="emailSubOptionEachUpdate" />
 				</div>
 			</div>
 			<div style="height: 8px"></div>
 			<div class="form-group">
-				<div class="col-sm-12" id="emailOptionWeeklyTitle">
+				<div class="col-sm-12" id="emailSubOptionWeeklyTitle">
 					<spring:message code="settings.emails.radio.email.weekly.title" />
 				</div>
 				<div class="col-sm-3">
-					<label class="radio-inline" id="emailOptionWeeklyLabelEnable"> <form:radiobutton path="emailWeekly" id="emailOptionWeeklyEnable" value="true" /> <spring:message code="settings.emails.radio.enable" />
-					</label> <label class="radio-inline" id="emailOptionWeeklyLabelDisable"> <form:radiobutton path="emailWeekly" id="emailOptionWeeklyDisable" value="false" /> <spring:message code="settings.emails.radio.disable" />
-					</label>
+					<form:checkbox data-off-text="${disable}" data-on-text="${enable}" path="emailWeekly" id="emailSubOptionWeekly" />
 				</div>
 			</div>
 			<div style="height: 8px"></div>
@@ -123,9 +123,7 @@
 					<spring:message code="settings.emails.radio.email.newsletter.title" />
 				</div>
 				<div class="col-sm-3">
-					<label class="radio-inline"> <form:radiobutton path="emailNewsletter" id="emailNewsletterEnable" value="true" /> <spring:message code="settings.emails.radio.enable" />
-					</label> <label class="radio-inline"> <form:radiobutton path="emailNewsletter" id="emailNewsletterDisable" value="false" /> <spring:message code="settings.emails.radio.disable" />
-					</label>
+					<form:checkbox data-off-text="${disable}" data-on-text="${enable}" path="emailNewsletter" />
 				</div>
 			</div>
 			<br />
@@ -150,7 +148,7 @@
 	<div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form:form id="changePasswordUserForm" commandName="changePasswordUser" action="${root}/settings/changePassword">
+				<form:form id="changePasswordUserForm" commandName="changePasswordUser" action="${root}/settings/updapte/password">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h4 class="modal-title" id="changePasswordModalLabel">
@@ -199,7 +197,7 @@
 <div class="modal fade" id="deleteAccountModal" tabindex="-1" role="dialog" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form:form id="deleteAccountForm" commandName="deleteAccount" action="${root}/settings/deleteAccount">
+			<form:form id="deleteAccountForm" commandName="deleteAccount" action="${root}/settings/delete">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="deleteAccountModalLabel">
@@ -235,7 +233,10 @@
 
 
 <script type="text/javascript">
+	// activate elements
 	$(".selectpicker").selectpicker();
+	$("input[type='checkbox']").bootstrapSwitch();
+
 	function ajaxUpdateSettings() {
 		var json = {
 			"name" : $("#name").val(),
@@ -274,7 +275,8 @@
 			"repeatNewPassword" : $("#repeatNewPassword").val()
 		};
 		ajaxCallPost("#changePasswordUserButton", "#changePasswordUserForm",
-				json, "#changePasswordUserResponse", confirmChangePassword, true);
+				json, "#changePasswordUserResponse", confirmChangePassword,
+				true);
 	};
 	$("#changePasswordUserForm").submit(function() {
 		ajaxChangePasswordUser();
@@ -298,12 +300,15 @@
 		}
 	}
 	function changeEmailOptions(disabled) {
-		$("input[id^=emailOption]:radio").attr('disabled', disabled);
+		// deactivate switchers
+		$("input[id^=emailSubOption]").bootstrapSwitch("readonly", disabled);
+		$("input[id^=emailSubOption]").bootstrapSwitch("disabled", disabled);
+		// put titles in grey
 		var animateColor = "#333333";
 		if (disabled) {
 			var animateColor = "#B2B2B2";
 		}
-		$("[id^=emailOption]").animate({
+		$("div[id^=emailSubOption]").animate({
 			color : animateColor
 		}, 1000);
 	}

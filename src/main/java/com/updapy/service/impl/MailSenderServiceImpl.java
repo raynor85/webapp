@@ -68,7 +68,7 @@ public class MailSenderServiceImpl implements MailSenderService {
 
 	@Override
 	public boolean sendResetPasswordLink(String email, String key) {
-		String link = messageUtils.getSimpleMessage("application.root.url") + "/user/resetpassword?email=" + email + "&key=" + key;
+		String link = messageUtils.getSimpleMessage("application.root.url") + "/user/reset/password?email=" + email + "&key=" + key;
 		String fromEmail = messageUtils.getSimpleMessage("email.noreply");
 		String subject = messageUtils.getSimpleMessage("email.reset.subject");
 		Map<String, Object> model = new HashMap<String, Object>();

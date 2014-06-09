@@ -80,7 +80,7 @@ public class UserController {
 		binder.addValidators(resetUserCustomValidator);
 	}
 
-	@RequestMapping(value = "register-early", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "register/early", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	JsonResponse registerEarly(@Valid @RequestBody RegisterEarlyUser registerEarlyUser, BindingResult result) {
 		if (result.hasErrors()) {
@@ -169,7 +169,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "resetpassword")
+	@RequestMapping(value = "reset/password")
 	public ModelAndView resetPassword(@RequestParam(value = "email", required = true) String email, @RequestParam(value = "key", required = true) String key) {
 		User user = userService.findByEmail(email);
 		if (user == null // user not found

@@ -1,10 +1,16 @@
 package com.updapy.service.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.Predicate;
 import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,6 +20,9 @@ import org.springframework.social.connect.ConnectionKey;
 import org.springframework.social.connect.UserProfile;
 import org.springframework.stereotype.Service;
 
+import com.updapy.model.ApplicationFollow;
+import com.updapy.model.ApplicationReference;
+import com.updapy.model.ApplicationVersion;
 import com.updapy.model.HelpMessage;
 import com.updapy.model.Setting;
 import com.updapy.model.User;
@@ -25,6 +34,7 @@ import com.updapy.model.enumeration.SocialMediaService;
 import com.updapy.model.enumeration.TypeHelpMessage;
 import com.updapy.repository.UserConnectionRepository;
 import com.updapy.repository.UserRepository;
+import com.updapy.service.ApplicationService;
 import com.updapy.service.UserService;
 import com.updapy.service.security.SecurityUtils;
 
@@ -42,6 +52,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
+
+	@Autowired
+	ApplicationService applicationService;
 
 	@Override
 	public User getCurrentUser() {
@@ -168,11 +181,6 @@ public class UserServiceImpl implements UserService {
 		helpMessageDashboardAlertDisabled.setHidden(false);
 		helpMessageDashboardAlertDisabled.setUser(user);
 		defaultHelpMessages.add(helpMessageDashboardAlertDisabled);
-		HelpMessage helpMessageSearchHowTo = new HelpMessage();
-		helpMessageSearchHowTo.setType(TypeHelpMessage.SEARCH_HOW_TO);
-		helpMessageSearchHowTo.setHidden(false);
-		helpMessageSearchHowTo.setUser(user);
-		defaultHelpMessages.add(helpMessageSearchHowTo);
 		user.setHelpMessages(defaultHelpMessages);
 	}
 
@@ -259,6 +267,126 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean isValidApiKey(String key) {
 		return userRepository.findByApiKey(key) != null;
+	}
+
+	@Override
+	public List<ApplicationFollow> getFollowedApplications() {
+		List<ApplicationFollow> applicationFollows = getCurrentUser().getFollowedApps();
+		CollectionUtils.collect(applicationFollows, new BeanToPropertyValueTransformer("referenceApp"));
+		Collections.sort(applicationFollows, new Comparator<ApplicationFollow>() {
+			@Override
+			public int compare(ApplicationFollow a1, ApplicationFollow a2) {
+				return a1.getReferenceApp().getApiName().compareTo(a2.getReferenceApp().getApiName());
+			}
+		});
+		return applicationFollows;
+	}
+
+	@Override
+	public List<ApplicationFollow> addApplicationsToFollow(List<String> apiNames) {
+		User user = getCurrentUser();
+		List<ApplicationFollow> followedApps = new ArrayList<ApplicationFollow>();
+		for (String apiName : apiNames) {
+			if (apiName != null) {
+				ApplicationFollow applicationFollow = new ApplicationFollow();
+				applicationFollow.setReferenceApp(applicationService.getApplicationReference(apiName));
+				applicationFollow.setEmailNotificationActive(true);
+				applicationFollow.setUser(user);
+				followedApps.add(applicationFollow);
+				applicationService.saveApplicationFollow(applicationFollow);
+			}
+		}
+		return followedApps;
+	}
+
+	@Override
+	public boolean deleteApplicationToFollow(String apiName) {
+		ApplicationFollow applicationFollow = findApplicationFollow(getCurrentUser(), apiName);
+		if (applicationFollow == null) {
+			return false;
+		}
+		applicationService.deleteApplicationFollow(applicationFollow);
+		return true;
+	}
+
+	@Override
+	public boolean disableEmailAlertApplicationToFollow(String apiName) {
+		ApplicationFollow applicationFollow = findApplicationFollow(getCurrentUser(), apiName);
+		if (applicationFollow == null) {
+			return false;
+		}
+		applicationService.disableEmailAlertApplicationFollow(applicationFollow);
+		return true;
+	}
+
+	@Override
+	public boolean enableEmailAlertApplicationToFollow(String apiName) {
+		ApplicationFollow applicationFollow = findApplicationFollow(getCurrentUser(), apiName);
+		if (applicationFollow == null) {
+			return false;
+		}
+		applicationService.enableEmailAlertApplicationFollow(applicationFollow);
+		return true;
+	}
+
+	private ApplicationFollow findApplicationFollow(User user, final String apiName) {
+		return (ApplicationFollow) CollectionUtils.find(user.getFollowedApps(), new Predicate() {
+			@Override
+			public boolean evaluate(Object o) {
+				return ((ApplicationFollow) o).getReferenceApp().getApiName().equals(apiName);
+			}
+		});
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ApplicationReference> getLeftApplications() {
+		return (List<ApplicationReference>) CollectionUtils.subtract(applicationService.getApplicationReferences(), getFollowedApplications());
+	}
+
+	@Override
+	public String getDownloadUrlMatchingSettings(ApplicationVersion applicationVersion) {
+		User user = getCurrentUser();
+		return getDownloadUrlMatchingSettings(applicationVersion, user.getLang(), user.getOsVersion());
+	}
+
+	private String getDownloadUrlMatchingSettings(ApplicationVersion applicationVersion, Lang lang, OsVersion osVersion) {
+		String defaultUrl = applicationVersion.getWin32UrlEn();
+		if (lang == null && osVersion == null || Lang.eng.equals(lang) && osVersion == null || Lang.eng.equals(lang) && OsVersion.WIN_32_BITS.equals(osVersion) || lang == null && OsVersion.WIN_32_BITS.equals(osVersion)) {
+			return defaultUrl;
+		}
+		if (lang == null && OsVersion.WIN_64_BITS.equals(osVersion) || Lang.eng.equals(lang) && OsVersion.WIN_64_BITS.equals(osVersion)) {
+			return StringUtils.isNotBlank(applicationVersion.getWin64UrlEn()) ? applicationVersion.getWin64UrlEn() : defaultUrl;
+		}
+		if (Lang.fra.equals(lang) && osVersion == null || Lang.fra.equals(lang) && OsVersion.WIN_32_BITS.equals(osVersion)) {
+			return StringUtils.isNotBlank(applicationVersion.getWin32UrlFr()) ? applicationVersion.getWin32UrlFr() : defaultUrl;
+		}
+		if (Lang.fra.equals(lang) && OsVersion.WIN_64_BITS.equals(osVersion)) {
+			return StringUtils.isNotBlank(applicationVersion.getWin64UrlFr()) ? applicationVersion.getWin64UrlFr() : defaultUrl;
+		}
+		return defaultUrl;
+	}
+
+	private HelpMessage findHelpMessageFromType(User user, final TypeHelpMessage typeHelpMessage) {
+		return (HelpMessage) CollectionUtils.find(user.getHelpMessages(), new Predicate() {
+			@Override
+			public boolean evaluate(Object o) {
+				return ((HelpMessage) o).getType().equals(typeHelpMessage);
+			}
+		});
+	}
+
+	@Override
+	public boolean isMessageDismissed(TypeHelpMessage typeHelpMessage) {
+		return findHelpMessageFromType(getCurrentUser(), typeHelpMessage).isHidden();
+	}
+
+	@Override
+	public void dismissMessage(TypeHelpMessage typeHelpMessage) {
+		User user = getCurrentUser();
+		findHelpMessageFromType(user, typeHelpMessage).setHidden(true);
+		save(user);
+
 	}
 
 }
