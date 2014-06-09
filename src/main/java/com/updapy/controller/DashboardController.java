@@ -58,7 +58,7 @@ public class DashboardController {
 
 	@RequestMapping(value = "unfollow", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
-	JsonResponse update(@RequestBody ChangeCurrentApplication unfollowCurrentApplication) {
+	JsonResponse delete(@RequestBody ChangeCurrentApplication unfollowCurrentApplication) {
 		boolean isDeleted = userService.deleteApplicationToFollow(unfollowCurrentApplication.getApiName());
 		if (isDeleted) {
 			return jsonResponseUtils.buildSuccessfulJsonResponse("dashboard.applications.unfollow.confirm");
