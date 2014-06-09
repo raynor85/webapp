@@ -53,7 +53,7 @@ public class DashboardController {
 	@RequestMapping(value = "follow", method = RequestMethod.POST)
 	public ModelAndView followApplications(FollowNewApplications followNewApplications) {
 		userService.addApplicationsToFollow(followNewApplications.getApiNames());
-		return initModelAndView("redirect:/dashboard");
+		return initModelAndViewForRedirect("redirect:/dashboard");
 	}
 
 	@RequestMapping(value = "unfollow", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -100,8 +100,20 @@ public class DashboardController {
 		return jsonResponseUtils.buildSuccessfulJsonResponse("dashboard.applications.dismiss.confirm");
 	}
 
+	private ModelAndView initModelAndViewForRedirect(String viewName) {
+		ModelAndView modelAndView = new ModelAndView(viewName);
+		return initModel(modelAndView);
+	}
+
 	private ModelAndView initModelAndView(String viewName) {
 		ModelAndView modelAndView = new ModelAndView(viewName);
+		modelAndView.addObject("isDashboardHowToTipHidden", userService.isMessageDismissed(TypeHelpMessage.DASHBOARD_HOW_TO));
+		modelAndView.addObject("isDashboardEmailDisableTipHidden", userService.isMessageDismissed(TypeHelpMessage.DASHBOARD_ALERT_DISABLED));
+		modelAndView.addObject("isEmailDisabled", settingsService.isEmailDisabled());
+		return initModel(modelAndView);
+	}
+
+	private ModelAndView initModel(ModelAndView modelAndView) {
 		modelAndView.addObject("newFollowApplications", new FollowNewApplications());
 		modelAndView.addObject("leftApplications", userService.getLeftApplications());
 		List<CurrentFollowApplication> currentFollowApplications = new ArrayList<CurrentFollowApplication>();
@@ -113,9 +125,6 @@ public class DashboardController {
 			currentFollowApplications.add(currentFollowApplication);
 		}
 		modelAndView.addObject("currentFollowApplications", currentFollowApplications);
-		modelAndView.addObject("isDashboardHowToTipHidden", userService.isMessageDismissed(TypeHelpMessage.DASHBOARD_HOW_TO));
-		modelAndView.addObject("isDashboardEmailDisableTipHidden", userService.isMessageDismissed(TypeHelpMessage.DASHBOARD_ALERT_DISABLED));
-		modelAndView.addObject("isEmailDisabled", settingsService.isEmailDisabled());
 		return modelAndView;
 	}
 

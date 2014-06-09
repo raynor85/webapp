@@ -272,7 +272,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<ApplicationFollow> getFollowedApplications() {
 		List<ApplicationFollow> applicationFollows = getCurrentUser().getFollowedApps();
-		CollectionUtils.collect(applicationFollows, new BeanToPropertyValueTransformer("referenceApp"));
 		Collections.sort(applicationFollows, new Comparator<ApplicationFollow>() {
 			@Override
 			public int compare(ApplicationFollow a1, ApplicationFollow a2) {
@@ -341,7 +340,9 @@ public class UserServiceImpl implements UserService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ApplicationReference> getLeftApplications() {
-		return (List<ApplicationReference>) CollectionUtils.subtract(applicationService.getApplicationReferences(), getFollowedApplications());
+		List<ApplicationReference> allApplicationReferences = applicationService.getApplicationReferences();
+		List<ApplicationReference> followApplicationReferences = (List<ApplicationReference>) CollectionUtils.collect(getFollowedApplications(), new BeanToPropertyValueTransformer("referenceApp"));
+		return (List<ApplicationReference>) CollectionUtils.subtract(allApplicationReferences, followApplicationReferences);
 	}
 
 	@Override
