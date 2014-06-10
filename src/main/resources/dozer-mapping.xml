@@ -41,4 +41,9 @@
 		</field>
 	</mapping>
 
+	<mapping>
+		<class-a>com.updapy.form.model.RequestApplication</class-a>
+		<class-b>com.updapy.model.ApplicationRequest</class-b>
+	</mapping>
+
 </mappings>

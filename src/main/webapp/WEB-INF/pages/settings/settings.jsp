@@ -34,7 +34,7 @@
 				</div>
 				<c:if test="${not isSocialUser}">
 					<div class="col-lg-3 pull-right">
-						<a href="#" data-toggle="modal" data-target="#changePasswordModal" title="<spring:message code="settings.profile.changePassword.link" />"><spring:message code="settings.profile.changePassword.link" /></a>
+						<a href="#" data-toggle="modal" data-target="#changePasswordModal"><spring:message code="settings.profile.changePassword.link" /></a>
 					</div>
 				</c:if>
 			</div>
@@ -136,7 +136,7 @@
 					</p>
 				</div>
 				<div id="deleteAccountLink" class="col-lg-3 pull-right">
-					<a href="#" data-toggle="modal" data-target="#deleteAccountModal" title="<spring:message code="settings.account.delete.link" />"><spring:message code="settings.account.delete.link" /></a>
+					<a href="#" data-toggle="modal" data-target="#deleteAccountModal"><spring:message code="settings.account.delete.link" /></a>
 				</div>
 			</div>
 		</form:form>
@@ -285,6 +285,10 @@
 	var confirmChangePassword = function() {
 		// close modal
 		$("#changePasswordModal").modal("hide");
+		// Empty fields
+		$("#currentPassword").val("");
+		$("#newPassword").val("");
+		$("#repeatNewPassword").val("");
 		// display success
 		$("#successPasswordUserResponse").html(
 				$("#changePasswordUserResponse").html());

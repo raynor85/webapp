@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.updapy.model.ApplicationFollow;
 import com.updapy.model.ApplicationReference;
+import com.updapy.model.ApplicationRequest;
 import com.updapy.model.ApplicationVersion;
 
 @Transactional
@@ -37,5 +38,7 @@ public interface ApplicationService {
 	void enableEmailAlertApplicationFollow(ApplicationFollow applicationFollow);
 
 	void disableEmailAlertApplicationFollow(ApplicationFollow applicationFollow);
+
+	ApplicationRequest saveApplicationRequest(ApplicationRequest applicationRequest);
 
 }

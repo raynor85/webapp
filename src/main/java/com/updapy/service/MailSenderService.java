@@ -10,4 +10,6 @@ public interface MailSenderService {
 
 	boolean sendAdminRetrieverError(String applicationName);
 
+	boolean sendAdminApplicationRequest(String name, String url);
+
 }

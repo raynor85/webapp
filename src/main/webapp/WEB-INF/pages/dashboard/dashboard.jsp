@@ -5,6 +5,15 @@
 
 <div class="container">
 	<div class="row">
+		<div id="successRequestApplicationResponse"></div>
+		<c:if test="${nbAppFollow != 0 && not isDashboardHowToTipHidden}">
+			<form:form id="helpMessageHowToDismissMessageForm" commandName="dismissMessage" action="${root}/dashboard/dismiss">
+				<div id="helpMessageHowTo" class="alert alert-info pull-right-lg">
+					<spring:message code="dashboard.applications.tip.howto" />
+					<a href="javascript:ajaxDismissMessage('DASHBOARD_HOW_TO','helpMessageHowTo');"><spring:message code="dashboard.applications.tip.dismiss" /></a>
+				</div>
+			</form:form>
+		</c:if>
 		<c:if test="${isEmailDisabled && not isDashboardEmailDisableTipHidden}">
 			<form:form id="helpMessageEmailDisableDismissMessageForm" commandName="dismissMessage" action="${root}/dashboard/dismiss">
 				<div id="helpMessageEmailDisable" class="alert alert-warning pull-left">
@@ -88,7 +97,8 @@
 							<a href="${currentFollowApplication.downloadUrl}" title="${downloadTitle}" target="_blank"><img class="shadowHover" src="<spring:url value="/resources/img/application/medium/${currentFollowApplication.iconFilename}" />" alt="${appName}"></a>
 						</div>
 						<div class="title">
-							<a href="${currentFollowApplication.downloadUrl}" title="${downloadTitle}" target="_blank">${appName} [<strong>${currentFollowApplication.versionNumber}</strong>]</a>
+							<a href="${currentFollowApplication.downloadUrl}" title="${downloadTitle}" target="_blank">${appName} [<strong>${currentFollowApplication.versionNumber}</strong>]
+							</a>
 						</div>
 					</div>
 				</div>
@@ -96,20 +106,15 @@
 		</form:form>
 	</div>
 	<br /> <br />
-	<c:if test="${nbAppFollow != 0 && not isDashboardHowToTipHidden}">
-		<form:form id="helpMessageHowToDismissMessageForm" commandName="dismissMessage" action="${root}/dashboard/dismiss">
-			<div id="helpMessageHowTo" class="alert alert-info pull-right">
-				<spring:message code="dashboard.applications.tip.howto" />
-				<a href="javascript:ajaxDismissMessage('DASHBOARD_HOW_TO','helpMessageHowTo');"><spring:message code="dashboard.applications.tip.dismiss" /></a>
-			</div>
-		</form:form>
-	</c:if>
 	<div class="row" align="center">
-		<p class="button-ladda">
+		<div class="button-ladda">
 			<button type="button" class="btn-color ladda-button" data-toggle="modal" data-target="#followApplicationsModal">
 				<spring:message code="dashboard.applications.follow.button" />
 			</button>
-		</p>
+		</div>
+		<div class="button-ladda" id="requestApplicationLink">
+			<a href="#" data-toggle="modal" data-target="#requestApplicationModal"><spring:message code="dashboard.applications.request.link" /></a>
+		</div>
 	</div>
 </div>
 
@@ -143,7 +148,6 @@
 							</div>
 						</c:otherwise>
 					</c:choose>
-
 					<div class="row">
 						<c:forEach items="${leftApplications}" var="leftApplication" varStatus="i">
 							<c:set var="appName">${leftApplication.name}</c:set>
@@ -169,6 +173,49 @@
 							<spring:message code="dashboard.applications.followApplications.button.confirm" />
 						</button>
 					</c:if>
+				</div>
+			</form:form>
+		</div>
+	</div>
+</div>
+
+<!-- Modal: Request missing app -->
+<div class="modal fade" id="requestApplicationModal" tabindex="-1" role="dialog" aria-labelledby="requestApplicationModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form:form id="requestApplicationForm" commandName="requestApplication" action="${root}/dashboard/request">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="requestApplicationModalLabel">
+						<spring:message code="dashboard.applications.request.title" />
+					</h4>
+				</div>
+				<div class="modal-body">
+					<div id="requestApplicationResponse"></div>
+					<spring:message code="dashboard.applications.request.description" />
+					<br /> <br />
+					<div class="form-group">
+						<c:set var="requestedAppNamePlaceholder">
+							<spring:message code="dashboard.applications.request.field.name.tip" />
+						</c:set>
+						<label for="requestedAppName"><spring:message code="dashboard.applications.request.field.name" /></label>
+						<form:input path="name" class="form-control" id="requestedAppName" placeholder="${requestedAppNamePlaceholder}" />
+					</div>
+					<div class="form-group">
+						<label for="requestedAppUrl"><spring:message code="dashboard.applications.request.field.url" /></label>
+						<c:set var="requestedAppUrlPlaceholder">
+							<spring:message code="dashboard.applications.request.field.url.tip" />
+						</c:set>
+						<form:input path="url" class="form-control" id="requestedAppUrl" placeholder="${requestedAppUrlPlaceholder}" />
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default pull-left btn-cancel-next-ladda" data-dismiss="modal">
+						<spring:message code="dashboard.applications.request.button.cancel" />
+					</button>
+					<button type="button" id="requestApplicationButton" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxRequestApplication();">
+						<spring:message code="dashboard.applications.request.button.confirm" />
+					</button>
 				</div>
 			</form:form>
 		</div>
@@ -222,5 +269,29 @@
 		ajaxCallPost(null, "#" + elementId + "DismissMessageForm", {
 			"typeHelpMessage" : typeHelpMessage
 		}, null);
+	};
+
+	function ajaxRequestApplication() {
+		var json = {
+			"name" : $("#requestedAppName").val(),
+			"url" : $("#requestedAppUrl").val(),
+		};
+		ajaxCallPost("#requestApplicationButton", "#requestApplicationForm",
+				json, "#requestApplicationResponse", confirmRequestApplication,
+				true);
+	};
+	$("#requestApplicationForm").submit(function() {
+		ajaxRequestApplication();
+		return false;
+	});
+	var confirmRequestApplication = function() {
+		// close modal
+		$("#requestApplicationModal").modal("hide");
+		// Empty fields
+		$("#requestedAppName").val("");
+		$("#requestedAppUrl").val("");
+		// display success
+		$("#successRequestApplicationResponse").html(
+				$("#requestApplicationResponse").html());
 	};
 </script>

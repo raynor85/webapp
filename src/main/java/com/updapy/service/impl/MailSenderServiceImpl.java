@@ -141,7 +141,7 @@ public class MailSenderServiceImpl implements MailSenderService {
 		model.put("lang", messageUtils.getSimpleMessage("email.lang"));
 		model.put("title", messageUtils.getSimpleMessage("email.error.connection.content.title"));
 		model.put("text", messageUtils.getCustomMessage("email.error.connection.content.text", new String[] { url }));
-		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "error.vm", "UTF-8", model);
+		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);
 		try {
 			send(ADMIN_EMAIL, ADMIN_EMAIL, subject, message);
 			return true;
@@ -157,7 +157,23 @@ public class MailSenderServiceImpl implements MailSenderService {
 		model.put("lang", messageUtils.getSimpleMessage("email.lang"));
 		model.put("title", messageUtils.getSimpleMessage("email.error.retriever.content.title"));
 		model.put("text", messageUtils.getCustomMessage("email.error.retriever.content.text", new String[] { applicationName }));
-		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "error.vm", "UTF-8", model);
+		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);
+		try {
+			send(ADMIN_EMAIL, ADMIN_EMAIL, subject, message);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean sendAdminApplicationRequest(String name, String url) {
+		String subject = messageUtils.getSimpleMessage("email.application.request.subject");
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("lang", messageUtils.getSimpleMessage("email.lang"));
+		model.put("title", messageUtils.getSimpleMessage("email.application.request.content.title"));
+		model.put("text", messageUtils.getCustomMessage("email.application.request.content.text", new String[] { name, url }));
+		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);
 		try {
 			send(ADMIN_EMAIL, ADMIN_EMAIL, subject, message);
 			return true;

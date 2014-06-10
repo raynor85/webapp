@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.updapy.model.ApplicationFollow;
 import com.updapy.model.ApplicationReference;
+import com.updapy.model.ApplicationRequest;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.repository.ApplicationFollowRepository;
 import com.updapy.repository.ApplicationReferenceRepository;
+import com.updapy.repository.ApplicationRequestRepository;
 import com.updapy.repository.ApplicationVersionRepository;
 import com.updapy.service.ApplicationService;
 
@@ -24,6 +26,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	@Autowired
 	private ApplicationFollowRepository applicationFollowRepository;
+
+	@Autowired
+	private ApplicationRequestRepository applicationRequestRepository;
 
 	@Override
 	public List<ApplicationReference> getApplicationReferences() {
@@ -76,5 +81,10 @@ public class ApplicationServiceImpl implements ApplicationService {
 	public void disableEmailAlertApplicationFollow(ApplicationFollow applicationFollow) {
 		applicationFollow.setEmailNotificationActive(false);
 		saveApplicationFollow(applicationFollow);
+	}
+
+	@Override
+	public ApplicationRequest saveApplicationRequest(ApplicationRequest applicationRequest) {
+		return applicationRequestRepository.saveAndFlush(applicationRequest);
 	}
 }
