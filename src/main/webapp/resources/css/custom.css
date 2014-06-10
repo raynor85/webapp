@@ -1619,8 +1619,6 @@ div.currentFollowApplicationContainer div.application {
 
 div.currentFollowApplicationContainer div.application div.title {
 	margin-top: 5px;
-	font-size: 13px;
-	margin-left: -15px;
 }
 
 div.currentFollowApplicationContainer div.application:hover {

@@ -97,7 +97,7 @@
 							<a href="${currentFollowApplication.downloadUrl}" title="${downloadTitle}" target="_blank"><img class="shadowHover" src="<spring:url value="/resources/img/application/medium/${currentFollowApplication.iconFilename}" />" alt="${appName}"></a>
 						</div>
 						<div class="title">
-							<a href="${currentFollowApplication.downloadUrl}" title="${downloadTitle}" target="_blank">${appName} [<strong>${currentFollowApplication.versionNumber}</strong>]
+							<a href="${currentFollowApplication.downloadUrl}" title="${downloadTitle}" target="_blank">${appName}<br /><em><strong>${currentFollowApplication.versionNumber}</strong></em>
 							</a>
 						</div>
 					</div>
