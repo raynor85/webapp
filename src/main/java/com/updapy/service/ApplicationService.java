@@ -14,11 +14,19 @@ import com.updapy.model.ApplicationVersion;
 @Transactional
 public interface ApplicationService {
 
+	/**
+	 * Application References
+	 */
+
 	@Cacheable(value = "applicationReferences", key = "'applicationReferences'")
 	List<ApplicationReference> getApplicationReferences();
 
 	@Cacheable(value = "applicationReferences", key = "#apiName")
 	ApplicationReference getApplicationReference(String apiName);
+
+	/**
+	 * Application Versions
+	 */
 
 	@CacheEvict(value = "applicationVersions", key = "#applicationVersion.reference.apiName")
 	ApplicationVersion addApplicationVersion(ApplicationVersion applicationVersion);
@@ -31,6 +39,10 @@ public interface ApplicationService {
 
 	ApplicationVersion getLatestApplicationVersionNoCache(ApplicationReference applicationReference);
 
+	/**
+	 * Application follow
+	 */
+
 	ApplicationFollow saveApplicationFollow(ApplicationFollow applicationFollow);
 
 	void deleteApplicationFollow(ApplicationFollow applicationFollow);
@@ -38,6 +50,10 @@ public interface ApplicationService {
 	void enableEmailAlertApplicationFollow(ApplicationFollow applicationFollow);
 
 	void disableEmailAlertApplicationFollow(ApplicationFollow applicationFollow);
+
+	/**
+	 * Application Request
+	 */
 
 	ApplicationRequest saveApplicationRequest(ApplicationRequest applicationRequest);
 

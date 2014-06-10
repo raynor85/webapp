@@ -11,14 +11,10 @@ public interface SettingsService {
 
 	User updateSettings(User user, UpdateSettings newSettings);
 
-	User updateCurrentSettings(UpdateSettings newSettings);
-
 	UpdateSettings getSettings(User user);
-
-	UpdateSettings getCurrentSettings();
 
 	AccountRemoval addFeedback(String feedback);
 
-	boolean isEmailDisabled();
+	boolean isEmailDisabled(User user);
 
 }

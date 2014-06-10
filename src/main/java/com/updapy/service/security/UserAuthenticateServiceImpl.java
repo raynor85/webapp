@@ -3,11 +3,12 @@ package com.updapy.service.security;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.updapy.model.User;
@@ -23,15 +24,15 @@ public class UserAuthenticateServiceImpl implements UserDetailsService {
 	private final String emailInactive = "Inactive.logUser.email";
 
 	@Override
-	public UserDetails loadUserByUsername(String email) throws BadCredentialsException {
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		final User user = userRepository.findByEmail(email);
-		// Check if user exist
+		// check if user exist
 		if (user == null) {
-			throw new BadCredentialsException(emailInvalid);
+			throw new UsernameNotFoundException(emailInvalid);
 		}
-		// Check if user active
+		// check if user active
 		if (!user.isActive()) {
-			throw new BadCredentialsException(emailInactive);
+			throw new DisabledException(emailInactive);
 		}
 		final Collection<? extends GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_USER");
 		return UpdapyUser.createUpdapyUser(user, authorities);

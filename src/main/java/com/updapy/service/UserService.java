@@ -14,7 +14,15 @@ import com.updapy.model.enumeration.TypeHelpMessage;
 @Transactional
 public interface UserService {
 
-	User getCurrentUser();
+	User getCurrentUserLight();
+
+	User getCurrentUserWithSettings();
+
+	User getCurrentUserWithApplicationFolloweds();
+
+	User getCurrentUserWithHelpMessages();
+
+	User getCurrentUserFull();
 
 	User findByEmail(String email);
 
@@ -26,13 +34,11 @@ public interface UserService {
 
 	String generateNewAccountKey(User user);
 
-	String generateCurrentNewApiKey();
+	String generateNewApiKey(User user);
 
 	User activate(User user);
 
 	User updatePassword(User user, String newPassword);
-
-	User updateCurrentPassword(String newPassword);
 
 	User save(User user);
 
@@ -40,26 +46,24 @@ public interface UserService {
 
 	boolean delete(User user);
 
-	boolean deleteCurrentUser();
-
 	boolean isValidApiKey(String key);
 
-	List<ApplicationFollow> getFollowedApplications();
+	List<ApplicationFollow> getFollowedApplications(User user);
 
-	List<ApplicationFollow> addApplicationsToFollow(List<String> apiNamesToFollow);
+	List<ApplicationFollow> addApplicationsToFollow(User user, List<String> apiNamesToFollow);
 
-	boolean deleteApplicationToFollow(String apiName);
+	boolean deleteApplicationToFollow(User user, String apiName);
 
-	boolean disableEmailAlertApplicationToFollow(String apiName);
+	boolean disableEmailAlertApplicationToFollow(User user, String apiName);
 
-	boolean enableEmailAlertApplicationToFollow(String apiName);
+	boolean enableEmailAlertApplicationToFollow(User user, String apiName);
 
-	List<ApplicationReference> getLeftApplications();
+	List<ApplicationReference> getLeftApplications(User user);
 
-	String getDownloadUrlMatchingSettings(ApplicationVersion applicationVersion);
+	String getDownloadUrlMatchingSettings(User user, ApplicationVersion applicationVersion);
 
-	boolean isMessageDismissed(TypeHelpMessage typeHelpMessage);
+	boolean isMessageDismissed(User user, TypeHelpMessage typeHelpMessage);
 
-	void dismissMessage(TypeHelpMessage typeHelpMessage);
+	void dismissMessage(User user, TypeHelpMessage typeHelpMessage);
 
 }

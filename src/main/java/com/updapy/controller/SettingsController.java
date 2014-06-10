@@ -52,7 +52,7 @@ public class SettingsController {
 	@RequestMapping({ "/", "" })
 	public ModelAndView settingsPage() {
 		ModelAndView modelAndView = new ModelAndView("settings");
-		modelAndView.addObject("updateSettings", settingsService.getCurrentSettings());
+		modelAndView.addObject("updateSettings", settingsService.getSettings(userService.getCurrentUserWithSettings()));
 		modelAndView.addObject("changePasswordUser", new ChangePasswordUser());
 		modelAndView.addObject("deleteAccount", new DeleteAccount());
 		return modelAndView;
@@ -64,8 +64,9 @@ public class SettingsController {
 		if (result.hasErrors()) {
 			return jsonResponseUtils.buildFailedJsonResponseFromErrorObject(result.getAllErrors());
 		} else {
-			String currentName = userService.getCurrentUser().getName();
-			User user = settingsService.updateCurrentSettings(updateSettings);
+			User user = userService.getCurrentUserWithSettings();
+			String currentName = user.getName();
+			user = settingsService.updateSettings(user, updateSettings);
 			String newName = (user.getName() == null) ? user.getEmail() : user.getName();
 			if (!StringUtils.equals(currentName, newName)) {
 				SecurityUtils.reloadUsername(newName);
@@ -80,7 +81,7 @@ public class SettingsController {
 		if (result.hasErrors()) {
 			return jsonResponseUtils.buildFailedJsonResponseFromErrorObject(result.getAllErrors());
 		} else {
-			userService.updateCurrentPassword(changePasswordUser.getNewPassword());
+			userService.updatePassword(userService.getCurrentUserLight(), changePasswordUser.getNewPassword());
 			return jsonResponseUtils.buildSuccessfulJsonResponse("settings.profile.changePassword.confirm");
 		}
 	}
@@ -88,7 +89,7 @@ public class SettingsController {
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	public String deleteAccount(DeleteAccount deleteAccount, HttpServletRequest request, HttpServletResponse response) {
 		settingsService.addFeedback(deleteAccount.getFeedback());
-		boolean isDeleted = userService.deleteCurrentUser();
+		boolean isDeleted = userService.delete(userService.getCurrentUserLight());
 		if (isDeleted) {
 			SecurityUtils.logout(request, response);
 			return "delete-account-complete";

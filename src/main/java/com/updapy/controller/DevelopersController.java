@@ -26,7 +26,7 @@ public class DevelopersController {
 	@RequestMapping({ "/", "" })
 	public ModelAndView dashboardPage() {
 		ResetUserApiKey resetUserApiKey = new ResetUserApiKey();
-		User user = userService.getCurrentUser();
+		User user = userService.getCurrentUserLight();
 		if (user != null) {
 			resetUserApiKey.setApiKey(user.getApiKey());
 		}
@@ -36,14 +36,14 @@ public class DevelopersController {
 	@RequestMapping(value = "apikey/reset", method = RequestMethod.POST)
 	public @ResponseBody
 	JsonResponse resetApiKey() {
-		userService.generateCurrentNewApiKey();
+		userService.generateNewApiKey(userService.getCurrentUserLight());
 		return jsonResponseUtils.buildSuccessfulJsonResponse("developers.api.apiKey.reset.confirm");
 	}
 
 	@RequestMapping(value = "apikey/get")
 	public @ResponseBody
 	String getApiKey() {
-		return userService.getCurrentUser().getApiKey();
+		return userService.getCurrentUserLight().getApiKey();
 	}
 
 }

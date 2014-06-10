@@ -76,16 +76,6 @@ public class SettingsServiceImpl implements SettingsService {
 	}
 
 	@Override
-	public UpdateSettings getCurrentSettings() {
-		return getSettings(userService.getCurrentUser());
-	}
-
-	@Override
-	public User updateCurrentSettings(UpdateSettings newSettings) {
-		return updateSettings(userService.getCurrentUser(), newSettings);
-	}
-
-	@Override
 	public AccountRemoval addFeedback(String feedback) {
 		AccountRemoval accountRemoval = new AccountRemoval();
 		accountRemoval.setFeedback(feedback);
@@ -94,12 +84,12 @@ public class SettingsServiceImpl implements SettingsService {
 	}
 
 	@Override
-	public boolean isEmailDisabled() {
-		return !isEmailActive();
+	public boolean isEmailDisabled(User user) {
+		return !isEmailActive(user);
 	}
 
-	public boolean isEmailActive() {
-		UpdateSettings settings = getCurrentSettings();
+	public boolean isEmailActive(User user) {
+		UpdateSettings settings = getSettings(user);
 		if (!settings.isEmailAlert() || (settings.isEmailAlert() && (!settings.isEmailEachUpdate() && !settings.isEmailWeekly()))) {
 			return false;
 		}

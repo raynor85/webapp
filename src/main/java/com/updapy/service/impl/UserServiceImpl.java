@@ -11,6 +11,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -57,8 +58,40 @@ public class UserServiceImpl implements UserService {
 	ApplicationService applicationService;
 
 	@Override
-	public User getCurrentUser() {
+	public User getCurrentUserLight() {
 		return findByEmail(SecurityUtils.getEmailCurrentUser());
+	}
+
+	@Override
+	public User getCurrentUserWithSettings() {
+		User user = getCurrentUserLight();
+		// initialize attributes to avoid lazy exception
+		Hibernate.initialize(user.getSettings());
+		return user;
+	}
+
+	@Override
+	public User getCurrentUserWithApplicationFolloweds() {
+		User user = getCurrentUserLight();
+		Hibernate.initialize(user.getFollowedApps());
+		return user;
+	}
+
+	@Override
+	public User getCurrentUserWithHelpMessages() {
+		User user = getCurrentUserLight();
+		Hibernate.initialize(user.getHelpMessages());
+		return user;
+	}
+
+	@Override
+	public User getCurrentUserFull() {
+		User user = getCurrentUserLight();
+		Hibernate.initialize(user.getSettings());
+		Hibernate.initialize(user.getFollowedApps());
+		Hibernate.initialize(user.getHelpMessages());
+		Hibernate.initialize(user.getNotifications());
+		return user;
 	}
 
 	@Override
@@ -88,11 +121,6 @@ public class UserServiceImpl implements UserService {
 		String newKey = generateNewAccountKeyWithoutSaving(user);
 		save(user);
 		return newKey;
-	}
-
-	@Override
-	public String generateCurrentNewApiKey() {
-		return generateNewApiKey(getCurrentUser());
 	}
 
 	private String generateNewAccountKeyWithoutSaving(User user) {
@@ -126,7 +154,8 @@ public class UserServiceImpl implements UserService {
 		user.setOsVersion(OsVersion.WIN_32_BITS);
 	}
 
-	private String generateNewApiKey(User user) {
+	@Override
+	public String generateNewApiKey(User user) {
 		String newKey = generateNewApiKeyWithoutSaving(user);
 		save(user);
 		return newKey;
@@ -199,11 +228,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User updateCurrentPassword(String newPassword) {
-		return updatePassword(getCurrentUser(), newPassword);
-	}
-
-	@Override
 	public User registerSocial(Connection<?> connection) {
 		if (connection == null) {
 			return null;
@@ -260,18 +284,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean deleteCurrentUser() {
-		return delete(getCurrentUser());
-	}
-
-	@Override
 	public boolean isValidApiKey(String key) {
 		return userRepository.findByApiKey(key) != null;
 	}
 
 	@Override
-	public List<ApplicationFollow> getFollowedApplications() {
-		List<ApplicationFollow> applicationFollows = getCurrentUser().getFollowedApps();
+	public List<ApplicationFollow> getFollowedApplications(User user) {
+		List<ApplicationFollow> applicationFollows = user.getFollowedApps();
 		Collections.sort(applicationFollows, new Comparator<ApplicationFollow>() {
 			@Override
 			public int compare(ApplicationFollow a1, ApplicationFollow a2) {
@@ -282,8 +301,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<ApplicationFollow> addApplicationsToFollow(List<String> apiNames) {
-		User user = getCurrentUser();
+	public List<ApplicationFollow> addApplicationsToFollow(User user, List<String> apiNames) {
 		List<ApplicationFollow> followedApps = new ArrayList<ApplicationFollow>();
 		for (String apiName : apiNames) {
 			if (apiName != null) {
@@ -299,8 +317,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean deleteApplicationToFollow(String apiName) {
-		ApplicationFollow applicationFollow = findApplicationFollow(getCurrentUser(), apiName);
+	public boolean deleteApplicationToFollow(User user, String apiName) {
+		ApplicationFollow applicationFollow = findApplicationFollow(user, apiName);
 		if (applicationFollow == null) {
 			return false;
 		}
@@ -309,8 +327,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean disableEmailAlertApplicationToFollow(String apiName) {
-		ApplicationFollow applicationFollow = findApplicationFollow(getCurrentUser(), apiName);
+	public boolean disableEmailAlertApplicationToFollow(User user, String apiName) {
+		ApplicationFollow applicationFollow = findApplicationFollow(user, apiName);
 		if (applicationFollow == null) {
 			return false;
 		}
@@ -319,8 +337,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean enableEmailAlertApplicationToFollow(String apiName) {
-		ApplicationFollow applicationFollow = findApplicationFollow(getCurrentUser(), apiName);
+	public boolean enableEmailAlertApplicationToFollow(User user, String apiName) {
+		ApplicationFollow applicationFollow = findApplicationFollow(user, apiName);
 		if (applicationFollow == null) {
 			return false;
 		}
@@ -339,15 +357,14 @@ public class UserServiceImpl implements UserService {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<ApplicationReference> getLeftApplications() {
+	public List<ApplicationReference> getLeftApplications(User user) {
 		List<ApplicationReference> allApplicationReferences = applicationService.getApplicationReferences();
-		List<ApplicationReference> followApplicationReferences = (List<ApplicationReference>) CollectionUtils.collect(getFollowedApplications(), new BeanToPropertyValueTransformer("referenceApp"));
+		List<ApplicationReference> followApplicationReferences = (List<ApplicationReference>) CollectionUtils.collect(getFollowedApplications(user), new BeanToPropertyValueTransformer("referenceApp"));
 		return (List<ApplicationReference>) CollectionUtils.subtract(allApplicationReferences, followApplicationReferences);
 	}
 
 	@Override
-	public String getDownloadUrlMatchingSettings(ApplicationVersion applicationVersion) {
-		User user = getCurrentUser();
+	public String getDownloadUrlMatchingSettings(User user, ApplicationVersion applicationVersion) {
 		return getDownloadUrlMatchingSettings(applicationVersion, user.getLang(), user.getOsVersion());
 	}
 
@@ -378,16 +395,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean isMessageDismissed(TypeHelpMessage typeHelpMessage) {
-		return findHelpMessageFromType(getCurrentUser(), typeHelpMessage).isHidden();
+	public boolean isMessageDismissed(User user, TypeHelpMessage typeHelpMessage) {
+		return findHelpMessageFromType(user, typeHelpMessage).isHidden();
 	}
 
 	@Override
-	public void dismissMessage(TypeHelpMessage typeHelpMessage) {
-		User user = getCurrentUser();
+	public void dismissMessage(User user, TypeHelpMessage typeHelpMessage) {
 		findHelpMessageFromType(user, typeHelpMessage).setHidden(true);
 		save(user);
-
 	}
 
 }

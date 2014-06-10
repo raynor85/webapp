@@ -1,10 +1,15 @@
 -- Clean
 DELETE FROM setting;
 DELETE FROM helpmessage;
+DELETE FROM applicationfollow;
 DELETE FROM person;
 DELETE FROM userconnection;
 DELETE FROM applicationversion;
 DELETE FROM applicationreference;
+DROP INDEX IF EXISTS userconnectionrank;
+DROP INDEX IF EXISTS personemail;
+DROP INDEX IF EXISTS applicationreferencename;
+DROP INDEX IF EXISTS applicationreferenceapiname;
 
 -- Indexes
 CREATE UNIQUE INDEX userconnectionrank ON userconnection(userid, providerid, rank);
