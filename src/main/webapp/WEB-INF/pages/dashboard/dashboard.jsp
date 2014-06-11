@@ -10,7 +10,7 @@
 			<form:form id="helpMessageHowToDismissMessageForm" commandName="dismissMessage" action="${root}/dashboard/dismiss">
 				<div id="helpMessageHowTo" class="alert alert-info pull-right-lg">
 					<spring:message code="dashboard.applications.tip.howto" />
-					<a href="javascript:ajaxDismissMessage('DASHBOARD_HOW_TO','helpMessageHowTo');"><spring:message code="dashboard.applications.tip.dismiss" /></a>
+					<a class="alert-link" href="javascript:ajaxDismissMessage('DASHBOARD_HOW_TO','helpMessageHowTo');"><spring:message code="dashboard.applications.tip.dismiss" /></a>
 				</div>
 			</form:form>
 		</c:if>
@@ -18,7 +18,7 @@
 			<form:form id="helpMessageEmailDisableDismissMessageForm" commandName="dismissMessage" action="${root}/dashboard/dismiss">
 				<div id="helpMessageEmailDisable" class="alert alert-warning pull-left">
 					<spring:message code="dashboard.applications.tip.alert.email.disable" arguments="${root}" />
-					<a href="javascript:ajaxDismissMessage('DASHBOARD_ALERT_DISABLED','helpMessageEmailDisable');"><spring:message code="dashboard.applications.tip.dismiss" /></a>
+					<a class="alert-link" href="javascript:ajaxDismissMessage('DASHBOARD_ALERT_DISABLED','helpMessageEmailDisable');"><spring:message code="dashboard.applications.tip.dismiss" /></a>
 				</div>
 			</form:form>
 		</c:if>
@@ -87,18 +87,20 @@
 						</c:otherwise>
 					</c:choose>
 					<button id="button-current-disable-${appId}" title="${disableTitle}" aria-hidden="true" style="margin-left: -3px;${disableStyle}" class="close pull-left" type="button" onclick="ajaxDisableAlertCurrentApplication('${appId}');">
-						<i class="fa fa-envelope-o fa-1x"></i>
+						<i class="fa fa-envelope-o fa-1x" style="color: green;"></i>
 					</button>
 					<button id="button-current-enable-${appId}" title="${enableTitle}" aria-hidden="true" class="close pull-left" style="${enableStyle}" type="button" onclick="ajaxEnableAlertCurrentApplication('${appId}');">
-						<i class="fa fa-ban fa-1x"></i>
+						<i class="fa fa-ban fa-1x" style="color: red;"></i>
 					</button>
 					<div class="application">
 						<div class="icon">
 							<a href="${currentFollowApplication.downloadUrl}" title="${downloadTitle}" target="_blank"><img class="shadowHover" src="<spring:url value="/resources/img/application/medium/${currentFollowApplication.iconFilename}" />" alt="${appName}"></a>
 						</div>
 						<div class="title">
-							<a href="${currentFollowApplication.downloadUrl}" title="${downloadTitle}" target="_blank">${appName}<br /><em><strong>${currentFollowApplication.versionNumber}</strong></em>
-							</a>
+							<h4>
+								<span class="label label-success">${appName}</span>
+							</h4>
+							<span class="label label-danger">${currentFollowApplication.versionNumber}</span>
 						</div>
 					</div>
 				</div>
@@ -152,12 +154,14 @@
 						<c:forEach items="${leftApplications}" var="leftApplication" varStatus="i">
 							<c:set var="appName">${leftApplication.name}</c:set>
 							<c:set var="appId">${leftApplication.apiName}</c:set>
-							<div class="col-xs-4 col-sm-3 col-md-3 col-lg-2 newFollowApplicationContainer">
+							<div class="col-xs-4 col-sm-3 col-md-3 col-lg-2 newFollowApplicationContainer" onclick="followNewApplication('${appId}');">
 								<div id="div-new-${appId}" class="application">
-									<div class="icon" onclick="followNewApplication('${appId}');">
+									<div class="icon">
 										<img src="<spring:url value="/resources/img/application/small/${leftApplication.iconFilename}" />" alt="${appName}">
 									</div>
-									<div class="title" onclick="followNewApplication('${appId}');">${appName}</div>
+									<div class="title">
+										<span class="label label-success">${appName}</span>
+									</div>
 								</div>
 							</div>
 							<form:checkbox path="apiNames[${i.index}]" id="app-${appId}" value="${appId}" cssClass="hidden" />

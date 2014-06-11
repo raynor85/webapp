@@ -18,23 +18,23 @@ public interface ApplicationService {
 	 * Application References
 	 */
 
-	@Cacheable(value = "applicationReferences", key = "'applicationReferences'")
+	@Cacheable(value = "applicationReferences", key = "'applicationReferences.all'")
 	List<ApplicationReference> getApplicationReferences();
 
-	@Cacheable(value = "applicationReferences", key = "#apiName")
+	@Cacheable(value = "applicationReferences", key = "{'applicationReferences.one', #apiName}")
 	ApplicationReference getApplicationReference(String apiName);
 
 	/**
 	 * Application Versions
 	 */
 
-	@CacheEvict(value = "applicationVersions", key = "#applicationVersion.reference.apiName")
+	@CacheEvict(value = "applicationVersions", key = "{'applicationVersions.one', #applicationVersion.reference.apiName}")
 	ApplicationVersion addApplicationVersion(ApplicationVersion applicationVersion);
 
-	@Cacheable(value = "applicationVersions", key = "#apiName")
+	@Cacheable(value = "applicationVersions", key = "{'applicationVersions.one', #apiName}")
 	ApplicationVersion getLatestApplicationVersion(String apiName);
 
-	@Cacheable(value = "applicationVersions", key = "#applicationReference.apiName")
+	@Cacheable(value = "applicationVersions", key = "{'applicationVersions.one', #applicationReference.apiName}")
 	ApplicationVersion getLatestApplicationVersion(ApplicationReference applicationReference);
 
 	ApplicationVersion getLatestApplicationVersionNoCache(ApplicationReference applicationReference);
@@ -47,9 +47,9 @@ public interface ApplicationService {
 
 	void deleteApplicationFollow(ApplicationFollow applicationFollow);
 
-	void enableEmailAlertApplicationFollow(ApplicationFollow applicationFollow);
+	ApplicationFollow enableEmailAlertApplicationFollow(ApplicationFollow applicationFollow);
 
-	void disableEmailAlertApplicationFollow(ApplicationFollow applicationFollow);
+	ApplicationFollow disableEmailAlertApplicationFollow(ApplicationFollow applicationFollow);
 
 	/**
 	 * Application Request

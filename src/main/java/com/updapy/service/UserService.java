@@ -64,6 +64,6 @@ public interface UserService {
 
 	boolean isMessageDismissed(User user, TypeHelpMessage typeHelpMessage);
 
-	void dismissMessage(User user, TypeHelpMessage typeHelpMessage);
+	User dismissMessage(User user, TypeHelpMessage typeHelpMessage);
 
 }

@@ -72,15 +72,15 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
-	public void enableEmailAlertApplicationFollow(ApplicationFollow applicationFollow) {
+	public ApplicationFollow enableEmailAlertApplicationFollow(ApplicationFollow applicationFollow) {
 		applicationFollow.setEmailNotificationActive(true);
-		saveApplicationFollow(applicationFollow);
+		return saveApplicationFollow(applicationFollow);
 	}
 
 	@Override
-	public void disableEmailAlertApplicationFollow(ApplicationFollow applicationFollow) {
+	public ApplicationFollow disableEmailAlertApplicationFollow(ApplicationFollow applicationFollow) {
 		applicationFollow.setEmailNotificationActive(false);
-		saveApplicationFollow(applicationFollow);
+		return saveApplicationFollow(applicationFollow);
 	}
 
 	@Override

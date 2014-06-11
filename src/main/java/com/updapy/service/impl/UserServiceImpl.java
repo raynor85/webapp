@@ -400,9 +400,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void dismissMessage(User user, TypeHelpMessage typeHelpMessage) {
+	public User dismissMessage(User user, TypeHelpMessage typeHelpMessage) {
 		findHelpMessageFromType(user, typeHelpMessage).setHidden(true);
-		save(user);
+		return save(user);
 	}
 
 }

@@ -1579,32 +1579,38 @@ div.newFollowApplicationContainer {
 }
 
 div.newFollowApplicationContainer div.application {
-	height: 85%;
-	left: 26%;
-	margin: -19% 0 0 -22%;
+	height: 90%;
+	left: 25%;
+	margin: -25% 0 0 -20%;
 	position: absolute;
 	text-align: center;
 	top: 50%;
-	width: 91%;
+	width: 90%;
 	padding: 5px;
+	opacity: 0.7;
+	border: 1px solid #FFFFFF;
 }
 
 div.newFollowApplicationContainer div.application:hover {
 	color: #005724;
-	background-color: #E2F0E7;
 	cursor: pointer;
-	border-radius: 6px;
+	opacity: 1;
+	border-radius: 4px;
+	background-color: #DFF0D8;
+	border: 1px solid #D6E9C6;
 }
 
 div.newFollowApplicationContainer div.application:active,div.application-selected {
 	color: #005724 !important;
-	background-color: #C2EFD2 !important;
-	border-radius: 6px !important;
+	cursor: pointer !important;
+	opacity: 1 !important;
+	border-radius: 4px !important;
+	background-color: #D2F1C6 !important;
+	border: 1px solid #CAE8B4 !important;
 }
 
 div.newFollowApplicationContainer div.application div.title {
-	margin-top: 5px;
-	font-size: 13px;
+	margin-top: 3px;
 }
 
 /*** Current apps followed ***/
@@ -1621,10 +1627,8 @@ div.currentFollowApplicationContainer div.application div.title {
 	margin-top: 5px;
 }
 
-div.currentFollowApplicationContainer div.application:hover {
-	text-decoration: underline;
-	color: #27AE60;
-	cursor: pointer;
+div.currentFollowApplicationContainer div.application div.title h4 {
+	height: 15px;
 }
 
 img.shadowHover {
@@ -1632,9 +1636,9 @@ img.shadowHover {
 }
 
 img.shadowHover:hover {
-	png-shadow: 1px 1px 2px #222;
-	-webkit-filter: drop-shadow(1px 1px 2px #222);
-	filter: drop-shadow(1px 1px 2px #222);
+	png-shadow: 1px 1px 2px #555;
+	-webkit-filter: drop-shadow(1px 1px 2px #555);
+	filter: drop-shadow(1px 1px 2px #555);
 	opacity: 1;
 }
 

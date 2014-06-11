@@ -132,7 +132,6 @@
 			<property name="defaultEncoding" value="UTF-8" />
 		</bean>
 
-		<!-- <jdbc:embedded-database id="dataSource"/> -->
 		<bean class="java.net.URI" id="dbUrl">
 			<constructor-arg value="#{systemEnvironment['DATABASE_URL']}" />
 		</bean>
@@ -151,10 +150,9 @@
 			</property>
 			<property name="jpaProperties">
 				<props>
-					<!-- <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop> -->
+					<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 					<prop key="hibernate.show_sql">true</prop>
 					<prop key="hibernate.format_sql">true</prop>
-					<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 					<prop key="hibernate.hbm2ddl.import_files">/sql/import.sql</prop>
 					<prop key="hibernate.hbm2ddl.auto">validate</prop>
 				</props>
