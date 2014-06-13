@@ -34,7 +34,7 @@ import com.updapy.util.DozerHelper;
 import com.updapy.util.JsonResponseUtils;
 
 @Controller
-@RequestMapping("dashboard")
+@RequestMapping("/dashboard")
 public class DashboardController {
 
 	@Autowired
@@ -60,14 +60,14 @@ public class DashboardController {
 		return initModelAndView(userService.getCurrentUserFull(), "dashboard");
 	}
 
-	@RequestMapping(value = "follow", method = RequestMethod.POST)
+	@RequestMapping(value = "/follow", method = RequestMethod.POST)
 	public ModelAndView followApplications(FollowNewApplications followNewApplications) {
 		User user = userService.getCurrentUserWithApplicationFolloweds();
 		userService.addApplicationsToFollow(user, followNewApplications.getApiNames());
 		return initModelAndViewForRedirect(user, "redirect:/dashboard");
 	}
 
-	@RequestMapping(value = "unfollow", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/unfollow", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	JsonResponse unfollowApplication(@RequestBody ChangeCurrentApplication unfollowCurrentApplication) {
 		boolean isDeleted = userService.deleteApplicationToFollow(userService.getCurrentUserWithApplicationFolloweds(), unfollowCurrentApplication.getApiName());
@@ -78,7 +78,7 @@ public class DashboardController {
 		}
 	}
 
-	@RequestMapping(value = "disable", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/disable", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	JsonResponse disableEmailAlert(@RequestBody ChangeCurrentApplication disableCurrentApplication) {
 		boolean isDone = userService.disableEmailAlertApplicationToFollow(userService.getCurrentUserWithApplicationFolloweds(), disableCurrentApplication.getApiName());
@@ -89,7 +89,7 @@ public class DashboardController {
 		}
 	}
 
-	@RequestMapping(value = "enable", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/enable", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	JsonResponse enableEmailAlert(@RequestBody ChangeCurrentApplication enableCurrentApplication) {
 		boolean isDone = userService.enableEmailAlertApplicationToFollow(userService.getCurrentUserWithApplicationFolloweds(), enableCurrentApplication.getApiName());
@@ -100,7 +100,7 @@ public class DashboardController {
 		}
 	}
 
-	@RequestMapping(value = "dismiss", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/dismiss", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	JsonResponse dismissMessage(@RequestBody DismissMessage dismissMessage) {
 		try {
@@ -111,7 +111,7 @@ public class DashboardController {
 		return jsonResponseUtils.buildSuccessfulJsonResponse("dashboard.applications.dismiss.confirm");
 	}
 
-	@RequestMapping(value = "request", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/request", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	JsonResponse requestApplication(@Valid @RequestBody RequestApplication requestApplication, BindingResult result) {
 		if (result.hasErrors()) {

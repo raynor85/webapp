@@ -14,7 +14,7 @@ import com.updapy.service.UserService;
 import com.updapy.util.JsonResponseUtils;
 
 @Controller
-@RequestMapping("developers")
+@RequestMapping("/developers")
 public class DevelopersController {
 
 	@Autowired
@@ -33,14 +33,14 @@ public class DevelopersController {
 		return new ModelAndView("developers", "resetUserApiKey", resetUserApiKey);
 	}
 
-	@RequestMapping(value = "apikey/reset", method = RequestMethod.POST)
+	@RequestMapping(value = "/apikey/reset", method = RequestMethod.POST)
 	public @ResponseBody
 	JsonResponse resetApiKey() {
 		userService.generateNewApiKey(userService.getCurrentUserLight());
 		return jsonResponseUtils.buildSuccessfulJsonResponse("developers.api.apiKey.reset.confirm");
 	}
 
-	@RequestMapping(value = "apikey/get")
+	@RequestMapping(value = "/apikey/get")
 	public @ResponseBody
 	String getApiKey() {
 		return userService.getCurrentUserLight().getApiKey();

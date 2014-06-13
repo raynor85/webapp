@@ -33,7 +33,7 @@ import com.updapy.util.DozerHelper;
 import com.updapy.util.JsonResponseUtils;
 
 @Controller
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
 
 	@Autowired
@@ -60,27 +60,27 @@ public class UserController {
 	@Autowired
 	private Validator resetUserCustomValidator;
 
-	@InitBinder("registerEarlyUser")
+	@InitBinder("/registerEarlyUser")
 	private void initBinderEarly(WebDataBinder binder) {
 		binder.addValidators(registerEarlyUserCustomValidator);
 	}
 
-	@InitBinder("registerUser")
+	@InitBinder("/registerUser")
 	private void initBinderRegisterUser(WebDataBinder binder) {
 		binder.addValidators(registerUserCustomValidator);
 	}
 
-	@InitBinder("resetUserEmail")
+	@InitBinder("/resetUserEmail")
 	private void initBinderResetPassword(WebDataBinder binder) {
 		binder.addValidators(resetUserEmailCustomValidator);
 	}
 
-	@InitBinder("resetUser")
+	@InitBinder("/resetUser")
 	private void initBinderResetPasswordConfirm(WebDataBinder binder) {
 		binder.addValidators(resetUserCustomValidator);
 	}
 
-	@RequestMapping(value = "register/early", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/register/early", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	JsonResponse registerEarly(@Valid @RequestBody RegisterEarlyUser registerEarlyUser, BindingResult result) {
 		if (result.hasErrors()) {
@@ -91,7 +91,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "register", method = RequestMethod.POST)
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ModelAndView registerNormal(@Valid RegisterUser registerUser, BindingResult result) {
 		ModelAndView modelAndView = new ModelAndView("", "email", registerUser.getEmail());
 		if (result.hasErrors()) {
@@ -110,7 +110,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "register", method = RequestMethod.GET)
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String registerSocial(WebRequest request, ProviderSignInUtils providerSignInUtils) {
 		Connection<?> connection = providerSignInUtils.getConnectionFromSession(request);
 		User user = userService.registerSocial(connection);
@@ -122,7 +122,7 @@ public class UserController {
 		return "error-social";
 	}
 
-	@RequestMapping(value = "activate/send")
+	@RequestMapping(value = "/activate/send")
 	public ModelAndView sendActivationEmail(@RequestParam(value = "email", required = true) String email) {
 		ModelAndView modelAndView = new ModelAndView("", "email", email);
 		User user = userService.findByEmail(email);
@@ -138,7 +138,7 @@ public class UserController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "activate")
+	@RequestMapping(value = "/activate")
 	public String activate(@RequestParam(value = "email", required = true) String email, @RequestParam(value = "key", required = true) String key) {
 		User user = userService.findByEmail(email);
 		if (user == null // user not found
@@ -152,7 +152,7 @@ public class UserController {
 		return "sign-up-complete";
 	}
 
-	@RequestMapping(value = "reset/send", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/reset/send", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	JsonResponse sendResetPasswordEmail(@Valid @RequestBody ResetUserEmail resetUserEmail, BindingResult result) {
 		if (result.hasErrors()) {
@@ -169,7 +169,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "reset/password")
+	@RequestMapping(value = "/reset/password")
 	public ModelAndView resetPassword(@RequestParam(value = "email", required = true) String email, @RequestParam(value = "key", required = true) String key) {
 		User user = userService.findByEmail(email);
 		if (user == null // user not found
@@ -186,7 +186,7 @@ public class UserController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "reset", method = RequestMethod.POST)
+	@RequestMapping(value = "/reset", method = RequestMethod.POST)
 	public String resetPasswordConfirm(@Valid ResetUser resetUser, BindingResult result) {
 		if (result.hasErrors()) {
 			return "sign-in-reset";

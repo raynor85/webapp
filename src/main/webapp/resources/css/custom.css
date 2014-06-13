@@ -1556,7 +1556,7 @@ div.form-group div.col-sm-3 {
 
 /*** Tables ***/
 .table-inner {
-	width: 70%;
+	width: 75%;
 	margin: 0 auto;
 }
 
@@ -1645,4 +1645,27 @@ img.shadowHover:hover {
 /*** Request application ***/
 #requestApplicationLink {
 	margin-top: 15px;
+}
+
+/*** JSON format ***/
+.json-string {
+	color: #3366cc;
+}
+
+.json-number {
+	color: #cc0000;
+}
+
+.json-boolean {
+	color: #003366;
+}
+
+.json-null {
+	color: #969696;
+	font-weight: bold;
+}
+
+.json-key {
+	color: #003366;
+	font-weight: bold;
 }

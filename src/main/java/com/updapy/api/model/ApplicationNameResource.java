@@ -1,6 +1,8 @@
 package com.updapy.api.model;
 
-public class ApplicationName {
+import org.springframework.hateoas.ResourceSupport;
+
+public class ApplicationNameResource extends ResourceSupport {
 
 	private String realName;
 

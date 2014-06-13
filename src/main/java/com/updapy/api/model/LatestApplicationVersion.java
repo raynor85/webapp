@@ -1,6 +1,8 @@
 package com.updapy.api.model;
 
-public class LatestApplicationVersion {
+import org.springframework.hateoas.ResourceSupport;
+
+public class LatestApplicationVersion extends ResourceSupport {
 
 	private String applicationName;
 

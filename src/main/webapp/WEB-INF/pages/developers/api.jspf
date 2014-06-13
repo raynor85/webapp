@@ -61,7 +61,7 @@
 									</tr>
 									<tr>
 										<td><spring:message code="developers.api.documentation.table.head.example.response" /></td>
-										<td><pre><code><spring:message code="developers.api.documentation.table.getApplicationNames.example.response" /></code></pre></td>
+										<td><pre><code><span id="responseJson1"> </span></code></pre></td>
 									</tr>
 								</table>
 							</div>
@@ -95,7 +95,7 @@
 									</tr>
 									<tr>
 										<td><spring:message code="developers.api.documentation.table.head.example.response" /></td>
-										<td><pre><code><spring:message code="developers.api.documentation.table.getLastVersion.example.response" /></code></pre></td>
+										<td><pre><code><span id="responseJson2"> </span></code></pre></td>
 									</tr>
 								</table>
 							</div>
@@ -141,4 +141,10 @@
 	var refreshApiKey = function() {
 		ajaxCallGetAndRefresh("apikey", "#apiKey");
 	};
+	var displayJsonExamples = function() {
+		var responseJson1 = <spring:message code='developers.api.documentation.table.getApplicationNames.example.response' />;
+		var responseJson2 = <spring:message code='developers.api.documentation.table.getLastVersion.example.response' />;
+		$("#responseJson1").html(syntaxHighlight(responseJson1));
+		$("#responseJson2").html(syntaxHighlight(responseJson2));
+	}();
 </script>

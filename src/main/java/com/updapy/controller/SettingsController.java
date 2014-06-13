@@ -29,7 +29,7 @@ import com.updapy.service.security.SecurityUtils;
 import com.updapy.util.JsonResponseUtils;
 
 @Controller
-@RequestMapping("settings")
+@RequestMapping("/settings")
 public class SettingsController {
 
 	@Autowired
@@ -44,7 +44,7 @@ public class SettingsController {
 	@Autowired
 	private Validator changePasswordUserCustomValidator;
 
-	@InitBinder("changePasswordUser")
+	@InitBinder("/changePasswordUser")
 	private void initBinderChangePassword(WebDataBinder binder) {
 		binder.addValidators(changePasswordUserCustomValidator);
 	}
@@ -58,7 +58,7 @@ public class SettingsController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "update", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/update", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	JsonResponse update(@Valid @RequestBody UpdateSettings updateSettings, BindingResult result) {
 		if (result.hasErrors()) {
@@ -75,7 +75,7 @@ public class SettingsController {
 		}
 	}
 
-	@RequestMapping(value = "updapte/password", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/updapte/password", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	JsonResponse changePassword(@Valid @RequestBody ChangePasswordUser changePasswordUser, BindingResult result) {
 		if (result.hasErrors()) {
@@ -86,7 +86,7 @@ public class SettingsController {
 		}
 	}
 
-	@RequestMapping(value = "delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String deleteAccount(DeleteAccount deleteAccount, HttpServletRequest request, HttpServletResponse response) {
 		settingsService.addFeedback(deleteAccount.getFeedback());
 		boolean isDeleted = userService.delete(userService.getCurrentUserLight());

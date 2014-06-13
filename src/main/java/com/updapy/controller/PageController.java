@@ -16,32 +16,32 @@ public class PageController {
 		return new ModelAndView("welcome", "registerEarlyUser", new RegisterEarlyUser());
 	}
 
-	@RequestMapping("error/404")
+	@RequestMapping("/error/404")
 	public String error404Page() {
 		return "error-404";
 	}
 
-	@RequestMapping("error/403")
+	@RequestMapping("/error/403")
 	public String error403Page() {
 		return "error-403";
 	}
 
-	@RequestMapping("error")
+	@RequestMapping("/error")
 	public String errorPage() {
 		return "error";
 	}
 
-	@RequestMapping("faq")
+	@RequestMapping("/faq")
 	public String faqPage() {
 		return "faq";
 	}
 
-	@RequestMapping("privacy")
+	@RequestMapping("/privacy")
 	public String privacyPage() {
 		return "privacy";
 	}
 
-	@RequestMapping({ "sign", "signin" })
+	@RequestMapping({ "/sign", "/signin" })
 	public ModelAndView signPage() {
 		ModelAndView modelAndView = new ModelAndView("sign");
 		modelAndView.addObject("resetUserEmail", new ResetUserEmail());
@@ -49,12 +49,12 @@ public class PageController {
 		return modelAndView;
 	}
 
-	@RequestMapping({ "sign-up", "signup" })
+	@RequestMapping({ "/sign-up", "/signup" })
 	public ModelAndView signupPage() {
 		return new ModelAndView("sign-up", "registerUser", new RegisterUser());
 	}
 
-	@RequestMapping("signup/activate")
+	@RequestMapping("/signup/activate")
 	public String signupActivatePage() {
 		return "sign-up-activate";
 	}
