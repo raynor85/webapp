@@ -45,7 +45,7 @@ public class ApiV1Controller {
 		}
 		ApplicationNameResources applicationNameResources = new ApplicationNameResources();
 		applicationNameResources.add(linkTo(methodOn(ApiV1Controller.class).getApplicationNames(key)).withSelfRel());
-		List<ApplicationNameResource> applicationNames = dozerHelper.map(applicationService.getApplicationReferences(), ApplicationNameResource.class);
+		List<ApplicationNameResource> applicationNames = dozerHelper.map(applicationService.getApplications(), ApplicationNameResource.class);
 		for (ApplicationNameResource applicationName : applicationNames) {
 			applicationName.add(linkTo(methodOn(ApiV1Controller.class).getLastVersion(applicationName.getApiName(), key)).withRel("latestVersion"));
 		}
@@ -59,13 +59,13 @@ public class ApiV1Controller {
 		if (!userService.isValidApiKey(key)) {
 			throw new UnauthorizedException();
 		}
-		ApplicationVersion applicationVersion = applicationService.getLatestApplicationVersion(apiName);
-		if (applicationVersion == null) {
+		ApplicationVersion version = applicationService.getLatestVersion(apiName);
+		if (version == null) {
 			throw new ResourceNotFoundException();
 		}
-		LatestApplicationVersion latestApplicationVersion = dozerHelper.map(applicationVersion, LatestApplicationVersion.class);
-		latestApplicationVersion.add(linkTo(methodOn(ApiV1Controller.class).getLastVersion(apiName, key)).withSelfRel());
-		return new ResponseEntity<LatestApplicationVersion>(latestApplicationVersion, HttpStatus.OK);
+		LatestApplicationVersion latestVersion = dozerHelper.map(version, LatestApplicationVersion.class);
+		latestVersion.add(linkTo(methodOn(ApiV1Controller.class).getLastVersion(apiName, key)).withSelfRel());
+		return new ResponseEntity<LatestApplicationVersion>(latestVersion, HttpStatus.OK);
 	}
 
 }

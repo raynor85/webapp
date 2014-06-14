@@ -1,6 +1,8 @@
 package com.updapy.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 
@@ -16,6 +18,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.velocity.app.VelocityEngine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +26,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
+import com.updapy.model.ApplicationReference;
+import com.updapy.model.ApplicationVersion;
+import com.updapy.model.UpdateUrl;
 import com.updapy.service.MailSenderService;
 import com.updapy.util.MessageUtils;
 
@@ -43,20 +49,20 @@ public class MailSenderServiceImpl implements MailSenderService {
 	private static final String SMTP_AUTH_PWD = System.getenv("SENDGRID_PASSWORD");
 
 	@Override
-	public boolean sendActivationLink(String email, String key) {
-		String link = messageUtils.getSimpleMessage("application.root.url") + "/user/activate?email=" + email + "&key=" + key;
-		String fromEmail = messageUtils.getSimpleMessage("email.noreply");
-		String subject = messageUtils.getSimpleMessage("email.activate.subject");
+	public boolean sendActivationLink(String email, String key, Locale locale) {
+		String link = messageUtils.getSimpleMessage("application.root.url", locale) + "/user/activate?email=" + email + "&key=" + key;
+		String fromEmail = messageUtils.getSimpleMessage("email.noreply", locale);
+		String subject = messageUtils.getSimpleMessage("email.activate.subject", locale);
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("lang", messageUtils.getSimpleMessage("email.lang"));
-		model.put("title", messageUtils.getSimpleMessage("email.activate.content.title"));
-		model.put("text1", messageUtils.getSimpleMessage("email.activate.content.text1"));
-		model.put("button", messageUtils.getSimpleMessage("email.activate.content.button"));
-		model.put("text2", messageUtils.getSimpleMessage("email.activate.content.text2"));
+		model.put("lang", messageUtils.getSimpleMessage("email.lang", locale));
+		model.put("title", messageUtils.getSimpleMessage("email.activate.content.title", locale));
+		model.put("text1", messageUtils.getSimpleMessage("email.activate.content.text1", locale));
+		model.put("button", messageUtils.getSimpleMessage("email.activate.content.button", locale));
+		model.put("text2", messageUtils.getSimpleMessage("email.activate.content.text2", locale));
 		model.put("link", link);
 		model.put("text3", "");
-		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1"));
-		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2"));
+		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
+		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "reset-activate-account.vm", "UTF-8", model);
 		try {
 			send(fromEmail, email, subject, message);
@@ -67,20 +73,20 @@ public class MailSenderServiceImpl implements MailSenderService {
 	}
 
 	@Override
-	public boolean sendResetPasswordLink(String email, String key) {
-		String link = messageUtils.getSimpleMessage("application.root.url") + "/user/reset/password?email=" + email + "&key=" + key;
-		String fromEmail = messageUtils.getSimpleMessage("email.noreply");
-		String subject = messageUtils.getSimpleMessage("email.reset.subject");
+	public boolean sendResetPasswordLink(String email, String key, Locale locale) {
+		String link = messageUtils.getSimpleMessage("application.root.url", locale) + "/user/reset/password?email=" + email + "&key=" + key;
+		String fromEmail = messageUtils.getSimpleMessage("email.noreply", locale);
+		String subject = messageUtils.getSimpleMessage("email.reset.subject", locale);
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("lang", messageUtils.getSimpleMessage("email.lang"));
-		model.put("title", messageUtils.getSimpleMessage("email.reset.content.title"));
-		model.put("text1", messageUtils.getSimpleMessage("email.reset.content.text1"));
-		model.put("button", messageUtils.getSimpleMessage("email.reset.content.button"));
-		model.put("text2", messageUtils.getSimpleMessage("email.reset.content.text2"));
+		model.put("lang", messageUtils.getSimpleMessage("email.lang", locale));
+		model.put("title", messageUtils.getSimpleMessage("email.reset.content.title", locale));
+		model.put("text1", messageUtils.getSimpleMessage("email.reset.content.text1", locale));
+		model.put("button", messageUtils.getSimpleMessage("email.reset.content.button", locale));
+		model.put("text2", messageUtils.getSimpleMessage("email.reset.content.text2", locale));
 		model.put("link", link);
-		model.put("text3", messageUtils.getSimpleMessage("email.reset.content.text3"));
-		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1"));
-		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2"));
+		model.put("text3", messageUtils.getSimpleMessage("email.reset.content.text3", locale));
+		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
+		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "reset-activate-account.vm", "UTF-8", model);
 		try {
 			send(fromEmail, email, subject, message);
@@ -136,11 +142,14 @@ public class MailSenderServiceImpl implements MailSenderService {
 
 	@Override
 	public boolean sendAdminConnectionError(String url) {
-		String subject = messageUtils.getSimpleMessage("email.error.subject");
+		Locale locale = new Locale("en");
+		String subject = messageUtils.getSimpleMessage("email.error.subject", locale);
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("lang", messageUtils.getSimpleMessage("email.lang"));
-		model.put("title", messageUtils.getSimpleMessage("email.error.connection.content.title"));
-		model.put("text", messageUtils.getCustomMessage("email.error.connection.content.text", new String[] { url }));
+		model.put("lang", messageUtils.getSimpleMessage("email.lang", locale));
+		model.put("title", messageUtils.getSimpleMessage("email.error.connection.content.title", locale));
+		model.put("text", messageUtils.getCustomMessage("email.error.connection.content.text", new String[] { url }, locale));
+		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
+		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);
 		try {
 			send(ADMIN_EMAIL, ADMIN_EMAIL, subject, message);
@@ -152,11 +161,14 @@ public class MailSenderServiceImpl implements MailSenderService {
 
 	@Override
 	public boolean sendAdminRetrieverError(String applicationName) {
-		String subject = messageUtils.getSimpleMessage("email.error.subject");
+		Locale locale = new Locale("en");
+		String subject = messageUtils.getSimpleMessage("email.error.subject", locale);
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("lang", messageUtils.getSimpleMessage("email.lang"));
-		model.put("title", messageUtils.getSimpleMessage("email.error.retriever.content.title"));
-		model.put("text", messageUtils.getCustomMessage("email.error.retriever.content.text", new String[] { applicationName }));
+		model.put("lang", messageUtils.getSimpleMessage("email.lang", locale));
+		model.put("title", messageUtils.getSimpleMessage("email.error.retriever.content.title", locale));
+		model.put("text", messageUtils.getCustomMessage("email.error.retriever.content.text", new String[] { applicationName }, locale));
+		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
+		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);
 		try {
 			send(ADMIN_EMAIL, ADMIN_EMAIL, subject, message);
@@ -167,12 +179,15 @@ public class MailSenderServiceImpl implements MailSenderService {
 	}
 
 	@Override
-	public boolean sendAdminApplicationRequest(String name, String url) {
-		String subject = messageUtils.getSimpleMessage("email.application.request.subject");
+	public boolean sendAdminRequestedApplication(String name, String url) {
+		Locale locale = new Locale("en");
+		String subject = messageUtils.getSimpleMessage("email.application.request.subject", locale);
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("lang", messageUtils.getSimpleMessage("email.lang"));
-		model.put("title", messageUtils.getSimpleMessage("email.application.request.content.title"));
-		model.put("text", messageUtils.getCustomMessage("email.application.request.content.text", new String[] { name, url }));
+		model.put("lang", messageUtils.getSimpleMessage("email.lang", locale));
+		model.put("title", messageUtils.getSimpleMessage("email.application.request.content.title", locale));
+		model.put("text", messageUtils.getCustomMessage("email.application.request.content.text", new String[] { name, url }, locale));
+		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
+		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);
 		try {
 			send(ADMIN_EMAIL, ADMIN_EMAIL, subject, message);
@@ -180,5 +195,42 @@ public class MailSenderServiceImpl implements MailSenderService {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	@Override
+	public boolean sendSingleUpdate(String email, ApplicationReference application, ApplicationVersion newVersion, UpdateUrl updateUrl, List<UpdateUrl> otherUpdateUrls, Locale locale) {
+		String subject = messageUtils.getCustomMessage("email.application.update.single.subject", new String[] { application.getName() }, locale);
+		String fromEmail = messageUtils.getSimpleMessage("email.noreply", locale);
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("lang", messageUtils.getSimpleMessage("email.lang", locale));
+		model.put("title", messageUtils.getSimpleMessage("email.application.update.single.title", locale));
+		model.put("text1", messageUtils.getCustomMessage("email.application.update.single.text1", new String[] { application.getName(), newVersion.getVersionNumber() }, locale));
+		model.put("button", messageUtils.getSimpleMessage("email.application.update.single.button", locale));
+		model.put("text2", buildMessageOtherUpdates(otherUpdateUrls, newVersion.getVersionNumber(), locale));
+		model.put("link", updateUrl.getUrl());
+		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
+		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
+		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "single-update.vm", "UTF-8", model);
+
+		try {
+			send(fromEmail, email, subject, message);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	private String buildMessageOtherUpdates(List<UpdateUrl> otherUpdateUrls, String version, Locale locale) {
+		if (otherUpdateUrls.isEmpty()) {
+			return StringUtils.EMPTY;
+		}
+		StringBuilder message = new StringBuilder(messageUtils.getCustomMessage("email.application.update.single.text2.part1", new String[] { version }, locale));
+		for (UpdateUrl updateUrl : otherUpdateUrls) {
+			message.append(messageUtils.getCustomMessage("email.application.update.single.text2.list.begin", new String[] { updateUrl.getUrl() }, locale));
+			message.append(messageUtils.getSimpleMessage("email.application.update.single.text2.list." + updateUrl.getKey(), locale));
+			message.append(messageUtils.getSimpleMessage("email.application.update.single.text2.list.end", locale));
+		}
+		message.append(messageUtils.getSimpleMessage("email.application.update.single.text2.part2", locale));
+		return message.toString();
 	}
 }

@@ -14,8 +14,8 @@ public class SongbirdRemoteRetriever implements RemoteRetriever {
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://sourceforge.net";
 
 	@Override
-	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("Songbird");
+	public boolean support(ApplicationReference application) {
+		return application.getName().equalsIgnoreCase("Songbird");
 	}
 
 	@Override

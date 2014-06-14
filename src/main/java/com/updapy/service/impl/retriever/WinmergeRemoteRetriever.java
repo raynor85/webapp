@@ -11,8 +11,8 @@ import com.updapy.util.ParsingUtils;
 public class WinmergeRemoteRetriever implements RemoteRetriever {
 
 	@Override
-	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("WinMerge");
+	public boolean support(ApplicationReference application) {
+		return application.getName().equalsIgnoreCase("WinMerge");
 	}
 
 	@Override

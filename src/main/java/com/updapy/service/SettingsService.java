@@ -17,4 +17,6 @@ public interface SettingsService {
 
 	boolean isEmailDisabled(User user);
 
+	boolean isEmailOnEachUpdateActive(User user);
+
 }

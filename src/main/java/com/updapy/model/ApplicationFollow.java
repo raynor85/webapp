@@ -12,21 +12,21 @@ import com.updapy.model.common.BaseEntity;
 @SequenceGenerator(allocationSize = 1, name = "idSequence", sequenceName = "application_follow_seq")
 public class ApplicationFollow extends BaseEntity {
 
-	@ManyToOne(optional = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "person_id")
 	private User user;
 
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
-	private ApplicationReference referenceApp;
+	private ApplicationReference application;
 
 	private boolean emailNotificationActive;
 
-	public ApplicationReference getReferenceApp() {
-		return referenceApp;
+	public ApplicationReference getApplication() {
+		return application;
 	}
 
-	public void setReferenceApp(ApplicationReference referenceApp) {
-		this.referenceApp = referenceApp;
+	public void setApplication(ApplicationReference application) {
+		this.application = application;
 	}
 
 	public boolean isEmailNotificationActive() {

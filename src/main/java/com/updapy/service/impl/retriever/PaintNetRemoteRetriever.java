@@ -14,8 +14,8 @@ public class PaintNetRemoteRetriever implements RemoteRetriever {
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.dotpdn.com";
 
 	@Override
-	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("Paint.NET");
+	public boolean support(ApplicationReference application) {
+		return application.getName().equalsIgnoreCase("Paint.NET");
 	}
 
 	@Override

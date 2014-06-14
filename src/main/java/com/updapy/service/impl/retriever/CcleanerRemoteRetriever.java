@@ -13,8 +13,8 @@ public class CcleanerRemoteRetriever implements RemoteRetriever {
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.piriform.com/";
 
 	@Override
-	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("CCleaner");
+	public boolean support(ApplicationReference application) {
+		return application.getName().equalsIgnoreCase("CCleaner");
 	}
 
 	@Override

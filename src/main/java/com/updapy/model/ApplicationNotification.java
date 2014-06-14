@@ -15,24 +15,24 @@ import com.updapy.model.enumeration.TypeNofication;
 @SequenceGenerator(allocationSize = 1, name = "idSequence", sequenceName = "application_notification_seq")
 public class ApplicationNotification extends BaseEntity {
 
-	@ManyToOne(optional = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "person_id")
 	private User user;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	private ApplicationReference referenceApp;
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	private ApplicationVersion version;
 
 	private boolean read;
 
 	@Enumerated(EnumType.STRING)
 	private TypeNofication type;
 
-	public ApplicationReference getReferenceApp() {
-		return referenceApp;
+	public ApplicationVersion getVersion() {
+		return version;
 	}
 
-	public void setReferenceApp(ApplicationReference referenceApp) {
-		this.referenceApp = referenceApp;
+	public void setVersion(ApplicationVersion version) {
+		this.version = version;
 	}
 
 	public boolean isRead() {

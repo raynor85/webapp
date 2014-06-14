@@ -12,8 +12,8 @@ import com.updapy.util.ParsingUtils;
 public class MediaPlayerClassicRemoteRetriever implements RemoteRetriever {
 
 	@Override
-	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("Media Player Classic");
+	public boolean support(ApplicationReference application) {
+		return application.getName().equalsIgnoreCase("Media Player Classic");
 	}
 
 	@Override

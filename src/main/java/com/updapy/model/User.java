@@ -2,6 +2,7 @@ package com.updapy.model;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -34,7 +35,9 @@ public class User extends BaseEntity {
 	private SocialMediaService socialMediaService;
 
 	@Enumerated(EnumType.STRING)
-	private Lang lang;
+	private Lang langUpdate;
+
+	private Locale langEmail;
 
 	@Enumerated(EnumType.STRING)
 	private OsVersion osVersion;
@@ -64,10 +67,10 @@ public class User extends BaseEntity {
 	private List<Setting> settings;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE })
-	private List<ApplicationRequest> requestedApps;
+	private List<ApplicationRequest> requestedApplications;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE })
-	private List<ApplicationFollow> followedApps;
+	private List<ApplicationFollow> followedApplications;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE })
 	private List<ApplicationNotification> notifications;
@@ -120,20 +123,20 @@ public class User extends BaseEntity {
 		this.settings = settings;
 	}
 
-	public List<ApplicationRequest> getRequestedApps() {
-		return requestedApps;
+	public List<ApplicationRequest> getRequestedApplications() {
+		return requestedApplications;
 	}
 
-	public void setRequestedApps(List<ApplicationRequest> requestedApps) {
-		this.requestedApps = requestedApps;
+	public void setRequestedApplications(List<ApplicationRequest> requestedApplications) {
+		this.requestedApplications = requestedApplications;
 	}
 
-	public List<ApplicationFollow> getFollowedApps() {
-		return followedApps;
+	public List<ApplicationFollow> getFollowedApplications() {
+		return followedApplications;
 	}
 
-	public void setFollowedApps(List<ApplicationFollow> followedApps) {
-		this.followedApps = followedApps;
+	public void setFollowedApplications(List<ApplicationFollow> followedApplications) {
+		this.followedApplications = followedApplications;
 	}
 
 	public List<ApplicationNotification> getNotifications() {
@@ -204,20 +207,28 @@ public class User extends BaseEntity {
 		return socialMediaService != null;
 	}
 
-	public Lang getLang() {
-		return lang;
-	}
-
-	public void setLang(Lang lang) {
-		this.lang = lang;
-	}
-
 	public OsVersion getOsVersion() {
 		return osVersion;
 	}
 
 	public void setOsVersion(OsVersion osVersion) {
 		this.osVersion = osVersion;
+	}
+
+	public Lang getLangUpdate() {
+		return langUpdate;
+	}
+
+	public void setLangUpdate(Lang langUpdate) {
+		this.langUpdate = langUpdate;
+	}
+
+	public Locale getLangEmail() {
+		return langEmail;
+	}
+
+	public void setLangEmail(Locale langEmail) {
+		this.langEmail = langEmail;
 	}
 
 }

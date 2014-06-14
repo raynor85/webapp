@@ -24,7 +24,7 @@ public class ApplicationReference extends BaseEntity {
 
 	private String iconFilename;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reference")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "application")
 	private List<ApplicationVersion> versions;
 
 	private boolean active;

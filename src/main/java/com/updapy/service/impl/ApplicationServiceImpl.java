@@ -6,14 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.updapy.model.ApplicationFollow;
+import com.updapy.model.ApplicationNotification;
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationRequest;
 import com.updapy.model.ApplicationVersion;
+import com.updapy.model.User;
 import com.updapy.repository.ApplicationFollowRepository;
+import com.updapy.repository.ApplicationNotificationRepository;
 import com.updapy.repository.ApplicationReferenceRepository;
 import com.updapy.repository.ApplicationRequestRepository;
 import com.updapy.repository.ApplicationVersionRepository;
 import com.updapy.service.ApplicationService;
+import com.updapy.service.UserService;
 
 @Service
 public class ApplicationServiceImpl implements ApplicationService {
@@ -30,61 +34,93 @@ public class ApplicationServiceImpl implements ApplicationService {
 	@Autowired
 	private ApplicationRequestRepository applicationRequestRepository;
 
+	@Autowired
+	private ApplicationNotificationRepository applicationNotificationRepository;
+
+	@Autowired
+	private UserService userService;
+
 	@Override
-	public List<ApplicationReference> getApplicationReferences() {
+	public List<ApplicationReference> getApplications() {
 		return applicationReferenceRepository.findByActiveTrueOrderByApiNameAsc();
 	}
 
 	@Override
-	public ApplicationVersion getLatestApplicationVersion(String apiName) {
-		ApplicationReference applicationReference = applicationReferenceRepository.findByApiNameAndActiveTrue(apiName);
-		return getLatestApplicationVersion(applicationReference);
+	public ApplicationVersion getLatestVersion(String apiName) {
+		ApplicationReference application = applicationReferenceRepository.findByApiNameAndActiveTrue(apiName);
+		return getLatestVersion(application);
 	}
 
 	@Override
-	public ApplicationVersion addApplicationVersion(ApplicationVersion applicationVersion) {
-		return applicationVersionRepository.saveAndFlush(applicationVersion);
+	public ApplicationVersion addVersion(ApplicationVersion version) {
+		ApplicationVersion versionSaved = applicationVersionRepository.saveAndFlush(version);
+		notifyUsers(versionSaved);
+		return versionSaved;
+	}
+
+	private void notifyUsers(ApplicationVersion newVersion) {
+		List<User> userToNotifys = userService.findUsersFollowingApplication(newVersion.getApplication());
+		for (User userToNotify : userToNotifys) {
+			userService.notifyForNewVersion(userToNotify, newVersion);
+		}
 	}
 
 	@Override
-	public ApplicationVersion getLatestApplicationVersion(ApplicationReference applicationReference) {
-		return applicationVersionRepository.findLatestByApplicationReference(applicationReference);
+	public ApplicationVersion getLatestVersion(ApplicationReference application) {
+		return applicationVersionRepository.findLatestByApplicationReference(application);
 	}
 
 	@Override
-	public ApplicationVersion getLatestApplicationVersionNoCache(ApplicationReference applicationReference) {
-		return getLatestApplicationVersion(applicationReference);
+	public ApplicationVersion getLatestVersionNoCache(ApplicationReference application) {
+		return getLatestVersion(application);
 	}
 
 	@Override
-	public ApplicationReference getApplicationReference(String apiName) {
+	public ApplicationReference getApplication(String apiName) {
 		return applicationReferenceRepository.findByApiNameAndActiveTrue(apiName);
 	}
 
 	@Override
-	public ApplicationFollow saveApplicationFollow(ApplicationFollow applicationFollow) {
-		return applicationFollowRepository.saveAndFlush(applicationFollow);
+	public ApplicationFollow saveFollowedApplication(ApplicationFollow followedApplication) {
+		return applicationFollowRepository.saveAndFlush(followedApplication);
 	}
 
 	@Override
-	public void deleteApplicationFollow(ApplicationFollow applicationFollow) {
-		applicationFollowRepository.delete(applicationFollow);
+	public void deleteFollowedApplication(ApplicationFollow followedApplication) {
+		applicationFollowRepository.delete(followedApplication);
 	}
 
 	@Override
-	public ApplicationFollow enableEmailAlertApplicationFollow(ApplicationFollow applicationFollow) {
-		applicationFollow.setEmailNotificationActive(true);
-		return saveApplicationFollow(applicationFollow);
+	public ApplicationFollow enableEmailAlertFollowedApplication(ApplicationFollow followedApplication) {
+		followedApplication.setEmailNotificationActive(true);
+		return saveFollowedApplication(followedApplication);
 	}
 
 	@Override
-	public ApplicationFollow disableEmailAlertApplicationFollow(ApplicationFollow applicationFollow) {
-		applicationFollow.setEmailNotificationActive(false);
-		return saveApplicationFollow(applicationFollow);
+	public ApplicationFollow disableEmailAlertFollowedApplication(ApplicationFollow followedApplication) {
+		followedApplication.setEmailNotificationActive(false);
+		return saveFollowedApplication(followedApplication);
 	}
 
 	@Override
-	public ApplicationRequest saveApplicationRequest(ApplicationRequest applicationRequest) {
-		return applicationRequestRepository.saveAndFlush(applicationRequest);
+	public ApplicationRequest saveRequestedApplication(ApplicationRequest requestedApplication) {
+		return applicationRequestRepository.saveAndFlush(requestedApplication);
+	}
+
+	@Override
+	public ApplicationNotification saveNotification(ApplicationNotification notification) {
+		return applicationNotificationRepository.saveAndFlush(notification);
+	}
+
+	@Override
+	public List<ApplicationNotification> getNotifications(User user, ApplicationReference application) {
+		return applicationNotificationRepository.findByUserAndVersionApplication(user, application);
+
+	}
+
+	@Override
+	public void deleteNotifications(List<ApplicationNotification> notifications) {
+		applicationNotificationRepository.delete(notifications);
+
 	}
 }

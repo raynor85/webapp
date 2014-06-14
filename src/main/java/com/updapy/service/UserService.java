@@ -1,6 +1,7 @@
 package com.updapy.service;
 
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.social.connect.Connection;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.updapy.model.ApplicationFollow;
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
+import com.updapy.model.UpdateUrl;
 import com.updapy.model.User;
 import com.updapy.model.enumeration.TypeHelpMessage;
 
@@ -23,6 +25,8 @@ public interface UserService {
 	User getCurrentUserWithHelpMessages();
 
 	User getCurrentUserFull();
+
+	void changeLocale(Locale locale);
 
 	User findByEmail(String email);
 
@@ -50,20 +54,24 @@ public interface UserService {
 
 	List<ApplicationFollow> getFollowedApplications(User user);
 
-	List<ApplicationFollow> addApplicationsToFollow(User user, List<String> apiNamesToFollow);
+	List<ApplicationFollow> addFollowedApplications(User user, List<String> followedApiNames);
 
-	boolean deleteApplicationToFollow(User user, String apiName);
+	boolean deleteFollowedApplication(User user, String apiName);
 
-	boolean disableEmailAlertApplicationToFollow(User user, String apiName);
+	boolean disableEmailAlertFollowedApplication(User user, String apiName);
 
-	boolean enableEmailAlertApplicationToFollow(User user, String apiName);
+	boolean enableEmailAlertFollowedApplication(User user, String apiName);
 
 	List<ApplicationReference> getLeftApplications(User user);
 
-	String getDownloadUrlMatchingSettings(User user, ApplicationVersion applicationVersion);
+	UpdateUrl getDownloadUrlMatchingSettings(User user, ApplicationVersion version);
 
 	boolean isMessageDismissed(User user, TypeHelpMessage typeHelpMessage);
 
 	User dismissMessage(User user, TypeHelpMessage typeHelpMessage);
+
+	List<User> findUsersFollowingApplication(ApplicationReference application);
+
+	void notifyForNewVersion(User user, ApplicationVersion newVersion);
 
 }

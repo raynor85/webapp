@@ -12,8 +12,8 @@ import com.updapy.util.ParsingUtils;
 public class PidginRemoteRetriever implements RemoteRetriever {
 
 	@Override
-	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("Pidgin");
+	public boolean support(ApplicationReference application) {
+		return application.getName().equalsIgnoreCase("Pidgin");
 	}
 
 	@Override

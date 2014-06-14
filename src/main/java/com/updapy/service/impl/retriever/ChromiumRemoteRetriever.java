@@ -12,8 +12,8 @@ import com.updapy.util.ParsingUtils;
 public class ChromiumRemoteRetriever implements RemoteRetriever {
 
 	@Override
-	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("Chromium");
+	public boolean support(ApplicationReference application) {
+		return application.getName().equalsIgnoreCase("Chromium");
 	}
 
 	@Override

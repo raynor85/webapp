@@ -14,8 +14,9 @@
 		<div class="form-group">
 			<div class="col-sm-7">
 				<form:input class="form-control" path="apiKey" id="apiKey" readonly="true" />
+				<br /> <a id="clipboard-link"><spring:message code="developers.api.apiKey.clipboard.link" /></a>
 			</div>
-			<div class="col-sm-1">
+			<div class="col-sm-2">
 				<p class="button-center-xs button-ladda">
 					<button type="button" id="resetUserApiKeyButton" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxResetUserApiKey();">
 						<spring:message code="developers.api.apiKey.reset.button" />
@@ -38,7 +39,7 @@
 				</thead>
 				<tbody>
 					<tr data-toggle="collapse" data-target="#getApplicationNames" class="accordion-toggle" style="cursor: pointer;">
-						<td><a href="#"><spring:message code="developers.api.documentation.table.getApplicationNames.resource" /></a></td>
+						<td><a><spring:message code="developers.api.documentation.table.getApplicationNames.resource" /></a></td>
 						<td><spring:message code="developers.api.documentation.table.getApplicationNames.description" /></td>
 					</tr>
 					<tr>
@@ -68,7 +69,7 @@
 						</td>
 					</tr>
 					<tr data-toggle="collapse" data-target="#getLastVersion" class="accordion-toggle" style="cursor: pointer;">
-						<td><a href="#"><spring:message code="developers.api.documentation.table.getLastVersion.resource" /></a></td>
+						<td><a><spring:message code="developers.api.documentation.table.getLastVersion.resource" /></a></td>
 						<td><spring:message code="developers.api.documentation.table.getLastVersion.description" /></td>
 					</tr>
 					<tr>
@@ -147,4 +148,24 @@
 		$("#responseJson1").html(syntaxHighlight(responseJson1));
 		$("#responseJson2").html(syntaxHighlight(responseJson2));
 	}();
+	var copyToClipboard = function() {
+		$("a#clipboard-link").zclip({
+			copy : function() {
+				return $("#apiKey").val();
+			}
+		});
+	}();
+	function copyToClipboardConfirmation() {
+		bootbox
+				.dialog({
+					title : "<spring:message code='developers.api.apiKey.clipboard.dialog.title' />",
+					message : "<spring:message code='developers.api.apiKey.clipboard.dialog.content' />",
+					buttons : {
+						main : {
+							label : "<spring:message code='developers.api.apiKey.clipboard.dialog.confirm' />",
+							className : "btn-color ladda-button",
+						}
+					}
+				});
+	};
 </script>

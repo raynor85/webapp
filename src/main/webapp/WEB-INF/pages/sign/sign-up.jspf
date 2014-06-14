@@ -34,6 +34,9 @@
 			<button type="submit" class="btn-block btn-color ladda-button">
 				<spring:message code="sign.up.button" />
 			</button>
+			<div class="discreetLink hidden">
+				<a href="${root}/sign"><spring:message code="sign.up.already" /></a>
+			</div>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<input type="hidden" name="requestUri" value="${requestUri}" />
 			<spring:hasBindErrors name="registerUser">
@@ -54,3 +57,10 @@
 	</div>
 </c:if>
 
+<script>
+	var displayLinkToLogin = function() {
+		if (location.href.match(/signup.?$/)) {
+			$("div.discreetLink").removeClass("hidden");
+		}
+	}();
+</script>

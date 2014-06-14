@@ -11,8 +11,8 @@ import com.updapy.util.ParsingUtils;
 public class PicasaRemoteRetriever implements RemoteRetriever {
 
 	@Override
-	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("Picasa");
+	public boolean support(ApplicationReference application) {
+		return application.getName().equalsIgnoreCase("Picasa");
 	}
 
 	@Override

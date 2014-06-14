@@ -19,24 +19,24 @@
 		<class-a>com.updapy.model.ApplicationVersion</class-a>
 		<class-b>com.updapy.api.model.LatestApplicationVersion</class-b>
 		<field>
-			<a>reference.name</a>
+			<a>application.name</a>
 			<b>applicationName</b>
 		</field>
 	</mapping>
 
 	<mapping>
 		<class-a>com.updapy.model.ApplicationVersion</class-a>
-		<class-b>com.updapy.form.model.CurrentFollowApplication</class-b>
+		<class-b>com.updapy.form.model.CurrentFollowedApplication</class-b>
 		<field>
-			<a>reference.name</a>
+			<a>application.name</a>
 			<b>applicationName</b>
 		</field>
 		<field>
-			<a>reference.apiName</a>
+			<a>application.apiName</a>
 			<b>apiName</b>
 		</field>
 		<field>
-			<a>reference.iconFilename</a>
+			<a>application.iconFilename</a>
 			<b>iconFilename</b>
 		</field>
 	</mapping>

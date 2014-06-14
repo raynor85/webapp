@@ -10,7 +10,7 @@ public class UpdateSettings {
 	private String name;
 
 	@NotNull
-	private Lang lang;
+	private Lang langUpdate;
 
 	@NotNull
 	private OsVersion osVersion;
@@ -67,12 +67,12 @@ public class UpdateSettings {
 		this.emailNewsletter = emailNewsletter;
 	}
 
-	public Lang getLang() {
-		return lang;
+	public Lang getLangUpdate() {
+		return langUpdate;
 	}
 
-	public void setLang(Lang lang) {
-		this.lang = lang;
+	public void setLangUpdate(Lang langUpdate) {
+		this.langUpdate = langUpdate;
 	}
 
 	public OsVersion getOsVersion() {

@@ -1,7 +1,10 @@
 package com.updapy.controller;
 
+import java.util.Locale;
+
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -80,6 +83,16 @@ public class UserController {
 		binder.addValidators(resetUserCustomValidator);
 	}
 
+	@RequestMapping(value = "/locale", method = RequestMethod.POST, consumes = MediaType.TEXT_PLAIN_VALUE)
+	public @ResponseBody
+	JsonResponse changeLocale(@RequestBody String locale) {
+		if (StringUtils.isBlank(locale) || (!(locale.equals("en")) && !(locale.equals("fr")))) {
+			return jsonResponseUtils.buildFailedJsonResponse("language.change.error");
+		}
+		userService.changeLocale(new Locale(locale));
+		return jsonResponseUtils.buildSuccessfulJsonResponse("language.change.confirm");
+	}
+
 	@RequestMapping(value = "/register/early", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	JsonResponse registerEarly(@Valid @RequestBody RegisterEarlyUser registerEarlyUser, BindingResult result) {
@@ -104,7 +117,7 @@ public class UserController {
 			return modelAndView;
 		} else {
 			User user = userService.register(dozerHelper.map(registerUser, User.class));
-			mailSenderService.sendActivationLink(user.getEmail(), user.getAccountKey());
+			mailSenderService.sendActivationLink(user.getEmail(), user.getAccountKey(), user.getLangEmail());
 			modelAndView.setViewName("sign-up-activate");
 			return modelAndView;
 		}
@@ -133,7 +146,7 @@ public class UserController {
 			return modelAndView;
 		}
 		String newKey = userService.generateNewAccountKey(user);
-		mailSenderService.sendActivationLink(email, newKey);
+		mailSenderService.sendActivationLink(email, newKey, user.getLangEmail());
 		modelAndView.setViewName("sign-up-activate-resend");
 		return modelAndView;
 	}
@@ -164,7 +177,7 @@ public class UserController {
 				return jsonResponseUtils.buildFailedJsonResponse("NotFound.resetUserEmail.email");
 			}
 			String newKey = userService.generateNewAccountKey(user);
-			mailSenderService.sendResetPasswordLink(email, newKey);
+			mailSenderService.sendResetPasswordLink(email, newKey, user.getLangEmail());
 			return jsonResponseUtils.buildSuccessfulJsonResponse("sign.in.forgot.send.confirm");
 		}
 	}

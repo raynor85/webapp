@@ -9,7 +9,7 @@ import com.updapy.model.ApplicationVersion;
 
 public interface ApplicationVersionRepository extends JpaRepository<ApplicationVersion, Long> {
 
-	@Query("select v from ApplicationVersion v where v.reference = :reference and v.versionDate = (select max(v.versionDate) from ApplicationVersion v where v.reference = :reference))")
-	ApplicationVersion findLatestByApplicationReference(@Param("reference") ApplicationReference applicationReference);
+	@Query("select v from ApplicationVersion v where v.application = :application and v.versionDate = (select max(v.versionDate) from ApplicationVersion v where v.application = :application))")
+	ApplicationVersion findLatestByApplicationReference(@Param("application") ApplicationReference application);
 
 }

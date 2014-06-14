@@ -12,8 +12,8 @@ import com.updapy.util.ParsingUtils;
 public class SevenZipRemoteRetriever implements RemoteRetriever {
 
 	@Override
-	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("7-Zip");
+	public boolean support(ApplicationReference application) {
+		return application.getName().equalsIgnoreCase("7-Zip");
 	}
 
 	@Override

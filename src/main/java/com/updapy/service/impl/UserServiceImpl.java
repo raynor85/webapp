@@ -5,11 +5,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
-import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,12 @@ import org.springframework.social.connect.UserProfile;
 import org.springframework.stereotype.Service;
 
 import com.updapy.model.ApplicationFollow;
+import com.updapy.model.ApplicationNotification;
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.HelpMessage;
 import com.updapy.model.Setting;
+import com.updapy.model.UpdateUrl;
 import com.updapy.model.User;
 import com.updapy.model.UserConnection;
 import com.updapy.model.enumeration.Lang;
@@ -33,9 +36,12 @@ import com.updapy.model.enumeration.OsVersion;
 import com.updapy.model.enumeration.Parameter;
 import com.updapy.model.enumeration.SocialMediaService;
 import com.updapy.model.enumeration.TypeHelpMessage;
+import com.updapy.model.enumeration.TypeNofication;
 import com.updapy.repository.UserConnectionRepository;
 import com.updapy.repository.UserRepository;
 import com.updapy.service.ApplicationService;
+import com.updapy.service.MailSenderService;
+import com.updapy.service.SettingsService;
 import com.updapy.service.UserService;
 import com.updapy.service.security.SecurityUtils;
 
@@ -57,6 +63,12 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	ApplicationService applicationService;
 
+	@Autowired
+	SettingsService settingsService;
+
+	@Autowired
+	private MailSenderService mailSenderService;
+
 	@Override
 	public User getCurrentUserLight() {
 		return findByEmail(SecurityUtils.getEmailCurrentUser());
@@ -73,7 +85,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getCurrentUserWithApplicationFolloweds() {
 		User user = getCurrentUserLight();
-		Hibernate.initialize(user.getFollowedApps());
+		Hibernate.initialize(user.getFollowedApplications());
 		return user;
 	}
 
@@ -88,7 +100,7 @@ public class UserServiceImpl implements UserService {
 	public User getCurrentUserFull() {
 		User user = getCurrentUserLight();
 		Hibernate.initialize(user.getSettings());
-		Hibernate.initialize(user.getFollowedApps());
+		Hibernate.initialize(user.getFollowedApplications());
 		Hibernate.initialize(user.getHelpMessages());
 		Hibernate.initialize(user.getNotifications());
 		return user;
@@ -97,6 +109,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findByEmail(String email) {
 		return userRepository.findByEmail(email);
+	}
+
+	@Override
+	public void changeLocale(Locale locale) {
+		User user = getCurrentUserLight();
+		if (user != null) {
+			user.setLangEmail(locale);
+			save(user);
+		}
 	}
 
 	@Override
@@ -148,8 +169,9 @@ public class UserServiceImpl implements UserService {
 		generateNewApiKeyWithoutSaving(user);
 		generateNewAccountKeyWithoutSaving(user);
 		// language
-		Lang currentLang = Lang.valueOf(LocaleContextHolder.getLocale().getISO3Language());
-		user.setLang(currentLang);
+		Locale currentLang = LocaleContextHolder.getLocale();
+		user.setLangUpdate(Lang.valueOf(currentLang.toLanguageTag()));
+		user.setLangEmail(currentLang);
 		// os version
 		user.setOsVersion(OsVersion.WIN_32_BITS);
 	}
@@ -290,67 +312,67 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<ApplicationFollow> getFollowedApplications(User user) {
-		List<ApplicationFollow> applicationFollows = user.getFollowedApps();
-		Collections.sort(applicationFollows, new Comparator<ApplicationFollow>() {
+		List<ApplicationFollow> followedApplications = user.getFollowedApplications();
+		Collections.sort(followedApplications, new Comparator<ApplicationFollow>() {
 			@Override
 			public int compare(ApplicationFollow a1, ApplicationFollow a2) {
-				return a1.getReferenceApp().getApiName().compareTo(a2.getReferenceApp().getApiName());
+				return a1.getApplication().getApiName().compareTo(a2.getApplication().getApiName());
 			}
 		});
-		return applicationFollows;
+		return followedApplications;
 	}
 
 	@Override
-	public List<ApplicationFollow> addApplicationsToFollow(User user, List<String> apiNames) {
-		List<ApplicationFollow> followedApps = new ArrayList<ApplicationFollow>();
+	public List<ApplicationFollow> addFollowedApplications(User user, List<String> apiNames) {
+		List<ApplicationFollow> followedApplications = new ArrayList<ApplicationFollow>();
 		for (String apiName : apiNames) {
 			if (apiName != null) {
-				ApplicationFollow applicationFollow = new ApplicationFollow();
-				applicationFollow.setReferenceApp(applicationService.getApplicationReference(apiName));
-				applicationFollow.setEmailNotificationActive(true);
-				applicationFollow.setUser(user);
-				followedApps.add(applicationFollow);
-				applicationService.saveApplicationFollow(applicationFollow);
+				ApplicationFollow followedApplication = new ApplicationFollow();
+				followedApplication.setApplication(applicationService.getApplication(apiName));
+				followedApplication.setEmailNotificationActive(true);
+				followedApplication.setUser(user);
+				followedApplications.add(followedApplication);
+				applicationService.saveFollowedApplication(followedApplication);
 			}
 		}
-		return followedApps;
+		return followedApplications;
 	}
 
 	@Override
-	public boolean deleteApplicationToFollow(User user, String apiName) {
-		ApplicationFollow applicationFollow = findApplicationFollow(user, apiName);
-		if (applicationFollow == null) {
+	public boolean deleteFollowedApplication(User user, String apiName) {
+		ApplicationFollow followedApplication = findFollowedApplication(user, apiName);
+		if (followedApplication == null) {
 			return false;
 		}
-		applicationService.deleteApplicationFollow(applicationFollow);
+		applicationService.deleteFollowedApplication(followedApplication);
 		return true;
 	}
 
 	@Override
-	public boolean disableEmailAlertApplicationToFollow(User user, String apiName) {
-		ApplicationFollow applicationFollow = findApplicationFollow(user, apiName);
-		if (applicationFollow == null) {
+	public boolean disableEmailAlertFollowedApplication(User user, String apiName) {
+		ApplicationFollow followedApplication = findFollowedApplication(user, apiName);
+		if (followedApplication == null) {
 			return false;
 		}
-		applicationService.disableEmailAlertApplicationFollow(applicationFollow);
+		applicationService.disableEmailAlertFollowedApplication(followedApplication);
 		return true;
 	}
 
 	@Override
-	public boolean enableEmailAlertApplicationToFollow(User user, String apiName) {
-		ApplicationFollow applicationFollow = findApplicationFollow(user, apiName);
-		if (applicationFollow == null) {
+	public boolean enableEmailAlertFollowedApplication(User user, String apiName) {
+		ApplicationFollow followedApplication = findFollowedApplication(user, apiName);
+		if (followedApplication == null) {
 			return false;
 		}
-		applicationService.enableEmailAlertApplicationFollow(applicationFollow);
+		applicationService.enableEmailAlertFollowedApplication(followedApplication);
 		return true;
 	}
 
-	private ApplicationFollow findApplicationFollow(User user, final String apiName) {
-		return (ApplicationFollow) CollectionUtils.find(user.getFollowedApps(), new Predicate() {
+	private ApplicationFollow findFollowedApplication(User user, final String apiName) {
+		return (ApplicationFollow) CollectionUtils.find(user.getFollowedApplications(), new Predicate() {
 			@Override
 			public boolean evaluate(Object o) {
-				return ((ApplicationFollow) o).getReferenceApp().getApiName().equals(apiName);
+				return ((ApplicationFollow) o).getApplication().getApiName().equals(apiName);
 			}
 		});
 	}
@@ -358,31 +380,86 @@ public class UserServiceImpl implements UserService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ApplicationReference> getLeftApplications(User user) {
-		List<ApplicationReference> allApplicationReferences = applicationService.getApplicationReferences();
-		List<ApplicationReference> followApplicationReferences = (List<ApplicationReference>) CollectionUtils.collect(getFollowedApplications(user), new BeanToPropertyValueTransformer("referenceApp"));
-		return (List<ApplicationReference>) CollectionUtils.subtract(allApplicationReferences, followApplicationReferences);
+		List<ApplicationReference> allApplications = applicationService.getApplications();
+		List<ApplicationReference> followedApplications = (List<ApplicationReference>) CollectionUtils.collect(getFollowedApplications(user), new BeanToPropertyValueTransformer("application"));
+		return (List<ApplicationReference>) CollectionUtils.subtract(allApplications, followedApplications);
 	}
 
 	@Override
-	public String getDownloadUrlMatchingSettings(User user, ApplicationVersion applicationVersion) {
-		return getDownloadUrlMatchingSettings(applicationVersion, user.getLang(), user.getOsVersion());
+	public UpdateUrl getDownloadUrlMatchingSettings(User user, ApplicationVersion version) {
+		return getDownloadUrlMatchingSettings(version, user.getLangUpdate(), user.getOsVersion());
 	}
 
-	private String getDownloadUrlMatchingSettings(ApplicationVersion applicationVersion, Lang lang, OsVersion osVersion) {
-		String defaultUrl = applicationVersion.getWin32UrlEn();
-		if (lang == null && osVersion == null || Lang.eng.equals(lang) && osVersion == null || Lang.eng.equals(lang) && OsVersion.WIN_32_BITS.equals(osVersion) || lang == null && OsVersion.WIN_32_BITS.equals(osVersion)) {
+	private UpdateUrl getDownloadUrlMatchingSettings(ApplicationVersion appVersion, Lang lang, OsVersion osVersion) {
+		UpdateUrl defaultUrl = new UpdateUrl(appVersion.getWin32UrlEn(), Lang.en, OsVersion.WIN_32_BITS);
+		if (lang == null && osVersion == null || Lang.en.equals(lang) && osVersion == null || Lang.en.equals(lang) && OsVersion.WIN_32_BITS.equals(osVersion) || lang == null && OsVersion.WIN_32_BITS.equals(osVersion)) {
 			return defaultUrl;
 		}
-		if (lang == null && OsVersion.WIN_64_BITS.equals(osVersion) || Lang.eng.equals(lang) && OsVersion.WIN_64_BITS.equals(osVersion)) {
-			return StringUtils.isNotBlank(applicationVersion.getWin64UrlEn()) ? applicationVersion.getWin64UrlEn() : defaultUrl;
+		if (lang == null && OsVersion.WIN_64_BITS.equals(osVersion) || Lang.en.equals(lang) && OsVersion.WIN_64_BITS.equals(osVersion)) {
+			return StringUtils.isNotBlank(appVersion.getWin64UrlEn()) ? new UpdateUrl(appVersion.getWin64UrlEn(), Lang.en, OsVersion.WIN_64_BITS) : defaultUrl;
 		}
-		if (Lang.fra.equals(lang) && osVersion == null || Lang.fra.equals(lang) && OsVersion.WIN_32_BITS.equals(osVersion)) {
-			return StringUtils.isNotBlank(applicationVersion.getWin32UrlFr()) ? applicationVersion.getWin32UrlFr() : defaultUrl;
+		if (Lang.fr.equals(lang) && osVersion == null || Lang.fr.equals(lang) && OsVersion.WIN_32_BITS.equals(osVersion)) {
+			return StringUtils.isNotBlank(appVersion.getWin32UrlFr()) ? new UpdateUrl(appVersion.getWin32UrlFr(), Lang.fr, OsVersion.WIN_32_BITS) : defaultUrl;
 		}
-		if (Lang.fra.equals(lang) && OsVersion.WIN_64_BITS.equals(osVersion)) {
-			return StringUtils.isNotBlank(applicationVersion.getWin64UrlFr()) ? applicationVersion.getWin64UrlFr() : defaultUrl;
+		if (Lang.fr.equals(lang) && OsVersion.WIN_64_BITS.equals(osVersion)) {
+			return StringUtils.isNotBlank(appVersion.getWin64UrlFr()) ? new UpdateUrl(appVersion.getWin64UrlFr(), Lang.fr, OsVersion.WIN_64_BITS) : defaultUrl;
 		}
 		return defaultUrl;
+	}
+
+	private List<UpdateUrl> getOtherDownloadUrls(UpdateUrl defaultUpdateUrl, ApplicationVersion version) {
+		List<UpdateUrl> otherUrls = new ArrayList<UpdateUrl>();
+		Lang defaultLang = defaultUpdateUrl.getLang();
+		OsVersion defaultOsVersion = defaultUpdateUrl.getOsVersion();
+		if (Lang.en.equals(defaultLang)) {
+			if (OsVersion.WIN_32_BITS.equals(defaultOsVersion)) {
+				if (StringUtils.isNotBlank(version.getWin64UrlEn())) {
+					otherUrls.add(new UpdateUrl(version.getWin64UrlEn(), Lang.en, OsVersion.WIN_64_BITS));
+				}
+				if (StringUtils.isNotBlank(version.getWin32UrlFr())) {
+					otherUrls.add(new UpdateUrl(version.getWin32UrlFr(), Lang.fr, OsVersion.WIN_32_BITS));
+				}
+				if (StringUtils.isNotBlank(version.getWin64UrlFr())) {
+					otherUrls.add(new UpdateUrl(version.getWin64UrlFr(), Lang.fr, OsVersion.WIN_64_BITS));
+				}
+			}
+			if (OsVersion.WIN_64_BITS.equals(defaultOsVersion)) {
+				if (StringUtils.isNotBlank(version.getWin32UrlEn())) {
+					otherUrls.add(new UpdateUrl(version.getWin32UrlEn(), Lang.en, OsVersion.WIN_32_BITS));
+				}
+				if (StringUtils.isNotBlank(version.getWin32UrlFr())) {
+					otherUrls.add(new UpdateUrl(version.getWin32UrlFr(), Lang.fr, OsVersion.WIN_32_BITS));
+				}
+				if (StringUtils.isNotBlank(version.getWin64UrlFr())) {
+					otherUrls.add(new UpdateUrl(version.getWin64UrlFr(), Lang.fr, OsVersion.WIN_64_BITS));
+				}
+			}
+		}
+		if (Lang.fr.equals(defaultLang)) {
+			if (OsVersion.WIN_32_BITS.equals(defaultOsVersion)) {
+				if (StringUtils.isNotBlank(version.getWin64UrlFr())) {
+					otherUrls.add(new UpdateUrl(version.getWin64UrlFr(), Lang.fr, OsVersion.WIN_64_BITS));
+				}
+				if (StringUtils.isNotBlank(version.getWin32UrlEn())) {
+					otherUrls.add(new UpdateUrl(version.getWin32UrlEn(), Lang.en, OsVersion.WIN_32_BITS));
+				}
+				if (StringUtils.isNotBlank(version.getWin64UrlEn())) {
+					otherUrls.add(new UpdateUrl(version.getWin64UrlEn(), Lang.en, OsVersion.WIN_64_BITS));
+				}
+			}
+			if (OsVersion.WIN_64_BITS.equals(defaultOsVersion)) {
+				if (StringUtils.isNotBlank(version.getWin32UrlFr())) {
+					otherUrls.add(new UpdateUrl(version.getWin32UrlFr(), Lang.fr, OsVersion.WIN_32_BITS));
+				}
+				if (StringUtils.isNotBlank(version.getWin32UrlEn())) {
+					otherUrls.add(new UpdateUrl(version.getWin32UrlEn(), Lang.en, OsVersion.WIN_32_BITS));
+				}
+				if (StringUtils.isNotBlank(version.getWin64UrlEn())) {
+					otherUrls.add(new UpdateUrl(version.getWin64UrlEn(), Lang.en, OsVersion.WIN_64_BITS));
+				}
+			}
+		}
+		return otherUrls;
 	}
 
 	private HelpMessage findHelpMessageFromType(User user, final TypeHelpMessage typeHelpMessage) {
@@ -403,6 +480,34 @@ public class UserServiceImpl implements UserService {
 	public User dismissMessage(User user, TypeHelpMessage typeHelpMessage) {
 		findHelpMessageFromType(user, typeHelpMessage).setHidden(true);
 		return save(user);
+	}
+
+	@Override
+	public List<User> findUsersFollowingApplication(ApplicationReference application) {
+		return userRepository.findByFollowedApplicationsApplication(application);
+	}
+
+	@Override
+	public void notifyForNewVersion(User user, ApplicationVersion newVersion) {
+		removeCurrentNotificationsForApplication(user, newVersion);
+		ApplicationNotification notification = new ApplicationNotification();
+		notification.setRead(false);
+		notification.setVersion(newVersion);
+		notification.setType(TypeNofication.NEW_VERSION);
+		notification.setUser(user);
+		applicationService.saveNotification(notification);
+		if (settingsService.isEmailOnEachUpdateActive(user) && enableEmailAlertFollowedApplication(user, newVersion.getApplication().getApiName())) {
+			UpdateUrl updateUrl = getDownloadUrlMatchingSettings(user, newVersion);
+			mailSenderService.sendSingleUpdate(user.getEmail(), newVersion.getApplication(), newVersion, updateUrl, getOtherDownloadUrls(updateUrl, newVersion), user.getLangEmail());
+		}
+	}
+
+	private void removeCurrentNotificationsForApplication(User user, ApplicationVersion version) {
+		List<ApplicationNotification> notifications = applicationService.getNotifications(user, version.getApplication());
+		if (notifications != null && !notifications.isEmpty()) {
+			applicationService.deleteNotifications(notifications);
+		}
+
 	}
 
 }

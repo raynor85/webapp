@@ -11,8 +11,8 @@ import com.updapy.util.ParsingUtils;
 public class ItunesRemoteRetriever implements RemoteRetriever {
 
 	@Override
-	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("iTunes");
+	public boolean support(ApplicationReference application) {
+		return application.getName().equalsIgnoreCase("iTunes");
 	}
 
 	@Override

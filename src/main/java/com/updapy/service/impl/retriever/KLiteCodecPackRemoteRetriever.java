@@ -13,8 +13,8 @@ public class KLiteCodecPackRemoteRetriever implements RemoteRetriever {
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.free-codecs.com/";
 
 	@Override
-	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("K-lite Codec Pack");
+	public boolean support(ApplicationReference application) {
+		return application.getName().equalsIgnoreCase("K-lite Codec Pack");
 	}
 
 	@Override

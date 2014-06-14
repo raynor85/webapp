@@ -11,8 +11,8 @@ import com.updapy.util.ParsingUtils;
 public class FilezillaRemoteRetriever implements RemoteRetriever {
 
 	@Override
-	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("Filezilla");
+	public boolean support(ApplicationReference application) {
+		return application.getName().equalsIgnoreCase("Filezilla");
 	}
 
 	@Override

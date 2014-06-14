@@ -21,7 +21,7 @@ public abstract class BaseEntity implements Serializable {
 	private Long id;
 
 	@Version
-	private Long version;
+	private Long dbVersion;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
@@ -33,8 +33,8 @@ public abstract class BaseEntity implements Serializable {
 		return id;
 	}
 
-	public Long getVersion() {
-		return version;
+	public Long getDbVersion() {
+		return dbVersion;
 	}
 
 	public Date getCreationDate() {

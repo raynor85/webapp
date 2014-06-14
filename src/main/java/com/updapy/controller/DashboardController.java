@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.updapy.form.ajax.JsonResponse;
 import com.updapy.form.model.ChangeCurrentApplication;
-import com.updapy.form.model.CurrentFollowApplication;
+import com.updapy.form.model.CurrentFollowedApplication;
 import com.updapy.form.model.DismissMessage;
 import com.updapy.form.model.FollowNewApplications;
 import com.updapy.form.model.RequestApplication;
@@ -63,14 +63,14 @@ public class DashboardController {
 	@RequestMapping(value = "/follow", method = RequestMethod.POST)
 	public ModelAndView followApplications(FollowNewApplications followNewApplications) {
 		User user = userService.getCurrentUserWithApplicationFolloweds();
-		userService.addApplicationsToFollow(user, followNewApplications.getApiNames());
+		userService.addFollowedApplications(user, followNewApplications.getApiNames());
 		return initModelAndViewForRedirect(user, "redirect:/dashboard");
 	}
 
 	@RequestMapping(value = "/unfollow", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	JsonResponse unfollowApplication(@RequestBody ChangeCurrentApplication unfollowCurrentApplication) {
-		boolean isDeleted = userService.deleteApplicationToFollow(userService.getCurrentUserWithApplicationFolloweds(), unfollowCurrentApplication.getApiName());
+		boolean isDeleted = userService.deleteFollowedApplication(userService.getCurrentUserWithApplicationFolloweds(), unfollowCurrentApplication.getApiName());
 		if (isDeleted) {
 			return jsonResponseUtils.buildSuccessfulJsonResponse("dashboard.applications.unfollow.confirm");
 		} else {
@@ -81,7 +81,7 @@ public class DashboardController {
 	@RequestMapping(value = "/disable", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	JsonResponse disableEmailAlert(@RequestBody ChangeCurrentApplication disableCurrentApplication) {
-		boolean isDone = userService.disableEmailAlertApplicationToFollow(userService.getCurrentUserWithApplicationFolloweds(), disableCurrentApplication.getApiName());
+		boolean isDone = userService.disableEmailAlertFollowedApplication(userService.getCurrentUserWithApplicationFolloweds(), disableCurrentApplication.getApiName());
 		if (isDone) {
 			return jsonResponseUtils.buildSuccessfulJsonResponse("dashboard.applications.alert.confirm");
 		} else {
@@ -92,7 +92,7 @@ public class DashboardController {
 	@RequestMapping(value = "/enable", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	JsonResponse enableEmailAlert(@RequestBody ChangeCurrentApplication enableCurrentApplication) {
-		boolean isDone = userService.enableEmailAlertApplicationToFollow(userService.getCurrentUserWithApplicationFolloweds(), enableCurrentApplication.getApiName());
+		boolean isDone = userService.enableEmailAlertFollowedApplication(userService.getCurrentUserWithApplicationFolloweds(), enableCurrentApplication.getApiName());
 		if (isDone) {
 			return jsonResponseUtils.buildSuccessfulJsonResponse("dashboard.applications.alert.confirm");
 		} else {
@@ -117,10 +117,10 @@ public class DashboardController {
 		if (result.hasErrors()) {
 			return jsonResponseUtils.buildFailedJsonResponseFromErrorObject(result.getAllErrors());
 		} else {
-			ApplicationRequest applicationRequest = dozerHelper.map(requestApplication, ApplicationRequest.class);
-			applicationRequest.setUser(userService.getCurrentUserLight());
-			applicationService.saveApplicationRequest(applicationRequest);
-			mailSenderService.sendAdminApplicationRequest(requestApplication.getName(), applicationRequest.getUrl());
+			ApplicationRequest requestedApplication = dozerHelper.map(requestApplication, ApplicationRequest.class);
+			requestedApplication.setUser(userService.getCurrentUserLight());
+			applicationService.saveRequestedApplication(requestedApplication);
+			mailSenderService.sendAdminRequestedApplication(requestApplication.getName(), requestedApplication.getUrl());
 			return jsonResponseUtils.buildSuccessfulJsonResponse("dashboard.applications.request.confirm");
 		}
 	}
@@ -142,15 +142,15 @@ public class DashboardController {
 		modelAndView.addObject("newFollowApplications", new FollowNewApplications());
 		modelAndView.addObject("requestApplication", new RequestApplication());
 		modelAndView.addObject("leftApplications", userService.getLeftApplications(user));
-		List<CurrentFollowApplication> currentFollowApplications = new ArrayList<CurrentFollowApplication>();
-		for (ApplicationFollow applicationFollow : userService.getFollowedApplications(user)) {
-			ApplicationVersion applicationVersion = applicationService.getLatestApplicationVersion(applicationFollow.getReferenceApp());
-			CurrentFollowApplication currentFollowApplication = dozerHelper.map(applicationVersion, CurrentFollowApplication.class);
-			currentFollowApplication.setDownloadUrl(userService.getDownloadUrlMatchingSettings(user, applicationVersion));
-			currentFollowApplication.setEmailNotificationActive(applicationFollow.isEmailNotificationActive());
-			currentFollowApplications.add(currentFollowApplication);
+		List<CurrentFollowedApplication> currentFollowedApplications = new ArrayList<CurrentFollowedApplication>();
+		for (ApplicationFollow followedApplication : userService.getFollowedApplications(user)) {
+			ApplicationVersion version = applicationService.getLatestVersion(followedApplication.getApplication());
+			CurrentFollowedApplication currentFollowedApplication = dozerHelper.map(version, CurrentFollowedApplication.class);
+			currentFollowedApplication.setDownloadUrl(userService.getDownloadUrlMatchingSettings(user, version).getUrl());
+			currentFollowedApplication.setEmailNotificationActive(followedApplication.isEmailNotificationActive());
+			currentFollowedApplications.add(currentFollowedApplication);
 		}
-		modelAndView.addObject("currentFollowApplications", currentFollowApplications);
+		modelAndView.addObject("currentFollowedApplications", currentFollowedApplications);
 		return modelAndView;
 	}
 

@@ -6,7 +6,7 @@ import com.updapy.model.ApplicationReference;
 
 public interface RemoteRetriever {
 
-	boolean support(ApplicationReference applicationReference);
+	boolean support(ApplicationReference application);
 
 	String retrieveWin64UrlFr(Document doc);
 

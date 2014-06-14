@@ -26,38 +26,38 @@ public class ApplicationVersionScheduler {
 
 	// fire twice a day
 	@Scheduled(cron = "0 0 0,12 * * *")
-	// @Scheduled(fixedDelay = 500000) - fire at start - testing purpose
+	//@Scheduled(fixedDelay = 500000) // fire at start - testing purpose
 	public void updateApplicationRepository() {
 		log.info("> Applications repository update started");
-		List<ApplicationReference> applicationReferences = applicationService.getApplicationReferences();
-		for (ApplicationReference applicationReference : applicationReferences) {
-			checkNewVersionApplicationReference(applicationReference);
+		List<ApplicationReference> applications = applicationService.getApplications();
+		for (ApplicationReference application : applications) {
+			checkNewVersionApplication(application);
 		}
 		log.info("< Applications repository updated sucessfully.");
 	}
 
-	public void checkNewVersionApplicationReference(ApplicationReference applicationReference) {
-		log.info(">> Checking new version of '{}'", applicationReference.getName());
+	public void checkNewVersionApplication(ApplicationReference application) {
+		log.info(">> Checking new version of '{}'", application.getName());
 
-		ApplicationVersion latestApplicationVersion = applicationService.getLatestApplicationVersionNoCache(applicationReference);
-		ApplicationVersion latestRemoteApplicationVersion = remoteService.retrieveRemoteLatestVersion(applicationReference);
+		ApplicationVersion latestVersion = applicationService.getLatestVersionNoCache(application);
+		ApplicationVersion latestRemoteVersion = remoteService.retrieveRemoteLatestVersion(application);
 
 		if (log.isInfoEnabled()) {
-			String currentVersion = (latestApplicationVersion == null) ? "undefined" : latestApplicationVersion.getVersionNumber();
-			String remoteVersion = (latestRemoteApplicationVersion == null) ? "undefined" : latestRemoteApplicationVersion.getVersionNumber();
+			String currentVersion = (latestVersion == null) ? "undefined" : latestVersion.getVersionNumber();
+			String remoteVersion = (latestRemoteVersion == null) ? "undefined" : latestRemoteVersion.getVersionNumber();
 			log.info("Current version: '{}'", currentVersion);
 			log.info("Remote version: '{}'", remoteVersion);
 		}
 
-		if (latestApplicationVersion == null && latestRemoteApplicationVersion != null) {
+		if (latestVersion == null && latestRemoteVersion != null) {
 			// this is the first time we got a version
-			applicationService.addApplicationVersion(latestRemoteApplicationVersion);
+			applicationService.addVersion(latestRemoteVersion);
 		}
 
-		if (latestApplicationVersion != null && latestRemoteApplicationVersion != null) {
-			if (latestApplicationVersion.getFormatedVersionNumber().compareTo(latestRemoteApplicationVersion.getFormatedVersionNumber()) == -1) {
+		if (latestVersion != null && latestRemoteVersion != null) {
+			if (latestVersion.getFormatedVersionNumber().compareTo(latestRemoteVersion.getFormatedVersionNumber()) == -1) {
 				// new version available
-				applicationService.addApplicationVersion(latestRemoteApplicationVersion);
+				applicationService.addVersion(latestRemoteVersion);
 			}
 		}
 	}

@@ -11,8 +11,8 @@ import com.updapy.util.ParsingUtils;
 public class GimpRemoteRetriever implements RemoteRetriever {
 
 	@Override
-	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("GIMP");
+	public boolean support(ApplicationReference application) {
+		return application.getName().equalsIgnoreCase("GIMP");
 	}
 
 	@Override

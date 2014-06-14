@@ -3,6 +3,7 @@ package com.updapy.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
@@ -14,8 +15,8 @@ import com.updapy.model.common.BaseEntity;
 @SequenceGenerator(allocationSize = 1, name = "idSequence", sequenceName = "application_version_seq")
 public class ApplicationVersion extends BaseEntity {
 
-	@ManyToOne(optional = false)
-	private ApplicationReference reference;
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	private ApplicationReference application;
 
 	private String versionNumber;
 
@@ -78,12 +79,12 @@ public class ApplicationVersion extends BaseEntity {
 		this.versionDate = versionDate;
 	}
 
-	public ApplicationReference getReference() {
-		return reference;
+	public ApplicationReference getApplication() {
+		return application;
 	}
 
-	public void setReference(ApplicationReference reference) {
-		this.reference = reference;
+	public void setApplication(ApplicationReference application) {
+		this.application = application;
 	}
 
 	public Version getFormatedVersionNumber() {

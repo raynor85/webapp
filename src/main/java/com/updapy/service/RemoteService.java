@@ -8,6 +8,6 @@ import com.updapy.model.ApplicationVersion;
 @Transactional
 public interface RemoteService {
 
-	ApplicationVersion retrieveRemoteLatestVersion(ApplicationReference reference);
+	ApplicationVersion retrieveRemoteLatestVersion(ApplicationReference application);
 
 }

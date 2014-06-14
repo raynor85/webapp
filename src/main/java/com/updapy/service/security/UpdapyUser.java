@@ -2,7 +2,7 @@ package com.updapy.service.security;
 
 import java.util.Collection;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.social.security.SocialUser;
 

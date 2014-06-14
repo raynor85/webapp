@@ -1,6 +1,6 @@
 package com.updapy.form.model;
 
-public class CurrentFollowApplication {
+public class CurrentFollowedApplication {
 
 	private String applicationName;
 

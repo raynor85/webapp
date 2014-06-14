@@ -14,8 +14,8 @@
 			<ul class="nav navbar-nav">
 				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="menu.language" /> <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="?lang=en"><spring:message code="menu.language.en" /></a></li>
-						<li><a href="?lang=fr"><spring:message code="menu.language.fr" /></a></li>
+						<li><a href="javascript:changeLocale('en');"><spring:message code="menu.language.en" /></a></li>
+						<li><a href="javascript:changeLocale('fr');"><spring:message code="menu.language.fr" /></a></li>
 					</ul></li>
 				<li><a href="${root}/faq/"><spring:message code="menu.faq" /></a></li>
 				<li><a href="${root}/privacy/"><spring:message code="menu.privacy" /></a></li>
@@ -68,3 +68,25 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	function changeLocale(newLocale) {
+		ajaxChangeLocale(newLocale);
+		location.href = location.pathname + "?lang=" + newLocale;
+	}
+	function ajaxChangeLocale(newLocale) {
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		$.ajax({
+			type : 'POST',
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader(header, token);
+			},
+			url : "${root}/user/locale",
+			data : newLocale,
+			contentType : 'text/plain',
+			async : false,
+			cache : false
+		});
+	};
+</script>

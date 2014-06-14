@@ -11,8 +11,8 @@ import com.updapy.util.ParsingUtils;
 public class ThunderbirdRemoteRetriever implements RemoteRetriever {
 
 	@Override
-	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("Thunderbird");
+	public boolean support(ApplicationReference application) {
+		return application.getName().equalsIgnoreCase("Thunderbird");
 	}
 
 	@Override

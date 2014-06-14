@@ -10,8 +10,8 @@ import com.updapy.service.retriever.RemoteRetriever;
 public class FirefoxRemoteRetriever implements RemoteRetriever {
 
 	@Override
-	public boolean support(ApplicationReference applicationReference) {
-		return applicationReference.getName().equalsIgnoreCase("Firefox");
+	public boolean support(ApplicationReference application) {
+		return application.getName().equalsIgnoreCase("Firefox");
 	}
 
 	@Override

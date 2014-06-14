@@ -27,7 +27,7 @@ public class SettingsServiceImpl implements SettingsService {
 	@Override
 	public User updateSettings(User user, UpdateSettings newSettings) {
 		user.setName(StringUtils.trimToNull(newSettings.getName()));
-		user.setLang(newSettings.getLang());
+		user.setLangUpdate(newSettings.getLangUpdate());
 		user.setOsVersion(newSettings.getOsVersion());
 		for (Setting setting : user.getSettings()) {
 			Parameter parameter = setting.getParameter();
@@ -53,7 +53,7 @@ public class SettingsServiceImpl implements SettingsService {
 	public UpdateSettings getSettings(User user) {
 		UpdateSettings updateSettings = new UpdateSettings();
 		updateSettings.setName(user.getName());
-		updateSettings.setLang(user.getLang());
+		updateSettings.setLangUpdate(user.getLangUpdate());
 		updateSettings.setOsVersion(user.getOsVersion());
 		for (Setting setting : user.getSettings()) {
 			Parameter parameter = setting.getParameter();
@@ -94,5 +94,11 @@ public class SettingsServiceImpl implements SettingsService {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public boolean isEmailOnEachUpdateActive(User user) {
+		UpdateSettings settings = getSettings(user);
+		return settings.isEmailAlert() && settings.isEmailEachUpdate();
 	}
 }

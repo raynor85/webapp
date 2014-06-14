@@ -3,6 +3,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
+<link href="<spring:url value="/resources/css/bootstrap-select.min.css" />" rel="stylesheet">
+<script src="<spring:url value="/resources/js/bootstrap-select.min.js" />"></script>
+<link href="<spring:url value="/resources/css/bootstrap-switch.min.css" />" rel="stylesheet">
+<script src="<spring:url value="/resources/js/bootstrap-switch.min.js" />"></script>
+
 <c:set var="isSocialUser">
 	<sec:authentication property="principal.socialUser" />
 </c:set>
@@ -49,17 +54,17 @@
 				<spring:message code="settings.update.tip" />
 			</div>
 			<div class="form-group">
-				<label for="lang" class="col-sm-2 control-label" style="min-width: 130px;"><spring:message code="settings.update.field.lang" /></label>
-				<div id="langDiv" class="col-sm-4">
-					<form:select class="form-control selectpicker" path="lang" id="lang">
-						<c:set var="englishLang">
-							<spring:message code="settings.update.field.lang.english" />
+				<label for="langUpdate" class="col-sm-2 control-label" style="min-width: 130px;"><spring:message code="settings.update.field.langUpdate" /></label>
+				<div id="langUpdateDiv" class="col-sm-4">
+					<form:select class="form-control selectpicker" path="langUpdate" id="langUpdate">
+						<c:set var="englishLangUpdate">
+							<spring:message code="settings.update.field.langUpdate.english" />
 						</c:set>
-						<c:set var="frenchLang">
-							<spring:message code="settings.update.field.lang.french" />
+						<c:set var="frenchLangUpdate">
+							<spring:message code="settings.update.field.langUpdate.french" />
 						</c:set>
-						<form:option value="eng" label="${englishLang}" htmlEscape="false" />
-						<form:option value="fra" label="${frenchLang}" htmlEscape="false" />
+						<form:option value="en" label="${englishLangUpdate}" htmlEscape="false" />
+						<form:option value="fr" label="${frenchLangUpdate}" htmlEscape="false" />
 					</form:select>
 				</div>
 			</div>
@@ -135,7 +140,7 @@
 						</button>
 					</p>
 				</div>
-				<div id="deleteAccountLink" class="col-lg-3 pull-right">
+				<div class="discreetLink" class="col-lg-3 pull-right">
 					<a href="#" data-toggle="modal" data-target="#deleteAccountModal"><spring:message code="settings.account.delete.link" /></a>
 				</div>
 			</div>
@@ -148,7 +153,7 @@
 	<div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form:form id="changePasswordUserForm" commandName="changePasswordUser" action="${root}/settings/updapte/password">
+				<form:form id="changePasswordUserForm" commandName="changePasswordUser" action="${root}/settings/update/password">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h4 class="modal-title" id="changePasswordModalLabel">
@@ -240,7 +245,7 @@
 	function ajaxUpdateSettings() {
 		var json = {
 			"name" : $("#name").val(),
-			"lang" : $("#lang").val(),
+			"langUpdate" : $("#langUpdate").val(),
 			"osVersion" : $("#osVersion").val(),
 			"emailAlert" : $("input[name='emailAlert']:checked").val(),
 			"emailEachUpdate" : $("input[name='emailEachUpdate']:checked")

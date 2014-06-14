@@ -22,7 +22,7 @@
 				</div>
 			</form:form>
 		</c:if>
-		<c:set var="nbAppFollow">${fn:length(currentFollowApplications)}</c:set>
+		<c:set var="nbAppFollow">${fn:length(currentFollowedApplications)}</c:set>
 		<div class="alert alert-info pull-right">
 			<c:choose>
 				<c:when test="${nbAppFollow == 0}">
@@ -48,10 +48,10 @@
 	</div>
 	<div class="row">
 		<form:form id="unfollowApplicationsForm" commandName="unfollowApplications" action="${root}/dashboard/unfollow">
-			<c:forEach items="${currentFollowApplications}" var="currentFollowApplication">
-				<c:set var="appName">${currentFollowApplication.applicationName}</c:set>
-				<c:set var="appId">${currentFollowApplication.apiName}</c:set>
-				<c:set var="appEmailActive">${currentFollowApplication.emailNotificationActive}</c:set>
+			<c:forEach items="${currentFollowedApplications}" var="currentFollowedApplication">
+				<c:set var="appName">${currentFollowedApplication.applicationName}</c:set>
+				<c:set var="appId">${currentFollowedApplication.apiName}</c:set>
+				<c:set var="appEmailActive">${currentFollowedApplication.emailNotificationActive}</c:set>
 				<c:set var="deleteTitle">
 					<spring:message code="dashboard.applications.unfollow.title" /> ${appName}
 				</c:set>
@@ -62,9 +62,9 @@
 					<spring:message code="dashboard.applications.alert.enable.title" /> ${appName}
 				</c:set>
 				<c:set var="downloadTitle">
-					<spring:message code="dashboard.applications.download.title" /> ${appName} - ${currentFollowApplication.versionNumber}
+					<spring:message code="dashboard.applications.download.title" /> ${appName} - ${currentFollowedApplication.versionNumber}
 				</c:set>
-				<div id="div-current-${appId}" class="col-xs-6 col-sm-3 col-md-2 col-lg-2 currentFollowApplicationContainer">
+				<div id="div-current-${appId}" class="col-xs-6 col-sm-3 col-md-2 col-lg-2 currentFollowedApplicationContainer">
 					<button title="${deleteTitle}" aria-hidden="true" class="close pull-right" type="button" onclick="ajaxUnfollowCurrentApplication('${appId}');">
 						<i class="fa fa-trash-o fa-1x"></i>
 					</button>
@@ -94,13 +94,13 @@
 					</button>
 					<div class="application">
 						<div class="icon">
-							<a href="${currentFollowApplication.downloadUrl}" title="${downloadTitle}" target="_blank"><img class="shadowHover" src="<spring:url value="/resources/img/application/medium/${currentFollowApplication.iconFilename}" />" alt="${appName}"></a>
+							<a href="${currentFollowedApplication.downloadUrl}" title="${downloadTitle}" target="_blank"><img class="shadowHover" src="<spring:url value="/resources/img/application/medium/${currentFollowedApplication.iconFilename}" />" alt="${appName}"></a>
 						</div>
 						<div class="title">
 							<h4>
 								<span class="label label-success">${appName}</span>
 							</h4>
-							<span class="label label-danger">${currentFollowApplication.versionNumber}</span>
+							<span class="label label-danger">${currentFollowedApplication.versionNumber}</span>
 						</div>
 					</div>
 				</div>
@@ -139,7 +139,7 @@
 						<c:otherwise>
 							<div class="alert alert-info">
 								<c:choose>
-									<c:when test="${fn:length(currentFollowApplications) == 0}">
+									<c:when test="${fn:length(currentFollowedApplications) == 0}">
 										<spring:message code="dashboard.applications.followApplications.first.description" />
 									</c:when>
 									<c:otherwise>

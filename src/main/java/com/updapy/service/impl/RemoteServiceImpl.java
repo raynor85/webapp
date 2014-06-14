@@ -25,36 +25,36 @@ public class RemoteServiceImpl implements RemoteService {
 	private List<RemoteRetriever> remoteRetrievers;
 
 	@Override
-	public ApplicationVersion retrieveRemoteLatestVersion(ApplicationReference reference) {
-		Document doc = retrieveHtmlDocument(reference.getGlobalUrl());
+	public ApplicationVersion retrieveRemoteLatestVersion(ApplicationReference application) {
+		Document doc = retrieveHtmlDocument(application.getGlobalUrl());
 		if (doc == null) {
 			return null;
 		}
 
-		ApplicationVersion applicationVersion = new ApplicationVersion();
-		applicationVersion.setReference(reference);
-		applicationVersion.setVersionDate(new Date());
+		ApplicationVersion version = new ApplicationVersion();
+		version.setApplication(application);
+		version.setVersionDate(new Date());
 
 		retrieveInformation: {
 			for (RemoteRetriever remoteRetriever : remoteRetrievers) {
-				if (remoteRetriever.support(reference)) {
-					applicationVersion.setVersionNumber(remoteRetriever.retrieveVersionNumber(doc));
-					applicationVersion.setWin32UrlEn(remoteRetriever.retrieveWin32UrlEn(doc));
-					applicationVersion.setWin32UrlFr(remoteRetriever.retrieveWin32UrlFr(doc));
-					applicationVersion.setWin64UrlEn(remoteRetriever.retrieveWin64UrlEn(doc));
-					applicationVersion.setWin64UrlFr(remoteRetriever.retrieveWin64UrlFr(doc));
+				if (remoteRetriever.support(application)) {
+					version.setVersionNumber(remoteRetriever.retrieveVersionNumber(doc));
+					version.setWin32UrlEn(remoteRetriever.retrieveWin32UrlEn(doc));
+					version.setWin32UrlFr(remoteRetriever.retrieveWin32UrlFr(doc));
+					version.setWin64UrlEn(remoteRetriever.retrieveWin64UrlEn(doc));
+					version.setWin64UrlFr(remoteRetriever.retrieveWin64UrlFr(doc));
 					break retrieveInformation;
 				}
 			}
 		}
 
-		if (StringUtils.isBlank(applicationVersion.getVersionNumber()) || StringUtils.isBlank(applicationVersion.getWin32UrlEn()) || !applicationVersion.isValidVersionNumber()) {
+		if (StringUtils.isBlank(version.getVersionNumber()) || StringUtils.isBlank(version.getWin32UrlEn()) || !version.isValidVersionNumber()) {
 			// remote version not valid
-			mailSenderService.sendAdminRetrieverError(reference.getName());
+			mailSenderService.sendAdminRetrieverError(application.getName());
 			return null;
 		}
 
-		return applicationVersion;
+		return version;
 	}
 
 	private Document retrieveHtmlDocument(String url) {

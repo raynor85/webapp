@@ -106,11 +106,6 @@
 <link href="<spring:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
 <script src="<spring:url value="/resources/js/bootstrap.min.js" />"></script>
 <link href="<spring:url value="/resources/css/social-buttons-3.css" />" rel="stylesheet">
-<link href="<spring:url value="/resources/css/bootstrap-select.min.css" />" rel="stylesheet">
-<script src="<spring:url value="/resources/js/bootstrap-select.min.js" />"></script>
-<script src="<spring:url value="/resources/js/bootbox.min.js" />"></script>
-<link href="<spring:url value="/resources/css/bootstrap-switch.min.css" />" rel="stylesheet">
-<script src="<spring:url value="/resources/js/bootstrap-switch.min.js" />"></script>
 
 <!-- Ladda -->
 <link href="<spring:url value="/resources/css/ladda.min.css" />" rel="stylesheet">
@@ -127,7 +122,6 @@
 <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-<script src="<spring:url value="/resources/js/custom-before.js" />"></script>
 
 <!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
