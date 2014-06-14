@@ -44,7 +44,7 @@ public class SettingsController {
 	@Autowired
 	private Validator changePasswordUserCustomValidator;
 
-	@InitBinder("/changePasswordUser")
+	@InitBinder("changePasswordUser")
 	private void initBinderChangePassword(WebDataBinder binder) {
 		binder.addValidators(changePasswordUserCustomValidator);
 	}

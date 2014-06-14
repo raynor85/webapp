@@ -63,22 +63,22 @@ public class UserController {
 	@Autowired
 	private Validator resetUserCustomValidator;
 
-	@InitBinder("/registerEarlyUser")
+	@InitBinder("registerEarlyUser")
 	private void initBinderEarly(WebDataBinder binder) {
 		binder.addValidators(registerEarlyUserCustomValidator);
 	}
 
-	@InitBinder("/registerUser")
+	@InitBinder("registerUser")
 	private void initBinderRegisterUser(WebDataBinder binder) {
 		binder.addValidators(registerUserCustomValidator);
 	}
 
-	@InitBinder("/resetUserEmail")
+	@InitBinder("resetUserEmail")
 	private void initBinderResetPassword(WebDataBinder binder) {
 		binder.addValidators(resetUserEmailCustomValidator);
 	}
 
-	@InitBinder("/resetUser")
+	@InitBinder("resetUser")
 	private void initBinderResetPasswordConfirm(WebDataBinder binder) {
 		binder.addValidators(resetUserCustomValidator);
 	}
