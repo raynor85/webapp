@@ -1,5 +1,6 @@
 package com.updapy.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -7,38 +8,42 @@ import org.springframework.web.servlet.ModelAndView;
 import com.updapy.form.model.RegisterEarlyUser;
 import com.updapy.form.model.RegisterUser;
 import com.updapy.form.model.ResetUserEmail;
+import com.updapy.service.UserService;
 
 @Controller
 public class PageController {
 
+	@Autowired
+	private UserService userService;
+
 	@RequestMapping("/")
 	public ModelAndView welcomePage() {
-		return new ModelAndView("welcome", "registerEarlyUser", new RegisterEarlyUser());
+		return addNbNotifications(new ModelAndView("welcome", "registerEarlyUser", new RegisterEarlyUser()));
 	}
 
 	@RequestMapping("/error/404")
-	public String error404Page() {
-		return "error-404";
+	public ModelAndView error404Page() {
+		return addNbNotifications(new ModelAndView("error-404"));
 	}
 
 	@RequestMapping("/error/403")
-	public String error403Page() {
-		return "error-403";
+	public ModelAndView error403Page() {
+		return addNbNotifications(new ModelAndView("error-403"));
 	}
 
 	@RequestMapping("/error")
-	public String errorPage() {
-		return "error";
+	public ModelAndView errorPage() {
+		return addNbNotifications(new ModelAndView("error"));
 	}
 
 	@RequestMapping("/faq")
-	public String faqPage() {
-		return "faq";
+	public ModelAndView faqPage() {
+		return addNbNotifications(new ModelAndView("faq"));
 	}
 
 	@RequestMapping("/privacy")
-	public String privacyPage() {
-		return "privacy";
+	public ModelAndView privacyPage() {
+		return addNbNotifications(new ModelAndView("privacy"));
 	}
 
 	@RequestMapping({ "/sign", "/signin" })
@@ -57,5 +62,10 @@ public class PageController {
 	@RequestMapping("/signup/activate")
 	public String signupActivatePage() {
 		return "sign-up-activate";
+	}
+
+	private ModelAndView addNbNotifications(ModelAndView modelAndView) {
+		modelAndView.addObject("nbNotifications", userService.getNbNotifications(userService.getCurrentUserLight()));
+		return modelAndView;
 	}
 }

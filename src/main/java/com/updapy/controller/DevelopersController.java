@@ -27,10 +27,12 @@ public class DevelopersController {
 	public ModelAndView dashboardPage() {
 		ResetUserApiKey resetUserApiKey = new ResetUserApiKey();
 		User user = userService.getCurrentUserLight();
+		ModelAndView modelAndView = new ModelAndView("developers", "resetUserApiKey", resetUserApiKey);
 		if (user != null) {
 			resetUserApiKey.setApiKey(user.getApiKey());
+			modelAndView.addObject("nbNotifications", userService.getNbNotifications(user));
 		}
-		return new ModelAndView("developers", "resetUserApiKey", resetUserApiKey);
+		return modelAndView;
 	}
 
 	@RequestMapping(value = "/apikey/reset", method = RequestMethod.POST)

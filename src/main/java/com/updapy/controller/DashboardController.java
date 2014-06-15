@@ -20,8 +20,10 @@ import com.updapy.form.model.ChangeCurrentApplication;
 import com.updapy.form.model.CurrentFollowedApplication;
 import com.updapy.form.model.DismissMessage;
 import com.updapy.form.model.FollowNewApplications;
+import com.updapy.form.model.Notification;
 import com.updapy.form.model.RequestApplication;
 import com.updapy.model.ApplicationFollow;
+import com.updapy.model.ApplicationNotification;
 import com.updapy.model.ApplicationRequest;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.User;
@@ -111,6 +113,16 @@ public class DashboardController {
 		return jsonResponseUtils.buildSuccessfulJsonResponse("dashboard.applications.dismiss.confirm");
 	}
 
+	@RequestMapping(value = "/notifications", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody
+	List<Notification> readNotifications() {
+		User user = userService.getCurrentUserLight();
+		List<ApplicationNotification> applicationNotifications = userService.getLastNbNotifications(user, 10);
+		List<Notification> notifications = dozerHelper.map(applicationNotifications, Notification.class);
+		userService.markAsReadAllNotifications(user);
+		return notifications;
+	}
+
 	@RequestMapping(value = "/request", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	JsonResponse requestApplication(@Valid @RequestBody RequestApplication requestApplication, BindingResult result) {
@@ -118,9 +130,10 @@ public class DashboardController {
 			return jsonResponseUtils.buildFailedJsonResponseFromErrorObject(result.getAllErrors());
 		} else {
 			ApplicationRequest requestedApplication = dozerHelper.map(requestApplication, ApplicationRequest.class);
-			requestedApplication.setUser(userService.getCurrentUserLight());
+			User user = userService.getCurrentUserLight();
+			requestedApplication.setUser(user);
 			applicationService.saveRequestedApplication(requestedApplication);
-			mailSenderService.sendAdminRequestedApplication(requestApplication.getName(), requestedApplication.getUrl());
+			mailSenderService.sendAdminRequestedApplication(requestApplication.getName(), requestedApplication.getUrl(), user.getLangEmail());
 			return jsonResponseUtils.buildSuccessfulJsonResponse("dashboard.applications.request.confirm");
 		}
 	}
@@ -139,7 +152,7 @@ public class DashboardController {
 	}
 
 	private ModelAndView initModel(User user, ModelAndView modelAndView) {
-		modelAndView.addObject("newFollowApplications", new FollowNewApplications());
+		modelAndView.addObject("newFollowedApplications", new FollowNewApplications());
 		modelAndView.addObject("requestApplication", new RequestApplication());
 		modelAndView.addObject("leftApplications", userService.getLeftApplications(user));
 		List<CurrentFollowedApplication> currentFollowedApplications = new ArrayList<CurrentFollowedApplication>();
@@ -151,6 +164,7 @@ public class DashboardController {
 			currentFollowedApplications.add(currentFollowedApplication);
 		}
 		modelAndView.addObject("currentFollowedApplications", currentFollowedApplications);
+		modelAndView.addObject("nbNotifications", userService.getNbNotifications(user));
 		return modelAndView;
 	}
 

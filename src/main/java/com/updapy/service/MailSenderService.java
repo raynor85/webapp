@@ -17,7 +17,7 @@ public interface MailSenderService {
 
 	boolean sendAdminRetrieverError(String applicationName);
 
-	boolean sendAdminRequestedApplication(String name, String url);
+	boolean sendAdminRequestedApplication(String name, String url, Locale locale);
 
 	boolean sendSingleUpdate(String email, ApplicationReference application, ApplicationVersion newVersion, UpdateUrl updateUrl, List<UpdateUrl> otherUpdateUrls, Locale locale);
 

@@ -85,6 +85,13 @@ hr.double-margin {
 	}
 }
 
+@media ( max-width : 991px) {
+	.dropdown-menu-right-sm {
+		left: auto;
+		right: 0;
+	}
+}
+
 .text-right-xs {
 	text-align: right;
 }

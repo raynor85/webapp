@@ -51,8 +51,10 @@ public class SettingsController {
 
 	@RequestMapping({ "/", "" })
 	public ModelAndView settingsPage() {
+		User user = userService.getCurrentUserWithSettings();
 		ModelAndView modelAndView = new ModelAndView("settings");
-		modelAndView.addObject("updateSettings", settingsService.getSettings(userService.getCurrentUserWithSettings()));
+		modelAndView.addObject("updateSettings", settingsService.getSettings(user));
+		modelAndView.addObject("nbNotifications", userService.getNbNotifications(user));
 		modelAndView.addObject("changePasswordUser", new ChangePasswordUser());
 		modelAndView.addObject("deleteAccount", new DeleteAccount());
 		return modelAndView;

@@ -38,6 +38,7 @@ body {
 .navbar-brand {
 	font-family: 'Lobster', cursive;
 	font-size: 26px;
+	height: 63px !important;
 }
 
 .navbar-brand i {
@@ -77,13 +78,23 @@ body {
 }
 
 .navbar-inverse .navbar-nav>li>a:hover,.navbar-inverse .navbar-nav>li>a:focus {
-	color: #000;
-	background-color: transparent;
+	color: #1a7440;
+	background-color: #E9F7EF;
 }
 
 .navbar-inverse .navbar-nav>.active>a,.navbar-inverse .navbar-nav>.active>a:hover,.navbar-inverse .navbar-nav>.active>a:focus {
 	color: #000;
 	background-color: transparent;
+}
+
+a.noHover {
+	color: #000 !important;
+	background-color: transparent !important;
+}
+
+.navbar-nav .active a {
+	color: #000 !important;
+	background-color: #F5F5F5 !important;
 }
 
 .navbar-inverse .navbar-nav>.disabled>a,.navbar-inverse .navbar-nav>.disabled>a:hover,.navbar-inverse .navbar-nav>.disabled>a:focus {
@@ -109,8 +120,8 @@ body {
 }
 
 .navbar-inverse .navbar-nav>.open>a,.navbar-inverse .navbar-nav>.open>a:hover,.navbar-inverse .navbar-nav>.open>a:focus {
-	color: #000;
-	background-color: #F5F5F5;
+	color: #1a7440;
+	background-color: #E9F7EF;
 }
 
 .navbar-inverse .navbar-nav>.dropdown>a:hover .caret {
@@ -204,8 +215,8 @@ body {
 }
 
 .dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus {
-	color: #005724 !important;
-	background-color: #E2F0E7 !important;
+	color: #1a7440 !important;
+	background-color: #E9F7EF !important;
 }
 
 /* ===== Jumbotron ===== */
@@ -553,7 +564,7 @@ footer a:hover {
 }
 
 .user-bar-icons>a:hover>i {
-	color: #333;
+	color: #27ae60;
 }
 
 /* ===== Sign In & Sign Up ===== */
@@ -1191,7 +1202,7 @@ a.carousel-arrow-next {
 	top: auto;
 	bottom: -350px;
 	left: 50%;
-	margin-left: -300px;
+	margin-left: -350px;
 	box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
 	transition: bottom 0.3s;
 	-webkit-transition: bottom 0.3s;
@@ -1204,7 +1215,7 @@ a.carousel-arrow-next {
 
 @media ( max-width : 767px) { /* Adjusting for xs devices */
 	.crp-showcase {
-		padding-bottom: 30px;
+		padding-bottom: 10px;
 	}
 	.crp-showcase h1 {
 		font-size: 36px;
@@ -1561,7 +1572,7 @@ div.form-group div.col-sm-3 {
 }
 
 .table-hover>tbody>tr:hover>td {
-	background-color: #E2F0E7
+	background-color: #E9F7EF;
 }
 
 .table-hover>tbody>tr>td {
@@ -1668,4 +1679,9 @@ img.shadowHover:hover {
 .json-key {
 	color: #003366;
 	font-weight: bold;
+}
+
+/*** Badges ***/
+.badge-notification {
+	background-color: #d9534f;
 }

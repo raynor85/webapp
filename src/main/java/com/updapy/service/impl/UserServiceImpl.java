@@ -77,6 +77,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getCurrentUserWithSettings() {
 		User user = getCurrentUserLight();
+		if (user == null) {
+			return null;
+		}
 		// initialize attributes to avoid lazy exception
 		Hibernate.initialize(user.getSettings());
 		return user;
@@ -85,6 +88,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getCurrentUserWithApplicationFolloweds() {
 		User user = getCurrentUserLight();
+		if (user == null) {
+			return null;
+		}
 		Hibernate.initialize(user.getFollowedApplications());
 		return user;
 	}
@@ -92,6 +98,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getCurrentUserWithHelpMessages() {
 		User user = getCurrentUserLight();
+		if (user == null) {
+			return null;
+		}
 		Hibernate.initialize(user.getHelpMessages());
 		return user;
 	}
@@ -99,10 +108,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getCurrentUserFull() {
 		User user = getCurrentUserLight();
+		if (user == null) {
+			return null;
+		}
 		Hibernate.initialize(user.getSettings());
 		Hibernate.initialize(user.getFollowedApplications());
 		Hibernate.initialize(user.getHelpMessages());
-		Hibernate.initialize(user.getNotifications());
 		return user;
 	}
 
@@ -344,6 +355,7 @@ public class UserServiceImpl implements UserService {
 		if (followedApplication == null) {
 			return false;
 		}
+		removeCurrentNotificationsForApplication(user, followedApplication.getApplication());
 		applicationService.deleteFollowedApplication(followedApplication);
 		return true;
 	}
@@ -503,11 +515,30 @@ public class UserServiceImpl implements UserService {
 	}
 
 	private void removeCurrentNotificationsForApplication(User user, ApplicationVersion version) {
-		List<ApplicationNotification> notifications = applicationService.getNotifications(user, version.getApplication());
+		removeCurrentNotificationsForApplication(user, version.getApplication());
+	}
+
+	private void removeCurrentNotificationsForApplication(User user, ApplicationReference application) {
+		List<ApplicationNotification> notifications = applicationService.getNotifications(user, application);
 		if (notifications != null && !notifications.isEmpty()) {
 			applicationService.deleteNotifications(notifications);
 		}
 
+	}
+
+	@Override
+	public Long getNbNotifications(User user) {
+		return applicationService.countNewNotifications(user);
+	}
+
+	@Override
+	public List<ApplicationNotification> getLastNbNotifications(User user, int nb) {
+		return applicationService.getNbLastNotifications(user, nb);
+	}
+
+	@Override
+	public boolean markAsReadAllNotifications(User user) {
+		return applicationService.markAsReadAllNotifications(user);
 	}
 
 }

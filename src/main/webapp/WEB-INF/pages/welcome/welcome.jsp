@@ -38,7 +38,7 @@
 					</div>
 				</c:if>
 				<div class="alt-index">
-					<img src="<spring:url value="/resources/img/welcome/updapy-preview.jpg" />" alt="Updapy Preview">
+					<img src="<spring:url value="/resources/img/welcome/updapy-preview.png" />" alt="Updapy Preview">
 				</div>
 			</div>
 		</div>

@@ -37,7 +37,7 @@
 				<c:when test="${nbAppFollow < 10}">
 					<spring:message code="dashboard.application.status.experienced" arguments="${nbAppFollow}" />
 				</c:when>
-				<c:when test="${nbAppFollow < 15}">
+				<c:when test="${nbAppFollow <= 15}">
 					<spring:message code="dashboard.application.status.expert" arguments="${nbAppFollow}" />
 				</c:when>
 				<c:when test="${nbAppFollow > 15}">
@@ -124,7 +124,7 @@
 <div class="modal fade" id="followApplicationsModal" tabindex="-1" role="dialog" aria-labelledby="followApplicationsModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-			<form:form id="newollowApplicationsForm" commandName="newFollowApplications" action="${root}/dashboard/follow">
+			<form:form id="newFollowedApplicationsForm" commandName="newFollowedApplications" action="${root}/dashboard/follow">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="followApplicationsModalLabel">
@@ -144,7 +144,6 @@
 									</c:when>
 									<c:otherwise>
 										<spring:message code="dashboard.applications.followApplications.description" />
-
 									</c:otherwise>
 								</c:choose>
 							</div>

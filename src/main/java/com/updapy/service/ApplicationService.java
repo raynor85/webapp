@@ -62,10 +62,17 @@ public interface ApplicationService {
 	/**
 	 * Application notification
 	 */
+
 	ApplicationNotification saveNotification(ApplicationNotification notification);
 
 	void deleteNotifications(List<ApplicationNotification> notifications);
 
 	List<ApplicationNotification> getNotifications(User user, ApplicationReference application);
+
+	Long countNewNotifications(User user);
+
+	List<ApplicationNotification> getNbLastNotifications(User user, int nb);
+
+	boolean markAsReadAllNotifications(User user);
 
 }

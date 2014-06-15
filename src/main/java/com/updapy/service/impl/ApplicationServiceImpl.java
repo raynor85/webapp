@@ -3,6 +3,7 @@ package com.updapy.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.updapy.model.ApplicationFollow;
@@ -122,5 +123,25 @@ public class ApplicationServiceImpl implements ApplicationService {
 	public void deleteNotifications(List<ApplicationNotification> notifications) {
 		applicationNotificationRepository.delete(notifications);
 
+	}
+
+	@Override
+	public Long countNewNotifications(User user) {
+		return applicationNotificationRepository.countByUserAndReadFalse(user);
+	}
+
+	@Override
+	public List<ApplicationNotification> getNbLastNotifications(User user, int nb) {
+		return applicationNotificationRepository.findByUserOrderByCreationDateDesc(user, new PageRequest(0, nb));
+	}
+
+	@Override
+	public boolean markAsReadAllNotifications(User user) {
+		List<ApplicationNotification> notifications = applicationNotificationRepository.findByUserAndReadFalse(user);
+		for (ApplicationNotification notification : notifications) {
+			notification.setRead(true);
+			applicationNotificationRepository.saveAndFlush(notification);
+		}
+		return true;
 	}
 }

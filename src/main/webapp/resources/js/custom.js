@@ -154,7 +154,7 @@ $('.crp-ft-action').hover(function() {
 $(function() {
 	var $root = $('html, body');
 
-	$('a').click(function() {
+	$("a").click(function() {
 		var href = $.attr(this, 'href');
 		if (href == '#early-user') {
 			$root.animate({
@@ -173,7 +173,7 @@ $(function() {
 
 function ajaxCallPost(button, form, json, divResult, jsToExecuteWhenSucess,
 		noSpaceBefore) {
-	ajaxCallPostWithUrl(button, $(form).attr('action'), json, divResult,
+	ajaxCallPostWithUrl(button, $(form).attr("action"), json, divResult,
 			jsToExecuteWhenSucess, noSpaceBefore)
 }
 
@@ -187,13 +187,13 @@ function ajaxCallPostWithUrl(button, urlAction, json, divResult,
 	}
 	$
 			.ajax({
-				type : 'POST',
+				type : "POST",
 				beforeSend : function(xhr) {
 					xhr.setRequestHeader(header, token);
 				},
 				url : urlAction,
 				data : JSON.stringify(json),
-				contentType : 'application/json',
+				contentType : "application/json",
 				cache : false,
 				success : function(response) {
 					var type = "";
@@ -230,12 +230,12 @@ function ajaxCallGetAndRefresh(elementNameToGet, elementIdToUpdate) {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
 	$.ajax({
-		type : 'GET',
+		type : "GET",
 		beforeSend : function(xhr) {
 			xhr.setRequestHeader(header, token);
 		},
-		url : elementNameToGet + '/get',
-		contentType : 'text',
+		url : elementNameToGet + "/get",
+		contentType : "text/plain",
 		cache : false,
 		success : function(response) {
 			$(elementIdToUpdate).val(response);

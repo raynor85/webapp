@@ -59,7 +59,7 @@
 
 <script>
 	var displayLinkToLogin = function() {
-		if (location.href.match(/signup.?$/)) {
+		if (location.href.match(/sign.?up.?$/)) {
 			$("div.discreetLink").removeClass("hidden");
 		}
 	}();

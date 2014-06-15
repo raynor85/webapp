@@ -179,8 +179,7 @@ public class MailSenderServiceImpl implements MailSenderService {
 	}
 
 	@Override
-	public boolean sendAdminRequestedApplication(String name, String url) {
-		Locale locale = new Locale("en");
+	public boolean sendAdminRequestedApplication(String name, String url, Locale locale) {
 		String subject = messageUtils.getSimpleMessage("email.application.request.subject", locale);
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("lang", messageUtils.getSimpleMessage("email.lang", locale));

@@ -7,6 +7,7 @@ import org.springframework.social.connect.Connection;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.updapy.model.ApplicationFollow;
+import com.updapy.model.ApplicationNotification;
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.UpdateUrl;
@@ -73,5 +74,11 @@ public interface UserService {
 	List<User> findUsersFollowingApplication(ApplicationReference application);
 
 	void notifyForNewVersion(User user, ApplicationVersion newVersion);
+
+	Long getNbNotifications(User user);
+
+	List<ApplicationNotification> getLastNbNotifications(User user, int nb);
+
+	boolean markAsReadAllNotifications(User user);
 
 }
