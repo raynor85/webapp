@@ -87,11 +87,6 @@ body {
 	background-color: transparent;
 }
 
-a.noHover {
-	color: #000 !important;
-	background-color: transparent !important;
-}
-
 .navbar-nav .active a {
 	color: #000 !important;
 	background-color: #F5F5F5 !important;
@@ -1685,3 +1680,10 @@ img.shadowHover:hover {
 .badge-notification {
 	background-color: #d9534f;
 }
+
+/*** Sometimes we don't want focus ***/
+.noHover {
+	color: #000 !important;
+	background-color: transparent !important;
+}
+

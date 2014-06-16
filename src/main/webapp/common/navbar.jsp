@@ -37,6 +37,7 @@
 					</c:choose>
 					<li class="dropdown"><a href="#" onclick="javascript:ajaxReadNotifications();" class="dropdown-toggle" data-toggle="dropdown"><span id="badge-notification" class="badge ${styleNotification}">${nbNotifications}</span> <span id="text-notification"><spring:message code="${messageKeyNotification}" /></span> <b class="caret"></b></a>
 						<ul id="notifications" class="dropdown-menu dropdown-menu-right-sm">
+							<li><a class="noHover" style="color: #333 !important; background-color: transparent !important;"><spring:message code="menu.notification.loading" /></a></li>
 						</ul></li>
 				</c:if>
 			</ul>
@@ -126,7 +127,7 @@
 								darkColor = "#B93935";
 								lightColor = "#E17572";
 							}
-							responseNotifications += "<li><a class='noHover' style='background-color: "
+							responseNotifications += "<li><a style='background-color: "
 									+ bgcolor
 									+ " !important;color: "
 									+ darkColor

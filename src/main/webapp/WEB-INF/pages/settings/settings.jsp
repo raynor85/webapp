@@ -101,7 +101,7 @@
 					<spring:message code="settings.emails.radio.email.alert.title" />
 				</div>
 				<div class="col-sm-3">
-					<form:checkbox data-off-text="${disable}" data-on-text="${enable}" path="emailAlert" onchange="updateEmailOptions();" />
+					<form:checkbox data-off-text="${disable}" data-on-text="${enable}" path="emailAlert" id="optionEmail" onchange="updateEmailOptions();" />
 				</div>
 			</div>
 			<div style="height: 8px"></div>
@@ -128,7 +128,7 @@
 					<spring:message code="settings.emails.radio.email.newsletter.title" />
 				</div>
 				<div class="col-sm-3">
-					<form:checkbox data-off-text="${disable}" data-on-text="${enable}" path="emailNewsletter" />
+					<form:checkbox data-off-text="${disable}" data-on-text="${enable}" path="emailNewsletter" id="optionNewsletter" />
 				</div>
 			</div>
 			<br />
@@ -313,13 +313,33 @@
 		$("input[id^=emailSubOption]").bootstrapSwitch("readonly", disabled);
 		$("input[id^=emailSubOption]").bootstrapSwitch("disabled", disabled);
 		// put titles in grey
-		var animateColor = "#333333";
+		var textColor = "#333333";
 		if (disabled) {
-			var animateColor = "#B2B2B2";
+			var textColor = "#B2B2B2";
 		}
 		$("div[id^=emailSubOption]").animate({
-			color : animateColor
-		}, 1000);
+			color : textColor
+		}, 0);
 	}
+	$("#emailSubOptionWeekly").on(
+			"switchChange.bootstrapSwitch",
+			function(event, state) {
+				if (state) {
+					$("#emailSubOptionEachUpdate").bootstrapSwitch("state",
+							false);
+				}
+			});
+	$("#emailSubOptionEachUpdate").on("switchChange.bootstrapSwitch",
+			function(event, state) {
+				if (state) {
+					$("#emailSubOptionWeekly").bootstrapSwitch("state", false);
+				}
+			});
+	$("input[type='checkbox']").on("click.bootstrapSwitch", function(e, data) {
+		$(this).bootstrapSwitch("toggleState");
+		if ($.browser.mozilla) {
+			$(this).bootstrapSwitch("toggleState");
+		}
+	});
 	updateEmailOptions();
 </script>
