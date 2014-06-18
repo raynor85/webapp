@@ -1,4 +1,4 @@
-package com.updapy.model;
+package com.updapy.form.model;
 
 import org.apache.commons.lang3.StringUtils;
 

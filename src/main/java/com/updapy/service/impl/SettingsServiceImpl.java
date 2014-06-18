@@ -101,4 +101,10 @@ public class SettingsServiceImpl implements SettingsService {
 		UpdateSettings settings = getSettings(user);
 		return settings.isEmailAlert() && settings.isEmailEachUpdate();
 	}
+
+	@Override
+	public boolean isEmailWeeklyActive(User user) {
+		UpdateSettings settings = getSettings(user);
+		return settings.isEmailAlert() && settings.isEmailWeekly();
+	}
 }

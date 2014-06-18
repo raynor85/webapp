@@ -1,5 +1,7 @@
 package com.updapy.service.impl;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +79,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
+	public List<ApplicationVersion> getNewVersionsOnPeriod(Date from, Date to) {
+		return new ArrayList<ApplicationVersion>(applicationVersionRepository.findByCreationDateBetweenOrderByCreationDateDesc(from, to));
+	}
+
+	@Override
 	public ApplicationReference getApplication(String apiName) {
 		return applicationReferenceRepository.findByApiNameAndActiveTrue(apiName);
 	}
@@ -144,4 +151,5 @@ public class ApplicationServiceImpl implements ApplicationService {
 		}
 		return true;
 	}
+
 }

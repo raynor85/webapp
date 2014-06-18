@@ -1,5 +1,6 @@
 package com.updapy.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.cache.annotation.CacheEvict;
@@ -40,6 +41,8 @@ public interface ApplicationService {
 	ApplicationVersion getLatestVersion(ApplicationReference application);
 
 	ApplicationVersion getLatestVersionNoCache(ApplicationReference application);
+	
+	List<ApplicationVersion> getNewVersionsOnPeriod(Date from, Date to);
 
 	/**
 	 * Application follow

@@ -100,4 +100,25 @@ public class ApplicationVersion extends BaseEntity {
 		return true;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		return prime * ((application == null) ? 0 : application.hashCode());
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (getClass() != obj.getClass())
+			return false;
+		ApplicationVersion other = (ApplicationVersion) obj;
+		if (application == null) {
+			if (other.application != null)
+				return false;
+		} else if (!application.equals(other.application))
+			return false;
+		return true;
+	}
+
 }

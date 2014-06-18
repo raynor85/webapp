@@ -26,9 +26,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
-import com.updapy.model.ApplicationReference;
-import com.updapy.model.ApplicationVersion;
-import com.updapy.model.UpdateUrl;
+import com.updapy.form.model.NewVersion;
+import com.updapy.form.model.UpdateUrl;
 import com.updapy.service.MailSenderService;
 import com.updapy.util.MessageUtils;
 
@@ -197,16 +196,16 @@ public class MailSenderServiceImpl implements MailSenderService {
 	}
 
 	@Override
-	public boolean sendSingleUpdate(String email, ApplicationReference application, ApplicationVersion newVersion, UpdateUrl updateUrl, List<UpdateUrl> otherUpdateUrls, Locale locale) {
-		String subject = messageUtils.getCustomMessage("email.application.update.single.subject", new String[] { application.getName() }, locale);
+	public boolean sendSingleUpdate(String email, NewVersion newVersion, List<UpdateUrl> otherUpdateUrls, Locale locale) {
+		String subject = messageUtils.getCustomMessage("email.application.update.single.subject", new String[] { newVersion.getApplicationName() }, locale);
 		String fromEmail = messageUtils.getSimpleMessage("email.noreply", locale);
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("lang", messageUtils.getSimpleMessage("email.lang", locale));
 		model.put("title", messageUtils.getSimpleMessage("email.application.update.single.title", locale));
-		model.put("text1", messageUtils.getCustomMessage("email.application.update.single.text1", new String[] { application.getName(), newVersion.getVersionNumber() }, locale));
+		model.put("text1", messageUtils.getCustomMessage("email.application.update.single.text1", new String[] { newVersion.getApplicationName(), newVersion.getVersionNumber() }, locale));
 		model.put("button", messageUtils.getSimpleMessage("email.application.update.single.button", locale));
 		model.put("text2", buildMessageOtherUpdates(otherUpdateUrls, newVersion.getVersionNumber(), locale));
-		model.put("link", updateUrl.getUrl());
+		model.put("link", newVersion.getUpdateUrl());
 		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
 		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "single-update.vm", "UTF-8", model);
@@ -230,6 +229,43 @@ public class MailSenderServiceImpl implements MailSenderService {
 			message.append(messageUtils.getSimpleMessage("email.application.update.single.text2.list.end", locale));
 		}
 		message.append(messageUtils.getSimpleMessage("email.application.update.single.text2.part2", locale));
+		return message.toString();
+	}
+
+	@Override
+	public boolean sendWeeklyUpdates(String email, List<NewVersion> newVersions, Locale locale) {
+		String subject;
+		if (newVersions.size() == 1) {
+			subject = messageUtils.getSimpleMessage("email.application.update.weekly.subject.single", locale);
+		} else {
+			subject = messageUtils.getCustomMessage("email.application.update.weekly.subject.multi", new Integer[] { newVersions.size() }, locale);
+		}
+		String fromEmail = messageUtils.getSimpleMessage("email.noreply", locale);
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("lang", messageUtils.getSimpleMessage("email.lang", locale));
+		model.put("title", messageUtils.getSimpleMessage("email.application.update.weekly.title", locale));
+		model.put("text1", messageUtils.getSimpleMessage("email.application.update.weekly.text1.part1", locale));
+		model.put("text1", buildMessageWeeklyUpdates(newVersions, locale));
+		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
+		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
+		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "weekly-update.vm", "UTF-8", model);
+
+		try {
+			send(fromEmail, email, subject, message);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	private String buildMessageWeeklyUpdates(List<NewVersion> newVersions, Locale locale) {
+		StringBuilder message = new StringBuilder(messageUtils.getSimpleMessage("email.application.update.weekly.text1.part1", locale));
+		for (NewVersion newVersion : newVersions) {
+			message.append(messageUtils.getCustomMessage("email.application.update.weekly.text1.list.begin", new String[] { newVersion.getUpdateUrl().getUrl() }, locale));
+			message.append(messageUtils.getCustomMessage("email.application.update.weekly.text1.list.version", new String[] { newVersion.getApplicationName(), newVersion.getVersionNumber() }, locale));
+			message.append(messageUtils.getSimpleMessage("email.application.update.weekly.text1.list.end", locale));
+		}
+		message.append(messageUtils.getSimpleMessage("email.application.update.weekly.text1.part2", locale));
 		return message.toString();
 	}
 }

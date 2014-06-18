@@ -1,5 +1,8 @@
 package com.updapy.repository;
 
+import java.util.Date;
+import java.util.Set;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,5 +14,7 @@ public interface ApplicationVersionRepository extends JpaRepository<ApplicationV
 
 	@Query("select v from ApplicationVersion v where v.application = :application and v.versionDate = (select max(v.versionDate) from ApplicationVersion v where v.application = :application))")
 	ApplicationVersion findLatestByApplicationReference(@Param("application") ApplicationReference application);
+
+	Set<ApplicationVersion> findByCreationDateBetweenOrderByCreationDateDesc(Date from, Date to);
 
 }

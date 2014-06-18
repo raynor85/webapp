@@ -3,9 +3,8 @@ package com.updapy.service;
 import java.util.List;
 import java.util.Locale;
 
-import com.updapy.model.ApplicationReference;
-import com.updapy.model.ApplicationVersion;
-import com.updapy.model.UpdateUrl;
+import com.updapy.form.model.NewVersion;
+import com.updapy.form.model.UpdateUrl;
 
 public interface MailSenderService {
 
@@ -19,6 +18,8 @@ public interface MailSenderService {
 
 	boolean sendAdminRequestedApplication(String name, String url, Locale locale);
 
-	boolean sendSingleUpdate(String email, ApplicationReference application, ApplicationVersion newVersion, UpdateUrl updateUrl, List<UpdateUrl> otherUpdateUrls, Locale locale);
+	boolean sendSingleUpdate(String email, NewVersion newVersion, List<UpdateUrl> otherUpdateUrls, Locale locale);
+
+	boolean sendWeeklyUpdates(String email, List<NewVersion> newVersions, Locale locale);
 
 }

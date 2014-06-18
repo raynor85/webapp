@@ -6,11 +6,11 @@ import java.util.Locale;
 import org.springframework.social.connect.Connection;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.updapy.form.model.UpdateUrl;
 import com.updapy.model.ApplicationFollow;
 import com.updapy.model.ApplicationNotification;
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
-import com.updapy.model.UpdateUrl;
 import com.updapy.model.User;
 import com.updapy.model.enumeration.TypeHelpMessage;
 

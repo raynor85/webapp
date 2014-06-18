@@ -22,13 +22,14 @@ import org.springframework.social.connect.ConnectionKey;
 import org.springframework.social.connect.UserProfile;
 import org.springframework.stereotype.Service;
 
+import com.updapy.form.model.NewVersion;
+import com.updapy.form.model.UpdateUrl;
 import com.updapy.model.ApplicationFollow;
 import com.updapy.model.ApplicationNotification;
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.HelpMessage;
 import com.updapy.model.Setting;
-import com.updapy.model.UpdateUrl;
 import com.updapy.model.User;
 import com.updapy.model.UserConnection;
 import com.updapy.model.enumeration.Lang;
@@ -510,7 +511,7 @@ public class UserServiceImpl implements UserService {
 		applicationService.saveNotification(notification);
 		if (settingsService.isEmailOnEachUpdateActive(user) && enableEmailAlertFollowedApplication(user, newVersion.getApplication().getApiName())) {
 			UpdateUrl updateUrl = getDownloadUrlMatchingSettings(user, newVersion);
-			mailSenderService.sendSingleUpdate(user.getEmail(), newVersion.getApplication(), newVersion, updateUrl, getOtherDownloadUrls(updateUrl, newVersion), user.getLangEmail());
+			mailSenderService.sendSingleUpdate(user.getEmail(), new NewVersion(newVersion.getApplication().getName(), newVersion.getVersionNumber(), updateUrl), getOtherDownloadUrls(updateUrl, newVersion), user.getLangEmail());
 		}
 	}
 

@@ -19,4 +19,6 @@ public interface SettingsService {
 
 	boolean isEmailOnEachUpdateActive(User user);
 
+	boolean isEmailWeeklyActive(User user);
+
 }

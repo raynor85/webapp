@@ -1,17 +1,31 @@
 package com.updapy.service.batch;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
+import javax.transaction.Transactional;
+
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import com.updapy.form.model.NewVersion;
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
+import com.updapy.model.User;
 import com.updapy.service.ApplicationService;
+import com.updapy.service.MailSenderService;
 import com.updapy.service.RemoteService;
+import com.updapy.service.SettingsService;
+import com.updapy.service.UserService;
 
 @Component
 public class ApplicationVersionScheduler {
@@ -22,18 +36,26 @@ public class ApplicationVersionScheduler {
 	private ApplicationService applicationService;
 
 	@Autowired
+	private UserService userService;
+
+	@Autowired
+	private SettingsService settingsService;
+
+	@Autowired
 	private RemoteService remoteService;
 
-	// fire twice a day
+	@Autowired
+	private MailSenderService mailSenderService;
+
+	// fire twice a day (noon and midnight)
 	@Scheduled(cron = "0 0 0,12 * * *")
-	//@Scheduled(fixedDelay = 500000) // fire at start - testing purpose
 	public void updateApplicationRepository() {
-		log.info("> Applications repository update started");
+		log.info("> Applications repository update started (includes each update email sender)");
 		List<ApplicationReference> applications = applicationService.getApplications();
 		for (ApplicationReference application : applications) {
 			checkNewVersionApplication(application);
 		}
-		log.info("< Applications repository updated sucessfully.");
+		log.info("< Applications repository update ends sucessfully.");
 	}
 
 	public void checkNewVersionApplication(ApplicationReference application) {
@@ -62,4 +84,46 @@ public class ApplicationVersionScheduler {
 		}
 	}
 
+	// fire once a week (each Wednesday at 1pm)
+	// TODO Remove testing time
+	// @Scheduled(cron = "0 0 13 * * WED")
+	@Scheduled(cron = "0 0 22 * * WED") // testing purpose
+	// @Scheduled(fixedDelay = 500000) // fire at start - testing purpose
+	@Transactional
+	public void sendWeelyEmails() {
+		DateTime today = new LocalDate().toDateTimeAtStartOfDay();
+		Date from = today.minusDays(7).toDate();
+		Date to = today.toDate();
+
+		log.info("> Weekly email sender started, gathering new versions between '{}' and '{}'", from, to);
+
+		Map<User, List<ApplicationVersion>> versionsPerUsers = new HashMap<User, List<ApplicationVersion>>();
+
+		List<ApplicationVersion> versions = applicationService.getNewVersionsOnPeriod(from, to);
+		for (ApplicationVersion version : versions) {
+			List<User> users = userService.findUsersFollowingApplication(version.getApplication());
+			for (User user : users) {
+				if (settingsService.isEmailWeeklyActive(user)) {
+					if (versionsPerUsers.containsKey(user)) {
+						versionsPerUsers.get(user).add(version);
+					} else {
+						List<ApplicationVersion> userVersions = new ArrayList<ApplicationVersion>();
+						userVersions.add(version);
+						versionsPerUsers.put(user, userVersions);
+					}
+				}
+			}
+		}
+
+		for (Entry<User, List<ApplicationVersion>> versionsPerUser : versionsPerUsers.entrySet()) {
+			User user = versionsPerUser.getKey();
+			List<NewVersion> newVersions = new ArrayList<NewVersion>();
+			for (ApplicationVersion newVersion : versionsPerUser.getValue()) {
+				newVersions.add(new NewVersion(newVersion.getApplication().getName(), newVersion.getVersionNumber(), userService.getDownloadUrlMatchingSettings(user, newVersion)));
+			}
+			mailSenderService.sendWeeklyUpdates(user.getEmail(), newVersions, user.getLangEmail());
+		}
+
+		log.info("< Weekly email sender ends sucessfully.");
+	}
 }

@@ -77,4 +77,29 @@ public class ApplicationReference extends BaseEntity {
 		this.apiName = apiName;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((apiName == null) ? 0 : apiName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ApplicationReference other = (ApplicationReference) obj;
+		if (apiName == null) {
+			if (other.apiName != null)
+				return false;
+		} else if (!apiName.equals(other.apiName))
+			return false;
+		return true;
+	}
+
 }
