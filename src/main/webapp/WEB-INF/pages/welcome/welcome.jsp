@@ -21,7 +21,7 @@
 								<a class="btn btn-color ladda-button" href="#early-user"><spring:message code="welcome.action.early" /></a>
 							</c:when>
 							<c:otherwise>
-								<a class="btn btn-color ladda-button" href="${root}/signup/"><spring:message code="welcome.action" /></a>
+								<a class="btn btn-color ladda-button" href="${root}/signup"><spring:message code="welcome.action" /></a>
 							</c:otherwise>
 						</c:choose>
 

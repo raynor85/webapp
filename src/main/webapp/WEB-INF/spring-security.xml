@@ -8,7 +8,7 @@
 	<http auto-config="true" use-expressions="true">
 		<!-- Enable csrf protection -->
 		<csrf />
-		<form-login login-page="/sign/" default-target-url="/dashboard/" always-use-default-target="false" authentication-failure-url="/sign/" username-parameter="username" password-parameter="password" />
+		<form-login login-page="/sign" default-target-url="/dashboard" always-use-default-target="false" authentication-failure-url="/sign" username-parameter="username" password-parameter="password" />
 		<intercept-url pattern="/dashboard**/**" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/settings**/**" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/1.0**/**" access="hasRole('ROLE_USER')" />
@@ -40,9 +40,9 @@
 		<beans:constructor-arg index="2" ref="usersConnectionRepository" />
 		<beans:constructor-arg index="3" ref="connectionFactoryLocator" />
 		<!-- Sets the url of the registration - use in case the sign in has failed -->
-		<beans:property name="signupUrl" value="/user/register/" />
+		<beans:property name="signupUrl" value="/user/register" />
 		<!-- Sets the url of the dashboard - use in case the sign in has succeed -->
-		<beans:property name="postLoginUrl" value="/dashboard/" />
+		<beans:property name="postLoginUrl" value="/dashboard" />
 	</beans:bean>
 
 	<!-- This bean encrypts the authorization details of the connection -->

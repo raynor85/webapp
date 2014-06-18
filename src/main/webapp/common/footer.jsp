@@ -5,9 +5,9 @@
 	<div class="container">
 		<footer>
 			<ul class="list-inline pull-left">
-				<li><a href="${root}/privacy/"><spring:message code="footer.privacy" /></a></li>
+				<li><a href="${root}/privacy"><spring:message code="footer.privacy" /></a></li>
 				<li><span class="text-muted">I</span></li>
-				<li><a href="${root}/faq/"><spring:message code="footer.faq" /></a></li>
+				<li><a href="${root}/faq"><spring:message code="footer.faq" /></a></li>
 				<li><span class="text-muted">I</span></li>
 				<li><span class="text-muted"><spring:message code="footer.follow.part1" /></span></li>
 				<li><a href="<spring:message code="application.twitter.url" />" class="text-muted fa fa-twitter fa-2x no-underline" title="<spring:message code="footer.follow.part1" /> <spring:message code="footer.follow.twitter" />"></a></li>

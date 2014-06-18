@@ -148,6 +148,7 @@ public class DashboardController {
 		modelAndView.addObject("isDashboardHowToTipHidden", userService.isMessageDismissed(user, TypeHelpMessage.DASHBOARD_HOW_TO));
 		modelAndView.addObject("isDashboardEmailDisableTipHidden", userService.isMessageDismissed(user, TypeHelpMessage.DASHBOARD_ALERT_DISABLED));
 		modelAndView.addObject("isEmailDisabled", settingsService.isEmailDisabled(user));
+		modelAndView.addObject("nbNotifications", userService.getNbNotifications(user));
 		return initModel(user, modelAndView);
 	}
 
@@ -164,7 +165,6 @@ public class DashboardController {
 			currentFollowedApplications.add(currentFollowedApplication);
 		}
 		modelAndView.addObject("currentFollowedApplications", currentFollowedApplications);
-		modelAndView.addObject("nbNotifications", userService.getNbNotifications(user));
 		return modelAndView;
 	}
 

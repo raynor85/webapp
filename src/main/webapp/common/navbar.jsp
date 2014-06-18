@@ -8,7 +8,7 @@
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 				<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand logo" href="${root}/" title="<spring:message code="menu.welcome" />"><spring:message code="application.name" /></a>
+			<a class="navbar-brand logo" href="${root}" title="<spring:message code="menu.welcome" />"><spring:message code="application.name" /></a>
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
@@ -17,10 +17,10 @@
 						<li><a href="javascript:changeLocale('en');"><spring:message code="menu.language.en" /></a></li>
 						<li><a href="javascript:changeLocale('fr');"><spring:message code="menu.language.fr" /></a></li>
 					</ul></li>
-				<li id="nav-faq"><a href="${root}/faq/"><spring:message code="menu.faq" /></a></li>
-				<li id="nav-developers"><a href="${root}/developers/"><spring:message code="menu.developers" /></a></li>
+				<li id="nav-faq"><a href="${root}/faq"><spring:message code="menu.faq" /></a></li>
+				<li id="nav-developers"><a href="${root}/developers"><spring:message code="menu.developers" /></a></li>
 				<c:if test="${isAuthenticated && nbNotifications != null}">
-					<li id="nav-dashboard"><a href="${root}/dashboard/"><spring:message code="menu.dashboard" /></a></li>
+					<li id="nav-dashboard"><a href="${root}/dashboard"><spring:message code="menu.dashboard" /></a></li>
 					<c:choose>
 						<c:when test="${nbNotifications < 1}">
 							<c:set var="messageKeyNotification">single</c:set>
@@ -50,7 +50,7 @@
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						</form>
 						<ul class="nav navbar-nav navbar-right hidden-xs">
-							<li><span class="user-bar-icons"> <a href="javascript:logout()" title="<spring:message code="menu.logout" />"><i class="fa fa-sign-out" id="sign-out"></i></a> <a href="${root}/settings/" title="<spring:message code="menu.settings" />"><i class="fa fa-cog"></i></a>
+							<li><span class="user-bar-icons"> <a href="javascript:logout()" title="<spring:message code="menu.logout" />"><i class="fa fa-sign-out" id="sign-out"></i></a> <a href="${root}/settings" title="<spring:message code="menu.settings" />"><i class="fa fa-cog"></i></a>
 							</span></li>
 							<li id="user-bar" class="hidden-sm"><span class="user-bar-avatar pull-right"> <img src="<spring:url value="/resources/img/dashboard/user-normal.png" />" alt="User default avatar">
 							</span> <a class="pull-right noHover" id="username"> <c:set var="username">
@@ -59,19 +59,19 @@
 							</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right visible-xs">
-							<li><a href="${root}/settings/"><i class="fa fa-cog fa-1-4x" title="<spring:message code="menu.settings" />"></i>&nbsp;&nbsp;<spring:message code="menu.settings" /></a></li>
+							<li><a href="${root}/settings"><i class="fa fa-cog fa-1-4x" title="<spring:message code="menu.settings" />"></i>&nbsp;&nbsp;<spring:message code="menu.settings" /></a></li>
 							<li><a href="javascript:logout();"><i class="fa fa-sign-out fa-1-4x" title="<spring:message code="menu.logout" />"></i>&nbsp; <spring:message code="menu.logout" /></a></li>
 						</ul>
 					</c:when>
 					<c:otherwise>
 						<ul class="nav navbar-nav navbar-right hidden-xs">
 							<li><div>
-									<a class="btn btn-color ladda-button ladda-button-small btn-nav-sign" href="${root}/sign/"><spring:message code="menu.sign" /></a>
+									<a class="btn btn-color ladda-button ladda-button-small btn-nav-sign" href="${root}/sign"><spring:message code="menu.sign" /></a>
 								</div></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right visible-xs">
 							<li><div>
-									<a class="btn btn-color ladda-button ladda-button-small btn-nav-sign-xs" href="${root}/sign/"><spring:message code="menu.sign" /></a>
+									<a class="btn btn-color ladda-button ladda-button-small btn-nav-sign-xs" href="${root}/sign"><spring:message code="menu.sign" /></a>
 								</div></li>
 						</ul>
 					</c:otherwise>
