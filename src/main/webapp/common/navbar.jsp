@@ -23,19 +23,19 @@
 					<li id="nav-dashboard"><a href="${root}/dashboard/"><spring:message code="menu.dashboard" /></a></li>
 					<c:choose>
 						<c:when test="${nbNotifications < 1}">
-							<c:set var="messageKeyNotification">menu.notification.single</c:set>
+							<c:set var="messageKeyNotification">single</c:set>
 							<c:set var="styleNotification"></c:set>
 						</c:when>
 						<c:when test="${nbNotifications == 1}">
-							<c:set var="messageKeyNotification">menu.notification.single</c:set>
+							<c:set var="messageKeyNotification">single</c:set>
 							<c:set var="styleNotification">badge-notification</c:set>
 						</c:when>
 						<c:when test="${nbNotifications > 1}">
-							<c:set var="messageKeyNotification">menu.notification.multi</c:set>
+							<c:set var="messageKeyNotification">multi</c:set>
 							<c:set var="styleNotification">badge-notification</c:set>
 						</c:when>
 					</c:choose>
-					<li class="dropdown"><a href="#" onclick="javascript:ajaxReadNotifications();" class="dropdown-toggle" data-toggle="dropdown"><span id="badge-notification" class="badge ${styleNotification}">${nbNotifications}</span> <span id="text-notification"><spring:message code="${messageKeyNotification}" /></span> <b class="caret"></b></a>
+					<li class="dropdown"><a href="#" onclick="javascript:ajaxReadNotifications();" class="dropdown-toggle" data-toggle="dropdown"><span id="badge-notification" class="badge ${styleNotification}">${nbNotifications}</span> <span id="text-notification"><spring:message code="menu.notification.${messageKeyNotification}" /></span> <b class="caret"></b></a>
 						<ul id="notifications" class="dropdown-menu dropdown-menu-right-sm">
 							<li><a class="noHover" style="color: #333 !important; background-color: transparent !important;"><spring:message code="menu.notification.loading" /></a></li>
 						</ul></li>
@@ -104,53 +104,6 @@
 			cache : false
 		});
 	};
-	function ajaxReadNotifications() {
-		var token = $("meta[name='_csrf']").attr("content");
-		var header = $("meta[name='_csrf_header']").attr("content");
-		$
-				.ajax({
-					type : "POST",
-					beforeSend : function(xhr) {
-						xhr.setRequestHeader(header, token);
-					},
-					url : "${root}/dashboard/notifications",
-					contentType : "application/json",
-					cache : false,
-					success : function(response) {
-						responseNotifications = "";
-						for (var i = 0; i < response.length; i++) {
-							var bgcolor = "transparent";
-							var darkColor = "#333";
-							var lightColor = "#848484";
-							if (!response[i].wasRead) {
-								bgcolor = "#FBEEED";
-								darkColor = "#B93935";
-								lightColor = "#E17572";
-							}
-							responseNotifications += "<li><a style='background-color: "
-									+ bgcolor
-									+ " !important;color: "
-									+ darkColor
-									+ " !important;'><div style='display: inline-block;min-width:270px;width:100%;'><div class='pull-left'>"
-									+ response[i].applicationName
-									+ " <em style='color:" + lightColor + ";'>("
-									+ response[i].versionNumber
-									+ ")</em></div>";
-							if (!response[i].wasRead) {
-								responseNotifications += "<div class='pull-right'><span class='label label-danger'><spring:message code='menu.notification.new' /></span></div>";
-							}
-							responseNotifications += "</div></a></li>";
-						}
-						$("#notifications").html(responseNotifications);
-						$("#badge-notification").text(0);
-						$("#text-notification")
-								.html(
-										"<spring:message code='menu.notification.single' />");
-						$("#badge-notification").removeClass(
-								"badge-notification");
-					}
-				});
-	}
 	var setActiveMenu = function() {
 		if (location.href.match(/faq.?/)) {
 			$("#nav-faq").addClass("active");
@@ -161,3 +114,55 @@
 		}
 	}();
 </script>
+
+<c:if test="${isAuthenticated}">
+	<script>
+		function ajaxReadNotifications() {
+			var token = $("meta[name='_csrf']").attr("content");
+			var header = $("meta[name='_csrf_header']").attr("content");
+			$
+					.ajax({
+						type : "POST",
+						beforeSend : function(xhr) {
+							xhr.setRequestHeader(header, token);
+						},
+						url : "${root}/dashboard/notifications",
+						contentType : "application/json",
+						cache : false,
+						success : function(response) {
+							responseNotifications = "";
+							for (var i = 0; i < response.length; i++) {
+								var bgcolor = "transparent";
+								var darkColor = "#333";
+								var lightColor = "#848484";
+								if (!response[i].wasRead) {
+									bgcolor = "#FBEEED";
+									darkColor = "#B93935";
+									lightColor = "#E17572";
+								}
+								responseNotifications += "<li><a style='background-color: "
+										+ bgcolor
+										+ " !important;color: "
+										+ darkColor
+										+ " !important;'><div style='display: inline-block;min-width:270px;width:100%;'><div class='pull-left'>"
+										+ response[i].applicationName
+										+ " <em style='color:" + lightColor + ";'>("
+										+ response[i].versionNumber
+										+ ")</em></div>";
+								if (!response[i].wasRead) {
+									responseNotifications += "<div class='pull-right'><span class='label label-danger'><spring:message code='menu.notification.new' /></span></div>";
+								}
+								responseNotifications += "</div></a></li>";
+							}
+							$("#notifications").html(responseNotifications);
+							$("#badge-notification").text(0);
+							$("#text-notification")
+									.html(
+											"<spring:message code='menu.notification.single' />");
+							$("#badge-notification").removeClass(
+									"badge-notification");
+						}
+					});
+		}
+	</script>
+</c:if>

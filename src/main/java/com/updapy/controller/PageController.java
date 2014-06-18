@@ -51,7 +51,7 @@ public class PageController {
 		ModelAndView modelAndView = new ModelAndView("sign");
 		modelAndView.addObject("resetUserEmail", new ResetUserEmail());
 		modelAndView.addObject("registerUser", new RegisterUser());
-		return modelAndView;
+		return addNbNotifications(modelAndView);
 	}
 
 	@RequestMapping({ "/sign-up", "/signup" })

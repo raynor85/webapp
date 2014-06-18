@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="form-white">
 	<form:form id="resetUserApiKeyForm" commandName="resetUserApiKey" action="${root}/developers/apikey/reset" class="form-horizontal">
@@ -108,64 +109,69 @@
 	</form:form>
 </div>
 
-<script type="text/javascript">
-	function ajaxResetUserApiKey() {
-		bootbox
-				.dialog({
-					title : "<spring:message code='developers.api.apiKey.reset.dialog.title' />",
-					message : "<spring:message code='developers.api.apiKey.reset.dialog.content' />",
-					buttons : {
-						cancel : {
-							label : "<spring:message code='developers.api.apiKey.reset.dialog.cancel' />",
-							className : "btn-default pull-left btn-cancel-next-ladda",
-							callback : function() {
-								return;
-							}
-						},
-						main : {
-							label : "<spring:message code='developers.api.apiKey.reset.dialog.confirm' />",
-							className : "btn-color ladda-button",
-							callback : function() {
-								ajaxCallPost("#resetUserApiKeyButton",
-										"#resetUserApiKeyForm", null,
-										"#resetUserApiKeyResponse",
-										refreshApiKey);
+<c:if test="${isAuthenticated}">
+	<script type="text/javascript">
+		function ajaxResetUserApiKey() {
+			bootbox
+					.dialog({
+						title : "<spring:message code='developers.api.apiKey.reset.dialog.title' />",
+						message : "<spring:message code='developers.api.apiKey.reset.dialog.content' />",
+						buttons : {
+							cancel : {
+								label : "<spring:message code='developers.api.apiKey.reset.dialog.cancel' />",
+								className : "btn-default pull-left btn-cancel-next-ladda",
+								callback : function() {
+									return;
+								}
+							},
+							main : {
+								label : "<spring:message code='developers.api.apiKey.reset.dialog.confirm' />",
+								className : "btn-color ladda-button",
+								callback : function() {
+									ajaxCallPost("#resetUserApiKeyButton",
+											"#resetUserApiKeyForm", null,
+											"#resetUserApiKeyResponse",
+											refreshApiKey);
+								}
 							}
 						}
-					}
-				});
-	};
-	$("#resetUserApiKeyForm").submit(function() {
-		ajaxResetUserApiKey();
-		return false;
-	});
-	var refreshApiKey = function() {
-		ajaxCallGetAndRefresh("apikey", "#apiKey");
-	};
+					});
+		};
+		$("#resetUserApiKeyForm").submit(function() {
+			ajaxResetUserApiKey();
+			return false;
+		});
+		var refreshApiKey = function() {
+			ajaxCallGetAndRefresh("apikey", "#apiKey");
+		};
+		var copyToClipboard = function() {
+			$("a#clipboard-link").zclip({
+				copy : function() {
+					return $("#apiKey").val();
+				}
+			});
+		}();
+		function copyToClipboardConfirmation() {
+			bootbox
+					.dialog({
+						title : "<spring:message code='developers.api.apiKey.clipboard.dialog.title' />",
+						message : "<spring:message code='developers.api.apiKey.clipboard.dialog.content' />",
+						buttons : {
+							main : {
+								label : "<spring:message code='developers.api.apiKey.clipboard.dialog.confirm' />",
+								className : "btn-color ladda-button",
+							}
+						}
+					});
+		};
+	</script>
+</c:if>
+
+<script>
 	var displayJsonExamples = function() {
 		var responseJson1 = <spring:message code='developers.api.documentation.table.getApplicationNames.example.response' />;
 		var responseJson2 = <spring:message code='developers.api.documentation.table.getLastVersion.example.response' />;
 		$("#responseJson1").html(syntaxHighlight(responseJson1));
 		$("#responseJson2").html(syntaxHighlight(responseJson2));
 	}();
-	var copyToClipboard = function() {
-		$("a#clipboard-link").zclip({
-			copy : function() {
-				return $("#apiKey").val();
-			}
-		});
-	}();
-	function copyToClipboardConfirmation() {
-		bootbox
-				.dialog({
-					title : "<spring:message code='developers.api.apiKey.clipboard.dialog.title' />",
-					message : "<spring:message code='developers.api.apiKey.clipboard.dialog.content' />",
-					buttons : {
-						main : {
-							label : "<spring:message code='developers.api.apiKey.clipboard.dialog.confirm' />",
-							className : "btn-color ladda-button",
-						}
-					}
-				});
-	};
 </script>
