@@ -19,7 +19,7 @@
 					</ul></li>
 				<li id="nav-faq"><a href="${root}/faq/"><spring:message code="menu.faq" /></a></li>
 				<li id="nav-developers"><a href="${root}/developers/"><spring:message code="menu.developers" /></a></li>
-				<c:if test="${isAuthenticated}">
+				<c:if test="${isAuthenticated && nbNotifications != null}">
 					<li id="nav-dashboard"><a href="${root}/dashboard/"><spring:message code="menu.dashboard" /></a></li>
 					<c:choose>
 						<c:when test="${nbNotifications < 1}">
@@ -153,6 +153,9 @@
 									responseNotifications += "<div class='pull-right'><span class='label label-danger'><spring:message code='menu.notification.new' /></span></div>";
 								}
 								responseNotifications += "</div></a></li>";
+							}
+							if (response.length == 0) {
+								responseNotifications += "<li><a class='noHover' style='color: #333 !important; background-color: transparent !important;'><spring:message code='menu.notification.nothing' /></a></li>";
 							}
 							$("#notifications").html(responseNotifications);
 							$("#badge-notification").text(0);
