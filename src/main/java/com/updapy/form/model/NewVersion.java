@@ -8,9 +8,9 @@ public class NewVersion {
 
 	private UpdateUrl updateUrl;
 
-	public NewVersion(String versionNumber, String applicationName, UpdateUrl updateUrl) {
-		this.versionNumber = versionNumber;
+	public NewVersion(String applicationName, String versionNumber, UpdateUrl updateUrl) {
 		this.applicationName = applicationName;
+		this.versionNumber = versionNumber;
 		this.updateUrl = updateUrl;
 	}
 

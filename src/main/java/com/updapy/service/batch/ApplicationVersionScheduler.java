@@ -49,6 +49,7 @@ public class ApplicationVersionScheduler {
 
 	// fire twice a day (noon and midnight)
 	@Scheduled(cron = "0 0 0,12 * * *")
+	//@Scheduled(fixedDelay = 500000) // fire at start - testing purpose
 	public void updateApplicationRepository() {
 		log.info("> Applications repository update started (includes each update email sender)");
 		List<ApplicationReference> applications = applicationService.getApplications();
@@ -85,15 +86,13 @@ public class ApplicationVersionScheduler {
 	}
 
 	// fire once a week (each Wednesday at 1pm)
-	// TODO Remove testing time
-	// @Scheduled(cron = "0 0 13 * * WED")
-	@Scheduled(cron = "0 0 22 * * WED") // testing purpose
-	// @Scheduled(fixedDelay = 500000) // fire at start - testing purpose
+	@Scheduled(cron = "0 0 13 * * WED")
+	//@Scheduled(fixedDelay = 500000) // fire at start - testing purpose
 	@Transactional
 	public void sendWeelyEmails() {
-		DateTime today = new LocalDate().toDateTimeAtStartOfDay();
-		Date from = today.minusDays(7).toDate();
-		Date to = today.toDate();
+		DateTime now = new LocalDate().toDateTimeAtCurrentTime();
+		Date from = now.minusDays(7).toDate();
+		Date to = now.toDate();
 
 		log.info("> Weekly email sender started, gathering new versions between '{}' and '{}'", from, to);
 

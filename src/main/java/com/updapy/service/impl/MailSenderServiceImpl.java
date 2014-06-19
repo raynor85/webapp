@@ -205,7 +205,7 @@ public class MailSenderServiceImpl implements MailSenderService {
 		model.put("text1", messageUtils.getCustomMessage("email.application.update.single.text1", new String[] { newVersion.getApplicationName(), newVersion.getVersionNumber() }, locale));
 		model.put("button", messageUtils.getSimpleMessage("email.application.update.single.button", locale));
 		model.put("text2", buildMessageOtherUpdates(otherUpdateUrls, newVersion.getVersionNumber(), locale));
-		model.put("link", newVersion.getUpdateUrl());
+		model.put("link", newVersion.getUpdateUrl().getUrl());
 		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
 		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "single-update.vm", "UTF-8", model);
