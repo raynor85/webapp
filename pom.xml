@@ -25,7 +25,7 @@
 		<org.apache.tiles.version>3.0.4</org.apache.tiles.version>
 		<org.apache.velocity.version>1.7</org.apache.velocity.version>
 		<joda-time.version>2.3</joda-time.version>
-		<jackson.version>2.4.0</jackson.version>
+		<jackson.version>2.4.1</jackson.version>
 		<dozer.version>5.5.1</dozer.version>
 		<org.jsoup.version>1.7.3</org.jsoup.version>
 
@@ -45,7 +45,7 @@
 
 		<!-- Production -->
 		<jsimone.webapp-runner.version>7.0.40.0</jsimone.webapp-runner.version>
-		<com.newrelic.agent.java.version>3.7.1</com.newrelic.agent.java.version>
+		<com.newrelic.agent.java.version>3.7.2</com.newrelic.agent.java.version>
 
 		<!-- Log -->
 		<slf4j.version>1.7.7</slf4j.version>
@@ -347,8 +347,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 			<plugin>
