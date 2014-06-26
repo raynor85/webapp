@@ -22,7 +22,6 @@ import org.springframework.social.connect.ConnectionKey;
 import org.springframework.social.connect.UserProfile;
 import org.springframework.stereotype.Service;
 
-import com.updapy.form.model.NewVersion;
 import com.updapy.form.model.UpdateUrl;
 import com.updapy.model.ApplicationFollow;
 import com.updapy.model.ApplicationNotification;
@@ -41,7 +40,8 @@ import com.updapy.model.enumeration.TypeNofication;
 import com.updapy.repository.UserConnectionRepository;
 import com.updapy.repository.UserRepository;
 import com.updapy.service.ApplicationService;
-import com.updapy.service.MailSenderService;
+import com.updapy.service.EmailSingleUpdateService;
+import com.updapy.service.EmailWeeklyUpdateService;
 import com.updapy.service.SettingsService;
 import com.updapy.service.UserService;
 import com.updapy.service.security.SecurityUtils;
@@ -62,13 +62,16 @@ public class UserServiceImpl implements UserService {
 	private BCryptPasswordEncoder passwordEncoder;
 
 	@Autowired
-	ApplicationService applicationService;
+	private ApplicationService applicationService;
 
 	@Autowired
-	SettingsService settingsService;
+	private SettingsService settingsService;
 
 	@Autowired
-	private MailSenderService mailSenderService;
+	private EmailSingleUpdateService emailSingleUpdateService;
+
+	@Autowired
+	private EmailWeeklyUpdateService emailWeeklyUpdateService;
 
 	@Override
 	public User getCurrentUserLight() {
@@ -420,61 +423,6 @@ public class UserServiceImpl implements UserService {
 		return defaultUrl;
 	}
 
-	private List<UpdateUrl> getOtherDownloadUrls(UpdateUrl defaultUpdateUrl, ApplicationVersion version) {
-		List<UpdateUrl> otherUrls = new ArrayList<UpdateUrl>();
-		Lang defaultLang = defaultUpdateUrl.getLang();
-		OsVersion defaultOsVersion = defaultUpdateUrl.getOsVersion();
-		if (Lang.en.equals(defaultLang)) {
-			if (OsVersion.WIN_32_BITS.equals(defaultOsVersion)) {
-				if (StringUtils.isNotBlank(version.getWin64UrlEn())) {
-					otherUrls.add(new UpdateUrl(version.getWin64UrlEn(), Lang.en, OsVersion.WIN_64_BITS));
-				}
-				if (StringUtils.isNotBlank(version.getWin32UrlFr())) {
-					otherUrls.add(new UpdateUrl(version.getWin32UrlFr(), Lang.fr, OsVersion.WIN_32_BITS));
-				}
-				if (StringUtils.isNotBlank(version.getWin64UrlFr())) {
-					otherUrls.add(new UpdateUrl(version.getWin64UrlFr(), Lang.fr, OsVersion.WIN_64_BITS));
-				}
-			}
-			if (OsVersion.WIN_64_BITS.equals(defaultOsVersion)) {
-				if (StringUtils.isNotBlank(version.getWin32UrlEn())) {
-					otherUrls.add(new UpdateUrl(version.getWin32UrlEn(), Lang.en, OsVersion.WIN_32_BITS));
-				}
-				if (StringUtils.isNotBlank(version.getWin32UrlFr())) {
-					otherUrls.add(new UpdateUrl(version.getWin32UrlFr(), Lang.fr, OsVersion.WIN_32_BITS));
-				}
-				if (StringUtils.isNotBlank(version.getWin64UrlFr())) {
-					otherUrls.add(new UpdateUrl(version.getWin64UrlFr(), Lang.fr, OsVersion.WIN_64_BITS));
-				}
-			}
-		}
-		if (Lang.fr.equals(defaultLang)) {
-			if (OsVersion.WIN_32_BITS.equals(defaultOsVersion)) {
-				if (StringUtils.isNotBlank(version.getWin64UrlFr())) {
-					otherUrls.add(new UpdateUrl(version.getWin64UrlFr(), Lang.fr, OsVersion.WIN_64_BITS));
-				}
-				if (StringUtils.isNotBlank(version.getWin32UrlEn())) {
-					otherUrls.add(new UpdateUrl(version.getWin32UrlEn(), Lang.en, OsVersion.WIN_32_BITS));
-				}
-				if (StringUtils.isNotBlank(version.getWin64UrlEn())) {
-					otherUrls.add(new UpdateUrl(version.getWin64UrlEn(), Lang.en, OsVersion.WIN_64_BITS));
-				}
-			}
-			if (OsVersion.WIN_64_BITS.equals(defaultOsVersion)) {
-				if (StringUtils.isNotBlank(version.getWin32UrlFr())) {
-					otherUrls.add(new UpdateUrl(version.getWin32UrlFr(), Lang.fr, OsVersion.WIN_32_BITS));
-				}
-				if (StringUtils.isNotBlank(version.getWin32UrlEn())) {
-					otherUrls.add(new UpdateUrl(version.getWin32UrlEn(), Lang.en, OsVersion.WIN_32_BITS));
-				}
-				if (StringUtils.isNotBlank(version.getWin64UrlEn())) {
-					otherUrls.add(new UpdateUrl(version.getWin64UrlEn(), Lang.en, OsVersion.WIN_64_BITS));
-				}
-			}
-		}
-		return otherUrls;
-	}
-
 	private HelpMessage findHelpMessageFromType(User user, final TypeHelpMessage typeHelpMessage) {
 		return (HelpMessage) CollectionUtils.find(user.getHelpMessages(), new Predicate() {
 			@Override
@@ -509,10 +457,17 @@ public class UserServiceImpl implements UserService {
 		notification.setType(TypeNofication.NEW_VERSION);
 		notification.setUser(user);
 		applicationService.saveNotification(notification);
-		if (settingsService.isEmailOnEachUpdateActive(user) && enableEmailAlertFollowedApplication(user, newVersion.getApplication().getApiName())) {
-			UpdateUrl updateUrl = getDownloadUrlMatchingSettings(user, newVersion);
-			mailSenderService.sendSingleUpdate(user.getEmail(), new NewVersion(newVersion.getApplication().getName(), newVersion.getVersionNumber(), updateUrl), getOtherDownloadUrls(updateUrl, newVersion), user.getLangEmail());
+		if (settingsService.isEmailOnEachUpdateActive(user) && isEmailAlertFollowedApplicationEnabled(user, newVersion.getApplication().getApiName())) {
+			emailSingleUpdateService.addEmailSingleUpdate(user, newVersion);
 		}
+	}
+
+	private boolean isEmailAlertFollowedApplicationEnabled(User user, String apiName) {
+		ApplicationFollow followedApplication = findFollowedApplication(user, apiName);
+		if (followedApplication == null) {
+			return false;
+		}
+		return followedApplication.isEmailNotificationActive();
 	}
 
 	private void removeCurrentNotificationsForApplication(User user, ApplicationVersion version) {
@@ -524,7 +479,6 @@ public class UserServiceImpl implements UserService {
 		if (notifications != null && !notifications.isEmpty()) {
 			applicationService.deleteNotifications(notifications);
 		}
-
 	}
 
 	@Override

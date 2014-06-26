@@ -29,7 +29,7 @@ import com.updapy.form.model.RegisterUser;
 import com.updapy.form.model.ResetUser;
 import com.updapy.form.model.ResetUserEmail;
 import com.updapy.model.User;
-import com.updapy.service.MailSenderService;
+import com.updapy.service.EmailSenderService;
 import com.updapy.service.UserService;
 import com.updapy.service.security.SecurityUtils;
 import com.updapy.util.DozerHelper;
@@ -49,7 +49,7 @@ public class UserController {
 	private UserService userService;
 
 	@Autowired
-	private MailSenderService mailSenderService;
+	private EmailSenderService emailSenderService;
 
 	@Autowired
 	private Validator registerUserCustomValidator;
@@ -117,7 +117,7 @@ public class UserController {
 			return modelAndView;
 		} else {
 			User user = userService.register(dozerHelper.map(registerUser, User.class));
-			mailSenderService.sendActivationLink(user.getEmail(), user.getAccountKey(), user.getLangEmail());
+			emailSenderService.sendActivationLink(user.getEmail(), user.getAccountKey(), user.getLangEmail());
 			modelAndView.setViewName("sign-up-activate");
 			return modelAndView;
 		}
@@ -146,7 +146,7 @@ public class UserController {
 			return modelAndView;
 		}
 		String newKey = userService.generateNewAccountKey(user);
-		mailSenderService.sendActivationLink(email, newKey, user.getLangEmail());
+		emailSenderService.sendActivationLink(email, newKey, user.getLangEmail());
 		modelAndView.setViewName("sign-up-activate-resend");
 		return modelAndView;
 	}
@@ -177,7 +177,7 @@ public class UserController {
 				return jsonResponseUtils.buildFailedJsonResponse("NotFound.resetUserEmail.email");
 			}
 			String newKey = userService.generateNewAccountKey(user);
-			mailSenderService.sendResetPasswordLink(email, newKey, user.getLangEmail());
+			emailSenderService.sendResetPasswordLink(email, newKey, user.getLangEmail());
 			return jsonResponseUtils.buildSuccessfulJsonResponse("sign.in.forgot.send.confirm");
 		}
 	}

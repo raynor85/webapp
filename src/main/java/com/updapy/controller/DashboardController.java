@@ -29,7 +29,7 @@ import com.updapy.model.ApplicationVersion;
 import com.updapy.model.User;
 import com.updapy.model.enumeration.TypeHelpMessage;
 import com.updapy.service.ApplicationService;
-import com.updapy.service.MailSenderService;
+import com.updapy.service.EmailSenderService;
 import com.updapy.service.SettingsService;
 import com.updapy.service.UserService;
 import com.updapy.util.DozerHelper;
@@ -49,7 +49,7 @@ public class DashboardController {
 	private SettingsService settingsService;
 
 	@Autowired
-	private MailSenderService mailSenderService;
+	private EmailSenderService emailSenderService;
 
 	@Autowired
 	private DozerHelper dozerHelper;
@@ -133,7 +133,7 @@ public class DashboardController {
 			User user = userService.getCurrentUserLight();
 			requestedApplication.setUser(user);
 			applicationService.saveRequestedApplication(requestedApplication);
-			mailSenderService.sendAdminRequestedApplication(requestApplication.getName(), requestedApplication.getUrl(), user.getLangEmail());
+			emailSenderService.sendAdminRequestedApplication(requestApplication.getName(), requestedApplication.getUrl(), user.getLangEmail());
 			return jsonResponseUtils.buildSuccessfulJsonResponse("dashboard.applications.request.confirm");
 		}
 	}

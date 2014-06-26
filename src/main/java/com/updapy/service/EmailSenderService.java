@@ -6,7 +6,9 @@ import java.util.Locale;
 import com.updapy.form.model.NewVersion;
 import com.updapy.form.model.UpdateUrl;
 
-public interface MailSenderService {
+public interface EmailSenderService {
+
+	int getNonPriorEmailsMaxSentPerDay();
 
 	boolean sendActivationLink(String email, String key, Locale locale);
 

@@ -123,13 +123,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 	@Override
 	public List<ApplicationNotification> getNotifications(User user, ApplicationReference application) {
 		return applicationNotificationRepository.findByUserAndVersionApplication(user, application);
-
 	}
 
 	@Override
 	public void deleteNotifications(List<ApplicationNotification> notifications) {
 		applicationNotificationRepository.delete(notifications);
-
 	}
 
 	@Override

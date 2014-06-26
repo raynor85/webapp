@@ -28,13 +28,17 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
 
 import com.updapy.form.model.NewVersion;
 import com.updapy.form.model.UpdateUrl;
-import com.updapy.service.MailSenderService;
+import com.updapy.service.EmailCounterService;
+import com.updapy.service.EmailSenderService;
 import com.updapy.util.MessageUtils;
 
 @Service
-public class MailSenderServiceImpl implements MailSenderService {
+public class EmailSenderServiceImpl implements EmailSenderService {
 
-	private Logger log = LoggerFactory.getLogger(MailSenderServiceImpl.class);
+	private Logger log = LoggerFactory.getLogger(EmailSenderServiceImpl.class);
+
+	@Autowired
+	private EmailCounterService emailCounterService;
 
 	@Autowired
 	private MessageUtils messageUtils;
@@ -42,10 +46,17 @@ public class MailSenderServiceImpl implements MailSenderService {
 	@Autowired
 	private VelocityEngine velocityEngine;
 
+	// public static final int MAX_NO_PRIOR_EMAILS_SENT_PER_DAY = 150; // let 50 emails per day for subscriptions or other prior emails
+
 	private static final String ADMIN_EMAIL = System.getenv("ADMIN_EMAIL");
 	private static final String SMTP_HOST_NAME = "smtp.sendgrid.net";
 	private static final String SMTP_AUTH_USER = System.getenv("SENDGRID_USERNAME");
 	private static final String SMTP_AUTH_PWD = System.getenv("SENDGRID_PASSWORD");
+
+	@Override
+	public int getNonPriorEmailsMaxSentPerDay() {
+		return Integer.parseInt(messageUtils.getSimpleMessage("email.send.max"));
+	}
 
 	@Override
 	public boolean sendActivationLink(String email, String key, Locale locale) {
@@ -63,6 +74,7 @@ public class MailSenderServiceImpl implements MailSenderService {
 		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
 		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "reset-activate-account.vm", "UTF-8", model);
+
 		try {
 			send(fromEmail, email, subject, message);
 			return true;
@@ -87,6 +99,7 @@ public class MailSenderServiceImpl implements MailSenderService {
 		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
 		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "reset-activate-account.vm", "UTF-8", model);
+
 		try {
 			send(fromEmail, email, subject, message);
 			return true;
@@ -99,6 +112,7 @@ public class MailSenderServiceImpl implements MailSenderService {
 		if (messageUtils.getSimpleMessage("environnement").equals("dev")) {
 			// skip email sending
 			log.info("Sending email to '{}' with subject '{}' and content '{}'", toEmail, subject, htmlContent);
+			emailCounterService.incCounter();
 			return;
 		}
 		Properties props = new Properties();
@@ -129,6 +143,8 @@ public class MailSenderServiceImpl implements MailSenderService {
 		transport.connect();
 		transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
 		transport.close();
+
+		emailCounterService.incCounter();
 	}
 
 	private class SMTPAuthenticator extends javax.mail.Authenticator {
@@ -150,6 +166,11 @@ public class MailSenderServiceImpl implements MailSenderService {
 		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
 		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);
+
+		if (emailCounterService.isEmailCounterReached(getNonPriorEmailsMaxSentPerDay())) {
+			return false;
+		}
+
 		try {
 			send(ADMIN_EMAIL, ADMIN_EMAIL, subject, message);
 			return true;
@@ -169,6 +190,7 @@ public class MailSenderServiceImpl implements MailSenderService {
 		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
 		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);
+
 		try {
 			send(ADMIN_EMAIL, ADMIN_EMAIL, subject, message);
 			return true;
@@ -187,6 +209,7 @@ public class MailSenderServiceImpl implements MailSenderService {
 		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
 		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);
+
 		try {
 			send(ADMIN_EMAIL, ADMIN_EMAIL, subject, message);
 			return true;
@@ -209,6 +232,10 @@ public class MailSenderServiceImpl implements MailSenderService {
 		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
 		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "single-update.vm", "UTF-8", model);
+
+		if (emailCounterService.isEmailCounterReached(getNonPriorEmailsMaxSentPerDay())) {
+			return false;
+		}
 
 		try {
 			send(fromEmail, email, subject, message);
@@ -250,6 +277,10 @@ public class MailSenderServiceImpl implements MailSenderService {
 		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "weekly-update.vm", "UTF-8", model);
 
+		if (emailCounterService.isEmailCounterReached(getNonPriorEmailsMaxSentPerDay())) {
+			return false;
+		}
+
 		try {
 			send(fromEmail, email, subject, message);
 			return true;
@@ -268,4 +299,5 @@ public class MailSenderServiceImpl implements MailSenderService {
 		message.append(messageUtils.getSimpleMessage("email.application.update.weekly.text1.part2", locale));
 		return message.toString();
 	}
+
 }

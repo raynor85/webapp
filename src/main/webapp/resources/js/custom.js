@@ -263,7 +263,7 @@ function ajaxCallPostWithUrl(button, urlAction, json, divResult,
 			});
 };
 
-function ajaxCallGetAndRefresh(elementNameToGet, elementIdToUpdate) {
+function ajaxCallGetAndRefresh(urlWithElementNameToGet, elementIdToUpdate) {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
 	$.ajax({
@@ -271,7 +271,7 @@ function ajaxCallGetAndRefresh(elementNameToGet, elementIdToUpdate) {
 		beforeSend : function(xhr) {
 			xhr.setRequestHeader(header, token);
 		},
-		url : elementNameToGet + "/get",
+		url : urlWithElementNameToGet + "/get",
 		contentType : "text/plain",
 		cache : false,
 		success : function(response) {

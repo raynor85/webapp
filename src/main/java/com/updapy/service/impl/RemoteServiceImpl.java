@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
-import com.updapy.service.MailSenderService;
+import com.updapy.service.EmailSenderService;
 import com.updapy.service.RemoteService;
 import com.updapy.service.retriever.RemoteRetriever;
 
@@ -19,7 +19,7 @@ import com.updapy.service.retriever.RemoteRetriever;
 public class RemoteServiceImpl implements RemoteService {
 
 	@Autowired
-	private MailSenderService mailSenderService;
+	private EmailSenderService emailSenderService;
 
 	@Autowired
 	private List<RemoteRetriever> remoteRetrievers;
@@ -50,7 +50,7 @@ public class RemoteServiceImpl implements RemoteService {
 
 		if (StringUtils.isBlank(version.getVersionNumber()) || StringUtils.isBlank(version.getWin32UrlEn()) || !version.isValidVersionNumber()) {
 			// remote version not valid
-			mailSenderService.sendAdminRetrieverError(application.getName());
+			emailSenderService.sendAdminRetrieverError(application.getName());
 			return null;
 		}
 
@@ -62,7 +62,7 @@ public class RemoteServiceImpl implements RemoteService {
 		try {
 			doc = Jsoup.connect(url).timeout(15 * 1000).get();
 		} catch (Exception e) {
-			mailSenderService.sendAdminConnectionError(url);
+			emailSenderService.sendAdminConnectionError(url);
 			return null;
 		}
 		return doc;

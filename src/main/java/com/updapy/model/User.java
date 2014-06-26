@@ -75,6 +75,12 @@ public class User extends BaseEntity {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE })
 	private List<ApplicationNotification> notifications;
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+	private List<EmailSingleUpdate> emailSingleUpdates;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+	private List<EmailWeeklyUpdate> emailWeeklyUpdates;
+
 	public String getEmail() {
 		return email;
 	}
@@ -229,6 +235,22 @@ public class User extends BaseEntity {
 
 	public void setLangEmail(Locale langEmail) {
 		this.langEmail = langEmail;
+	}
+
+	public List<EmailSingleUpdate> getEmailSingleUpdates() {
+		return emailSingleUpdates;
+	}
+
+	public void setEmailSingleUpdates(List<EmailSingleUpdate> emailSingleUpdates) {
+		this.emailSingleUpdates = emailSingleUpdates;
+	}
+
+	public List<EmailWeeklyUpdate> getEmailWeeklyUpdates() {
+		return emailWeeklyUpdates;
+	}
+
+	public void setEmailWeeklyUpdates(List<EmailWeeklyUpdate> emailWeeklyUpdates) {
+		this.emailWeeklyUpdates = emailWeeklyUpdates;
 	}
 
 }

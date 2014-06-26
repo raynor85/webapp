@@ -10,7 +10,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class CcleanerRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.piriform.com/";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.piriform.com";
 
 	@Override
 	public boolean support(ApplicationReference application) {

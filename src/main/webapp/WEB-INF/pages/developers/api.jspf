@@ -142,7 +142,7 @@
 			return false;
 		});
 		var refreshApiKey = function() {
-			ajaxCallGetAndRefresh("apikey", "#apiKey");
+			ajaxCallGetAndRefresh("${root}/developers/apikey", "#apiKey");
 		};
 		var copyToClipboard = function() {
 			$("a#clipboard-link").zclip({
@@ -164,6 +164,9 @@
 						}
 					});
 		};
+		function getZeroClipboardPath() {
+			return "${root}/resources/js/ZeroClipboard.swf";
+		}
 	</script>
 </c:if>
 
