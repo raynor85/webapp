@@ -249,7 +249,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		if (otherUpdateUrls.isEmpty()) {
 			return StringUtils.EMPTY;
 		}
-		StringBuilder message = new StringBuilder(messageUtils.getCustomMessage("email.application.update.single.text2.part1", new String[] { version }, locale));
+		StringBuilder message = new StringBuilder(messageUtils.getSimpleMessage("email.application.update.single.text2.part1", locale));
 		for (UpdateUrl updateUrl : otherUpdateUrls) {
 			message.append(messageUtils.getCustomMessage("email.application.update.single.text2.list.begin", new String[] { updateUrl.getUrl() }, locale));
 			message.append(messageUtils.getSimpleMessage("email.application.update.single.text2.list." + updateUrl.getKey(), locale));

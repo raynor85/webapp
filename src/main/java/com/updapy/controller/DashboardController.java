@@ -148,6 +148,7 @@ public class DashboardController {
 		modelAndView.addObject("isDashboardHowToTipHidden", userService.isMessageDismissed(user, TypeHelpMessage.DASHBOARD_HOW_TO));
 		modelAndView.addObject("isDashboardEmailDisableTipHidden", userService.isMessageDismissed(user, TypeHelpMessage.DASHBOARD_ALERT_DISABLED));
 		modelAndView.addObject("isEmailDisabled", settingsService.isEmailDisabled(user));
+		modelAndView.addObject("isEmailOnEachUpdateDisabled", !settingsService.isEmailOnEachUpdateActive(user));
 		modelAndView.addObject("nbNotifications", userService.getNbNotifications(user));
 		return initModel(user, modelAndView);
 	}

@@ -69,7 +69,7 @@
 						<i class="fa fa-trash-o fa-1x"></i>
 					</button>
 					<c:choose>
-						<c:when test="${isEmailDisabled}">
+						<c:when test="${isEmailOnEachUpdateDisabled}">
 							<c:set var="disableStyle" value="display: none;" />
 							<c:set var="enableStyle" value="display: none;" />
 						</c:when>
