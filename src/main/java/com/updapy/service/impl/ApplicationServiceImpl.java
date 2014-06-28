@@ -56,15 +56,20 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
+	public List<ApplicationReference> getDeletedApplications() {
+		return applicationReferenceRepository.findByNotifiedFalseAndActiveFalse();
+	}
+
+	@Override
 	public ApplicationVersion getLatestVersion(String apiName) {
 		ApplicationReference application = applicationReferenceRepository.findByApiNameAndActiveTrue(apiName);
 		return getLatestVersion(application);
 	}
 
 	@Override
-	public ApplicationReference markAsNotifiedAddedApplication(ApplicationReference newApplication) {
-		newApplication.setNotified(true);
-		return applicationReferenceRepository.saveAndFlush(newApplication);
+	public ApplicationReference markAsNotified(ApplicationReference application) {
+		application.setNotified(true);
+		return applicationReferenceRepository.saveAndFlush(application);
 	}
 
 	@Override
@@ -156,7 +161,15 @@ public class ApplicationServiceImpl implements ApplicationService {
 			public boolean evaluate(Object notification) {
 				ApplicationNotification notif = (ApplicationNotification) notification;
 				if (notif.getApplication() != null) {
-					return notif.getApplication().isActive();
+					switch (notif.getType()) {
+					case NOT_SUPPORTED_APPLICATION:
+						return true;
+					case NEW_APPLICATION:
+						return notif.getApplication().isActive();
+					default:
+						return false;
+
+					}
 				}
 				if (notif.getVersion() != null) {
 					return notif.getVersion().getApplication().isActive();

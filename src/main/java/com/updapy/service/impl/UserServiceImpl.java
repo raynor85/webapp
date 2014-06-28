@@ -41,6 +41,7 @@ import com.updapy.repository.UserConnectionRepository;
 import com.updapy.repository.UserRepository;
 import com.updapy.service.ApplicationService;
 import com.updapy.service.EmailAddedApplicationService;
+import com.updapy.service.EmailDeletedApplicationService;
 import com.updapy.service.EmailSingleUpdateService;
 import com.updapy.service.EmailWeeklyUpdateService;
 import com.updapy.service.SettingsService;
@@ -76,6 +77,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private EmailAddedApplicationService emailAddedApplicationService;
+
+	@Autowired
+	private EmailDeletedApplicationService emailDeletedApplicationService;
 
 	@Override
 	public User getCurrentUserLight() {
@@ -478,16 +482,27 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void notifyForNewApplication(User user, ApplicationReference newApplication) {
+	public void notifyForAddedApplication(User user, ApplicationReference addedApplication) {
 		ApplicationNotification notification = new ApplicationNotification();
 		notification.setRead(false);
-		notification.setApplication(newApplication);
+		notification.setApplication(addedApplication);
 		notification.setType(TypeNofication.NEW_APPLICATION);
 		notification.setUser(user);
 		applicationService.saveNotification(notification);
 		if (settingsService.isEmailNewsletterActive(user)) {
-			emailAddedApplicationService.addEmailAddedApplication(user, newApplication);
+			emailAddedApplicationService.addEmailAddedApplication(user, addedApplication);
 		}
+	}
+
+	@Override
+	public void notifyForDeletedApplication(User user, ApplicationReference deletedApplication) {
+		ApplicationNotification notification = new ApplicationNotification();
+		notification.setRead(false);
+		notification.setApplication(deletedApplication);
+		notification.setType(TypeNofication.NOT_SUPPORTED_APPLICATION);
+		notification.setUser(user);
+		applicationService.saveNotification(notification);
+		emailDeletedApplicationService.addEmailDeletedApplication(user, deletedApplication);
 	}
 
 	private boolean isEmailAlertFollowedApplicationEnabled(User user, String apiName) {

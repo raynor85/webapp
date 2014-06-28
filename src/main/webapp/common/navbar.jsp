@@ -151,8 +151,7 @@
 											+ " <em style='color:" + lightColor + ";'>("
 											+ response[i].versionNumber
 											+ ")</em></div>";
-								}
-								if (response[i].type == 'NEW_APPLICATION') {
+								} else if (response[i].type == 'NEW_APPLICATION') {
 									var styleNew = "success";
 									if (!response[i].wasRead) {
 										bgcolor = "#E9F7EF";
@@ -165,9 +164,25 @@
 											+ darkColor
 											+ " !important;'><div style='display: inline-block;min-width:270px;width:100%;'><div class='pull-left'>"
 											+ response[i].applicationName
-											+ " <em style='color:" + lightColor + ";'>("
-											+ "<spring:message code='menu.notification.applicationAdded' />"
-											+ ")</em></div>";
+											+ " <em style='color:" + lightColor + ";'>- "
+											+ "<spring:message code='menu.notification.added.application' />"
+											+ "</em></div>";
+								} else if (response[i].type == 'NOT_SUPPORTED_APPLICATION') {
+									var styleNew = "warning";
+									if (!response[i].wasRead) {
+										bgcolor = "#FAEBCC";
+										darkColor = "#66512C";
+										lightColor = "#8A6D3B";
+									}
+									responseNotifications += "<li><a style='background-color: "
+											+ bgcolor
+											+ " !important;color: "
+											+ darkColor
+											+ " !important;'><div style='display: inline-block;min-width:270px;width:100%;'><div class='pull-left'>"
+											+ response[i].applicationName
+											+ " <em style='color:" + lightColor + ";'>- "
+											+ "<spring:message code='menu.notification.deleted.application' />"
+											+ "</em></div>";
 								}
 								if (!response[i].wasRead) {
 									responseNotifications += "<div class='pull-right'><span class='label label-" + styleNew + "'><spring:message code='menu.notification.new' /></span></div>";

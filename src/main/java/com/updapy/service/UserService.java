@@ -77,7 +77,9 @@ public interface UserService {
 
 	void notifyForNewVersion(User user, ApplicationVersion newVersion);
 
-	void notifyForNewApplication(User user, ApplicationReference newApplication);
+	void notifyForAddedApplication(User user, ApplicationReference addedApplication);
+
+	void notifyForDeletedApplication(User user, ApplicationReference deletedApplication);
 
 	Long getNbNotifications(User user);
 

@@ -27,4 +27,6 @@ public interface EmailSenderService {
 
 	boolean sendAddedApplication(String email, ApplicationReference application, Locale locale);
 
+	boolean sendDeletedApplication(String email, ApplicationReference application, Locale locale);
+
 }

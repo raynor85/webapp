@@ -22,6 +22,7 @@ import com.updapy.model.ApplicationVersion;
 import com.updapy.model.User;
 import com.updapy.service.ApplicationService;
 import com.updapy.service.EmailAddedApplicationService;
+import com.updapy.service.EmailDeletedApplicationService;
 import com.updapy.service.EmailSingleUpdateService;
 import com.updapy.service.EmailWeeklyUpdateService;
 import com.updapy.service.RemoteService;
@@ -50,6 +51,9 @@ public class ApplicationVersionScheduler {
 
 	@Autowired
 	private EmailWeeklyUpdateService emailWeeklyUpdateService;
+
+	@Autowired
+	private EmailDeletedApplicationService emailDeletedApplicationService;
 
 	@Autowired
 	private EmailAddedApplicationService emailAddedApplicationService;
@@ -134,18 +138,39 @@ public class ApplicationVersionScheduler {
 	@Transactional
 	public void createEmailsAndNotificationsForAddedApplications() {
 		log.info("> Starting creating emails and notifications for applications added");
-		List<ApplicationReference> newApplications = applicationService.getAddedApplications();
-		for (ApplicationReference newApplication : newApplications) {
-			notifyUsers(newApplication);
-			applicationService.markAsNotifiedAddedApplication(newApplication);
+		List<ApplicationReference> addedApplications = applicationService.getAddedApplications();
+		for (ApplicationReference addedApplication : addedApplications) {
+			notifyUsersForAddedApplication(addedApplication);
+			applicationService.markAsNotified(addedApplication);
 		}
 		log.info("< Emails and notifications for added app created sucessfully.");
 	}
 
-	private void notifyUsers(ApplicationReference newApplication) {
+	private void notifyUsersForAddedApplication(ApplicationReference addedApplication) {
 		List<User> userToNotifys = userService.findUsersActive();
 		for (User userToNotify : userToNotifys) {
-			userService.notifyForNewApplication(userToNotify, newApplication);
+			userService.notifyForAddedApplication(userToNotify, addedApplication);
+		}
+	}
+
+	// fire twice a day (3am and 3pm)
+	@Scheduled(cron = "0 0 3,15 * * *")
+	// @Scheduled(fixedDelay = 500000) // fire at start - testing purpose
+	@Transactional
+	public void createEmailsAndNotificationsForDeletedApplications() {
+		log.info("> Starting creating emails and notifications for applications deleted");
+		List<ApplicationReference> deletedApplications = applicationService.getDeletedApplications();
+		for (ApplicationReference deletedApplication : deletedApplications) {
+			notifyUsersForDeletedApplication(deletedApplication);
+			applicationService.markAsNotified(deletedApplication);
+		}
+		log.info("< Emails and notifications for deleted app created sucessfully.");
+	}
+
+	private void notifyUsersForDeletedApplication(ApplicationReference deletedApplication) {
+		List<User> userToNotifys = userService.findUsersFollowingApplication(deletedApplication);
+		for (User userToNotify : userToNotifys) {
+			userService.notifyForDeletedApplication(userToNotify, deletedApplication);
 		}
 	}
 
@@ -156,12 +181,18 @@ public class ApplicationVersionScheduler {
 		log.info("> Starting to send emails (single)");
 		emailSingleUpdateService.sendEmailSingleUpdates();
 		log.info("< Single emails sent sucessfully.");
+
 		log.info("> Starting to send emails (weekly)");
 		emailWeeklyUpdateService.sendEmailWeeklyUpdates();
 		log.info("< Weekly emails sent sucessfully.");
-		log.info("> Starting to send emails (new application)");
+
+		log.info("> Starting to send emails (application deleted)");
+		emailDeletedApplicationService.sendEmailDeletedApplications();
+		log.info("< Deleted app emails sent sucessfully.");
+
+		log.info("> Starting to send emails (application added)");
 		emailAddedApplicationService.sendEmailAddedApplications();
-		log.info("< New app emails sent sucessfully.");
+		log.info("< Added app emails sent sucessfully.");
 	}
 
 }

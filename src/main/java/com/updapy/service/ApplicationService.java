@@ -26,10 +26,12 @@ public interface ApplicationService {
 
 	List<ApplicationReference> getAddedApplications();
 
+	List<ApplicationReference> getDeletedApplications();
+
 	@Cacheable(value = "applications", key = "{'applications', #apiName}")
 	ApplicationReference getApplication(String apiName);
 
-	ApplicationReference markAsNotifiedAddedApplication(ApplicationReference newApplication);
+	ApplicationReference markAsNotified(ApplicationReference application);
 
 	/**
 	 * Application Versions

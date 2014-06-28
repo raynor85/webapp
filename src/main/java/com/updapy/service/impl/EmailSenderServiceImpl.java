@@ -113,7 +113,6 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		if (messageUtils.getSimpleMessage("environnement").equals("dev")) {
 			// skip email sending
 			log.info("Sending email to '{}' with subject '{}' and content '{}'", toEmail, subject, htmlContent);
-			emailCounterService.incCounter();
 			return;
 		}
 		Properties props = new Properties();
@@ -305,11 +304,36 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 	public boolean sendAddedApplication(String email, ApplicationReference application, Locale locale) {
 		String name = application.getName();
 		String fromEmail = messageUtils.getSimpleMessage("email.noreply", locale);
-		String subject = messageUtils.getCustomMessage("email.application.add.subject", new String[] { name }, locale);
+		String subject = messageUtils.getCustomMessage("email.application.added.subject", new String[] { name }, locale);
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("lang", messageUtils.getSimpleMessage("email.lang", locale));
-		model.put("title", messageUtils.getSimpleMessage("email.application.add.content.title", locale));
-		model.put("text", messageUtils.getCustomMessage("email.application.add.content.text", new String[] { name }, locale));
+		model.put("title", messageUtils.getSimpleMessage("email.application.added.content.title", locale));
+		model.put("text", messageUtils.getCustomMessage("email.application.added.content.text", new String[] { name }, locale));
+		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
+		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
+		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);
+
+		if (emailCounterService.isEmailCounterReached(getNonPriorEmailsMaxSentPerDay())) {
+			return false;
+		}
+
+		try {
+			send(fromEmail, email, subject, message);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean sendDeletedApplication(String email, ApplicationReference application, Locale locale) {
+		String name = application.getName();
+		String fromEmail = messageUtils.getSimpleMessage("email.noreply", locale);
+		String subject = messageUtils.getCustomMessage("email.application.deleted.subject", new String[] { name }, locale);
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("lang", messageUtils.getSimpleMessage("email.lang", locale));
+		model.put("title", messageUtils.getSimpleMessage("email.application.deleted.content.title", locale));
+		model.put("text", messageUtils.getCustomMessage("email.application.deleted.content.text", new String[] { name }, locale));
 		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
 		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);

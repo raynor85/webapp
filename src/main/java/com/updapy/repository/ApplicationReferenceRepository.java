@@ -14,4 +14,6 @@ public interface ApplicationReferenceRepository extends JpaRepository<Applicatio
 
 	List<ApplicationReference> findByNotifiedFalseAndActiveTrue();
 
+	List<ApplicationReference> findByNotifiedFalseAndActiveFalse();
+
 }
