@@ -23,45 +23,45 @@ INSERT INTO emailcounter(id, count, date) VALUES (1, 0, now());
 
 -- Application references
 -- Firefox
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.mozilla.org/en-US/firefox/all/', 'firefox.png', 'Firefox', 'firefox');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.mozilla.org/en-US/firefox/all/', 'firefox.png', 'Firefox', 'firefox', true);
 -- Paint.NET
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.dotpdn.com/downloads/pdn.html', 'paintnet.png', 'Paint.NET', 'paintnet');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.dotpdn.com/downloads/pdn.html', 'paintnet.png', 'Paint.NET', 'paintnet', true);
 -- Notepad++
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://notepad-plus-plus.org/download/', 'notepadplusplus.png', 'Notepad++', 'notepadplusplus');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://notepad-plus-plus.org/download/', 'notepadplusplus.png', 'Notepad++', 'notepadplusplus', true);
 -- Gimp
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.gimp.org/downloads/', 'gimp.png', 'GIMP', 'gimp');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.gimp.org/downloads/', 'gimp.png', 'GIMP', 'gimp', true);
 -- Adobe Reader
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.adobe.com/support/downloads/product.jsp?product=10&platform=windows', 'adobereader.png', 'Adobe Reader', 'adobereader');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.adobe.com/support/downloads/product.jsp?product=10&platform=windows', 'adobereader.png', 'Adobe Reader', 'adobereader', true);
 -- VLC
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.videolan.org/vlc/download-windows.html', 'vlcmediaplayer.png', 'VLC Media Player', 'vlcmediaplayer');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.videolan.org/vlc/download-windows.html', 'vlcmediaplayer.png', 'VLC Media Player', 'vlcmediaplayer', true);
 -- Media Player Classic
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://mpc-hc.org/downloads/', 'mpclassic.png', 'Media Player Classic', 'mediaplayerclassic');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://mpc-hc.org/downloads/', 'mpclassic.png', 'Media Player Classic', 'mediaplayerclassic', true);
 -- CCleaner
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.piriform.com/ccleaner/download', 'ccleaner.png', 'CCleaner', 'ccleaner');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.piriform.com/ccleaner/download', 'ccleaner.png', 'CCleaner', 'ccleaner', true);
 -- Filezilla
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://filezilla-project.org/download.php?show_all=1', 'filezilla.png', 'Filezilla', 'filezilla');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://filezilla-project.org/download.php?show_all=1', 'filezilla.png', 'Filezilla', 'filezilla', true);
 -- Chromium
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://chromium.woolyss.com/download/', 'chromium.png', 'Chromium', 'chromium');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://chromium.woolyss.com/download/', 'chromium.png', 'Chromium', 'chromium', true);
 -- Adobe Photoshop
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.adobe.com/support/downloads/product.jsp?product=39&platform=windows', 'adobephotoshop.png', 'Adobe Photoshop', 'adobephotoshop');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.adobe.com/support/downloads/product.jsp?product=39&platform=windows', 'adobephotoshop.png', 'Adobe Photoshop', 'adobephotoshop', true);
 -- 7-Zip
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.7-zip.org/download.html', '7zip.png', '7-Zip', '7zip');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.7-zip.org/download.html', '7zip.png', '7-Zip', '7zip', true);
 -- Thunderbird
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.mozilla.org/en-US/thunderbird/all.html', 'thunderbird.png', 'Thunderbird', 'thunderbird');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.mozilla.org/en-US/thunderbird/all.html', 'thunderbird.png', 'Thunderbird', 'thunderbird', true);
 -- Pidgin
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.pidgin.im/download/windows', 'pidgin.png', 'Pidgin', 'pidgin');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.pidgin.im/download/windows', 'pidgin.png', 'Pidgin', 'pidgin', true);
 -- K-lite codecs
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.free-codecs.com/k_lite_codec_pack_download.htm', 'klitecodecs.png', 'K-lite Codec Pack', 'klitecodecs');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.free-codecs.com/k_lite_codec_pack_download.htm', 'klitecodecs.png', 'K-lite Codec Pack', 'klitecodecs', true);
 -- Songbird
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname) VALUES (nextval('application_reference_seq'), now(), null, 0, false, 'http://sourceforge.net/projects/songbird.mirror/', 'songbird.png', 'Songbird', 'songbird');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified) VALUES (nextval('application_reference_seq'), now(), null, 0, false, 'http://sourceforge.net/projects/songbird.mirror/', 'songbird.png', 'Songbird', 'songbird', true);
 -- Picasa
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://picasa.google.com/', 'picasa.png', 'Picasa', 'picasa');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://picasa.google.com/', 'picasa.png', 'Picasa', 'picasa', true);
 -- iTunes
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://swdlp.apple.com/iframes/82/en_us/82_en_us.html', 'itunes.png', 'Itunes', 'itunes');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://swdlp.apple.com/iframes/82/en_us/82_en_us.html', 'itunes.png', 'iTunes', 'itunes', true);
 -- Winmerge
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://winmerge.org/downloads/', 'winmerge.png', 'WinMerge', 'winmerge');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://winmerge.org/downloads/', 'winmerge.png', 'WinMerge', 'winmerge', true);
 -- PDFCreator
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.pdfforge.org/pdfcreator/choose-version', 'pdfcreator.png', 'PDFCreator', 'pdfcreator');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.pdfforge.org/pdfcreator/choose-version', 'pdfcreator.png', 'PDFCreator', 'pdfcreator', true);
 
 -- Application versions
 INSERT INTO applicationversion(id, creationdate, updatedate, dbversion, versiondate, versionnumber, win32urlen, win32urlfr, win64urlen, win64urlfr, application_id) VALUES (nextval('application_version_seq'), now(), NULL, 0, '2014-05-09 00:00:00.643', '29.0.1', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=en-US', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=fr', NULL, NULL, (select id from applicationreference where apiname = 'firefox'));
@@ -96,6 +96,7 @@ INSERT INTO applicationversion(id, creationdate, updatedate, dbversion, versiond
 INSERT INTO applicationversion(id, creationdate, updatedate, dbversion, versiondate, versionnumber, win32urlen, win32urlfr, win64urlen, win64urlfr, application_id) VALUES (nextval('application_version_seq'), now(), NULL, 0, '2014-06-25 00:00:08.556', '6.6.7', 'http://download.tuxfamily.org/notepadplus/6.6.7/npp.6.6.7.Installer.exe', NULL, NULL, NULL, (select id from applicationreference where apiname = 'notepadplusplus'));
 INSERT INTO applicationversion(id, creationdate, updatedate, dbversion, versiondate, versionnumber, win32urlen, win32urlfr, win64urlen, win64urlfr, application_id) VALUES (nextval('application_version_seq'), now(), NULL, 0, '2014-06-25 12:00:05.407', '4.0', 'http://www.dotpdn.com/files/paint.net.4.0.install.zip', NULL, NULL, NULL, (select id from applicationreference where apiname = 'paintnet'));
 INSERT INTO applicationversion(id, creationdate, updatedate, dbversion, versiondate, versionnumber, win32urlen, win32urlfr, win64urlen, win64urlfr, application_id) VALUES (nextval('application_version_seq'), now(), NULL, 0, '2014-06-26 00:00:02.661', '4.15.4725', 'http://www.piriform.com/ccleaner/download/standard', NULL, NULL, NULL, (select id from applicationreference where apiname = 'ccleaner'));
+INSERT INTO applicationversion(id, creationdate, updatedate, dbversion, versiondate, versionnumber, win32urlen, win32urlfr, win64urlen, win64urlfr, application_id) VALUES (nextval('application_version_seq'), now(), NULL, 0, '2014-06-28 00:00:13.047', '10.6', 'http://www.free-codecs.com/download_soft.php?d=7405&s=775&r=', NULL, NULL, NULL, (select id from applicationreference where apiname = 'klitecodecs'));
 
 -- Users
 -- test@updapy.com / UpdapyPwd

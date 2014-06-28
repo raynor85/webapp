@@ -29,6 +29,8 @@ public class ApplicationReference extends BaseEntity {
 
 	private boolean active;
 
+	private boolean notified;
+
 	public String getName() {
 		return name;
 	}
@@ -75,6 +77,14 @@ public class ApplicationReference extends BaseEntity {
 
 	public void setApiName(String apiName) {
 		this.apiName = apiName;
+	}
+
+	public boolean isNotified() {
+		return notified;
+	}
+
+	public void setNotified(boolean notified) {
+		this.notified = notified;
 	}
 
 	@Override

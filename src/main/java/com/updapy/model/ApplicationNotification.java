@@ -19,8 +19,11 @@ public class ApplicationNotification extends BaseEntity {
 	@JoinColumn(name = "person_id")
 	private User user;
 
-	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = true)
 	private ApplicationVersion version;
+
+	@ManyToOne(fetch = FetchType.EAGER, optional = true)
+	private ApplicationReference application;
 
 	private boolean read;
 
@@ -33,6 +36,14 @@ public class ApplicationNotification extends BaseEntity {
 
 	public void setVersion(ApplicationVersion version) {
 		this.version = version;
+	}
+
+	public ApplicationReference getApplication() {
+		return application;
+	}
+
+	public void setApplication(ApplicationReference application) {
+		this.application = application;
 	}
 
 	public boolean isRead() {

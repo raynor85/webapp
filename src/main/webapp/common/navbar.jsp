@@ -135,22 +135,42 @@
 								var bgcolor = "transparent";
 								var darkColor = "#333";
 								var lightColor = "#848484";
-								if (!response[i].wasRead) {
-									bgcolor = "#FBEEED";
-									darkColor = "#B93935";
-									lightColor = "#E17572";
+								if (response[i].type == 'NEW_VERSION') {
+									var styleNew = "danger";
+									if (!response[i].wasRead) {
+										bgcolor = "#FBEEED";
+										darkColor = "#B93935";
+										lightColor = "#E17572";
+									}
+									responseNotifications += "<li><a style='background-color: "
+											+ bgcolor
+											+ " !important;color: "
+											+ darkColor
+											+ " !important;'><div style='display: inline-block;min-width:270px;width:100%;'><div class='pull-left'>"
+											+ response[i].applicationName
+											+ " <em style='color:" + lightColor + ";'>("
+											+ response[i].versionNumber
+											+ ")</em></div>";
 								}
-								responseNotifications += "<li><a style='background-color: "
-										+ bgcolor
-										+ " !important;color: "
-										+ darkColor
-										+ " !important;'><div style='display: inline-block;min-width:270px;width:100%;'><div class='pull-left'>"
-										+ response[i].applicationName
-										+ " <em style='color:" + lightColor + ";'>("
-										+ response[i].versionNumber
-										+ ")</em></div>";
+								if (response[i].type == 'NEW_APPLICATION') {
+									var styleNew = "success";
+									if (!response[i].wasRead) {
+										bgcolor = "#E9F7EF";
+										darkColor = "#1A7440";
+										lightColor = "#27AE60";
+									}
+									responseNotifications += "<li><a style='background-color: "
+											+ bgcolor
+											+ " !important;color: "
+											+ darkColor
+											+ " !important;'><div style='display: inline-block;min-width:270px;width:100%;'><div class='pull-left'>"
+											+ response[i].applicationName
+											+ " <em style='color:" + lightColor + ";'>("
+											+ "<spring:message code='menu.notification.applicationAdded' />"
+											+ ")</em></div>";
+								}
 								if (!response[i].wasRead) {
-									responseNotifications += "<div class='pull-right'><span class='label label-danger'><spring:message code='menu.notification.new' /></span></div>";
+									responseNotifications += "<div class='pull-right'><span class='label label-" + styleNew + "'><spring:message code='menu.notification.new' /></span></div>";
 								}
 								responseNotifications += "</div></a></li>";
 							}

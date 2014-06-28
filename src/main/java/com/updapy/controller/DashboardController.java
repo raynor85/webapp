@@ -118,7 +118,7 @@ public class DashboardController {
 	List<Notification> readNotifications() {
 		User user = userService.getCurrentUserLight();
 		List<ApplicationNotification> applicationNotifications = userService.getLastNbNotifications(user, 10);
-		List<Notification> notifications = dozerHelper.map(applicationNotifications, Notification.class);
+		List<Notification> notifications = dozerHelper.mapWithPropertyContext(applicationNotifications, Notification.class, "type");
 		userService.markAsReadAllNotifications(user);
 		return notifications;
 	}

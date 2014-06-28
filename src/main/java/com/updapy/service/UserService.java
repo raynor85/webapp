@@ -71,9 +71,13 @@ public interface UserService {
 
 	User dismissMessage(User user, TypeHelpMessage typeHelpMessage);
 
+	List<User> findUsersActive();
+
 	List<User> findUsersFollowingApplication(ApplicationReference application);
 
 	void notifyForNewVersion(User user, ApplicationVersion newVersion);
+
+	void notifyForNewApplication(User user, ApplicationReference newApplication);
 
 	Long getNbNotifications(User user);
 

@@ -5,6 +5,7 @@ import java.util.Locale;
 
 import com.updapy.form.model.NewVersion;
 import com.updapy.form.model.UpdateUrl;
+import com.updapy.model.ApplicationReference;
 
 public interface EmailSenderService {
 
@@ -23,5 +24,7 @@ public interface EmailSenderService {
 	boolean sendSingleUpdate(String email, NewVersion newVersion, List<UpdateUrl> otherUpdateUrls, Locale locale);
 
 	boolean sendWeeklyUpdates(String email, List<NewVersion> newVersions, Locale locale);
+
+	boolean sendAddedApplication(String email, ApplicationReference application, Locale locale);
 
 }

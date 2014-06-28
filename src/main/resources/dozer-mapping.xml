@@ -46,7 +46,7 @@
 		<class-b>com.updapy.model.ApplicationRequest</class-b>
 	</mapping>
 
-	<mapping>
+	<mapping map-id="NEW_VERSION">
 		<class-a>com.updapy.model.ApplicationNotification</class-a>
 		<class-b>com.updapy.form.model.Notification</class-b>
 		<field>
@@ -62,5 +62,17 @@
 			<b>wasRead</b>
 		</field>
 	</mapping>
-
+	<mapping map-id="NEW_APPLICATION">
+		<class-a>com.updapy.model.ApplicationNotification</class-a>
+		<class-b>com.updapy.form.model.Notification</class-b>
+		<field>
+			<a>application.name</a>
+			<b>applicationName</b>
+		</field>
+		<field>
+			<a>read</a>
+			<b>wasRead</b>
+		</field>
+	</mapping>
+	
 </mappings>

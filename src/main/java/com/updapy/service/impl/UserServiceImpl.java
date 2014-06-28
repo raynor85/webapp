@@ -40,6 +40,7 @@ import com.updapy.model.enumeration.TypeNofication;
 import com.updapy.repository.UserConnectionRepository;
 import com.updapy.repository.UserRepository;
 import com.updapy.service.ApplicationService;
+import com.updapy.service.EmailAddedApplicationService;
 import com.updapy.service.EmailSingleUpdateService;
 import com.updapy.service.EmailWeeklyUpdateService;
 import com.updapy.service.SettingsService;
@@ -72,6 +73,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private EmailWeeklyUpdateService emailWeeklyUpdateService;
+
+	@Autowired
+	private EmailAddedApplicationService emailAddedApplicationService;
 
 	@Override
 	public User getCurrentUserLight() {
@@ -328,6 +332,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<ApplicationFollow> getFollowedApplications(User user) {
 		List<ApplicationFollow> followedApplications = user.getFollowedApplications();
+		CollectionUtils.filter(followedApplications, new Predicate() {
+			@Override
+			public boolean evaluate(Object followedApplication) {
+				return ((ApplicationFollow) followedApplication).getApplication().isActive();
+			}
+		});
 		Collections.sort(followedApplications, new Comparator<ApplicationFollow>() {
 			@Override
 			public int compare(ApplicationFollow a1, ApplicationFollow a2) {
@@ -444,6 +454,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public List<User> findUsersActive() {
+		return userRepository.findByActiveTrue();
+	}
+
+	@Override
 	public List<User> findUsersFollowingApplication(ApplicationReference application) {
 		return userRepository.findByFollowedApplicationsApplication(application);
 	}
@@ -459,6 +474,19 @@ public class UserServiceImpl implements UserService {
 		applicationService.saveNotification(notification);
 		if (settingsService.isEmailOnEachUpdateActive(user) && isEmailAlertFollowedApplicationEnabled(user, newVersion.getApplication().getApiName())) {
 			emailSingleUpdateService.addEmailSingleUpdate(user, newVersion);
+		}
+	}
+
+	@Override
+	public void notifyForNewApplication(User user, ApplicationReference newApplication) {
+		ApplicationNotification notification = new ApplicationNotification();
+		notification.setRead(false);
+		notification.setApplication(newApplication);
+		notification.setType(TypeNofication.NEW_APPLICATION);
+		notification.setUser(user);
+		applicationService.saveNotification(notification);
+		if (settingsService.isEmailNewsletterActive(user)) {
+			emailAddedApplicationService.addEmailAddedApplication(user, newApplication);
 		}
 	}
 

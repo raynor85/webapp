@@ -28,6 +28,7 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
 
 import com.updapy.form.model.NewVersion;
 import com.updapy.form.model.UpdateUrl;
+import com.updapy.model.ApplicationReference;
 import com.updapy.service.EmailCounterService;
 import com.updapy.service.EmailSenderService;
 import com.updapy.util.MessageUtils;
@@ -298,6 +299,31 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		}
 		message.append(messageUtils.getSimpleMessage("email.application.update.weekly.text1.part2", locale));
 		return message.toString();
+	}
+
+	@Override
+	public boolean sendAddedApplication(String email, ApplicationReference application, Locale locale) {
+		String name = application.getName();
+		String fromEmail = messageUtils.getSimpleMessage("email.noreply", locale);
+		String subject = messageUtils.getCustomMessage("email.application.add.subject", new String[] { name }, locale);
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("lang", messageUtils.getSimpleMessage("email.lang", locale));
+		model.put("title", messageUtils.getSimpleMessage("email.application.add.content.title", locale));
+		model.put("text", messageUtils.getCustomMessage("email.application.add.content.text", new String[] { name }, locale));
+		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
+		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
+		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);
+
+		if (emailCounterService.isEmailCounterReached(getNonPriorEmailsMaxSentPerDay())) {
+			return false;
+		}
+
+		try {
+			send(fromEmail, email, subject, message);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 }

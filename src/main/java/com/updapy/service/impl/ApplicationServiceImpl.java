@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -49,9 +51,20 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
+	public List<ApplicationReference> getAddedApplications() {
+		return applicationReferenceRepository.findByNotifiedFalseAndActiveTrue();
+	}
+
+	@Override
 	public ApplicationVersion getLatestVersion(String apiName) {
 		ApplicationReference application = applicationReferenceRepository.findByApiNameAndActiveTrue(apiName);
 		return getLatestVersion(application);
+	}
+
+	@Override
+	public ApplicationReference markAsNotifiedAddedApplication(ApplicationReference newApplication) {
+		newApplication.setNotified(true);
+		return applicationReferenceRepository.saveAndFlush(newApplication);
 	}
 
 	@Override
@@ -137,7 +150,21 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	@Override
 	public List<ApplicationNotification> getNbLastNotifications(User user, int nb) {
-		return applicationNotificationRepository.findByUserOrderByCreationDateDesc(user, new PageRequest(0, nb));
+		List<ApplicationNotification> notifications = applicationNotificationRepository.findByUserOrderByCreationDateDesc(user, new PageRequest(0, nb));
+		CollectionUtils.filter(notifications, new Predicate() {
+			@Override
+			public boolean evaluate(Object notification) {
+				ApplicationNotification notif = (ApplicationNotification) notification;
+				if (notif.getApplication() != null) {
+					return notif.getApplication().isActive();
+				}
+				if (notif.getVersion() != null) {
+					return notif.getVersion().getApplication().isActive();
+				}
+				return false;
+			}
+		});
+		return notifications;
 	}
 
 	@Override

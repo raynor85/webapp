@@ -21,6 +21,7 @@ import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.User;
 import com.updapy.service.ApplicationService;
+import com.updapy.service.EmailAddedApplicationService;
 import com.updapy.service.EmailSingleUpdateService;
 import com.updapy.service.EmailWeeklyUpdateService;
 import com.updapy.service.RemoteService;
@@ -50,9 +51,12 @@ public class ApplicationVersionScheduler {
 	@Autowired
 	private EmailWeeklyUpdateService emailWeeklyUpdateService;
 
+	@Autowired
+	private EmailAddedApplicationService emailAddedApplicationService;
+
 	// fire twice a day (noon and midnight)
 	@Scheduled(cron = "0 0 0,12 * * *")
-	//@Scheduled(fixedDelay = 500000) // fire at start - testing purpose
+	// @Scheduled(fixedDelay = 500000) // fire at start - testing purpose
 	public void updateApplicationRepositoryAndCreateEmailSingleUpdates() {
 		log.info("> Starting the update of the applications repository (with single emails creation)");
 		List<ApplicationReference> applications = applicationService.getApplications();
@@ -62,7 +66,7 @@ public class ApplicationVersionScheduler {
 		log.info("< Applications repository updated sucessfully.");
 	}
 
-	public void checkNewVersionApplication(ApplicationReference application) {
+	private void checkNewVersionApplication(ApplicationReference application) {
 		log.info(">> Checking new version of '{}'", application.getName());
 
 		ApplicationVersion latestVersion = applicationService.getLatestVersionNoCache(application);
@@ -88,9 +92,9 @@ public class ApplicationVersionScheduler {
 		}
 	}
 
-	// fire once a week (each Wednesday at 3am)
-	@Scheduled(cron = "0 0 3 * * WED")
-	//@Scheduled(fixedDelay = 500000) // fire at start - testing purpose
+	// fire once a week (each Wednesday at 1am)
+	@Scheduled(cron = "0 0 1 * * WED")
+	// @Scheduled(fixedDelay = 500000) // fire at start - testing purpose
 	@Transactional
 	public void createEmailWeeklyUpdates() {
 		DateTime now = new LocalDate().toDateTimeAtCurrentTime();
@@ -124,9 +128,30 @@ public class ApplicationVersionScheduler {
 		log.info("< Weekly emails created sucessfully.");
 	}
 
-	// fire twice a day (4am and 1pm)
-	@Scheduled(cron = "0 0 4,13 * * *")
-	//@Scheduled(fixedDelay = 500000) // fire at start - testing purpose
+	// fire twice a day (2am and 2pm)
+	@Scheduled(cron = "0 0 2,14 * * *")
+	// @Scheduled(fixedDelay = 500000) // fire at start - testing purpose
+	@Transactional
+	public void createEmailsAndNotificationsForAddedApplications() {
+		log.info("> Starting creating emails and notifications for applications added");
+		List<ApplicationReference> newApplications = applicationService.getAddedApplications();
+		for (ApplicationReference newApplication : newApplications) {
+			notifyUsers(newApplication);
+			applicationService.markAsNotifiedAddedApplication(newApplication);
+		}
+		log.info("< Emails and notifications for added app created sucessfully.");
+	}
+
+	private void notifyUsers(ApplicationReference newApplication) {
+		List<User> userToNotifys = userService.findUsersActive();
+		for (User userToNotify : userToNotifys) {
+			userService.notifyForNewApplication(userToNotify, newApplication);
+		}
+	}
+
+	// fire twice a day (4am and 4pm)
+	@Scheduled(cron = "0 0 4,16 * * *")
+	// @Scheduled(fixedDelay = 500000) // fire at start - testing purpose
 	public void sendEmails() {
 		log.info("> Starting to send emails (single)");
 		emailSingleUpdateService.sendEmailSingleUpdates();
@@ -134,6 +159,9 @@ public class ApplicationVersionScheduler {
 		log.info("> Starting to send emails (weekly)");
 		emailWeeklyUpdateService.sendEmailWeeklyUpdates();
 		log.info("< Weekly emails sent sucessfully.");
+		log.info("> Starting to send emails (new application)");
+		emailAddedApplicationService.sendEmailAddedApplications();
+		log.info("< New app emails sent sucessfully.");
 	}
 
 }

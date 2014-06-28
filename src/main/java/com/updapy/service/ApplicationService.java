@@ -24,8 +24,12 @@ public interface ApplicationService {
 	@Cacheable(value = "applications", key = "'applications.all'")
 	List<ApplicationReference> getApplications();
 
+	List<ApplicationReference> getAddedApplications();
+
 	@Cacheable(value = "applications", key = "{'applications', #apiName}")
 	ApplicationReference getApplication(String apiName);
+
+	ApplicationReference markAsNotifiedAddedApplication(ApplicationReference newApplication);
 
 	/**
 	 * Application Versions
@@ -41,7 +45,7 @@ public interface ApplicationService {
 	ApplicationVersion getLatestVersion(ApplicationReference application);
 
 	ApplicationVersion getLatestVersionNoCache(ApplicationReference application);
-	
+
 	List<ApplicationVersion> getNewVersionsOnPeriod(Date from, Date to);
 
 	/**
