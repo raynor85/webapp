@@ -19,12 +19,14 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
+import com.updapy.model.Newsletter;
 import com.updapy.model.User;
 import com.updapy.service.ApplicationService;
 import com.updapy.service.EmailAddedApplicationService;
 import com.updapy.service.EmailDeletedApplicationService;
 import com.updapy.service.EmailSingleUpdateService;
 import com.updapy.service.EmailWeeklyUpdateService;
+import com.updapy.service.NewsletterService;
 import com.updapy.service.RemoteService;
 import com.updapy.service.SettingsService;
 import com.updapy.service.UserService;
@@ -57,6 +59,9 @@ public class ApplicationVersionScheduler {
 
 	@Autowired
 	private EmailAddedApplicationService emailAddedApplicationService;
+
+	@Autowired
+	private NewsletterService newsletterService;
 
 	// fire twice a day (noon and midnight)
 	@Scheduled(cron = "0 0 0,12 * * *")
@@ -177,22 +182,46 @@ public class ApplicationVersionScheduler {
 	// fire twice a day (4am and 4pm)
 	@Scheduled(cron = "0 0 4,16 * * *")
 	// @Scheduled(fixedDelay = 500000) // fire at start - testing purpose
+	@Transactional
+	public void createEmailsNewsletters() {
+		log.info("> Starting creating emails for newsletters");
+		List<Newsletter> newsletters = newsletterService.getNewsletters();
+		for (Newsletter newsletter : newsletters) {
+			notifyUsersForNewsletter(newsletter);
+			newsletterService.markAsNotified(newsletter);
+		}
+		log.info("< Emails for newsletters created sucessfully.");
+	}
+
+	private void notifyUsersForNewsletter(Newsletter newsletter) {
+		List<User> userToNotifys = userService.findUsersFollowingNewsletters();
+		for (User userToNotify : userToNotifys) {
+			newsletterService.addEmailNewsletter(userToNotify, newsletter);
+		}
+	}
+
+	// fire twice a day (5am and 5pm)
+	@Scheduled(cron = "0 0 5,17 * * *")
+	// @Scheduled(fixedDelay = 500000) // fire at start - testing purpose
 	public void sendEmails() {
-		log.info("> Starting to send emails (single)");
-		emailSingleUpdateService.sendEmailSingleUpdates();
-		log.info("< Single emails sent sucessfully.");
+		log.info("> Starting to send emails");
 
-		log.info("> Starting to send emails (weekly)");
-		emailWeeklyUpdateService.sendEmailWeeklyUpdates();
-		log.info("< Weekly emails sent sucessfully.");
+		int count = emailSingleUpdateService.sendEmailSingleUpdates();
+		log.info(count + " emails for single update sent.");
 
-		log.info("> Starting to send emails (application deleted)");
-		emailDeletedApplicationService.sendEmailDeletedApplications();
-		log.info("< Deleted app emails sent sucessfully.");
+		count = emailWeeklyUpdateService.sendEmailWeeklyUpdates();
+		log.info(count + " emails for weekly update sent.");
 
-		log.info("> Starting to send emails (application added)");
-		emailAddedApplicationService.sendEmailAddedApplications();
-		log.info("< Added app emails sent sucessfully.");
+		count = emailDeletedApplicationService.sendEmailDeletedApplications();
+		log.info(count + " emails for deleted app sent.");
+
+		count = emailAddedApplicationService.sendEmailAddedApplications();
+		log.info(count + " emails for added app sent.");
+
+		count = newsletterService.sendEmailNewsletters();
+		log.info(count + " newsletters sent.");
+
+		log.info("< All emails have been sent for today.");
 	}
 
 }

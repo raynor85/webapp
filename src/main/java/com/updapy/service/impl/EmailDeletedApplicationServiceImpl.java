@@ -36,17 +36,19 @@ public class EmailDeletedApplicationServiceImpl implements EmailDeletedApplicati
 	}
 
 	@Override
-	public boolean sendEmailDeletedApplications() {
+	public int sendEmailDeletedApplications() {
 		List<EmailDeletedApplication> emailDeletedApplications = emailDeletedApplicationRepository.findBySentFalse(new PageRequest(0, emailSenderService.getNonPriorEmailsMaxSentPerDay()));
+		int count = 0;
 		for (EmailDeletedApplication emailDeletedApplication : emailDeletedApplications) {
 			User user = emailDeletedApplication.getUser();
 			boolean hasBeenSent = emailSenderService.sendDeletedApplication(user.getEmail(), emailDeletedApplication.getApplication(), user.getLangEmail());
 			if (hasBeenSent) {
 				emailDeletedApplication.setSent(true);
 				save(emailDeletedApplication);
+				count++;
 			}
 		}
-		return true;
+		return count;
 	}
 
 	private EmailDeletedApplication save(EmailDeletedApplication emailDeletedApplication) {

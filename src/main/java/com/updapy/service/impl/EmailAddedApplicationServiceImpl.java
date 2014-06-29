@@ -36,17 +36,19 @@ public class EmailAddedApplicationServiceImpl implements EmailAddedApplicationSe
 	}
 
 	@Override
-	public boolean sendEmailAddedApplications() {
+	public int sendEmailAddedApplications() {
 		List<EmailAddedApplication> emailAddedApplications = emailAddedApplicationRepository.findBySentFalse(new PageRequest(0, emailSenderService.getNonPriorEmailsMaxSentPerDay()));
+		int count = 0;
 		for (EmailAddedApplication emailAddedApplication : emailAddedApplications) {
 			User user = emailAddedApplication.getUser();
 			boolean hasBeenSent = emailSenderService.sendAddedApplication(user.getEmail(), emailAddedApplication.getApplication(), user.getLangEmail());
 			if (hasBeenSent) {
 				emailAddedApplication.setSent(true);
 				save(emailAddedApplication);
+				count++;
 			}
 		}
-		return true;
+		return count;
 	}
 
 	private EmailAddedApplication save(EmailAddedApplication emailAddedApplication) {

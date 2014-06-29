@@ -59,8 +59,9 @@ public class EmailSingleUpdateServiceImpl implements EmailSingleUpdateService {
 	}
 
 	@Override
-	public boolean sendEmailSingleUpdates() {
+	public int sendEmailSingleUpdates() {
 		List<EmailSingleUpdate> emailSingleUpdates = emailSingleUpdateRepository.findBySentFalse(new PageRequest(0, emailSenderService.getNonPriorEmailsMaxSentPerDay()));
+		int count = 0;
 		for (EmailSingleUpdate emailSingleUpdate : emailSingleUpdates) {
 			User user = emailSingleUpdate.getUser();
 			ApplicationVersion newVersion = emailSingleUpdate.getVersion();
@@ -69,9 +70,10 @@ public class EmailSingleUpdateServiceImpl implements EmailSingleUpdateService {
 			if (hasBeenSent) {
 				emailSingleUpdate.setSent(true);
 				save(emailSingleUpdate);
+				count++;
 			}
 		}
-		return true;
+		return count;
 	}
 
 	private EmailSingleUpdate save(EmailSingleUpdate emailSingleUpdate) {

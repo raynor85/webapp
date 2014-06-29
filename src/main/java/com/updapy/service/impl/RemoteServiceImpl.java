@@ -1,5 +1,6 @@
 package com.updapy.service.impl;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -62,8 +63,14 @@ public class RemoteServiceImpl implements RemoteService {
 		try {
 			doc = Jsoup.connect(url).timeout(15 * 1000).get();
 		} catch (Exception e) {
-			emailSenderService.sendAdminConnectionError(url);
-			return null;
+			try {
+				// let's try a second time, network can be unreliable sometimes!
+				doc = Jsoup.connect(url).timeout(15 * 1000).get();
+			} catch (IOException e1) {
+				// seems there is really a problem
+				emailSenderService.sendAdminConnectionError(url);
+				return null;
+			}
 		}
 		return doc;
 	}

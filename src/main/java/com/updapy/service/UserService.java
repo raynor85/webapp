@@ -73,6 +73,8 @@ public interface UserService {
 
 	List<User> findUsersActive();
 
+	List<User> findUsersFollowingNewsletters();
+
 	List<User> findUsersFollowingApplication(ApplicationReference application);
 
 	void notifyForNewVersion(User user, ApplicationVersion newVersion);

@@ -8,6 +8,6 @@ public interface EmailAddedApplicationService {
 
 	EmailAddedApplication addEmailAddedApplication(User user, ApplicationReference application);
 
-	boolean sendEmailAddedApplications();
+	int sendEmailAddedApplications();
 
 }

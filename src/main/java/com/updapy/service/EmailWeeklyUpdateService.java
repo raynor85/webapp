@@ -10,6 +10,6 @@ public interface EmailWeeklyUpdateService {
 
 	EmailWeeklyUpdate addEmailWeeklyUpdate(User user, List<ApplicationVersion> versions);
 
-	boolean sendEmailWeeklyUpdates();
+	int sendEmailWeeklyUpdates();
 
 }

@@ -38,8 +38,9 @@ public class EmailWeeklyUpdateServiceImpl implements EmailWeeklyUpdateService {
 	}
 
 	@Override
-	public boolean sendEmailWeeklyUpdates() {
+	public int sendEmailWeeklyUpdates() {
 		List<EmailWeeklyUpdate> emailWeeklyUpdates = emailWeeklyUpdateRepository.findBySentFalse(new PageRequest(0, emailSenderService.getNonPriorEmailsMaxSentPerDay()));
+		int count = 0;
 		for (EmailWeeklyUpdate emailWeeklyUpdate : emailWeeklyUpdates) {
 			User user = emailWeeklyUpdate.getUser();
 			List<NewVersion> newVersions = new ArrayList<NewVersion>();
@@ -50,9 +51,10 @@ public class EmailWeeklyUpdateServiceImpl implements EmailWeeklyUpdateService {
 			if (hasBeenSent) {
 				emailWeeklyUpdate.setSent(true);
 				save(emailWeeklyUpdate);
+				count++;
 			}
 		}
-		return true;
+		return count;
 	}
 
 	private EmailWeeklyUpdate save(EmailWeeklyUpdate emailWeeklyUpdate) {

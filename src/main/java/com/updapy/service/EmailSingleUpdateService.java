@@ -8,6 +8,6 @@ public interface EmailSingleUpdateService {
 
 	EmailSingleUpdate addEmailSingleUpdate(User user, ApplicationVersion version);
 
-	boolean sendEmailSingleUpdates();
+	int sendEmailSingleUpdates();
 
 }

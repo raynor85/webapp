@@ -29,6 +29,7 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
 import com.updapy.form.model.NewVersion;
 import com.updapy.form.model.UpdateUrl;
 import com.updapy.model.ApplicationReference;
+import com.updapy.model.Newsletter;
 import com.updapy.service.EmailCounterService;
 import com.updapy.service.EmailSenderService;
 import com.updapy.util.MessageUtils;
@@ -334,6 +335,30 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		model.put("lang", messageUtils.getSimpleMessage("email.lang", locale));
 		model.put("title", messageUtils.getSimpleMessage("email.application.deleted.content.title", locale));
 		model.put("text", messageUtils.getCustomMessage("email.application.deleted.content.text", new String[] { name }, locale));
+		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
+		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
+		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);
+
+		if (emailCounterService.isEmailCounterReached(getNonPriorEmailsMaxSentPerDay())) {
+			return false;
+		}
+
+		try {
+			send(fromEmail, email, subject, message);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean sendNewsletter(String email, Newsletter newsletter, Locale locale) {
+		String fromEmail = messageUtils.getSimpleMessage("email.noreply", locale);
+		String subject = newsletter.getSubject(locale);
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("lang", messageUtils.getSimpleMessage("email.lang", locale));
+		model.put("title", newsletter.getTitle(locale));
+		model.put("text", newsletter.getText(locale));
 		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
 		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);

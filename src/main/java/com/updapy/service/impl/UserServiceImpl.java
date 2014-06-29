@@ -468,6 +468,18 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public List<User> findUsersFollowingNewsletters() {
+		List<User> users = findUsersActive();
+		CollectionUtils.filter(users, new Predicate() {
+			@Override
+			public boolean evaluate(Object user) {
+				return settingsService.isEmailNewsletterActive((User) user);
+			}
+		});
+		return users;
+	}
+
+	@Override
 	public void notifyForNewVersion(User user, ApplicationVersion newVersion) {
 		removeCurrentNotificationsForApplication(user, newVersion);
 		ApplicationNotification notification = new ApplicationNotification();

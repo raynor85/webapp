@@ -8,6 +8,6 @@ public interface EmailDeletedApplicationService {
 
 	EmailDeletedApplication addEmailDeletedApplication(User user, ApplicationReference application);
 
-	boolean sendEmailDeletedApplications();
+	int sendEmailDeletedApplications();
 
 }

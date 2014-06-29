@@ -4,11 +4,14 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import com.updapy.model.common.BaseEntity;
+import com.updapy.model.enumeration.ApplicationCategory;
 
 @Entity
 @SequenceGenerator(allocationSize = 1, name = "idSequence", sequenceName = "application_reference_seq")
@@ -30,6 +33,9 @@ public class ApplicationReference extends BaseEntity {
 	private boolean active;
 
 	private boolean notified;
+
+	@Enumerated(EnumType.STRING)
+	private ApplicationCategory category;
 
 	public String getName() {
 		return name;
@@ -85,6 +91,14 @@ public class ApplicationReference extends BaseEntity {
 
 	public void setNotified(boolean notified) {
 		this.notified = notified;
+	}
+
+	public ApplicationCategory getCategory() {
+		return category;
+	}
+
+	public void setCategory(ApplicationCategory category) {
+		this.category = category;
 	}
 
 	@Override
