@@ -22,7 +22,7 @@ public class VlcMediaPlayerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return doc.select("a[href*=win64]").attr("href");
+		return ParsingUtils.addHttpPrefix(doc.select("a[href*=win64]").attr("href"));
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class VlcMediaPlayerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a[href*=win32]").attr("href");
+		return ParsingUtils.addHttpPrefix(doc.select("a[href*=win32]").attr("href"));
 	}
 
 	@Override

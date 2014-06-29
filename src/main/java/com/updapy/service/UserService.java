@@ -19,6 +19,8 @@ public interface UserService {
 
 	User getCurrentUserLight();
 
+	User getUserLightFromRssKey(String key);
+
 	User getCurrentUserWithSettings();
 
 	User getCurrentUserWithApplicationFolloweds();

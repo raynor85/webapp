@@ -83,7 +83,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getCurrentUserLight() {
-		return findByEmail(SecurityUtils.getEmailCurrentUser());
+		String email = SecurityUtils.getEmailCurrentUser();
+		if (StringUtils.isBlank(email)) {
+			return null;
+		}
+		return findByEmail(email);
 	}
 
 	@Override
@@ -127,6 +131,11 @@ public class UserServiceImpl implements UserService {
 		Hibernate.initialize(user.getFollowedApplications());
 		Hibernate.initialize(user.getHelpMessages());
 		return user;
+	}
+
+	@Override
+	public User getUserLightFromRssKey(String key) {
+		return userRepository.findByRssKey(key);
 	}
 
 	@Override
@@ -190,6 +199,7 @@ public class UserServiceImpl implements UserService {
 		user.setActive(false);
 		// generate keys
 		generateNewApiKeyWithoutSaving(user);
+		generateNewRssKeyWithoutSaving(user);
 		generateNewAccountKeyWithoutSaving(user);
 		// language
 		Locale currentLang = LocaleContextHolder.getLocale();
@@ -210,6 +220,13 @@ public class UserServiceImpl implements UserService {
 		String newKey = generateKey();
 		user.setApiKey(newKey);
 		user.setGenerationApiKeyDate(new Date());
+		return newKey;
+	}
+
+	private String generateNewRssKeyWithoutSaving(User user) {
+		String newKey = generateKey();
+		user.setRssKey(newKey);
+		user.setGenerationRssKeyDate(new Date());
 		return newKey;
 	}
 

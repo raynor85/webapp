@@ -9,4 +9,11 @@ public class ParsingUtils {
 		return StringUtils.removeEnd(StringUtils.removeStart(StringUtils.removePattern(cleanStr, "[^\\d.]"), "."), ".");
 	}
 
+	public static String addHttpPrefix(String url) {
+		if (url.startsWith("//")) {
+			return "http" + url;
+		}
+		return url;
+	}
+
 }

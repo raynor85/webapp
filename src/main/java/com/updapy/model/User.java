@@ -58,6 +58,11 @@ public class User extends BaseEntity {
 	private String apiKey;
 
 	@Temporal(TemporalType.TIMESTAMP)
+	private Date generationRssKeyDate;
+
+	private String rssKey;
+
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date activationDate;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
@@ -199,6 +204,22 @@ public class User extends BaseEntity {
 
 	public void setApiKey(String apiKey) {
 		this.apiKey = apiKey;
+	}
+
+	public Date getGenerationRssKeyDate() {
+		return generationRssKeyDate;
+	}
+
+	public void setGenerationRssKeyDate(Date generationRssKeyDate) {
+		this.generationRssKeyDate = generationRssKeyDate;
+	}
+
+	public String getRssKey() {
+		return rssKey;
+	}
+
+	public void setRssKey(String rssKey) {
+		this.rssKey = rssKey;
 	}
 
 	public Date getActivationDate() {

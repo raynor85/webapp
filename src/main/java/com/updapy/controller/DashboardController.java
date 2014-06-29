@@ -150,6 +150,7 @@ public class DashboardController {
 		modelAndView.addObject("isEmailDisabled", settingsService.isEmailDisabled(user));
 		modelAndView.addObject("isEmailOnEachUpdateDisabled", !settingsService.isEmailOnEachUpdateActive(user));
 		modelAndView.addObject("nbNotifications", userService.getNbNotifications(user));
+		modelAndView.addObject("rssKey", user.getRssKey());
 		return initModel(user, modelAndView);
 	}
 

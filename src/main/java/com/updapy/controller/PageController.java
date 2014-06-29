@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.updapy.form.model.RegisterEarlyUser;
 import com.updapy.form.model.RegisterUser;
 import com.updapy.form.model.ResetUserEmail;
+import com.updapy.model.User;
 import com.updapy.service.UserService;
 
 @Controller
@@ -18,32 +19,32 @@ public class PageController {
 
 	@RequestMapping("/")
 	public ModelAndView welcomePage() {
-		return addNbNotifications(new ModelAndView("welcome", "registerEarlyUser", new RegisterEarlyUser()));
+		return addNotifications(new ModelAndView("welcome", "registerEarlyUser", new RegisterEarlyUser()));
 	}
 
 	@RequestMapping("/error/404")
 	public ModelAndView error404Page() {
-		return addNbNotifications(new ModelAndView("error-404"));
+		return addNotifications(new ModelAndView("error-404"));
 	}
 
 	@RequestMapping("/error/403")
 	public ModelAndView error403Page() {
-		return addNbNotifications(new ModelAndView("error-403"));
+		return addNotifications(new ModelAndView("error-403"));
 	}
 
 	@RequestMapping("/error")
 	public ModelAndView errorPage() {
-		return addNbNotifications(new ModelAndView("error"));
+		return addNotifications(new ModelAndView("error"));
 	}
 
 	@RequestMapping("/faq")
 	public ModelAndView faqPage() {
-		return addNbNotifications(new ModelAndView("faq"));
+		return addNotifications(new ModelAndView("faq"));
 	}
 
 	@RequestMapping("/privacy")
 	public ModelAndView privacyPage() {
-		return addNbNotifications(new ModelAndView("privacy"));
+		return addNotifications(new ModelAndView("privacy"));
 	}
 
 	@RequestMapping({ "/sign", "/signin" })
@@ -51,7 +52,7 @@ public class PageController {
 		ModelAndView modelAndView = new ModelAndView("sign");
 		modelAndView.addObject("resetUserEmail", new ResetUserEmail());
 		modelAndView.addObject("registerUser", new RegisterUser());
-		return addNbNotifications(modelAndView);
+		return addNotifications(modelAndView);
 	}
 
 	@RequestMapping({ "/sign-up", "/signup" })
@@ -64,8 +65,12 @@ public class PageController {
 		return "sign-up-activate";
 	}
 
-	private ModelAndView addNbNotifications(ModelAndView modelAndView) {
-		modelAndView.addObject("nbNotifications", userService.getNbNotifications(userService.getCurrentUserLight()));
+	private ModelAndView addNotifications(ModelAndView modelAndView) {
+		User user = userService.getCurrentUserLight();
+		if (user != null) {
+			modelAndView.addObject("nbNotifications", userService.getNbNotifications(user));
+			modelAndView.addObject("rssKey", user.getRssKey());
+		}
 		return modelAndView;
 	}
 }

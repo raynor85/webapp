@@ -28,6 +28,7 @@
 		<jackson.version>2.4.1</jackson.version>
 		<dozer.version>5.5.1</dozer.version>
 		<org.jsoup.version>1.7.3</org.jsoup.version>
+		<rome.version>1.0.0</rome.version>
 
 		<!-- Common libs -->
 		<commons-validator.version>1.4.0</commons-validator.version>
@@ -332,6 +333,11 @@
 			<artifactId>webapp-runner</artifactId>
 			<version>${jsimone.webapp-runner.version}</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.java.dev.rome</groupId>
+			<artifactId>rome</artifactId>
+			<version>${rome.version}</version>
 		</dependency>
 	</dependencies>
 

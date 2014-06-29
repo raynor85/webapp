@@ -209,9 +209,13 @@ body {
 	border-bottom: 0;
 }
 
-.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus {
+.dropdown-menu>li>a:hover,.dropdown-menu>li>a>i:hover,.dropdown-menu>li>a:focus {
 	color: #1a7440 !important;
 	background-color: #E9F7EF !important;
+}
+
+.dropdown-menu>li>a>i.color-rss {
+	color: #FF6600;
 }
 
 /* ===== Jumbotron ===== */
@@ -1686,4 +1690,3 @@ img.shadowHover:hover {
 	color: #000 !important;
 	background-color: transparent !important;
 }
-

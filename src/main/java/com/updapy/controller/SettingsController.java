@@ -55,6 +55,7 @@ public class SettingsController {
 		ModelAndView modelAndView = new ModelAndView("settings");
 		modelAndView.addObject("updateSettings", settingsService.getSettings(user));
 		modelAndView.addObject("nbNotifications", userService.getNbNotifications(user));
+		modelAndView.addObject("rssKey", user.getRssKey());
 		modelAndView.addObject("changePasswordUser", new ChangePasswordUser());
 		modelAndView.addObject("deleteAccount", new DeleteAccount());
 		return modelAndView;

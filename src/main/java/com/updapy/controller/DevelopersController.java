@@ -31,6 +31,7 @@ public class DevelopersController {
 		if (user != null) {
 			resetUserApiKey.setApiKey(user.getApiKey());
 			modelAndView.addObject("nbNotifications", userService.getNbNotifications(user));
+			modelAndView.addObject("rssKey", user.getRssKey());
 		}
 		return modelAndView;
 	}
