@@ -15,6 +15,6 @@ public interface ApplicationVersionRepository extends JpaRepository<ApplicationV
 	@Query("select v from ApplicationVersion v where v.application = :application and v.versionDate = (select max(v.versionDate) from ApplicationVersion v where v.application = :application))")
 	ApplicationVersion findLatestByApplicationReference(@Param("application") ApplicationReference application);
 
-	Set<ApplicationVersion> findByCreationDateBetweenOrderByCreationDateDesc(Date from, Date to);
+	Set<ApplicationVersion> findByVersionDateBetweenOrderByVersionDateDesc(Date from, Date to);
 
 }

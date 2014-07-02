@@ -98,7 +98,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	@Override
 	public List<ApplicationVersion> getNewVersionsOnPeriod(Date from, Date to) {
-		return new ArrayList<ApplicationVersion>(applicationVersionRepository.findByCreationDateBetweenOrderByCreationDateDesc(from, to));
+		return new ArrayList<ApplicationVersion>(applicationVersionRepository.findByVersionDateBetweenOrderByVersionDateDesc(from, to));
 	}
 
 	@Override
