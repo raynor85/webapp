@@ -5,16 +5,16 @@
 	<groupId>com.updapy</groupId>
 	<artifactId>updapy</artifactId>
 	<packaging>war</packaging>
-	<version>0.9</version>
+	<version>1.0</version>
 
 	<properties>
 
 		<!-- Spring -->
 		<org.springframework.version>4.0.5.RELEASE</org.springframework.version>
-		<org.springframework.data.version>1.6.0.RELEASE</org.springframework.data.version>
+		<org.springframework.data.version>1.6.1.RELEASE</org.springframework.data.version>
 		<org.springframework.batch.version>3.0.0.RELEASE</org.springframework.batch.version>
 		<org.springframework.security.version>3.2.4.RELEASE</org.springframework.security.version>
-		<org.springframework.hateoas.version>0.12.0.RELEASE</org.springframework.hateoas.version>
+		<org.springframework.hateoas.version>0.14.0.RELEASE</org.springframework.hateoas.version>
 		<org.springframework.social.version>1.1.0.RELEASE</org.springframework.social.version>
 
 		<!-- Hibernate -->

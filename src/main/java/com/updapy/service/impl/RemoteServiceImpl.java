@@ -27,7 +27,7 @@ public class RemoteServiceImpl implements RemoteService {
 
 	@Override
 	public ApplicationVersion retrieveRemoteLatestVersion(ApplicationReference application) {
-		Document doc = retrieveHtmlDocument(application.getGlobalUrl());
+		Document doc = retrieveHtmlDocument(application);
 		if (doc == null) {
 			return null;
 		}
@@ -58,14 +58,15 @@ public class RemoteServiceImpl implements RemoteService {
 		return version;
 	}
 
-	private Document retrieveHtmlDocument(String url) {
+	private Document retrieveHtmlDocument(ApplicationReference application) {
 		Document doc = null;
+		String url = application.getGlobalUrl();
 		try {
-			doc = Jsoup.connect(url).timeout(15 * 1000).get();
+			doc = retrieveHtmlDocument(url);
 		} catch (Exception e) {
 			try {
 				// let's try a second time, network can be unreliable sometimes!
-				doc = Jsoup.connect(url).timeout(15 * 1000).get();
+				doc = retrieveHtmlDocument(url);
 			} catch (IOException e1) {
 				// seems there is really a problem
 				emailSenderService.sendAdminConnectionError(url);
@@ -73,6 +74,10 @@ public class RemoteServiceImpl implements RemoteService {
 			}
 		}
 		return doc;
+	}
+
+	private Document retrieveHtmlDocument(String url) throws IOException {
+		return Jsoup.connect(url).timeout(15 * 1000).get();
 	}
 
 }
