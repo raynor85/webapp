@@ -107,15 +107,15 @@
 <script src="<spring:url value="/resources/js/bootstrap.min.js" />"></script>
 <link href="<spring:url value="/resources/css/social-buttons-3.css" />" rel="stylesheet">
 
-<!-- Ladda -->
-<link href="<spring:url value="/resources/css/ladda.min.css" />" rel="stylesheet">
-<script src="<spring:url value="/resources/js/spin.min.js" />"></script>
-<script src="<spring:url value="/resources/js/ladda.min.js" />"></script>
-
 <!-- Custom styles for this template -->
 <link href="<spring:url value="/resources/css/color-styles.css" />" rel="stylesheet">
 <link href="<spring:url value="/resources/css/ui-elements.css" />" rel="stylesheet">
 <link href="<spring:url value="/resources/css/custom.css" />" rel="stylesheet">
+
+<!-- Ladda -->
+<link href="<spring:url value="/resources/css/ladda.min.css" />" rel="stylesheet">
+<script src="<spring:url value="/resources/js/spin.min.js" />"></script>
+<script src="<spring:url value="/resources/js/ladda.min.js" />"></script>
 
 <!-- Resources -->
 <link href="<spring:url value="/resources/css/animate.css" />" rel="stylesheet">
