@@ -8,9 +8,9 @@ import com.updapy.model.ApplicationReference;
 
 public interface ApplicationReferenceRepository extends JpaRepository<ApplicationReference, Long> {
 
-	List<ApplicationReference> findByActiveTrueOrderByApiNameAsc();
+	List<ApplicationReference> findByNotifiedTrueAndActiveTrueOrderByApiNameAsc();
 
-	ApplicationReference findByApiNameAndActiveTrue(String apiName);
+	ApplicationReference findByApiNameAndNotifiedTrueAndActiveTrue(String apiName);
 
 	List<ApplicationReference> findByNotifiedFalseAndActiveTrue();
 

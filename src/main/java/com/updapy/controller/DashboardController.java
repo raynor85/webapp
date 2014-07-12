@@ -161,6 +161,10 @@ public class DashboardController {
 		List<CurrentFollowedApplication> currentFollowedApplications = new ArrayList<CurrentFollowedApplication>();
 		for (ApplicationFollow followedApplication : userService.getFollowedApplications(user)) {
 			ApplicationVersion version = applicationService.getLatestVersion(followedApplication.getApplication());
+			if (version == null) {
+				// no version yet
+				continue;
+			}
 			CurrentFollowedApplication currentFollowedApplication = dozerHelper.map(version, CurrentFollowedApplication.class);
 			currentFollowedApplication.setDownloadUrl(userService.getDownloadUrlMatchingSettings(user, version).getUrl());
 			currentFollowedApplication.setEmailNotificationActive(followedApplication.isEmailNotificationActive());

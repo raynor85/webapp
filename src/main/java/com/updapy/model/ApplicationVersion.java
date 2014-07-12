@@ -2,6 +2,7 @@ package com.updapy.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -20,12 +21,16 @@ public class ApplicationVersion extends BaseEntity {
 
 	private String versionNumber;
 
+	@Column(columnDefinition = "text")
 	private String win32UrlEn;
 
+	@Column(columnDefinition = "text")
 	private String win64UrlEn;
 
+	@Column(columnDefinition = "text")
 	private String win32UrlFr;
 
+	@Column(columnDefinition = "text")
 	private String win64UrlFr;
 
 	@Temporal(TemporalType.TIMESTAMP)

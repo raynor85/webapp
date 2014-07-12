@@ -122,6 +122,7 @@
 		<ref bean="itunesRemoteRetriever" />
 		<ref bean="winmergeRemoteRetriever" />
 		<ref bean="pdfCreatorRemoteRetriever" />
+		<ref bean="avastRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

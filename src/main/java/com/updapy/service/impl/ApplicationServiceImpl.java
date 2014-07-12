@@ -47,7 +47,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	@Override
 	public List<ApplicationReference> getApplications() {
-		return applicationReferenceRepository.findByActiveTrueOrderByApiNameAsc();
+		return applicationReferenceRepository.findByNotifiedTrueAndActiveTrueOrderByApiNameAsc();
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	@Override
 	public ApplicationVersion getLatestVersion(String apiName) {
-		ApplicationReference application = applicationReferenceRepository.findByApiNameAndActiveTrue(apiName);
+		ApplicationReference application = applicationReferenceRepository.findByApiNameAndNotifiedTrueAndActiveTrue(apiName);
 		return getLatestVersion(application);
 	}
 
@@ -103,7 +103,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	@Override
 	public ApplicationReference getApplication(String apiName) {
-		return applicationReferenceRepository.findByApiNameAndActiveTrue(apiName);
+		return applicationReferenceRepository.findByApiNameAndNotifiedTrueAndActiveTrue(apiName);
 	}
 
 	@Override
