@@ -86,13 +86,18 @@
 		</property>
 	</bean>
 
-	<!-- Configures FB support -->
+	<!-- Configures social sign in support -->
 	<bean id="connectionFactoryLocator" class="org.springframework.social.security.SocialAuthenticationServiceRegistry">
 		<property name="authenticationServices">
 			<list>
 				<bean class="org.springframework.social.facebook.security.FacebookAuthenticationService">
 					<constructor-arg value="#{systemEnvironment['FACEBOOK_APP_ID']}" />
 					<constructor-arg value="#{systemEnvironment['FACEBOOK_APP_SECRET']}" />
+					<property name="defaultScope" value="email" />
+				</bean>
+				<bean class="org.springframework.social.google.security.GoogleAuthenticationService">
+					<constructor-arg value="#{systemEnvironment['GOOGLE_APP_ID']}" />
+					<constructor-arg value="#{systemEnvironment['GOOGLE_APP_SECRET']}" />
 					<property name="defaultScope" value="email" />
 				</bean>
 			</list>
