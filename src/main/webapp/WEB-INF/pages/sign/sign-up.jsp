@@ -1,7 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <div class="container">
-	<div class="row">
+	<div class="row rowWithPadding">
 		<!-- Sign Up form -->
 		<div class="center-block" style="max-width: 600px">
 			<h3>

@@ -27,7 +27,7 @@
 			<script src="<spring:url value="/resources/js/jquery.zclip.js" />"></script>
 			<script src="<spring:url value="/resources/js/bootbox.min.js" />"></script>
 			<script src="<spring:url value="/resources/js/json-format.js" />"></script>
-			<div class="row">
+			<div class="row rowWithPadding">
 				<div class="col-sm-12">
 					<br /> <br />
 					<%@ include file="api.jspf"%>

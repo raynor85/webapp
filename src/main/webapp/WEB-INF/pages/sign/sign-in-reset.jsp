@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="container">
-	<div class="row">
+	<div class="row rowWithPadding">
 		<div class="center-block" style="max-width: 350px">
 			<h3>
 				<spring:message code="sign.in.reset.title" />

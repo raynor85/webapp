@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <div class="container">
-	<div class="row">
+	<div class="row rowWithPadding">
 		<div id="successRequestApplicationResponse"></div>
 		<c:if test="${nbAppFollow != 0 && not isDashboardHowToTipHidden}">
 			<form:form id="helpMessageHowToDismissMessageForm" commandName="dismissMessage" action="${root}/dashboard/dismiss">
@@ -46,7 +46,7 @@
 			</c:choose>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row rowWithPadding">
 		<form:form id="unfollowApplicationsForm" commandName="unfollowApplications" action="${root}/dashboard/unfollow">
 			<c:forEach items="${currentFollowedApplications}" var="currentFollowedApplication">
 				<c:set var="appName">${currentFollowedApplication.applicationName}</c:set>
@@ -108,7 +108,7 @@
 		</form:form>
 	</div>
 	<br /> <br />
-	<div class="row" align="center">
+	<div class="row rowWithPadding" align="center">
 		<div class="button-ladda">
 			<button type="button" class="btn-color ladda-button" data-toggle="modal" data-target="#followApplicationsModal">
 				<spring:message code="dashboard.applications.follow.button" />

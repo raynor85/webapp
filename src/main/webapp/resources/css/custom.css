@@ -1690,3 +1690,10 @@ img.shadowHover:hover {
 	color: #000 !important;
 	background-color: transparent !important;
 }
+
+/*** Because row is needed ***/
+.rowWithPadding {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
