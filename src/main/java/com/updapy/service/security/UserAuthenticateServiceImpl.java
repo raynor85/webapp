@@ -35,7 +35,13 @@ public class UserAuthenticateServiceImpl implements UserDetailsService {
 		if (!user.isActive()) {
 			throw new DisabledException(emailInactive);
 		}
-		final Collection<? extends GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_USER");
+		// give roles
+		Collection<? extends GrantedAuthority> authorities = null;
+		if (user.getEmail().endsWith("@updapy.com")) {
+			authorities = AuthorityUtils.createAuthorityList("ROLE_ADMIN", "ROLE_USER");
+		} else {
+			authorities = AuthorityUtils.createAuthorityList("ROLE_USER");
+		}
 		return UpdapyUser.createUpdapyUser(user, authorities);
 	}
 

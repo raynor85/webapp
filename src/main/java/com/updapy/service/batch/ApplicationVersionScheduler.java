@@ -64,8 +64,8 @@ public class ApplicationVersionScheduler {
 	private NewsletterService newsletterService;
 
 	// fire twice a day (noon and midnight)
-	//@Scheduled(cron = "0 0 0,12 * * *")
-	@Scheduled(fixedDelay = 500000) // fire at start - testing purpose
+	@Scheduled(cron = "0 0 0,12 * * *")
+	// @Scheduled(fixedDelay = 500000) // fire at start - testing purpose
 	public void updateApplicationRepositoryAndCreateEmailSingleUpdates() {
 		log.info("> Starting the update of the applications repository (with single emails creation)");
 		List<ApplicationReference> applications = applicationService.getApplications();

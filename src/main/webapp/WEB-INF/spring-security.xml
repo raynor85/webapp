@@ -11,6 +11,7 @@
 		<form-login login-page="/sign" default-target-url="/dashboard" always-use-default-target="false" authentication-failure-url="/sign" username-parameter="username" password-parameter="password" />
 		<intercept-url pattern="/dashboard**/**" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/settings**/**" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/administration**/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/1.0**/**" access="hasRole('ROLE_USER')" />
 		<!-- Adds social authentication filter to the Spring Security filter chain. -->
 		<custom-filter ref="socialAuthenticationFilter" before="PRE_AUTH_FILTER" />
