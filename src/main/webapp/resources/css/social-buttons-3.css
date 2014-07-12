@@ -171,9 +171,9 @@ fieldset[disabled] .btn-pinterest.active {
 }
 
 .btn-linkedin {
-  color: #ffffff;
-  background-color: #73b8db;
-  border-color: #4393bb;
+  color: #ffffff !important;
+  background-color: #73b8db !important;
+  border-color: #4393bb !important;
 }
 
 .btn-linkedin:hover,
@@ -181,9 +181,9 @@ fieldset[disabled] .btn-pinterest.active {
 .btn-linkedin:active,
 .btn-linkedin.active,
 .open .dropdown-toggle.btn-linkedin {
-  color: #ffffff;
-  background-color: #53a8d3;
-  border-color: #33708e;
+  color: #ffffff !important;
+  background-color: #53a8d3 !important;
+  border-color: #33708e !important;
 }
 
 .btn-linkedin:active,

@@ -15,8 +15,8 @@
 				<li><a href="<spring:message code="application.facebook.url" />" class="text-muted fa fa-facebook fa-2x no-underline" title="<spring:message code="footer.follow.part1" /> <spring:message code="footer.follow.facebook" />"></a></li>
 			</ul>
 			<ul class="list-inline pull-right-xs" style="margin-top: 6px;">
-				<li><span class="text-muted"><spring:message code="footer.version" /> <spring:message code="application.version" /></span></li>
-				<li><span class="text-muted">I</span></li>
+				<%-- <li><span class="text-muted"><spring:message code="footer.version" /> <spring:message code="application.version" /></span></li> --%>
+				<!-- <li><span class="text-muted">I</span></li> -->
 				<li><span class="text-muted"><spring:message code="footer.copyright" /></span></li>
 			</ul>
 			<div class="clearfix"></div>

@@ -19,6 +19,14 @@
 				</a>
 			</div>
 		</div>
+		<div style="height: 15px"></div>
+		<div class="row social-button-row">
+			<div class="col-sm-12">
+				<!-- LinkedIn sign in button -->
+				<a class="btn btn-block ladda-button btn-linkedin" href="<c:url value="/auth/linkedin"/>"> <i class="fa fa-linkedin"></i>&nbsp; I &nbsp; <spring:message code="sign.social.linkedin" />
+				</a>
+			</div>
+		</div>
 	</div>
 </c:if>
 

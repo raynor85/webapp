@@ -1,5 +1,5 @@
 package com.updapy.model.enumeration;
 
 public enum SocialMediaService {
-	FACEBOOK, GOOGLE
+	FACEBOOK, GOOGLE, LINKEDIN
 }
