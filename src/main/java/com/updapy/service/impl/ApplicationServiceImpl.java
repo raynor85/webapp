@@ -51,6 +51,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
+	public List<ApplicationReference> getApplicationsNoCache() {
+		return getApplications();
+	}
+
+	@Override
 	public List<ApplicationReference> getAddedApplications() {
 		return applicationReferenceRepository.findByNotifiedFalseAndActiveTrue();
 	}

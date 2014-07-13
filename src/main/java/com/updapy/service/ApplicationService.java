@@ -24,6 +24,8 @@ public interface ApplicationService {
 	@Cacheable(value = "applications", key = "'applications.all'")
 	List<ApplicationReference> getApplications();
 
+	List<ApplicationReference> getApplicationsNoCache();
+
 	List<ApplicationReference> getAddedApplications();
 
 	List<ApplicationReference> getDeletedApplications();
