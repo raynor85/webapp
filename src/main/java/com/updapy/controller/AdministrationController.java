@@ -26,4 +26,25 @@ public class AdministrationController {
 		return jsonResponseUtils.buildSuccessfulJsonResponse("administration.repository.update.confirm");
 	}
 
+	@RequestMapping(value = "/email/application/added")
+	public @ResponseBody
+	JsonResponse createEmailForAddedApplications() {
+		applicationVersionScheduler.createEmailsAndNotificationsForAddedApplications();
+		return jsonResponseUtils.buildSuccessfulJsonResponse("administration.email.application.added.confirm");
+	}
+
+	@RequestMapping(value = "/email/application/deleted")
+	public @ResponseBody
+	JsonResponse createEmailForDeletedApplications() {
+		applicationVersionScheduler.createEmailsAndNotificationsForDeletedApplications();
+		return jsonResponseUtils.buildSuccessfulJsonResponse("administration.email.application.deleted.confirm");
+	}
+
+	@RequestMapping(value = "/email/send")
+	public @ResponseBody
+	JsonResponse sendEmails() {
+		applicationVersionScheduler.sendEmails();
+		return jsonResponseUtils.buildSuccessfulJsonResponse("administration.email.send.confirm");
+	}
+
 }

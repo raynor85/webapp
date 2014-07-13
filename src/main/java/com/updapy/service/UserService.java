@@ -3,6 +3,7 @@ package com.updapy.service;
 import java.util.List;
 import java.util.Locale;
 
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.social.connect.Connection;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -81,8 +82,10 @@ public interface UserService {
 
 	void notifyForNewVersion(User user, ApplicationVersion newVersion);
 
+	@CacheEvict(value = "applications", key = "'applications.all'")
 	void notifyForAddedApplication(User user, ApplicationReference addedApplication);
 
+	@CacheEvict(value = "applications", key = "'applications.all'")
 	void notifyForDeletedApplication(User user, ApplicationReference deletedApplication);
 
 	Long getNbNotifications(User user);
