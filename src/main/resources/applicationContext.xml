@@ -117,7 +117,7 @@
 		<ref bean="gimpRemoteRetriever" />
 		<ref bean="adobeReaderRemoteRetriever" />
 		<ref bean="vlcMediaPlayerRemoteRetriever" />
-		<ref bean="mediaPlayerClassicRemoteRetriever" />
+		<ref bean="mediaPlayerClassicHcRemoteRetriever" />
 		<ref bean="ccleanerRemoteRetriever" />
 		<ref bean="filezillaRemoteRetriever" />
 		<ref bean="chromiumRemoteRetriever" />
@@ -134,6 +134,7 @@
 		<ref bean="avastRemoteRetriever" />
 		<ref bean="spybotRemoteRetriever" />
 		<ref bean="pdfXchangeViewerRemoteRetriever" />
+		<ref bean="mediaPlayerClassicBeRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

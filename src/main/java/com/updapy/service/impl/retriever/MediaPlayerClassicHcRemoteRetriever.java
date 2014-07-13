@@ -9,11 +9,11 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class MediaPlayerClassicRemoteRetriever implements RemoteRetriever {
+public class MediaPlayerClassicHcRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Media Player Classic");
+		return application.getName().equalsIgnoreCase("MPC - HC");
 	}
 
 	@Override
