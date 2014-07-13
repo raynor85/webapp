@@ -43,14 +43,19 @@
 		var facebookText;
 		var googleText;
 		var linkedinText;
-		if ($("#social-sign").width() < 300) {
+		var width = $("#social-sign").width();
+		if ( width >= 300) {
+			facebookText = "<i class='fa fa-facebook'></i>&nbsp; I &nbsp; <spring:message code='sign.social.facebook.long' />";
+			googleText = "<i class='fa fa-google-plus'></i>&nbsp; I &nbsp; <spring:message code='sign.social.google.long' />";
+			linkedinText = "<i class='fa fa-linkedin'></i>&nbsp; I &nbsp; <spring:message code='sign.social.linkedin.long' />";
+		} else if (width < 300 && width > 200) {
 			facebookText = "<i class='fa fa-facebook'></i>&nbsp; I &nbsp; <spring:message code='sign.social.facebook.short' />";
 			googleText = "<i class='fa fa-google-plus'></i>&nbsp; I &nbsp; <spring:message code='sign.social.google.short' />";
 			linkedinText = "<i class='fa fa-linkedin'></i>&nbsp; I &nbsp; <spring:message code='sign.social.linkedin.short' />";
 		} else {
-			facebookText = "<i class='fa fa-facebook'></i>&nbsp; I &nbsp; <spring:message code='sign.social.facebook.long' />";
-			googleText = "<i class='fa fa-google-plus'></i>&nbsp; I &nbsp; <spring:message code='sign.social.google.long' />";
-			linkedinText = "<i class='fa fa-linkedin'></i>&nbsp; I &nbsp; <spring:message code='sign.social.linkedin.long' />";
+			facebookText = "<i class='fa fa-facebook'></i>";
+			googleText = "<i class='fa fa-google-plus'></i>";
+			linkedinText = "<i class='fa fa-linkedin'></i>";
 		}
 		$("#social-sign-facebook").html(facebookText);
 		$("#social-sign-google").html(googleText);

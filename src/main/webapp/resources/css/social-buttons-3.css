@@ -172,8 +172,8 @@ fieldset[disabled] .btn-pinterest.active {
 
 .btn-linkedin {
   color: #ffffff !important;
-  background-color: #73b8db !important;
-  border-color: #4393bb !important;
+  background-color: #53a8d3 !important;
+  border-color: #3B98C6 !important;
 }
 
 .btn-linkedin:hover,
@@ -182,8 +182,8 @@ fieldset[disabled] .btn-pinterest.active {
 .btn-linkedin.active,
 .open .dropdown-toggle.btn-linkedin {
   color: #ffffff !important;
-  background-color: #53a8d3 !important;
-  border-color: #33708e !important;
+  background-color: #4498C8 !important;
+  border-color: #2984B8 !important;
 }
 
 .btn-linkedin:active,

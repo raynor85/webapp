@@ -133,6 +133,7 @@
 		<ref bean="pdfCreatorRemoteRetriever" />
 		<ref bean="avastRemoteRetriever" />
 		<ref bean="spybotRemoteRetriever" />
+		<ref bean="pdfXchangeViewerRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
