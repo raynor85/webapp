@@ -3,11 +3,11 @@
 
 <c:if test="${not isAuthenticated}">
 	<!-- Social Sign In Buttons -->
-	<div class="form-white-sign">
+	<div id="social-sign" class="form-white-sign">
 		<div class="row social-button-row">
 			<div class="col-sm-12">
 				<!-- Facebook sign in button -->
-				<a class="btn btn-block ladda-button btn-facebook" href="<c:url value="/auth/facebook"/>"> <i class="fa fa-facebook"></i>&nbsp; I &nbsp; <spring:message code="sign.social.facebook" />
+				<a id="social-sign-facebook" class="btn btn-block ladda-button btn-facebook" href="<c:url value="/auth/facebook"/>"> <i class="fa fa-facebook"></i>&nbsp; I &nbsp; <spring:message code="sign.social.facebook.long" />
 				</a>
 			</div>
 		</div>
@@ -15,7 +15,7 @@
 		<div class="row social-button-row">
 			<div class="col-sm-12">
 				<!-- Google+ sign in button -->
-				<a class="btn btn-block ladda-button btn-google-plus" href="<c:url value="/auth/google"/>"> <i class="fa fa-google-plus"></i>&nbsp; I &nbsp; <spring:message code="sign.social.googleplus" />
+				<a id="social-sign-google" class="btn btn-block ladda-button btn-google-plus" href="<c:url value="/auth/google"/>"> <i class="fa fa-google-plus"></i>&nbsp; I &nbsp; <spring:message code="sign.social.google.long" />
 				</a>
 			</div>
 		</div>
@@ -23,7 +23,7 @@
 		<div class="row social-button-row">
 			<div class="col-sm-12">
 				<!-- LinkedIn sign in button -->
-				<a class="btn btn-block ladda-button btn-linkedin" href="<c:url value="/auth/linkedin"/>"> <i class="fa fa-linkedin"></i>&nbsp; I &nbsp; <spring:message code="sign.social.linkedin" />
+				<a id="social-sign-linkedin" class="btn btn-block ladda-button btn-linkedin" href="<c:url value="/auth/linkedin"/>"> <i class="fa fa-linkedin"></i>&nbsp; I &nbsp; <spring:message code="sign.social.linkedin.long" />
 				</a>
 			</div>
 		</div>
@@ -37,3 +37,23 @@
 		</p>
 	</div>
 </c:if>
+
+<script>
+	var adaptTextToButtonSize = function() {
+		var facebookText;
+		var googleText;
+		var linkedinText;
+		if ($("#social-sign").width() < 300) {
+			facebookText = "<i class='fa fa-facebook'></i>&nbsp; I &nbsp; <spring:message code='sign.social.facebook.short' />";
+			googleText = "<i class='fa fa-google-plus'></i>&nbsp; I &nbsp; <spring:message code='sign.social.google.short' />";
+			linkedinText = "<i class='fa fa-linkedin'></i>&nbsp; I &nbsp; <spring:message code='sign.social.linkedin.short' />";
+		} else {
+			facebookText = "<i class='fa fa-facebook'></i>&nbsp; I &nbsp; <spring:message code='sign.social.facebook.long' />";
+			googleText = "<i class='fa fa-google-plus'></i>&nbsp; I &nbsp; <spring:message code='sign.social.google.long' />";
+			linkedinText = "<i class='fa fa-linkedin'></i>&nbsp; I &nbsp; <spring:message code='sign.social.linkedin.long' />";
+		}
+		$("#social-sign-facebook").html(facebookText);
+		$("#social-sign-google").html(googleText);
+		$("#social-sign-linkedin").html(linkedinText);
+	}();
+</script>
