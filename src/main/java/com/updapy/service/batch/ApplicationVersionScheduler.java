@@ -68,7 +68,7 @@ public class ApplicationVersionScheduler {
 	// @Scheduled(fixedDelay = 500000) // fire at start - testing purpose
 	public void updateApplicationRepositoryAndCreateEmailSingleUpdates() {
 		log.info("> Starting the update of the applications repository (with single emails creation)");
-		List<ApplicationReference> applications = applicationService.getApplicationsNoCache();
+		List<ApplicationReference> applications = applicationService.getAllActiveApplications();
 		for (ApplicationReference application : applications) {
 			checkNewVersionApplication(application);
 		}
