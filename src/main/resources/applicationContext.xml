@@ -135,6 +135,7 @@
 		<ref bean="spybotRemoteRetriever" />
 		<ref bean="pdfXchangeViewerRemoteRetriever" />
 		<ref bean="mediaPlayerClassicBeRemoteRetriever" />
+		<ref bean="xnViewRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
