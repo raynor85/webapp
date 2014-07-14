@@ -138,6 +138,7 @@
 		<ref bean="xnViewRemoteRetriever" />
 		<ref bean="glaryUtilitiesRemoteRetriever" />
 		<ref bean="adwCleanerRemoteRetriever" />
+		<ref bean="rssOwlRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
