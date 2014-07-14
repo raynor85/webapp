@@ -136,6 +136,7 @@
 		<ref bean="pdfXchangeViewerRemoteRetriever" />
 		<ref bean="mediaPlayerClassicBeRemoteRetriever" />
 		<ref bean="xnViewRemoteRetriever" />
+		<ref bean="glaryUtilitiesRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
