@@ -139,6 +139,7 @@
 		<ref bean="glaryUtilitiesRemoteRetriever" />
 		<ref bean="adwCleanerRemoteRetriever" />
 		<ref bean="rssOwlRemoteRetriever" />
+		<ref bean="slimDriversRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
