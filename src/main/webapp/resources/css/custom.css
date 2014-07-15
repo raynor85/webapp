@@ -1625,7 +1625,8 @@ div.newFollowApplicationContainer div.application div.title {
 
 /*** Current apps followed ***/
 div.currentFollowedApplicationContainer {
-	min-width: 175px
+	min-width: 175px;
+	padding-bottom: 30px;
 }
 
 div.currentFollowedApplicationContainer div.application {
@@ -1696,4 +1697,3 @@ img.shadowHover:hover {
 	padding-left: 15px;
 	padding-right: 15px;
 }
-

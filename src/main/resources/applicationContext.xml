@@ -136,10 +136,12 @@
 		<ref bean="pdfXchangeViewerRemoteRetriever" />
 		<ref bean="mediaPlayerClassicBeRemoteRetriever" />
 		<ref bean="xnViewRemoteRetriever" />
+		<ref bean="xnViewMpRemoteRetriever" />
 		<ref bean="glaryUtilitiesRemoteRetriever" />
 		<ref bean="adwCleanerRemoteRetriever" />
 		<ref bean="rssOwlRemoteRetriever" />
 		<ref bean="slimDriversRemoteRetriever" />
+		<ref bean="vmwareWorkstationRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

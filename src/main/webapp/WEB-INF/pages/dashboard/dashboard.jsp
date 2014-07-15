@@ -107,7 +107,7 @@
 			</c:forEach>
 		</form:form>
 	</div>
-	<br /> <br />
+	<br />
 	<div class="row rowWithPadding" align="center">
 		<div class="button-ladda">
 			<button type="button" class="btn-color ladda-button" data-toggle="modal" data-target="#followApplicationsModal">
@@ -153,7 +153,7 @@
 						<c:forEach items="${leftApplications}" var="leftApplication" varStatus="i">
 							<c:set var="appName">${leftApplication.name}</c:set>
 							<c:set var="appId">${leftApplication.apiName}</c:set>
-							<div class="col-xs-4 col-sm-3 col-md-3 col-lg-2 newFollowApplicationContainer" onclick="followNewApplication('${appId}');">
+							<div class="col-xs-5 col-sm-4 col-md-4 col-lg-3 newFollowApplicationContainer" onclick="followNewApplication('${appId}');">
 								<div id="div-new-${appId}" class="application">
 									<div class="icon">
 										<img src="<spring:url value="/resources/img/application/small/${leftApplication.iconFilename}" />" alt="${appName}">
