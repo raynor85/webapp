@@ -32,7 +32,7 @@ public class SlimDriversRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select(".download-now").attr("data-dl-url");
+		return doc.baseUri().replace("/3000", "/3001");
 	}
 
 	@Override
