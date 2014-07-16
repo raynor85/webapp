@@ -142,6 +142,7 @@
 		<ref bean="rssOwlRemoteRetriever" />
 		<ref bean="slimDriversRemoteRetriever" />
 		<ref bean="vmwareWorkstationRemoteRetriever" />
+		<ref bean="keePassProRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
