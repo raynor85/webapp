@@ -90,6 +90,8 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://yowindow.com/download', 'yowindow.png', 'YoWindow', 'yowindow', false, 'APPLICATION');
 -- Gmail Notifier Pro
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.gmailnotifier.se/download.php', 'gmailnotifier.png', 'Gmail Notifier', 'gmailnotifier', false, 'APPLICATION');
+-- Java RE
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://java.com/en/download/manual.jsp', 'javare.png', 'Java RE', 'javare', false, 'APPLICATION');
 
 -- Application versions
 INSERT INTO applicationversion(id, creationdate, updatedate, dbversion, versiondate, versionnumber, win32urlen, win32urlfr, win64urlen, win64urlfr, application_id) VALUES (nextval('application_version_seq'), now(), NULL, 0, '2014-05-09 00:00:00.643', '29.0.1', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=en-US', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=fr', NULL, NULL, (select id from applicationreference where apiname = 'firefox'));

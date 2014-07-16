@@ -145,6 +145,7 @@
 		<ref bean="keePassProRemoteRetriever" />
 		<ref bean="yoWindowRemoteRetriever" />
 		<ref bean="gmailNotifierProRemoteRetriever" />
+		<ref bean="javaReRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
