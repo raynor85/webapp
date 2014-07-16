@@ -143,6 +143,7 @@
 		<ref bean="slimDriversRemoteRetriever" />
 		<ref bean="vmwareWorkstationRemoteRetriever" />
 		<ref bean="keePassProRemoteRetriever" />
+		<ref bean="yoWindowRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
