@@ -144,6 +144,7 @@
 		<ref bean="vmwareWorkstationRemoteRetriever" />
 		<ref bean="keePassProRemoteRetriever" />
 		<ref bean="yoWindowRemoteRetriever" />
+		<ref bean="gmailNotifierProRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
