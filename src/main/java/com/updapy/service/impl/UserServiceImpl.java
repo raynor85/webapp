@@ -290,6 +290,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public User updateEmail(User user, String newEmail) {
+		user.setEmail(newEmail);
+		user.setActive(false);
+		user.setActivationDate(null);
+		generateNewAccountKeyWithoutSaving(user); // to invalidate the reset link
+		return save(user);
+	}
+
+	@Override
 	public User registerSocial(Connection<?> connection) {
 		if (connection == null) {
 			return null;

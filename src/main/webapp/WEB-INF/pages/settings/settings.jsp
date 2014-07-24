@@ -18,6 +18,7 @@
 		<form:form id="updateSettingsForm" commandName="updateSettings" action="${root}/settings/update" class="form-horizontal">
 			<div id="updateSettingsResponse"></div>
 			<div id="successPasswordUserResponse"></div>
+			<div id="successEmailUserResponse"></div>
 			<h3>
 				<spring:message code="settings.profile.title" />
 				<small><spring:message code="settings.profile.subtitle" /></small>
@@ -39,7 +40,7 @@
 				</div>
 				<c:if test="${not isSocialUser}">
 					<div class="col-lg-3 pull-right">
-						<a href="#" data-toggle="modal" data-target="#changePasswordModal"><spring:message code="settings.profile.changePassword.link" /></a>
+						<a href="#" data-toggle="modal" data-target="#changePasswordModal"><spring:message code="settings.profile.changePassword.link" /></a><br /> <a href="#" data-toggle="modal" data-target="#changeEmailModal"><spring:message code="settings.profile.changeEmail.link" /></a>
 					</div>
 				</c:if>
 			</div>
@@ -198,6 +199,42 @@
 	</div>
 </c:if>
 
+<c:if test="${not isSocialUser}">
+	<!-- Modal: Change email -->
+	<div class="modal fade" id="changeEmailModal" tabindex="-1" role="dialog" aria-labelledby="changeEmailModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form:form id="changeEmailUserForm" commandName="changeEmailUser" action="${root}/settings/update/email">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="changeEmailModalLabel">
+							<spring:message code="settings.profile.changeEmail.title" />
+						</h4>
+					</div>
+					<div class="modal-body">
+						<div id="changeEmailUserResponse"></div>
+						<div class="form-group">
+							<label for="newEmail"><spring:message code="settings.profile.changeEmail.field.new.email" /></label>
+							<c:set var="newEmailPlaceholder">
+								<spring:message code="settings.profile.changeEmail.field.new.email.tip" />
+							</c:set>
+							<form:input type="email" path="newEmail" class="form-control" id="newEmail" placeholder="${newEmailPlaceholder}" />
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default pull-left btn-cancel-next-ladda" data-dismiss="modal">
+							<spring:message code="settings.profile.changeEmail.button.cancel" />
+						</button>
+						<button type="button" id="changeEmailUserButton" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxChangeEmailUser();">
+							<spring:message code="settings.profile.changeEmail.button.confirm" />
+						</button>
+					</div>
+				</form:form>
+			</div>
+		</div>
+	</div>
+</c:if>
+
 <!-- Modal: Delete account -->
 <div class="modal fade" id="deleteAccountModal" tabindex="-1" role="dialog" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -297,6 +334,30 @@
 		// display success
 		$("#successPasswordUserResponse").html(
 				$("#changePasswordUserResponse").html());
+	};
+	function ajaxChangeEmailUser() {
+		var json = {
+			"newEmail" : $("#newEmail").val(),
+		};
+		ajaxCallPost("#changeEmailUserButton", "#changeEmailUserForm", json,
+				"#changeEmailUserResponse", confirmChangeEmail, true);
+	};
+	$("#changeEmailUserForm").submit(function() {
+		ajaxChangeEmailUser();
+		return false;
+	});
+	var confirmChangeEmail = function() {
+		// close modal
+		$("#changeEmailModal").modal("hide");
+		// Empty fields
+		$("#newEmail").val("");
+		// display success
+		$("#successEmailUserResponse").html(
+				$("#changeEmailUserResponse").html());
+		// Disconnect
+		setTimeout(function() {
+			logout();
+		}, 7000);
 	};
 	function updateEmailOptions() {
 		var emailActive = $("input[name='emailAlert']:checked").val();

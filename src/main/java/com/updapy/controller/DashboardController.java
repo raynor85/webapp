@@ -59,7 +59,11 @@ public class DashboardController {
 
 	@RequestMapping({ "/", "" })
 	public ModelAndView dashboardPage() {
-		return initModelAndView(userService.getCurrentUserFull(), "dashboard");
+		User user = userService.getCurrentUserFull();
+		if (user == null) {
+			return new ModelAndView("welcome");
+		}
+		return initModelAndView(user, "dashboard");
 	}
 
 	@RequestMapping(value = "/follow", method = RequestMethod.POST)

@@ -19,10 +19,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.updapy.form.ajax.JsonResponse;
+import com.updapy.form.model.ChangeEmailUser;
 import com.updapy.form.model.ChangePasswordUser;
 import com.updapy.form.model.DeleteAccount;
 import com.updapy.form.model.UpdateSettings;
 import com.updapy.model.User;
+import com.updapy.service.EmailSenderService;
 import com.updapy.service.SettingsService;
 import com.updapy.service.UserService;
 import com.updapy.service.security.SecurityUtils;
@@ -42,21 +44,37 @@ public class SettingsController {
 	private UserService userService;
 
 	@Autowired
-	private Validator changePasswordUserCustomValidator;
+	private EmailSenderService emailSenderService;
 
+	@Autowired
+	private Validator changePasswordUserCustomValidator;
+	
+	@Autowired
+	private Validator changeEmailUserCustomValidator;
+	
 	@InitBinder("changePasswordUser")
 	private void initBinderChangePassword(WebDataBinder binder) {
 		binder.addValidators(changePasswordUserCustomValidator);
 	}
 
+	@InitBinder("changeEmailUser")
+	private void initBinderChangeEmail(WebDataBinder binder) {
+		binder.addValidators(changeEmailUserCustomValidator);
+	}
+
+
 	@RequestMapping({ "/", "" })
 	public ModelAndView settingsPage() {
 		User user = userService.getCurrentUserWithSettings();
+		if (user == null) {
+			return new ModelAndView("welcome");
+		}
 		ModelAndView modelAndView = new ModelAndView("settings");
 		modelAndView.addObject("updateSettings", settingsService.getSettings(user));
 		modelAndView.addObject("nbNotifications", userService.getNbNotifications(user));
 		modelAndView.addObject("rssKey", user.getRssKey());
 		modelAndView.addObject("changePasswordUser", new ChangePasswordUser());
+		modelAndView.addObject("changeEmailUser", new ChangeEmailUser());
 		modelAndView.addObject("deleteAccount", new DeleteAccount());
 		return modelAndView;
 	}
@@ -86,6 +104,19 @@ public class SettingsController {
 		} else {
 			userService.updatePassword(userService.getCurrentUserLight(), changePasswordUser.getNewPassword());
 			return jsonResponseUtils.buildSuccessfulJsonResponse("settings.profile.changePassword.confirm");
+		}
+	}
+
+	@RequestMapping(value = "/update/email", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody
+	JsonResponse changeEmail(@Valid @RequestBody ChangeEmailUser changeEmailUser, BindingResult result) {
+		if (result.hasErrors()) {
+			return jsonResponseUtils.buildFailedJsonResponseFromErrorObject(result.getAllErrors());
+		} else {
+			User user = userService.getCurrentUserLight();
+			userService.updateEmail(user, changeEmailUser.getNewEmail());
+			emailSenderService.sendActivationLink(user.getEmail(), user.getAccountKey(), user.getLangEmail());
+			return jsonResponseUtils.buildSuccessfulJsonResponse("settings.profile.changeEmail.confirm");
 		}
 	}
 

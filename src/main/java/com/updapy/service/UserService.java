@@ -48,6 +48,8 @@ public interface UserService {
 
 	User updatePassword(User user, String newPassword);
 
+	User updateEmail(User user, String newEmail);
+
 	User save(User user);
 
 	boolean isCurrentPassword(String password);
