@@ -100,6 +100,12 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.adobe.com/products/flashplayer/distribution3.html', 'flashplayer.png', 'Flash Player', 'flashplayer', false, 'APPLICATION');
 -- Flash Player for IE
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.adobe.com/products/flashplayer/distribution3.html', 'flashplayerie.png', 'Flash Player for IE', 'flashplayerie', false, 'APPLICATION');
+-- Microsoft Silverlight
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.microsoft.com/silverlight/', 'silverlight.png', 'Silverlight', 'silverlight', false, 'APPLICATION');
+-- Shockwave Player
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.adobe.com/products/shockwaveplayer/distribution3.html', 'shockwaveplayer.png', 'Shockwave Player', 'shockwaveplayer', false, 'APPLICATION');
+-- Adobe Air
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.adobe.com/products/air/runtime-distribution3.html', 'adobeair.png', 'Adobe Air', 'adobeair', false, 'APPLICATION');
 
 -- Application versions
 INSERT INTO applicationversion(id, creationdate, updatedate, dbversion, versiondate, versionnumber, win32urlen, win32urlfr, win64urlen, win64urlfr, application_id) VALUES (nextval('application_version_seq'), now(), NULL, 0, '2014-05-09 00:00:00.643', '29.0.1', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=en-US', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=fr', NULL, NULL, (select id from applicationreference where apiname = 'firefox'));
