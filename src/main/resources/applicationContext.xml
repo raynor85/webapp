@@ -148,6 +148,8 @@
 		<ref bean="javaReRemoteRetriever" />
 		<ref bean="spotifyRemoteRetriever" />
 		<ref bean="skypeRemoteRetriever" />
+		<ref bean="flashPlayerRemoteRetriever" />
+		<ref bean="flashPlayerIeRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
