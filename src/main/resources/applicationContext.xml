@@ -153,6 +153,11 @@
 		<ref bean="silverlightRemoteRetriever" />
 		<ref bean="shockwavePlayerRemoteRetriever" />
 		<ref bean="adobeAirRemoteRetriever" />
+		<ref bean="eclipseJeeRemoteRetriever" />
+		<ref bean="eclipseStandardRemoteRetriever" />
+		<ref bean="intellijIdeaUltimateRemoteRetriever" />
+		<ref bean="intellijIdeaCommunityRemoteRetriever" />
+		<ref bean="sublimeText2RemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

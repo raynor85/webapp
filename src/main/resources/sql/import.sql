@@ -106,6 +106,16 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.adobe.com/products/shockwaveplayer/distribution3.html', 'shockwaveplayer.png', 'Shockwave Player', 'shockwaveplayer', false, 'APPLICATION');
 -- Adobe Air
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.adobe.com/products/air/runtime-distribution3.html', 'adobeair.png', 'Adobe Air', 'adobeair', false, 'APPLICATION');
+-- Eclipse JEE
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.eclipse.org/downloads/', 'eclipsejee.png', 'Eclipse JEE', 'eclipsejee', false, 'APPLICATION');
+-- Eclipse Standard
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.eclipse.org/downloads/', 'eclipsestandard.png', 'Eclipse Standard', 'eclipsestandard', false, 'APPLICATION');
+-- IntelliJ IDEA Ultimate
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.jetbrains.com/js2/version.js', 'intellijideaultimate.png', 'IntelliJ IDEA Ultimate', 'intellijideaultimate', false, 'APPLICATION');
+-- IntelliJ IDEA Community
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.jetbrains.com/js2/version.js', 'intellijideacommunity.png', 'IntelliJ IDEA Community', 'intellijideacommunity', false, 'APPLICATION');
+-- Sublime Text 2
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.sublimetext.com/2', 'sublimetext2.png', 'Sublime Text 2', 'sublimetext2', false, 'APPLICATION');
 
 -- Application versions
 INSERT INTO applicationversion(id, creationdate, updatedate, dbversion, versiondate, versionnumber, win32urlen, win32urlfr, win64urlen, win64urlfr, application_id) VALUES (nextval('application_version_seq'), now(), NULL, 0, '2014-05-09 00:00:00.643', '29.0.1', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=en-US', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=fr', NULL, NULL, (select id from applicationreference where apiname = 'firefox'));
