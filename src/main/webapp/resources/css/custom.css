@@ -1634,6 +1634,12 @@ div.newFollowApplicationContainer div.application div.title {
 	margin-top: 3px;
 }
 
+.filter {
+	max-width: 250px;
+	display: inline !important;
+	margin-right: 10px;
+}
+
 /*** Current apps followed ***/
 div.currentFollowedApplicationContainer {
 	min-width: 175px;

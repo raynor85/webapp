@@ -147,9 +147,15 @@
 									</c:otherwise>
 								</c:choose>
 							</div>
+							<c:set var="filterPlaceholder">
+								<spring:message code="dashboard.applications.followApplications.filter.description" />
+							</c:set>
+							<div class="form-group">
+								<input id="filter" type="text" class="form-control filter" placeholder="${filterPlaceholder}"> <span id="filter-count"></span>
+							</div>
 						</c:otherwise>
 					</c:choose>
-					<div class="row">
+					<div id="appsGrid" class="row">
 						<c:forEach items="${leftApplications}" var="leftApplication" varStatus="i">
 							<c:set var="appName">${leftApplication.name}</c:set>
 							<c:set var="appId">${leftApplication.apiName}</c:set>
@@ -174,6 +180,7 @@
 					<c:if test="${fn:length(leftApplications) != 0}">
 						<button type="submit" class="btn-color ladda-button push-to-bottom">
 							<spring:message code="dashboard.applications.followApplications.button.confirm" />
+							(<span id="counterNewApp">0</span>)
 						</button>
 					</c:if>
 				</div>
@@ -234,12 +241,15 @@
 	function followNewApplication(appId) {
 		var appCheckbox = $("#app-" + appId);
 		var appDiv = $("#div-new-" + appId);
+		var currentCounterValue = parseInt($("#counterNewApp").text());
 		if (appCheckbox.is(':checked')) {
 			appDiv.removeClass("application-selected");
 			appCheckbox.prop('checked', false);
+			$("#counterNewApp").text(currentCounterValue - 1);
 		} else {
 			appDiv.addClass("application-selected");
 			appCheckbox.prop('checked', true);
+			$("#counterNewApp").text(currentCounterValue + 1);
 		}
 	};
 	function ajaxUnfollowCurrentApplication(appId) {
@@ -297,4 +307,39 @@
 		$("#successRequestApplicationResponse").html(
 				$("#requestApplicationResponse").html());
 	};
+	$("#filter")
+			.keydown(
+					function() {
+						// Retrieve the input field text and reset the count to zero
+						var filter = $(this).val(), count = 0;
+
+						// Loop through the app list
+						$("#appsGrid div.newFollowApplicationContainer")
+								.each(
+										function() {
+											// If the name of the glossary term does not contain the text phrase fade it out
+											if (jQuery(this).find(
+													"span.label-success")
+													.text().search(
+															new RegExp(filter,
+																	"i")) < 0) {
+												$(this).fadeOut();
+
+												// Show the list item if the phrase matches and increase the count by 1
+											} else {
+												$(this).show();
+												count++;
+											}
+
+										});
+
+						// Update the count
+						var app = " application";
+						if (count >= 2) {
+							app += "s";
+						}
+						var found = "<spring:message code='dashboard.applications.followApplications.filter.found' />";
+						$("#filter-count").html(count + app + " " + found);
+
+					});
 </script>
