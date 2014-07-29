@@ -158,6 +158,9 @@
 		<ref bean="intellijIdeaUltimateRemoteRetriever" />
 		<ref bean="intellijIdeaCommunityRemoteRetriever" />
 		<ref bean="sublimeText2RemoteRetriever" />
+		<ref bean="balsamiqRemoteRetriever" />
+		<ref bean="penguiNetRemoteRetriever" />
+		<ref bean="unlockerRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
