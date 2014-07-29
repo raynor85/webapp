@@ -122,6 +122,18 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.siliconcircus.com/', 'penguinet.png', 'PenguiNet', 'penguinet', false, 'APPLICATION');
 -- Unlocker
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.emptyloop.com/unlocker/', 'unlocker.png', 'Unlocker', 'unlocker', false, 'APPLICATION');
+-- Avira Antivirus Free
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.avira.com/en/download/product/avira-free-antivirus', 'aviraantivirusfree.png', 'Avira Antivirus', 'aviraantivirusfree', false, 'APPLICATION');
+-- Bullzip PDF Printer Community
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.bullzip.com/products/pdf/download.php', 'bullzippdfprintercommmunity.png', 'Bullzip PDF Printer', 'bullzippdfprintercommmunity', false, 'APPLICATION');
+-- Revo Uninstaller Free
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.revouninstaller.com/revo_uninstaller_free_download.html', 'revouninstallerfree.png', 'Revo Uninstaller', 'revouninstallerfree', false, 'APPLICATION');
+-- Malwarebytes Anti-Malware Free
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.malwarebytes.org/downloads/', 'malwarebytesantimalwarefree.png', 'Malwarebytes Anti-Malware', 'malwarebytesantimalwarefree', false, 'APPLICATION');
+-- SQuirreL SQL
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.squirrelsql.org/', 'squirrelsql.png', 'SQuirreL SQL', 'squirrelsql', false, 'APPLICATION');
+-- HeidiSQL
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.heidisql.com/download.php', 'heidisql.png', 'HeidiSQL', 'heidisql', false, 'APPLICATION');
 
 -- Application versions
 INSERT INTO applicationversion(id, creationdate, updatedate, dbversion, versiondate, versionnumber, win32urlen, win32urlfr, win64urlen, win64urlfr, application_id) VALUES (nextval('application_version_seq'), now(), NULL, 0, '2014-05-09 00:00:00.643', '29.0.1', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=en-US', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=fr', NULL, NULL, (select id from applicationreference where apiname = 'firefox'));

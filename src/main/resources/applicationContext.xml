@@ -161,6 +161,12 @@
 		<ref bean="balsamiqRemoteRetriever" />
 		<ref bean="penguiNetRemoteRetriever" />
 		<ref bean="unlockerRemoteRetriever" />
+		<ref bean="aviraAntivirusFreeRemoteRetriever" />
+		<ref bean="bullzipPdfPrinterCommunityRemoteRetriever" />
+		<ref bean="revoUninstallerFreeRemoteRetriever" />
+		<ref bean="malwarebytesAntiMalwareFreeRemoteRetriever" />
+		<ref bean="squirrelSqlRemoteRetriever" />
+		<ref bean="heidiSqlRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
