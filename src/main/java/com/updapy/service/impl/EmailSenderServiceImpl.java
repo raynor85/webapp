@@ -166,6 +166,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		model.put("text", messageUtils.getCustomMessage("email.error.connection.content.text", new String[] { url }, locale));
 		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
 		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
+		model.put("unsubscribetext", StringUtils.EMPTY);
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);
 
 		if (emailCounterService.isEmailCounterReached(getNonPriorEmailsMaxSentPerDay())) {
@@ -190,6 +191,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		model.put("text", messageUtils.getCustomMessage("email.error.retriever.content.text", new String[] { applicationName }, locale));
 		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
 		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
+		model.put("unsubscribetext", StringUtils.EMPTY);
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);
 
 		try {
@@ -209,6 +211,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		model.put("text", messageUtils.getCustomMessage("email.application.request.content.text", new String[] { name, url }, locale));
 		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
 		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
+		model.put("unsubscribetext", StringUtils.EMPTY);
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);
 
 		try {
@@ -312,6 +315,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		model.put("text", messageUtils.getCustomMessage("email.application.added.content.text", new String[] { name }, locale));
 		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
 		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
+		model.put("unsubscribetext", messageUtils.getSimpleMessage("email.application.added.unsubscribe", locale));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);
 
 		if (emailCounterService.isEmailCounterReached(getNonPriorEmailsMaxSentPerDay())) {
@@ -337,6 +341,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		model.put("text", messageUtils.getCustomMessage("email.application.deleted.content.text", new String[] { name }, locale));
 		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
 		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
+		model.put("unsubscribetext", StringUtils.EMPTY);
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);
 
 		if (emailCounterService.isEmailCounterReached(getNonPriorEmailsMaxSentPerDay())) {
@@ -361,6 +366,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		model.put("text", newsletter.getText(locale));
 		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
 		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
+		model.put("unsubscribetext", messageUtils.getSimpleMessage("email.newsletter.unsubscribe", locale));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);
 
 		if (emailCounterService.isEmailCounterReached(getNonPriorEmailsMaxSentPerDay())) {
