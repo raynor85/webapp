@@ -178,4 +178,5 @@ INSERT INTO helpmessage(id, creationdate, updatedate, dbversion, hidden, type, p
 INSERT INTO setting(id, creationdate, updatedate, dbversion, active, parameter, person_id) VALUES (nextval('setting_seq'), now(), null, 0, true, 'ALERT_BY_EMAIL', currval('person_seq'));
 INSERT INTO setting(id, creationdate, updatedate, dbversion, active, parameter, person_id) VALUES (nextval('setting_seq'), now(), null, 0, true, 'EMAIL_FOR_EACH_APPLICATION', currval('person_seq'));
 INSERT INTO setting(id, creationdate, updatedate, dbversion, active, parameter, person_id) VALUES (nextval('setting_seq'), now(), null, 0, false, 'EMAIL_WEEKLY_DIGEST', currval('person_seq'));
+INSERT INTO setting(id, creationdate, updatedate, dbversion, active, parameter, person_id) VALUES (nextval('setting_seq'), now(), null, 0, true, 'EMAIL_APP_ADDED', currval('person_seq'));
 INSERT INTO setting(id, creationdate, updatedate, dbversion, active, parameter, person_id) VALUES (nextval('setting_seq'), now(), null, 0, true, 'NEWSLETTER', currval('person_seq'));

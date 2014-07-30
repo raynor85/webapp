@@ -41,6 +41,9 @@ public class SettingsServiceImpl implements SettingsService {
 			case EMAIL_WEEKLY_DIGEST:
 				setting.setActive(newSettings.isEmailWeekly());
 				break;
+			case EMAIL_APP_ADDED:
+				setting.setActive(newSettings.isEmailAppAdded());
+				break;
 			case NEWSLETTER:
 				setting.setActive(newSettings.isEmailNewsletter());
 				break;
@@ -66,6 +69,9 @@ public class SettingsServiceImpl implements SettingsService {
 				break;
 			case EMAIL_WEEKLY_DIGEST:
 				updateSettings.setEmailWeekly(setting.isActive());
+				break;
+			case EMAIL_APP_ADDED:
+				updateSettings.setEmailAppAdded(setting.isActive());
 				break;
 			case NEWSLETTER:
 				updateSettings.setEmailNewsletter(setting.isActive());
@@ -106,6 +112,12 @@ public class SettingsServiceImpl implements SettingsService {
 	public boolean isEmailWeeklyActive(User user) {
 		UpdateSettings settings = getSettings(user);
 		return settings.isEmailAlert() && settings.isEmailWeekly();
+	}
+
+	@Override
+	public boolean isEmailAppAddedActive(User user) {
+		UpdateSettings settings = getSettings(user);
+		return settings.isEmailAppAdded();
 	}
 
 	@Override

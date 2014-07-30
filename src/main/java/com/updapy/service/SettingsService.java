@@ -21,6 +21,8 @@ public interface SettingsService {
 
 	boolean isEmailWeeklyActive(User user);
 
+	boolean isEmailAppAddedActive(User user);
+
 	boolean isEmailNewsletterActive(User user);
 
 }

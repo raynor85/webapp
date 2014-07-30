@@ -232,26 +232,37 @@ public class UserServiceImpl implements UserService {
 
 	private void fillDefaultValuesSettings(User user) {
 		List<Setting> defaultSettings = new ArrayList<Setting>();
-		Setting settingAlertByEmail = new Setting();
+
 		// alert by email...
+		Setting settingAlertByEmail = new Setting();
 		settingAlertByEmail.setParameter(Parameter.ALERT_BY_EMAIL);
 		settingAlertByEmail.setActive(true);
 		settingAlertByEmail.setUser(user);
 		defaultSettings.add(settingAlertByEmail);
-		Setting settingEmailForEachApplication = new Setting();
+
 		// ...for each app
+		Setting settingEmailForEachApplication = new Setting();
 		settingEmailForEachApplication.setParameter(Parameter.EMAIL_FOR_EACH_APPLICATION);
 		settingEmailForEachApplication.setActive(true);
 		settingEmailForEachApplication.setUser(user);
 		defaultSettings.add(settingEmailForEachApplication);
-		Setting settingEmailWeeklyDigest = new Setting();
+
 		// so no weekly digest
+		Setting settingEmailWeeklyDigest = new Setting();
 		settingEmailWeeklyDigest.setParameter(Parameter.EMAIL_WEEKLY_DIGEST);
 		settingEmailWeeklyDigest.setActive(false);
 		settingEmailWeeklyDigest.setUser(user);
 		defaultSettings.add(settingEmailWeeklyDigest);
-		Setting settingNewsletter = new Setting();
+
+		// send email for added apps
+		Setting settingEmailAppAdded = new Setting();
+		settingEmailAppAdded.setParameter(Parameter.EMAIL_APP_ADDED);
+		settingEmailAppAdded.setActive(true);
+		settingEmailAppAdded.setUser(user);
+		defaultSettings.add(settingEmailAppAdded);
+
 		// newsletter subscription
+		Setting settingNewsletter = new Setting();
 		settingNewsletter.setParameter(Parameter.NEWSLETTER);
 		settingNewsletter.setActive(true);
 		settingNewsletter.setUser(user);
@@ -527,7 +538,7 @@ public class UserServiceImpl implements UserService {
 		notification.setType(TypeNofication.NEW_APPLICATION);
 		notification.setUser(user);
 		applicationService.saveNotification(notification);
-		if (settingsService.isEmailNewsletterActive(user)) {
+		if (settingsService.isEmailAppAddedActive(user)) {
 			emailAddedApplicationService.addEmailAddedApplication(user, addedApplication);
 		}
 	}

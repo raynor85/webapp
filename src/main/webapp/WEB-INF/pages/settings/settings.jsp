@@ -126,6 +126,15 @@
 			<div style="height: 8px"></div>
 			<div class="form-group">
 				<div class="col-sm-12">
+					<spring:message code="settings.emails.radio.email.app.added.title" />
+				</div>
+				<div class="col-sm-3">
+					<form:checkbox data-off-text="${disable}" data-on-text="${enable}" path="emailAppAdded" id="optionEmailAppAdded" />
+				</div>
+			</div>
+			<div style="height: 8px"></div>
+			<div class="form-group">
+				<div class="col-sm-12">
 					<spring:message code="settings.emails.radio.email.newsletter.title" />
 				</div>
 				<div class="col-sm-3">

@@ -25,6 +25,9 @@ public class UpdateSettings {
 	private boolean emailWeekly;
 
 	@NotNull
+	private boolean emailAppAdded;
+
+	@NotNull
 	private boolean emailNewsletter;
 
 	public String getName() {
@@ -57,6 +60,14 @@ public class UpdateSettings {
 
 	public void setEmailWeekly(boolean emailWeekly) {
 		this.emailWeekly = emailWeekly;
+	}
+
+	public boolean isEmailAppAdded() {
+		return emailAppAdded;
+	}
+
+	public void setEmailAppAdded(boolean emailAppAdded) {
+		this.emailAppAdded = emailAppAdded;
 	}
 
 	public boolean isEmailNewsletter() {
