@@ -297,6 +297,8 @@
 			"emailEachUpdate" : $("input[name='emailEachUpdate']:checked")
 					.val(),
 			"emailWeekly" : $("input[name='emailWeekly']:checked").val(),
+			"emailAppAdded" : $("input[name='emailAppAdded']:checked")
+			.val(),
 			"emailNewsletter" : $("input[name='emailNewsletter']:checked")
 					.val()
 		};
