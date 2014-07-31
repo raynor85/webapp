@@ -78,7 +78,7 @@ table td {
 								<tr>
 									<td align="center" valign="middle" class="emailButtonContent" style="padding-top: 15px; padding-right: 50px; padding-bottom: 15px; padding-left: 50px;"><a href="$link" target="_blank" style="color: #FFFFFF; font-family: Helvetica, Arial, sans-serif; font-size: 18px; text-decoration: none;">$button</a></td>
 								</tr>
-							</table> <br> <br> $text2 <em style="font-style: italic; font-size: 12px; color: #aaa;">$follow1 </em> <a style="color: #27ae60; text-decoration: none; font-style: italic; font-size: 12px;" href="https://www.facebook.com/updapy">Facebook</a> <em style="font-style: italic; font-size: 12px; color: #aaa;">$follow2</em> <a style="color: #27ae60; text-decoration: none; font-style: italic; font-size: 12px;" href="https://twitter.com/updapy">Twitter</a> <br> <br></td>
+							</table> <br> <br> $text2 <em style="font-style: italic; font-size: 12px; color: #aaa;">$follow1 </em> <a style="color: #27ae60; text-decoration: none; font-style: italic; font-size: 12px;" href="https://www.facebook.com/updapy">Facebook</a> <em style="font-style: italic; font-size: 12px; color: #aaa;">$follow2</em> <a style="color: #27ae60; text-decoration: none; font-style: italic; font-size: 12px;" href="https://twitter.com/updapy">Twitter</a> <br> <br> <em style="font-style: normal; font-size: 10px; color: #aaa;"> $rsstiptext </em></td>
 					</tr>
 				</table>
 

@@ -235,6 +235,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		model.put("link", newVersion.getUpdateUrl().getUrl());
 		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
 		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
+		model.put("rsstiptext", messageUtils.getSimpleMessage("email.application.update.tip", locale));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "single-update.vm", "UTF-8", model);
 
 		if (emailCounterService.isEmailCounterReached(getNonPriorEmailsMaxSentPerDay())) {
@@ -279,6 +280,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		model.put("text1", buildMessageWeeklyUpdates(newVersions, locale));
 		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
 		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
+		model.put("rsstiptext", messageUtils.getSimpleMessage("email.application.update.tip", locale));
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "weekly-update.vm", "UTF-8", model);
 
 		if (emailCounterService.isEmailCounterReached(getNonPriorEmailsMaxSentPerDay())) {
