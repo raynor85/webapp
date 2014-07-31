@@ -34,13 +34,13 @@
 				<c:when test="${nbAppFollow < 5}">
 					<spring:message code="dashboard.application.status.normal" arguments="${nbAppFollow}" />
 				</c:when>
-				<c:when test="${nbAppFollow < 10}">
+				<c:when test="${nbAppFollow < 15}">
 					<spring:message code="dashboard.application.status.experienced" arguments="${nbAppFollow}" />
 				</c:when>
-				<c:when test="${nbAppFollow <= 15}">
+				<c:when test="${nbAppFollow <= 30}">
 					<spring:message code="dashboard.application.status.expert" arguments="${nbAppFollow}" />
 				</c:when>
-				<c:when test="${nbAppFollow > 15}">
+				<c:when test="${nbAppFollow > 30}">
 					<spring:message code="dashboard.application.status.god" arguments="${nbAppFollow}" />
 				</c:when>
 			</c:choose>
@@ -150,7 +150,7 @@
 							<c:set var="filterPlaceholder">
 								<spring:message code="dashboard.applications.followApplications.filter.description" />
 							</c:set>
-							<div class="form-group">
+							<div>
 								<input id="filter" type="text" class="form-control filter" placeholder="${filterPlaceholder}"> <span id="filter-count"></span>
 							</div>
 						</c:otherwise>
@@ -159,13 +159,13 @@
 						<c:forEach items="${leftApplications}" var="leftApplication" varStatus="i">
 							<c:set var="appName">${leftApplication.name}</c:set>
 							<c:set var="appId">${leftApplication.apiName}</c:set>
-							<div class="col-xs-5 col-sm-4 col-md-4 col-lg-3 newFollowApplicationContainer" onclick="followNewApplication('${appId}');">
-								<div id="div-new-${appId}" class="application">
+							<div class="col-xs-4 col-sm-3 col-md-3 col-lg-2 newFollowApplicationContainer" onclick="followNewApplication('${appId}');">
+								<div id="div-new-${appId}" class="application" title="${appName}">
 									<div class="icon">
 										<img src="<spring:url value="/resources/img/application/small/${leftApplication.iconFilename}" />" alt="${appName}">
 									</div>
 									<div class="title">
-										<span class="label label-success">${appName}</span>
+										<span class="label label-success" style="display: inline-block !important; max-width: 100px !important; white-space: normal !important;">${appName}</span>
 									</div>
 								</div>
 							</div>
@@ -300,46 +300,45 @@
 	var confirmRequestApplication = function() {
 		// close modal
 		$("#requestApplicationModal").modal("hide");
-		// Empty fields
+		// empty fields
 		$("#requestedAppName").val("");
 		$("#requestedAppUrl").val("");
 		// display success
 		$("#successRequestApplicationResponse").html(
 				$("#requestApplicationResponse").html());
 	};
-	$("#filter")
-			.keydown(
-					function() {
-						// Retrieve the input field text and reset the count to zero
-						var filter = $(this).val(), count = 0;
 
-						// Loop through the app list
-						$("#appsGrid div.newFollowApplicationContainer")
-								.each(
-										function() {
-											// If the name of the glossary term does not contain the text phrase fade it out
-											if (jQuery(this).find(
-													"span.label-success")
-													.text().search(
-															new RegExp(filter,
-																	"i")) < 0) {
-												$(this).fadeOut();
+	$("#filter").keydown(function() {
+		setTimeout(function() {
+			filterApps($("#filter").val());
+		}, 500); // timeout needed to let the time for the field to be populated
+	});
 
-												// Show the list item if the phrase matches and increase the count by 1
-											} else {
-												$(this).show();
-												count++;
-											}
+	function filterApps(filter) {
+		// retrieve the input field text and reset the count to zero
+		var count = 0;
+		// loop through the app list
+		$("#appsGrid div.newFollowApplicationContainer").each(
+				function() {
+					// if the name of the glossary term does not contain the text phrase fade it out
+					if (jQuery(this).find("span.label-success").text().search(
+							new RegExp(filter, "i")) < 0) {
+						$(this).fadeOut();
 
-										});
+						// show the list item if the phrase matches and increase the count by 1
+					} else {
+						$(this).show();
+						count++;
+					}
 
-						// Update the count
-						var app = " application";
-						if (count >= 2) {
-							app += "s";
-						}
-						var found = "<spring:message code='dashboard.applications.followApplications.filter.found' />";
-						$("#filter-count").html(count + app + " " + found);
+				});
 
-					});
+		// update the count
+		var app = " application";
+		if (count >= 2) {
+			app += "s";
+		}
+		var found = "<spring:message code='dashboard.applications.followApplications.filter.found' />";
+		$("#filter-count").html(count + app + " " + found);
+	}
 </script>
