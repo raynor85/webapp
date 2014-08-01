@@ -162,6 +162,7 @@ public class DashboardController {
 		modelAndView.addObject("newFollowedApplications", new FollowNewApplications());
 		modelAndView.addObject("requestApplication", new RequestApplication());
 		modelAndView.addObject("leftApplications", userService.getLeftApplications(user));
+		modelAndView.addObject("latestApplications", applicationService.getNbLastApplications(4));
 		List<CurrentFollowedApplication> currentFollowedApplications = new ArrayList<CurrentFollowedApplication>();
 		for (ApplicationFollow followedApplication : userService.getFollowedApplications(user)) {
 			ApplicationVersion version = applicationService.getLatestVersion(followedApplication.getApplication());

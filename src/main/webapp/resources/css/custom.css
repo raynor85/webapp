@@ -1630,7 +1630,11 @@ div.newFollowApplicationContainer div.application div.title {
 .filter {
 	max-width: 250px;
 	display: inline !important;
-	margin-right: 10px;
+}
+
+#filter-count {
+	margin-top: 5px;
+	margin-left: 10px;
 }
 
 /*** Current apps followed ***/
@@ -1706,4 +1710,35 @@ img.shadowHover:hover {
 .rowWithPadding {
 	padding-left: 15px;
 	padding-right: 15px;
+}
+
+/* enable absolute positioning */
+.inner-addon {
+	position: relative;
+}
+
+/* style icon */
+.inner-addon .fa {
+	position: absolute;
+	padding: 10px;
+	pointer-events: none;
+	color: #555555;
+}
+
+/* align icon */
+.left-addon .fa {
+	left: 0px;
+}
+
+.right-addon .fa {
+	right: 0px;
+}
+
+/* add padding  */
+.left-addon input {
+	padding-left: 30px;
+}
+
+.right-addon input {
+	padding-right: 30px;
 }

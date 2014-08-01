@@ -66,6 +66,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
+	public List<ApplicationReference> getNbLastApplications(int nb) {
+		return applicationReferenceRepository.findByActiveTrueOrderByCreationDateDesc(new PageRequest(0, nb));
+	}
+
+	@Override
 	public ApplicationVersion getLatestVersion(String apiName) {
 		ApplicationReference application = applicationReferenceRepository.findByApiNameAndNotifiedTrueAndActiveTrue(apiName);
 		return getLatestVersion(application);

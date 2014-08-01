@@ -35,6 +35,9 @@ public interface ApplicationService {
 
 	ApplicationReference markAsNotified(ApplicationReference application);
 
+	@Cacheable(value = "applications", key = "'applications.latest'")
+	List<ApplicationReference> getNbLastApplications(int nb);
+
 	/**
 	 * Application Versions
 	 */

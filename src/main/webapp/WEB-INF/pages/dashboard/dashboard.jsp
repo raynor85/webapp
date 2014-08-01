@@ -147,12 +147,25 @@
 									</c:otherwise>
 								</c:choose>
 							</div>
+							<div>
+								<h3>
+									<small><spring:message code="dashboard.applications.followApplications.latest.title" /></small>
+								</h3>
+							</div>
+							<div class="row rowWithPadding" style="margin-bottom: 25px;">
+								<c:forEach items="${latestApplications}" var="latestApplication">
+									<div class="col-xs-6 col-md-3 col-lg-3">
+										<i class="text-color fa fa-chevron-circle-right fa-1x"></i>&nbsp;${latestApplication.name}
+									</div>
+								</c:forEach>
+							</div>
 							<c:set var="filterPlaceholder">
 								<spring:message code="dashboard.applications.followApplications.filter.description" />
 							</c:set>
-							<div>
-								<input id="filter" type="text" class="form-control filter" placeholder="${filterPlaceholder}"> <span id="filter-count"></span>
+							<div class="inner-addon left-addon">
+								<i class="fa fa-search"></i> <input id="filter" type="search" class="form-control filter" placeholder="${filterPlaceholder}">
 							</div>
+							<div id="filter-count"></div>
 						</c:otherwise>
 					</c:choose>
 					<div id="appsGrid" class="row">
@@ -339,6 +352,7 @@
 			app += "s";
 		}
 		var found = "<spring:message code='dashboard.applications.followApplications.filter.found' />";
-		$("#filter-count").html(count + app + " " + found);
+		$("#filter-count").html(
+				"<small>" + count + app + " " + found + "</small>");
 	}
 </script>
