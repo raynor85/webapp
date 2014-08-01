@@ -151,6 +151,7 @@
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="<spring:url value="/resources/js/custom.js" />"></script>
 	<script src="<spring:url value="/resources/js/scrolltopcontrol.js" />"></script>
+	<script src="<spring:url value="/resources/js/jquery.placeholder.js" />"></script>
 
 	<!-- Sharebar -->
 	<tiles:insertAttribute name="sharebar" />

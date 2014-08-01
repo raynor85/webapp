@@ -131,7 +131,7 @@
 						<spring:message code="dashboard.applications.followApplications.title" />
 					</h4>
 				</div>
-				<div class="modal-body">
+				<div class="modal-header" style="box-shadow: 0 7px 10px rgba(182, 182, 182, 0.30);">
 					<c:choose>
 						<c:when test="${fn:length(leftApplications) == 0}">
 							<spring:message code="dashboard.applications.followApplications.empty" />
@@ -165,9 +165,11 @@
 							<div class="inner-addon left-addon">
 								<i class="fa fa-search"></i> <input id="filter" type="search" class="form-control filter" placeholder="${filterPlaceholder}">
 							</div>
-							<div id="filter-count"></div>
+							<div id="filter-count">&nbsp;</div>
 						</c:otherwise>
 					</c:choose>
+				</div>
+				<div class="modal-body" style="padding-top: 0px !important; padding-bottom: 0px !important;">
 					<c:if test="${fn:length(leftApplications) > 0}">
 						<c:set var="style" value="style='height: 400px; overflow-y: auto;'" />
 					</c:if>
@@ -334,13 +336,11 @@
 		$("#successRequestApplicationResponse").html(
 				$("#requestApplicationResponse").html());
 	};
-
 	$("#filter").keydown(function() {
 		setTimeout(function() {
 			filterApps($("#filter").val());
 		}, 500); // timeout needed to let the time for the field to be populated
 	});
-
 	function filterApps(filter) {
 		// retrieve the input field text and reset the count to zero
 		var count = 0;
@@ -359,14 +359,19 @@
 					}
 
 				});
-
-		// update the count
+		updateCounter(count);
+	}
+	function updateCounter(count) {
 		var app = " application";
 		if (count >= 2) {
 			app += "s";
 		}
 		var found = "<spring:message code='dashboard.applications.followApplications.filter.found' />";
 		$("#filter-count").html(
-				"<small>" + count + app + " " + found + "</small>");
+				"<small><span class='label label-info'>" + count + "</span>"
+						+ app + " " + found + "</small>");
 	}
+	$(document).ready(function() {
+		updateCounter('${fn:length(leftApplications)}');
+	});
 </script>

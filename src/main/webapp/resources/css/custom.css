@@ -1583,10 +1583,6 @@ div.form-group div.col-sm-3 {
 }
 
 /*** Follow new apps ***/
-#appsGrid {
-	margin-bottom: 15px;
-}
-
 div.newFollowApplicationContainer {
 	height: 110px;
 	position: relative;
@@ -1633,8 +1629,7 @@ div.newFollowApplicationContainer div.application div.title {
 }
 
 #filter-count {
-	margin-top: 5px;
-	margin-left: 10px;
+	margin: 5px 0 -8px 10px;
 }
 
 /*** Current apps followed ***/
@@ -1722,7 +1717,7 @@ img.shadowHover:hover {
 	position: absolute;
 	padding: 10px;
 	pointer-events: none;
-	color: #555555;
+	color: #909090;
 }
 
 /* align icon */
@@ -1741,4 +1736,9 @@ img.shadowHover:hover {
 
 .right-addon input {
 	padding-right: 30px;
+}
+
+/* Placeholders for IE */
+.placeholder {
+	color: #aaa;
 }
