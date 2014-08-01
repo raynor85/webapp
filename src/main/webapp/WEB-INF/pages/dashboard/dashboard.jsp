@@ -168,7 +168,7 @@
 							<div id="filter-count"></div>
 						</c:otherwise>
 					</c:choose>
-					<div id="appsGrid" class="row">
+					<div id="appsGrid" class="row" style="height: 400px; overflow-y: auto;">
 						<c:forEach items="${leftApplications}" var="leftApplication" varStatus="i">
 							<c:set var="appName">${leftApplication.name}</c:set>
 							<c:set var="appId">${leftApplication.apiName}</c:set>
@@ -184,6 +184,7 @@
 							</div>
 							<form:checkbox path="apiNames[${i.index}]" id="app-${appId}" value="${appId}" cssClass="hidden" />
 						</c:forEach>
+						<div style="height: 400px;"></div>
 					</div>
 				</div>
 				<div class="modal-footer">

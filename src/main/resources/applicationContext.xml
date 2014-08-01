@@ -167,6 +167,7 @@
 		<ref bean="malwarebytesAntiMalwareFreeRemoteRetriever" />
 		<ref bean="squirrelSqlRemoteRetriever" />
 		<ref bean="heidiSqlRemoteRetriever" />
+		<ref bean="pdfsamRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
