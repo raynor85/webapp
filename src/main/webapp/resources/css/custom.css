@@ -1623,11 +1623,6 @@ div.newFollowApplicationContainer div.application div.title {
 	margin-top: 3px;
 }
 
-.filter {
-	max-width: 250px;
-	display: inline !important;
-}
-
 #filter-count {
 	margin: 5px 0 -8px 10px;
 }
@@ -1723,6 +1718,7 @@ img.shadowHover:hover {
 /* align icon */
 .left-addon .fa {
 	left: 0px;
+	padding-left: 25px;
 }
 
 .right-addon .fa {

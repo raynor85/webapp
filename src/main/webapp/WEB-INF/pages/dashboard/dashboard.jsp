@@ -162,10 +162,12 @@
 							<c:set var="filterPlaceholder">
 								<spring:message code="dashboard.applications.followApplications.filter.description" />
 							</c:set>
-							<div class="inner-addon left-addon">
-								<i class="fa fa-search"></i> <input id="filter" type="search" class="form-control filter" placeholder="${filterPlaceholder}">
+							<div class="row rowWithPadding">
+								<div class="inner-addon left-addon col-md-4">
+									<i class="fa fa-search"></i> <input id="filter" type="search" class="form-control filter" placeholder="${filterPlaceholder}">
+								</div>
+								<div id="filter-count" class="col-md-3">&nbsp;</div>
 							</div>
-							<div id="filter-count">&nbsp;</div>
 						</c:otherwise>
 					</c:choose>
 				</div>
