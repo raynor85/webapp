@@ -125,13 +125,22 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<form:form id="newFollowedApplicationsForm" commandName="newFollowedApplications" action="${root}/dashboard/follow">
+				<c:choose>
+					<c:when test="${fn:length(leftApplications) > 0}">
+						<c:set var="styleModalHeader" value="style='box-shadow: 0 7px 10px rgba(182, 182, 182, 0.30);'" />
+						<c:set var="styleAppsGrid" value="style='height: 400px; overflow-y: auto;'" />
+					</c:when>
+					<c:otherwise>
+						<c:set var="styleModalHeader" value="style='border-bottom: 0px !important;'" />
+					</c:otherwise>
+				</c:choose>
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="followApplicationsModalLabel">
 						<spring:message code="dashboard.applications.followApplications.title" />
 					</h4>
 				</div>
-				<div class="modal-header" style="box-shadow: 0 7px 10px rgba(182, 182, 182, 0.30);">
+				<div class="modal-header" ${styleModalHeader}>
 					<c:choose>
 						<c:when test="${fn:length(leftApplications) == 0}">
 							<spring:message code="dashboard.applications.followApplications.empty" />
@@ -172,10 +181,7 @@
 					</c:choose>
 				</div>
 				<div class="modal-body" style="padding-top: 0px !important; padding-bottom: 0px !important;">
-					<c:if test="${fn:length(leftApplications) > 0}">
-						<c:set var="style" value="style='height: 400px; overflow-y: auto;'" />
-					</c:if>
-					<div id="appsGrid" class="row" ${style}>
+					<div id="appsGrid" class="row" ${styleAppsGrid}>
 						<c:forEach items="${leftApplications}" var="leftApplication" varStatus="i">
 							<c:set var="appName">${leftApplication.name}</c:set>
 							<c:set var="appId">${leftApplication.apiName}</c:set>
