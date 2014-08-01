@@ -156,27 +156,32 @@
 									</c:otherwise>
 								</c:choose>
 							</div>
-							<div>
-								<h3>
-									<small><spring:message code="dashboard.applications.followApplications.latest.title" /></small>
-								</h3>
-							</div>
-							<div class="row rowWithPadding" style="margin-bottom: 25px;">
-								<c:forEach items="${latestApplications}" var="latestApplication">
-									<div class="col-xs-6 col-md-3 col-lg-3">
-										<i class="text-color fa fa-chevron-circle-right fa-1x"></i>&nbsp;${latestApplication.name}
-									</div>
-								</c:forEach>
-							</div>
+							<fieldset>
+								<legend class="legend">
+									<spring:message code="dashboard.applications.followApplications.latest.title" />
+								</legend>
+								<div class="row rowWithPadding" style="margin-bottom: 20px !important; margin-top: -7px !important;">
+									<c:forEach items="${latestApplications}" var="latestApplication">
+										<div class="col-xs-6 col-md-3 col-lg-3">
+											<i class="text-color fa fa-chevron-circle-right fa-1x"></i>&nbsp;${latestApplication.name}
+										</div>
+									</c:forEach>
+								</div>
+							</fieldset>
 							<c:set var="filterPlaceholder">
 								<spring:message code="dashboard.applications.followApplications.filter.description" />
 							</c:set>
-							<div class="row rowWithPadding">
-								<div class="inner-addon left-addon col-md-4">
-									<i class="fa fa-search"></i> <input id="filter" type="search" class="form-control filter" placeholder="${filterPlaceholder}">
+							<fieldset>
+								<legend class="legend">
+									<spring:message code="dashboard.applications.followApplications.search.title" />
+								</legend>
+								<div class="row rowWithPadding" style="margin-top: -7px !important;">
+									<div class="inner-addon left-addon col-md-4">
+										<i class="fa fa-search"></i> <input id="filter" type="search" class="form-control filter" placeholder="${filterPlaceholder}">
+									</div>
+									<div id="filter-count" class="col-md-3">&nbsp;</div>
 								</div>
-								<div id="filter-count" class="col-md-3">&nbsp;</div>
-							</div>
+							</fieldset>
 						</c:otherwise>
 					</c:choose>
 				</div>

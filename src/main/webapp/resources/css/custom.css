@@ -1738,3 +1738,9 @@ img.shadowHover:hover {
 .placeholder {
 	color: #aaa;
 }
+
+.legend {
+	font-size: 16px;
+	color: #777777;
+	font-weight: 400;
+}
