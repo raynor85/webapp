@@ -370,13 +370,13 @@
 		updateCounter(count);
 	}
 	function updateCounter(count) {
-		var app = " application";
+		var app = "application";
 		if (count >= 2) {
 			app += "s";
 		}
 		var found = "<spring:message code='dashboard.applications.followApplications.filter.found' />";
 		$("#filter-count").html(
-				"<small><span class='label label-info'>" + count + "</span>"
+				"<span class='label label-info'>" + count + "</span> <small>"
 						+ app + " " + found + "</small>");
 	}
 	$(document).ready(function() {
