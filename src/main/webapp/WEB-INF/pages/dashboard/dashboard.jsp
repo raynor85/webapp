@@ -168,7 +168,10 @@
 							<div id="filter-count"></div>
 						</c:otherwise>
 					</c:choose>
-					<div id="appsGrid" class="row" style="height: 400px; overflow-y: auto;">
+					<c:if test="${fn:length(leftApplications) > 0}">
+						<c:set var="style" value="style='height: 400px; overflow-y: auto;'" />
+					</c:if>
+					<div id="appsGrid" class="row" ${style}>
 						<c:forEach items="${leftApplications}" var="leftApplication" varStatus="i">
 							<c:set var="appName">${leftApplication.name}</c:set>
 							<c:set var="appId">${leftApplication.apiName}</c:set>
@@ -184,7 +187,9 @@
 							</div>
 							<form:checkbox path="apiNames[${i.index}]" id="app-${appId}" value="${appId}" cssClass="hidden" />
 						</c:forEach>
-						<div style="height: 400px;"></div>
+						<c:if test="${fn:length(leftApplications) > 0}">
+							<div style="height: 400px;"></div>
+						</c:if>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -192,7 +197,7 @@
 						<spring:message code="dashboard.applications.followApplications.button.cancel" />
 					</button>
 					<c:if test="${fn:length(leftApplications) != 0}">
-						<button type="submit" class="btn-color ladda-button push-to-bottom">
+						<button type="button" class="btn-color ladda-button push-to-bottom" onclick="submitForm();">
 							<spring:message code="dashboard.applications.followApplications.button.confirm" />
 							(<span id="counterNewApp">0</span>)
 						</button>
@@ -247,6 +252,14 @@
 </div>
 
 <script type="text/javascript">
+	function submitForm() {
+		var currentCounterValue = parseInt($("#counterNewApp").text())
+		if (currentCounterValue == 0) {
+			// nothing selected
+			return;
+		}
+		$("form#newFollowedApplicationsForm").submit();
+	}
 	var showModalIfNoFollowedApps = function() {
 		if ("${nbAppFollow}" == 0) {
 			$("#followApplicationsModal").modal("show");
