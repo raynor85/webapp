@@ -8,11 +8,11 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class SkypeRemoteRetriever implements RemoteRetriever {
+public class WinzipRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Skype");
+		return application.getName().equalsIgnoreCase("WinZip");
 	}
 
 	@Override
@@ -22,7 +22,7 @@ public class SkypeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return null;
+		return doc.select("a:contains(Download)[href*=-64.msi]").attr("href");
 	}
 
 	@Override
@@ -32,12 +32,12 @@ public class SkypeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.baseUri().replace("/3000", "/3001");
+		return doc.select("a:contains(Download)[href*=-32.msi]").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select(".product-landing-quick-specs-row").select(".product-landing-quick-specs-row-content").get(0).text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("table").select("tr").get(2).select("td").get(2).text());
 	}
 
 }

@@ -76,7 +76,7 @@ public class RemoteServiceImpl implements RemoteService {
 		return doc;
 	}
 
-	private Document retrieveHtmlDocument(String url) throws IOException {
+	public static Document retrieveHtmlDocument(String url) throws IOException {
 		return Jsoup.connect(url).ignoreContentType(true).userAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0").referrer("http://www.google.com").timeout(15 * 1000).followRedirects(true).get();
 	}
 

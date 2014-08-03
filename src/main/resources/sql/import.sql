@@ -136,6 +136,62 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.heidisql.com/download.php', 'heidisql.png', 'HeidiSQL', 'heidisql', false, 'APPLICATION');
 -- PDFsam
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.pdfsam.org/download/', 'pdfsam.png', 'PDFsam', 'pdfsam', false, 'APPLICATION');
+-- Advanced SystemCare
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/Advanced-SystemCare-Free/3000-2086_4-10407614.html', 'advancedsystemcare.png', 'Advanced SystemCare', 'advancedsystemcare', false, 'APPLICATION');
+-- IrfanView
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/IrfanView/3000-2192_4-10021962.html', 'irfanview.png', 'IrfanView', 'irfanview', false, 'APPLICATION');
+-- YTD Video Downloader
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/YTD-Video-Downloader/3000-2071_4-10647340.html', 'ytdvideodownloader.png', 'YTD Video Downloader', 'ytdvideodownloader', false, 'APPLICATION');
+-- Ad-Aware Free
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/Ad-Aware-Free-Antivirus/3000-8022_4-10045910.html', 'adawarefree.png', 'Ad-Aware Free', 'adawarefree', false, 'APPLICATION');
+-- GOM Media Player
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/GOM-Media-Player/3000-13632_4-10551786.html', 'gommediaplayer.png', 'GOM Media Player', 'gommediaplayer', false, 'APPLICATION');
+-- Smart Defrag
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/Smart-Defrag-3/3000-2094_4-10759533.html', 'smartdefrag.png', 'Smart Defrag', 'smartdefrag', false, 'APPLICATION');
+-- Virtual DJ
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/Virtual-DJ/3000-18502_4-10212112.html', 'virtualdj.png', 'Virtual DJ', 'virtualdj', false, 'APPLICATION');
+-- PhotoScape
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/PhotoScape/3000-2192_4-10703122.html', 'photoscape.png', 'PhotoScape', 'photoscape', false, 'APPLICATION');
+-- Driver Max
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/DriverMax/3000-18513_4-10572602.html', 'drivermax.png', 'Driver Max', 'drivermax', false, 'DRIVER');
+-- PrimoPDF
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/PrimoPDF/3000-18497_4-10264577.html', 'primopdf.png', 'PrimoPDF', 'primopdf', false, 'APPLICATION');
+-- FastStone Image Viewer
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/FastStone-Image-Viewer/3000-2192_4-10324485.html', 'faststoneimageviewer.png', 'FastStone Image Viewer', 'faststoneimageviewer', false, 'APPLICATION');
+-- WinRAR
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.rarlab.com/download.htm', 'winrar.png', 'WinRAR', 'winrar', false, 'APPLICATION');
+-- WinZip
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.winzip.com/dprob.html', 'winzip.png', 'WinZip', 'winzip', false, 'APPLICATION');
+-- BitTorrent
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.bittorrent.com/downloads/win', 'bittorrent.png', 'BitTorrent', 'bittorrent', false, 'APPLICATION');
+-- µTorrent
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.utorrent.com/downloads/win', 'utorrent.png', 'µTorrent', 'utorrent', false, 'APPLICATION');
+-- Popcorn Time
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.time4popcorn.eu', 'popcorntime.png', 'Popcorn Time', 'popcorntime', false, 'APPLICATION');
+-- Opera
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.opera.com/download/guide/?os=windows&list=all', 'opera.png', 'Opera', 'opera', false, 'APPLICATION');
+-- Captvty
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://captvty.fr', 'captvty.png', 'Captvty', 'captvty', false, 'APPLICATION');
+-- Tor Browser
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.torproject.org/projects/torbrowser.html.en', 'torbrowser.png', 'Tor Browser', 'torbrowser', false, 'APPLICATION');
+-- QuickTime
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://swdlp.apple.com/iframes/81/en_us/81_en_us.html', 'quicktime.png', 'QuickTime', 'quicktime', false, 'APPLICATION');
+-- TeamViewer
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.teamviewer.com/en/download/windows.aspx', 'teamviewer.png', 'TeamViewer', 'teamviewer', false, 'APPLICATION');
+-- KMPlayer
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.kmplayer.com/', 'kmplayer.png', 'KMPlayer', 'kmplayer', false, 'APPLICATION');
+-- Audacity
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://audacity.sourceforge.net/download/windows', 'audacity.png', 'Audacity', 'audacity', false, 'APPLICATION');
+-- RoboForm
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.roboform.com/download', 'roboform.png', 'RoboForm', 'roboform', false, 'APPLICATION');
+-- USB Disk Security
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.zbshareware.com/lang/eng/download.html', 'usbdisksecurity.png', 'USB Disk Security', 'usbdisksecurity', false, 'APPLICATION');
+-- SyncBackPro
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.2brightsparks.com/download-syncbackpro.html', 'syncbackpro.png', 'SyncBackPro', 'syncbackpro', false, 'APPLICATION');
+-- SyncBackSE
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.2brightsparks.com/download-syncbackse.html', 'syncbackse.png', 'SyncBackSE', 'syncbackse', false, 'APPLICATION');
+-- TomTom Home
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://tomtom-home.software.informer.com/download/', 'tomtomhome.png', 'TomTom Home', 'tomtomhome', false, 'APPLICATION');
 
 -- Application versions
 INSERT INTO applicationversion(id, creationdate, updatedate, dbversion, versiondate, versionnumber, win32urlen, win32urlfr, win64urlen, win64urlfr, application_id) VALUES (nextval('application_version_seq'), now(), NULL, 0, '2014-05-09 00:00:00.643', '29.0.1', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=en-US', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=fr', NULL, NULL, (select id from applicationreference where apiname = 'firefox'));
