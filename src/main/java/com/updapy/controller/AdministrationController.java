@@ -28,16 +28,23 @@ public class AdministrationController {
 
 	@RequestMapping(value = "/email/application/added")
 	public @ResponseBody
-	JsonResponse createEmailForAddedApplications() {
+	JsonResponse createEmailsForAddedApplications() {
 		applicationVersionScheduler.createEmailsAndNotificationsForAddedApplications();
 		return jsonResponseUtils.buildSuccessfulJsonResponse("administration.email.application.added.confirm");
 	}
 
 	@RequestMapping(value = "/email/application/deleted")
 	public @ResponseBody
-	JsonResponse createEmailForDeletedApplications() {
+	JsonResponse createEmailsForDeletedApplications() {
 		applicationVersionScheduler.createEmailsAndNotificationsForDeletedApplications();
 		return jsonResponseUtils.buildSuccessfulJsonResponse("administration.email.application.deleted.confirm");
+	}
+
+	@RequestMapping(value = "/email/newsletter")
+	public @ResponseBody
+	JsonResponse createEmailsNewsletters() {
+		applicationVersionScheduler.createEmailsNewsletters();
+		return jsonResponseUtils.buildSuccessfulJsonResponse("administration.email.newsletter.confirm");
 	}
 
 	@RequestMapping(value = "/email/send")

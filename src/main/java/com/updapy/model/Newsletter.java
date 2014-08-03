@@ -2,6 +2,7 @@ package com.updapy.model;
 
 import java.util.Locale;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.SequenceGenerator;
 
@@ -19,8 +20,10 @@ public class Newsletter extends BaseEntity {
 
 	private String titleEn;
 
+	@Column(columnDefinition = "text")
 	private String textFr;
 
+	@Column(columnDefinition = "text")
 	private String textEn;
 
 	private boolean active;
