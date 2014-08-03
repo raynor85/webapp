@@ -1,5 +1,6 @@
 package com.updapy.service.impl.retriever;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -27,12 +28,12 @@ public class TeamViewerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlFr(Document doc) {
-		return null;
+		return StringUtils.replacePattern(doc.select("a.button-a[href*=.exe]").get(0).attr("href"), "_Setup.*.exe", "_Setup_fr.exe");
 	}
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a.button-a[href*=.exe]").get(0).attr("href");
+		return StringUtils.replacePattern(doc.select("a.button-a[href*=.exe]").get(0).attr("href"), "_Setup.*.exe", "_Setup_en.exe");
 	}
 
 	@Override
