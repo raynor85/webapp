@@ -17,22 +17,8 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
 	padding: 14px 28px;
 }
 
-.btn-nav-sign {
-	margin-top: 12px !important;
-}
-
-.btn-nav-sign-xs {
-	margin-top: -5px !important;
-	margin-left: 15px !important;
-}
-
 .ladda-button {
 	text-decoration: none !important;
-}
-
-.ladda-button-small {
-	font-size: 15px !important;
-	padding: 8px 14px !important;
 }
 
 .btn-cancel-next-ladda {

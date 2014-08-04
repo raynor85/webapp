@@ -67,12 +67,12 @@
 					<c:otherwise>
 						<ul class="nav navbar-nav navbar-right hidden-xs">
 							<li><div>
-									<a class="btn btn-color ladda-button ladda-button-small btn-nav-sign" href="${root}/sign"><spring:message code="menu.sign" /></a>
+									<a class="btn btn-color ladda-button" href="${root}/sign" style="margin-top: 12px !important; font-size: 15px !important; padding: 8px 14px !important;"><spring:message code="menu.sign" /></a>
 								</div></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right visible-xs">
 							<li><div>
-									<a class="btn btn-color ladda-button ladda-button-small btn-nav-sign-xs" href="${root}/sign"><spring:message code="menu.sign" /></a>
+									<a class="btn btn-color ladda-button" href="${root}/sign" style="margin-top: -5px !important; margin-left: 15px !important; font-size: 15px !important; padding: 8px 14px !important;"><spring:message code="menu.sign" /></a>
 								</div></li>
 						</ul>
 					</c:otherwise>

@@ -49,7 +49,7 @@
 					</c:set>
 					<form:input path="email" class="form-control" id="email-lost" placeholder="${emailPlaceholder}" value="${SPRING_SECURITY_LAST_EXCEPTION.authentication.principal}" />
 				</div>
-				<button type="button" id="resetUserEmailButton" class="btn-default ladda-button ladda-button-small" data-spinner-color="#000000" data-style="zoom-in" onclick="ajaxResetUserEmail();">
+				<button type="button" id="resetUserEmailButton" class="btn-default ladda-button" data-spinner-color="#000000" data-style="zoom-in" style="font-size: 15px !important; padding: 8px 14px !important;" onclick="ajaxResetUserEmail();">
 					<spring:message code="sign.in.forgot.button" />
 				</button>
 				<div id="resetUserEmailResponse"></div>
