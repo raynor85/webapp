@@ -46,7 +46,7 @@
 			</c:choose>
 		</div>
 	</div>
-	<div class="row rowWithPadding">
+	<div class="row rowWithPadding rowApps-center-xs">
 		<form:form id="unfollowApplicationsForm" commandName="unfollowApplications" action="${root}/dashboard/unfollow">
 			<c:forEach items="${currentFollowedApplications}" var="currentFollowedApplication">
 				<c:set var="appName">${currentFollowedApplication.applicationName}</c:set>
@@ -64,7 +64,7 @@
 				<c:set var="downloadTitle">
 					<spring:message code="dashboard.applications.download.title" /> ${appName} - ${currentFollowedApplication.versionNumber}
 				</c:set>
-				<div id="div-current-${appId}" class="col-xs-6 col-sm-3 col-md-2 col-lg-2 currentFollowedApplicationContainer">
+				<div id="div-current-${appId}" class="col-xs-4 col-sm-3 col-md-2 col-lg-2 currentFollowedApplicationContainer">
 					<button title="${deleteTitle}" aria-hidden="true" class="close pull-right" type="button" onclick="ajaxUnfollowCurrentApplication('${appId}');">
 						<i class="fa fa-trash-o fa-1x"></i>
 					</button>
@@ -98,9 +98,9 @@
 						</div>
 						<div class="title">
 							<h4>
-								<span class="label label-success">${appName}</span>
+								<span class="label label-success" style="display: inline-block !important; white-space: normal !important; margin-top: -8px;">${appName}</span>
 							</h4>
-							<span class="label label-danger">${currentFollowedApplication.versionNumber}</span>
+							<span class="label label-danger" style="display: inline-block !important;">${currentFollowedApplication.versionNumber}</span>
 						</div>
 					</div>
 				</div>

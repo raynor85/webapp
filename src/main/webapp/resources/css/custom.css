@@ -1702,6 +1702,24 @@ img.shadowHover:hover {
 	padding-right: 15px;
 }
 
+@media ( max-width : 449px) { /* for xxs devices */
+	.rowApps-center-xs {
+		width: 200px;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+@media ( min-width : 450px) and (max-width: 590px) { /* for xs devices */
+	.rowApps-center-xs {
+		width: 385px;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
 /* enable absolute positioning */
 .inner-addon {
 	position: relative;
