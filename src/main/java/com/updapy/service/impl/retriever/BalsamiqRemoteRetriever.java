@@ -1,17 +1,20 @@
 package com.updapy.service.impl.retriever;
 
+import java.io.IOException;
+
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
 public class BalsamiqRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://builds.balsamiq.com/b/mockups-desktop/MockupsForDesktop.exe";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://balsamiq.com/download/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -35,7 +38,11 @@ public class BalsamiqRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE;
+		try {
+			return RemoteServiceImpl.retrieveHtmlDocumentAgent64(ROOT_DOWNLOAD_WEBSITE).select("a[href*=.exe]").attr("href");
+		} catch (IOException e) {
+			throw new RuntimeException();
+		}
 	}
 
 	@Override

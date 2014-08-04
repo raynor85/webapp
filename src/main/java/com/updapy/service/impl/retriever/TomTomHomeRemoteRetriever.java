@@ -39,7 +39,7 @@ public class TomTomHomeRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
 		try {
-			return RemoteServiceImpl.retrieveHtmlDocument(ROOT_DOWNLOAD_WEBSITE).select("#tab3").select("a[href*=.exe]").attr("href");
+			return RemoteServiceImpl.retrieveHtmlDocumentAgent64(ROOT_DOWNLOAD_WEBSITE).select("#tab3").select("a[href*=.exe]").attr("href");
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}

@@ -62,11 +62,11 @@ public class RemoteServiceImpl implements RemoteService {
 		Document doc = null;
 		String url = application.getGlobalUrl();
 		try {
-			doc = retrieveHtmlDocument(url);
+			doc = retrieveHtmlDocumentAgent64(url);
 		} catch (Exception e) {
 			try {
 				// let's try a second time, network can be unreliable sometimes!
-				doc = retrieveHtmlDocument(url);
+				doc = retrieveHtmlDocumentAgent64(url);
 			} catch (IOException e1) {
 				// seems there is really a problem
 				emailSenderService.sendAdminConnectionError(url);
@@ -76,8 +76,12 @@ public class RemoteServiceImpl implements RemoteService {
 		return doc;
 	}
 
-	public static Document retrieveHtmlDocument(String url) throws IOException {
+	public static Document retrieveHtmlDocumentAgent64(String url) throws IOException {
 		return Jsoup.connect(url).ignoreContentType(true).userAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0").referrer("http://www.google.com").timeout(15 * 1000).followRedirects(true).get();
+	}
+
+	public static Document retrieveHtmlDocumentAgent32(String url) throws IOException {
+		return Jsoup.connect(url).ignoreContentType(true).userAgent("Mozilla/5.0 (Windows NT 6.1; Win32; rv:25.0) Gecko/20100101 Firefox/25.0").referrer("http://www.google.com").timeout(15 * 1000).followRedirects(true).get();
 	}
 
 }

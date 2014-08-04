@@ -11,8 +11,6 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class UnlockerRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.emptyloop.com/unlocker/download.php";
-
 	@Override
 	public boolean support(ApplicationReference application) {
 		return application.getName().equalsIgnoreCase("Unlocker");
@@ -35,7 +33,7 @@ public class UnlockerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE;
+		return doc.baseUri() + "download.php";
 	}
 
 	@Override

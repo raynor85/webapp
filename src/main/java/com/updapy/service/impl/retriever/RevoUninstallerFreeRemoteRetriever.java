@@ -10,7 +10,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class RevoUninstallerFreeRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.revouninstaller.com/start_freeware_download.html";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.revouninstaller.com/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -34,7 +34,7 @@ public class RevoUninstallerFreeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE;
+		return ROOT_DOWNLOAD_WEBSITE + doc.select("a:contains(DOWNLOAD)").get(1).attr("href");
 	}
 
 	@Override

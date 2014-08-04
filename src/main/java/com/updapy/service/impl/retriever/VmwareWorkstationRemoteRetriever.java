@@ -1,16 +1,20 @@
 package com.updapy.service.impl.retriever;
 
+import java.io.IOException;
+
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
 public class VmwareWorkstationRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.vmware.com/go/tryworkstation-win";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.vmware.com";
+	private static final String ROOT_DOWNLOAD_WEBSITE_VERSION = "http://www.vmware.com/products/workstation/workstation-evaluation";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -34,7 +38,11 @@ public class VmwareWorkstationRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE;
+		try {
+			return ROOT_DOWNLOAD_WEBSITE + RemoteServiceImpl.retrieveHtmlDocumentAgent32(ROOT_DOWNLOAD_WEBSITE_VERSION).select("a.download_now_validation[href*=win]").attr("href");
+		} catch (IOException e) {
+			throw new RuntimeException();
+		}
 	}
 
 	@Override

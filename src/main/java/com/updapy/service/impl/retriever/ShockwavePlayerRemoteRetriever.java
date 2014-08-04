@@ -1,10 +1,12 @@
 package com.updapy.service.impl.retriever;
 
-import org.apache.commons.lang3.StringUtils;
+import java.io.IOException;
+
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
@@ -12,6 +14,7 @@ import com.updapy.util.ParsingUtils;
 public class ShockwavePlayerRemoteRetriever implements RemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.adobe.com";
+	private static final String ROOT_DOWNLOAD_WEBSITE_VERSION = "http://get.adobe.com/shockwave/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -40,11 +43,11 @@ public class ShockwavePlayerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		String version = ParsingUtils.extractVersionNumberFromString(doc.select(".TextH3:contains(Downloads)").text());
-		if (StringUtils.isBlank(version)) {
-			return "12";
+		try {
+			return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgent32(ROOT_DOWNLOAD_WEBSITE_VERSION).select("p#AUTO_ID_columnleft_p_version").text());
+		} catch (IOException e) {
+			throw new RuntimeException();
 		}
-		return version;
 	}
 
 }

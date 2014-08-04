@@ -1,15 +1,19 @@
 package com.updapy.service.impl.retriever;
 
-import org.apache.commons.lang3.StringUtils;
+import java.io.IOException;
+
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
 public class AdobeAirRemoteRetriever implements RemoteRetriever {
+
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://get.adobe.com/air/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -38,11 +42,11 @@ public class AdobeAirRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		String version = ParsingUtils.extractVersionNumberFromString(doc.select(".TextH3:contains(Windows)").text());
-		if (StringUtils.isBlank(version)) {
-			return "14";
+		try {
+			return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgent32(ROOT_DOWNLOAD_WEBSITE).select("p#AUTO_ID_columnleft_p_version").text());
+		} catch (IOException e) {
+			throw new RuntimeException();
 		}
-		return version;
 	}
 
 }
