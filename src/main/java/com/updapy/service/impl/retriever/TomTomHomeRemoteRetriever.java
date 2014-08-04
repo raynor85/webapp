@@ -2,6 +2,7 @@ package com.updapy.service.impl.retriever;
 
 import java.io.IOException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -46,7 +47,7 @@ public class TomTomHomeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("div#download_content").select("td.pick_version").text());
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("div#rn_AnswerText").select("p").text(), "\\(Windows\\).*$"));
 	}
 
 }
