@@ -218,6 +218,15 @@ body {
 	color: #FF6600;
 }
 
+.dropdown-menu>li.socialMenu {
+	padding: 7px 15px;
+	border-bottom: 1px dashed #E5E5E5;
+}
+
+.dropdown-menu>li:last-child.socialMenu {
+	border-bottom: 0;
+}
+
 /* ===== Jumbotron ===== */
 .jumbotron {
 	background: #ecf0f1;
@@ -563,6 +572,21 @@ footer a:hover {
 }
 
 .user-bar-icons>a:hover>i {
+	color: #27ae60;
+}
+
+/* ===== Share icons ===== */
+.share-icons {
+	padding-top: 23px;
+	padding-bottom: 22px;
+	font-size: 20px;
+}
+
+.share-icons>i {
+	color: #555;
+}
+
+.share-icons:hover>i {
 	color: #27ae60;
 }
 

@@ -50,13 +50,13 @@
 	</definition>
 
 	<!-- FAQ -->
-	<definition name="faq" extends="baseLayoutWithShareNormal">
+	<definition name="faq" extends="baseLayoutNormal">
 		<put-attribute name="title" value="faq.title" />
 		<put-attribute name="content" value="/WEB-INF/pages/faq/faq.jsp" />
 	</definition>
 
 	<!-- Privacy -->
-	<definition name="privacy" extends="baseLayoutWithShareNormal">
+	<definition name="privacy" extends="baseLayoutNormal">
 		<put-attribute name="title" value="privacy.title" />
 		<put-attribute name="content" value="/WEB-INF/pages/privacy/privacy.jsp" />
 	</definition>
