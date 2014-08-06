@@ -279,3 +279,15 @@ h2.oswald {
 		padding-top: 0;
 	}
 }
+
+@media ( max-width : 767px) {
+	.hidden-on-xs {
+		display: none !important;
+	}
+}
+
+@media ( min-width : 768px) {
+	.footerAwesome {
+		margin-top: 6px;
+	}
+}

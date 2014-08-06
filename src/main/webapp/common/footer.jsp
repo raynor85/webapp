@@ -33,12 +33,12 @@
 				<li><span class="text-muted">I</span></li>
 				<li><a href="${root}/faq"><spring:message code="footer.faq" /></a></li>
 				<li><span class="text-muted">I</span></li>
-				<li><span class="text-muted"><spring:message code="footer.follow.part1" /></span></li>
-				<li><a href="<spring:message code="application.twitter.url" />" class="text-muted fa fa-twitter fa-2x no-underline" title="<spring:message code="footer.follow.part1" /> <spring:message code="footer.follow.twitter" />"></a></li>
-				<li><span class="text-muted"><spring:message code="footer.follow.part2" /></span></li>
-				<li><a href="<spring:message code="application.facebook.url" />" class="text-muted fa fa-facebook fa-2x no-underline" title="<spring:message code="footer.follow.part1" /> <spring:message code="footer.follow.facebook" />"></a></li>
+				<li class="hidden-on-xs"><span class="text-muted"><spring:message code="footer.follow.part1" /></span></li>
+				<li class="hidden-on-xs"><a href="<spring:message code="application.twitter.url" />" class="text-muted fa fa-twitter fa-2x no-underline" title="<spring:message code="footer.follow.part1" /> <spring:message code="footer.follow.twitter" />"></a></li>
+				<li class="hidden-on-xs"><span class="text-muted"><spring:message code="footer.follow.part2" /></span></li>
+				<li class="hidden-on-xs"><a href="<spring:message code="application.facebook.url" />" class="text-muted fa fa-facebook fa-2x no-underline" title="<spring:message code="footer.follow.part1" /> <spring:message code="footer.follow.facebook" />"></a></li>
 			</ul>
-			<ul class="list-inline pull-right-xs" style="margin-top: 6px;">
+			<ul class="list-inline pull-right-xs footerAwesome">
 				<li><div class="fb-like" data-href="https://www.facebook.com/updapy" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div></li>
 				<%-- <li><span class="text-muted"><spring:message code="footer.version" /> <spring:message code="application.version" /></span></li> --%>
 				<%-- <li><span class="text-muted">I</span></li> --%>
