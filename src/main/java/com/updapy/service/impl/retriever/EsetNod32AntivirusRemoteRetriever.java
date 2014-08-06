@@ -18,7 +18,7 @@ public class EsetNod32AntivirusRemoteRetriever implements RemoteRetriever {
 	private static final String ROOT_DOWNLOAD_WEBSITE_VERSION_FR_32 = "http://www.eset.com/us/download/home/detail/family/2/language/FRA/operatingsystem/136/";
 	private static final String ROOT_DOWNLOAD_WEBSITE_VERSION_FR_64 = "http://www.eset.com/us/download/home/detail/family/2/language/FRA/operatingsystem/137/";
 	private static final String ROOT_DOWNLOAD_WEBSITE_VERSION_EN_32 = "http://www.eset.com/us/download/home/detail/family/2/language/ENU/operatingsystem/136/";
-	private static final String ROOT_DOWNLOAD_WEBSITE_VERSION_EN_64 = "http://www.eset.com/us/download/home/detail/family/2/language/FRA/operatingsystem/137/";
+	private static final String ROOT_DOWNLOAD_WEBSITE_VERSION_EN_64 = "http://www.eset.com/us/download/home/detail/family/2/language/ENU/operatingsystem/137/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -52,7 +52,8 @@ public class EsetNod32AntivirusRemoteRetriever implements RemoteRetriever {
 
 	private String getDownloadLink(String downloadWebsite) {
 		try {
-			return ROOT_DOWNLOAD_WEBSITE + StringUtils.removePattern(RemoteServiceImpl.retrieveHtmlDocumentAgent32(downloadWebsite).select("div#file-summary").select("p:contains(File name)").text(), "^.*:\\s?");
+			Document doc = RemoteServiceImpl.retrieveHtmlDocumentAgent32(downloadWebsite);
+			return ROOT_DOWNLOAD_WEBSITE + StringUtils.removePattern(doc.select("div#file-summary").select("p:contains(File name)").text(), "^.*:\\s?");
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}

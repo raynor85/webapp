@@ -46,9 +46,9 @@
 				<li class="dropdown"><a href="#" onclick="interactWithSocialMenu();" class="dropdown-toggle share-icons" data-toggle="dropdown" title="<spring:message code='menu.support' />"> <i class="fa fa-share-alt"></i> <b class="caret"></b></a>
 					<ul id="socialMenuDropdown" class="dropdown-menu">
 						<li><a class="noHover" style="color: #555 !important; background-color: transparent !important;"><spring:message code="menu.support.description" /></a></li>
-						<li id="socialMenuDropdownFb" class="socialMenu"><span id="fb-like-box"></span></li>
-						<li id="socialMenuDropdownG+" class="socialMenu"><div class="g-plusone" data-annotation="bubble" data-href="http://www.updapy.com" data-size="medium"></div></li>
-						<li id="socialMenuDropdownTw" class="socialMenu"><a href="https://twitter.com/updapy" class="twitter-follow-button" data-show-count="true" data-lang="${lang}">Follow @updapy</a></li>
+						<li id="socialMenuDropdownFb" class="socialMenu"><span id="fb-like-box"><a href="http://facebook.com/updapy"><spring:message code="menu.support.like" /></a></span></li>
+						<li id="socialMenuDropdownG+" class="socialMenu"><div class="g-plusone" data-annotation="bubble" data-href="http://www.updapy.com" data-size="medium"><spring:message code="menu.support.plus" /></div></li>
+						<li id="socialMenuDropdownTw" class="socialMenu"><span id="twitter-box"><a href="https://twitter.com/updapy" class="twitter-follow-button" data-show-count="true" data-lang="${lang}"><spring:message code="menu.support.follow" /></a></span></li>
 					</ul></li>
 			</ul>
 			<c:if test="${phase != 'early'}">
