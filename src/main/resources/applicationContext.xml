@@ -184,6 +184,9 @@
 		<ref bean="syncBackProRemoteRetriever" />
 		<ref bean="syncBackSeRemoteRetriever" />
 		<ref bean="tomTomHomeRemoteRetriever" />
+		<ref bean="chromeRemoteRetriever" />
+		<ref bean="quiteRssRemoteRetriever" />
+		<ref bean="esetNod32AntivirusRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
