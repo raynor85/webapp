@@ -43,12 +43,20 @@
 							<li><a tabindex="-1" href="${root}/rss/notifications?key=${rssKey}" target="_blank" onmouseover="javascript:$('#rss-icon').css('color', '#1a7440');" onmouseout="javascript:$('#rss-icon').css('color', 'red');" style="color: #333; min-width: 310px"><i id="rss-icon" class="fa fa-rss fa-1-4x pull-right color-rss" style="display: block;"></i> <spring:message code="menu.notification.rss" /></a></li>
 						</ul></li>
 				</c:if>
-				<li class="dropdown"><a href="#" onclick="interactWithSocialMenu();" class="dropdown-toggle share-icons" data-toggle="dropdown" title="<spring:message code='menu.support' />"> <i class="fa fa-share-alt"></i> <b class="caret"></b></a>
+				<li class="dropdown"><a href="#" class="dropdown-toggle share-icons" data-toggle="dropdown" title="<spring:message code='menu.support' />"> <i class="fa fa-share-alt"></i> <b class="caret"></b></a>
 					<ul id="socialMenuDropdown" class="dropdown-menu">
 						<li><a class="noHover" style="color: #555 !important; background-color: transparent !important;"><spring:message code="menu.support.description" /></a></li>
-						<li id="socialMenuDropdownFb" class="socialMenu"><span id="fb-like-box"><a href="http://facebook.com/updapy"><spring:message code="menu.support.like" /></a></span></li>
-						<li id="socialMenuDropdownG+" class="socialMenu"><div class="g-plusone" data-annotation="bubble" data-href="http://www.updapy.com" data-size="medium"><spring:message code="menu.support.plus" /></div></li>
-						<li id="socialMenuDropdownTw" class="socialMenu"><span id="twitter-box"><a href="https://twitter.com/updapy" class="twitter-follow-button" data-show-count="true" data-lang="${lang}"><spring:message code="menu.support.follow" /></a></span></li>
+						<c:choose>
+							<c:when test="${lang == 'fr'}">
+								<c:set var="langFb" value="fr_FR" />
+							</c:when>
+							<c:otherwise>
+								<c:set var="langFb" value="en_US" />
+							</c:otherwise>
+						</c:choose>
+						<li id="socialMenuDropdownFb" class="socialMenu"><iframe src="//www.facebook.com/plugins/like.php?locale=${langFb}&href=http%3A%2F%2Ffacebook.com%2Fupdapy&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=true&amp;height=21&amp;appId=242605515939525" scrolling="no" frameborder="0" style="margin-bottom: -5px; border: none; overflow: hidden; height: 21px; width: 200px;" allowTransparency="true"></iframe></li>
+						<li id="socialMenuDropdownG+" class="socialMenuGoogle"><div class="g-plusone" data-annotation="bubble" data-href="http://www.updapy.com" data-size="medium" style="margin-bottom: -5px;"></div></li>
+						<li id="socialMenuDropdownTw" class="socialMenu"><iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/follow_button.html?screen_name=updapy&lang=${lang}" style="margin-bottom: -6px; height: 20px; width: 200px;"></iframe></li>
 					</ul></li>
 			</ul>
 			<c:if test="${phase != 'early'}">
@@ -91,9 +99,8 @@
 	</div>
 </div>
 
-<!-- Manual social buttons - must be after -->
 <script>
-	// Google
+	// Google+1
 	window.___gcfg = {
 		lang : "${lang}"
 	};
@@ -105,30 +112,6 @@
 		var s = document.getElementsByTagName('script')[0];
 		s.parentNode.insertBefore(po, s);
 	})();
-	// Twitter
-	!function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (!d.getElementById(id)) {
-			js = d.createElement(s);
-			js.id = id;
-			js.src = "//platform.twitter.com/widgets.js";
-			fjs.parentNode.insertBefore(js, fjs);
-		}
-	}(document, "script", "twitter-wjs");
-</script>
-
-<script>
-	function interactWithSocialMenu() {
-		if ($("#socialMenuDropdown").is(":visible")) {
-			$("div.fb-like iframe").css({
-				"visibility" : "visible"
-			});
-		} else {
-			$("div.fb-like iframe").css({
-				"visibility" : "hidden"
-			});
-		}
-	}
 	function logout() {
 		$("#logoutForm").submit();
 	}
@@ -160,23 +143,6 @@
 			$("#nav-dashboard").addClass("active");
 		}
 	}();
-	$(document).ready(function() {
-		// Facebook button must be visible on screen to be accessible by the script
-		// so we hide it afterwards
-		moveFaceBookLikeButton();
-	});
-	function moveFaceBookLikeButton() {
-		if (typeof ($("div.fb-like").html()) != "undefined") {
-			if ($("div.fb-like iframe").css("visibility") == "visible") {
-				// copy
-				$("span#fb-like-box").html($("div.fb-like").html());
-				// delete
-				$("div.fb-like").hide().html("");
-			} else {
-				setTimeout("moveFaceBookLikeButton()", 100);
-			}
-		}
-	}
 </script>
 
 <c:if test="${isAuthenticated}">

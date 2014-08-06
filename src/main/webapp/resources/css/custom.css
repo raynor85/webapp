@@ -223,6 +223,11 @@ body {
 	border-bottom: 1px dashed #E5E5E5;
 }
 
+.dropdown-menu>li.socialMenuGoogle {
+	padding: 7px 15px 3px 15px;
+	border-bottom: 1px dashed #E5E5E5;
+}
+
 .dropdown-menu>li:last-child.socialMenu {
 	border-bottom: 0;
 }
