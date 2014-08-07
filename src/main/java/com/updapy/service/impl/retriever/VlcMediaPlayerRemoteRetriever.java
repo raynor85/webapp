@@ -12,7 +12,7 @@ public class VlcMediaPlayerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("VLC Media Player");
+		return application.getApiName().equalsIgnoreCase("vlcmediaplayer");
 	}
 
 	@Override

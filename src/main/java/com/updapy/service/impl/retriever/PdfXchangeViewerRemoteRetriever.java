@@ -12,7 +12,7 @@ public class PdfXchangeViewerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("PDF-XChange Viewer");
+		return application.getApiName().equalsIgnoreCase("pdfxchangeviewer");
 	}
 
 	@Override

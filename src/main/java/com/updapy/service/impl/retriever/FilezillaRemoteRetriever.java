@@ -12,7 +12,7 @@ public class FilezillaRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Filezilla");
+		return application.getApiName().equalsIgnoreCase("filezilla");
 	}
 
 	@Override

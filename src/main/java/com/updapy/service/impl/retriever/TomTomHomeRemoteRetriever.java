@@ -18,7 +18,7 @@ public class TomTomHomeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("TomTom Home");
+		return application.getApiName().equalsIgnoreCase("tomtomhome");
 	}
 
 	@Override

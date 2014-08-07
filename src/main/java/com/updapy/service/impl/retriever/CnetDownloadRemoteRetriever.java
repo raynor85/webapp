@@ -12,9 +12,9 @@ public class CnetDownloadRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		String applicationname = application.getName();
-		return applicationname.equalsIgnoreCase("Avast! Free Antivirus") || applicationname.equalsIgnoreCase("SlimDrivers") || applicationname.equalsIgnoreCase("Skype") || applicationname.equalsIgnoreCase("Advanced SystemCare") || applicationname.equalsIgnoreCase("FastStone Image Viewer") || applicationname.equalsIgnoreCase("YTD Video Downloader") || applicationname.equalsIgnoreCase("Ad-Aware Free") || applicationname.equalsIgnoreCase("GOM Media Player")
-				|| applicationname.equalsIgnoreCase("Smart Defrag") || applicationname.equalsIgnoreCase("Virtual DJ") || applicationname.equalsIgnoreCase("PhotoScape") || applicationname.equalsIgnoreCase("Driver Max") || applicationname.equalsIgnoreCase("PrimoPDF");
+		String apiName = application.getApiName();
+		return apiName.equalsIgnoreCase("avast") || apiName.equalsIgnoreCase("slimdrivers") || apiName.equalsIgnoreCase("skype") || apiName.equalsIgnoreCase("advancedsystemcare") || apiName.equalsIgnoreCase("faststoneimageviewer") || apiName.equalsIgnoreCase("ytdvideodownloader") || apiName.equalsIgnoreCase("adawarefree") || apiName.equalsIgnoreCase("gommediaplayer") || apiName.equalsIgnoreCase("smartdefrag") || apiName.equalsIgnoreCase("virtualdj") || apiName.equalsIgnoreCase("photoscape")
+				|| apiName.equalsIgnoreCase("drivermax") || apiName.equalsIgnoreCase("primopdf");
 	}
 
 	@Override

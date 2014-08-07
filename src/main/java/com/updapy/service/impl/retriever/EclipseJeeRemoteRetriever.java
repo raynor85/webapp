@@ -14,7 +14,7 @@ public class EclipseJeeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Eclipse JEE");
+		return application.getApiName().equalsIgnoreCase("eclipsejee");
 	}
 
 	@Override

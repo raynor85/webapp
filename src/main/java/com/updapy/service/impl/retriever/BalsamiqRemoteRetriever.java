@@ -18,7 +18,7 @@ public class BalsamiqRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Balsamiq");
+		return application.getApiName().equalsIgnoreCase("balsamiq");
 	}
 
 	@Override

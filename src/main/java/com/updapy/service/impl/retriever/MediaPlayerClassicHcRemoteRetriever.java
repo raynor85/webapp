@@ -13,7 +13,7 @@ public class MediaPlayerClassicHcRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("MPC - HC");
+		return application.getApiName().equalsIgnoreCase("mediaplayerclassichc");
 	}
 
 	@Override

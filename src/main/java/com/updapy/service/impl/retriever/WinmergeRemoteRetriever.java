@@ -12,7 +12,7 @@ public class WinmergeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("WinMerge");
+		return application.getApiName().equalsIgnoreCase("winmerge");
 	}
 
 	@Override

@@ -13,7 +13,7 @@ public class YoWindowRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("YoWindow");
+		return application.getApiName().equalsIgnoreCase("yowindow");
 	}
 
 	@Override

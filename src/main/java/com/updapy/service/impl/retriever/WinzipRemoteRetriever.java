@@ -12,7 +12,7 @@ public class WinzipRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("WinZip");
+		return application.getApiName().equalsIgnoreCase("winzip");
 	}
 
 	@Override

@@ -13,7 +13,7 @@ public class SpotifyRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Spotify");
+		return application.getApiName().equalsIgnoreCase("spotify");
 	}
 
 	@Override

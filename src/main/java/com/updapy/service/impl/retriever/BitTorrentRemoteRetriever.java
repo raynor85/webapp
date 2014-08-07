@@ -14,7 +14,7 @@ public class BitTorrentRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("BitTorrent");
+		return application.getApiName().equalsIgnoreCase("bittorrent");
 	}
 
 	@Override

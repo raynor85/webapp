@@ -13,7 +13,7 @@ public class SevenZipRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("7-Zip");
+		return application.getApiName().equalsIgnoreCase("7zip");
 	}
 
 	@Override

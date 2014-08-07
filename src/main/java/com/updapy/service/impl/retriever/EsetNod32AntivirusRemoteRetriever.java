@@ -22,7 +22,7 @@ public class EsetNod32AntivirusRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("ESET NOD32 Antivirus");
+		return application.getApiName().equalsIgnoreCase("esetnod32antivirus");
 	}
 
 	@Override

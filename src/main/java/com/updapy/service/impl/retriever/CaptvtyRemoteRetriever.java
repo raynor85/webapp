@@ -14,7 +14,7 @@ public class CaptvtyRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Captvty");
+		return application.getApiName().equalsIgnoreCase("captvty");
 	}
 
 	@Override

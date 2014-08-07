@@ -12,7 +12,7 @@ public class RssOwlRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("RSSOwl");
+		return application.getApiName().equalsIgnoreCase("rssowl");
 	}
 
 	@Override

@@ -14,7 +14,7 @@ public class UTorrentRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("µTorrent");
+		return application.getApiName().equalsIgnoreCase("utorrent");
 	}
 
 	@Override

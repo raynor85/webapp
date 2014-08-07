@@ -12,7 +12,7 @@ public class ItunesRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("iTunes");
+		return application.getApiName().equalsIgnoreCase("itunes");
 	}
 
 	@Override

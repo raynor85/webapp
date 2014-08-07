@@ -16,7 +16,7 @@ public class OperaRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Opera");
+		return application.getApiName().equalsIgnoreCase("opera");
 	}
 
 	@Override

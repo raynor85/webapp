@@ -14,7 +14,7 @@ public class SyncBackSeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("SyncBackSE");
+		return application.getApiName().equalsIgnoreCase("syncbackse");
 	}
 
 	@Override

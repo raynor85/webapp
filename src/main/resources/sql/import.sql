@@ -198,6 +198,12 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://quiterss.org/en/download', 'quiterss.png', 'QuiteRSS', 'quiterss', false, 'APPLICATION');
 -- ESET NOD32 Antivirus
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.eset.com/us/download/home/detail/family/2/', 'esetnod32antivirus.png', 'ESET NOD32 Antivirus', 'esetnod32antivirus', false, 'APPLICATION');
+-- Pot Player
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://daumpotplayer.com/download/', 'potplayer.png', 'Pot Player', 'potplayer', false, 'APPLICATION');
+-- Disk Defrag Touch
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.auslogics.com/en/software/disk-defrag-touch/', 'diskdefragtouch.png', 'Disk Defrag Touch', 'diskdefragtouch', false, 'APPLICATION');
+-- UltraDefrag
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://ultradefrag.sourceforge.net/en/index.html?download', 'ultradefrag.png', 'UltraDefrag', 'ultradefrag', false, 'APPLICATION');
 
 -- Application versions
 INSERT INTO applicationversion(id, creationdate, updatedate, dbversion, versiondate, versionnumber, win32urlen, win32urlfr, win64urlen, win64urlfr, application_id) VALUES (nextval('application_version_seq'), now(), NULL, 0, '2014-05-09 00:00:00.643', '29.0.1', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=en-US', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=fr', NULL, NULL, (select id from applicationreference where apiname = 'firefox'));

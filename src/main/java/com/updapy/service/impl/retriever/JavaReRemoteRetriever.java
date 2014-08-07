@@ -12,7 +12,7 @@ public class JavaReRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Java RE");
+		return application.getApiName().equalsIgnoreCase("javare");
 	}
 
 	@Override

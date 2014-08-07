@@ -14,7 +14,7 @@ public class KLiteCodecPackRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("K-lite Codec Pack");
+		return application.getApiName().equalsIgnoreCase("klitecodecs");
 	}
 
 	@Override

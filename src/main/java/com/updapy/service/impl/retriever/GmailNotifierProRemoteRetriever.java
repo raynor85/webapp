@@ -15,7 +15,7 @@ public class GmailNotifierProRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Gmail Notifier");
+		return application.getApiName().equalsIgnoreCase("gmailnotifier");
 	}
 
 	@Override

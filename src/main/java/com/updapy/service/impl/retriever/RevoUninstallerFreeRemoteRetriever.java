@@ -14,7 +14,7 @@ public class RevoUninstallerFreeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Revo Uninstaller");
+		return application.getApiName().equalsIgnoreCase("revouninstallerfree");
 	}
 
 	@Override

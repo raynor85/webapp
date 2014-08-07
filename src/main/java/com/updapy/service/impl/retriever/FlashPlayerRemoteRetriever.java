@@ -12,7 +12,7 @@ public class FlashPlayerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Flash Player");
+		return application.getApiName().equalsIgnoreCase("flashplayer");
 	}
 
 	@Override

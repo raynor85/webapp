@@ -12,7 +12,7 @@ public class AviraAntivirusFreeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Avira Antivirus");
+		return application.getApiName().equalsIgnoreCase("aviraantivirusfree");
 	}
 
 	@Override

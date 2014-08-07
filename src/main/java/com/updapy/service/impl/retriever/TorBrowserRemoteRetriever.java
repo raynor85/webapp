@@ -15,7 +15,7 @@ public class TorBrowserRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Tor Browser");
+		return application.getApiName().equalsIgnoreCase("torbrowser");
 	}
 
 	@Override

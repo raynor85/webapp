@@ -12,7 +12,7 @@ public class FlashPlayerIeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Flash Player for IE");
+		return application.getApiName().equalsIgnoreCase("flashplayerie");
 	}
 
 	@Override

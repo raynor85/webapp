@@ -11,7 +11,7 @@ public class FirefoxRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Firefox");
+		return application.getApiName().equalsIgnoreCase("firefox");
 	}
 
 	@Override

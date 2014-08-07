@@ -12,7 +12,7 @@ public class PdfsamRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Pdfsam");
+		return application.getApiName().equalsIgnoreCase("pdfsam");
 	}
 
 	@Override

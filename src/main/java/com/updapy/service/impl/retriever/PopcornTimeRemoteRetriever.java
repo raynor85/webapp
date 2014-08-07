@@ -15,7 +15,7 @@ public class PopcornTimeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Popcorn Time");
+		return application.getApiName().equalsIgnoreCase("popcorntime");
 	}
 
 	@Override

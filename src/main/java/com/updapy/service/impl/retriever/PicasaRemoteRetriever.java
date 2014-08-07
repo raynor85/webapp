@@ -12,7 +12,7 @@ public class PicasaRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Picasa");
+		return application.getApiName().equalsIgnoreCase("picasa");
 	}
 
 	@Override

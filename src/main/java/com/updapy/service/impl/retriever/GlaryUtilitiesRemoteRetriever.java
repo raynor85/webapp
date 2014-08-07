@@ -12,7 +12,7 @@ public class GlaryUtilitiesRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Glary Utilities");
+		return application.getApiName().equalsIgnoreCase("glaryutilities");
 	}
 
 	@Override

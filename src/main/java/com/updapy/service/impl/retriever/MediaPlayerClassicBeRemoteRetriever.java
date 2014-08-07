@@ -23,7 +23,7 @@ public class MediaPlayerClassicBeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("MPC - BE");
+		return application.getApiName().equalsIgnoreCase("mediaplayerclassicbe");
 	}
 
 	@Override

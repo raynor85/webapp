@@ -12,7 +12,7 @@ public class UsbDiskSecurityRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("USB Disk Security");
+		return application.getApiName().equalsIgnoreCase("usbdisksecurity");
 	}
 
 	@Override

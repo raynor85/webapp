@@ -17,7 +17,7 @@ public class AdobeAirRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Adobe Air");
+		return application.getApiName().equalsIgnoreCase("adobeair");
 	}
 
 	@Override

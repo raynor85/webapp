@@ -12,7 +12,7 @@ public class ThunderbirdRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Thunderbird");
+		return application.getApiName().equalsIgnoreCase("thunderbird");
 	}
 
 	@Override

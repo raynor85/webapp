@@ -16,7 +16,7 @@ public class IntellijIdeaCommunityRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("IntelliJ IDEA Community");
+		return application.getApiName().equalsIgnoreCase("intellijideacommunity");
 	}
 
 	@Override

@@ -18,7 +18,7 @@ public class VmwareWorkstationRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("VMware Workstation");
+		return application.getApiName().equalsIgnoreCase("vmwareworkstation");
 	}
 
 	@Override

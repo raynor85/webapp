@@ -13,7 +13,7 @@ public class ChromiumRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Chromium");
+		return application.getApiName().equalsIgnoreCase("chromium");
 	}
 
 	@Override

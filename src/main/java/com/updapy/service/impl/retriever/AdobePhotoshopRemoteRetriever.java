@@ -14,7 +14,7 @@ public class AdobePhotoshopRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Adobe Photoshop");
+		return application.getApiName().equalsIgnoreCase("adobephotoshop");
 	}
 
 	@Override

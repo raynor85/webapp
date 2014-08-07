@@ -14,7 +14,7 @@ public class HeidiSqlRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("HeidiSQL");
+		return application.getApiName().equalsIgnoreCase("heidisql");
 	}
 
 	@Override

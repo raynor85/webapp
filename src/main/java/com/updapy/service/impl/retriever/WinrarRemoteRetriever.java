@@ -14,7 +14,7 @@ public class WinrarRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("WinRAR");
+		return application.getApiName().equalsIgnoreCase("winrar");
 	}
 
 	@Override

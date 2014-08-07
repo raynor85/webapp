@@ -12,7 +12,7 @@ public class XnViewRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("XnView");
+		return application.getApiName().equalsIgnoreCase("xnview");
 	}
 
 	@Override

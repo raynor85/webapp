@@ -187,6 +187,9 @@
 		<ref bean="chromeRemoteRetriever" />
 		<ref bean="quiteRssRemoteRetriever" />
 		<ref bean="esetNod32AntivirusRemoteRetriever" />
+		<ref bean="potPlayerRemoteRetriever" />
+		<ref bean="diskDefragTouchRemoteRetriever" />
+		<ref bean="ultraDefragRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

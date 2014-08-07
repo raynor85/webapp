@@ -15,7 +15,7 @@ public class PaintNetRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Paint.NET");
+		return application.getApiName().equalsIgnoreCase("paintnet");
 	}
 
 	@Override

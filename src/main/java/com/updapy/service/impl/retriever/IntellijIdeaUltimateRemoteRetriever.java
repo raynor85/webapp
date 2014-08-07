@@ -16,7 +16,7 @@ public class IntellijIdeaUltimateRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("IntelliJ IDEA Ultimate");
+		return application.getApiName().equalsIgnoreCase("intellijideaultimate");
 	}
 
 	@Override

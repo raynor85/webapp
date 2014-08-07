@@ -14,7 +14,7 @@ public class EclipseStandardRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Eclipse Standard");
+		return application.getApiName().equalsIgnoreCase("eclipsestandard");
 	}
 
 	@Override

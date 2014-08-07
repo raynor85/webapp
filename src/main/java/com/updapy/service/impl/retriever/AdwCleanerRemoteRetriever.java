@@ -12,7 +12,7 @@ public class AdwCleanerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("AdwCleaner");
+		return application.getApiName().equalsIgnoreCase("adwcleaner");
 	}
 
 	@Override

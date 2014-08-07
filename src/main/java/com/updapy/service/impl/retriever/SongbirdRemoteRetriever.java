@@ -15,7 +15,7 @@ public class SongbirdRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Songbird");
+		return application.getApiName().equalsIgnoreCase("songbird");
 	}
 
 	@Override

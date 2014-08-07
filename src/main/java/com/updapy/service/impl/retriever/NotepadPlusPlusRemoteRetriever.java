@@ -12,7 +12,7 @@ public class NotepadPlusPlusRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Notepad++");
+		return application.getApiName().equalsIgnoreCase("notepadplusplus");
 	}
 
 	@Override

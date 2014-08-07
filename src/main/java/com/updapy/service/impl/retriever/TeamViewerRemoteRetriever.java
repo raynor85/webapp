@@ -13,7 +13,7 @@ public class TeamViewerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("TeamViewer");
+		return application.getApiName().equalsIgnoreCase("teamviewer");
 	}
 
 	@Override

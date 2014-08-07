@@ -12,7 +12,7 @@ public class KmPlayerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("KMPlayer");
+		return application.getApiName().equalsIgnoreCase("kmplayer");
 	}
 
 	@Override

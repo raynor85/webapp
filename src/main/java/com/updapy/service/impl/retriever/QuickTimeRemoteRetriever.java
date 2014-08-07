@@ -12,7 +12,7 @@ public class QuickTimeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("QuickTime");
+		return application.getApiName().equalsIgnoreCase("quicktime");
 	}
 
 	@Override

@@ -14,7 +14,7 @@ public class IrfanViewRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("IrfanView");
+		return application.getApiName().equalsIgnoreCase("irfanview");
 	}
 
 	@Override

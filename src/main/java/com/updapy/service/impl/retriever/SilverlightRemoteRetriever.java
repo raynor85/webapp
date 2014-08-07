@@ -12,7 +12,7 @@ public class SilverlightRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Silverlight");
+		return application.getApiName().equalsIgnoreCase("silverlight");
 	}
 
 	@Override

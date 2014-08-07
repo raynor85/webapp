@@ -13,7 +13,7 @@ public class BullzipPdfPrinterCommunityRemoteRetriever implements RemoteRetrieve
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Bullzip PDF Printer");
+		return application.getApiName().equalsIgnoreCase("bullzippdfprintercommmunity");
 	}
 
 	@Override

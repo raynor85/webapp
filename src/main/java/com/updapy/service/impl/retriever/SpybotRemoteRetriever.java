@@ -14,7 +14,7 @@ public class SpybotRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Spybot");
+		return application.getApiName().equalsIgnoreCase("spybot");
 	}
 
 	@Override

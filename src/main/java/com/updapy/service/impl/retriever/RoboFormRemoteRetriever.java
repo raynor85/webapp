@@ -13,7 +13,7 @@ public class RoboFormRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("RoboForm");
+		return application.getApiName().equalsIgnoreCase("roboform");
 	}
 
 	@Override

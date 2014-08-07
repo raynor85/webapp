@@ -12,7 +12,7 @@ public class AudacityRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Audacity");
+		return application.getApiName().equalsIgnoreCase("audacity");
 	}
 
 	@Override

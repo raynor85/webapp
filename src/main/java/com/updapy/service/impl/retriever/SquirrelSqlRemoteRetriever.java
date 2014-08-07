@@ -12,7 +12,7 @@ public class SquirrelSqlRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("SQuirreL SQL");
+		return application.getApiName().equalsIgnoreCase("squirrelsql");
 	}
 
 	@Override

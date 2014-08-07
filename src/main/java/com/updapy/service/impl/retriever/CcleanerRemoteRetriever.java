@@ -14,7 +14,7 @@ public class CcleanerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("CCleaner");
+		return application.getApiName().equalsIgnoreCase("ccleaner");
 	}
 
 	@Override

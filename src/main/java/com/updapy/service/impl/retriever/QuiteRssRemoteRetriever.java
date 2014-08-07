@@ -14,7 +14,7 @@ public class QuiteRssRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("QuiteRSS");
+		return application.getApiName().equalsIgnoreCase("quiterss");
 	}
 
 	@Override

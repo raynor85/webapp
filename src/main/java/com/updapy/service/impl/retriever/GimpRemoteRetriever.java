@@ -12,7 +12,7 @@ public class GimpRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("GIMP");
+		return application.getApiName().equalsIgnoreCase("gimp");
 	}
 
 	@Override

@@ -14,7 +14,7 @@ public class AdobeReaderRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Adobe Reader");
+		return application.getApiName().equalsIgnoreCase("adobereader");
 	}
 
 	@Override

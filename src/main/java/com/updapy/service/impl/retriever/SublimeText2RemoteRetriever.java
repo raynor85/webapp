@@ -12,7 +12,7 @@ public class SublimeText2RemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Sublime Text 2");
+		return application.getApiName().equalsIgnoreCase("sublimetext2");
 	}
 
 	@Override

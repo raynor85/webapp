@@ -13,7 +13,7 @@ public class UnlockerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Unlocker");
+		return application.getApiName().equalsIgnoreCase("unlocker");
 	}
 
 	@Override

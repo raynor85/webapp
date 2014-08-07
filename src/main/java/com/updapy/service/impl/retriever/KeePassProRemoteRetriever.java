@@ -12,7 +12,7 @@ public class KeePassProRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("KeePass Pro");
+		return application.getApiName().equalsIgnoreCase("keepasspro");
 	}
 
 	@Override

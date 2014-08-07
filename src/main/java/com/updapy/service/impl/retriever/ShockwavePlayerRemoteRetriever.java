@@ -18,7 +18,7 @@ public class ShockwavePlayerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("Shockwave Player");
+		return application.getApiName().equalsIgnoreCase("shockwaveplayer");
 	}
 
 	@Override

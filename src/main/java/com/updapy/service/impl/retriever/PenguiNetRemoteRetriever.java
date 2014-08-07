@@ -13,7 +13,7 @@ public class PenguiNetRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getName().equalsIgnoreCase("PenguiNet");
+		return application.getApiName().equalsIgnoreCase("penguinet");
 	}
 
 	@Override
