@@ -26,7 +26,7 @@ public interface EmailSenderService {
 
 	boolean sendWeeklyUpdates(String email, List<NewVersion> newVersions, Locale locale);
 
-	boolean sendAddedApplication(String email, ApplicationReference application, Locale locale);
+	boolean sendAddedApplication(String email, List<ApplicationReference> applications, Locale locale);
 
 	boolean sendDeletedApplication(String email, ApplicationReference application, Locale locale);
 

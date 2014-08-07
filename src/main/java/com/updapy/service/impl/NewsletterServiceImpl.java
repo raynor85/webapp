@@ -16,7 +16,7 @@ import com.updapy.service.NewsletterService;
 import com.updapy.service.UserService;
 
 @Service
-public class EmailNewsletterServiceImpl implements NewsletterService {
+public class NewsletterServiceImpl implements NewsletterService {
 
 	@Autowired
 	private EmailSenderService emailSenderService;

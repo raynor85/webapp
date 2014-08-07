@@ -538,9 +538,6 @@ public class UserServiceImpl implements UserService {
 		notification.setType(TypeNofication.NEW_APPLICATION);
 		notification.setUser(user);
 		applicationService.saveNotification(notification);
-		if (settingsService.isEmailAppAddedActive(user)) {
-			emailAddedApplicationService.addEmailAddedApplication(user, addedApplication);
-		}
 	}
 
 	@Override

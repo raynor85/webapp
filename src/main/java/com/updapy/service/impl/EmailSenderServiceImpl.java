@@ -307,14 +307,22 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 	}
 
 	@Override
-	public boolean sendAddedApplication(String email, ApplicationReference application, Locale locale) {
-		String name = application.getName();
+	public boolean sendAddedApplication(String email, List<ApplicationReference> applications, Locale locale) {
+		String subject = StringUtils.EMPTY;
 		String fromEmail = messageUtils.getSimpleMessage("email.noreply", locale);
-		String subject = messageUtils.getCustomMessage("email.application.added.subject", new String[] { name }, locale);
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("lang", messageUtils.getSimpleMessage("email.lang", locale));
 		model.put("title", messageUtils.getSimpleMessage("email.application.added.content.title", locale));
-		model.put("text", messageUtils.getCustomMessage("email.application.added.content.text", new String[] { name }, locale));
+		if (applications.size() == 1) {
+			// only one application added
+			String name = applications.get(0).getName();
+			subject = messageUtils.getCustomMessage("email.application.added.subject.single", new String[] { name }, locale);
+			model.put("text", messageUtils.getCustomMessage("email.application.added.content.text.single", new String[] { name }, locale));
+		} else {
+			// more than one
+			subject = messageUtils.getSimpleMessage("email.application.added.subject.multi", locale);
+			model.put("text", buildMessageAddedApplications(applications, locale));
+		}
 		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
 		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
 		model.put("unsubscribetext", messageUtils.getSimpleMessage("email.application.added.unsubscribe", locale));
@@ -330,6 +338,15 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	private String buildMessageAddedApplications(List<ApplicationReference> applications, Locale locale) {
+		StringBuilder message = new StringBuilder(messageUtils.getSimpleMessage("email.application.added.text.multi.part1", locale));
+		for (ApplicationReference application : applications) {
+			message.append(messageUtils.getCustomMessage("email.application.added.text.multi.item", new String[] { application.getName() }, locale));
+		}
+		message.append(messageUtils.getSimpleMessage("email.application.added.text.multi.part2", locale));
+		return message.toString();
 	}
 
 	@Override

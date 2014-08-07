@@ -65,7 +65,6 @@ public class ApplicationVersionScheduler {
 
 	// fire twice a day (noon and midnight)
 	@Scheduled(cron = "0 0 0,12 * * *")
-	// @Scheduled(fixedDelay = 500000) // fire at start - testing purpose
 	public void updateApplicationRepositoryAndCreateEmailSingleUpdates() {
 		log.info("> Starting the update of the applications repository (with single emails creation)");
 		List<ApplicationReference> applications = applicationService.getAllActiveApplications();
@@ -103,7 +102,6 @@ public class ApplicationVersionScheduler {
 
 	// fire once a week (each Wednesday at 1am)
 	@Scheduled(cron = "0 0 1 * * WED")
-	// @Scheduled(fixedDelay = 500000) // fire at start - testing purpose
 	@Transactional
 	public void createEmailWeeklyUpdates() {
 		DateTime now = new LocalDate().toDateTimeAtCurrentTime();
@@ -139,28 +137,37 @@ public class ApplicationVersionScheduler {
 
 	// fire twice a day (2am and 2pm)
 	@Scheduled(cron = "0 0 2,14 * * *")
-	// @Scheduled(fixedDelay = 500000) // fire at start - testing purpose
 	@Transactional
 	public void createEmailsAndNotificationsForAddedApplications() {
 		log.info("> Starting creating emails and notifications for applications added");
 		List<ApplicationReference> addedApplications = applicationService.getAddedApplications();
-		for (ApplicationReference addedApplication : addedApplications) {
-			notifyUsersForAddedApplication(addedApplication);
-			applicationService.markAsNotified(addedApplication);
+		if (!addedApplications.isEmpty()) {
+			List<User> userToNotifys = userService.findUsersActive();
+			createEmailsForAddedApplication(userToNotifys, addedApplications);
+			for (ApplicationReference addedApplication : addedApplications) {
+				notifyUsersForAddedApplication(userToNotifys, addedApplication);
+				applicationService.markAsNotified(addedApplication);
+			}
 		}
 		log.info("< Emails and notifications for added app created sucessfully.");
 	}
 
-	private void notifyUsersForAddedApplication(ApplicationReference addedApplication) {
-		List<User> userToNotifys = userService.findUsersActive();
-		for (User userToNotify : userToNotifys) {
-			userService.notifyForAddedApplication(userToNotify, addedApplication);
+	private void createEmailsForAddedApplication(List<User> users, List<ApplicationReference> addedApplications) {
+		for (User user : users) {
+			emailAddedApplicationService.addEmailAddedApplication(user, addedApplications);
+		}
+	}
+
+	private void notifyUsersForAddedApplication(List<User> users, ApplicationReference addedApplication) {
+		for (User user : users) {
+			if (settingsService.isEmailAppAddedActive(user)) {
+				userService.notifyForAddedApplication(user, addedApplication);
+			}
 		}
 	}
 
 	// fire twice a day (3am and 3pm)
 	@Scheduled(cron = "0 0 3,15 * * *")
-	// @Scheduled(fixedDelay = 500000) // fire at start - testing purpose
 	@Transactional
 	public void createEmailsAndNotificationsForDeletedApplications() {
 		log.info("> Starting creating emails and notifications for applications deleted");
@@ -181,7 +188,6 @@ public class ApplicationVersionScheduler {
 
 	// fire twice a day (4am and 4pm)
 	@Scheduled(cron = "0 0 4,16 * * *")
-	// @Scheduled(fixedDelay = 500000) // fire at start - testing purpose
 	@Transactional
 	public void createEmailsNewsletters() {
 		log.info("> Starting creating emails for newsletters");
@@ -202,7 +208,6 @@ public class ApplicationVersionScheduler {
 
 	// fire twice a day (5am and 5pm)
 	@Scheduled(cron = "0 0 5,17 * * *")
-	// @Scheduled(fixedDelay = 500000) // fire at start - testing purpose
 	public void sendEmails() {
 		log.info("> Starting to send emails");
 

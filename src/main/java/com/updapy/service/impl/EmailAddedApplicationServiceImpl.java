@@ -27,10 +27,10 @@ public class EmailAddedApplicationServiceImpl implements EmailAddedApplicationSe
 	private EmailAddedApplicationRepository emailAddedApplicationRepository;
 
 	@Override
-	public EmailAddedApplication addEmailAddedApplication(User user, ApplicationReference application) {
+	public EmailAddedApplication addEmailAddedApplication(User user, List<ApplicationReference> applications) {
 		EmailAddedApplication emailAddedApplication = new EmailAddedApplication();
 		emailAddedApplication.setUser(user);
-		emailAddedApplication.setApplication(application);
+		emailAddedApplication.setApplications(applications);
 		emailAddedApplication.setSent(false);
 		return save(emailAddedApplication);
 	}
@@ -41,7 +41,7 @@ public class EmailAddedApplicationServiceImpl implements EmailAddedApplicationSe
 		int count = 0;
 		for (EmailAddedApplication emailAddedApplication : emailAddedApplications) {
 			User user = emailAddedApplication.getUser();
-			boolean hasBeenSent = emailSenderService.sendAddedApplication(user.getEmail(), emailAddedApplication.getApplication(), user.getLangEmail());
+			boolean hasBeenSent = emailSenderService.sendAddedApplication(user.getEmail(), emailAddedApplication.getApplications(), user.getLangEmail());
 			if (hasBeenSent) {
 				emailAddedApplication.setSent(true);
 				save(emailAddedApplication);
