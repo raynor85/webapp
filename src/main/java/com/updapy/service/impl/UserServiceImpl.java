@@ -57,10 +57,10 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserConnectionRepository userConnectionRepository;
 
-	@Autowired
+	@Autowired(required = false)
 	private AuthenticationManager authenticationManager;
 
-	@Autowired
+	@Autowired(required = false)
 	private BCryptPasswordEncoder passwordEncoder;
 
 	@Autowired

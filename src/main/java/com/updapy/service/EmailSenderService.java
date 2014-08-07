@@ -32,4 +32,6 @@ public interface EmailSenderService {
 
 	boolean sendNewsletter(String email, Newsletter newsletter, Locale locale);
 
+	boolean sendPersonalEmail(String email, String subject, String title, String message, Locale locale);
+
 }

@@ -48,9 +48,8 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 	@Autowired
 	private VelocityEngine velocityEngine;
 
-	// public static final int MAX_NO_PRIOR_EMAILS_SENT_PER_DAY = 150; // let 50 emails per day for subscriptions or other prior emails
-
 	private static final String ADMIN_EMAIL = System.getenv("ADMIN_EMAIL");
+	private static final String CONTACT_EMAIL = System.getenv("CONTACT_EMAIL");
 	private static final String SMTP_HOST_NAME = "smtp.sendgrid.net";
 	private static final String SMTP_AUTH_USER = System.getenv("SENDGRID_USERNAME");
 	private static final String SMTP_AUTH_PWD = System.getenv("SENDGRID_PASSWORD");
@@ -394,6 +393,25 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 
 		try {
 			send(fromEmail, email, subject, message);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean sendPersonalEmail(String email, String subject, String title, String message, Locale locale) {
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("lang", messageUtils.getSimpleMessage("email.lang", locale));
+		model.put("title", title);
+		model.put("text", message);
+		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
+		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
+		model.put("unsubscribetext", StringUtils.EMPTY);
+		String fullMessage = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);
+
+		try {
+			send(CONTACT_EMAIL, email, subject, fullMessage);
 			return true;
 		} catch (Exception e) {
 			return false;
