@@ -319,7 +319,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 			model.put("text", messageUtils.getCustomMessage("email.application.added.content.text.single", new String[] { name }, locale));
 		} else {
 			// more than one
-			subject = messageUtils.getSimpleMessage("email.application.added.subject.multi", locale);
+			subject = messageUtils.getCustomMessage("email.application.added.subject.multi", new Integer[] { applications.size() }, locale);
 			model.put("text", buildMessageAddedApplications(applications, locale));
 		}
 		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));

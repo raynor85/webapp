@@ -154,15 +154,15 @@ public class ApplicationVersionScheduler {
 
 	private void createEmailsForAddedApplication(List<User> users, List<ApplicationReference> addedApplications) {
 		for (User user : users) {
-			emailAddedApplicationService.addEmailAddedApplication(user, addedApplications);
+			if (settingsService.isEmailAppAddedActive(user)) {
+				emailAddedApplicationService.addEmailAddedApplication(user, addedApplications);
+			}
 		}
 	}
 
 	private void notifyUsersForAddedApplication(List<User> users, ApplicationReference addedApplication) {
 		for (User user : users) {
-			if (settingsService.isEmailAppAddedActive(user)) {
-				userService.notifyForAddedApplication(user, addedApplication);
-			}
+			userService.notifyForAddedApplication(user, addedApplication);
 		}
 	}
 

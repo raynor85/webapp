@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"/applicationContext-test.xml"})
+@ContextConfiguration({ "/applicationContext-test.xml" })
 public class SendEmailTest {
 
 	@Autowired
@@ -17,10 +17,10 @@ public class SendEmailTest {
 
 	@Test
 	public void testSendPersonalEmail() {
-		String email = "email@test.com";
-		String subject = "Email subject";
-		String title = "This is my title";
-		String message = "This is my message.<br>How are you?";
+		String email = "";
+		String subject = "How to contact us?";
+		String title = "A question? An idea?";
+		String message = "You can contact us via this email: xxx<br>Thanks for using the Updapy service!";
 		Locale locale = Locale.ENGLISH;
 		emailSenderService.sendPersonalEmail(email, subject, title, message, locale);
 	}

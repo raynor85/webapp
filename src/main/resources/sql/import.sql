@@ -198,8 +198,8 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://quiterss.org/en/download', 'quiterss.png', 'QuiteRSS', 'quiterss', false, 'APPLICATION');
 -- ESET NOD32 Antivirus
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.eset.com/us/download/home/detail/family/2/', 'esetnod32antivirus.png', 'ESET NOD32 Antivirus', 'esetnod32antivirus', false, 'APPLICATION');
--- Pot Player
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://daumpotplayer.com/download/', 'potplayer.png', 'Pot Player', 'potplayer', false, 'APPLICATION');
+-- PotPlayer
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://daumpotplayer.com/download/', 'potplayer.png', 'PotPlayer', 'potplayer', false, 'APPLICATION');
 -- Disk Defrag Touch
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.auslogics.com/en/software/disk-defrag-touch/', 'diskdefragtouch.png', 'Disk Defrag Touch', 'diskdefragtouch', false, 'APPLICATION');
 -- UltraDefrag
