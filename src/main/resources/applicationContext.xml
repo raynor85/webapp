@@ -171,7 +171,7 @@
 		<ref bean="winzipRemoteRetriever" />
 		<ref bean="bitTorrentRemoteRetriever" />
 		<ref bean="uTorrentRemoteRetriever" />
-		<ref bean="popcornTimeRemoteRetriever" />
+		<ref bean="time4PopcornRemoteRetriever" />
 		<ref bean="operaRemoteRetriever" />
 		<ref bean="captvtyRemoteRetriever" />
 		<ref bean="torBrowserRemoteRetriever" />
@@ -190,6 +190,15 @@
 		<ref bean="potPlayerRemoteRetriever" />
 		<ref bean="diskDefragTouchRemoteRetriever" />
 		<ref bean="ultraDefragRemoteRetriever" />
+		<ref bean="xMediaRecodeRemoteRetriever" />
+		<ref bean="speccyRemoteRetriever" />
+		<ref bean="ramDiskRemoteRetriever" />
+		<ref bean="popcornTimeRemoteRetriever" />
+		<ref bean="playClawRemoteRetriever" />
+		<ref bean="subsonicRemoteRetriever" />
+		<ref bean="teamspeakClientRemoteRetriever" />
+		<ref bean="teamspeakServerRemoteRetriever" />
+		<ref bean="wiresharkRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
@@ -219,7 +228,7 @@
 			<property name="jpaProperties">
 				<props>
 					<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
-					<prop key="hibernate.show_sql">true</prop>
+					<prop key="hibernate.show_sql">false</prop>
 					<prop key="hibernate.format_sql">true</prop>
 					<prop key="hibernate.hbm2ddl.import_files">/sql/import.sql</prop>
 					<prop key="hibernate.hbm2ddl.auto">validate</prop>

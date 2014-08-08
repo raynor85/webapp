@@ -7,12 +7,12 @@ import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
-@Component
-public class EclipseJeeRemoteRetriever implements RemoteRetriever {
+@Component(value = "xMediaRecodeRemoteRetriever")
+public class XMediaRecodeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getApiName().equalsIgnoreCase("eclipsejee");
+		return application.getApiName().equalsIgnoreCase("xmediarecode");
 	}
 
 	@Override
@@ -22,7 +22,7 @@ public class EclipseJeeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return ParsingUtils.addHttpPrefix(doc.select("a.downloadLink:contains(Windows 64 Bit)[href*=jee]").attr("href"));
+		return null;
 	}
 
 	@Override
@@ -32,12 +32,12 @@ public class EclipseJeeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ParsingUtils.addHttpPrefix(doc.select("a.downloadLink:contains(Windows 32 Bit)[href*=jee]").attr("href"));
+		return doc.select("a:contains(Download)[href*=.exe]").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("#descriptionText").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("td:contains(Versionshinweise)").get(0).text());
 	}
 
 }

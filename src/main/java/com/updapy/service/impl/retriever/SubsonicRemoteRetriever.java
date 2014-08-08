@@ -8,11 +8,13 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class EclipseJeeRemoteRetriever implements RemoteRetriever {
+public class SubsonicRemoteRetriever implements RemoteRetriever {
+
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.subsonic.org/pages/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getApiName().equalsIgnoreCase("eclipsejee");
+		return application.getApiName().equalsIgnoreCase("subsonic");
 	}
 
 	@Override
@@ -22,7 +24,7 @@ public class EclipseJeeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return ParsingUtils.addHttpPrefix(doc.select("a.downloadLink:contains(Windows 64 Bit)[href*=jee]").attr("href"));
+		return null;
 	}
 
 	@Override
@@ -32,12 +34,12 @@ public class EclipseJeeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ParsingUtils.addHttpPrefix(doc.select("a.downloadLink:contains(Windows 32 Bit)[href*=jee]").attr("href"));
+		return ROOT_DOWNLOAD_WEBSITE + doc.select("a:contains(Download)[href*=.exe]").get(0).attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("#descriptionText").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("th.featurename:contains(stable release)").text());
 	}
 
 }

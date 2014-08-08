@@ -8,11 +8,11 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class EclipseJeeRemoteRetriever implements RemoteRetriever {
+public class PlayClawRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getApiName().equalsIgnoreCase("eclipsejee");
+		return application.getApiName().equalsIgnoreCase("playclaw");
 	}
 
 	@Override
@@ -22,7 +22,7 @@ public class EclipseJeeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return ParsingUtils.addHttpPrefix(doc.select("a.downloadLink:contains(Windows 64 Bit)[href*=jee]").attr("href"));
+		return null;
 	}
 
 	@Override
@@ -32,12 +32,16 @@ public class EclipseJeeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ParsingUtils.addHttpPrefix(doc.select("a.downloadLink:contains(Windows 32 Bit)[href*=jee]").attr("href"));
+		return getDownloadLink(doc);
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("#descriptionText").text());
+		return ParsingUtils.extractVersionNumberFromString(getDownloadLink(doc));
+	}
+
+	private String getDownloadLink(Document doc) {
+		return doc.select("a.download_trial[href*=.exe]").attr("href");
 	}
 
 }

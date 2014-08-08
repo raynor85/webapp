@@ -167,7 +167,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- µTorrent
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.utorrent.com/downloads/win', 'utorrent.png', 'µTorrent', 'utorrent', false, 'APPLICATION');
 -- Popcorn Time
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.time4popcorn.eu', 'popcorntime.png', 'Popcorn Time', 'popcorntime', false, 'APPLICATION');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.time4popcorn.eu', 'popcorntime.png', 'Time 4 Popcorn', 'time4popcorn', false, 'APPLICATION');
 -- Opera
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.opera.com/download/guide/?os=windows&list=all', 'opera.png', 'Opera', 'opera', false, 'APPLICATION');
 -- Captvty
@@ -204,6 +204,24 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.auslogics.com/en/software/disk-defrag-touch/', 'diskdefragtouch.png', 'Disk Defrag Touch', 'diskdefragtouch', false, 'APPLICATION');
 -- UltraDefrag
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://ultradefrag.sourceforge.net/en/index.html?download', 'ultradefrag.png', 'UltraDefrag', 'ultradefrag', false, 'APPLICATION');
+-- XMedia Recode
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.xmedia-recode.de/download.html', 'xmediarecode.png', 'XMedia Recode', 'xmediarecode', false, 'APPLICATION');
+-- Speccy
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.piriform.com/speccy/download', 'speccy.png', 'Speccy', 'speccy', false, 'APPLICATION');
+-- RAM Disk
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.softperfect.com/products/ramdisk/', 'ramdisk.png', 'RAM Disk', 'ramdisk', false, 'APPLICATION');
+-- Popcorn Time
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://popcorntime.io/', 'popcorntime.png', 'Popcorn Time', 'popcorntime', false, 'APPLICATION');
+-- PlayClaw
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.playclaw.com/download.php', 'playclaw.png', 'PlayClaw', 'playclaw', false, 'APPLICATION');
+-- Subsonic
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.subsonic.org/pages/download.jsp', 'subsonic.png', 'Subsonic', 'subsonic', false, 'APPLICATION');
+-- Teamspeak Client
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.teamspeak.com/?page=downloads', 'teamspeak.png', 'Teamspeak Client', 'teamspeakclient', false, 'APPLICATION');
+-- Teamspeak Server
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.teamspeak.com/?page=downloads', 'teamspeak.png', 'Teamspeak Server', 'teamspeakserver', false, 'APPLICATION');
+-- Wireshark
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.wireshark.org/download.html', 'wireshark.png', 'Wireshark', 'wireshark', false, 'APPLICATION');
 
 -- Application versions
 INSERT INTO applicationversion(id, creationdate, updatedate, dbversion, versiondate, versionnumber, win32urlen, win32urlfr, win64urlen, win64urlfr, application_id) VALUES (nextval('application_version_seq'), now(), NULL, 0, '2014-05-09 00:00:00.643', '29.0.1', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=en-US', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=fr', NULL, NULL, (select id from applicationreference where apiname = 'firefox'));

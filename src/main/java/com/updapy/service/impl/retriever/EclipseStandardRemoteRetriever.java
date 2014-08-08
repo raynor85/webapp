@@ -10,8 +10,6 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class EclipseStandardRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http:";
-
 	@Override
 	public boolean support(ApplicationReference application) {
 		return application.getApiName().equalsIgnoreCase("eclipsestandard");
@@ -24,7 +22,7 @@ public class EclipseStandardRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + doc.select("a.downloadLink:contains(Windows 64 Bit)[href*=standard]").attr("href");
+		return ParsingUtils.addHttpPrefix(doc.select("a.downloadLink:contains(Windows 64 Bit)[href*=standard]").attr("href"));
 	}
 
 	@Override
@@ -34,7 +32,7 @@ public class EclipseStandardRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + doc.select("a.downloadLink:contains(Windows 32 Bit)[href*=standard]").attr("href");
+		return ParsingUtils.addHttpPrefix(doc.select("a.downloadLink:contains(Windows 32 Bit)[href*=standard]").attr("href"));
 	}
 
 	@Override

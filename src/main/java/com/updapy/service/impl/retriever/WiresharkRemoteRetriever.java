@@ -8,11 +8,13 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class EclipseJeeRemoteRetriever implements RemoteRetriever {
+public class WiresharkRemoteRetriever implements RemoteRetriever {
+
+	private static final String ROOT_DOWNLOAD_WEBSITE = "https://www.wireshark.org";
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getApiName().equalsIgnoreCase("eclipsejee");
+		return application.getApiName().equalsIgnoreCase("wireshark");
 	}
 
 	@Override
@@ -22,7 +24,7 @@ public class EclipseJeeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return ParsingUtils.addHttpPrefix(doc.select("a.downloadLink:contains(Windows 64 Bit)[href*=jee]").attr("href"));
+		return ROOT_DOWNLOAD_WEBSITE + doc.select("a.dl_link[href*=win64]").get(0).attr("href");
 	}
 
 	@Override
@@ -32,12 +34,16 @@ public class EclipseJeeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ParsingUtils.addHttpPrefix(doc.select("a.downloadLink:contains(Windows 32 Bit)[href*=jee]").attr("href"));
+		return ROOT_DOWNLOAD_WEBSITE + getDownloadLink32(doc);
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("#descriptionText").text());
+		return ParsingUtils.extractVersionNumberFromString(getDownloadLink32(doc));
+	}
+
+	private String getDownloadLink32(Document doc) {
+		return doc.select("a.dl_link[href*=win32]").get(0).attr("href");
 	}
 
 }

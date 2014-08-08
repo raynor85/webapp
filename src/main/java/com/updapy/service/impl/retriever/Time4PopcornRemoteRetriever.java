@@ -1,5 +1,6 @@
 package com.updapy.service.impl.retriever;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -8,11 +9,13 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class EclipseJeeRemoteRetriever implements RemoteRetriever {
+public class Time4PopcornRemoteRetriever implements RemoteRetriever {
+
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.time4popcorn.eu/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getApiName().equalsIgnoreCase("eclipsejee");
+		return application.getApiName().equalsIgnoreCase("time4popcorn");
 	}
 
 	@Override
@@ -22,7 +25,7 @@ public class EclipseJeeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return ParsingUtils.addHttpPrefix(doc.select("a.downloadLink:contains(Windows 64 Bit)[href*=jee]").attr("href"));
+		return null;
 	}
 
 	@Override
@@ -32,12 +35,12 @@ public class EclipseJeeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ParsingUtils.addHttpPrefix(doc.select("a.downloadLink:contains(Windows 32 Bit)[href*=jee]").attr("href"));
+		return ROOT_DOWNLOAD_WEBSITE + doc.select("li.dl-win").select("a").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("#descriptionText").text());
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.replacePattern(doc.select("li.dl-win").text(), "(B|b)eta", "0."));
 	}
 
 }
