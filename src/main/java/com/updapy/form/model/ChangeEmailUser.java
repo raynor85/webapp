@@ -9,12 +9,23 @@ public class ChangeEmailUser {
 	@Email
 	private String newEmail;
 
+	@NotEmpty
+	private String repeatNewEmail;
+
 	public String getNewEmail() {
 		return newEmail;
 	}
 
 	public void setNewEmail(String newEmail) {
 		this.newEmail = newEmail;
+	}
+
+	public String getRepeatNewEmail() {
+		return repeatNewEmail;
+	}
+
+	public void setRepeatNewEmail(String repeatNewEmail) {
+		this.repeatNewEmail = repeatNewEmail;
 	}
 
 }

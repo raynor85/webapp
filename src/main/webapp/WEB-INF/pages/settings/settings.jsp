@@ -229,6 +229,13 @@
 							</c:set>
 							<form:input type="email" path="newEmail" class="form-control" id="newEmail" placeholder="${newEmailPlaceholder}" />
 						</div>
+						<div class="form-group">
+							<label for="repeatNewEmail"><spring:message code="settings.profile.changeEmail.field.repeat.email" /></label>
+							<c:set var="repeatEmailPlaceholder">
+								<spring:message code="settings.profile.changeEmail.field.repeat.email.tip" />
+							</c:set>
+							<form:input type="email" path="repeatNewEmail" class="form-control" id="repeatNewEmail" placeholder="${repeatEmailPlaceholder}" />
+						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default pull-left btn-cancel-next-ladda" data-dismiss="modal">
@@ -297,8 +304,7 @@
 			"emailEachUpdate" : $("input[name='emailEachUpdate']:checked")
 					.val(),
 			"emailWeekly" : $("input[name='emailWeekly']:checked").val(),
-			"emailAppAdded" : $("input[name='emailAppAdded']:checked")
-			.val(),
+			"emailAppAdded" : $("input[name='emailAppAdded']:checked").val(),
 			"emailNewsletter" : $("input[name='emailNewsletter']:checked")
 					.val()
 		};
@@ -349,6 +355,7 @@
 	function ajaxChangeEmailUser() {
 		var json = {
 			"newEmail" : $("#newEmail").val(),
+			"repeatNewEmail" : $("#repeatNewEmail").val()
 		};
 		ajaxCallPost("#changeEmailUserButton", "#changeEmailUserForm", json,
 				"#changeEmailUserResponse", confirmChangeEmail, true);

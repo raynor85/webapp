@@ -27,6 +27,9 @@ public class ChangeEmailUserCustomValidator implements Validator {
 		if (userService.findByEmail(user.getNewEmail()) != null) {
 			errors.rejectValue("newEmail", "InUse.changeEmailUser.newEmail");
 		}
+		if (!(user.getNewEmail().equals(user.getRepeatNewEmail()))) {
+			errors.rejectValue("newEmail", "Mismatch.changeEmailUser.newEmail");
+		}
 	}
 
 }
