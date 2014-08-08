@@ -1,6 +1,8 @@
 package com.updapy.service.impl;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Date;
 import java.util.List;
 
@@ -49,13 +51,26 @@ public class RemoteServiceImpl implements RemoteService {
 			}
 		}
 
-		if (StringUtils.isBlank(version.getVersionNumber()) || StringUtils.isBlank(version.getWin32UrlEn()) || !version.isValidVersionNumber()) {
+		if (StringUtils.isBlank(version.getVersionNumber()) || StringUtils.isBlank(version.getWin32UrlEn()) || !version.isValidVersionNumber() || !isUrlValid(version.getWin32UrlEn()) || !isUrlValid(version.getWin32UrlFr()) || !isUrlValid(version.getWin64UrlEn()) || !isUrlValid(version.getWin64UrlFr())) {
 			// remote version not valid
 			emailSenderService.sendAdminRetrieverError(application.getName());
 			return null;
 		}
 
 		return version;
+	}
+
+	private boolean isUrlValid(String url) {
+		if (StringUtils.isBlank(url)) {
+			// empty url is fine
+			return true;
+		}
+		try {
+			new URL(url);
+		} catch (MalformedURLException e) {
+			return false;
+		}
+		return true;
 	}
 
 	private Document retrieveHtmlDocument(ApplicationReference application) {
