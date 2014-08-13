@@ -38,17 +38,22 @@ public class RemoteServiceImpl implements RemoteService {
 		version.setApplication(application);
 		version.setVersionDate(new Date());
 
-		retrieveInformation: {
-			for (RemoteRetriever remoteRetriever : remoteRetrievers) {
-				if (remoteRetriever.support(application)) {
-					version.setVersionNumber(remoteRetriever.retrieveVersionNumber(doc));
-					version.setWin32UrlEn(remoteRetriever.retrieveWin32UrlEn(doc));
-					version.setWin32UrlFr(remoteRetriever.retrieveWin32UrlFr(doc));
-					version.setWin64UrlEn(remoteRetriever.retrieveWin64UrlEn(doc));
-					version.setWin64UrlFr(remoteRetriever.retrieveWin64UrlFr(doc));
-					break retrieveInformation;
+		try {
+			retrieveInformation: {
+				for (RemoteRetriever remoteRetriever : remoteRetrievers) {
+					if (remoteRetriever.support(application)) {
+						version.setVersionNumber(remoteRetriever.retrieveVersionNumber(doc));
+						version.setWin32UrlEn(remoteRetriever.retrieveWin32UrlEn(doc));
+						version.setWin32UrlFr(remoteRetriever.retrieveWin32UrlFr(doc));
+						version.setWin64UrlEn(remoteRetriever.retrieveWin64UrlEn(doc));
+						version.setWin64UrlFr(remoteRetriever.retrieveWin64UrlFr(doc));
+						break retrieveInformation;
+					}
 				}
 			}
+		} catch (Exception e) {
+			emailSenderService.sendAdminRetrieverError(application.getName() + " <exception>");
+			return null;
 		}
 
 		if (StringUtils.isBlank(version.getVersionNumber()) || StringUtils.isBlank(version.getWin32UrlEn()) || !version.isValidVersionNumber() || !isUrlValid(version.getWin32UrlEn()) || !isUrlValid(version.getWin32UrlFr()) || !isUrlValid(version.getWin64UrlEn()) || !isUrlValid(version.getWin64UrlFr())) {
