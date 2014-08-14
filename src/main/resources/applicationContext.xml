@@ -199,6 +199,8 @@
 		<ref bean="teamspeakClientRemoteRetriever" />
 		<ref bean="teamspeakServerRemoteRetriever" />
 		<ref bean="wiresharkRemoteRetriever" />
+		<ref bean="libreOfficeRemoteRetriever" />
+		<ref bean="openOfficeRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
