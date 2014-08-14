@@ -112,8 +112,8 @@
 	<!-- Remote retrievers -->
 	<util:list id="remoteRetrievers">
 		<ref bean="cnetDownloadRemoteRetriever" />
+		<ref bean="cnetDirectDownloadRemoteRetriever" />
 		<ref bean="irfanViewRemoteRetriever" />
-		<ref bean="spotifyRemoteRetriever" />
 		<ref bean="firefoxRemoteRetriever" />
 		<ref bean="paintNetRemoteRetriever" />
 		<ref bean="notepadPlusPlusRemoteRetriever" />

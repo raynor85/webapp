@@ -9,11 +9,12 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class SpotifyRemoteRetriever implements RemoteRetriever {
+public class CnetDirectDownloadRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getApiName().equalsIgnoreCase("spotify");
+		String apiName = application.getApiName();
+		return apiName.equalsIgnoreCase("spotify") || apiName.equalsIgnoreCase("daemontoolslite");
 	}
 
 	@Override
