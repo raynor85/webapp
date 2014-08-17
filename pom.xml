@@ -11,24 +11,24 @@
 
 		<!-- Spring -->
 		<org.springframework.version>4.0.6.RELEASE</org.springframework.version>
-		<org.springframework.data.version>1.6.1.RELEASE</org.springframework.data.version>
-		<org.springframework.batch.version>3.0.0.RELEASE</org.springframework.batch.version>
-		<org.springframework.security.version>3.2.4.RELEASE</org.springframework.security.version>
-		<org.springframework.hateoas.version>0.14.0.RELEASE</org.springframework.hateoas.version>
+		<org.springframework.data.version>1.6.2.RELEASE</org.springframework.data.version>
+		<org.springframework.batch.version>3.0.1.RELEASE</org.springframework.batch.version>
+		<org.springframework.security.version>3.2.5.RELEASE</org.springframework.security.version>
+		<org.springframework.hateoas.version>0.15.0.RELEASE</org.springframework.hateoas.version>
 		<org.springframework.social.version>1.1.0.RELEASE</org.springframework.social.version>
 		<org.springframework.social.facebook.version>1.1.0.RELEASE</org.springframework.social.facebook.version>
 		<org.springframework.social.google.version>1.0.0.RELEASE</org.springframework.social.google.version>
 		<org.springframework.social.linkedin.version>1.0.0.RELEASE</org.springframework.social.linkedin.version>
 
 		<!-- Hibernate -->
-		<hibernate-entitymanager.version>4.3.5.Final</hibernate-entitymanager.version>
-		<hibernate-validator.version>5.1.1.Final</hibernate-validator.version>
+		<hibernate-entitymanager.version>4.3.6.Final</hibernate-entitymanager.version>
+		<hibernate-validator.version>5.1.2.Final</hibernate-validator.version>
 
 		<!-- Utils -->
 		<org.apache.tiles.version>3.0.4</org.apache.tiles.version>
 		<org.apache.velocity.version>1.7</org.apache.velocity.version>
-		<joda-time.version>2.3</joda-time.version>
-		<jackson.version>2.4.1</jackson.version>
+		<joda-time.version>2.4</joda-time.version>
+		<jackson.version>2.4.1.1</jackson.version>
 		<dozer.version>5.5.1</dozer.version>
 		<org.jsoup.version>1.7.3</org.jsoup.version>
 		<rome.version>1.0.0</rome.version>
@@ -38,7 +38,7 @@
 		<commons-lang.version>3.3.2</commons-lang.version>
 
 		<!-- Root -->
-		<org.apache.httpcomponents.httpclient.version>4.3.4</org.apache.httpcomponents.httpclient.version>
+		<org.apache.httpcomponents.httpclient.version>4.3.5</org.apache.httpcomponents.httpclient.version>
 		<javax.activation.version>1.1.1</javax.activation.version>
 		<javax.mail.version>1.4.7</javax.mail.version>
 		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
@@ -49,12 +49,12 @@
 
 		<!-- Production -->
 		<jsimone.webapp-runner.version>7.0.40.0</jsimone.webapp-runner.version>
-		<com.newrelic.agent.java.version>3.7.2</com.newrelic.agent.java.version>
+		<com.newrelic.agent.java.version>3.9.0</com.newrelic.agent.java.version>
 
 		<!-- Log -->
 		<slf4j.version>1.7.7</slf4j.version>
 		<logback.version>1.1.2</logback.version>
-		<commons-logging.version>1.1.3</commons-logging.version>
+		<commons-logging.version>1.2</commons-logging.version>
 
 		<!-- Testing -->
 		<junit.version>4.11</junit.version>
