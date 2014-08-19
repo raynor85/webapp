@@ -18,6 +18,7 @@ import com.updapy.rss.RssNotificationViewer;
 import com.updapy.rss.model.RssNotification;
 import com.updapy.service.UserService;
 import com.updapy.util.MessageUtils;
+import com.updapy.util.ParsingUtils;
 
 @Controller
 @RequestMapping("/rss")
@@ -40,18 +41,18 @@ public class RssController {
 		for (ApplicationNotification notification : userService.getLastNbNotifications(user, 50)) {
 			RssNotification rssNotification = new RssNotification();
 			rssNotification.setDate(notification.getCreationDate());
-			String prefixe = messageUtils.getSimpleMessage("rss." + notification.getType().name(), locale) + " - ";
+			String prefix = messageUtils.getSimpleMessage("rss." + notification.getType().name(), locale) + " - ";
 			switch (notification.getType()) {
 			case NEW_APPLICATION:
-				rssNotification.setTitle(prefixe + notification.getApplication().getName());
+				rssNotification.setTitle(prefix + ParsingUtils.formatApplicationName(notification.getApplication().getName()));
 				break;
 			case NEW_VERSION:
 				ApplicationVersion version = notification.getVersion();
-				rssNotification.setTitle(prefixe + version.getApplication().getName() + " " + version.getVersionNumber());
+				rssNotification.setTitle(prefix + ParsingUtils.formatApplicationName(version.getApplication().getName()) + " " + version.getVersionNumber());
 				rssNotification.setUrl(userService.getDownloadUrlMatchingSettings(user, version).getUrl());
 				break;
 			case NOT_SUPPORTED_APPLICATION:
-				rssNotification.setTitle(prefixe + notification.getApplication().getName());
+				rssNotification.setTitle(prefix + ParsingUtils.formatApplicationName(notification.getApplication().getName()));
 				break;
 			}
 			rssNotifications.add(rssNotification);
