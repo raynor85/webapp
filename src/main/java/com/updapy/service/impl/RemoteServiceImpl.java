@@ -52,7 +52,7 @@ public class RemoteServiceImpl implements RemoteService {
 				}
 			}
 		} catch (Exception e) {
-			emailSenderService.sendAdminRetrieverError(application.getName() + " <exception>");
+			// it can be normal and random, not useful to send an email on each error
 			return null;
 		}
 
