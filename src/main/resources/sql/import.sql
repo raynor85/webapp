@@ -230,6 +230,14 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/DAEMON-Tools-Lite/3000-2094_4-10778842.html', 'daemontoolslite.png', 'DAEMON Tools Lite', 'daemontoolslite', false, 'APPLICATION');
 -- AVG Free Antivirus 2014
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/AVG-AntiVirus-Free/3000-2239_4-10320142.html', 'avgfreeantivirus.png', 'AVG Free Antivirus', 'avgfreeantivirus', false, 'APPLICATION');
+-- Free YouTube Downloader
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/Free-YouTube-Downloader/3000-2071_4-75219434.html', 'freeyoutubedownloader.png', 'Free YouTube Downloader', 'freeyoutubedownloader', false, 'APPLICATION');
+-- Driver Booster
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/Driver-Booster/3000-18513_4-75992725.html', 'driverbooster.png', 'Driver Booster', 'driverbooster', false, 'DRIVER');
+-- Any Video Converter
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/Any-Video-Converter-Freeware/3000-2194_4-10661456.html', 'anyvideoconverter.png', 'Any Video Converter', 'anyvideoconverter', false, 'APPLICATION');
+-- ManyCam
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.manycam.com/', 'manycam.png', 'ManyCam', 'manycam', false, 'APPLICATION');
 
 -- Application versions
 INSERT INTO applicationversion(id, creationdate, updatedate, dbversion, versiondate, versionnumber, win32urlen, win32urlfr, win64urlen, win64urlfr, application_id) VALUES (nextval('application_version_seq'), now(), NULL, 0, '2014-05-09 00:00:00.643', '29.0.1', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=en-US', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=fr', NULL, NULL, (select id from applicationreference where apiname = 'firefox'));

@@ -201,6 +201,7 @@
 		<ref bean="wiresharkRemoteRetriever" />
 		<ref bean="libreOfficeRemoteRetriever" />
 		<ref bean="openOfficeRemoteRetriever" />
+		<ref bean="manyCamRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
