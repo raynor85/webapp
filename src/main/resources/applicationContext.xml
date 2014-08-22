@@ -202,6 +202,7 @@
 		<ref bean="libreOfficeRemoteRetriever" />
 		<ref bean="openOfficeRemoteRetriever" />
 		<ref bean="manyCamRemoteRetriever" />
+		<ref bean="freeMindRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

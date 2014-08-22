@@ -61,7 +61,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Winmerge
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://winmerge.org/downloads/', 'winmerge.png', 'WinMerge', 'winmerge', true, 'APPLICATION');
 -- PDFCreator
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.pdfforge.org/pdfcreator/choose-version', 'pdfcreator.png', 'PDFCreator', 'pdfcreator', true, 'APPLICATION');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.pdfforge.org/pdfcreator/download', 'pdfcreator.png', 'PDFCreator', 'pdfcreator', true, 'APPLICATION');
 -- Avast
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/Avast-Free-Antivirus/3000-2239_4-10019223.html', 'avast.png', 'Avast! Free Antivirus', 'avast', false, 'APPLICATION');
 -- Spybot
@@ -238,6 +238,8 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/Any-Video-Converter-Freeware/3000-2194_4-10661456.html', 'anyvideoconverter.png', 'Any Video Converter', 'anyvideoconverter', false, 'APPLICATION');
 -- ManyCam
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.manycam.com/', 'manycam.png', 'ManyCam', 'manycam', false, 'APPLICATION');
+-- FreeMind
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://freemind.sourceforge.net/wiki/index.php/Download', 'freemind.png', 'FreeMind', 'freemind', false, 'APPLICATION');
 
 -- Application versions
 INSERT INTO applicationversion(id, creationdate, updatedate, dbversion, versiondate, versionnumber, win32urlen, win32urlfr, win64urlen, win64urlfr, application_id) VALUES (nextval('application_version_seq'), now(), NULL, 0, '2014-05-09 00:00:00.643', '29.0.1', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=en-US', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=fr', NULL, NULL, (select id from applicationreference where apiname = 'firefox'));
