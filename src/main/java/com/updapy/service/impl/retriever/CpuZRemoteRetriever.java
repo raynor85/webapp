@@ -9,12 +9,14 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class CnetDirectDownloadRemoteRetriever implements RemoteRetriever {
+public class CpuZRemoteRetriever implements RemoteRetriever {
+
+	private static final String PATTERN_VERSION = "{version}";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "ftp://ftp.cpuid.com/cpu-z/cpu-z_" + PATTERN_VERSION + "-setup-en.exe";
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		String apiName = application.getApiName();
-		return apiName.equalsIgnoreCase("spotify") || apiName.equalsIgnoreCase("daemontoolslite") || apiName.equalsIgnoreCase("anyvideoconverter");
+		return application.getApiName().equalsIgnoreCase("cpuz");
 	}
 
 	@Override
@@ -34,12 +36,15 @@ public class CnetDirectDownloadRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return StringUtils.removePattern(doc.select("a:contains(Direct Download Link)").attr("href"), "&onid=.*$");
+		return StringUtils.replace(ROOT_DOWNLOAD_WEBSITE, PATTERN_VERSION, getVersionNumber(doc));
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select(".product-landing-quick-specs-row").select(".product-landing-quick-specs-row-content").get(0).text());
+		return getVersionNumber(doc);
 	}
 
+	private String getVersionNumber(Document doc) {
+		return ParsingUtils.extractVersionNumberFromString(doc.select("a:contains(setup, english)").text());
+	}
 }

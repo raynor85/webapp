@@ -9,12 +9,12 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class CnetDirectDownloadRemoteRetriever implements RemoteRetriever {
+public class MicrosoftTechnetRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
 		String apiName = application.getApiName();
-		return apiName.equalsIgnoreCase("spotify") || apiName.equalsIgnoreCase("daemontoolslite") || apiName.equalsIgnoreCase("anyvideoconverter");
+		return apiName.equalsIgnoreCase("processexplorer") || apiName.equalsIgnoreCase("autoruns");
 	}
 
 	@Override
@@ -34,12 +34,12 @@ public class CnetDirectDownloadRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return StringUtils.removePattern(doc.select("a:contains(Direct Download Link)").attr("href"), "&onid=.*$");
+		return doc.select("a:contains(Download)[href*=.zip]").get(0).attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select(".product-landing-quick-specs-row").select(".product-landing-quick-specs-row-content").get(0).text());
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("h1").text(), "(W|w)indows"));
 	}
 
 }

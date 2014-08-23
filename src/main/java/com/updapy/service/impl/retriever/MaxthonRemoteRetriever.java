@@ -9,12 +9,11 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class CnetDirectDownloadRemoteRetriever implements RemoteRetriever {
+public class MaxthonRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		String apiName = application.getApiName();
-		return apiName.equalsIgnoreCase("spotify") || apiName.equalsIgnoreCase("daemontoolslite") || apiName.equalsIgnoreCase("anyvideoconverter");
+		return application.getApiName().equalsIgnoreCase("maxthon");
 	}
 
 	@Override
@@ -34,12 +33,16 @@ public class CnetDirectDownloadRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return StringUtils.removePattern(doc.select("a:contains(Direct Download Link)").attr("href"), "&onid=.*$");
+		return getDownloadLink(doc);
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select(".product-landing-quick-specs-row").select(".product-landing-quick-specs-row-content").get(0).text());
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(getDownloadLink(doc), "^.*/"));
+	}
+
+	private String getDownloadLink(Document doc) {
+		return doc.select("a:contains(Full Installation Package Download)").get(0).attr("href");
 	}
 
 }

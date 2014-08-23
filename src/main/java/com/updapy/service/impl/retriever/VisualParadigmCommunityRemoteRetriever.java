@@ -1,6 +1,5 @@
 package com.updapy.service.impl.retriever;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -9,12 +8,13 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class CnetDirectDownloadRemoteRetriever implements RemoteRetriever {
+public class VisualParadigmCommunityRemoteRetriever implements RemoteRetriever {
+
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.visual-paradigm.com";
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		String apiName = application.getApiName();
-		return apiName.equalsIgnoreCase("spotify") || apiName.equalsIgnoreCase("daemontoolslite") || apiName.equalsIgnoreCase("anyvideoconverter");
+		return application.getApiName().equalsIgnoreCase("visualparadigmcommunity");
 	}
 
 	@Override
@@ -24,7 +24,7 @@ public class CnetDirectDownloadRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return null;
+		return ROOT_DOWNLOAD_WEBSITE + doc.select("a:contains(Windows 64bit)").get(0).attr("href");
 	}
 
 	@Override
@@ -34,12 +34,12 @@ public class CnetDirectDownloadRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return StringUtils.removePattern(doc.select("a:contains(Direct Download Link)").attr("href"), "&onid=.*$");
+		return ROOT_DOWNLOAD_WEBSITE + doc.select("a:contains(Windows 32bit)").get(0).attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select(".product-landing-quick-specs-row").select(".product-landing-quick-specs-row-content").get(0).text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("span.version").text());
 	}
 
 }

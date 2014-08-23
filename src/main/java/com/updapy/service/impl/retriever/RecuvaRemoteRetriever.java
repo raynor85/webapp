@@ -1,6 +1,5 @@
 package com.updapy.service.impl.retriever;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -9,12 +8,13 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class CnetDirectDownloadRemoteRetriever implements RemoteRetriever {
+public class RecuvaRemoteRetriever implements RemoteRetriever {
+
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.piriform.com/recuva/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		String apiName = application.getApiName();
-		return apiName.equalsIgnoreCase("spotify") || apiName.equalsIgnoreCase("daemontoolslite") || apiName.equalsIgnoreCase("anyvideoconverter");
+		return application.getApiName().equalsIgnoreCase("recuva");
 	}
 
 	@Override
@@ -34,12 +34,12 @@ public class CnetDirectDownloadRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return StringUtils.removePattern(doc.select("a:contains(Direct Download Link)").attr("href"), "&onid=.*$");
+		return ROOT_DOWNLOAD_WEBSITE + doc.select("a[href*=download/standard]").get(0).attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select(".product-landing-quick-specs-row").select(".product-landing-quick-specs-row-content").get(0).text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("ul.versionHistory").select("li").select("strong").get(0).text());
 	}
 
 }

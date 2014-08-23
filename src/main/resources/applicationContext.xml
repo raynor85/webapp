@@ -203,6 +203,16 @@
 		<ref bean="openOfficeRemoteRetriever" />
 		<ref bean="manyCamRemoteRetriever" />
 		<ref bean="freeMindRemoteRetriever" />
+		<ref bean="plantUmlRemoteRetriever" />
+		<ref bean="visualParadigmCommunityRemoteRetriever" />
+		<ref bean="recuvaRemoteRetriever" />
+		<ref bean="defragglerRemoteRetriever" />
+		<ref bean="microsoftTechnetRemoteRetriever" />
+		<ref bean="lookNstopRemoteRetriever" />
+		<ref bean="rocketDockRemoteRetriever" />
+		<ref bean="maxthonRemoteRetriever" />
+		<ref bean="cuteFTPRemoteRetriever" />
+		<ref bean="cpuZRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

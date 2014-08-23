@@ -14,7 +14,7 @@ public class CnetDownloadRemoteRetriever implements RemoteRetriever {
 	public boolean support(ApplicationReference application) {
 		String apiName = application.getApiName();
 		return apiName.equalsIgnoreCase("avast") || apiName.equalsIgnoreCase("slimdrivers") || apiName.equalsIgnoreCase("skype") || apiName.equalsIgnoreCase("advancedsystemcare") || apiName.equalsIgnoreCase("faststoneimageviewer") || apiName.equalsIgnoreCase("ytdvideodownloader") || apiName.equalsIgnoreCase("adawarefree") || apiName.equalsIgnoreCase("gommediaplayer") || apiName.equalsIgnoreCase("smartdefrag") || apiName.equalsIgnoreCase("virtualdj") || apiName.equalsIgnoreCase("photoscape")
-				|| apiName.equalsIgnoreCase("drivermax") || apiName.equalsIgnoreCase("primopdf") || apiName.equalsIgnoreCase("avgfreeantivirus") || apiName.equalsIgnoreCase("driverbooster");
+				|| apiName.equalsIgnoreCase("drivermax") || apiName.equalsIgnoreCase("primopdf") || apiName.equalsIgnoreCase("avgfreeantivirus") || apiName.equalsIgnoreCase("driverbooster") || apiName.equalsIgnoreCase("freeyoutubedownloader") || apiName.equalsIgnoreCase("objectdock");
 	}
 
 	@Override

@@ -240,6 +240,30 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.manycam.com/', 'manycam.png', 'ManyCam', 'manycam', false, 'APPLICATION');
 -- FreeMind
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://freemind.sourceforge.net/wiki/index.php/Download', 'freemind.png', 'FreeMind', 'freemind', false, 'APPLICATION');
+-- PlantUML
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://plantuml.sourceforge.net/download.html', 'plantuml.png', 'PlantUML', 'plantuml', false, 'APPLICATION');
+-- Visual Paradigm Community
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.visual-paradigm.com/download/community.jsp', 'visualparadigmcommunity.png', 'Visual Paradigm Community', 'visualparadigmcommunity', false, 'APPLICATION');
+-- Recuva
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.piriform.com/recuva/download', 'recuva.png', 'Recuva', 'recuva', true, 'APPLICATION');
+-- Defraggler
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.piriform.com/defraggler/download', 'defraggler.png', 'Defraggler', 'defraggler', true, 'APPLICATION');
+-- Process Explorer
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://technet.microsoft.com/en-us/sysinternals/bb896653.aspx', 'processexplorer.png', 'Process Explorer', 'processexplorer', true, 'APPLICATION');
+-- Autoruns
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://technet.microsoft.com/en-us/sysinternals/bb963902.aspx', 'autoruns.png', 'Autoruns', 'autoruns', true, 'APPLICATION');
+-- Look 'n' Stop
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.looknstop.com/En/download.htm', 'looknstop.png', 'Look ''n'' Stop', 'looknstop', true, 'APPLICATION');
+-- RocketDock
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://rocketdock.com/DOWNLOAD', 'rocketdock.png', 'RocketDock', 'rocketdock', true, 'APPLICATION');
+-- ObjectDock
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/ObjectDock/3000-2072_4-10210264.html', 'objectdock.png', 'ObjectDock', 'objectdock', true, 'APPLICATION');
+-- Maxthon
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.maxthon.com', 'maxthon.png', 'Maxthon', 'maxthon', true, 'APPLICATION');
+-- CuteFTP
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.cuteftp.com/trial.aspx', 'cuteftp.png', 'CuteFTP', 'cuteftp', true, 'APPLICATION');
+-- CPU-Z
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.cpuid.com/softwares/cpu-z.html', 'cpuz.png', 'CPU-Z', 'cpuz', true, 'APPLICATION');
 
 -- Application versions
 INSERT INTO applicationversion(id, creationdate, updatedate, dbversion, versiondate, versionnumber, win32urlen, win32urlfr, win64urlen, win64urlfr, application_id) VALUES (nextval('application_version_seq'), now(), NULL, 0, '2014-05-09 00:00:00.643', '29.0.1', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=en-US', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=fr', NULL, NULL, (select id from applicationreference where apiname = 'firefox'));
