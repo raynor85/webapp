@@ -215,6 +215,8 @@
 		<ref bean="cpuZRemoteRetriever" />
 		<ref bean="dockerRemoteRetriever" />
 		<ref bean="dropboxRemoteRetriever" />
+		<ref bean="powerIsoRemoteRetriever" />
+		<ref bean="neroBurningRomRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

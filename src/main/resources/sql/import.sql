@@ -270,6 +270,10 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.dropbox.com/install', 'dropbox.png', 'Dropbox', 'dropbox', false, 'APPLICATION');
 -- Torch Browser
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/Torch-Browser/3000-2356_4-75740051.html', 'torchbrowser.png', 'Torch Browser', 'torchbrowser', false, 'APPLICATION');
+-- Power ISO
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.poweriso.com/download.htm', 'poweriso.png', 'Power ISO', 'poweriso', false, 'APPLICATION');
+-- Nero Burning ROM
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.nero.com/eng/products/nero-burning-rom/free-trial-download-started.php?email=test%40test.com', 'neroburningrom.png', 'Nero Burning ROM', 'neroburningrom', false, 'APPLICATION');
 
 -- Application versions
 INSERT INTO applicationversion(id, creationdate, updatedate, dbversion, versiondate, versionnumber, win32urlen, win32urlfr, win64urlen, win64urlfr, application_id) VALUES (nextval('application_version_seq'), now(), NULL, 0, '2014-05-09 00:00:00.643', '29.0.1', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=en-US', 'https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=win&lang=fr', NULL, NULL, (select id from applicationreference where apiname = 'firefox'));
