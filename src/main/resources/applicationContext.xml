@@ -213,6 +213,8 @@
 		<ref bean="maxthonRemoteRetriever" />
 		<ref bean="cuteFTPRemoteRetriever" />
 		<ref bean="cpuZRemoteRetriever" />
+		<ref bean="dockerRemoteRetriever" />
+		<ref bean="dropboxRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
