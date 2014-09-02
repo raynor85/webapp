@@ -10,12 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import com.updapy.model.ApplicationDescription;
 import com.updapy.model.ApplicationFollow;
 import com.updapy.model.ApplicationNotification;
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationRequest;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.User;
+import com.updapy.repository.ApplicationDescriptionRepository;
 import com.updapy.repository.ApplicationFollowRepository;
 import com.updapy.repository.ApplicationNotificationRepository;
 import com.updapy.repository.ApplicationReferenceRepository;
@@ -29,6 +31,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	@Autowired
 	private ApplicationReferenceRepository applicationReferenceRepository;
+
+	@Autowired
+	private ApplicationDescriptionRepository applicationDescriptionRepository;
 
 	@Autowired
 	private ApplicationVersionRepository applicationVersionRepository;
@@ -74,6 +79,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 	public ApplicationVersion getLatestVersion(String apiName) {
 		ApplicationReference application = applicationReferenceRepository.findByApiNameAndNotifiedTrueAndActiveTrue(apiName);
 		return getLatestVersion(application);
+	}
+	
+	@Override
+	public List<ApplicationDescription> getApplicationDescriptions() {
+		return applicationDescriptionRepository.findByApplicationActiveTrueOrderByApplicationNameAsc();
 	}
 
 	@Override

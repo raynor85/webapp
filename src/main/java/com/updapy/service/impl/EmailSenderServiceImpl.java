@@ -33,7 +33,6 @@ import com.updapy.model.Newsletter;
 import com.updapy.service.EmailCounterService;
 import com.updapy.service.EmailSenderService;
 import com.updapy.util.MessageUtils;
-import com.updapy.util.ParsingUtils;
 
 @Service
 public class EmailSenderServiceImpl implements EmailSenderService {
@@ -224,7 +223,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 
 	@Override
 	public boolean sendSingleUpdate(String email, NewVersion newVersion, List<UpdateUrl> otherUpdateUrls, Locale locale) {
-		String subject = messageUtils.getCustomMessage("email.application.update.single.subject", new String[] { ParsingUtils.formatApplicationName(newVersion.getApplicationName()) }, locale);
+		String subject = messageUtils.getCustomMessage("email.application.update.single.subject", new String[] { newVersion.getApplicationName() }, locale);
 		String fromEmail = messageUtils.getSimpleMessage("email.noreply", locale);
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("lang", messageUtils.getSimpleMessage("email.lang", locale));

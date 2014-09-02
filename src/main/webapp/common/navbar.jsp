@@ -21,6 +21,9 @@
 					<li id="nav-faq"><a href="${root}/faq"><spring:message code="menu.faq" /></a></li>
 				</c:if>
 				<li id="nav-developers"><a href="${root}/developers"><spring:message code="menu.developers" /></a></li>
+				<c:if test="${not isAuthenticated}">
+					<li id="nav-appslist"><a href="${root}/applications"><spring:message code="menu.appslist" /></a></li>
+				</c:if>
 				<c:if test="${isAuthenticated && nbNotifications != null}">
 					<li id="nav-dashboard"><a href="${root}/dashboard"><spring:message code="menu.dashboard" /></a></li>
 					<c:choose>
@@ -139,6 +142,8 @@
 			$("#nav-faq").addClass("active");
 		} else if (location.href.match(/developers.?/)) {
 			$("#nav-developers").addClass("active");
+		} else if (location.href.match(/applications.?/)) {
+			$("#nav-appslist").addClass("active");
 		} else if (location.href.match(/dashboard.?/)) {
 			$("#nav-dashboard").addClass("active");
 		}

@@ -173,7 +173,7 @@
 							</c:set>
 							<fieldset>
 								<legend class="legend">
-									<spring:message code="dashboard.applications.followApplications.search.title" />
+									<spring:message code="dashboard.applications.followApplications.filter.title" />
 								</legend>
 								<div class="row rowWithPadding" style="margin-top: -7px !important;">
 									<div class="inner-addon left-addon col-md-4">

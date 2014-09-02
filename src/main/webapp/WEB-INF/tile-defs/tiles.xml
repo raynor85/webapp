@@ -61,6 +61,12 @@
 		<put-attribute name="content" value="/WEB-INF/pages/privacy/privacy.jsp" />
 	</definition>
 
+	<!-- Apps list -->
+	<definition name="appslist" extends="baseLayoutNormal">
+		<put-attribute name="title" value="appslist.title" />
+		<put-attribute name="content" value="/WEB-INF/pages/appslist/appslist.jsp" />
+	</definition>
+	
 	<!-- Sign -->
 	<definition name="sign" extends="baseLayoutInverse">
 		<put-attribute name="title" value="sign.title" />

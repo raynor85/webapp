@@ -19,7 +19,9 @@
 				<br />
 				<br />
 				<br />
-				<a class="btn-color ladda-button" href="${root}/signup"><spring:message code="welcome.action" /></a>
+				<div class="col-sm-12 text-center">
+					<a class="btn-color ladda-button" href="${root}/signup"><spring:message code="welcome.action" /></a>
+				</div>
 			</c:if>
 
 		</div>

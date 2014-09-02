@@ -35,9 +35,4 @@ public class ParsingUtils {
 		return "http://" + url;
 	}
 
-	// because special characters are replaced by ? in many email clients or strange characters in RSS clients.
-	public static String formatApplicationName(String applicationName) {
-		return applicationName.replace('µ', 'u'); // (uTorrent)
-	}
-
 }

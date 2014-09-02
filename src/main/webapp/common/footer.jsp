@@ -10,6 +10,8 @@
 				<li><span class="text-muted">I</span></li>
 				<li><a href="${root}/faq"><spring:message code="footer.faq" /></a></li>
 				<li><span class="text-muted">I</span></li>
+				<li><a href="${root}/applications"><spring:message code="footer.appslist" /></a></li>
+				<li><span class="text-muted">I</span></li>
 				<li class="hidden-on-xs"><span class="text-muted"><spring:message code="footer.follow.part1" /></span></li>
 				<li class="hidden-on-xs"><a href="<spring:message code="application.twitter.url" />" class="text-muted fa fa-twitter fa-2x no-underline" title="<spring:message code="footer.follow.part1" /> <spring:message code="footer.follow.twitter" />"></a></li>
 				<li class="hidden-on-xs"><span class="text-muted"><spring:message code="footer.follow.part2" /></span></li>

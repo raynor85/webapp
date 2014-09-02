@@ -7,6 +7,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.updapy.model.ApplicationDescription;
 import com.updapy.model.ApplicationFollow;
 import com.updapy.model.ApplicationNotification;
 import com.updapy.model.ApplicationReference;
@@ -37,6 +38,13 @@ public interface ApplicationService {
 
 	@Cacheable(value = "applications", key = "'applications.latest'")
 	List<ApplicationReference> getNbLastApplications(int nb);
+
+	/**
+	 * Application Descriptions
+	 */
+
+	@Cacheable(value = "applications", key = "'application.descriptions.all'")
+	List<ApplicationDescription> getApplicationDescriptions();
 
 	/**
 	 * Application Versions
