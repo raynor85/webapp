@@ -13,8 +13,8 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class WordPressRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "https://wordpress.org/";
-	private static final String DOWNLOAD_WEBSITE = ROOT_DOWNLOAD_WEBSITE + "download/";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "https://wordpress.org";
+	private static final String DOWNLOAD_WEBSITE = ROOT_DOWNLOAD_WEBSITE + "/download/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
