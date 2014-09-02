@@ -225,6 +225,8 @@
 		<ref bean="dropboxRemoteRetriever" />
 		<ref bean="powerIsoRemoteRetriever" />
 		<ref bean="neroBurningRomRemoteRetriever" />
+		<ref bean="glassWireRemoteRetriever" />
+		<ref bean="wordPressRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
