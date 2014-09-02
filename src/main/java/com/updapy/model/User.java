@@ -86,6 +86,9 @@ public class User extends BaseEntity {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 	private List<EmailWeeklyUpdate> emailWeeklyUpdates;
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+	private List<EmailNewsletter> emailNewsletters;
+
 	public String getEmail() {
 		return email;
 	}
@@ -272,6 +275,14 @@ public class User extends BaseEntity {
 
 	public void setEmailWeeklyUpdates(List<EmailWeeklyUpdate> emailWeeklyUpdates) {
 		this.emailWeeklyUpdates = emailWeeklyUpdates;
+	}
+
+	public List<EmailNewsletter> getEmailNewsletters() {
+		return emailNewsletters;
+	}
+
+	public void setEmailNewsletters(List<EmailNewsletter> emailNewsletters) {
+		this.emailNewsletters = emailNewsletters;
 	}
 
 }
