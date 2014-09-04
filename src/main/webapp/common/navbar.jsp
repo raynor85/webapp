@@ -75,7 +75,7 @@
 							</span></li>
 							<li id="user-bar" class="hidden-sm"><span class="user-bar-avatar pull-right"> <img src="<spring:url value="/resources/img/dashboard/user-normal.png" />" alt="User default avatar">
 							</span> <a class="pull-right noHover" id="username"> <c:set var="username">
-										<sec:authentication property="principal.username" />
+										<sec:authentication property="principal.name" />
 									</c:set> <c:out value="${username}" escapeXml="false" />
 							</a></li>
 						</ul>
@@ -87,7 +87,7 @@
 					<c:otherwise>
 						<ul class="nav navbar-nav navbar-right hidden-xs">
 							<li><div>
-									<a class="btn btn-color ladda-button" href="${root}/sign" style="margin-top: 12px !important; font-size: 15px !important; padding: 8px 14px !important;"><spring:message code="menu.sign" /></a>
+									<a id="menu-sign" class="btn btn-color ladda-button" href="${root}/sign" style="margin-top: 12px !important; font-size: 15px !important; padding: 8px 14px !important;"><spring:message code="menu.sign" /></a>
 								</div></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right visible-xs">
@@ -149,6 +149,21 @@
 		}
 	}();
 </script>
+
+<c:if test="${not isAuthenticated}">
+	<script>
+		var adaptTextToMenuSize = function() {
+			var signText;
+			var width = $("div.navbar-collapse").width();
+			if (width < 900 && width > 300) {
+				signText = "<spring:message code='menu.sign.short' />";
+			} else {
+				signText = "<spring:message code='menu.sign' />";
+			}
+			$("#menu-sign").text(signText);
+		}();
+	</script>
+</c:if>
 
 <c:if test="${isAuthenticated}">
 	<script>

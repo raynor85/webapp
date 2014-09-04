@@ -43,17 +43,19 @@
 	<c:set var="filterPlaceholder">
 		<spring:message code="appslist.filter.description" />
 	</c:set>
-	<fieldset>
-		<legend class="legend">
-			<spring:message code="appslist.filter.title" />
-		</legend>
-		<div class="row rowWithPadding" style="margin-top: -7px !important;">
-			<div class="inner-addon left-addon col-md-4">
-				<i class="fa fa-search"></i> <input id="filter" type="search" class="form-control filter" placeholder="${filterPlaceholder}">
+	<div class="row">
+		<fieldset>
+			<legend class="legend">
+				<spring:message code="appslist.filter.title" />
+			</legend>
+			<div class="row rowWithPadding" style="margin-top: -7px !important;">
+				<div class="inner-addon left-addon col-md-4">
+					<i class="fa fa-search"></i> <input id="filter" type="search" class="form-control filter" placeholder="${filterPlaceholder}">
+				</div>
+				<div id="filter-count" class="col-md-3">&nbsp;</div>
 			</div>
-			<div id="filter-count" class="col-md-3">&nbsp;</div>
-		</div>
-	</fieldset>
+		</fieldset>
+	</div>
 
 	<div class="row">
 		<div class="col-sm-12">

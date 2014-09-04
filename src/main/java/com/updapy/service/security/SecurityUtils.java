@@ -46,7 +46,7 @@ public class SecurityUtils {
 
 	public static void reloadUsername(String newUsername) {
 		UpdapyUser currentUpdapyUser = ((UpdapyUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-		UpdapyUser newUpdapyUser = new UpdapyUser(newUsername, currentUpdapyUser.getEmail(), currentUpdapyUser.isSocialUser(), "reloadUser", currentUpdapyUser.getAuthorities());
+		UpdapyUser newUpdapyUser = new UpdapyUser(currentUpdapyUser.getEmail(), newUsername, currentUpdapyUser.isSocialUser(), "reloadUser", currentUpdapyUser.getAuthorities());
 		Authentication authentication = new UsernamePasswordAuthenticationToken(newUpdapyUser, newUpdapyUser.getPassword(), newUpdapyUser.getAuthorities());
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 	}

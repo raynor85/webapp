@@ -30,7 +30,7 @@
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 
 <meta name="google-site-verification" content="bFNzltBrYwsapKJE-g0zTlyHG8LHp4ft6LQd8BrtGeY" />
-<meta name="alexaVerifyID" content="hy2BVA3Co4m6XYlZT73StDzyU8c"/> 
+<meta name="alexaVerifyID" content="hy2BVA3Co4m6XYlZT73StDzyU8c" />
 <meta name="keywords" content="<spring:message code="application.keywords" />">
 <meta name="description" content="<spring:message code="application.description" />">
 <meta name="author" content="<spring:message code="application.author" />">
@@ -107,6 +107,7 @@
 <link href="<spring:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
 <script src="<spring:url value="/resources/js/bootstrap.min.js" />"></script>
 <link href="<spring:url value="/resources/css/social-buttons-3.css" />" rel="stylesheet">
+<link href="<spring:url value="/resources/css/awesome-bootstrap-checkbox.css" />" rel="stylesheet">
 
 <!-- Custom styles for this template -->
 <link href="<spring:url value="/resources/css/color-styles.css" />" rel="stylesheet">
