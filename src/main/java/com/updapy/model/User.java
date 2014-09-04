@@ -89,6 +89,12 @@ public class User extends BaseEntity {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 	private List<EmailNewsletter> emailNewsletters;
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+	private List<EmailAddedApplication> emailAddedApplications;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+	private List<EmailDeletedApplication> emailDeletedApplications;
+
 	public String getEmail() {
 		return email;
 	}
@@ -283,6 +289,22 @@ public class User extends BaseEntity {
 
 	public void setEmailNewsletters(List<EmailNewsletter> emailNewsletters) {
 		this.emailNewsletters = emailNewsletters;
+	}
+
+	public List<EmailAddedApplication> getEmailAddedApplications() {
+		return emailAddedApplications;
+	}
+
+	public void setEmailAddedApplications(List<EmailAddedApplication> emailAddedApplications) {
+		this.emailAddedApplications = emailAddedApplications;
+	}
+
+	public List<EmailDeletedApplication> getEmailDeletedApplications() {
+		return emailDeletedApplications;
+	}
+
+	public void setEmailDeletedApplications(List<EmailDeletedApplication> emailDeletedApplications) {
+		this.emailDeletedApplications = emailDeletedApplications;
 	}
 
 }
