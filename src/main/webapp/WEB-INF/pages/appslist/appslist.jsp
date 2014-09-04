@@ -43,7 +43,7 @@
 	<c:set var="filterPlaceholder">
 		<spring:message code="appslist.filter.description" />
 	</c:set>
-	<div class="row">
+	<div class="row rowWithPadding">
 		<fieldset>
 			<legend class="legend">
 				<spring:message code="appslist.filter.title" />
