@@ -3,6 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<%@ page import="com.updapy.model.enumeration.ApplicationType"%>
+
+<c:set var="COMMERCIAL" value="<%=ApplicationType.COMMERCIAL%>" />
+
 <div class="container">
 	<div class="row rowWithPadding">
 		<div id="successRequestApplicationResponse"></div>
@@ -190,8 +194,12 @@
 						<c:forEach items="${leftApplications}" var="leftApplication" varStatus="i">
 							<c:set var="appName">${leftApplication.name}</c:set>
 							<c:set var="appId">${leftApplication.apiName}</c:set>
+							<c:set var="styleCommercial" value="" />
+							<c:if test="${leftApplication.type == COMMERCIAL}">
+								<c:set var="styleCommercial" value="application-commercial" />
+							</c:if>
 							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 newFollowApplicationContainer" onclick="followNewApplication('${appId}');">
-								<div id="div-new-${appId}" class="application" title="${appName}">
+								<div id="div-new-${appId}" class="application ${styleCommercial}" title="${appName} - <spring:message code='appslist.type.${leftApplication.type}' />">
 									<div class="icon">
 										<img src="<spring:url value="/resources/img/application/small/${leftApplication.iconFilename}" />" alt="${appName}">
 									</div>

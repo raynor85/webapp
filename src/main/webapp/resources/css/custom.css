@@ -1639,6 +1639,15 @@ div.newFollowApplicationContainer div.application:hover {
 	border: 1px solid #D6E9C6;
 }
 
+div.newFollowApplicationContainer div.application-commercial:after {
+	position: absolute;
+	font-family: FontAwesome;
+	top: 2px;
+	right: 10px;
+	content: "\f0d6";
+	color: #F0AD4E;
+}
+
 div.newFollowApplicationContainer div.application:active,div.application-selected {
 	color: #005724 !important;
 	cursor: pointer !important;
