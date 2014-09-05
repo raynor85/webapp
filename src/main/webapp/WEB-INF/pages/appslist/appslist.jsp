@@ -88,6 +88,11 @@
 		</fieldset>
 	</div>
 
+	<script>
+		// activate elements
+		$(".selectpicker").selectpicker();
+	</script>
+
 	<div class="row">
 		<div class="col-sm-12">
 			<br />
@@ -144,9 +149,6 @@
 </div>
 
 <script>
-	// activate elements
-	$(".selectpicker").selectpicker();
-
 	// filter by category or type
 	$(".selectpicker").change(function() {
 		setTimeout(function() {
