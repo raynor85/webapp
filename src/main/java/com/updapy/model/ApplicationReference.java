@@ -12,6 +12,7 @@ import javax.persistence.SequenceGenerator;
 
 import com.updapy.model.common.BaseEntity;
 import com.updapy.model.enumeration.ApplicationCategory;
+import com.updapy.model.enumeration.ApplicationType;
 
 @Entity
 @SequenceGenerator(allocationSize = 1, name = "idSequence", sequenceName = "application_reference_seq")
@@ -36,6 +37,9 @@ public class ApplicationReference extends BaseEntity {
 
 	@Enumerated(EnumType.STRING)
 	private ApplicationCategory category;
+
+	@Enumerated(EnumType.STRING)
+	private ApplicationType type;
 
 	public String getName() {
 		return name;
@@ -99,6 +103,14 @@ public class ApplicationReference extends BaseEntity {
 
 	public void setCategory(ApplicationCategory category) {
 		this.category = category;
+	}
+
+	public ApplicationType getType() {
+		return type;
+	}
+
+	public void setType(ApplicationType type) {
+		this.type = type;
 	}
 
 	@Override

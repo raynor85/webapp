@@ -1,11 +1,17 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <%@ page import="com.updapy.model.ApplicationDescription"%>
 <%@ page import="java.util.Locale"%>
+<%@ page import="com.updapy.model.enumeration.ApplicationType"%>
+
+<link href="<spring:url value="/resources/css/bootstrap-select.min.css" />" rel="stylesheet">
+<script src="<spring:url value="/resources/js/bootstrap-select.min.js" />"></script>
 
 <c:set var="nbAppAvailable">${fn:length(applicationDescriptions)}</c:set>
 <c:set var="lang" value="${lang}" />
+<c:set var="COMMERCIAL" value="<%=ApplicationType.COMMERCIAL%>" />
 
 <div class="container">
 	<div class="row">
@@ -49,10 +55,35 @@
 				<spring:message code="appslist.filter.title" />
 			</legend>
 			<div class="row rowWithPadding" style="margin-top: -7px !important;">
-				<div class="inner-addon left-addon col-md-4">
-					<i class="fa fa-search"></i> <input id="filter" type="search" class="form-control filter" placeholder="${filterPlaceholder}">
+				<div class="col-sm-4 col-md-3 col-lg-3">
+					<label for="applicationCategory" style="min-width: 100px;"><spring:message code="appslist.filter.application.category" /></label> <select class="selectpicker" id="applicationCategory">
+						<option value="ALL"><spring:message code="appslist.filter.application.category.all" /></option>
+						<c:forEach items="${applicationCategories}" var="applicationCategory">
+							<option value="${applicationCategory}"><spring:message code="appslist.category.${applicationCategory}" /></option>
+						</c:forEach>
+					</select>
 				</div>
-				<div id="filter-count" class="col-md-3">&nbsp;</div>
+				<div class="col-sm-4 col-md-3 col-lg-3">
+					<label for="applicationType" style="min-width: 100px;"><spring:message code="appslist.filter.application.type" /></label> <select class="selectpicker" id="applicationType">
+						<option value="ALL"><spring:message code="appslist.filter.application.type.all" /></option>
+						<c:forEach items="${applicationTypes}" var="applicationType">
+							<option value="${applicationType}"><spring:message code="appslist.type.${applicationType}" /></option>
+						</c:forEach>
+					</select>
+				</div>
+			</div>
+			<div class="row rowWithPadding">
+				<div class="col-sm-2">
+					<label for="filter"><spring:message code="appslist.filter.name" /></label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-9">
+					<div class="inner-addon left-addon col-sm-6 col-md-5 col-lg-4">
+						<i class="fa fa-search"></i> <input id="filter" type="search" class="form-control filter" placeholder="${filterPlaceholder}">
+					</div>
+					<div id="filter-count" class="col-md-3">&nbsp;</div>
+				</div>
 			</div>
 		</fieldset>
 	</div>
@@ -65,8 +96,16 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
-								<a class="panel-app-name" data-toggle="collapse" href="#collapse${i.count}"> ${applicationDescription.application.name} </a> <a class="pull-right" href="${applicationDescription.website}" target="_blank" title="<spring:message code="appslist.website" />"> <i class="fa fa-external-link"></i>
-								</a>
+								<a class="panel-app-name" data-toggle="collapse" href="#collapse${i.count}"> ${applicationDescription.application.name} </a> <a class="pull-right" style="margin-left: 15px;" href="${applicationDescription.website}" target="_blank" title="<spring:message code="appslist.website" />"> <i class="fa fa-external-link"></i></a>
+								<c:choose>
+									<c:when test="${applicationDescription.application.type == COMMERCIAL}">
+										<c:set var="styleBadgeType" value="danger" />
+									</c:when>
+									<c:otherwise>
+										<c:set var="styleBadgeType" value="success" />
+									</c:otherwise>
+								</c:choose>
+								<span class="badge${applicationDescription.application.type} label label-${styleBadgeType} pull-right"> <i class="fa fa-shopping-cart"></i> <spring:message code="appslist.type.${applicationDescription.application.type}" /></span>
 							</h4>
 						</div>
 						<div id="collapse${i.count}" class="panel-collapse collapse in">
@@ -88,9 +127,13 @@
 													out.println(applicationDescription.getDescriptionEn());
 												}
 										%>
+										<div class="row" style="margin-top: 15px; margin-bottom: 3px;">
+											<div class="col-lg-2 pull-left">
+												<span class="badge${applicationDescription.application.category} label label-default"><i class="fa fa-tag"></i> <spring:message code="appslist.category.${applicationDescription.application.category}" /></span>
+											</div>
+										</div>
 									</div>
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -101,29 +144,62 @@
 </div>
 
 <script>
-	$("#filter").keydown(function() {
+	// activate elements
+	$(".selectpicker").selectpicker();
+
+	// filter by category or type
+	$(".selectpicker").change(function() {
 		setTimeout(function() {
-			filterApps($("#filter").val());
+			filterApps();
 		}, 500); // timeout needed to let the time for the field to be populated
 	});
-	function filterApps(filter) {
-		// retrieve the input field text and reset the count to zero
+
+	// filter by name
+	$("#filter").keydown(function() {
+		setTimeout(function() {
+			filterApps();
+		}, 500);
+	});
+
+	function filterApps() {
+		// retrieve filters and reset the count to zero
+		var filter = $("#filter").val();
+		var category = $("#applicationCategory").val();
+		var type = $("#applicationType").val();
 		var count = 0;
 		// loop through the app list
-		$("#accordion div.panel").each(
-				function() {
-					// if the name of the glossary term does not contain the text phrase fade it out
-					if (jQuery(this).find("a.panel-app-name").text().search(
-							new RegExp(filter, "i")) < 0) {
-						$(this).fadeOut();
+		$("#accordion div.panel")
+				.each(
+						function() {
+							var toFade = false;
+							if (category != 'ALL') {
+								// filter on category
+								if ((jQuery(this))
+										.find("span.badge" + category).length == 0) {
+									toFade = true;
+								}
+							}
+							if (type != 'ALL') {
+								// filter on type
+								if ((jQuery(this)).find("span.badge" + type).length == 0) {
+									toFade = true;
+								}
+							}
+							// filter on app name
+							if (jQuery(this).find("a.panel-app-name").text()
+									.search(new RegExp(filter, "i")) < 0) {
+								toFade = true;
+							}
 
-						// show the list item if the phrase matches and increase the count by 1
-					} else {
-						$(this).show();
-						count++;
-					}
+							if (toFade) {
+								$(this).fadeOut();
+							} else {
+								// show the app if all filters match and increase the count by 1
+								$(this).show();
+								count++;
+							}
 
-				});
+						});
 		updateCounter(count);
 	}
 	function updateCounter(count) {

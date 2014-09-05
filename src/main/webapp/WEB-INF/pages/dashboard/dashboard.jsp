@@ -351,22 +351,22 @@
 	};
 	$("#filter").keydown(function() {
 		setTimeout(function() {
-			filterApps($("#filter").val());
+			filterApps();
 		}, 500); // timeout needed to let the time for the field to be populated
 	});
-	function filterApps(filter) {
+	function filterApps() {
 		// retrieve the input field text and reset the count to zero
+		var filter = $("#filter").val();
 		var count = 0;
 		// loop through the app list
 		$("#appsGrid div.newFollowApplicationContainer").each(
 				function() {
-					// if the name of the glossary term does not contain the text phrase fade it out
+					// if the name of the app does not contain the text phrase fade it out
 					if (jQuery(this).find("span.label-success").text().search(
 							new RegExp(filter, "i")) < 0) {
 						$(this).fadeOut();
-
-						// show the list item if the phrase matches and increase the count by 1
 					} else {
+						// show the app if the phrase matches and increase the count by 1
 						$(this).show();
 						count++;
 					}
