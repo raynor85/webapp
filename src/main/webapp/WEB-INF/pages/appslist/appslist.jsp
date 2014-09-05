@@ -99,13 +99,13 @@
 								<a class="panel-app-name" data-toggle="collapse" href="#collapse${i.count}"> ${applicationDescription.application.name} </a> <a class="pull-right" style="margin-left: 15px;" href="${applicationDescription.website}" target="_blank" title="<spring:message code="appslist.website" />"> <i class="fa fa-external-link"></i></a>
 								<c:choose>
 									<c:when test="${applicationDescription.application.type == COMMERCIAL}">
-										<c:set var="styleBadgeType" value="danger" />
+										<c:set var="styleBadgeType" value="warning" />
 									</c:when>
 									<c:otherwise>
 										<c:set var="styleBadgeType" value="success" />
 									</c:otherwise>
 								</c:choose>
-								<span class="badge${applicationDescription.application.type} label label-${styleBadgeType} pull-right"> <i class="fa fa-shopping-cart"></i> <spring:message code="appslist.type.${applicationDescription.application.type}" /></span>
+								<span class="badge${applicationDescription.application.type} label label-${styleBadgeType} pull-right"> <i class="fa fa-shopping-cart" style="margin-right: 2px;"></i> <spring:message code="appslist.type.${applicationDescription.application.type}" /></span>
 							</h4>
 						</div>
 						<div id="collapse${i.count}" class="panel-collapse collapse in">
@@ -129,7 +129,7 @@
 										%>
 										<div class="row" style="margin-top: 15px; margin-bottom: 3px;">
 											<div class="col-lg-2 pull-left">
-												<span class="badge${applicationDescription.application.category} label label-default"><i class="fa fa-tag"></i> <spring:message code="appslist.category.${applicationDescription.application.category}" /></span>
+												<span class="badge${applicationDescription.application.category} label label-default"><i class="fa fa-tag" style="margin-right: 2px;"></i> <spring:message code="appslist.category.${applicationDescription.application.category}" /></span>
 											</div>
 										</div>
 									</div>
