@@ -191,6 +191,7 @@
 		<ref bean="usbDiskSecurityRemoteRetriever" />
 		<ref bean="syncBackProRemoteRetriever" />
 		<ref bean="syncBackSeRemoteRetriever" />
+		<ref bean="syncBackFreeRemoteRetriever" />
 		<ref bean="tomTomHomeRemoteRetriever" />
 		<ref bean="chromeRemoteRetriever" />
 		<ref bean="quiteRssRemoteRetriever" />
@@ -227,6 +228,8 @@
 		<ref bean="neroBurningRomRemoteRetriever" />
 		<ref bean="glassWireRemoteRetriever" />
 		<ref bean="wordPressRemoteRetriever" />
+		<ref bean="piwikRemoteRetriever" />
+		<ref bean="virtualBoxRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

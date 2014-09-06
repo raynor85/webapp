@@ -1,6 +1,5 @@
 package com.updapy.service.impl.retriever;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -9,13 +8,13 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class GlassWireRemoteRetriever implements RemoteRetriever {
+public class SyncBackFreeRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "https://www.glasswire.com";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.2brightsparks.com/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getApiName().equalsIgnoreCase("glasswire");
+		return application.getApiName().equalsIgnoreCase("syncbackfree");
 	}
 
 	@Override
@@ -35,12 +34,12 @@ public class GlassWireRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + StringUtils.removeStart(doc.select("a.b-download-link").attr("href"), "..");
+		return ROOT_DOWNLOAD_WEBSITE + doc.select("a:contains(Download SyncBackFree)").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("div.b-download-links").text(), "beta.*$"));
+		return ParsingUtils.extractVersionNumberFromString(doc.select("h3:contains(Download SyncBackFree)").text());
 	}
 
 }

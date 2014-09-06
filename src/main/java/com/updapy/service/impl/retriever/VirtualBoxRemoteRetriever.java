@@ -1,6 +1,5 @@
 package com.updapy.service.impl.retriever;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -9,13 +8,11 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class GlassWireRemoteRetriever implements RemoteRetriever {
-
-	private static final String ROOT_DOWNLOAD_WEBSITE = "https://www.glasswire.com";
+public class VirtualBoxRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getApiName().equalsIgnoreCase("glasswire");
+		return application.getApiName().equalsIgnoreCase("virtualbox");
 	}
 
 	@Override
@@ -35,12 +32,12 @@ public class GlassWireRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + StringUtils.removeStart(doc.select("a.b-download-link").attr("href"), "..");
+		return doc.select("strong:containsOwn(for Windows hosts)").parents().first().select("a[href*=.exe]").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("div.b-download-links").text(), "beta.*$"));
+		return ParsingUtils.extractVersionNumberFromString(doc.select("strong:containsOwn(for Windows hosts)").text());
 	}
 
 }
