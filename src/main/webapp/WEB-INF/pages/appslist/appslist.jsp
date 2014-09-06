@@ -82,7 +82,7 @@
 					<div class="inner-addon left-addon col-sm-6 col-md-5 col-lg-4">
 						<i class="fa fa-search"></i> <input id="filter" type="search" class="form-control filter" placeholder="${filterPlaceholder}">
 					</div>
-					<div id="filter-count" class="col-md-3">&nbsp;</div>
+					<div id="filter-count" class="col-sm-5">&nbsp;</div>
 				</div>
 			</div>
 		</fieldset>
