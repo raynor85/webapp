@@ -10,4 +10,6 @@ public interface ApplicationDescriptionRepository extends JpaRepository<Applicat
 
 	List<ApplicationDescription> findByApplicationActiveTrueOrderByApplicationNameAsc();
 
+	ApplicationDescription findByApplicationApiNameAndApplicationActiveTrue(String apiName);
+
 }

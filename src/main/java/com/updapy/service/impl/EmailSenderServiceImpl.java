@@ -314,9 +314,9 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		model.put("title", messageUtils.getSimpleMessage("email.application.added.content.title", locale));
 		if (applications.size() == 1) {
 			// only one application added
-			String name = applications.get(0).getName();
-			subject = messageUtils.getCustomMessage("email.application.added.subject.single", new String[] { name }, locale);
-			model.put("text", messageUtils.getCustomMessage("email.application.added.content.text.single", new String[] { name }, locale));
+			ApplicationReference application = applications.get(0);
+			subject = messageUtils.getCustomMessage("email.application.added.subject.single", new String[] { application.getName() }, locale);
+			model.put("text", messageUtils.getCustomMessage("email.application.added.content.text.single", new String[] { application.getName(), application.getApiName() }, locale));
 		} else {
 			// more than one
 			subject = messageUtils.getCustomMessage("email.application.added.subject.multi", new Integer[] { applications.size() }, locale);
@@ -342,7 +342,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 	private String buildMessageAddedApplications(List<ApplicationReference> applications, Locale locale) {
 		StringBuilder message = new StringBuilder(messageUtils.getSimpleMessage("email.application.added.text.multi.part1", locale));
 		for (ApplicationReference application : applications) {
-			message.append(messageUtils.getCustomMessage("email.application.added.text.multi.item", new String[] { application.getName() }, locale));
+			message.append(messageUtils.getCustomMessage("email.application.added.text.multi.item", new String[] { application.getName(), application.getApiName() }, locale));
 		}
 		message.append(messageUtils.getSimpleMessage("email.application.added.text.multi.part2", locale));
 		return message.toString();

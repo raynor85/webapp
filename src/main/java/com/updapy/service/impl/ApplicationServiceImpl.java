@@ -77,13 +77,18 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	@Override
 	public ApplicationVersion getLatestVersion(String apiName) {
-		ApplicationReference application = applicationReferenceRepository.findByApiNameAndNotifiedTrueAndActiveTrue(apiName);
+		ApplicationReference application = getApplication(apiName);
 		return getLatestVersion(application);
 	}
-	
+
 	@Override
 	public List<ApplicationDescription> getApplicationDescriptions() {
 		return applicationDescriptionRepository.findByApplicationActiveTrueOrderByApplicationNameAsc();
+	}
+
+	@Override
+	public ApplicationDescription getApplicationDescription(String apiName) {
+		return applicationDescriptionRepository.findByApplicationApiNameAndApplicationActiveTrue(apiName);
 	}
 
 	@Override

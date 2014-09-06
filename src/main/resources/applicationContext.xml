@@ -35,6 +35,7 @@
 		<property name="caches">
 			<set>
 				<bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" name="applications" />
+				<bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" name="descriptions" />
 				<bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" name="versions" />
 			</set>
 		</property>
