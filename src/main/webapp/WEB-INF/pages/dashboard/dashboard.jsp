@@ -198,7 +198,7 @@
 							<c:if test="${leftApplication.type == COMMERCIAL}">
 								<c:set var="styleCommercial" value="application-commercial" />
 							</c:if>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 newFollowApplicationContainer" onclick="followNewApplication('${appId}');">
+							<div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 newFollowApplicationContainer" onclick="followNewApplication('${appId}');">
 								<div id="div-new-${appId}" class="application ${styleCommercial}" title="${appName} - <spring:message code='appslist.type.${leftApplication.type}' />">
 									<div class="icon">
 										<img src="<spring:url value="/resources/img/application/small/${leftApplication.iconFilename}" />" alt="${appName}">

@@ -1572,7 +1572,7 @@ pre code {
 
 @media ( min-width :768px) {
 	.container {
-		width: 750px
+		width: 765px
 	}
 }
 
@@ -3969,7 +3969,7 @@ textarea.input-group-sm>.form-control,textarea.input-group-sm>.input-group-addon
 
 .navbar-fixed-top {
 	top: 0;
-	border-width: 0 0 1px
+	border-width: 0px
 }
 
 .navbar-fixed-bottom {
@@ -3992,7 +3992,7 @@ textarea.input-group-sm>.form-control,textarea.input-group-sm>.input-group-addon
 
 @media ( min-width :768px) {
 	.navbar>.container .navbar-brand,.navbar>.container-fluid .navbar-brand {
-		margin-left: -15px
+		margin-left: -20px
 	}
 }
 
@@ -4552,7 +4552,7 @@ textarea.input-group-sm>.form-control,textarea.input-group-sm>.input-group-addon
 
 .label {
 	display: inline;
-	padding: .2em .6em .3em;
+	padding: .3em .6em;
 	font-size: 75%;
 	font-weight: 700;
 	line-height: 1;
@@ -6091,7 +6091,6 @@ button.close {
 	cursor: pointer;
 	background-color: #000 \9;
 	background-color: rgba(0, 0, 0, 0);
-	border: 1px solid #fff;
 	border-radius: 10px
 }
 

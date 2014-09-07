@@ -12,7 +12,7 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="menu.language" /> <b class="caret"></b></a>
+				<li id="dropdown-lang" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="menu.language" /> <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="javascript:changeLocale('en');"><spring:message code="menu.language.en" /></a></li>
 						<li><a href="javascript:changeLocale('fr');"><spring:message code="menu.language.fr" /></a></li>
@@ -40,14 +40,14 @@
 							<c:set var="styleNotification">badge-notification</c:set>
 						</c:when>
 					</c:choose>
-					<li class="dropdown"><a href="#" onclick="javascript:ajaxReadNotifications();" class="dropdown-toggle" data-toggle="dropdown"><span id="badge-notification" class="badge ${styleNotification}">${nbNotifications}</span> <span id="text-notification"><spring:message code="menu.notification.${messageKeyNotification}" /></span> <b class="caret"></b></a>
+					<li id="dropdown-notif" class="dropdown"><a href="#" onclick="javascript:ajaxReadNotifications();" class="dropdown-toggle" data-toggle="dropdown"><span id="badge-notification" class="badge ${styleNotification}">${nbNotifications}</span> <span id="text-notification"><spring:message code="menu.notification.${messageKeyNotification}" /></span> <b class="caret"></b></a>
 						<ul id="notifications" class="dropdown-menu dropdown-menu-right-sm">
 							<li><a class="noHover" style="color: #777 !important; background-color: transparent !important;"><i style="color: #777 !important; background-color: transparent !important;" class="noHover fa fa-refresh fa-spin"></i> &nbsp; <spring:message code="menu.notification.loading" /></a></li>
 							<li><a tabindex="-1" href="${root}/rss/notifications?key=${rssKey}" target="_blank" onmouseover="javascript:$('#rss-icon').css('color', '#1a7440');" onmouseout="javascript:$('#rss-icon').css('color', '#FF6600');" style="color: #333; min-width: 310px"><i id="rss-icon" class="fa fa-rss fa-1-4x pull-right color-rss" style="display: block;"></i> <spring:message code="menu.notification.rss" /></a></li>
 						</ul></li>
 				</c:if>
 				<li class="dropdown"><a href="#" class="dropdown-toggle share-icons" data-toggle="dropdown" title="<spring:message code='menu.support' />"> <i class="fa fa-share-alt"></i> <b class="caret"></b></a>
-					<ul id="socialMenuDropdown" class="dropdown-menu">
+					<ul id="socialMenuDropdown" class="dropdown-menu dropdown-menu-right-sm">
 						<li><a class="noHover" style="color: #555 !important; background-color: transparent !important;"><spring:message code="menu.support.description" /></a></li>
 						<c:choose>
 							<c:when test="${lang == 'fr'}">
@@ -74,7 +74,7 @@
 							<li><span class="user-bar-icons"> <a href="javascript:logout()" title="<spring:message code="menu.logout" />"><i class="fa fa-sign-out" id="sign-out"></i></a> <a href="${root}/settings" title="<spring:message code="menu.settings" />"><i class="fa fa-cog"></i></a>
 							</span></li>
 							<li id="user-bar" class="hidden-sm"><span class="user-bar-avatar pull-right"> <img src="<spring:url value="/resources/img/dashboard/user-normal.png" />" alt="User default avatar">
-							</span> <a class="pull-right noHover" id="username"> <c:set var="username">
+							</span> <a class="pull-right text-muted noHover" id="username" style="max-width: 135px;"> <c:set var="username">
 										<sec:authentication property="principal.name" />
 									</c:set> <c:out value="${username}" escapeXml="false" />
 							</a></li>
@@ -87,7 +87,7 @@
 					<c:otherwise>
 						<ul class="nav navbar-nav navbar-right hidden-xs">
 							<li><div>
-									<a id="menu-sign" class="btn btn-color ladda-button" href="${root}/sign" style="margin-top: 12px !important; font-size: 15px !important; padding: 8px 14px !important;"><spring:message code="menu.sign" /></a>
+									<a id="menu-sign" class="btn btn-color ladda-button" href="${root}/sign" style="margin-top: 12px !important; font-size: 15px !important; padding: 8px 10px !important;"><spring:message code="menu.sign" /></a>
 								</div></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right visible-xs">
@@ -103,6 +103,26 @@
 </div>
 
 <script>
+	// To avoid a changing of width with the bold effect
+	var fixMenuWidth = function() {
+      if ($(window).width() > 767) {
+  	    $("#dropdown-lang").css("width", $("#dropdown-lang").width() + 5 + "px");
+	    $("#dropdown-notif").css("width", $("#dropdown-notif").width() + 30 + "px");
+      }
+	}();
+	var setActiveMenu = function() {
+		if (location.href.match(/faq.?/)) {
+			$("#nav-faq").addClass("active");
+		} else if (location.href.match(/developers.?/)) {
+			$("#nav-developers").addClass("active");
+		} else if (location.href.match(/applications.?/)) {
+			$("#nav-appslist").addClass("active");
+		} else if (location.href.match(/dashboard.?/)) {
+			$("#nav-dashboard").addClass("active");
+		}  else if (location.href.match(/settings.?/)) {
+			$("i.fa-cog").css("color","#1A7440");
+		}
+	}();
 	// Google+1
 	window.___gcfg = {
 		lang : "${lang}"
@@ -137,17 +157,6 @@
 			cache : false
 		});
 	};
-	var setActiveMenu = function() {
-		if (location.href.match(/faq.?/)) {
-			$("#nav-faq").addClass("active");
-		} else if (location.href.match(/developers.?/)) {
-			$("#nav-developers").addClass("active");
-		} else if (location.href.match(/applications.?/)) {
-			$("#nav-appslist").addClass("active");
-		} else if (location.href.match(/dashboard.?/)) {
-			$("#nav-dashboard").addClass("active");
-		}
-	}();
 </script>
 
 <c:if test="${not isAuthenticated}">

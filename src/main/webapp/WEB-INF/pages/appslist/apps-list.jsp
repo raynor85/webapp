@@ -54,7 +54,7 @@
 			<legend class="legend">
 				<spring:message code="appslist.filter.title" />
 			</legend>
-			<div class="row rowWithPadding" style="margin-top: -7px !important;">
+			<div class="row rowWithPadding" style="margin-top: -7px !important; margin-bottom: 10px !important;">
 				<div class="col-sm-4 col-md-3 col-lg-3">
 					<label for="applicationCategory" style="min-width: 100px;"><spring:message code="appslist.filter.application.category" /></label> <select class="selectpicker" id="applicationCategory">
 						<option value="ALL"><spring:message code="appslist.filter.application.category.all" /></option>
@@ -82,7 +82,7 @@
 					<div class="inner-addon left-addon col-sm-6 col-md-5 col-lg-4">
 						<i class="fa fa-search"></i> <input id="filter" type="search" class="form-control filter" placeholder="${filterPlaceholder}">
 					</div>
-					<div id="filter-count" class="col-sm-5">&nbsp;</div>
+					<div id="filter-count-list" class="col-sm-5">&nbsp;</div>
 				</div>
 			</div>
 		</fieldset>
@@ -210,7 +210,7 @@
 			app += "s";
 		}
 		var found = "<spring:message code='appslist.filter.found' />";
-		$("#filter-count").html(
+		$("#filter-count-list").html(
 				"<span class='label label-info'>" + count + "</span> <small>"
 						+ app + " " + found + "</small>");
 	}

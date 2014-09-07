@@ -286,6 +286,24 @@ h2.oswald {
 	}
 }
 
+@media ( max-width : 500px) {
+	.hidden-on-xxs {
+		display: none !important;
+	}
+	.show-on-xxs {
+		display: block !important;
+	}
+}
+
+@media ( min-width : 499px) {
+	.hidden-on-xxs {
+		display: block !important;
+	}
+	.show-on-xxs {
+		display: none !important;
+	}
+}
+
 @media ( min-width : 768px) {
 	.footerAwesome {
 		margin-top: 6px;
