@@ -59,6 +59,10 @@ body {
 	font-size: 75px;
 }
 
+.flag-lang {
+	margin-top: -3px;
+}
+
 /* ===== Navbar ===== */
 .updapy-navbar-inverse {
 	background-color: #FFF;

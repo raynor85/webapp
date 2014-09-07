@@ -14,8 +14,8 @@
 			<ul class="nav navbar-nav">
 				<li id="dropdown-lang" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="menu.language" /> <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="javascript:changeLocale('en');"><spring:message code="menu.language.en" /></a></li>
-						<li><a href="javascript:changeLocale('fr');"><spring:message code="menu.language.fr" /></a></li>
+						<li id="lang-en"><a href="javascript:changeLocale('en');"><img class="flag-lang pull-right" src="<spring:url value="/resources/img/flag/england.png" />"> <spring:message code="menu.language.en" /></a></li>
+						<li id="lang-fr"><a href="javascript:changeLocale('fr');"><img class="flag-lang pull-right" src="<spring:url value="/resources/img/flag/france.png" />"> <spring:message code="menu.language.fr" /></a></li>
 					</ul></li>
 				<c:if test="${not isAuthenticated}">
 					<li id="nav-faq"><a href="${root}/faq"><spring:message code="menu.faq" /></a></li>
@@ -80,7 +80,7 @@
 							</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right visible-xs">
-							<li><a href="${root}/settings"><i class="fa fa-cog fa-1-4x" title="<spring:message code="menu.settings" />"></i>&nbsp;&nbsp;<spring:message code="menu.settings" /></a></li>
+							<li id="nav-settings"><a href="${root}/settings"><i class="fa fa-cog fa-1-4x" title="<spring:message code="menu.settings" />"></i>&nbsp;&nbsp;<spring:message code="menu.settings" /></a></li>
 							<li><a href="javascript:logout();"><i class="fa fa-sign-out fa-1-4x" title="<spring:message code="menu.logout" />"></i>&nbsp; <spring:message code="menu.logout" /></a></li>
 						</ul>
 					</c:when>
@@ -92,7 +92,7 @@
 						</ul>
 						<ul class="nav navbar-nav navbar-right visible-xs">
 							<li><div>
-									<a class="btn btn-color ladda-button" href="${root}/sign" style="margin-top: -5px !important; margin-left: 15px !important; font-size: 15px !important; padding: 8px 14px !important;"><spring:message code="menu.sign" /></a>
+									<a class="btn btn-color ladda-button" href="${root}/sign" style="margin-bottom: 5px !important; margin-left: 15px !important; font-size: 15px !important; padding: 8px 14px !important;"><spring:message code="menu.sign" /></a>
 								</div></li>
 						</ul>
 					</c:otherwise>
@@ -111,6 +111,15 @@
       }
 	}();
 	var setActiveMenu = function() {
+		// current lang
+		var lang;
+		if ($("#dropdown-lang").text().indexOf("Language") > -1) {
+			lang = "en";
+		} else {
+			lang = "fr";
+		}
+		$("#lang-" + lang).addClass("active");
+		// current tab
 		if (location.href.match(/faq.?/)) {
 			$("#nav-faq").addClass("active");
 		} else if (location.href.match(/developers.?/)) {
@@ -120,7 +129,14 @@
 		} else if (location.href.match(/dashboard.?/)) {
 			$("#nav-dashboard").addClass("active");
 		}  else if (location.href.match(/settings.?/)) {
-			$("i.fa-cog").css("color","#1A7440");
+			var color;
+			if ($(window).width() > 767) {
+			  color = "#1A7440";
+			} else {
+				color = "#fff";
+			}
+			$("i.fa-cog").css("color", color);
+			$("#nav-settings").addClass("active");
 		}
 	}();
 	// Google+1
