@@ -605,9 +605,11 @@ a.text-muted {
 }
 
 /* ===== Share icons ===== */
-.share-menu {
-	padding-top: 23px !important;
-	padding-bottom: 20px !important;
+@media ( min-width : 768px) {
+	.share-menu {
+		padding-top: 23px !important;
+		padding-bottom: 20px !important;
+	}
 }
 
 .share-icon {
