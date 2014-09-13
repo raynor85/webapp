@@ -7,6 +7,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.social.connect.Connection;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.updapy.form.model.Notification;
 import com.updapy.form.model.UpdateUrl;
 import com.updapy.model.ApplicationFollow;
 import com.updapy.model.ApplicationNotification;
@@ -95,5 +96,7 @@ public interface UserService {
 	List<ApplicationNotification> getLastNbNotifications(User user, int nb);
 
 	boolean markAsReadAllNotifications(User user);
+
+	void addDownloadLinksToNotifications(List<Notification> notifications, User user);
 
 }

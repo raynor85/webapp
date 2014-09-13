@@ -22,6 +22,7 @@ import org.springframework.social.connect.ConnectionKey;
 import org.springframework.social.connect.UserProfile;
 import org.springframework.stereotype.Service;
 
+import com.updapy.form.model.Notification;
 import com.updapy.form.model.UpdateUrl;
 import com.updapy.model.ApplicationFollow;
 import com.updapy.model.ApplicationNotification;
@@ -36,7 +37,7 @@ import com.updapy.model.enumeration.OsVersion;
 import com.updapy.model.enumeration.Parameter;
 import com.updapy.model.enumeration.SocialMediaService;
 import com.updapy.model.enumeration.TypeHelpMessage;
-import com.updapy.model.enumeration.TypeNofication;
+import com.updapy.model.enumeration.TypeNotification;
 import com.updapy.repository.UserConnectionRepository;
 import com.updapy.repository.UserRepository;
 import com.updapy.service.ApplicationService;
@@ -527,7 +528,7 @@ public class UserServiceImpl implements UserService {
 		ApplicationNotification notification = new ApplicationNotification();
 		notification.setRead(false);
 		notification.setVersion(newVersion);
-		notification.setType(TypeNofication.NEW_VERSION);
+		notification.setType(TypeNotification.NEW_VERSION);
 		notification.setUser(user);
 		applicationService.saveNotification(notification);
 		if (settingsService.isEmailOnEachUpdateActive(user) && isEmailAlertFollowedApplicationEnabled(user, newVersion.getApplication().getApiName())) {
@@ -540,7 +541,7 @@ public class UserServiceImpl implements UserService {
 		ApplicationNotification notification = new ApplicationNotification();
 		notification.setRead(false);
 		notification.setApplication(addedApplication);
-		notification.setType(TypeNofication.NEW_APPLICATION);
+		notification.setType(TypeNotification.NEW_APPLICATION);
 		notification.setUser(user);
 		applicationService.saveNotification(notification);
 	}
@@ -550,7 +551,7 @@ public class UserServiceImpl implements UserService {
 		ApplicationNotification notification = new ApplicationNotification();
 		notification.setRead(false);
 		notification.setApplication(deletedApplication);
-		notification.setType(TypeNofication.NOT_SUPPORTED_APPLICATION);
+		notification.setType(TypeNotification.NOT_SUPPORTED_APPLICATION);
 		notification.setUser(user);
 		applicationService.saveNotification(notification);
 		emailDeletedApplicationService.addEmailDeletedApplication(user, deletedApplication);
@@ -588,6 +589,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean markAsReadAllNotifications(User user) {
 		return applicationService.markAsReadAllNotifications(user);
+	}
+
+	@Override
+	public void addDownloadLinksToNotifications(List<Notification> notifications, User user) {
+		for (Notification notification : notifications) {
+			if (TypeNotification.NEW_VERSION.equals(notification.getType())) {
+				notification.setVersionDownloadLink(getDownloadUrlMatchingSettings(user, applicationService.getLatestVersion(notification.getApplicationApiName())).getUrl());
+			}
+		}
 	}
 
 }

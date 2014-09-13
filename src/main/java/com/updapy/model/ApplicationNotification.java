@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import com.updapy.model.common.BaseEntity;
-import com.updapy.model.enumeration.TypeNofication;
+import com.updapy.model.enumeration.TypeNotification;
 
 @Entity
 @SequenceGenerator(allocationSize = 1, name = "idSequence", sequenceName = "application_notification_seq")
@@ -28,7 +28,7 @@ public class ApplicationNotification extends BaseEntity {
 	private boolean read;
 
 	@Enumerated(EnumType.STRING)
-	private TypeNofication type;
+	private TypeNotification type;
 
 	public ApplicationVersion getVersion() {
 		return version;
@@ -54,11 +54,11 @@ public class ApplicationNotification extends BaseEntity {
 		this.read = read;
 	}
 
-	public TypeNofication getType() {
+	public TypeNotification getType() {
 		return type;
 	}
 
-	public void setType(TypeNofication type) {
+	public void setType(TypeNotification type) {
 		this.type = type;
 	}
 

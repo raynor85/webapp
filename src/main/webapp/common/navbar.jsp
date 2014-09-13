@@ -212,6 +212,7 @@
 								var lightColor = "#848484";
 								if (response[i].type == 'NEW_VERSION') {
 									var styleNew = "danger";
+									var link = response[i].versionDownloadLink;
 									if (!response[i].wasRead) {
 										bgcolor = "#FBEEED";
 										darkColor = "#B93935";
@@ -219,25 +220,30 @@
 									}
 									responseNotifications += "<li><a style='background-color: "
 											+ bgcolor
-											+ " !important;color: "
+											+ ";color: "
 											+ darkColor
-											+ " !important;'><div style='display: inline-block;min-width:310px;width:100%;'><div class='pull-left'>"
+											+ ";' href='"
+											+ link
+											+ "' target='_blank'><div style='display: inline-block;min-width:310px;width:100%;'><div class='pull-left'>"
 											+ response[i].applicationName
 											+ " <em style='color:" + lightColor + ";'>("
 											+ response[i].versionNumber
 											+ ")</em></div>";
 								} else if (response[i].type == 'NEW_APPLICATION') {
-									var styleNew = "success";
+									var styleNew = "info";
+									var link = "${root}/applications/" + response[i].applicationApiName;
 									if (!response[i].wasRead) {
-										bgcolor = "#E9F7EF";
-										darkColor = "#1A7440";
-										lightColor = "#27AE60";
+										bgcolor = "#EFF9FC";
+										darkColor = "#117EDD";
+										lightColor = "#29A3DB";
 									}
 									responseNotifications += "<li><a style='background-color: "
 											+ bgcolor
-											+ " !important;color: "
+											+ ";color: "
 											+ darkColor
-											+ " !important;'><div style='display: inline-block;min-width:310px;width:100%;'><div class='pull-left'>"
+											+ ";' href='"
+											+ link
+											+ "'><div style='display: inline-block;min-width:310px;width:100%;'><div class='pull-left'>"
 											+ response[i].applicationName
 											+ " <em style='color:" + lightColor + ";'>- "
 											+ "<spring:message code='menu.notification.added.application' />"

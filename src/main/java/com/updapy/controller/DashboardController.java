@@ -123,6 +123,8 @@ public class DashboardController {
 		User user = userService.getCurrentUserLight();
 		List<ApplicationNotification> applicationNotifications = userService.getLastNbNotifications(user, 10);
 		List<Notification> notifications = dozerHelper.mapWithPropertyContext(applicationNotifications, Notification.class, "type");
+		// populate version download links
+		userService.addDownloadLinksToNotifications(notifications, user);
 		userService.markAsReadAllNotifications(user);
 		return notifications;
 	}

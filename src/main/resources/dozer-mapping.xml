@@ -54,6 +54,10 @@
 			<b>applicationName</b>
 		</field>
 		<field>
+			<a>version.application.apiName</a>
+			<b>applicationApiName</b>
+		</field>
+		<field>
 			<a>version.versionNumber</a>
 			<b>versionNumber</b>
 		</field>
@@ -68,6 +72,10 @@
 		<field>
 			<a>application.name</a>
 			<b>applicationName</b>
+		</field>
+		<field>
+			<a>application.apiName</a>
+			<b>applicationApiName</b>
 		</field>
 		<field>
 			<a>read</a>
