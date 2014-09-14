@@ -137,6 +137,13 @@ public class UserServiceImplTest {
 		Assert.assertEquals("win64UrlEn", userService.getDownloadUrlMatchingSettings(user, version).getUrl());
 	}
 
+	@Test
+	public void testGetDownloadUrlMatchingSettingsTest17() {
+		User user = createUser(Lang.fr, OsVersion.WIN_64_BITS);
+		ApplicationVersion version = createVersion("win32UrlEn", "win32UrlFr", null, null);
+		Assert.assertEquals("win32UrlFr", userService.getDownloadUrlMatchingSettings(user, version).getUrl());
+	}
+
 	private User createUser(Lang lang, OsVersion osVersion) {
 		User user = new User();
 		user.setLangUpdate(lang);

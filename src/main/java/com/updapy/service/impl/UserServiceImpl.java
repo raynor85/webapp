@@ -463,6 +463,8 @@ public class UserServiceImpl implements UserService {
 		UpdateUrl defaultUrl = new UpdateUrl(appVersion.getWin32UrlEn(), Lang.en, OsVersion.WIN_32_BITS);
 		if (OsVersion.WIN_64_BITS.equals(osVersion) && StringUtils.isNotBlank(appVersion.getWin64UrlEn())) {
 			defaultUrl = new UpdateUrl(appVersion.getWin64UrlEn(), Lang.en, OsVersion.WIN_64_BITS);
+		} else if (Lang.fr.equals(lang) && StringUtils.isNotBlank(appVersion.getWin32UrlFr())) {
+			defaultUrl = new UpdateUrl(appVersion.getWin32UrlFr(), Lang.fr, OsVersion.WIN_32_BITS);
 		}
 
 		if (lang == null && osVersion == null || Lang.en.equals(lang) && osVersion == null || Lang.en.equals(lang) && OsVersion.WIN_32_BITS.equals(osVersion) || lang == null && OsVersion.WIN_32_BITS.equals(osVersion)) {

@@ -11,8 +11,8 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class LookNstopRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.looknstop.com/";
-	private static final String SUFFIX_EN = "En/";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.looknstop.com";
+	private static final String SUFFIX_EN = "/En/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
