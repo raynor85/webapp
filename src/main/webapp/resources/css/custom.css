@@ -12,6 +12,16 @@ body {
 	background: #ecf0f1;
 }
 
+::selection {
+	background: #5FCF80; /* WebKit/Blink Browsers */
+	color: #fff;
+}
+
+::-moz-selection {
+	background: #5FCF80; /* Gecko Browsers */
+	color: #fff;
+}
+
 /* ===== Sticky Footer Trick ===== */
 .wrapper {
 	min-height: 100%;
