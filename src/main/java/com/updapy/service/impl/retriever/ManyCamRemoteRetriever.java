@@ -32,7 +32,7 @@ public class ManyCamRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a#download-mirror").attr("href");
+		return doc.select("a#download-btn").attr("href");
 	}
 
 	@Override
