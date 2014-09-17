@@ -231,6 +231,10 @@
 		<ref bean="wordPressRemoteRetriever" />
 		<ref bean="piwikRemoteRetriever" />
 		<ref bean="virtualBoxRemoteRetriever" />
+		<ref bean="tortoiseSvnRemoteRetriever" />
+		<ref bean="tortoiseGitRemoteRetriever" />
+		<ref bean="foobar2000RemoteRetriever" />
+		<ref bean="launchyRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
