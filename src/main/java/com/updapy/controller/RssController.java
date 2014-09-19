@@ -44,6 +44,7 @@ public class RssController {
 			switch (notification.getType()) {
 			case NEW_APPLICATION:
 				rssNotification.setTitle(prefix + notification.getApplication().getName());
+				rssNotification.setUrl(messageUtils.getSimpleMessage("application.root.url") + "/applications/" + notification.getApplication().getApiName());
 				break;
 			case NEW_VERSION:
 				ApplicationVersion version = notification.getVersion();
