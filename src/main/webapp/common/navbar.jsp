@@ -114,7 +114,6 @@
 	// To avoid a changing of width with the bold effect
 	var fixMenuWidth = function() {
       if ($(window).width() > 767) {
-  	    $("#dropdown-lang").css("width", $("#dropdown-lang").width() + 5 + "px");
 	    $("#dropdown-notif").css("width", $("#dropdown-notif").width() + 30 + "px");
       }
 	}();
