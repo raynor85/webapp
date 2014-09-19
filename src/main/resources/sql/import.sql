@@ -303,7 +303,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- SMPlayer
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://sourceforge.net/projects/smplayer/rss', 'smplayer.png', 'SMPlayer', 'smplayer', false, 'VIDEO', 'FREE');
 -- CDBurnerXP
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://cdburnerxp.se/download', 'cdburnerxp.png', 'CDBurnerXP', 'cdburnerxp', false, 'TOOLS', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/CDBurnerXP/3000-2646_4-10409086.html', 'cdburnerxp.png', 'CDBurnerXP', 'cdburnerxp', false, 'TOOLS', 'FREE');
 -- FeedDemon
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.feeddemon.com/', 'feeddemon.png', 'FeedDemon', 'feeddemon', false, 'SOCIAL_COMMUNICATION', 'FREE');
 -- .NET Framework

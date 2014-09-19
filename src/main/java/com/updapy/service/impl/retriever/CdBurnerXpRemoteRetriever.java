@@ -10,6 +10,9 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class CdBurnerXpRemoteRetriever implements RemoteRetriever {
 
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://cdburnerxp.se/downloadsetup.exe";
+	private static final String PLATFORM_64_BIT = "?x64";
+
 	@Override
 	public boolean support(ApplicationReference application) {
 		return application.getApiName().equalsIgnoreCase("cdburnerxp");
@@ -22,7 +25,7 @@ public class CdBurnerXpRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return doc.select("a[href*=x64]:contains(64 bit)").attr("href");
+		return ROOT_DOWNLOAD_WEBSITE + PLATFORM_64_BIT;
 	}
 
 	@Override
@@ -32,12 +35,12 @@ public class CdBurnerXpRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a[href*=.exe]:contains(32 bit)").attr("href");
+		return ROOT_DOWNLOAD_WEBSITE;
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("h3").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select(".product-landing-quick-specs-row-label:contains(Version)").parents().select(".product-landing-quick-specs-row-content").get(0).text());
 	}
 
 }
