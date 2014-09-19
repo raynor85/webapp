@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
+<c:set var="lang" value="${lang}" />
 <div class="navbar updapy-navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="container container-menu">
 		<div class="navbar-header">
@@ -12,10 +13,17 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li id="dropdown-lang" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="menu.language" /> <b class="caret"></b></a>
+				<li id="dropdown-lang" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <c:choose>
+							<c:when test="${lang == 'en'}">
+								<img src="<spring:url value="/resources/img/flag/en.png" />">
+							</c:when>
+							<c:when test="${lang == 'fr'}">
+								<img src="<spring:url value="/resources/img/flag/fr.png" />">
+							</c:when>
+						</c:choose> <i class="fa fa-angle-down "></i></a>
 					<ul class="dropdown-menu">
-						<li id="lang-en"><a href="javascript:changeLocale('en');"><img class="flag-lang pull-right" src="<spring:url value="/resources/img/flag/england.png" />"> <spring:message code="menu.language.en" /></a></li>
-						<li id="lang-fr"><a href="javascript:changeLocale('fr');"><img class="flag-lang pull-right" src="<spring:url value="/resources/img/flag/france.png" />"> <spring:message code="menu.language.fr" /></a></li>
+						<li id="lang-en"><a href="javascript:changeLocale('en');"><img class="flag-lang pull-right" src="<spring:url value="/resources/img/flag/en.png" />"> <spring:message code="menu.language.en" /></a></li>
+						<li id="lang-fr"><a href="javascript:changeLocale('fr');"><img class="flag-lang pull-right" src="<spring:url value="/resources/img/flag/fr.png" />"> <spring:message code="menu.language.fr" /></a></li>
 					</ul></li>
 				<c:if test="${not isAuthenticated}">
 					<li id="nav-faq"><a href="${root}/faq"><spring:message code="menu.faq" /></a></li>
@@ -40,13 +48,13 @@
 							<c:set var="styleNotification">badge-notification</c:set>
 						</c:when>
 					</c:choose>
-					<li id="dropdown-notif" class="dropdown"><a href="#" onclick="javascript:ajaxReadNotifications();" class="dropdown-toggle" data-toggle="dropdown"><span id="badge-notification" class="badge ${styleNotification}">${nbNotifications}</span> <span id="text-notification"><spring:message code="menu.notification.${messageKeyNotification}" /></span> <b class="caret"></b></a>
+					<li id="dropdown-notif" class="dropdown"><a href="#" onclick="javascript:ajaxReadNotifications();" class="dropdown-toggle" data-toggle="dropdown"><span id="badge-notification" class="badge ${styleNotification}">${nbNotifications}</span> <span id="text-notification"><spring:message code="menu.notification.${messageKeyNotification}" /></span> <i class="fa fa-angle-down "></i></a>
 						<ul id="notifications" class="dropdown-menu dropdown-menu-right-sm">
 							<li><a class="noHover" style="color: #777 !important; background-color: transparent !important;"><i style="color: #777 !important; background-color: transparent !important;" class="noHover fa fa-refresh fa-spin"></i> &nbsp; <spring:message code="menu.notification.loading" /></a></li>
 							<li><a tabindex="-1" href="${root}/rss/notifications?key=${rssKey}" target="_blank" onmouseover="javascript:$('#rss-icon').css('color', '#1a7440');" onmouseout="javascript:$('#rss-icon').css('color', '#FF6600');" style="color: #333; min-width: 310px"><i id="rss-icon" class="fa fa-rss fa-1-4x pull-right color-rss" style="display: block;"></i> <spring:message code="menu.notification.rss" /></a></li>
 						</ul></li>
 				</c:if>
-				<li class="dropdown"><a href="#" class="dropdown-toggle share-menu" data-toggle="dropdown" title="<spring:message code='menu.support' />"> <i class="fa fa-share-alt share-icon"></i> <b class="caret"></b></a>
+				<li class="dropdown"><a href="#" class="dropdown-toggle share-menu" data-toggle="dropdown" title="<spring:message code='menu.support' />"> <i class="fa fa-share-alt share-icon"></i> <i class="fa fa-angle-down "></i></a>
 					<ul id="socialMenuDropdown" class="dropdown-menu dropdown-menu-right-sm">
 						<li><a class="noHover" style="color: #555 !important; background-color: transparent !important;"><spring:message code="menu.support.description" /></a></li>
 						<c:choose>
@@ -113,10 +121,10 @@
 	var setActiveMenu = function() {
 		// current lang
 		var lang;
-		if ($("#dropdown-lang").text().indexOf("Language") > -1) {
-			lang = "en";
-		} else {
+		if ($("#dropdown-lang").find("img").attr("src").indexOf("fr.png") > -1) {
 			lang = "fr";
+		} else {
+			lang = "en";
 		}
 		$("#lang-" + lang).addClass("active");
 		// current tab

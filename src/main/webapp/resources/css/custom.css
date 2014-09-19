@@ -70,7 +70,7 @@ body {
 }
 
 .flag-lang {
-	margin-top: -3px;
+	margin-top: 5px;
 }
 
 /* ===== Navbar ===== */
@@ -230,6 +230,10 @@ body {
 }
 
 /* Navbar menu dropdown */
+.fa-angle-down {
+	margin-left: 10px;
+}
+
 .dropdown-menu>li>a {
 	padding: 7px 15px;
 	border-bottom: 1px dashed #E5E5E5;

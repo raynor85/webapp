@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-<c:set var="lang" scope="session" value="${not empty param.lang ? param.lang : not empty lang ? lang : pageContext.request.locale}" />
+<c:set var="lang" scope="session" value="${not empty param.lang ? param.lang : not empty lang ? lang : not empty cookie['org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE'].value ? cookie['org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE'].value : pageContext.request.locale.language}" />
 <c:set var="root" scope="application">
 	<spring:message code="application.root.url" />
 </c:set>
@@ -104,15 +104,15 @@
 <script src="<spring:url value="/resources/js/jquery.color.min.js" />"></script>
 
 <!-- Bootstrap and plugins -->
-<link href="<spring:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
+<link href="<spring:url value="/resources/css/bootstrap.min.css?ver=1.1" />" rel="stylesheet">
 <script src="<spring:url value="/resources/js/bootstrap.min.js" />"></script>
 <link href="<spring:url value="/resources/css/social-buttons-3.min.css" />" rel="stylesheet">
 <link href="<spring:url value="/resources/css/awesome-bootstrap-checkbox.min.css" />" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="<spring:url value="/resources/css/color-styles.min.css" />" rel="stylesheet">
-<link href="<spring:url value="/resources/css/ui-elements.min.css" />" rel="stylesheet">
-<link href="<spring:url value="/resources/css/custom.min.css" />" rel="stylesheet">
+<link href="<spring:url value="/resources/css/color-styles.min.css?ver=1.1" />" rel="stylesheet">
+<link href="<spring:url value="/resources/css/ui-elements.min.css?ver=1.1" />" rel="stylesheet">
+<link href="<spring:url value="/resources/css/custom.min.css?ver=1.1" />" rel="stylesheet">
 
 <!-- Ladda -->
 <link href="<spring:url value="/resources/css/ladda.min.css" />" rel="stylesheet">
