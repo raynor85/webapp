@@ -235,6 +235,14 @@
 		<ref bean="tortoiseGitRemoteRetriever" />
 		<ref bean="foobar2000RemoteRetriever" />
 		<ref bean="launchyRemoteRetriever" />
+		<ref bean="pNotesRemoteRetriever" />
+		<ref bean="pNotesNetRemoteRetriever" />
+		<ref bean="processHackerRemoteRetriever" />
+		<ref bean="sandboxieRemoteRetriever" />
+		<ref bean="smPlayerRemoteRetriever" />
+		<ref bean="cdBurnerXpRemoteRetriever" />
+		<ref bean="feedDemonRemoteRetriever" />
+		<ref bean="netFrameworkRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
