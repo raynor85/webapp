@@ -56,7 +56,7 @@
 				</c:if>
 				<li class="dropdown"><a href="#" class="dropdown-toggle share-menu" data-toggle="dropdown" title="<spring:message code='menu.support' />"> <i class="fa fa-share-alt share-icon"></i> <i class="fa fa-angle-down "></i></a>
 					<ul id="socialMenuDropdown" class="dropdown-menu dropdown-menu-right-sm">
-						<li><a class="noHover" style="color: #555 !important; background-color: transparent !important;"><spring:message code="menu.support.description" /></a></li>
+						<li id="nav-contact"><a tabindex="-1" href="${root}/contact" style="min-width: 310px"><i id="message-icon" class="fa fa-comments fa-1-4x pull-right" style="display: block;"></i> <spring:message code="menu.contact" /></a></li>
 						<c:choose>
 							<c:when test="${lang == 'fr'}">
 								<c:set var="langFb" value="fr_FR" />
@@ -98,9 +98,9 @@
 									<a id="menu-sign" class="btn btn-color ladda-button" href="${root}/sign" style="margin-top: 12px !important; font-size: 15px !important; padding: 8px 10px !important;"><spring:message code="menu.sign" /></a>
 								</div></li>
 						</ul>
-						<ul class="nav navbar-nav navbar-right visible-xs">
-							<li><div>
-									<a class="btn btn-color ladda-button" href="${root}/sign" style="margin-bottom: 5px !important; margin-left: 15px !important; font-size: 15px !important; padding: 8px 14px !important;"><spring:message code="menu.sign" /></a>
+						<ul class="nav navbar-form navbar-nav navbar-right visible-xs">
+							<li><div class="text-center">
+									<a class="btn btn-color ladda-button" href="${root}/sign" style="font-size: 15px !important; padding: 8px 14px !important;"><spring:message code="menu.sign" /></a>
 								</div></li>
 						</ul>
 					</c:otherwise>
@@ -135,6 +135,9 @@
 			$("#nav-appslist").addClass("active");
 		} else if (location.href.match(/dashboard.?/)) {
 			$("#nav-dashboard").addClass("active");
+		} else if (location.href.match(/contact.?/)) {
+			$("#nav-contact").addClass("active");
+			$("#message-icon").css("color", "#fff");
 		}  else if (location.href.match(/settings.?/)) {
 			var color;
 			if ($(window).width() > 767) {

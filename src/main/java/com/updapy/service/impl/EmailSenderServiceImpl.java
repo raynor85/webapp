@@ -222,6 +222,32 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 	}
 
 	@Override
+	public boolean sendAdminMessage(String email, String text, boolean anonymous) {
+		Locale locale = new Locale("en");
+		String subject;
+		if (anonymous) {
+			subject = messageUtils.getSimpleMessage("email.contact.anonymous.subject", locale);
+		} else {
+			subject = messageUtils.getSimpleMessage("email.contact.user.subject", locale);
+		}
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("lang", messageUtils.getSimpleMessage("email.lang", locale));
+		model.put("title", messageUtils.getCustomMessage("email.contact.content.title", new String[] { email }, locale));
+		model.put("text", text);
+		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
+		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));
+		model.put("unsubscribetext", StringUtils.EMPTY);
+		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);
+
+		try {
+			send(ADMIN_EMAIL, ADMIN_EMAIL, subject, message);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	@Override
 	public boolean sendSingleUpdate(String email, NewVersion newVersion, List<UpdateUrl> otherUpdateUrls, Locale locale) {
 		String subject = messageUtils.getCustomMessage("email.application.update.single.subject", new String[] { newVersion.getApplicationName() }, locale);
 		String fromEmail = messageUtils.getSimpleMessage("email.noreply", locale);

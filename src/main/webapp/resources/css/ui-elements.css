@@ -286,7 +286,7 @@ h2.oswald {
 	}
 }
 
-@media ( max-width : 500px) {
+@media ( max-width : 600px) {
 	.hidden-on-xxs {
 		display: none !important;
 	}
@@ -295,7 +295,7 @@ h2.oswald {
 	}
 }
 
-@media ( min-width : 499px) {
+@media ( min-width : 599px) {
 	.hidden-on-xxs {
 		display: block !important;
 	}

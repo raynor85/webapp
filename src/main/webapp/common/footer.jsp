@@ -6,6 +6,8 @@
 	<div class="container">
 		<footer>
 			<ul class="list-inline pull-left  hidden-on-xxs">
+				<li><a href="${root}/contact"><spring:message code="footer.contact" /></a></li>
+				<li><span class="text-muted">I</span></li>
 				<li><a href="${root}/privacy"><spring:message code="footer.privacy" /></a></li>
 				<li><span class="text-muted">I</span></li>
 				<li><a href="${root}/faq"><spring:message code="footer.faq" /></a></li>
@@ -21,6 +23,7 @@
 				<li><span class="text-muted"><spring:message code="footer.copyright" /></span></li>
 			</ul>
 			<ul class="list-unstyled fa-ul pull-left show-on-xxs">
+				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i><a href="${root}/contact"><spring:message code="footer.contact" /></a></li>
 				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i><a href="${root}/privacy"><spring:message code="footer.privacy" /></a></li>
 				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i><a href="${root}/faq"><spring:message code="footer.faq" /></a></li>
 				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i><a href="${root}/applications"><spring:message code="footer.appslist" /></a></li>

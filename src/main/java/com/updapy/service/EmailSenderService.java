@@ -16,12 +16,6 @@ public interface EmailSenderService {
 
 	boolean sendResetPasswordLink(String email, String key, Locale locale);
 
-	boolean sendAdminConnectionError(String url);
-
-	boolean sendAdminRetrieverError(String applicationName);
-
-	boolean sendAdminRequestedApplication(String name, String url, Locale locale);
-
 	boolean sendSingleUpdate(String email, NewVersion newVersion, List<UpdateUrl> otherUpdateUrls, Locale locale);
 
 	boolean sendWeeklyUpdates(String email, List<NewVersion> newVersions, Locale locale);
@@ -33,5 +27,13 @@ public interface EmailSenderService {
 	boolean sendNewsletter(String email, Newsletter newsletter, Locale locale);
 
 	boolean sendPersonalEmail(String email, String subject, String title, String message, Locale locale);
+
+	boolean sendAdminConnectionError(String url);
+
+	boolean sendAdminRetrieverError(String applicationName);
+
+	boolean sendAdminRequestedApplication(String name, String url, Locale locale);
+
+	boolean sendAdminMessage(String email, String text, boolean anonymous);
 
 }

@@ -11,7 +11,7 @@
 				<c:set var="emailPlaceholder">
 					<spring:message code="sign.up.field.email.tip" />
 				</c:set>
-				<form:input path="email" id="email" class="form-control" placeholder="${emailPlaceholder}" />
+				<form:input path="email" id="email" class="form-control" placeholder="${emailPlaceholder}" type="email" />
 			</div>
 			<div class="form-group">
 				<div class="row">

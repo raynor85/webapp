@@ -650,6 +650,31 @@ a.text-muted {
 	color: #ecf0f1;
 }
 
+/* ===== Contact Us ===== */
+.form-white-contact {
+	background: #FFF;
+	border: 1px solid #DDD;
+	padding: 30px 20px;
+	margin: 0 0 10px 0;
+	position: relative;
+}
+
+.form-white-contact>.form-contact {
+	position: absolute;
+	z-index: 1;
+	margin-right: -50px;
+	right: 50%;
+	top: -50px;
+}
+
+.form-white-contact>.form-contact i.fa-circle {
+	color: #ecf0f1;
+}
+
+.form-white-contact {
+	margin-top: 42px;
+}
+
 /* ===== Settings ===== */
 .form-white {
 	background: #FFF;
@@ -725,29 +750,6 @@ a.text-muted {
 
 .block-inverse>ul>li>a:hover {
 	color: #bdc3c7;
-}
-
-/* ===== Contact Us ===== */
-.form-contact {
-	margin-top: 42px;
-}
-
-.form-white>.contact-avatar {
-	top: -42px;
-	right: 50%;
-	margin-right: -42px;
-}
-
-.form-white>.contact-avatar>img {
-	height: 71px;
-	width: 71px;
-	border: 1px solid #DDD;
-	border-radius: 74px;
-	margin: 6px;
-}
-
-#signed-in {
-	cursor: pointer;
 }
 
 /* ===== FAQs ===== */

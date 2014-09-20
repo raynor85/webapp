@@ -49,6 +49,12 @@
 		<put-attribute name="content" value="/WEB-INF/pages/welcome/welcome.jsp" />
 	</definition>
 
+	<!-- Contact -->
+	<definition name="contact" extends="baseLayoutInverse">
+		<put-attribute name="title" value="contact.title" />
+		<put-attribute name="content" value="/WEB-INF/pages/contact/contact.jsp" />
+	</definition>
+
 	<!-- FAQ -->
 	<definition name="faq" extends="baseLayoutNormal">
 		<put-attribute name="title" value="faq.title" />
