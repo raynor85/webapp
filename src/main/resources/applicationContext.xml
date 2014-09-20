@@ -68,6 +68,7 @@
 
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
 		<property name="defaultLocale" value="en" />
+		<property name="cookieMaxAge" value="31536000" /> <!-- cookie for 1 year -->
 	</bean>
 
 	<mvc:interceptors>
