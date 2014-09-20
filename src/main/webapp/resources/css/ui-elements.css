@@ -280,6 +280,24 @@ h2.oswald {
 	}
 }
 
+@media ( max-width : 991px) {
+	.hidden-on-md {
+		display: none !important;
+	}
+	.show-on-md {
+		display: inline-block !important;
+	}
+}
+
+@media ( min-width : 990px) {
+	.hidden-on-md {
+		display: inline-block !important;
+	}
+	.show-on-md {
+		display: none !important;
+	}
+}
+
 @media ( max-width : 767px) {
 	.hidden-on-xs {
 		display: none !important;
