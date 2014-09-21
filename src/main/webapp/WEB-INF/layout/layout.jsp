@@ -111,7 +111,7 @@
 <!-- Bootstrap and plugins -->
 <link href="<spring:url value="/resources/css/bootstrap.min.css?ver=1.1" />" rel="stylesheet">
 <script src="<spring:url value="/resources/js/bootstrap.min.js" />"></script>
-<link href="<spring:url value="/resources/css/social-buttons-3.min.css" />" rel="stylesheet">
+<link href="<spring:url value="/resources/css/social-buttons-3.min.css?ver=1.1" />" rel="stylesheet">
 <link href="<spring:url value="/resources/css/awesome-bootstrap-checkbox.min.css" />" rel="stylesheet">
 
 <!-- Custom styles for this template -->
