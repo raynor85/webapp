@@ -58,7 +58,7 @@
 	<!-- Wrapper for slides -->
 	<div class="carousel-inner">
 		<div class="item active">
-			<img src="<spring:url value="/resources/img/welcome/carousel-time.png" />" alt="Time">
+			<img src="<spring:url value="/resources/img/welcome/carousel-time.png" />">
 			<div class="carousel-caption">
 				<h4>
 					<spring:message code="welcome.carousel.time.title" />
@@ -69,7 +69,7 @@
 			</div>
 		</div>
 		<div class="item">
-			<img src="<spring:url value="/resources/img/welcome/carousel-custom.png" />" alt="Custom">
+			<img src="<spring:url value="/resources/img/welcome/carousel-custom.png" />">
 			<div class="carousel-caption">
 				<h4>
 					<spring:message code="welcome.carousel.custom.title" />
@@ -80,7 +80,7 @@
 			</div>
 		</div>
 		<div class="item">
-			<img src="<spring:url value="/resources/img/welcome/carousel-security.png" />" alt="Security">
+			<img src="<spring:url value="/resources/img/welcome/carousel-security.png" />">
 			<div class="carousel-caption">
 				<h4>
 					<spring:message code="welcome.carousel.security.title" />
@@ -91,7 +91,7 @@
 			</div>
 		</div>
 		<div class="item">
-			<img src="<spring:url value="/resources/img/welcome/carousel-trust.png" />" alt="Trust">
+			<img src="<spring:url value="/resources/img/welcome/carousel-trust.png" />">
 			<div class="carousel-caption">
 				<h4>
 					<spring:message code="welcome.carousel.trust.title" />
@@ -102,7 +102,7 @@
 			</div>
 		</div>
 		<div class="item">
-			<img src="<spring:url value="/resources/img/welcome/carousel-free.png" />" alt="Free">
+			<img src="<spring:url value="/resources/img/welcome/carousel-free.png" />">
 			<div class="carousel-caption">
 				<h4>
 					<spring:message code="welcome.carousel.free.title" />
