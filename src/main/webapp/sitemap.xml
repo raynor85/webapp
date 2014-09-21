@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-	<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
 	<url>
 		<loc>http://www.updapy.com/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>1.00</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/sign</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/signup</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
 	</url>
 	<url>
 		<loc>http://www.updapy.com/faq</loc>
@@ -15,6 +23,16 @@
 	</url>
 	<url>
 		<loc>http://www.updapy.com/developers</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/privacy</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/contact</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
 	</url>
@@ -674,18 +692,63 @@
 		<priority>0.2</priority>
 	</url>
 	<url>
-		<loc>http://www.updapy.com/sign</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.80</priority>
+		<loc>http://www.updapy.com/applications/tortoisesvn</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
 	</url>
 	<url>
-		<loc>http://www.updapy.com/signup</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.80</priority>
+		<loc>http://www.updapy.com/applications/tortoisegit</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
 	</url>
 	<url>
-		<loc>http://www.updapy.com/privacy</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.80</priority>
+		<loc>http://www.updapy.com/applications/foobar2000</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/launchy</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/pnotes</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/pnotesnet</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/processhacker</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/sandboxie</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/smplayer</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/cdburnerxp</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/feeddemon</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/netframework</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
 	</url>
 </urlset>
