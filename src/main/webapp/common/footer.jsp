@@ -7,17 +7,17 @@
 		<footer>
 			<ul class="list-inline pull-left  hidden-on-xxs">
 				<li><a href="${root}/applications"><spring:message code="footer.appslist" /></a></li>
-				<li><span class="text-muted">I</span></li>
+				<li><span class="text-muted">&#124;</span></li>
 				<li><a href="${root}/faq"><spring:message code="footer.faq" /></a></li>
-				<li><span class="text-muted">I</span></li>
+				<li><span class="text-muted">&#124;</span></li>
 				<li><a href="${root}/privacy"><spring:message code="footer.privacy" /></a></li>
-				<li><span class="text-muted">I</span></li>
+				<li><span class="text-muted">&#124;</span></li>
 				<li><a href="${root}/contact"><spring:message code="footer.contact" /></a></li>
-				<li class="hidden-on-xs"><span class="text-muted">I</span></li>
+				<li class="hidden-on-xs"><span class="text-muted">&#124;</span></li>
 				<li class="hidden-on-xs hidden-on-md"><span class="text-muted"><spring:message code="footer.follow.part1" /></span></li>
 				<li class="hidden-on-xs"><a href="<spring:message code="application.twitter.url" />" class="text-muted fa fa-twitter fa-2x no-underline twitter-hover" title="<spring:message code="footer.follow.part1" /> <spring:message code="footer.follow.twitter" />"></a></li>
 				<li class="hidden-on-xs hidden-on-md"><span class="text-muted"><spring:message code="footer.follow.part2" /></span></li>
-				<li class="hidden-on-xs show-on-md"><span class="text-muted">I</span></li>
+				<li class="hidden-on-xs show-on-md"><span class="text-muted">&#124;</span></li>
 				<li class="hidden-on-xs"><a href="<spring:message code="application.facebook.url" />" class="text-muted fa fa-facebook fa-2x no-underline facebook-hover" title="<spring:message code="footer.follow.part1" /> <spring:message code="footer.follow.facebook" />"></a></li>
 			</ul>
 			<ul class="list-inline pull-right footerAwesome hidden-on-xxs">
