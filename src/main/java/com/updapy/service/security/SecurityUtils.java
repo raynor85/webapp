@@ -18,9 +18,9 @@ import com.updapy.model.User;
 
 public class SecurityUtils {
 
-	public static void logInSocialUser(User user) {
+	public static void logInSocialUser(User user, String avatarUrl) {
 		final Collection<? extends GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_USER");
-		UpdapyUser userDetails = UpdapyUser.createUpdapyUser(user, authorities);
+		UpdapyUser userDetails = UpdapyUser.createUpdapyUser(user, avatarUrl, authorities);
 		Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 	}
@@ -46,7 +46,7 @@ public class SecurityUtils {
 
 	public static void reloadUsername(String newUsername) {
 		UpdapyUser currentUpdapyUser = ((UpdapyUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-		UpdapyUser newUpdapyUser = new UpdapyUser(currentUpdapyUser.getEmail(), newUsername, currentUpdapyUser.isSocialUser(), "reloadUser", currentUpdapyUser.getAuthorities());
+		UpdapyUser newUpdapyUser = new UpdapyUser(currentUpdapyUser.getEmail(), newUsername, currentUpdapyUser.isSocialUser(), currentUpdapyUser.getAvatarUrl(), "reloadUser", currentUpdapyUser.getAuthorities());
 		Authentication authentication = new UsernamePasswordAuthenticationToken(newUpdapyUser, newUpdapyUser.getPassword(), newUpdapyUser.getAuthorities());
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 	}

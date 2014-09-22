@@ -129,7 +129,7 @@ public class UserController {
 		User user = userService.registerSocial(connection);
 		if (user != null) {
 			providerSignInUtils.doPostSignUp(user.getEmail(), request);
-			SecurityUtils.logInSocialUser(user);
+			SecurityUtils.logInSocialUser(user, userService.getAvatarUrl(user));
 			return "sign-up-social-complete";
 		}
 		return "error-social";

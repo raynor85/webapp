@@ -16,14 +16,17 @@ public class UpdapyUser extends SocialUser {
 
 	private boolean socialUser;
 
-	public UpdapyUser(String email, String username, boolean socialUser, String password, Collection<? extends GrantedAuthority> authorities) {
+	private String avatarUrl;
+
+	public UpdapyUser(String email, String username, boolean socialUser, String avatarUrl, String password, Collection<? extends GrantedAuthority> authorities) {
 		super(email, password, authorities);
 		this.name = username;
 		this.email = email;
 		this.socialUser = socialUser;
+		this.avatarUrl = avatarUrl;
 	}
 
-	public static UpdapyUser createUpdapyUser(User user, Collection<? extends GrantedAuthority> authorities) {
+	public static UpdapyUser createUpdapyUser(User user, String avatarUrl, Collection<? extends GrantedAuthority> authorities) {
 		String password = user.getPassword();
 		boolean socialUser = false;
 		if (user.isSocialUser()) {
@@ -35,7 +38,7 @@ public class UpdapyUser extends SocialUser {
 		if (StringUtils.isBlank(username)) {
 			username = email;
 		}
-		return new UpdapyUser(email, username, socialUser, password, authorities);
+		return new UpdapyUser(email, username, socialUser, avatarUrl, password, authorities);
 	}
 
 	public String getName() {
@@ -48,6 +51,10 @@ public class UpdapyUser extends SocialUser {
 
 	public boolean isSocialUser() {
 		return socialUser;
+	}
+
+	public String getAvatarUrl() {
+		return avatarUrl;
 	}
 
 }

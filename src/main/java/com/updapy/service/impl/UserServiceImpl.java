@@ -602,4 +602,13 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	@Override
+	public String getAvatarUrl(User user) {
+		UserConnection userConnection = userConnectionRepository.findByUserConnectionIdUserId(user.getEmail());
+		if (userConnection != null) {
+			return userConnection.getImageUrl();
+		}
+		return "http://www.updapy.com/resources/img/dashboard/user-normal.png";
+	}
+
 }

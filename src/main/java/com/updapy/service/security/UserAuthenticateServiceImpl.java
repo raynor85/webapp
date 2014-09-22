@@ -13,20 +13,20 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.updapy.model.User;
-import com.updapy.repository.UserRepository;
+import com.updapy.service.UserService;
 
 @Service
 public class UserAuthenticateServiceImpl implements UserDetailsService {
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserService userService;
 
 	private final String emailInvalid = "Invalid.logUser.email";
 	private final String emailInactive = "Inactive.logUser.email";
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws AuthenticationException {
-		final User user = userRepository.findByEmail(email);
+		final User user = userService.findByEmail(email);
 		// check if user exist
 		if (user == null) {
 			throw new UsernameNotFoundException(emailInvalid);
@@ -42,7 +42,7 @@ public class UserAuthenticateServiceImpl implements UserDetailsService {
 		} else {
 			authorities = AuthorityUtils.createAuthorityList("ROLE_USER");
 		}
-		return UpdapyUser.createUpdapyUser(user, authorities);
+		return UpdapyUser.createUpdapyUser(user, userService.getAvatarUrl(user), authorities);
 	}
 
 }

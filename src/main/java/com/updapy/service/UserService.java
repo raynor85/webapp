@@ -99,4 +99,6 @@ public interface UserService {
 
 	void addDownloadLinksToNotifications(List<Notification> notifications, User user);
 
+	String getAvatarUrl(User user);
+
 }
