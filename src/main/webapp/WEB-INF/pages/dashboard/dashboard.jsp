@@ -98,11 +98,22 @@
 					</button>
 					<div class="application">
 						<div class="icon">
-							<a href="${currentFollowedApplication.downloadUrl}" title="${downloadTitle}" target="_blank"><img class="shadowHover" src="<spring:url value="/resources/img/application/medium/${currentFollowedApplication.iconFilename}" />" alt="${appName}"></a>
+							<c:set var="descriptionCaptionTitle">
+								<spring:message code="dashboard.applications.caption.description.title" />
+							</c:set>
+							<c:set var="websiteCaptionTitle">
+								<spring:message code="dashboard.applications.caption.website.title" />
+							</c:set>
+							<figure class="caption-figure" itemscope="itemscope" itemtype="http://schema.org/Photograph">
+								<a href="${currentFollowedApplication.downloadUrl}" title="${downloadTitle}" target="_blank"><img id="img-${appId}" class="shadowHover caption" src="<spring:url value="/resources/img/application/medium/${currentFollowedApplication.iconFilename}" />" itemprop="image"></a>
+								<figcaption itemprop="name">
+									<i class="fa fa-book"></i> <a class="caption" href="${root}/applications/${appId}" target="_blank" title="${descriptionCaptionTitle}"><spring:message code="dashboard.applications.caption.description" /></a> <br> <i class="fa fa-home"></i> <a class="caption" href="${currentFollowedApplication.websiteUrl}" target="_blank" title="${websiteCaptionTitle}"><spring:message code="dashboard.applications.caption.website" /></a>
+								</figcaption>
+							</figure>
 						</div>
 						<div class="title">
-							<h4>
-								<span class="label label-success" style="display: inline-block !important; white-space: normal !important; margin-top: -8px;">${appName}</span>
+							<h4 style="margin-bottom: 0px !important; height: 100% !important;">
+								<span class="label label-success" style="display: inline-block !important; white-space: normal !important;">${appName}</span>
 							</h4>
 							<span class="label label-danger" style="display: inline-block !important;">${currentFollowedApplication.versionNumber}</span>
 						</div>

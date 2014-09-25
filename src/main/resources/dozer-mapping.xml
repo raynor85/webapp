@@ -39,6 +39,10 @@
 			<a>application.iconFilename</a>
 			<b>iconFilename</b>
 		</field>
+		<field>
+			<a>application.website</a>
+			<b>websiteUrl</b>
+		</field>
 	</mapping>
 
 	<mapping>

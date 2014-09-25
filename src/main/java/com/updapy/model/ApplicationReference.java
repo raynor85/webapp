@@ -26,6 +26,8 @@ public class ApplicationReference extends BaseEntity {
 
 	private String globalUrl;
 
+	private String website;
+
 	private String iconFilename;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "application")
@@ -111,6 +113,14 @@ public class ApplicationReference extends BaseEntity {
 
 	public void setType(ApplicationType type) {
 		this.type = type;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
 	}
 
 	@Override

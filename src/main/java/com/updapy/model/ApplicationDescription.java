@@ -15,8 +15,6 @@ public class ApplicationDescription extends BaseEntity {
 	@OneToOne(fetch = FetchType.EAGER, optional = false)
 	private ApplicationReference application;
 
-	private String website;
-
 	@Column(columnDefinition = "text")
 	private String descriptionEn;
 
@@ -29,14 +27,6 @@ public class ApplicationDescription extends BaseEntity {
 
 	public void setApplication(ApplicationReference application) {
 		this.application = application;
-	}
-
-	public String getWebsite() {
-		return website;
-	}
-
-	public void setWebsite(String website) {
-		this.website = website;
 	}
 
 	public String getDescriptionEn() {

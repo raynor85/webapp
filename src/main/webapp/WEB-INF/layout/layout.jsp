@@ -117,7 +117,7 @@
 <!-- Custom styles for this template -->
 <link href="<spring:url value="/resources/css/color-styles.min.css?ver=1.1" />" rel="stylesheet">
 <link href="<spring:url value="/resources/css/ui-elements.min.css?ver=1.2" />" rel="stylesheet">
-<link href="<spring:url value="/resources/css/custom.min.css?ver=1.3" />" rel="stylesheet">
+<link href="<spring:url value="/resources/css/custom.min.css?ver=1.4" />" rel="stylesheet">
 
 <!-- Ladda -->
 <link href="<spring:url value="/resources/css/ladda.min.css" />" rel="stylesheet">

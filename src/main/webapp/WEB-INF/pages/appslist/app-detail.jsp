@@ -23,7 +23,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
-							${applicationDescription.application.name} <a class="pull-right" style="margin-left: 15px;" href="${applicationDescription.website}" target="_blank" title="<spring:message code="appslist.website" />"> <i class="fa fa-external-link"></i></a>
+							${applicationDescription.application.name} <a class="pull-right" style="margin-left: 15px;" href="${applicationDescription.application.website}" target="_blank" title="<spring:message code="appslist.website" />"> <i class="fa fa-external-link"></i></a>
 							<c:choose>
 								<c:when test="${applicationDescription.application.type == COMMERCIAL}">
 									<c:set var="styleBadgeType" value="warning" />
@@ -38,7 +38,7 @@
 					<div class="panel-collapse">
 						<div class="panel-body">
 							<div class="media">
-								<a class="pull-left" href="${applicationDescription.website}"> <img class="media-object" src="<spring:url value="/resources/img/application/small/${applicationDescription.application.iconFilename}" />" alt="${applicationDescription.application.name}">
+								<a class="pull-left" href="${applicationDescription.application.website}"> <img class="media-object" src="<spring:url value="/resources/img/application/small/${applicationDescription.application.iconFilename}" />" alt="${applicationDescription.application.name}">
 								</a>
 								<div class="media-body">
 									<%

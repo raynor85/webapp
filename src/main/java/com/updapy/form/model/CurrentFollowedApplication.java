@@ -10,6 +10,8 @@ public class CurrentFollowedApplication {
 
 	private String downloadUrl;
 
+	private String websiteUrl;
+
 	private String iconFilename;
 
 	private boolean emailNotificationActive;
@@ -60,6 +62,14 @@ public class CurrentFollowedApplication {
 
 	public void setEmailNotificationActive(boolean emailNotificationActive) {
 		this.emailNotificationActive = emailNotificationActive;
+	}
+
+	public String getWebsiteUrl() {
+		return websiteUrl;
+	}
+
+	public void setWebsiteUrl(String websiteUrl) {
+		this.websiteUrl = websiteUrl;
 	}
 
 }
