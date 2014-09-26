@@ -35,7 +35,7 @@
 						<form:textarea path="message" class="form-control" id="message" rows="3" placeholder="${messagePlaceholder}" />
 						<form:hidden path="anonymous" id="anonymous" />
 					</div>
-					<button type="submit" id="sendMessageButton" class="btn-block btn-color ladda-button">
+					<button type="button" id="sendMessageButton" class="btn-block btn-color ladda-button" data-style="zoom-in" onclick="ajaxSendMessage();">
 						<spring:message code="contact.send.button" />
 					</button>
 				</form:form>

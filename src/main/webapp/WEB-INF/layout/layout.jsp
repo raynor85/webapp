@@ -120,7 +120,7 @@
 <link href="<spring:url value="/resources/css/custom.min.css?ver=1.4" />" rel="stylesheet">
 
 <!-- Ladda -->
-<link href="<spring:url value="/resources/css/ladda.min.css" />" rel="stylesheet">
+<link href="<spring:url value="/resources/css/ladda.min.css?ver=1.1" />" rel="stylesheet">
 <script src="<spring:url value="/resources/js/spin.min.js" />"></script>
 <script src="<spring:url value="/resources/js/ladda.min.js" />"></script>
 
