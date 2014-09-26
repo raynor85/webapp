@@ -244,6 +244,8 @@
 		<ref bean="cdBurnerXpRemoteRetriever" />
 		<ref bean="feedDemonRemoteRetriever" />
 		<ref bean="netFrameworkRemoteRetriever" />
+		<ref bean="winDjViewRemoteRetriever" />
+		<ref bean="sumatraPdfRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
