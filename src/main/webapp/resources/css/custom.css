@@ -122,16 +122,16 @@ body {
 }
 
 .updapy-navbar-inverse .navbar-toggle {
-	border-color: #F5F5F5;
-	background: #F5F5F5;
+	border-color: #229652;
+	background: #27AE60;
 }
 
 .updapy-navbar-inverse .navbar-toggle:hover,.updapy-navbar-inverse .navbar-toggle:focus {
-	background-color: transparent;
+	background-color: #229652;
 }
 
 .updapy-navbar-inverse .navbar-toggle .icon-bar {
-	background-color: #333;
+	background-color: #FFF;
 }
 
 .updapy-navbar-inverse .navbar-collapse,.updapy-navbar-inverse .navbar-form {
@@ -263,6 +263,13 @@ body {
 /* Navbar menu dropdown */
 .fa-angle-down {
 	margin-left: 10px;
+	transition-duration: 200ms;
+	transition-property: -moz-transform;
+	transition-timing-function: linear;
+}
+
+.open .fa-angle-down {
+	transform: rotate(180deg);
 }
 
 .dropdown-menu>li>a {
@@ -1527,7 +1534,7 @@ div.form-group div.col-sm-3 {
 .carousel-caption p {
 	color: #6D7575;
 	font-size: 16px;
-	width: 250px;
+	width: 300px;
 }
 
 .carousel-caption {
@@ -1560,14 +1567,14 @@ div.form-group div.col-sm-3 {
 	}
 }
 
-@media all and (min-width:800px) and (max-width:1000px) {
+@media all and (min-width:768px) and (max-width:1000px) {
 	.carousel-caption {
-		left: 10%;
+		left: 15%;
 		top: 20%;
 	}
 }
 
-@media all and (min-width:500px) and (max-width:800px) {
+@media all and (min-width:600px) and (max-width:767px) {
 	.carousel-caption {
 		left: 15%;
 		top: 10%;
@@ -1582,7 +1589,7 @@ div.form-group div.col-sm-3 {
 	}
 }
 
-@media all and (max-width:500px) {
+@media all and (min-width:450px) and (max-width:599px) {
 	.carousel-caption {
 		left: 15%;
 		top: 0%;
@@ -1594,6 +1601,38 @@ div.form-group div.col-sm-3 {
 	.carousel-caption p {
 		font-size: 12px !important;
 		width: 150px !important;
+	}
+}
+
+@media all and (max-width:449px) {
+	.carousel-inner img {
+		visibility: hidden;
+	}
+	.carousel-caption {
+		left: 15%;
+		top: 0%;
+	}
+	.carousel-caption h4 {
+		font-size: 20px !important;
+		width: 100% !important;
+	}
+	.carousel-caption p {
+		font-size: 12px !important;
+		width: 100% !important;
+	}
+	.carousel {
+		height: 200px !important;
+		min-height: 200px !important;
+	}
+}
+
+@media all and (max-width:350px) {
+	.carousel-caption {
+		left: 15%;
+		top: -10%;
+	}
+	.carousel-indicators {
+		bottom: -10%;
 	}
 }
 
