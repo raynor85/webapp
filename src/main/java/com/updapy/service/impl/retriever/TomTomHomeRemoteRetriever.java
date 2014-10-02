@@ -47,7 +47,7 @@ public class TomTomHomeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("div#rn_AnswerText").select("p").text(), "\\(Windows\\).*$"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("div#rn_AnswerText").select("p:contains(Windows):contains(Version)").get(0).text(), "\\(Windows\\).*$"));
 	}
 
 }

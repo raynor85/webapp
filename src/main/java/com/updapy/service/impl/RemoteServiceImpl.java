@@ -83,25 +83,38 @@ public class RemoteServiceImpl implements RemoteService {
 		String url = application.getGlobalUrl();
 		try {
 			doc = retrieveHtmlDocumentAgent64(url);
-		} catch (Exception e) {
+		} catch (Exception e1) {
 			try {
 				// let's try a second time, network can be unreliable sometimes!
 				doc = retrieveHtmlDocumentAgent64(url);
-			} catch (IOException e1) {
-				// seems there is really a problem
-				emailSenderService.sendAdminConnectionError(url);
-				return null;
+			} catch (Exception e2) {
+				try {
+					// let's try a third time WITHOUT timeout, network can be unreliable sometimes!
+					doc = retrieveHtmlDocumentAgent64(url, 0);
+				} catch (Exception e3) {
+					// seems there is really a problem
+					emailSenderService.sendAdminConnectionError(url);
+					return null;
+				}
 			}
 		}
 		return doc;
 	}
 
+	private static Document retrieveHtmlDocumentAgent64(String url, int timeout) throws IOException {
+		return Jsoup.connect(url).ignoreContentType(true).userAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0").referrer("http://www.google.com").timeout(timeout).followRedirects(true).get();
+	}
+
+	private static Document retrieveHtmlDocumentAgent32(String url, int timeout) throws IOException {
+		return Jsoup.connect(url).ignoreContentType(true).userAgent("Mozilla/5.0 (Windows NT 6.1; Win32; rv:25.0) Gecko/20100101 Firefox/25.0").referrer("http://www.google.com").timeout(timeout).followRedirects(true).get();
+	}
+
 	public static Document retrieveHtmlDocumentAgent64(String url) throws IOException {
-		return Jsoup.connect(url).ignoreContentType(true).userAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0").referrer("http://www.google.com").timeout(15 * 1000).followRedirects(true).get();
+		return retrieveHtmlDocumentAgent64(url, 15 * 1000);
 	}
 
 	public static Document retrieveHtmlDocumentAgent32(String url) throws IOException {
-		return Jsoup.connect(url).ignoreContentType(true).userAgent("Mozilla/5.0 (Windows NT 6.1; Win32; rv:25.0) Gecko/20100101 Firefox/25.0").referrer("http://www.google.com").timeout(15 * 1000).followRedirects(true).get();
+		return retrieveHtmlDocumentAgent32(url, 15 * 1000);
 	}
 
 }

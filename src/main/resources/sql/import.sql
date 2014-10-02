@@ -51,7 +51,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Pidgin
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.pidgin.im/download/windows', 'https://www.pidgin.im/', 'pidgin.png', 'Pidgin', 'pidgin', true, 'SOCIAL_COMMUNICATION', 'FREE');
 -- K-lite codecs
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.free-codecs.com/k_lite_codec_pack_download.htm', 'http://www.codecguide.com/', 'klitecodecs.png', 'K-lite Codec Pack', 'klitecodecs', true, 'SYSTEM_OTHER', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.codecguide.com/download_k-lite_codec_pack_standard.htm', 'http://www.codecguide.com/', 'klitecodecs.png', 'K-lite Codec Pack', 'klitecodecs', true, 'SYSTEM_OTHER', 'FREE');
 -- Songbird
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, false, 'http://sourceforge.net/projects/songbird.mirror/', 'http://getsongbird.net/', 'songbird.png', 'Songbird', 'songbird', true, 'MUSIC', 'FREE');
 -- Picasa
@@ -67,7 +67,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Spybot
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://fileforum.betanews.com/detail/Spybot-Search-Destroy/1043809773', 'http://www.safer-networking.org/', 'spybot.png', 'Spybot', 'spybot', false, 'SECURITY', 'FREE');
 -- PDF-XChange Viewer
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.tracker-software.com/version/pdf-xchange-viewer/', 'http://www.tracker-software.com/product/pdf-xchange-viewer', 'pdfxchangeviewer.png', 'PDF-XChange Viewer', 'pdfxchangeviewer', false, 'TEXT', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.tracker-software.com/history/viewer_history.xml', 'http://www.tracker-software.com/product/pdf-xchange-viewer', 'pdfxchangeviewer.png', 'PDF-XChange Viewer', 'pdfxchangeviewer', false, 'TEXT', 'FREE');
 -- Media Player Classic - BE
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://sourceforge.net/p/mpcbe/activity/feed', 'http://sourceforge.net/projects/mpcbe/', 'mpclassicbe.png', 'MPC - BE', 'mediaplayerclassicbe', false, 'VIDEO', 'FREE');
 -- XnView
@@ -197,7 +197,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- QuiteRSS
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://quiterss.org/en/download', 'http://quiterss.org/', 'quiterss.png', 'QuiteRSS', 'quiterss', false, 'SOCIAL_COMMUNICATION', 'FREE');
 -- ESET NOD32 Antivirus
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.eset.com/us/download/home/detail/family/2/', 'http://www.eset.com/int/home/products/antivirus/', 'esetnod32antivirus.png', 'ESET NOD32 Antivirus', 'esetnod32antivirus', false, 'SECURITY', 'COMMERCIAL');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.eset.com/me/download/home/detail/family/2/', 'http://www.eset.com/int/home/products/antivirus/', 'esetnod32antivirus.png', 'ESET NOD32 Antivirus', 'esetnod32antivirus', false, 'SECURITY', 'COMMERCIAL');
 -- PotPlayer
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://daumpotplayer.com/download/', 'http://potplayer.daum.net/', 'potplayer.png', 'PotPlayer', 'potplayer', false, 'VIDEO', 'FREE');
 -- Disk Defrag Touch

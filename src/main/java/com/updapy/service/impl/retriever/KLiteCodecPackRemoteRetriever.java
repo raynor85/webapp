@@ -1,5 +1,6 @@
 package com.updapy.service.impl.retriever;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -9,8 +10,6 @@ import com.updapy.util.ParsingUtils;
 
 @Component(value = "kLiteCodecPackRemoteRetriever")
 public class KLiteCodecPackRemoteRetriever implements RemoteRetriever {
-
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.free-codecs.com/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -34,12 +33,12 @@ public class KLiteCodecPackRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + doc.select("a:contains(Download)[title*=STANDARD]").first().attr("href");
+		return doc.select("a:contains(Mirror)[href*=winsoftware]").first().attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("#softwareName").text());
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("h4:contains(Version)").first().text(), "Standard.*$"));
 	}
 
 }

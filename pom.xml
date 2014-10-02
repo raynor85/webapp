@@ -30,7 +30,7 @@
 		<joda-time.version>2.4</joda-time.version>
 		<jackson.version>2.4.2</jackson.version>
 		<dozer.version>5.5.1</dozer.version>
-		<org.jsoup.version>1.7.3</org.jsoup.version>
+		<org.jsoup.version>1.8.1</org.jsoup.version>
 		<rome.version>1.0.0</rome.version>
 
 		<!-- Common libs -->
