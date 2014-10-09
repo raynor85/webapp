@@ -37,7 +37,7 @@ public class JavaReRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("strong:containsOwn(Recommended Version)").text().replaceAll("(U|u)pdate", "."));
+		return ParsingUtils.extractVersionNumberFromString(doc.select("h4:containsOwn(Recommended Version)").text().replaceAll("(U|u)pdate", "."));
 	}
 
 }
