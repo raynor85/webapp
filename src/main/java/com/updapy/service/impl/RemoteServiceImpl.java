@@ -1,7 +1,7 @@
 package com.updapy.service.impl;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
@@ -11,6 +11,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
@@ -70,12 +71,21 @@ public class RemoteServiceImpl implements RemoteService {
 			// empty url is fine
 			return true;
 		}
+		int code;
 		try {
-			new URL(url);
-		} catch (MalformedURLException e) {
+			code = getResponseCode(url);
+		} catch (IOException e) {
 			return false;
 		}
-		return true;
+		return code < 400; // code above 399 are errors
+	}
+
+	private int getResponseCode(String urlStr) throws IOException {
+		URL url = new URL(urlStr);
+		HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+		httpURLConnection.setRequestMethod(RequestMethod.GET.name());
+		httpURLConnection.connect();
+		return httpURLConnection.getResponseCode();
 	}
 
 	private Document retrieveHtmlDocument(ApplicationReference application) {

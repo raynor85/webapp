@@ -167,7 +167,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- uTorrent
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.utorrent.com/downloads/win', 'http://www.utorrent.com/', 'utorrent.png', 'uTorrent', 'utorrent', false, 'INTERNET', 'FREE');
 -- Time 4 Popcorn
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.time4popcorn.eu', 'http://www.time4popcorn.eu/', 'popcorntime.png', 'Time 4 Popcorn', 'time4popcorn', false, 'VIDEO', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.time4popcorn.com', 'http://www.time4popcorn.com/', 'popcorntime.png', 'Time 4 Popcorn', 'time4popcorn', false, 'VIDEO', 'FREE');
 -- Opera
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.opera.com/download/guide/?os=windows&list=all', 'http://www.opera.com/', 'opera.png', 'Opera', 'opera', false, 'INTERNET', 'FREE');
 -- Captvty
@@ -273,7 +273,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Power ISO
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.poweriso.com/download.htm', 'http://www.poweriso.com/', 'poweriso.png', 'Power ISO', 'poweriso', false, 'TOOLS', 'FREE');
 -- Nero Burning ROM
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.nero.com/eng/products/nero-burning-rom/free-trial-download-started.php?email=test%40test.com', 'http://www.nero.com/', 'neroburningrom.png', 'Nero Burning ROM', 'neroburningrom', false, 'TOOLS', 'COMMERCIAL');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.nero.com/eng/products/nero-burning-rom/free-trial-download.php', 'http://www.nero.com/', 'neroburningrom.png', 'Nero Burning ROM', 'neroburningrom', false, 'TOOLS', 'COMMERCIAL');
 -- WordPress
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://fr.wordpress.org', 'http://wordpress.org/', 'wordpress.png', 'WordPress', 'wordpress', false, 'DEVELOPMENT', 'FREE');
 -- GlassWire
