@@ -3,6 +3,7 @@ package com.updapy.service.impl;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.Date;
 import java.util.List;
 
@@ -82,10 +83,14 @@ public class RemoteServiceImpl implements RemoteService {
 
 	private int getResponseCode(String urlStr) throws IOException {
 		URL url = new URL(urlStr);
-		HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-		httpURLConnection.setRequestMethod(RequestMethod.GET.name());
-		httpURLConnection.connect();
-		return httpURLConnection.getResponseCode();
+		URLConnection urlConnection = url.openConnection();
+		if (urlConnection instanceof HttpURLConnection) {
+			HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
+			httpURLConnection.setRequestMethod(RequestMethod.GET.name());
+			httpURLConnection.connect();
+			return httpURLConnection.getResponseCode();
+		}
+		return 0; // we don't manage FTP
 	}
 
 	private Document retrieveHtmlDocument(ApplicationReference application) {
