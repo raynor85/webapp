@@ -78,7 +78,7 @@ public class RemoteServiceImpl implements RemoteService {
 		} catch (IOException e) {
 			return false;
 		}
-		return code < 400; // code above 399 are errors
+		return code <= 400 || code == 403; // code above 399 are errors. 400 or 403 are fine. Most important is to avoid 404...
 	}
 
 	private int getResponseCode(String urlStr) throws IOException {

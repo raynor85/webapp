@@ -11,7 +11,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class Time4PopcornRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.time4popcorn.eu/";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://popcorn-time.se/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
