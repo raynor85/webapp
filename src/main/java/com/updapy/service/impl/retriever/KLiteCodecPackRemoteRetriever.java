@@ -33,7 +33,7 @@ public class KLiteCodecPackRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a:contains(Mirror)[href*=winsoftware]").first().attr("href");
+		return doc.select("a:contains(Mirror)[href*=betanews]").first().attr("href").replace("/detail/", "/download/");
 	}
 
 	@Override

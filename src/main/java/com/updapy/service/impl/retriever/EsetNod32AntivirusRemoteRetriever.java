@@ -3,7 +3,9 @@ package com.updapy.service.impl.retriever;
 import java.io.IOException;
 
 import org.apache.commons.lang3.StringUtils;
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.parser.Parser;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
@@ -47,7 +49,8 @@ public class EsetNod32AntivirusRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("div.changelog").select("h3").get(0).text());
+		Document docXml = Jsoup.parse(doc.text(), "", Parser.xmlParser());
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(docXml.select("div#file-summary").select("p:contains(Version)").text(), "Size.*$"));
 	}
 
 	private String getDownloadLink(String downloadWebsite) {

@@ -3,6 +3,7 @@ package com.updapy.service.impl.retriever;
 import java.io.IOException;
 
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
@@ -46,7 +47,12 @@ public class TorchBrowserRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select(".product-landing-quick-specs-row").select(".product-landing-quick-specs-row-content").get(0).text());
+		Elements versionElement = doc.select(".product-landing-quick-specs-row");
+		if (!versionElement.isEmpty()) {
+			return ParsingUtils.extractVersionNumberFromString(versionElement.select(".product-landing-quick-specs-row-content").get(0).text());
+		} else {
+			return ParsingUtils.extractVersionNumberFromString(doc.select("tr#specsPubVersion").text());
+		}
 	}
 
 }
