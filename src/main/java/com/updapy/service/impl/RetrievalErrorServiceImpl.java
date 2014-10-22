@@ -57,7 +57,7 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 	@Override
 	public int sendEmailRetrievalErrors() {
 		int count = 0;
-		List<RetrievalError> retrievalErrors = retrievalErrorRepository.findByCountGreaterThanEqual(6); // 6 errors really mean there is a problem!
+		List<RetrievalError> retrievalErrors = retrievalErrorRepository.findByCountGreaterThanEqual(10); // 10 errors really mean there is a problem!
 		for (RetrievalError retrievalError : retrievalErrors) {
 			boolean hasBeenSent = false;
 			if (TypeRetrievalError.URL_BASE_ERROR.equals(retrievalError.getTypeLastError())) {
