@@ -28,6 +28,7 @@ import com.updapy.service.EmailSingleUpdateService;
 import com.updapy.service.EmailWeeklyUpdateService;
 import com.updapy.service.NewsletterService;
 import com.updapy.service.RemoteService;
+import com.updapy.service.RetrievalErrorService;
 import com.updapy.service.SettingsService;
 import com.updapy.service.UserService;
 
@@ -62,6 +63,9 @@ public class ApplicationVersionScheduler {
 
 	@Autowired
 	private NewsletterService newsletterService;
+
+	@Autowired
+	private RetrievalErrorService retrievalErrorService;
 
 	// fire twice a day (noon and midnight)
 	@Scheduled(cron = "0 0 0,12 * * *")
@@ -225,6 +229,9 @@ public class ApplicationVersionScheduler {
 
 		count = newsletterService.sendEmailNewsletters();
 		log.info(count + " newsletters sent.");
+
+		count = retrievalErrorService.sendEmailRetrievalErrors();
+		log.info(count + " emails for error sent.");
 
 		log.info("< All emails have been sent for today.");
 	}

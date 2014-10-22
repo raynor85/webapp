@@ -16,15 +16,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
-import com.updapy.service.EmailSenderService;
+import com.updapy.model.enumeration.TypeRetrievalError;
 import com.updapy.service.RemoteService;
+import com.updapy.service.RetrievalErrorService;
 import com.updapy.service.retriever.RemoteRetriever;
 
 @Service
 public class RemoteServiceImpl implements RemoteService {
 
 	@Autowired
-	private EmailSenderService emailSenderService;
+	private RetrievalErrorService retrievalErrorService;
 
 	@Autowired
 	private List<RemoteRetriever> remoteRetrievers;
@@ -54,16 +55,18 @@ public class RemoteServiceImpl implements RemoteService {
 				}
 			}
 		} catch (Exception e) {
-			// it can be normal and random, not useful to send an email on each error
+			// parsing error
+			retrievalErrorService.addRetrievalError(application, TypeRetrievalError.PARSING_ERROR);
 			return null;
 		}
 
 		if (StringUtils.isBlank(version.getVersionNumber()) || StringUtils.isBlank(version.getWin32UrlEn()) || !version.isValidVersionNumber() || !isUrlValid(version.getWin32UrlEn()) || !isUrlValid(version.getWin32UrlFr()) || !isUrlValid(version.getWin64UrlEn()) || !isUrlValid(version.getWin64UrlFr())) {
 			// remote version not valid
-			emailSenderService.sendAdminRetrieverError(application.getName());
+			retrievalErrorService.addRetrievalError(application, TypeRetrievalError.URL_VERSION_ERROR);
 			return null;
 		}
 
+		retrievalErrorService.deleteRetrievalError(application);
 		return version;
 	}
 
@@ -108,7 +111,7 @@ public class RemoteServiceImpl implements RemoteService {
 					doc = retrieveHtmlDocumentAgent64(url, 0);
 				} catch (Exception e3) {
 					// seems there is really a problem
-					emailSenderService.sendAdminConnectionError(url);
+					retrievalErrorService.addRetrievalError(application, TypeRetrievalError.URL_BASE_ERROR);
 					return null;
 				}
 			}
