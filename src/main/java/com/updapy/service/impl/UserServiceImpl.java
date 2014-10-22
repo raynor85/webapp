@@ -354,9 +354,9 @@ public class UserServiceImpl implements UserService {
 	public boolean delete(User user) {
 		try {
 			// remove social data
-			UserConnection userConnection = userConnectionRepository.findByUserConnectionIdUserId(user.getEmail());
-			if (userConnection != null) {
-				userConnectionRepository.delete(userConnection);
+			List<UserConnection> userConnections = userConnectionRepository.findByUserConnectionIdUserId(user.getEmail());
+			if (userConnections != null && !userConnections.isEmpty()) {
+				userConnectionRepository.delete(userConnections);
 			}
 			// remove other data
 			userRepository.delete(user);
@@ -604,9 +604,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public String getAvatarUrl(User user) {
-		UserConnection userConnection = userConnectionRepository.findByUserConnectionIdUserId(user.getEmail());
-		if (userConnection != null) {
-			return userConnection.getImageUrl();
+		List<UserConnection> userConnections = userConnectionRepository.findByUserConnectionIdUserId(user.getEmail());
+		if (userConnections != null && !userConnections.isEmpty()) {
+			return userConnections.get(0).getImageUrl();
 		}
 		return "http://www.updapy.com/resources/img/dashboard/user-normal.png";
 	}
