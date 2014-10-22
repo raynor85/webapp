@@ -18,9 +18,9 @@ public class SendEmailTest {
 	@Test
 	public void testSendPersonalEmail() {
 		String email = "";
-		String subject = "How to contact us?";
-		String title = "A question? An idea?";
-		String message = "You can contact us via this email: xxx<br>Thanks for using the Updapy service!";
+		String subject = "Error when connecting to Updapy via Google +";
+		String title = "Thanks for reporting your problem";
+		String message = "We just fix it! You can <a href='http://www.updapy.com/sign'>sign in to Updapy</a> via Google + again.<br>You will certainly need to re-authorize Updapy to access your basic information (name, email).<br>If you're still having problems to sign in, don't hesitate to contact us.<br><br>The Updapy team.";
 		Locale locale = Locale.ENGLISH;
 		emailSenderService.sendPersonalEmail(email, subject, title, message, locale);
 	}
