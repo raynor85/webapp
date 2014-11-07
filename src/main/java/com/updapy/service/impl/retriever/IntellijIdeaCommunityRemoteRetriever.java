@@ -36,7 +36,7 @@ public class IntellijIdeaCommunityRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return StringUtils.replace(ROOT_DOWNLOAD_WEBSITE, PATTERN_VERSION, getVersionNumber(doc));
+		return StringUtils.replace(ROOT_DOWNLOAD_WEBSITE, PATTERN_VERSION, StringUtils.removeEnd(getVersionNumber(doc), ".0"));
 	}
 
 	@Override
