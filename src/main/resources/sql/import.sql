@@ -225,7 +225,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- LibreOffice
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.libreoffice.org/download/libreoffice-fresh/?type=win-x86', 'http://www.libreoffice.org/', 'libreoffice.png', 'LibreOffice', 'libreoffice', false, 'TEXT', 'FREE');
 -- OpenOffice
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.openoffice.org/download/other.html', 'https://www.openoffice.org/', 'openoffice.png', 'OpenOffice', 'openoffice', false, 'TEXT', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.openoffice.org/download/globalvars.js', 'https://www.openoffice.org/', 'openoffice.png', 'OpenOffice', 'openoffice', false, 'TEXT', 'FREE');
 -- DAEMON Tools Lite
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/DAEMON-Tools-Lite/3000-2094_4-10778842.html', 'http://www.daemon-tools.cc/products/dtLite', 'daemontoolslite.png', 'DAEMON Tools Lite', 'daemontoolslite', false, 'TOOLS', 'FREE');
 -- AVG Free Antivirus 2014

@@ -46,7 +46,7 @@ public class OpenOfficeRemoteRetriever implements RemoteRetriever {
 	}
 
 	private String getVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("div#announce").text());
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(doc.select("body").text(), "Release version in.*$"), "^.*DL.VERSION"));
 	}
 
 }
