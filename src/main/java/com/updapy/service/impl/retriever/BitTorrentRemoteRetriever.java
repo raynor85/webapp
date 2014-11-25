@@ -1,5 +1,6 @@
 package com.updapy.service.impl.retriever;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -37,7 +38,7 @@ public class BitTorrentRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("h3.maindownloadtitle:contains(Stable)").text());
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.replacePattern(doc.select("h3.maindownloadtitle:contains(Stable)").text(), "(B|b)uild", "."));
 	}
 
 }
