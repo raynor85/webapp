@@ -25,3 +25,9 @@ from accountremoval
 where feedback is not null
 and feedback != ''
 order by removedate desc;  
+
+-- What are the most probable failures?
+select name, globalurl, count, typelasterror
+from applicationreference a, retrievalerror e
+where a.id = e.application_id 
+and count > 3;

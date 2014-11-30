@@ -19,8 +19,6 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class SmPlayerRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://sourceforge.net/projects/smplayer/rss";
-
 	@Override
 	public boolean support(ApplicationReference application) {
 		return application.getApiName().equalsIgnoreCase("smplayer");
@@ -33,7 +31,7 @@ public class SmPlayerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return matchingLink("^.*/SMPlayer/.*x64\\.exe.*$");
+		return matchingLink(doc.baseUri(), "^.*/(SMP|smp)layer/.*x64\\.exe.*$");
 	}
 
 	@Override
@@ -46,8 +44,8 @@ public class SmPlayerRemoteRetriever implements RemoteRetriever {
 		return getDownloadLink32(doc);
 	}
 
-	private String matchingLink(String regex) {
-		NodeList nodes = extractLinks();
+	private String matchingLink(String url, String regex) {
+		NodeList nodes = extractLinks(url);
 		if (nodes == null) {
 			return null;
 		}
@@ -61,10 +59,10 @@ public class SmPlayerRemoteRetriever implements RemoteRetriever {
 		return null;
 	}
 
-	private NodeList extractLinks() {
+	private NodeList extractLinks(String url) {
 		XPathFactory xpf = XPathFactory.newInstance();
 		XPath xp = xpf.newXPath();
-		InputSource is = new InputSource(ROOT_DOWNLOAD_WEBSITE);
+		InputSource is = new InputSource(url);
 		NodeList nodes = null;
 		try {
 			nodes = (NodeList) xp.evaluate("//link", is, XPathConstants.NODESET);
@@ -76,11 +74,11 @@ public class SmPlayerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(getDownloadLink32(doc), "^.*/SMPlayer/"), "/smplayer.*$"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(getDownloadLink32(doc), "^.*/(SMP|smp)layer/"));
 	}
 
 	private String getDownloadLink32(Document doc) {
-		return matchingLink("^.*/SMPlayer/.*win32\\.exe.*$");
+		return matchingLink(doc.baseUri(), "^.*/(SMP|smp)layer/.*win32\\.exe.*$");
 	}
 
 }
