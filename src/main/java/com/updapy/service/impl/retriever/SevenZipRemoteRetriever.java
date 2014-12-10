@@ -23,7 +23,7 @@ public class SevenZipRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return doc.select("a:contains(Download)[href*=x64]").attr("href");
+		return doc.select("a:contains(Download)[href*=x64]").get(1).attr("href");
 	}
 
 	@Override
@@ -33,12 +33,12 @@ public class SevenZipRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a:contains(Download)").attr("href");
+		return doc.select("a:contains(Download)[href*=.exe]").get(1).attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(doc.select("th.title:contains(7-Zip)").html(), "7-Zip"), "<br.*$"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(doc.select("p:contains(Download 7-Zip):not(p:contains(beta)):not(p:contains(Beta))").html(), "7-Zip"), "\\(.*\\)"));
 	}
 
 }

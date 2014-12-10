@@ -17,10 +17,10 @@ import com.updapy.util.ParsingUtils;
 public class EsetNod32AntivirusRemoteRetriever implements RemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://download.eset.com/download/win/eav/";
-	private static final String ROOT_DOWNLOAD_WEBSITE_VERSION_FR_32 = "http://www.eset.com/us/download/home/detail/family/2/language/FRA/operatingsystem/136/";
-	private static final String ROOT_DOWNLOAD_WEBSITE_VERSION_FR_64 = "http://www.eset.com/us/download/home/detail/family/2/language/FRA/operatingsystem/137/";
-	private static final String ROOT_DOWNLOAD_WEBSITE_VERSION_EN_32 = "http://www.eset.com/us/download/home/detail/family/2/language/ENU/operatingsystem/136/";
-	private static final String ROOT_DOWNLOAD_WEBSITE_VERSION_EN_64 = "http://www.eset.com/us/download/home/detail/family/2/language/ENU/operatingsystem/137/";
+	private static final String ROOT_DOWNLOAD_WEBSITE_VERSION_FR_32 = "http://www.eset.com/us/download/home/detail/family/2/language/FRA/operatingsystem/170/";
+	private static final String ROOT_DOWNLOAD_WEBSITE_VERSION_FR_64 = "http://www.eset.com/us/download/home/detail/family/2/language/FRA/operatingsystem/171/";
+	private static final String ROOT_DOWNLOAD_WEBSITE_VERSION_EN_32 = "http://www.eset.com/us/download/home/detail/family/2/language/ENU/operatingsystem/170/";
+	private static final String ROOT_DOWNLOAD_WEBSITE_VERSION_EN_64 = "http://www.eset.com/us/download/home/detail/family/2/language/ENU/operatingsystem/171/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
