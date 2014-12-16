@@ -119,11 +119,11 @@ public class RemoteServiceImpl implements RemoteService {
 		return doc;
 	}
 
-	private static Document retrieveHtmlDocumentAgent64(String url, int timeout) throws IOException {
+	public static Document retrieveHtmlDocumentAgent64(String url, int timeout) throws IOException {
 		return Jsoup.connect(url).ignoreContentType(true).userAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0").referrer("http://www.google.com").timeout(timeout).followRedirects(true).get();
 	}
 
-	private static Document retrieveHtmlDocumentAgent32(String url, int timeout) throws IOException {
+	public static Document retrieveHtmlDocumentAgent32(String url, int timeout) throws IOException {
 		return Jsoup.connect(url).ignoreContentType(true).userAgent("Mozilla/5.0 (Windows NT 6.1; Win32; rv:25.0) Gecko/20100101 Firefox/25.0").referrer("http://www.google.com").timeout(timeout).followRedirects(true).get();
 	}
 
