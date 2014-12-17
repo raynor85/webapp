@@ -246,6 +246,14 @@
 		<ref bean="netFrameworkRemoteRetriever" />
 		<ref bean="winDjViewRemoteRetriever" />
 		<ref bean="sumatraPdfRemoteRetriever" />
+		<ref bean="miamPlayerRemoteRetriever" />
+		<ref bean="wavosaurRemoteRetriever" />
+		<ref bean="avidemuxRemoteRetriever" />
+		<ref bean="jitsiRemoteRetriever" />
+		<ref bean="gajimRemoteRetriever" />
+		<ref bean="linphoneRemoteRetriever" />
+		<ref bean="qBittorrentRemoteRetriever" />
+		<ref bean="handbrakeRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
