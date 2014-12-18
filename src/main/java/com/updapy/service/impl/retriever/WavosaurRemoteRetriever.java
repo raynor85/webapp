@@ -14,9 +14,9 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class WavosaurRemoteRetriever implements RemoteRetriever {
 
-	private static final String FR_ROOT_DOWNLOAD_WEBSITE = "http://fr.wavosaur.com/";
-	private static final String EN_ROOT_DOWNLOAD_WEBSITE = "http://www.wavosaur.com/";
-	private static final String FR_DOWNLOAD_WEBSITE = FR_ROOT_DOWNLOAD_WEBSITE + "telecharger.php";
+	private static final String ROOT_DOWNLOAD_WEBSITE_FR = "http://fr.wavosaur.com/";
+	private static final String ROOT_DOWNLOAD_WEBSITE_EN = "http://www.wavosaur.com/";
+	private static final String DOWNLOAD_WEBSITE_FR = ROOT_DOWNLOAD_WEBSITE_FR + "telecharger.php";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -50,15 +50,15 @@ public class WavosaurRemoteRetriever implements RemoteRetriever {
 
 	private String getDownloadLinkFr(String pattern) {
 		try {
-			Document docFr = RemoteServiceImpl.retrieveHtmlDocumentAgent32(FR_DOWNLOAD_WEBSITE);
-			return FR_ROOT_DOWNLOAD_WEBSITE + docFr.select("a[href*=" + pattern + "]").attr("href");
+			Document docFr = RemoteServiceImpl.retrieveHtmlDocumentAgent32(DOWNLOAD_WEBSITE_FR);
+			return ROOT_DOWNLOAD_WEBSITE_FR + docFr.select("a[href*=" + pattern + "]").attr("href");
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}
 	}
 
 	private String getDownloadLinkEn(Document doc, String pattern) {
-		return EN_ROOT_DOWNLOAD_WEBSITE + doc.select("a[href*=" + pattern + "]").attr("href");
+		return ROOT_DOWNLOAD_WEBSITE_EN + doc.select("a[href*=" + pattern + "]").attr("href");
 	}
 
 }

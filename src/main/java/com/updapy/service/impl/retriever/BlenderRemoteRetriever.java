@@ -8,13 +8,11 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class DockerRemoteRetriever implements RemoteRetriever {
-
-	private static final String ROOT_DOWNLOAD_WEBSITE = "https://github.com";
+public class BlenderRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getApiName().equalsIgnoreCase("docker");
+		return application.getApiName().equalsIgnoreCase("blender");
 	}
 
 	@Override
@@ -24,7 +22,7 @@ public class DockerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return null;
+		return doc.select("a[href*=windows64.exe]").get(0).attr("href");
 	}
 
 	@Override
@@ -34,12 +32,12 @@ public class DockerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + doc.select("div.label-latest").select("a.primary").attr("href");
+		return doc.select("a[href*=windows32.exe]").get(0).attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("div.label-latest").select("div.release-body").select("h1.release-title").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("div.title").select("h1:contains(Blender)").get(0).text());
 	}
 
 }

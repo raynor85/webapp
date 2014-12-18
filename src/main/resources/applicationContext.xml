@@ -224,7 +224,7 @@
 		<ref bean="maxthonRemoteRetriever" />
 		<ref bean="cuteFTPRemoteRetriever" />
 		<ref bean="cpuZRemoteRetriever" />
-		<ref bean="dockerRemoteRetriever" />
+		<ref bean="githubRemoteRetriever" />
 		<ref bean="dropboxRemoteRetriever" />
 		<ref bean="powerIsoRemoteRetriever" />
 		<ref bean="neroBurningRomRemoteRetriever" />
@@ -254,6 +254,12 @@
 		<ref bean="linphoneRemoteRetriever" />
 		<ref bean="qBittorrentRemoteRetriever" />
 		<ref bean="handbrakeRemoteRetriever" />
+		<ref bean="kmeleonRemoteRetriever" />
+		<ref bean="blenderRemoteRetriever" />
+		<ref bean="makeHumanRemoteRetriever" />
+		<ref bean="photoFiltreStudioRemoteRetriever" />
+		<ref bean="seaMonkeyRemoteRetriever" />
+		<ref bean="anyDeskRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
