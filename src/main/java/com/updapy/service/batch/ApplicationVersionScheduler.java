@@ -67,8 +67,8 @@ public class ApplicationVersionScheduler {
 	@Autowired
 	private RetrievalErrorService retrievalErrorService;
 
-	// fire twice a day (noon and midnight)
-	@Scheduled(cron = "0 0 0,12 * * *")
+	// fire every 3 hours
+	@Scheduled(cron = "0 0 */3 * * *")
 	public void updateApplicationRepositoryAndCreateEmailSingleUpdates() {
 		log.info("> Starting the update of the applications repository (with single emails creation)");
 		List<ApplicationReference> applications = applicationService.getAllActiveApplications();
