@@ -34,7 +34,7 @@ public class SyncBackFreeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + doc.select("a:contains(Download SyncBackFree)").attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download SyncBackFree)").attr("href"));
 	}
 
 	@Override

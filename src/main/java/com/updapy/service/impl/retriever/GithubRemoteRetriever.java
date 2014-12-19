@@ -35,7 +35,7 @@ public class GithubRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + doc.select("div.label-latest").select("a.primary[href*=.exe]").attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("div.label-latest").select("a.primary[href*=.exe]").attr("href"));
 	}
 
 	@Override

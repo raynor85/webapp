@@ -35,7 +35,7 @@ public class HandbrakeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + doc.select("a:contains(Download HandBrake)").attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download HandBrake)").attr("href"));
 	}
 
 	@Override

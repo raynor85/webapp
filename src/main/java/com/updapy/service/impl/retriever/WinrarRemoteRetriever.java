@@ -19,22 +19,22 @@ public class WinrarRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlFr(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + doc.select("a:contains(French (64 bit))[href*=.exe]").get(0).attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(French (64 bit))[href*=.exe]").get(0).attr("href"));
 	}
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + doc.select("a:contains(WinRAR x64 (64 bit))[href*=.exe]").get(0).attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(WinRAR x64 (64 bit))[href*=.exe]").get(0).attr("href"));
 	}
 
 	@Override
 	public String retrieveWin32UrlFr(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + doc.select("a:contains(French (32 bit))[href*=.exe]").get(0).attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(French (32 bit))[href*=.exe]").get(0).attr("href"));
 	}
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + doc.select("a:contains(WinRAR x86 (32 bit))[href*=.exe]").get(0).attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(WinRAR x86 (32 bit))[href*=.exe]").get(0).attr("href"));
 	}
 
 	@Override

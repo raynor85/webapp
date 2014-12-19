@@ -35,7 +35,7 @@ public class PopcornTimeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + doc.select("li.dl-win").select("a").get(0).attr("data-file");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("li.dl-win").select("a").get(0).attr("data-file"));
 	}
 
 	@Override

@@ -12,7 +12,7 @@ import com.updapy.util.ParsingUtils;
 public class CpuZRemoteRetriever implements RemoteRetriever {
 
 	private static final String PATTERN_VERSION = "{version}";
-	private static final String ROOT_DOWNLOAD_WEBSITE = "ftp://ftp.cpuid.com/cpu-z/cpu-z_" + PATTERN_VERSION + "-setup-en.exe";
+	private static final String DOWNLOAD_WEBSITE = "ftp://ftp.cpuid.com/cpu-z/cpu-z_" + PATTERN_VERSION + "-setup-en.exe";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -36,7 +36,7 @@ public class CpuZRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return StringUtils.replace(ROOT_DOWNLOAD_WEBSITE, PATTERN_VERSION, getVersionNumber(doc));
+		return StringUtils.replace(DOWNLOAD_WEBSITE, PATTERN_VERSION, getVersionNumber(doc));
 	}
 
 	@Override

@@ -12,7 +12,7 @@ import com.updapy.util.ParsingUtils;
 public class OperaRemoteRetriever implements RemoteRetriever {
 
 	private static final String PATTERN_VERSION = "{version}";
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://get.geo.opera.com/pub/opera/desktop/" + PATTERN_VERSION + "/win/Opera_" + PATTERN_VERSION + "_Setup.exe";
+	private static final String DOWNLOAD_WEBSITE = "http://get.geo.opera.com/pub/opera/desktop/" + PATTERN_VERSION + "/win/Opera_" + PATTERN_VERSION + "_Setup.exe";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -36,7 +36,7 @@ public class OperaRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return StringUtils.replace(ROOT_DOWNLOAD_WEBSITE, PATTERN_VERSION, getVersionNumber(doc));
+		return StringUtils.replace(DOWNLOAD_WEBSITE, PATTERN_VERSION, getVersionNumber(doc));
 	}
 
 	@Override

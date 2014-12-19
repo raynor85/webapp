@@ -14,7 +14,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class BalsamiqRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://balsamiq.com/download/";
+	private static final String DOWNLOAD_WEBSITE = "http://balsamiq.com/download/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -39,7 +39,7 @@ public class BalsamiqRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
 		try {
-			return RemoteServiceImpl.retrieveHtmlDocumentAgent64(ROOT_DOWNLOAD_WEBSITE).select("a[href*=.exe]").attr("href");
+			return RemoteServiceImpl.retrieveHtmlDocumentAgent64(DOWNLOAD_WEBSITE).select("a[href*=.exe]").attr("href");
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}

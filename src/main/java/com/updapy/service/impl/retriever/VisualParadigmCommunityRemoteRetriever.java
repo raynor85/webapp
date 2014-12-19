@@ -24,7 +24,7 @@ public class VisualParadigmCommunityRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + doc.select("a:contains(Windows 64bit)").get(0).attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Windows 64bit)").get(0).attr("href"));
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class VisualParadigmCommunityRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + doc.select("a:contains(Windows 32bit)").get(0).attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Windows 32bit)").get(0).attr("href"));
 	}
 
 	@Override

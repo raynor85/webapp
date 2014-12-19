@@ -14,7 +14,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class TomTomHomeRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.tomtom.com/en_gb/services/tomtom-home";
+	private static final String DOWNLOAD_WEBSITE = "http://www.tomtom.com/en_gb/services/tomtom-home";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -39,7 +39,7 @@ public class TomTomHomeRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
 		try {
-			return RemoteServiceImpl.retrieveHtmlDocumentAgent64(ROOT_DOWNLOAD_WEBSITE).select("#BOX1").select("a[href*=.exe]").attr("href");
+			return RemoteServiceImpl.retrieveHtmlDocumentAgent64(DOWNLOAD_WEBSITE).select("#BOX1").select("a[href*=.exe]").attr("href");
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}

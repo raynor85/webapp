@@ -35,7 +35,7 @@ public class GlassWireRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + StringUtils.removeStart(doc.select("a.b-download-link").attr("href"), "..");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a.b-download-link").attr("href"));
 	}
 
 	@Override

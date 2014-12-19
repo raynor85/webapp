@@ -34,7 +34,7 @@ public class HeidiSqlRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + getDownloadLink(doc);
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, getDownloadLink(doc));
 	}
 
 	@Override

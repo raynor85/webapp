@@ -39,8 +39,7 @@ public class PhotoFiltreStudioRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
 		try {
-			Document docEn = RemoteServiceImpl.retrieveHtmlDocumentAgent32(DOWNLOAD_WEBSITE_EN);
-			return docEn.select("a[href*=.exe]").get(0).attr("href");
+			return RemoteServiceImpl.retrieveHtmlDocumentAgent32(DOWNLOAD_WEBSITE_EN).select("a[href*=.exe]").get(0).attr("href");
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}

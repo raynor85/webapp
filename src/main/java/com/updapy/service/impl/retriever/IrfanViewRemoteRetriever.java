@@ -11,7 +11,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class IrfanViewRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://download.cnet.com/IrfanView/3000-2192_4-10021962.html";
+	private static final String DOWNLOAD_WEBSITE = "http://download.cnet.com/IrfanView/3000-2192_4-10021962.html";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -35,7 +35,7 @@ public class IrfanViewRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE.replace("/3000", "/3001");
+		return DOWNLOAD_WEBSITE.replace("/3000", "/3001");
 	}
 
 	@Override

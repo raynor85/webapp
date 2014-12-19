@@ -14,7 +14,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class TorchBrowserRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.torchbrowser.com/";
+	private static final String DOWNLOAD_WEBSITE = "http://www.torchbrowser.com/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -39,7 +39,7 @@ public class TorchBrowserRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
 		try {
-			return RemoteServiceImpl.retrieveHtmlDocumentAgent32(ROOT_DOWNLOAD_WEBSITE).select("a:contains(Offline installer)").attr("href");
+			return RemoteServiceImpl.retrieveHtmlDocumentAgent32(DOWNLOAD_WEBSITE).select("a:contains(Offline installer)").attr("href");
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}

@@ -19,7 +19,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class MediaPlayerClassicBeRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://sourceforge.net/p/mpcbe/activity/feed";
+	private static final String DOWNLOAD_WEBSITE = "http://sourceforge.net/p/mpcbe/activity/feed";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -64,7 +64,7 @@ public class MediaPlayerClassicBeRemoteRetriever implements RemoteRetriever {
 	private NodeList extractLinks() {
 		XPathFactory xpf = XPathFactory.newInstance();
 		XPath xp = xpf.newXPath();
-		InputSource is = new InputSource(ROOT_DOWNLOAD_WEBSITE);
+		InputSource is = new InputSource(DOWNLOAD_WEBSITE);
 		NodeList nodes = null;
 		try {
 			nodes = (NodeList) xp.evaluate("//link", is, XPathConstants.NODESET);

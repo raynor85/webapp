@@ -39,7 +39,7 @@ public class WordPressRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
 		try {
-			return ROOT_DOWNLOAD_WEBSITE + RemoteServiceImpl.retrieveHtmlDocumentAgent32(DOWNLOAD_WEBSITE).select("a.download-button[href*=.zip]").attr("href");
+			return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgent32(DOWNLOAD_WEBSITE).select("a.download-button[href*=.zip]").attr("href"));
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}

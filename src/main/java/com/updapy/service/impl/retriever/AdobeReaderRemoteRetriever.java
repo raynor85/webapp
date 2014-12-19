@@ -34,7 +34,7 @@ public class AdobeReaderRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + doc.select("table").get(1).select("a:contains(Adobe Reader)[href*=ftpID]").first().attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("table").get(1).select("a:contains(Adobe Reader)[href*=ftpID]").first().attr("href"));
 	}
 
 	@Override

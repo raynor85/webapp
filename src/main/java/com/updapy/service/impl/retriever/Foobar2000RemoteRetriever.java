@@ -35,7 +35,7 @@ public class Foobar2000RemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + doc.select("a[href*=.exe]").get(0).attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a[href*=.exe]").get(0).attr("href"));
 	}
 
 	@Override

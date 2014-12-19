@@ -260,6 +260,11 @@
 		<ref bean="photoFiltreStudioRemoteRetriever" />
 		<ref bean="seaMonkeyRemoteRetriever" />
 		<ref bean="anyDeskRemoteRetriever" />
+		<ref bean="adslTVRemoteRetriever" />
+		<ref bean="mobaXtermRemoteRetriever" />
+		<ref bean="zedeoRemoteRetriever" />
+		<ref bean="zedTVRemoteRetriever" />
+		<ref bean="gitRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

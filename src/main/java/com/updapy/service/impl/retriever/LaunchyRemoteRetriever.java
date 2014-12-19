@@ -34,7 +34,7 @@ public class LaunchyRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + doc.select("a[href*=.exe]:contains(Latest Stable Version)").attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a[href*=.exe]:contains(Latest Stable Version)").attr("href"));
 	}
 
 	@Override

@@ -13,7 +13,7 @@ public class OpenOfficeRemoteRetriever implements RemoteRetriever {
 
 	private static final String PATTERN_VERSION = "{version}";
 	private static final String PATTERN_LANG = "{lang}";
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://sourceforge.net/projects/openofficeorg.mirror/files/" + PATTERN_VERSION + "/binaries/" + PATTERN_LANG + "/Apache_OpenOffice_" + PATTERN_VERSION + "_Win_x86_install_" + PATTERN_LANG + ".exe/download";
+	private static final String DOWNLOAD_WEBSITE = "http://sourceforge.net/projects/openofficeorg.mirror/files/" + PATTERN_VERSION + "/binaries/" + PATTERN_LANG + "/Apache_OpenOffice_" + PATTERN_VERSION + "_Win_x86_install_" + PATTERN_LANG + ".exe/download";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -32,12 +32,12 @@ public class OpenOfficeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlFr(Document doc) {
-		return StringUtils.replace(StringUtils.replace(ROOT_DOWNLOAD_WEBSITE, PATTERN_VERSION, getVersionNumber(doc)), PATTERN_LANG, "fr");
+		return StringUtils.replace(StringUtils.replace(DOWNLOAD_WEBSITE, PATTERN_VERSION, getVersionNumber(doc)), PATTERN_LANG, "fr");
 	}
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return StringUtils.replace(StringUtils.replace(ROOT_DOWNLOAD_WEBSITE, PATTERN_VERSION, getVersionNumber(doc)), PATTERN_LANG, "en-US");
+		return StringUtils.replace(StringUtils.replace(DOWNLOAD_WEBSITE, PATTERN_VERSION, getVersionNumber(doc)), PATTERN_LANG, "en-US");
 	}
 
 	@Override

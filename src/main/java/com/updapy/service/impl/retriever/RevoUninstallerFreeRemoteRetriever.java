@@ -34,7 +34,7 @@ public class RevoUninstallerFreeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + doc.select("a:contains(DOWNLOAD)").get(1).attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(DOWNLOAD)").get(1).attr("href"));
 	}
 
 	@Override

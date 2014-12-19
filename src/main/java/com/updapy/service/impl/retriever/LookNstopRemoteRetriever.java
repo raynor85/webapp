@@ -21,22 +21,22 @@ public class LookNstopRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlFr(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + StringUtils.removeStart(doc.select("a[href*=Installation]").select("a[href*=x64]").get(0).attr("href"), "..");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a[href*=Installation]").select("a[href*=x64]").get(0).attr("href"));
 	}
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + SUFFIX_EN + doc.select("a[href*=Setup]").select("a[href*=x64]").get(0).attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE + SUFFIX_EN, doc.select("a[href*=Setup]").select("a[href*=x64]").get(0).attr("href"));
 	}
 
 	@Override
 	public String retrieveWin32UrlFr(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + StringUtils.removeStart(doc.select("a[href*=Installation]").get(0).attr("href"), "..");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a[href*=Installation]").get(0).attr("href"));
 	}
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + SUFFIX_EN + doc.select("a[href*=Setup]").get(0).attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE + SUFFIX_EN, doc.select("a[href*=Setup]").get(0).attr("href"));
 	}
 
 	@Override

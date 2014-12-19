@@ -12,8 +12,8 @@ import com.updapy.util.ParsingUtils;
 public class TeamspeakServerRemoteRetriever implements RemoteRetriever {
 
 	private static final String PATTERN_VERSION = "{version}";
-	private static final String ROOT_DOWNLOAD_WEBSITE_32 = "http://dl.4players.de/ts/releases/" + PATTERN_VERSION + "/teamspeak3-server_win32-" + PATTERN_VERSION + ".zip";
-	private static final String ROOT_DOWNLOAD_WEBSITE_64 = "http://dl.4players.de/ts/releases/" + PATTERN_VERSION + "/teamspeak3-server_win64-" + PATTERN_VERSION + ".zip";
+	private static final String DOWNLOAD_WEBSITE_32 = "http://dl.4players.de/ts/releases/" + PATTERN_VERSION + "/teamspeak3-server_win32-" + PATTERN_VERSION + ".zip";
+	private static final String DOWNLOAD_WEBSITE_64 = "http://dl.4players.de/ts/releases/" + PATTERN_VERSION + "/teamspeak3-server_win64-" + PATTERN_VERSION + ".zip";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -27,7 +27,7 @@ public class TeamspeakServerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return StringUtils.replace(ROOT_DOWNLOAD_WEBSITE_64, PATTERN_VERSION, getVersionNumber(doc));
+		return StringUtils.replace(DOWNLOAD_WEBSITE_64, PATTERN_VERSION, getVersionNumber(doc));
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class TeamspeakServerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return StringUtils.replace(ROOT_DOWNLOAD_WEBSITE_32, PATTERN_VERSION, getVersionNumber(doc));
+		return StringUtils.replace(DOWNLOAD_WEBSITE_32, PATTERN_VERSION, getVersionNumber(doc));
 	}
 
 	@Override

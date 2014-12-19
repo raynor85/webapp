@@ -14,7 +14,7 @@ import com.updapy.util.ParsingUtils;
 public class VmwareWorkstationRemoteRetriever implements RemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.vmware.com";
-	private static final String ROOT_DOWNLOAD_WEBSITE_VERSION = "http://www.vmware.com/products/workstation/workstation-evaluation";
+	private static final String DOWNLOAD_WEBSITE_VERSION = "http://www.vmware.com/products/workstation/workstation-evaluation";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -39,7 +39,7 @@ public class VmwareWorkstationRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
 		try {
-			return ROOT_DOWNLOAD_WEBSITE + RemoteServiceImpl.retrieveHtmlDocumentAgent32(ROOT_DOWNLOAD_WEBSITE_VERSION).select("a.download_now_validation[href*=win]").attr("href");
+			return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgent32(DOWNLOAD_WEBSITE_VERSION).select("a.download_now_validation[href*=win]").attr("href"));
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}

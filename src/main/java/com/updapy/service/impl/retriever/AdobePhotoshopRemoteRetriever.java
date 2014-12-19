@@ -34,7 +34,7 @@ public class AdobePhotoshopRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + doc.select("table").get(0).select("a:contains(Adobe Photoshop)[href*=ftpID]").first().attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("table").get(0).select("a:contains(Adobe Photoshop)[href*=ftpID]").first().attr("href"));
 	}
 
 	@Override

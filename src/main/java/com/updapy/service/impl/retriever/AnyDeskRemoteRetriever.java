@@ -44,8 +44,7 @@ public class AnyDeskRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveVersionNumber(Document doc) {
 		try {
-			Document docVersion = RemoteServiceImpl.retrieveHtmlDocumentAgent32(VERSION_HISTORY_WEBSITE);
-			return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(docVersion.select("h3").get(0).html(), "<.*>.*</.*>"));
+			return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(RemoteServiceImpl.retrieveHtmlDocumentAgent32(VERSION_HISTORY_WEBSITE).select("h3").get(0).html(), "<.*>.*</.*>"));
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}

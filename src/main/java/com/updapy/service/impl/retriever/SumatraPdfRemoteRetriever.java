@@ -12,7 +12,7 @@ import com.updapy.util.ParsingUtils;
 public class SumatraPdfRemoteRetriever implements RemoteRetriever {
 
 	private static final String PATTERN_VERSION = "{version}";
-	private static final String ROOT_DOWNLOAD_WEBSITE = "https://kjkpub.s3.amazonaws.com/sumatrapdf/rel/SumatraPDF-" + PATTERN_VERSION + "-install.exe";
+	private static final String DOWNLOAD_WEBSITE = "https://kjkpub.s3.amazonaws.com/sumatrapdf/rel/SumatraPDF-" + PATTERN_VERSION + "-install.exe";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -36,7 +36,7 @@ public class SumatraPdfRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return StringUtils.replace(ROOT_DOWNLOAD_WEBSITE, PATTERN_VERSION, getVersionNumber(doc));
+		return StringUtils.replace(DOWNLOAD_WEBSITE, PATTERN_VERSION, getVersionNumber(doc));
 	}
 
 	@Override
