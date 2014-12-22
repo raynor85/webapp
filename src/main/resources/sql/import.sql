@@ -211,7 +211,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- RAM Disk
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.softperfect.com/products/ramdisk/', 'http://www.softperfect.com/products/ramdisk/', 'ramdisk.png', 'RAM Disk', 'ramdisk', false, 'TOOLS', 'FREE');
 -- Popcorn Time
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://popcorntime.io/', 'https://popcorntime.io/', 'popcorntime.png', 'Popcorn Time', 'popcorntime', false, 'VIDEO', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://popcorntime.io/', 'https://popcorntime.io/', 'popcorntime.png', 'Popcorn Time', 'popcorntime', false, 'VIDEO', 'FREE');
 -- PlayClaw
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.playclaw.com/download.php', 'http://www.playclaw.com/', 'playclaw.png', 'PlayClaw', 'playclaw', false, 'VIDEO', 'COMMERCIAL');
 -- Subsonic

@@ -7,6 +7,8 @@ import java.net.URLConnection;
 import java.util.Date;
 import java.util.List;
 
+import javax.net.ssl.SSLHandshakeException;
+
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -78,6 +80,8 @@ public class RemoteServiceImpl implements RemoteService {
 		int code;
 		try {
 			code = getResponseCode(url);
+		} catch (SSLHandshakeException e) {
+			return true; // https error are fine; jsoup cannot handle this properly, the link should be valid
 		} catch (IOException e) {
 			return false;
 		}
