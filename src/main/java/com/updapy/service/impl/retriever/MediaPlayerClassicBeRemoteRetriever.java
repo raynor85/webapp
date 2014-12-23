@@ -76,6 +76,6 @@ public class MediaPlayerClassicBeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(doc.select("item").first().select("title").text(), "^.*/MPC-BE\\."), ".x...*$"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(StringUtils.removePattern(doc.select("item").first().select("title").text(), "^.*/MPC-BE").replace("build", "."), ".x...*$"), "/.*$"));
 	}
 }
