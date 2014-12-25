@@ -116,7 +116,7 @@
 						<div id="collapse${i.count}" class="panel-collapse collapse in">
 							<div class="panel-body">
 								<div class="media">
-									<a class="pull-left" href="${applicationDescription.application.website}"> <img class="media-object" src="<spring:url value="/resources/img/application/small/${applicationDescription.application.iconFilename}" />" alt="${applicationDescription.application.name}">
+									<a class="pull-left" href="${applicationDescription.application.website}"> <img width="64" height="64" class="media-object" src="<spring:url value="/resources/img/application/small/${applicationDescription.application.iconFilename}" />" alt="${applicationDescription.application.name}">
 									</a>
 									<div class="media-body">
 										<%

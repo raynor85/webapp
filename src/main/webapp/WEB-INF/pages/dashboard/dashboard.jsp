@@ -105,7 +105,7 @@
 								<spring:message code="dashboard.applications.caption.website.title" />
 							</c:set>
 							<figure class="caption-figure" itemscope="itemscope" itemtype="http://schema.org/Photograph">
-								<a href="${currentFollowedApplication.downloadUrl}" title="${downloadTitle}" target="_blank"><img id="img-${appId}" class="shadowHover caption" src="<spring:url value="/resources/img/application/medium/${currentFollowedApplication.iconFilename}" />" itemprop="image"></a>
+								<a href="${currentFollowedApplication.downloadUrl}" title="${downloadTitle}" target="_blank"><img width="128" height="128" id="img-${appId}" class="shadowHover caption" src="<spring:url value="/resources/img/application/medium/${currentFollowedApplication.iconFilename}" />" itemprop="image"></a>
 								<figcaption itemprop="name">
 									<i class="fa fa-book"></i> <a class="caption" href="${root}/applications/${appId}" target="_blank" title="${descriptionCaptionTitle}"><spring:message code="dashboard.applications.caption.description" /></a> <br> <i class="fa fa-home"></i> <a class="caption" href="${currentFollowedApplication.websiteUrl}" target="_blank" title="${websiteCaptionTitle}"><spring:message code="dashboard.applications.caption.website" /></a>
 								</figcaption>
@@ -212,7 +212,7 @@
 							<div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 newFollowApplicationContainer" onclick="followNewApplication('${appId}');">
 								<div id="div-new-${appId}" class="application ${styleCommercial}" title="${appName} - <spring:message code='appslist.type.${leftApplication.type}' />">
 									<div class="icon">
-										<img src="<spring:url value="/resources/img/application/small/${leftApplication.iconFilename}" />" alt="${appName}">
+										<img width="64" height="64" src="<spring:url value="/resources/img/application/small/${leftApplication.iconFilename}" />" alt="${appName}">
 									</div>
 									<div class="title">
 										<span class="label label-success" style="display: inline-block !important; max-width: 100px !important; white-space: normal !important;">${appName}</span>
