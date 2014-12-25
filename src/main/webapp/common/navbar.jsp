@@ -15,15 +15,15 @@
 			<ul class="nav navbar-nav">
 				<li id="dropdown-lang" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <c:choose>
 							<c:when test="${lang == 'en'}">
-								<img src="<spring:url value="/resources/img/flag/en.png" />">
+								<img width="16" height="11" src="<spring:url value="/resources/img/flag/en.png" />">
 							</c:when>
 							<c:when test="${lang == 'fr'}">
-								<img src="<spring:url value="/resources/img/flag/fr.png" />">
+								<img width="16" height="11" src="<spring:url value="/resources/img/flag/fr.png" />">
 							</c:when>
 						</c:choose> <i class="fa fa-angle-down "></i></a>
 					<ul class="dropdown-menu">
-						<li id="lang-en"><a style="border-bottom: 0px !important;" href="javascript:changeLocale('en');"><img class="flag-lang pull-right" src="<spring:url value="/resources/img/flag/en.png" />"> <spring:message code="menu.language.en" /></a></li>
-						<li id="lang-fr"><a style="border-bottom: 0px !important;" href="javascript:changeLocale('fr');"><img class="flag-lang pull-right" src="<spring:url value="/resources/img/flag/fr.png" />"> <spring:message code="menu.language.fr" /></a></li>
+						<li id="lang-en"><a style="border-bottom: 0px !important;" href="javascript:changeLocale('en');"><img width="16" height="11" class="flag-lang pull-right" src="<spring:url value="/resources/img/flag/en.png" />"> <spring:message code="menu.language.en" /></a></li>
+						<li id="lang-fr"><a style="border-bottom: 0px !important;" href="javascript:changeLocale('fr');"><img width="16" height="11" class="flag-lang pull-right" src="<spring:url value="/resources/img/flag/fr.png" />"> <spring:message code="menu.language.fr" /></a></li>
 					</ul></li>
 				<c:if test="${not isAuthenticated}">
 					<li id="nav-faq"><a href="${root}/faq"><spring:message code="menu.faq" /></a></li>
@@ -91,12 +91,12 @@
 													<img src="<sec:authentication property="principal.avatarUrl" />" alt="User avatar">
 												</c:when>
 												<c:otherwise>
-													<img src="<spring:url value="/resources/img/dashboard/user-normal.png" />" alt="User default avatar">
+													<img width="116" height="116" src="<spring:url value="/resources/img/dashboard/user-normal.png" />" alt="User default avatar">
 												</c:otherwise>
 											</c:choose>
 										</c:when>
 										<c:otherwise>
-											<img src="<spring:url value="/resources/img/dashboard/user-normal.png" />" alt="User default avatar">
+											<img width="116" height="116" src="<spring:url value="/resources/img/dashboard/user-normal.png" />" alt="User default avatar">
 										</c:otherwise>
 									</c:choose>
 							</span> <a class="pull-right text-muted" id="username" style="max-width: 135px;"> <c:set var="username">

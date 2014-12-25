@@ -38,7 +38,7 @@
 					</div>
 				</c:if>
 				<div class="alt-index">
-					<img src="<spring:url value="/resources/img/welcome/updapy-preview.png" />" alt="Updapy Preview">
+					<img width="710" height="319" src="<spring:url value="/resources/img/welcome/updapy-preview.png" />" alt="Updapy Preview">
 				</div>
 			</div>
 		</div>
@@ -58,7 +58,7 @@
 	<!-- Wrapper for slides -->
 	<div class="carousel-inner">
 		<div class="item active">
-			<img src="<spring:url value="/resources/img/welcome/carousel-time.png" />">
+			<img width="779" height="387" src="<spring:url value="/resources/img/welcome/carousel-time.png" />">
 			<div class="carousel-caption">
 				<h4>
 					<spring:message code="welcome.carousel.time.title" />
@@ -69,7 +69,7 @@
 			</div>
 		</div>
 		<div class="item">
-			<img src="<spring:url value="/resources/img/welcome/carousel-custom.png" />">
+			<img width="779" height="387" src="<spring:url value="/resources/img/welcome/carousel-custom.png" />">
 			<div class="carousel-caption">
 				<h4>
 					<spring:message code="welcome.carousel.custom.title" />
@@ -80,7 +80,7 @@
 			</div>
 		</div>
 		<div class="item">
-			<img src="<spring:url value="/resources/img/welcome/carousel-security.png" />">
+			<img width="779" height="387" src="<spring:url value="/resources/img/welcome/carousel-security.png" />">
 			<div class="carousel-caption">
 				<h4>
 					<spring:message code="welcome.carousel.security.title" />
@@ -91,7 +91,7 @@
 			</div>
 		</div>
 		<div class="item">
-			<img src="<spring:url value="/resources/img/welcome/carousel-trust.png" />">
+			<img width="779" height="387" src="<spring:url value="/resources/img/welcome/carousel-trust.png" />">
 			<div class="carousel-caption">
 				<h4>
 					<spring:message code="welcome.carousel.trust.title" />
@@ -102,7 +102,7 @@
 			</div>
 		</div>
 		<div class="item">
-			<img src="<spring:url value="/resources/img/welcome/carousel-free.png" />">
+			<img width="779" height="387" src="<spring:url value="/resources/img/welcome/carousel-free.png" />">
 			<div class="carousel-caption">
 				<h4>
 					<spring:message code="welcome.carousel.free.title" />
@@ -174,7 +174,7 @@
 		</div>
 		<div class="row crp-desc">
 			<div class="col-sm-5 col-sm-offset-1">
-				<img src="<spring:url value="/resources/img/welcome/macbook-first.jpg" />" alt="Updapy Newsletter" class="img-responsive">
+				<img width="553" height="337" src="<spring:url value="/resources/img/welcome/macbook-first.jpg" />" alt="Updapy Newsletter" class="img-responsive">
 			</div>
 			<div class="col-sm-5">
 				<h3 class="text-color text-center-xs">
