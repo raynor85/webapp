@@ -10,7 +10,7 @@
 	<properties>
 
 		<!-- Spring -->
-		<org.springframework.version>4.1.2.RELEASE</org.springframework.version>
+		<org.springframework.version>4.1.3.RELEASE</org.springframework.version>
 		<org.springframework.data.version>1.7.1.RELEASE</org.springframework.data.version>
 		<org.springframework.batch.version>3.0.2.RELEASE</org.springframework.batch.version>
 		<org.springframework.security.version>3.2.5.RELEASE</org.springframework.security.version>
@@ -27,8 +27,8 @@
 		<!-- Utils -->
 		<org.apache.tiles.version>3.0.5</org.apache.tiles.version>
 		<org.apache.velocity.version>1.7</org.apache.velocity.version>
-		<joda-time.version>2.5</joda-time.version>
-		<jackson.version>2.4.3</jackson.version>
+		<joda-time.version>2.6</joda-time.version>
+		<jackson.version>2.4.4</jackson.version>
 		<dozer.version>5.5.1</dozer.version>
 		<org.jsoup.version>1.8.1</org.jsoup.version>
 		<rome.version>1.5.0</rome.version>
@@ -39,26 +39,26 @@
 		<commons-lang.version>3.3.2</commons-lang.version>
 
 		<!-- Root -->
-		<org.apache.httpcomponents.httpclient.version>4.3.5</org.apache.httpcomponents.httpclient.version>
+		<org.apache.httpcomponents.httpclient.version>4.3.6</org.apache.httpcomponents.httpclient.version>
 		<javax.activation.version>1.1.1</javax.activation.version>
-		<javax.mail.version>1.4.7</javax.mail.version>
+		<javax.mail-api.version>1.5.2</javax.mail-api.version>
 		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
 
 		<!-- Database -->
 		<hsqldb.version>2.3.2</hsqldb.version>
-		<postgresql.version>9.1-901-1.jdbc4</postgresql.version>
+		<postgresql.version>9.3-1102-jdbc41</postgresql.version>
 
 		<!-- Production -->
-		<jsimone.webapp-runner.version>7.0.40.1</jsimone.webapp-runner.version>
-		<com.newrelic.agent.java.version>3.12.0</com.newrelic.agent.java.version>
+		<jsimone.webapp-runner.version>7.0.57.1</jsimone.webapp-runner.version>
+		<com.newrelic.agent.java.version>3.12.1</com.newrelic.agent.java.version>
 
 		<!-- Log -->
-		<slf4j.version>1.7.7</slf4j.version>
+		<slf4j.version>1.7.9</slf4j.version>
 		<logback.version>1.1.2</logback.version>
 		<commons-logging.version>1.2</commons-logging.version>
 
 		<!-- Testing -->
-		<junit.version>4.11</junit.version>
+		<junit.version>4.12</junit.version>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -119,8 +119,8 @@
 		</dependency>
 		<dependency>
 			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>${javax.mail.version}</version>
+			<artifactId>javax.mail-api</artifactId>
+			<version>${javax.mail-api.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.newrelic.agent.java</groupId>
@@ -378,7 +378,7 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>postgresql</groupId>
+			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>${postgresql.version}</version>
 		</dependency>
