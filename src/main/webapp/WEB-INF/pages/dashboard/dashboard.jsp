@@ -6,6 +6,7 @@
 <%@ page import="com.updapy.model.enumeration.ApplicationType"%>
 
 <c:set var="COMMERCIAL" value="<%=ApplicationType.COMMERCIAL%>" />
+<c:set var="nbAppFollow">${fn:length(currentFollowedApplications)}</c:set>
 
 <div class="container">
 	<div class="row rowWithPadding">
@@ -26,7 +27,6 @@
 				</div>
 			</form:form>
 		</c:if>
-		<c:set var="nbAppFollow">${fn:length(currentFollowedApplications)}</c:set>
 		<div class="alert alert-info pull-right">
 			<c:choose>
 				<c:when test="${nbAppFollow == 0}">
@@ -50,6 +50,15 @@
 			</c:choose>
 		</div>
 	</div>
+	<c:if test="${nbAppFollow > 36}">
+		<div class="row rowWithPadding" align="center" style="padding-bottom: 10px;">
+			<div class="button-ladda">
+				<button type="button" class="btn-color ladda-button" data-toggle="modal" data-target="#followApplicationsModal">
+					<spring:message code="dashboard.applications.follow.button" />
+				</button>
+			</div>
+		</div>
+	</c:if>
 	<div class="row rowWithPadding rowApps-center-xs">
 		<form:form id="unfollowApplicationsForm" commandName="unfollowApplications" action="${root}/dashboard/unfollow">
 			<c:forEach items="${currentFollowedApplications}" var="currentFollowedApplication">
@@ -122,7 +131,6 @@
 			</c:forEach>
 		</form:form>
 	</div>
-	<br />
 	<div class="row rowWithPadding" align="center">
 		<div class="button-ladda">
 			<button type="button" class="btn-color ladda-button" data-toggle="modal" data-target="#followApplicationsModal">
