@@ -16,7 +16,7 @@ public class SendEmailTest {
 	EmailSenderService emailSenderService;
 
 	@Test
-	public void testSendPersonalEmail() {
+	public void sendPersonalEmail() {
 		String email = "";
 		String subject = "Error when connecting to Updapy via Google +";
 		String title = "Thanks for reporting your problem";
@@ -25,4 +25,14 @@ public class SendEmailTest {
 		emailSenderService.sendPersonalEmail(email, subject, title, message, locale);
 	}
 
+	@Test
+	public void sendPersonalEmailApplicationRefusedFr() {
+		String email = "";
+		String subject = "A propos de vos demandes d'ajout";
+		String title = "Merci pour vos récentes demandes d'ajout d'application";
+		String message = "Malheureusement, nous ne pouvons satisfaire votre demande...<br>Lumia Player et Lumia Browser ne répondent pas à nos exigences pour pouvoir être ajoutés sur Updapy.<br>Nous comptons sur votre compréhension.<br><br>L'équipe Updapy.";
+		Locale locale = Locale.FRENCH;
+		emailSenderService.sendPersonalEmail(email, subject, title, message, locale);
+	}
+	
 }
