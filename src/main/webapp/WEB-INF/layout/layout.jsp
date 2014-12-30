@@ -76,7 +76,7 @@
 	})(window, document, 'script', '//www.google-analytics.com/analytics.js',
 			'ga');
 
-	ga('create', 'UA-51823341-1', 'updapy.com');
+	ga('create', 'UA-51823341-1', '<spring:message code='application.domain' />');
 	ga('send', 'pageview');
 </script>
 
