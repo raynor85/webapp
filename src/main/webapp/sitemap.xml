@@ -871,5 +871,15 @@
 		<changefreq>yearly</changefreq>
 		<priority>0.2</priority>
 	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/dashlane</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/veracrypt</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
 
 </urlset>
