@@ -1,5 +1,6 @@
 package com.updapy.service.impl.retriever;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -39,7 +40,7 @@ public class MobaXtermRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("span.download").get(0).text());
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("p.version_titre").get(0).text(), "\\(.*\\)"));
 	}
 
 }
