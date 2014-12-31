@@ -39,7 +39,11 @@ public class WinrarRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("a[href*=.exe]").get(0).text());
+		String version = ParsingUtils.extractVersionNumberFromString(doc.select("a[href*=.exe]").get(0).text());
+		if (version.contains("b")) {
+			return "0"; // beta does not count
+		}
+		return version;
 	}
 
 }
