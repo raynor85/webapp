@@ -1,14 +1,19 @@
 package com.updapy.service.impl.retriever;
 
+import java.io.IOException;
+
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
 public class CdBurnerXpRemoteRetriever implements RemoteRetriever {
+
+	private static final String DOWNLOAD_WEBSITE_VERSION = "https://cdburnerxp.se/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -37,7 +42,11 @@ public class CdBurnerXpRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("a:contains(Download latest version)").text());
+		try {
+			return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgent32(DOWNLOAD_WEBSITE_VERSION).select("span:containsOwn(Version)").html().split("<br>")[0]);
+		} catch (IOException e) {
+			throw new RuntimeException();
+		}
 	}
 
 }
