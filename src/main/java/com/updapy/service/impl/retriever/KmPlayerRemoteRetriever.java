@@ -4,6 +4,7 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.model.Version;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
@@ -32,12 +33,20 @@ public class KmPlayerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a:contains(Download KMPlayer)").attr("href");
+		return doc.select("div.dm_btn2").select("a").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("a:contains(Download KMPlayer)").text());
+		String version1 = ParsingUtils.extractVersionNumberFromString(doc.select("a:contains(Download KMPlayer)").text());
+		String version2 = ParsingUtils.extractVersionNumberFromString(doc.select("dt:contains(Updated version)").get(0).text());
+		if (version2 == null) {
+			return version1;
+		}
+		if (new Version(version1).compareTo(new Version(version2)) == -1) {
+			return version2;
+		}
+		return version1;
 	}
 
 }
