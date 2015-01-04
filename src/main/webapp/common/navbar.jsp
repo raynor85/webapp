@@ -54,7 +54,7 @@
 							<li><a tabindex="-1" href="${root}/rss/notifications?key=${rssKey}" target="_blank" onmouseover="javascript:$('#rss-icon').css('color', '#1a7440');" onmouseout="javascript:$('#rss-icon').css('color', '#FF6600');" style="color: #333; min-width: 310px"><i id="rss-icon" class="fa fa-rss fa-1-4x pull-right color-rss" style="display: block;"></i> <spring:message code="menu.notification.rss" /></a></li>
 						</ul></li>
 				</c:if>
-				<li id="nav-contact" class="dropdown"><a href="#" class="dropdown-toggle share-menu" data-toggle="dropdown" title="<spring:message code='menu.support' />"> <i class="fa fa-share-alt share-icon"></i> <i class="fa fa-angle-down "></i></a>
+				<li id="nav-contact" class="dropdown"><a href="#" class="dropdown-toggle share-menu" data-toggle="dropdown" title="<spring:message code='menu.support' />"> <i class="fa fa-share-alt share-icon"></i>&nbsp;<i class="fa fa-angle-down "></i></a>
 					<ul id="socialMenuDropdown" class="dropdown-menu dropdown-menu-right-sm">
 						<li><a tabindex="-1" href="${root}/contact"><i id="message-icon" class="fa fa-comments fa-1-4x pull-right" style="display: block;"></i> <spring:message code="menu.contact" /></a></li>
 						<c:choose>
@@ -79,7 +79,7 @@
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						</form>
 						<ul class="nav navbar-nav navbar-right hidden-xs">
-							<li class="noHover"><span class="user-bar-icons"> <a href="javascript:logout()" title="<spring:message code="menu.logout" />"><i class="fa fa-sign-out" id="sign-out"></i></a> <a href="${root}/settings" title="<spring:message code="menu.settings" />"><i class="fa fa-cog"></i></a>
+							<li class="noHover"><span class="user-bar-icons"> <a href="javascript:logout()" title="<spring:message code="menu.logout" />"><i class="fa fa-sign-out" id="sign-out"></i></a>&nbsp;<a href="${root}/settings" title="<spring:message code="menu.settings" />"><i class="fa fa-cog"></i></a>
 							</span></li>
 							<li id="user-bar" class="hidden-sm noHover"><span class="user-bar-avatar pull-right"> <c:choose>
 										<c:when test="${isAuthenticated}">

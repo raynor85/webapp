@@ -15,6 +15,8 @@ public class SendEmailTest {
 	@Autowired
 	EmailSenderService emailSenderService;
 
+	// English
+
 	@Test
 	public void sendPersonalEmailAnswer1En() {
 		String email = "";
@@ -22,6 +24,18 @@ public class SendEmailTest {
 		String title = "Thanks for reporting your problem";
 		String message = "We just fix it! You can <a href='http://www.updapy.com/sign'>sign in to Updapy</a> via Google + again.<br>You will certainly need to re-authorize Updapy to access your basic information (name, email).<br>If you're still having problems to sign in, don't hesitate to contact us.<br><br>The Updapy team.";
 		Locale locale = Locale.ENGLISH;
+		emailSenderService.sendPersonalEmail(email, subject, title, message, locale);
+	}
+
+	// French
+
+	@Test
+	public void sendPersonalEmailAnswer1Fr() {
+		String email = "";
+		String subject = "Réponse à votre message";
+		String title = "Erreur 403";
+		String message = "Merci pour votre retour. Malheureusement, nous ne reproduisons pas votre problème.<br>Une erreur 403 indique un accès refusé.<br>Essayez de vous déconnecter puis de vous reconnecter avant de suivre une nouvelle application.<br>Il est possible qu'un problème de cookie en soit la cause, en particulier si vous utilisez la fonctionnalité \"Se souvenir de moi\".<br><br>L'équipe Updapy.";
+		Locale locale = Locale.FRENCH;
 		emailSenderService.sendPersonalEmail(email, subject, title, message, locale);
 	}
 
@@ -34,15 +48,15 @@ public class SendEmailTest {
 		Locale locale = Locale.FRENCH;
 		emailSenderService.sendPersonalEmail(email, subject, title, message, locale);
 	}
-	
+
 	@Test
-	public void sendPersonalEmailAnswer2Fr() {
+	public void sendPersonalEmailApplicationAlreadyFr() {
 		String email = "";
-		String subject = "Réponse à votre message";
-		String title = "Erreur 403";
-		String message = "Merci pour votre retour. Malheureusement, nous ne reproduisons pas votre problème.<br>Une erreur 403 indique un accès refusé.<br>Essayez de vous déconnecter puis de vous reconnecter avant de suivre une nouvelle application.<br>Il est possible qu'un problème de cookie en soit la cause, en particulier si vous utilisez la fonctionnalité \"Se souvenir de moi\".<br><br>L'équipe Updapy.";
+		String subject = "A propos de votre demande d'ajout";
+		String title = "Merci pour votre récente demande d'ajout d'application";
+		String message = "<a href='http://www.updapy.com/applications/javare'>Java</a> est déjà disponible sur Updapy.<br><br>L'équipe Updapy.";
 		Locale locale = Locale.FRENCH;
 		emailSenderService.sendPersonalEmail(email, subject, title, message, locale);
 	}
-	
+
 }
