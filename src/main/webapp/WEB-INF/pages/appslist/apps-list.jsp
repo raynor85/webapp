@@ -110,14 +110,13 @@
 										<c:set var="styleBadgeType" value="success" />
 									</c:otherwise>
 								</c:choose>
-								<span class="badge${applicationDescription.application.type} label label-${styleBadgeType} pull-right"> <i class="fa fa-shopping-cart" style="margin-right: 2px;"></i> <spring:message code="appslist.type.${applicationDescription.application.type}" /></span>
+								<span class="badge${applicationDescription.application.type} label label-${styleBadgeType} pull-right"> <i class="fa fa-shopping-cart" style="margin-right: 2px;"></i>&nbsp;<spring:message code="appslist.type.${applicationDescription.application.type}" /></span>
 							</h4>
 						</div>
 						<div id="collapse${i.count}" class="panel-collapse collapse in">
 							<div class="panel-body">
 								<div class="media">
-									<a class="pull-left" href="${applicationDescription.application.website}"> <img width="64" height="64" class="media-object" src="<spring:url value="/resources/img/application/small/${applicationDescription.application.iconFilename}" />" alt="${applicationDescription.application.name}">
-									</a>
+									<a class="pull-left media-object sprite sprite-${applicationDescription.application.apiName} sprite-app-list" href="${applicationDescription.application.website}"> </a>
 									<div class="media-body">
 										<%
 											ApplicationDescription applicationDescription = (ApplicationDescription) pageContext
@@ -134,7 +133,7 @@
 										%>
 										<div class="row" style="margin-top: 15px; margin-bottom: 3px;">
 											<div class="col-lg-2 pull-left">
-												<span class="badge${applicationDescription.application.category} label label-default"><i class="fa fa-tag" style="margin-right: 2px;"></i> <spring:message code="appslist.category.${applicationDescription.application.category}" /></span>
+												<span class="badge${applicationDescription.application.category} label label-default"><i class="fa fa-tag" style="margin-right: 2px;"></i>&nbsp;<spring:message code="appslist.category.${applicationDescription.application.category}" /></span>
 											</div>
 										</div>
 									</div>

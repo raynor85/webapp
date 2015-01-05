@@ -219,9 +219,7 @@
 							</c:if>
 							<div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 newFollowApplicationContainer" onclick="followNewApplication('${appId}');">
 								<div id="div-new-${appId}" class="application ${styleCommercial}" title="${appName} - <spring:message code='appslist.type.${leftApplication.type}' />">
-									<div class="icon">
-										<img width="64" height="64" src="<spring:url value="/resources/img/application/small/${leftApplication.iconFilename}" />" alt="${appName}">
-									</div>
+									<div class="icon sprite sprite-${leftApplication.apiName}"> </div>
 									<div class="title">
 										<span class="label label-success" style="display: inline-block !important; max-width: 100px !important; white-space: normal !important;">${appName}</span>
 									</div>
