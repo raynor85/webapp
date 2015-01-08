@@ -43,7 +43,7 @@ public class ParsingUtils {
 		if (pageUrl.startsWith(HTTP_PREFIX)) {
 			return pageUrl;
 		}
-		return StringUtils.removeEnd(rootUrl, HTTP_PATH_SEPARATOR) + HTTP_PATH_SEPARATOR + StringUtils.removeStart(StringUtils.removeStart(pageUrl, ".."), HTTP_PATH_SEPARATOR);
+		return StringUtils.removeEnd(rootUrl, HTTP_PATH_SEPARATOR) + HTTP_PATH_SEPARATOR + pageUrl.replaceAll("\\.\\." + HTTP_PATH_SEPARATOR, StringUtils.EMPTY);
 	}
 
 }

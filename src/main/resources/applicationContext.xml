@@ -270,6 +270,13 @@
 		<ref bean="uncheckyRemoteRetriever" />
 		<ref bean="dashlaneRemoteRetriever" />
 		<ref bean="veraCryptRemoteRetriever" />
+		<ref bean="aimpRemoteRetriever" />
+		<ref bean="bitTorrentSyncRemoteRetriever" />
+		<ref bean="cutePdfWriterRemoteRetriever" />
+		<ref bean="everythingRemoteRetriever" />
+		<ref bean="extraPuttyRemoteRetriever" />
+		<ref bean="greenshotRemoteRetriever" />
+		<ref bean="imgBurnRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
