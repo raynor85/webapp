@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.updapy.form.ajax.JsonResponse;
-import com.updapy.service.batch.ApplicationVersionScheduler;
+import com.updapy.service.scheduler.ApplicationVersionScheduler;
 import com.updapy.util.JsonResponseUtils;
 
 @Controller

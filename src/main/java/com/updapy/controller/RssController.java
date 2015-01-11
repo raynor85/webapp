@@ -14,9 +14,9 @@ import com.updapy.exception.UnauthorizedException;
 import com.updapy.model.ApplicationNotification;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.User;
-import com.updapy.rss.RssNotificationViewer;
-import com.updapy.rss.model.RssNotification;
+import com.updapy.model.rss.RssNotification;
 import com.updapy.service.UserService;
+import com.updapy.service.rss.RssNotificationViewer;
 import com.updapy.util.MessageUtils;
 
 @Controller

@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.updapy.api.model.ApplicationNameResource;
-import com.updapy.api.model.ApplicationNameResources;
-import com.updapy.api.model.LatestApplicationVersion;
 import com.updapy.exception.ResourceNotFoundException;
 import com.updapy.exception.UnauthorizedException;
 import com.updapy.model.ApplicationVersion;
+import com.updapy.model.api.ApplicationNameResource;
+import com.updapy.model.api.ApplicationNameResources;
+import com.updapy.model.api.LatestApplicationVersion;
 import com.updapy.service.ApplicationService;
 import com.updapy.service.UserService;
 import com.updapy.util.DozerHelper;

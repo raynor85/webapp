@@ -277,6 +277,13 @@
 		<ref bean="extraPuttyRemoteRetriever" />
 		<ref bean="greenshotRemoteRetriever" />
 		<ref bean="imgBurnRemoteRetriever" />
+		<ref bean="infraRecorderRemoteRetriever" />
+		<ref bean="inkscapeRemoteRetriever" />
+		<ref bean="mediaMonkeyRemoteRetriever" />
+		<ref bean="peaZipRemoteRetriever" />
+		<ref bean="puTTYRemoteRetriever" />
+		<ref bean="pythonRemoteRetriever" />
+		<ref bean="superPuttyRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
