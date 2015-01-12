@@ -1,5 +1,8 @@
 package com.updapy.service.retriever.impl;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -37,7 +40,13 @@ public class EclipseJeeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("#descriptionText").text());
+		Pattern pattern = Pattern.compile("\\(.*\\)");
+		String version = doc.select("#descriptionText").text();
+		Matcher matcher = pattern.matcher(version);
+		if (matcher.find()) {
+			version = version.substring(matcher.start(), matcher.end());
+		}
+		return ParsingUtils.extractVersionNumberFromString(version);
 	}
 
 }
