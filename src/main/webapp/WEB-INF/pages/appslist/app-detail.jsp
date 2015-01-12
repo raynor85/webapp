@@ -3,9 +3,11 @@
 
 <%@ page import="com.updapy.model.ApplicationDescription"%>
 <%@ page import="java.util.Locale"%>
+<%@ page import="com.updapy.model.enumeration.ApplicationType"%>
 
 <c:set var="lang" value="${lang}" />
 <c:set var="applicationDescription" value="${applicationDescription}" />
+<c:set var="COMMERCIAL" value="<%=ApplicationType.COMMERCIAL%>" />
 
 <div class="container">
 	<div class="row">

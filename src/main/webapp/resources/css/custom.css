@@ -1870,6 +1870,14 @@ img.shadowHover:hover {
 	background-color: #d9534f;
 }
 
+@media ( max-width : 400px) {
+	.badgeCOMMERCIAL {
+		width: 70px;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+}
+
 /*** Sometimes we don't want focus ***/
 .noHover {
 	color: #000 !important;
