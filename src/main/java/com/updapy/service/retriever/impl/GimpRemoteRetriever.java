@@ -32,7 +32,7 @@ public class GimpRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a:contains(Download GIMP)[href*=windows]").attr("href");
+		return doc.select("a[href~=.*exe$]").first().attr("href");
 	}
 
 	@Override
