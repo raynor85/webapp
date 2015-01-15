@@ -99,9 +99,9 @@
 											<img width="116" height="116" src="<spring:url value="/resources/img/dashboard/user-normal.png" />" alt="User default avatar">
 										</c:otherwise>
 									</c:choose>
-							</span> <a class="pull-right text-muted" id="username" style="max-width: 135px;"> <c:set var="username">
-										<sec:authentication property="principal.name" />
-									</c:set> <c:out value="${username}" escapeXml="false" />
+							</span> <c:set var="username">
+									<sec:authentication property="principal.name" />
+								</c:set> <a class="pull-right text-muted" id="username" title="<c:out value='${username}' escapeXml='false' />"> <c:out value="${username}" escapeXml="false" />
 							</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right visible-xs">

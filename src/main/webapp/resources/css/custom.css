@@ -657,6 +657,12 @@ a.text-muted {
 	color: #777 !important;
 }
 
+a#username {
+	max-width: 150px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
 /* ===== Share icons ===== */
 @media ( min-width : 768px) {
 	.share-menu {
