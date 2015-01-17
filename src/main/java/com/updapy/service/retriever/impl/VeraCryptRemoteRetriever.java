@@ -48,7 +48,7 @@ public class VeraCryptRemoteRetriever implements RemoteRetriever {
 		Pattern pattern = Pattern.compile("[A-Za-z]");
 		Matcher matcher = pattern.matcher(version);
 		if (matcher.find()) {
-			String versionWithoutLetters = matcher.replaceAll(Integer.toString(Character.getNumericValue(version.charAt(matcher.end() - 1)) - 10));
+			String versionWithoutLetters = matcher.replaceAll(Integer.toString(Character.getNumericValue(version.charAt(matcher.end() - 1)) - 9));
 			return StringUtils.replaceChars(versionWithoutLetters, '-', '.');
 		}
 		return version;
