@@ -26,6 +26,26 @@ public class SendEmailTest {
 		Locale locale = Locale.ENGLISH;
 		emailSenderService.sendPersonalEmail(email, subject, title, message, locale);
 	}
+	
+	@Test
+	public void sendPersonalEmailAnswer2En() {
+		String email = "";
+		String subject = "Hi";
+		String title = "Thanks for your message";
+		String message = "Thanks for reporting the invalid link on Gimp and the new version of PDF-XChange Viewer, we fixed them.<br>New versions are checked every day.<br><br>The Updapy team.";
+		Locale locale = Locale.ENGLISH;
+		emailSenderService.sendPersonalEmail(email, subject, title, message, locale);
+	}
+	
+	@Test
+	public void sendPersonalEmailAnswer3En() {
+		String email = "";
+		String subject = "Hi";
+		String title = "Thanks for your suggestion on the RSS feed";
+		String message = "We will think about it for a future release.<br><br>The Updapy team.";
+		Locale locale = Locale.ENGLISH;
+		emailSenderService.sendPersonalEmail(email, subject, title, message, locale);
+	}
 
 	// French
 

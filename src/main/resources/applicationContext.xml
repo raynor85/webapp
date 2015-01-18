@@ -284,6 +284,14 @@
 		<ref bean="puTTYRemoteRetriever" />
 		<ref bean="pythonRemoteRetriever" />
 		<ref bean="superPuttyRemoteRetriever" />
+		<ref bean="realVncRemoteRetriever" />
+		<ref bean="securityEssentialsRemoteRetriever" />
+		<ref bean="teraCopyRemoteRetriever" />
+		<ref bean="totalCommanderRemoteRetriever" />
+		<ref bean="trillianRemoteRetriever" />
+		<ref bean="winDirStatRemoteRetriever" />
+		<ref bean="winScpRemoteRetriever" />
+		<ref bean="yahooMessengerRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
