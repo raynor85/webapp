@@ -11,6 +11,8 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class SevenZipRemoteRetriever implements RemoteRetriever {
 
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.7-zip.org/";
+
 	@Override
 	public boolean support(ApplicationReference application) {
 		return application.getApiName().equalsIgnoreCase("7zip");
@@ -33,12 +35,12 @@ public class SevenZipRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a:contains(Download)[href*=.exe]").get(1).attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download)[href*=.exe]").get(0).attr("href"));
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(doc.select("p:contains(Download 7-Zip):not(p:contains(beta)):not(p:contains(Beta))").html(), "7-Zip"), "\\(.*\\)"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(doc.select("p:contains(Download 7-Zip):not(p:contains(beta)):not(p:contains(Beta))").first().html(), "7-Zip"), "\\(.*\\)"));
 	}
 
 }
