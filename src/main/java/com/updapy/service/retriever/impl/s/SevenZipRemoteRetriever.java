@@ -25,7 +25,7 @@ public class SevenZipRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return doc.select("a:contains(Download)[href*=x64]").get(1).attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download)[href*=x64]").get(0).attr("href"));
 	}
 
 	@Override
