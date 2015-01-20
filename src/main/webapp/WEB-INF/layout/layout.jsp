@@ -113,18 +113,18 @@
 <%-- <script src="<spring:url value="/resources/js/jquery.color.min.js" />"></script> --%>
 
 <!-- Bootstrap and plugins -->
-<%-- <link href="<spring:url value="/resources/css/bootstrap.min.css?ver=1.1" />" rel="stylesheet"> --%>
+<%-- <link href="<spring:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet"> --%>
 <%-- <script src="<spring:url value="/resources/js/bootstrap.min.js" />"></script> --%>
-<%-- <link href="<spring:url value="/resources/css/social-buttons-3.min.css?ver=1.1" />" rel="stylesheet"> --%>
+<%-- <link href="<spring:url value="/resources/css/social-buttons-3.min.css" />" rel="stylesheet"> --%>
 <%-- <link href="<spring:url value="/resources/css/awesome-bootstrap-checkbox.min.css" />" rel="stylesheet"> --%>
 
 <!-- Custom styles for this template -->
-<%-- <link href="<spring:url value="/resources/css/color-styles.min.css?ver=1.1" />" rel="stylesheet"> --%>
-<%-- <link href="<spring:url value="/resources/css/ui-elements.min.css?ver=1.2" />" rel="stylesheet"> --%>
-<%-- <link href="<spring:url value="/resources/css/custom.min.css?ver=1.5" />" rel="stylesheet"> --%>
+<%-- <link href="<spring:url value="/resources/css/color-styles.min.css" />" rel="stylesheet"> --%>
+<%-- <link href="<spring:url value="/resources/css/ui-elements.min.css" />" rel="stylesheet"> --%>
+<%-- <link href="<spring:url value="/resources/css/custom.min.css" />" rel="stylesheet"> --%>
 
 <!-- Ladda -->
-<%-- <link href="<spring:url value="/resources/css/ladda.min.css?ver=1.1" />" rel="stylesheet"> --%>
+<%-- <link href="<spring:url value="/resources/css/ladda.min.css" />" rel="stylesheet"> --%>
 <%-- <script src="<spring:url value="/resources/js/spin.min.js" />"></script> --%>
 <%-- <script src="<spring:url value="/resources/js/ladda.min.js" />"></script> --%>
 

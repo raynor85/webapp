@@ -1996,7 +1996,6 @@ a.caption {
 
 /* ===== Sprites ===== */
 .sprite {
-	background: url(../img/application/sprite/small.png) no-repeat top left;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -2006,1161 +2005,1352 @@ a.caption {
 }
 
 .sprite-7zip {
+	background: url(../img/application/sprite/01.png) no-repeat top left;
 	background-position: 0 0;
-	height: 64px;
 	width: 64px;
 	height: 64px;
-	width: 64px;
 }
 
 .sprite-adawarefree {
-	background-position: -94px 0;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -114px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-adobeair {
-	background-position: -188px 0;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -228px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-adobephotoshop {
-	background-position: -282px 0;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -342px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-adobereader {
-	background-position: -376px 0;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -456px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-adsltv {
-	background-position: -470px 0;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -570px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-advancedsystemcare {
-	background-position: -564px 0;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -684px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-adwcleaner {
-	background-position: -658px 0;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -798px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-aimp {
-	background-position: -752px 0;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -912px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-anydesk {
-	background-position: -846px 0;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -1026px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-anyvideoconverter {
-	background-position: -940px 0;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -1140px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-audacity {
-	background-position: -1034px 0;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -1254px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-autoruns {
-	background-position: -1128px 0;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -1368px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-avast {
-	background-position: -1222px 0;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -1482px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-avgfreeantivirus {
-	background-position: -1316px 0;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -1596px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-avidemux {
-	background-position: -1410px 0;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -1710px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-aviraantivirusfree {
-	background-position: -1504px 0;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -1824px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-balsamiq {
-	background-position: -1598px 0;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -1938px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-bittorrent {
-	background-position: -1692px 0;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: 0 -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-bittorrentsync {
-	background-position: -1786px 0;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -114px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-blender {
-	background-position: -1880px 0;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -228px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-blueflap {
-	background-position: 0 -69px;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -342px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-bullzippdfprintercommmunity {
-	background-position: -94px -69px;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -456px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-captvty {
-	background-position: -188px -69px;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -570px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-ccleaner {
-	background-position: -282px -69px;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -684px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-cdburnerxp {
-	background-position: -376px -69px;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -798px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-chrome {
-	background-position: -470px -69px;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -912px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-chromium {
-	background-position: -564px -69px;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -1026px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-clementineplayer {
-	background-position: -658px -69px;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -1140px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-cpuz {
-	background-position: -752px -69px;
-	height: 64px;
+	background: url(../img/application/sprite/01.png) no-repeat top left;
+	background-position: -1254px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-cuteftp {
-	background-position: -846px -69px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: 0 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-cutepdfwriter {
-	background-position: -940px -69px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -114px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-daemontoolslite {
-	background-position: -1034px -69px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -228px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-dashlane {
-	background-position: -1128px -69px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -342px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-defraggler {
-	background-position: -1222px -69px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -456px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-diskdefragtouch {
-	background-position: -1316px -69px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -570px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-docker {
-	background-position: -1410px -69px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -684px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-dooscape {
-	background-position: -1504px -69px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -798px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-driverbooster {
-	background-position: -1598px -69px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -912px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-drivermax {
-	background-position: -1692px -69px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -1026px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-dropbox {
-	background-position: -1786px -69px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -1140px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-eclipsejee {
-	background-position: -1880px -69px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -1254px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-eclipsestandard {
-	background-position: 0 -138px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -1368px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-esetnod32antivirus {
-	background-position: -94px -138px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -1482px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-everything {
-	background-position: -188px -138px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -1596px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-extraputty {
-	background-position: -282px -138px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -1710px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-faststoneimageviewer {
-	background-position: -376px -138px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -1824px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-feeddemon {
-	background-position: -470px -138px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -1938px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-filezilla {
-	background-position: -564px -138px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: 0 -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-firefox {
-	background-position: -658px -138px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -114px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-flashplayer {
-	background-position: -752px -138px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -228px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-flashplayerie {
-	background-position: -846px -138px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -342px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-foobar2000 {
-	background-position: -940px -138px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -456px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-freemind {
-	background-position: -1034px -138px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -570px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-freeyoutubedownloader {
-	background-position: -1128px -138px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -684px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-gajim {
-	background-position: -1222px -138px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -798px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-gimp {
-	background-position: -1316px -138px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -912px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-git {
-	background-position: -1410px -138px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -1026px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-glaryutilities {
-	background-position: -1504px -138px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -1140px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-glasswire {
-	background-position: -1598px -138px;
-	height: 64px;
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -1254px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-gmailnotifier {
-	background-position: -1692px -138px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: 0 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-gommediaplayer {
-	background-position: -1786px -138px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -114px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-greenshot {
-	background-position: -1880px -138px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -228px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-handbrake {
-	background-position: 0 -207px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -342px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-heidisql {
-	background-position: -94px -207px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -456px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-imgburn {
-	background-position: -188px -207px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -570px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-infrarecorder {
-	background-position: -282px -207px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -684px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-inkscape {
-	background-position: -376px -207px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -798px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-intellijideacommunity {
-	background-position: -470px -207px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -912px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-intellijideaultimate {
-	background-position: -564px -207px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -1026px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-irfanview {
-	background-position: -658px -207px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -1140px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-itunes {
-	background-position: -752px -207px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -1254px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-javare {
-	background-position: -846px -207px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -1368px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-jitsi {
-	background-position: -940px -207px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -1482px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-keepasspro {
-	background-position: -1034px -207px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -1596px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-klitecodecs {
-	background-position: -1128px -207px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -1710px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-kmeleon {
-	background-position: -1222px -207px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -1824px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-kmplayer {
-	background-position: -1316px -207px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -1938px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-launchy {
-	background-position: -1410px -207px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: 0 -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-libreoffice {
-	background-position: -1504px -207px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -114px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-linphone {
-	background-position: -1598px -207px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -228px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-looknstop {
-	background-position: -1692px -207px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -342px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-makehuman {
-	background-position: -1786px -207px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -456px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-malwarebytesantimalwarefree {
-	background-position: -1880px -207px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -570px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-manycam {
-	background-position: 0 -276px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -684px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-maxthon {
-	background-position: -94px -276px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -798px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-mediamonkey {
-	background-position: -188px -276px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -912px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-miamplayer {
-	background-position: -282px -276px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -1026px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-mobaxterm {
-	background-position: -376px -276px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -1140px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-mediaplayerclassicbe {
-	background-position: -470px -276px;
-	height: 64px;
+	background: url(../img/application/sprite/03.png) no-repeat top left;
+	background-position: -1254px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-mediaplayerclassichc {
-	background-position: -564px -276px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: 0 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-neroburningrom {
-	background-position: -658px -276px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -114px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-netframework {
-	background-position: -752px -276px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -228px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-notepadplusplus {
-	background-position: -846px -276px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -342px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-objectdock {
-	background-position: -940px -276px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -456px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-openbroadcastersoftware {
-	background-position: -1034px -276px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -570px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-openoffice {
-	background-position: -1128px -276px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -684px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-opera {
-	background-position: -1222px -276px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -798px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-paintnet {
-	background-position: -1316px -276px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -912px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-pdfcreator {
-	background-position: -1410px -276px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -1026px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-pdfsam {
-	background-position: -1504px -276px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -1140px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-pdfxchangeviewer {
-	background-position: -1598px -276px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -1254px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-peazip {
-	background-position: -1692px -276px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -1368px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-penguinet {
-	background-position: -1786px -276px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -1482px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-photofiltrestudio {
-	background-position: -1880px -276px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -1596px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-photoscape {
-	background-position: 0 -345px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -1710px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-picasa {
-	background-position: -94px -345px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -1824px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-pidgin {
-	background-position: -188px -345px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -1938px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-piwik {
-	background-position: -282px -345px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: 0 -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-plantuml {
-	background-position: -376px -345px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -114px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-playclaw {
-	background-position: -470px -345px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -228px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-pnotes {
-	background-position: -564px -345px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -342px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-pnotesnet {
-	background-position: -564px -345px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -342px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-popcorntime {
-	background-position: -658px -345px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -456px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-time4popcorn {
-	background-position: -658px -345px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -456px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-potplayer {
-	background-position: -752px -345px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -570px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-poweriso {
-	background-position: -846px -345px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -684px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-primopdf {
-	background-position: -940px -345px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -798px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-processexplorer {
-	background-position: -1034px -345px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -912px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-processhacker {
-	background-position: -1128px -345px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -1026px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-putty {
-	background-position: -1222px -345px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -1140px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-python {
-	background-position: -1316px -345px;
-	height: 64px;
+	background: url(../img/application/sprite/04.png) no-repeat top left;
+	background-position: -1254px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-qbittorrent {
-	background-position: -1410px -345px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: 0 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-quicktime {
-	background-position: -1504px -345px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -114px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-quiterss {
-	background-position: -1598px -345px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -228px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-ramdisk {
-	background-position: -1692px -345px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -342px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-realvnc {
-	background-position: -1786px -345px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -456px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-recuva {
-	background-position: -1880px -345px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -570px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-revouninstallerfree {
-	background-position: 0 -414px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -684px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-roboform {
-	background-position: -94px -414px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -798px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-rocketdock {
-	background-position: -188px -414px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -912px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-rssowl {
-	background-position: -282px -414px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -1026px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-sandboxie {
-	background-position: -376px -414px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -1140px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-seamonkey {
-	background-position: -470px -414px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -1254px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-securityessentials {
-	background-position: -564px -414px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -1368px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-shockwaveplayer {
-	background-position: -658px -414px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -1482px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-silverlight {
-	background-position: -752px -414px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -1596px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-skype {
-	background-position: -846px -414px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -1710px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-slimdrivers {
-	background-position: -940px -414px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -1824px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-smartdefrag {
-	background-position: -1034px -414px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -1938px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-smplayer {
-	background-position: -1128px -414px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: 0 -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-songbird {
-	background-position: -1222px -414px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -114px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-speccy {
-	background-position: -1316px -414px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -228px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-spotify {
-	background-position: -1410px -414px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -342px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-spybot {
-	background-position: -1504px -414px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -456px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-squirrelsql {
-	background-position: -1598px -414px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -570px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-sublimetext2 {
-	background-position: -1692px -414px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -684px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-subsonic {
-	background-position: -1786px -414px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -798px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-sumatrapdf {
-	background-position: -1880px -414px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -912px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-superputty {
-	background-position: 0 -483px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -1026px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-syncbackfree {
-	background-position: -94px -483px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -1140px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-syncbackpro {
-	background-position: -188px -483px;
-	height: 64px;
+	background: url(../img/application/sprite/05.png) no-repeat top left;
+	background-position: -1254px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-syncbackse {
-	background-position: -282px -483px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: 0 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-teamspeakclient {
-	background-position: -376px -483px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -114px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-teamspeakserver {
-	background-position: -376px -483px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -114px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-teamviewer {
-	background-position: -470px -483px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -228px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-teracopy {
-	background-position: -564px -483px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -342px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-thunderbird {
-	background-position: -658px -483px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -456px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-tomtomhome {
-	background-position: -752px -483px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -570px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-torbrowser {
-	background-position: -846px -483px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -684px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-torchbrowser {
-	background-position: -940px -483px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -798px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-tortoisegit {
-	background-position: -1034px -483px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -912px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-tortoisesvn {
-	background-position: -1128px -483px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -1026px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-totalcommander {
-	background-position: -1222px -483px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -1140px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-trillian {
-	background-position: -1316px -483px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -1254px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-ultradefrag {
-	background-position: -1410px -483px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -1368px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-unchecky {
-	background-position: -1504px -483px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -1482px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-unlocker {
-	background-position: -1598px -483px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -1596px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-usbdisksecurity {
-	background-position: -1692px -483px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -1710px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-utorrent {
-	background-position: -1786px -483px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -1824px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-veracrypt {
-	background-position: -1880px -483px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -1938px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-virtualbox {
-	background-position: 0 -552px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: 0 -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-virtualdj {
-	background-position: -94px -552px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -114px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-visualparadigmcommunity {
-	background-position: -188px -552px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -228px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-vlcmediaplayer {
-	background-position: -282px -552px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -342px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-vmwareworkstation {
-	background-position: -376px -552px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -456px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-wavosaur {
-	background-position: -470px -552px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -570px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-windirstat {
-	background-position: -564px -552px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -684px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-windjview {
-	background-position: -658px -552px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -798px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-winmerge {
-	background-position: -752px -552px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -912px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-winrar {
-	background-position: -846px -552px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -1026px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-winscp {
-	background-position: -940px -552px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -1140px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-winzip {
-	background-position: -1034px -552px;
-	height: 64px;
+	background: url(../img/application/sprite/06.png) no-repeat top left;
+	background-position: -1254px -114px;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-wireshark {
-	background-position: -1128px -552px;
-	height: 64px;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
+	background-position: 0 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-wordpress {
-	background-position: -1222px -552px;
-	height: 64px;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
+	background-position: -114px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-xmediarecode {
-	background-position: -1316px -552px;
-	height: 64px;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
+	background-position: -228px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-xnview {
-	background-position: -1410px -552px;
-	height: 64px;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
+	background-position: -342px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-xnviewmp {
-	background-position: -1504px -552px;
-	height: 64px;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
+	background-position: -456px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-yahoomessenger {
-	background-position: -1598px -552px;
-	height: 64px;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
+	background-position: -570px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-yowindow {
-	background-position: -1692px -552px;
-	height: 64px;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
+	background-position: -684px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-ytdvideodownloader {
-	background-position: -1786px -552px;
-	height: 64px;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
+	background-position: -798px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-zedeo {
-	background-position: -1880px -552px;
-	height: 64px;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
+	background-position: -912px 0;
 	width: 64px;
+	height: 64px;
 }
 
 .sprite-zedtv {
-	background-position: 0 -621px;
-	height: 64px;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
+	background-position: -1026px 0;
 	width: 64px;
+	height: 64px;
 }
