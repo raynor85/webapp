@@ -102,7 +102,7 @@ public class ApplicationVersionScheduler {
 			if (comparisonResult == -1) {
 				// new version available
 				applicationService.addVersion(latestRemoteVersion);
-			} else if (comparisonResult == 1 && !latestRemoteVersion.equals("0")) {
+			} else if (comparisonResult == 1 && !latestRemoteVersion.getVersionNumber().equals("0")) {
 				// the remote version has a smaller number
 				retrievalErrorService.addRetrievalError(application, TypeRetrievalError.NEW_VERSION_WITH_NUMBER_NOT_CONSISTENT);
 			}
