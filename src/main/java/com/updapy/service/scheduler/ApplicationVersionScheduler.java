@@ -21,6 +21,7 @@ import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.Newsletter;
 import com.updapy.model.User;
+import com.updapy.model.enumeration.TypeRetrievalError;
 import com.updapy.service.ApplicationService;
 import com.updapy.service.EmailAddedApplicationService;
 import com.updapy.service.EmailDeletedApplicationService;
@@ -97,9 +98,13 @@ public class ApplicationVersionScheduler {
 		}
 
 		if (latestVersion != null && latestRemoteVersion != null) {
-			if (latestVersion.getFormatedVersionNumber().compareTo(latestRemoteVersion.getFormatedVersionNumber()) == -1) {
+			int comparisonResult = latestVersion.getFormatedVersionNumber().compareTo(latestRemoteVersion.getFormatedVersionNumber());
+			if (comparisonResult == -1) {
 				// new version available
 				applicationService.addVersion(latestRemoteVersion);
+			} else if (comparisonResult == 1) {
+				// the remote version has a smaller number
+				retrievalErrorService.addRetrievalError(application, TypeRetrievalError.NEW_VERSION_WITH_NUMBER_NOT_CONSISTENT);
 			}
 		}
 	}
