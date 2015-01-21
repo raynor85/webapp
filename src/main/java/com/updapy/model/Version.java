@@ -26,11 +26,11 @@ public class Version implements Comparable<Version> {
 		String[] thatParts = that.get().split("\\.");
 		int length = Math.max(thisParts.length, thatParts.length);
 		for (int i = 0; i < length; i++) {
-			String thisPartStr = thisParts[i];
-			String thatPartStr = thatParts[i];
+			String thisPartStr = i < thisParts.length ? thisParts[i] : "0";
+			String thatPartStr = i < thatParts.length ? thatParts[i] : "0";
 			if ((StringUtils.startsWith(thisPartStr, "0") && !StringUtils.startsWith(thatPartStr, "0")) || (!StringUtils.startsWith(thisPartStr, "0") && StringUtils.startsWith(thatPartStr, "0"))) {
-				thisPartStr = StringUtils.left(thisParts[i], 1);
-				thatPartStr = StringUtils.left(thatParts[i], 1);
+				thisPartStr = thisPartStr.length() > 1 ? StringUtils.left(thisParts[i], 1) : thisPartStr;
+				thatPartStr = thatPartStr.length() > 1 ? StringUtils.left(thatParts[i], 1) : thatPartStr;
 			}
 			int thisPart = i < thisParts.length ? Integer.parseInt(thisPartStr) : 0;
 			int thatPart = i < thatParts.length ? Integer.parseInt(thatPartStr) : 0;
