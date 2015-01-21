@@ -1,5 +1,7 @@
 package com.updapy.model;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Version implements Comparable<Version> {
 
 	private String version;
@@ -24,8 +26,14 @@ public class Version implements Comparable<Version> {
 		String[] thatParts = that.get().split("\\.");
 		int length = Math.max(thisParts.length, thatParts.length);
 		for (int i = 0; i < length; i++) {
-			int thisPart = i < thisParts.length ? Integer.parseInt(thisParts[i]) : 0;
-			int thatPart = i < thatParts.length ? Integer.parseInt(thatParts[i]) : 0;
+			String thisPartStr = thisParts[i];
+			String thatPartStr = thatParts[i];
+			if ((StringUtils.startsWith(thisPartStr, "0") && !StringUtils.startsWith(thatPartStr, "0")) || (!StringUtils.startsWith(thisPartStr, "0") && StringUtils.startsWith(thatPartStr, "0"))) {
+				thisPartStr = StringUtils.left(thisParts[i], 1);
+				thatPartStr = StringUtils.left(thatParts[i], 1);
+			}
+			int thisPart = i < thisParts.length ? Integer.parseInt(thisPartStr) : 0;
+			int thatPart = i < thatParts.length ? Integer.parseInt(thatPartStr) : 0;
 			if (thisPart < thatPart)
 				return -1;
 			if (thisPart > thatPart)
