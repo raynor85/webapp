@@ -297,7 +297,10 @@
 		<ref bean="mySqlCommunityServerRemoteRetriever" />
 		<ref bean="mySqlOdbcRemoteRetriever" />
 		<ref bean="winPatrolRemoteRetriever" />
-		<ref bean="wiseCare365RemoteRetriever" />
+		<ref bean="wiseCleanerRemoteRetriever" />
+		<ref bean="paleMoonRemoteRetriever" />
+		<ref bean="speedyFoxRemoteRetriever" />
+		<ref bean="trustPortAntivirusRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

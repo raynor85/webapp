@@ -1,4 +1,4 @@
-package com.updapy.service.retriever.impl.w;
+package com.updapy.service.retriever.impl.t;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
@@ -9,11 +9,13 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class WiseCare365RemoteRetriever implements RemoteRetriever {
+public class TrustPortAntivirusRemoteRetriever implements RemoteRetriever {
+
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.trustport.com";
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getApiName().equalsIgnoreCase("wisecare365");
+		return application.getApiName().equalsIgnoreCase("trustportantivirus");
 	}
 
 	@Override
@@ -33,12 +35,12 @@ public class WiseCare365RemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a#download-button").attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a[href*=exe][href*=Antivirus]").first().attr("href"));
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("dd:contains(Latest version)").text(), "Size.*$"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("i:contains(Build)").first().text(), "\\|.*$"));
 	}
 
 }

@@ -1026,4 +1026,34 @@
 		<changefreq>yearly</changefreq>
 		<priority>0.2</priority>
 	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/drwebcureit</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/palemoon</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/speedyfox</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/spywareblaster</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/trustportantivirus</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/wiseregistrycleaner</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
 </urlset>
