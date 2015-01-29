@@ -57,17 +57,19 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 	@Override
 	public int sendEmailRetrievalErrors() {
 		int count = 0;
-		List<RetrievalError> retrievalErrors = retrievalErrorRepository.findByCountGreaterThanEqual(20); // 20 errors really mean there is a problem!
+		List<RetrievalError> retrievalErrors = retrievalErrorRepository.findByCountGreaterThanEqual(10); // 10 errors really mean there is a problem!
 		for (RetrievalError retrievalError : retrievalErrors) {
-			boolean hasBeenSent = false;
-			if (TypeRetrievalError.URL_BASE_ERROR.equals(retrievalError.getTypeLastError())) {
-				hasBeenSent = emailSenderService.sendAdminConnectionError(retrievalError.getApplication().getGlobalUrl());
-			} else {
-				hasBeenSent = emailSenderService.sendAdminRetrieverError(retrievalError.getApplication().getName());
-			}
-			if (hasBeenSent) {
-				count++;
-				deleteRetrievalError(retrievalError);
+			if (!retrievalError.getApplication().getApiName().startsWith("teamspeak") || (retrievalError.getApplication().getApiName().startsWith("teamspeak") && retrievalError.getCount() >= 40)) {
+				boolean hasBeenSent = false;
+				if (TypeRetrievalError.URL_BASE_ERROR.equals(retrievalError.getTypeLastError())) {
+					hasBeenSent = emailSenderService.sendAdminConnectionError(retrievalError.getApplication().getGlobalUrl());
+				} else {
+					hasBeenSent = emailSenderService.sendAdminRetrieverError(retrievalError.getApplication().getName());
+				}
+				if (hasBeenSent) {
+					count++;
+					deleteRetrievalError(retrievalError);
+				}
 			}
 		}
 		return count;

@@ -1,6 +1,5 @@
 package com.updapy.service.retriever.impl.c;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -11,8 +10,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class CpuZRemoteRetriever implements RemoteRetriever {
 
-	private static final String PATTERN_VERSION = "{version}";
-	private static final String DOWNLOAD_WEBSITE = "ftp://ftp.cpuid.com/cpu-z/cpu-z_" + PATTERN_VERSION + "-setup-en.exe";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.cpuid.com";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -36,15 +34,12 @@ public class CpuZRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return StringUtils.replace(DOWNLOAD_WEBSITE, PATTERN_VERSION, getVersionNumber(doc));
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a.icon-exe[href*=exe]:contains(english)").first().attr("href"));
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return getVersionNumber(doc);
+		return ParsingUtils.extractVersionNumberFromString(doc.select("h4:contains(DOWNLOAD)").parents().select("div.subtitle").first().text());
 	}
 
-	private String getVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("a:contains(setup, english)").text());
-	}
 }

@@ -187,7 +187,6 @@
 		<ref bean="torBrowserRemoteRetriever" />
 		<ref bean="quickTimeRemoteRetriever" />
 		<ref bean="teamViewerRemoteRetriever" />
-		<ref bean="kmPlayerRemoteRetriever" />
 		<ref bean="audacityRemoteRetriever" />
 		<ref bean="roboFormRemoteRetriever" />
 		<ref bean="usbDiskSecurityRemoteRetriever" />
