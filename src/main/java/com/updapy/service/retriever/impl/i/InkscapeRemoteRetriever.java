@@ -1,6 +1,7 @@
 package com.updapy.service.retriever.impl.i;
 
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
@@ -22,7 +23,7 @@ public class InkscapeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return null;
+		return getDownloadLink(doc, "64bit");
 	}
 
 	@Override
@@ -32,7 +33,15 @@ public class InkscapeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a:contains(Installer)[href*=.exe]").first().attr("href");
+		return getDownloadLink(doc, "32bit");
+	}
+
+	private String getDownloadLink(Document doc, String version) {
+		Elements elements = doc.select("p:contains(" + version + ")");
+		if (elements.select("a:contains(exe)").first() == null) {
+			return elements.select("a:contains(msi)").first().attr("href");
+		}
+		return elements.select("a:contains(exe)").first().attr("href");
 	}
 
 	@Override
