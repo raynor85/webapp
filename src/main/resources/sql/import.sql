@@ -319,7 +319,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Avidemux
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://avidemux.sourceforge.net/download.html', 'http://avidemux.sourceforge.net/', 'avidemux.png', 'Avidemux', 'avidemux', false, 'VIDEO', 'FREE');
 -- Jitsi
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://jitsi.org/Main/Download', 'https://jitsi.org/', 'jitsi.png', 'Jitsi', 'jitsi', false, 'SOCIAL_COMMUNICATION', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://download.jitsi.org/jitsi/windows/', 'https://jitsi.org/', 'jitsi.png', 'Jitsi', 'jitsi', false, 'SOCIAL_COMMUNICATION', 'FREE');
 -- Gajim
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://gajim.org/downloads.php', 'http://gajim.org/', 'gajim.png', 'Gajim', 'gajim', false, 'SOCIAL_COMMUNICATION', 'FREE');
 -- Linphone

@@ -37,7 +37,7 @@ public class BlueflapRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("p:containsOwn(Version)").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("h3:containsOwn(Version)").text());
 	}
 
 }
