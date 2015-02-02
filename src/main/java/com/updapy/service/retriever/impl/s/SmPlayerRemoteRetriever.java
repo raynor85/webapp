@@ -74,7 +74,7 @@ public class SmPlayerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(getDownloadLink32(doc), "^.*/(SMP|smp)layer/"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(ParsingUtils.selectFromPattern(getDownloadLink32(doc), ".*exe"), "^.*/"));
 	}
 
 	private String getDownloadLink32(Document doc) {

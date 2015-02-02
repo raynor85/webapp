@@ -2,6 +2,8 @@ package com.updapy.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -10,6 +12,15 @@ public class ParsingUtils {
 	private static final String HTTP_PREFIX = "http";
 	private static final String HTTP_SEPARATOR = "//";
 	private static final String HTTP_PATH_SEPARATOR = "/";
+
+	public static String selectFromPattern(String data, String pattern) {
+		Pattern pat = Pattern.compile(pattern);
+		Matcher matcher = pat.matcher(data);
+		while (matcher.find()) {
+			return matcher.group(0);
+		}
+		return null;
+	}
 
 	public static String extractVersionNumberFromString(String str) {
 		List<String> patternToRemoves = new ArrayList<String>();
