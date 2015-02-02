@@ -14,7 +14,7 @@ public class WiseCleanerRemoteRetriever implements RemoteRetriever {
 	@Override
 	public boolean support(ApplicationReference application) {
 		String apiName = application.getApiName();
-		return apiName.equalsIgnoreCase("wisecare365") || apiName.equalsIgnoreCase("wiseregistrycleaner");
+		return apiName.equalsIgnoreCase("wisecare365");
 	}
 
 	@Override
@@ -34,12 +34,12 @@ public class WiseCleanerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a#download-button").attr("href");
+		return doc.select("a#free-download").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("dd:contains(Latest version)").text(), "Size.*$"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("dd:contains(version)").text(), "Size.*$"));
 	}
 
 }

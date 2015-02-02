@@ -15,7 +15,7 @@ public class CnetDirectDownloadRemoteRetriever implements RemoteRetriever {
 	@Override
 	public boolean support(ApplicationReference application) {
 		String apiName = application.getApiName();
-		return apiName.equalsIgnoreCase("spotify") || apiName.equalsIgnoreCase("daemontoolslite") || apiName.equalsIgnoreCase("anyvideoconverter") || apiName.equalsIgnoreCase("kmplayer") || apiName.equalsIgnoreCase("wiseuninstaller");
+		return apiName.equalsIgnoreCase("spotify") || apiName.equalsIgnoreCase("daemontoolslite") || apiName.equalsIgnoreCase("anyvideoconverter") || apiName.equalsIgnoreCase("kmplayer") || apiName.equalsIgnoreCase("wiseuninstaller") || apiName.equalsIgnoreCase("wiseregistrycleaner");
 	}
 
 	@Override
