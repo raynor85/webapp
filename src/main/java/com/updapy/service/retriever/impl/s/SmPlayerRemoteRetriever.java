@@ -52,7 +52,7 @@ public class SmPlayerRemoteRetriever implements RemoteRetriever {
 		for (int i = 0, len = nodes.getLength(); i < len; i++) {
 			Node node = nodes.item(i);
 			String link = node.getTextContent();
-			if (link.matches(regex)) {
+			if (link.matches(regex) && !link.matches(".*(smt|SMT)ube.*")) {
 				return link;
 			}
 		}
