@@ -300,6 +300,11 @@
 		<ref bean="paleMoonRemoteRetriever" />
 		<ref bean="speedyFoxRemoteRetriever" />
 		<ref bean="trustPortAntivirusRemoteRetriever" />
+		<ref bean="camfrogRemoteRetriever" />
+		<ref bean="haoZipRemoteRetriever" />
+		<ref bean="powerArchiverRemoteRetriever" />
+		<ref bean="qTranslateRemoteRetriever" />
+		<ref bean="secureAPlusRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

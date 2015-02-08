@@ -3286,183 +3286,218 @@ a.caption {
 }
 
 .sprite-admuncher {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: 0 0;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -5px -5px;
+}
+
+.sprite-camfrog {
+	background: url(../img/application/sprite/07.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -79px -5px;
 }
 
 .sprite-diskdefragfree {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -114px 0;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -153px -5px;
 }
 
 .sprite-drwebcureit {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -228px 0;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -227px -5px;
+}
+
+.sprite-haozip {
+	background: url(../img/application/sprite/07.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -301px -5px;
 }
 
 .sprite-kasperskyvirusremovaltool {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -342px 0;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -5px -79px;
 }
 
 .sprite-malwarefighter {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -456px 0;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -79px -79px;
 }
 
 .sprite-mysqlodbc {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -570px 0;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -153px -79px;
 }
 
 .sprite-mysqlcommunityserver {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -570px 0;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -153px -79px;
 }
 
 .sprite-palemoon {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -684px 0;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -227px -79px;
+}
+
+.sprite-powerarchiver {
+	background: url(../img/application/sprite/07.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -301px -79px;
+}
+
+.sprite-qtranslate {
+	background: url(../img/application/sprite/07.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -5px -153px;
+}
+
+.sprite-secureaplus {
+	background: url(../img/application/sprite/07.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -79px -153px;
 }
 
 .sprite-slimcleaner {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -798px 0;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -153px -153px;
 }
 
 .sprite-speedyfox {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -912px 0;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -227px -153px;
 }
 
 .sprite-spywareblaster {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -1026px 0;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -301px -153px;
 }
 
 .sprite-trustportantivirus {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -1140px 0;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -5px -227px;
 }
 
 .sprite-winpatrol {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -1254px 0;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -79px -227px;
 }
 
 .sprite-wireshark {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -1368px 0;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -153px -227px;
 }
 
 .sprite-wisecare365 {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -1482px 0;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -227px -227px;
 }
 
 .sprite-wiseregistrycleaner {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -1596px 0;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -301px -227px;
 }
 
 .sprite-wiseuninstaller {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -1710px 0;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -5px -301px;
 }
 
 .sprite-wordpress {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -1824px 0;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -79px -301px;
 }
 
 .sprite-xmediarecode {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -1938px 0;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -153px -301px;
 }
 
 .sprite-xnview {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: 0 -114px;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -227px -301px;
 }
 
 .sprite-xnviewmp {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -114px -114px;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -301px -301px;
 }
 
 .sprite-yahoomessenger {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -228px -114px;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -375px -5px;
 }
 
 .sprite-yowindow {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -342px -114px;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -375px -79px;
 }
 
 .sprite-ytdvideodownloader {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -456px -114px;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -375px -153px;
 }
 
 .sprite-zedeo {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -570px -114px;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -375px -227px;
 }
 
 .sprite-zedtv {
-	background: url(../img/application/sprite/07-3.png) no-repeat top left;
-	background-position: -684px -114px;
+	background: url(../img/application/sprite/07.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
+	background-position: -375px -301px;
 }
