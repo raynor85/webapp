@@ -305,6 +305,11 @@
 		<ref bean="powerArchiverRemoteRetriever" />
 		<ref bean="qTranslateRemoteRetriever" />
 		<ref bean="secureAPlusRemoteRetriever" />
+		<ref bean="junkwareRemovalToolRemoteRetriever" />
+		<ref bean="lockHunterRemoteRetriever" />
+		<ref bean="privaZerRemoteRetriever" />
+		<ref bean="rJTextEdRemoteRetriever" />
+		<ref bean="slimjetRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
