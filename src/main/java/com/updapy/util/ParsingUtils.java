@@ -12,6 +12,7 @@ public class ParsingUtils {
 	private static final String HTTP_PREFIX = "http";
 	private static final String HTTP_SEPARATOR = "//";
 	private static final String HTTP_PATH_SEPARATOR = "/";
+	private static final String HTTP_PATH_RELATIVE = "." + HTTP_PATH_SEPARATOR;
 
 	public static String selectFromPattern(String data, String pattern) {
 		Pattern pat = Pattern.compile(pattern);
@@ -53,6 +54,9 @@ public class ParsingUtils {
 	public static String buildUrl(String rootUrl, String pageUrl) {
 		if (pageUrl.startsWith(HTTP_PREFIX)) {
 			return pageUrl;
+		}
+		if (pageUrl.startsWith(HTTP_PATH_RELATIVE)) {
+			return buildUrl(rootUrl, StringUtils.removeStart(pageUrl, HTTP_PATH_RELATIVE));
 		}
 		return StringUtils.removeEnd(rootUrl, HTTP_PATH_SEPARATOR) + HTTP_PATH_SEPARATOR + StringUtils.removeStart(pageUrl.replaceAll("\\.\\." + HTTP_PATH_SEPARATOR, StringUtils.EMPTY), HTTP_PATH_SEPARATOR);
 	}
