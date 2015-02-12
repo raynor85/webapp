@@ -37,7 +37,7 @@ public class UsbDiskSecurityRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("a[href*=.exe]").attr("href"));
+		return ParsingUtils.extractVersionNumberFromString(ParsingUtils.selectFromPattern(doc.select("a[href*=.exe]").attr("href"), "USB.*.exe"));
 	}
 
 }
