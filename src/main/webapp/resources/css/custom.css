@@ -3502,37 +3502,72 @@ a.caption {
 	background-position: -375px -301px;
 }
 
-.sprite-junkwareremovaltool {
-	background: url(../img/application/sprite/08-1.png) no-repeat top left;
+.sprite-argenteutilities {
+	background: url(../img/application/sprite/08-2.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -5px -5px;
 }
 
-.sprite-lockhunter {
-	background: url(../img/application/sprite/08-1.png) no-repeat top left;
+.sprite-ashampooantivirus {
+	background: url(../img/application/sprite/08-2.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -79px -5px;
 }
 
-.sprite-privazer {
-	background: url(../img/application/sprite/08-1.png) no-repeat top left;
+.sprite-junkwareremovaltool {
+	background: url(../img/application/sprite/08-2.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -153px -5px;
+}
+
+.sprite-lockhunter {
+	background: url(../img/application/sprite/08-2.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -5px -79px;
 }
 
-.sprite-rjtexted {
-	background: url(../img/application/sprite/08-1.png) no-repeat top left;
+.sprite-passwordsafe {
+	background: url(../img/application/sprite/08-2.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -79px -79px;
 }
 
-.sprite-slimjet {
-	background: url(../img/application/sprite/08-1.png) no-repeat top left;
+.sprite-privazer {
+	background: url(../img/application/sprite/08-2.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
-	background-position: -153px -5px;
+	background-position: -153px -79px;
+}
+
+.sprite-rjtexted {
+	background: url(../img/application/sprite/08-2.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -5px -153px;
+}
+
+.sprite-slimjet {
+	background: url(../img/application/sprite/08-2.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -79px -153px;
+}
+
+.sprite-spyshelterpersonal {
+	background: url(../img/application/sprite/08-2.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -153px -153px;
+}
+
+.sprite-trustportinternetsecurity {
+	background: url(../img/application/sprite/08-2.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -227px -5px;
 }
