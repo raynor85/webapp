@@ -92,6 +92,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
+	public ApplicationDescription getApplicationDescription(ApplicationReference application) {
+		return applicationDescriptionRepository.findByApplicationAndApplicationActiveTrue(application);
+	}
+
+	@Override
 	public ApplicationReference markAsNotified(ApplicationReference application) {
 		application.setNotified(true);
 		return applicationReferenceRepository.saveAndFlush(application);
@@ -214,5 +219,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 		}
 		return true;
 	}
+
+
 
 }

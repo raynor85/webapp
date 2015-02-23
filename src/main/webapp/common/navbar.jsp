@@ -169,7 +169,19 @@
 	}
 	function changeLocale(newLocale) {
 		ajaxChangeLocale(newLocale);
-		location.href = location.pathname + "?lang=" + newLocale;
+		var currentUrl = location.href;
+		var langParam = "lang=";
+		var newLang = langParam + newLocale;
+		if (currentUrl.indexOf(langParam) > -1) {
+			location.href = currentUrl.replace(new RegExp(langParam + ".."), newLang);
+		} else {
+			if (currentUrl.indexOf("?") > -1) {
+				currentUrl = currentUrl + "&";
+			} else {
+				currentUrl = currentUrl + "?";
+			}
+			location.href = currentUrl + newLang;
+		}
 	}
 	function ajaxChangeLocale(newLocale) {
 		var token = $("meta[name='_csrf']").attr("content");

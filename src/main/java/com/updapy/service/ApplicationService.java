@@ -49,6 +49,9 @@ public interface ApplicationService {
 	@Cacheable(value = "descriptions", key = "{'descriptions', #apiName}")
 	ApplicationDescription getApplicationDescription(String apiName);
 
+	@Cacheable(value = "descriptions", key = "{'descriptions', #application.apiName}")
+	ApplicationDescription getApplicationDescription(ApplicationReference application);
+
 	/**
 	 * Application Versions
 	 */

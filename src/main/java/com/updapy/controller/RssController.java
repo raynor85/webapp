@@ -49,7 +49,7 @@ public class RssController {
 			case NEW_VERSION:
 				ApplicationVersion version = notification.getVersion();
 				rssNotification.setTitle(prefix + version.getApplication().getName() + " " + version.getVersionNumber());
-				rssNotification.setUrl(userService.getDownloadUrlMatchingSettings(user, version).getUrl());
+				rssNotification.setUrl(messageUtils.getSimpleMessage("application.root.url") + "/applications/" + version.getApplication().getApiName() + "/download?key=" + key);
 				break;
 			case NOT_SUPPORTED_APPLICATION:
 				rssNotification.setTitle(prefix + notification.getApplication().getName());
