@@ -1,19 +1,17 @@
 package com.updapy.service.retriever.impl.c;
 
-import java.io.IOException;
-
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
-import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
 public class CamfrogRemoteRetriever implements RemoteRetriever {
 
-	private static final String DOWNLOAD_WEBSITE = "https://download.camfrog.com/en/windows/";
+	private static final String DOWNLOAD_WEBSITE = "http://download.cnet.com/Camfrog-Video-Chat/3001-2348_4-10265538.html";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -37,16 +35,17 @@ public class CamfrogRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		try {
-			return RemoteServiceImpl.retrieveHtmlDocumentAgent32(DOWNLOAD_WEBSITE).select("a[href*=exe]").first().attr("href");
-		} catch (IOException e) {
-			throw new RuntimeException();
-		}
+		return DOWNLOAD_WEBSITE;
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("#welcome-download-os").select("span:contains(Version)").text());
+		Elements versionElement = doc.select(".product-landing-quick-specs-row");
+		if (!versionElement.isEmpty()) {
+			return ParsingUtils.extractVersionNumberFromString(versionElement.select(".product-landing-quick-specs-row-content").get(0).text());
+		} else {
+			return ParsingUtils.extractVersionNumberFromString(doc.select("tr#specsPubVersion").text());
+		}
 	}
 
 }

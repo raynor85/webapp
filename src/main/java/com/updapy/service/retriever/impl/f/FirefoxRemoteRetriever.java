@@ -26,12 +26,12 @@ public class FirefoxRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlFr(Document doc) {
-		return doc.select("#fr").select(".win").select("a").attr("href");
+		return doc.select("#fr").select(".windows").select("a").attr("href");
 	}
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("#en-US").select(".win").select("a").attr("href");
+		return doc.select("#en-US").select(".windows").select("a").attr("href");
 	}
 
 	@Override
