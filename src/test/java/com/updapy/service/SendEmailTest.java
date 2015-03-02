@@ -46,6 +46,16 @@ public class SendEmailTest {
 		Locale locale = Locale.ENGLISH;
 		emailSenderService.sendPersonalEmail(email, subject, title, message, locale);
 	}
+	
+	@Test
+	public void sendPersonalEmailAnswer4En() {
+		String email = "";
+		String subject = "Hi";
+		String title = "Thanks for your suggestion on the apps grid";
+		String message = "Actually, we were already thinking about this improvement, it will probably be part of the next releases.<br>Stay tuned... Thanks for your message and support.<br><br>The Updapy team.";
+		Locale locale = Locale.ENGLISH;
+		emailSenderService.sendPersonalEmail(email, subject, title, message, locale);
+	}
 
 	// French
 

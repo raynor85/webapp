@@ -8,6 +8,19 @@
 <c:set var="COMMERCIAL" value="<%=ApplicationType.COMMERCIAL%>" />
 <c:set var="nbAppFollow">${fn:length(currentFollowedApplications)}</c:set>
 
+<c:choose>
+	<c:when test="${true == false}">
+		<c:set var="gridSize" value="small" />
+		<c:set var="iconSize" value="64" />
+		<c:set var="rowButtonStyle" value="padding-bottom: 30px;" />
+	</c:when>
+	<c:otherwise>
+		<c:set var="gridSize" value="medium" />
+		<c:set var="iconSize" value="128" />
+		<c:set var="rowButtonStyle" value="padding-bottom: 10px;" />
+	</c:otherwise>
+</c:choose>
+
 <div class="container">
 	<div class="row rowWithPadding">
 		<div id="successRequestApplicationResponse"></div>
@@ -51,7 +64,7 @@
 		</div>
 	</div>
 	<c:if test="${nbAppFollow > 36}">
-		<div class="row rowWithPadding" align="center" style="padding-bottom: 10px;">
+		<div class="row rowWithPadding" align="center" style="${rowButtonStyle}">
 			<div class="button-ladda">
 				<button type="button" class="btn-color ladda-button" data-toggle="modal" data-target="#followApplicationsModal">
 					<spring:message code="dashboard.applications.follow.button" />
@@ -105,7 +118,7 @@
 					<button id="button-current-enable-${appId}" title="${enableTitle}" aria-hidden="true" class="close pull-left" style="${enableStyle}" type="button" onclick="ajaxEnableAlertCurrentApplication('${appId}');">
 						<i class="fa fa-ban fa-1x" style="color: red;"></i>
 					</button>
-					<div class="application">
+					<div class="application ${gridSize}-icon">
 						<div class="icon">
 							<c:set var="descriptionCaptionTitle">
 								<spring:message code="dashboard.applications.caption.description.title" />
@@ -114,9 +127,16 @@
 								<spring:message code="dashboard.applications.caption.website.title" />
 							</c:set>
 							<figure class="caption-figure" itemscope="itemscope" itemtype="http://schema.org/Photograph">
-								<a href="${currentFollowedApplication.downloadUrl}" title="${downloadTitle}" target="_blank"><img width="128" height="128" id="img-${appId}" class="shadowHover caption" src="<spring:url value="/resources/img/application/medium/${currentFollowedApplication.iconFilename}" />" itemprop="image"></a>
-								<figcaption itemprop="name">
-									<i class="fa fa-book"></i>&nbsp;<a class="caption" href="${root}/applications/${appId}" target="_blank" title="${descriptionCaptionTitle}"><spring:message code="dashboard.applications.caption.description" /></a><br><i class="fa fa-home"></i>&nbsp;<a class="caption" href="${currentFollowedApplication.websiteUrl}" target="_blank" title="${websiteCaptionTitle}"><spring:message code="dashboard.applications.caption.website" /></a>
+								<a href="${currentFollowedApplication.downloadUrl}" title="${downloadTitle}" target="_blank"><img width="${iconSize}" height="${iconSize}" id="img-${appId}" class="shadowHover caption" src="<spring:url value="/resources/img/application/${gridSize}/${currentFollowedApplication.iconFilename}" />" itemprop="image"></a>
+								<figcaption class="figcaption-${gridSize}" itemprop="name">
+									<c:choose>
+										<c:when test="${gridSize == 'small'}">
+											<a class="caption" href="${root}/applications/${appId}" target="_blank" title="${descriptionCaptionTitle}"><i class="fa fa-book"></i></a><br><a class="caption" href="${currentFollowedApplication.websiteUrl}" target="_blank" title="${websiteCaptionTitle}"><i class="fa fa-home"></i></a>
+										</c:when>
+										<c:otherwise>
+											<i class="fa fa-book"></i>&nbsp;<a class="caption" href="${root}/applications/${appId}" target="_blank" title="${descriptionCaptionTitle}"><spring:message code="dashboard.applications.caption.description" /></a><br><i class="fa fa-home"></i>&nbsp;<a class="caption" href="${currentFollowedApplication.websiteUrl}" target="_blank" title="${websiteCaptionTitle}"><spring:message code="dashboard.applications.caption.website" /></a>
+										</c:otherwise>
+									</c:choose>
 								</figcaption>
 							</figure>
 						</div>

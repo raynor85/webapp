@@ -1821,7 +1821,14 @@ div.currentFollowedApplicationContainer {
 
 div.currentFollowedApplicationContainer div.application {
 	text-align: center;
+}
+
+div.currentFollowedApplicationContainer div.medium-icon {
 	height: 200px;
+}
+
+div.currentFollowedApplicationContainer div.small-icon {
+	height: 120px;
 }
 
 div.currentFollowedApplicationContainer div.application div.title {
@@ -1976,7 +1983,6 @@ img.shadowHover:hover {
 	line-height: 1.5;
 	text-align: left !important;
 	padding: 3px 0 3px 6px;
-	width: 90px;
 	position: absolute;
 	transition: opacity .25s ease-in;
 	background-color: #000;
@@ -1984,6 +1990,14 @@ img.shadowHover:hover {
 	color: #fff;
 	margin-bottom: 0px;
 	bottom: 80px;
+}
+
+.caption-figure figcaption.figcaption-small {
+	width: 23px;
+}
+
+.caption-figure figcaption.figcaption-medium {
+	width: 90px;
 }
 
 .caption-figure:hover figcaption {
