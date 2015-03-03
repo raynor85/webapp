@@ -29,6 +29,7 @@ public class SettingsServiceImpl implements SettingsService {
 		user.setName(StringUtils.trimToNull(newSettings.getName()));
 		user.setLangUpdate(newSettings.getLangUpdate());
 		user.setOsVersion(newSettings.getOsVersion());
+		user.setDashboardGridSize(newSettings.getDashboardGridSize());
 		for (Setting setting : user.getSettings()) {
 			Parameter parameter = setting.getParameter();
 			switch (parameter) {
@@ -58,6 +59,7 @@ public class SettingsServiceImpl implements SettingsService {
 		updateSettings.setName(user.getName());
 		updateSettings.setLangUpdate(user.getLangUpdate());
 		updateSettings.setOsVersion(user.getOsVersion());
+		updateSettings.setDashboardGridSize(user.getDashboardGridSize());
 		for (Setting setting : user.getSettings()) {
 			Parameter parameter = setting.getParameter();
 			switch (parameter) {

@@ -16,6 +16,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.updapy.model.common.BaseEntity;
+import com.updapy.model.enumeration.DashboardGridSize;
 import com.updapy.model.enumeration.Lang;
 import com.updapy.model.enumeration.OsVersion;
 import com.updapy.model.enumeration.SocialMediaService;
@@ -94,6 +95,9 @@ public class User extends BaseEntity {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 	private List<EmailDeletedApplication> emailDeletedApplications;
+
+	@Enumerated(EnumType.STRING)
+	private DashboardGridSize dashboardGridSize;
 
 	public String getEmail() {
 		return email;
@@ -305,6 +309,14 @@ public class User extends BaseEntity {
 
 	public void setEmailDeletedApplications(List<EmailDeletedApplication> emailDeletedApplications) {
 		this.emailDeletedApplications = emailDeletedApplications;
+	}
+
+	public DashboardGridSize getDashboardGridSize() {
+		return dashboardGridSize;
+	}
+
+	public void setDashboardGridSize(DashboardGridSize dashboardGridSize) {
+		this.dashboardGridSize = dashboardGridSize;
 	}
 
 }

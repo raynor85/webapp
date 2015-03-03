@@ -85,7 +85,27 @@
 				</div>
 			</div>
 			<br />
-
+			<h3>
+				<spring:message code="settings.dashboard.title" />
+				<small><spring:message code="settings.dashboard.subtitle" /></small>
+			</h3>
+			<hr>
+			<div class="form-group">
+				<label for="dashboardGridSize" class="col-sm-2 control-label" style="min-width: 130px;"><spring:message code="settings.dashboard.field.dashboardGridSize" /></label>
+				<div id="dashboardGridSizeDiv" class="col-sm-4">
+					<form:select class="form-control selectpicker" path="dashboardGridSize" id="dashboardGridSize">
+						<c:set var="bigDashboardGridSize">
+							<spring:message code="settings.dashboard.field.dashboardGridSize.big" />
+						</c:set>
+						<c:set var="smallDashboardGridSize">
+							<spring:message code="settings.dashboard.field.dashboardGridSize.small" />
+						</c:set>
+						<form:option value="BIG" label="${bigDashboardGridSize}" htmlEscape="false" />
+						<form:option value="SMALL" label="${smallDashboardGridSize}" htmlEscape="false" />
+					</form:select>
+				</div>
+			</div>
+			<br />
 			<h3>
 				<spring:message code="settings.emails.title" />
 				<small><spring:message code="settings.emails.subtitle" /></small>
@@ -300,6 +320,7 @@
 			"name" : $("#name").val(),
 			"langUpdate" : $("#langUpdate").val(),
 			"osVersion" : $("#osVersion").val(),
+			"dashboardGridSize" : $("#dashboardGridSize").val(),
 			"emailAlert" : $("input[name='emailAlert']:checked").val(),
 			"emailEachUpdate" : $("input[name='emailEachUpdate']:checked")
 					.val(),

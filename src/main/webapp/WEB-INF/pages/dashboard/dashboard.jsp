@@ -4,12 +4,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <%@ page import="com.updapy.model.enumeration.ApplicationType"%>
+<%@ page import="com.updapy.model.enumeration.DashboardGridSize"%>
 
 <c:set var="COMMERCIAL" value="<%=ApplicationType.COMMERCIAL%>" />
+<c:set var="SMALL" value="<%=DashboardGridSize.SMALL%>" />
 <c:set var="nbAppFollow">${fn:length(currentFollowedApplications)}</c:set>
 
 <c:choose>
-	<c:when test="${true == false}">
+	<c:when test="${dashboardGridSize == SMALL}">
 		<c:set var="gridSize" value="small" />
 		<c:set var="iconSize" value="64" />
 		<c:set var="rowButtonStyle" value="padding-bottom: 30px;" />

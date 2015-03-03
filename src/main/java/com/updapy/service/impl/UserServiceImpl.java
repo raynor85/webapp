@@ -32,6 +32,7 @@ import com.updapy.model.HelpMessage;
 import com.updapy.model.Setting;
 import com.updapy.model.User;
 import com.updapy.model.UserConnection;
+import com.updapy.model.enumeration.DashboardGridSize;
 import com.updapy.model.enumeration.Lang;
 import com.updapy.model.enumeration.OsVersion;
 import com.updapy.model.enumeration.Parameter;
@@ -208,6 +209,8 @@ public class UserServiceImpl implements UserService {
 		user.setLangEmail(currentLang);
 		// os version
 		user.setOsVersion(OsVersion.WIN_32_BITS);
+		// big icons
+		user.setDashboardGridSize(DashboardGridSize.BIG);
 	}
 
 	@Override

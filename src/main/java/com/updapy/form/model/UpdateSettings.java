@@ -2,6 +2,7 @@ package com.updapy.form.model;
 
 import javax.validation.constraints.NotNull;
 
+import com.updapy.model.enumeration.DashboardGridSize;
 import com.updapy.model.enumeration.Lang;
 import com.updapy.model.enumeration.OsVersion;
 
@@ -29,6 +30,9 @@ public class UpdateSettings {
 
 	@NotNull
 	private boolean emailNewsletter;
+
+	@NotNull
+	private DashboardGridSize dashboardGridSize;
 
 	public String getName() {
 		return name;
@@ -92,6 +96,14 @@ public class UpdateSettings {
 
 	public void setOsVersion(OsVersion osVersion) {
 		this.osVersion = osVersion;
+	}
+
+	public DashboardGridSize getDashboardGridSize() {
+		return dashboardGridSize;
+	}
+
+	public void setDashboardGridSize(DashboardGridSize dashboardGridSize) {
+		this.dashboardGridSize = dashboardGridSize;
 	}
 
 }

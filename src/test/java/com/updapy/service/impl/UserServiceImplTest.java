@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.User;
+import com.updapy.model.enumeration.DashboardGridSize;
 import com.updapy.model.enumeration.Lang;
 import com.updapy.model.enumeration.OsVersion;
 import com.updapy.service.UserService;
@@ -148,6 +149,7 @@ public class UserServiceImplTest {
 		User user = new User();
 		user.setLangUpdate(lang);
 		user.setOsVersion(osVersion);
+		user.setDashboardGridSize(DashboardGridSize.BIG);
 		return user;
 	}
 
