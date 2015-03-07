@@ -10,11 +10,11 @@
 	<properties>
 
 		<!-- Spring -->
-		<org.springframework.version>4.1.4.RELEASE</org.springframework.version>
+		<org.springframework.version>4.1.5.RELEASE</org.springframework.version>
 		<org.springframework.data.version>1.7.2.RELEASE</org.springframework.data.version>
 		<org.springframework.batch.version>3.0.3.RELEASE</org.springframework.batch.version>
-		<org.springframework.security.version>3.2.5.RELEASE</org.springframework.security.version>
-		<org.springframework.hateoas.version>0.16.0.RELEASE</org.springframework.hateoas.version>
+		<org.springframework.security.version>3.2.6.RELEASE</org.springframework.security.version>
+		<org.springframework.hateoas.version>0.17.0.RELEASE</org.springframework.hateoas.version>
 		<org.springframework.social.version>1.1.0.RELEASE</org.springframework.social.version>
 		<org.springframework.social.facebook.version>1.1.1.RELEASE</org.springframework.social.facebook.version>
 		<org.springframework.social.google.version>1.0.0.RELEASE</org.springframework.social.google.version>
@@ -39,18 +39,18 @@
 		<commons-lang.version>3.3.2</commons-lang.version>
 
 		<!-- Root -->
-		<org.apache.httpcomponents.httpclient.version>4.3.6</org.apache.httpcomponents.httpclient.version>
+		<org.apache.httpcomponents.httpclient.version>4.4</org.apache.httpcomponents.httpclient.version>
 		<javax.activation.version>1.1.1</javax.activation.version>
 		<javax.mail.version>1.4.7</javax.mail.version>
 		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
 
 		<!-- Database -->
 		<hsqldb.version>2.3.2</hsqldb.version>
-		<postgresql.version>9.3-1102-jdbc41</postgresql.version>
+		<postgresql.version>9.4-1201-jdbc41</postgresql.version>
 
 		<!-- Production -->
-		<jsimone.webapp-runner.version>7.0.57.1</jsimone.webapp-runner.version>
-		<com.newrelic.agent.java.version>3.13.0</com.newrelic.agent.java.version>
+		<jsimone.webapp-runner.version>7.0.57.2</jsimone.webapp-runner.version>
+		<com.newrelic.agent.java.version>3.14.0</com.newrelic.agent.java.version>
 
 		<!-- Log -->
 		<slf4j.version>1.7.10</slf4j.version>
