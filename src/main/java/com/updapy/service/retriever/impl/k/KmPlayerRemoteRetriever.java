@@ -1,5 +1,8 @@
 package com.updapy.service.retriever.impl.k;
 
+import java.io.IOException;
+
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -7,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.util.HttpUtils;
+import com.updapy.util.ParsingUtils;
 
 @Component
 public class KmPlayerRemoteRetriever implements RemoteRetriever {
@@ -40,14 +45,20 @@ public class KmPlayerRemoteRetriever implements RemoteRetriever {
 		} else {
 			dlButton = buttons.get(0);
 		}
-		return dlButton.select("a").attr("href");
+		try {
+			return HttpUtils.getRedirectionUrl(dlButton.select("a").attr("href"));
+		} catch (IOException e) {
+			return null;
+		}
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		String link = retrieveWin32UrlEn(doc);
-		// TODO retrieve the filename to retrieve the version
-		return null;
+		try {
+			return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(HttpUtils.getFilenameFromUrl(retrieveWin32UrlEn(doc)), "_.*\\.exe"));
+		} catch (IOException e) {
+			return null;
+		}
 	}
 
 }

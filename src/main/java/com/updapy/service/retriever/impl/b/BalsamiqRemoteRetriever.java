@@ -3,7 +3,10 @@ package com.updapy.service.retriever.impl.b;
 import java.io.IOException;
 
 import org.apache.commons.lang3.StringUtils;
+import org.jsoup.nodes.DataNode;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
@@ -39,7 +42,16 @@ public class BalsamiqRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
 		try {
-			return RemoteServiceImpl.retrieveHtmlDocumentAgent64(DOWNLOAD_WEBSITE).select("a[href*=.exe]").attr("href");
+			Elements scriptTags = RemoteServiceImpl.retrieveHtmlDocumentAgent64(DOWNLOAD_WEBSITE).getElementsByTag("script");
+			String script = "";
+			for (Element tag : scriptTags) {
+				for (DataNode node : tag.dataNodes()) {
+					if (StringUtils.containsIgnoreCase(node.getWholeData(), "durl_windows = '")) {
+						script = node.getWholeData();
+					}
+				}
+			}
+			return StringUtils.replacePattern(ParsingUtils.selectFromPattern(ParsingUtils.selectFromPattern(script, "durl_windows = '.*'"), "http.*exe"), "'( |)\\+( |)data.version( |)\\+( |)'", retrieveVersionNumber(doc));
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}
