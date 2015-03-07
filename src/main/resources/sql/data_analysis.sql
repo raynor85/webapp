@@ -27,7 +27,16 @@ and feedback != ''
 order by removedate desc;  
 
 -- What are the most probable failures?
-select name, globalurl, count, typelasterror
+select application_id, name, globalurl, count, typelasterror
 from applicationreference a, retrievalerror e
 where a.id = e.application_id 
-and count > 3;
+and count > 2
+and application_id not in (98, 99); -- Teamspeak are not working well
+
+-- Local: active only the apps that are failing
+update applicationreference
+set active = false;
+update applicationreference
+set active = true
+where id in (1, 2, 3); -- Replace with the ids
+

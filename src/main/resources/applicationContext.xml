@@ -315,6 +315,7 @@
 		<ref bean="trustPortInternetSecurityRemoteRetriever" />
 		<ref bean="argenteUtilitiesRemoteRetriever" />
 		<ref bean="ashampooAntivirusRemoteRetriever" />
+		<ref bean="kmPlayerRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

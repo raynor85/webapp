@@ -1,9 +1,12 @@
 package com.updapy.service.retriever.impl.v;
 
+import java.io.IOException;
+
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
@@ -24,7 +27,7 @@ public class VisualParadigmCommunityRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Windows 64bit)").get(0).attr("href"));
+		return retrieveDirectLink(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Installer)[href*=64bit]").attr("href")));
 	}
 
 	@Override
@@ -34,7 +37,15 @@ public class VisualParadigmCommunityRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Windows 32bit)").get(0).attr("href"));
+		return retrieveDirectLink(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Installer)[href*=32bit]").attr("href")));
+	}
+
+	public String retrieveDirectLink(String downloadPage) {
+		try {
+			return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgent32(downloadPage).select("a:contains(direct link)[href*=.exe]").attr("href"));
+		} catch (IOException e) {
+			return null;
+		}
 	}
 
 	@Override
