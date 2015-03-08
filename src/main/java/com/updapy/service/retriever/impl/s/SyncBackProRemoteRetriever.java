@@ -1,9 +1,12 @@
 package com.updapy.service.retriever.impl.s;
 
+import java.io.IOException;
+
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
@@ -34,7 +37,11 @@ public class SyncBackProRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download SyncBackPro)").attr("href"));
+		try {
+			return RemoteServiceImpl.retrieveHtmlDocumentAgent32(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download SyncBackPro)").attr("href"))).select("a:contains(Download)[href*=.exe]").attr("href");
+		} catch (IOException e) {
+			return null;
+		}
 	}
 
 	@Override
