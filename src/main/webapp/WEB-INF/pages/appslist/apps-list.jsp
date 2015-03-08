@@ -55,7 +55,7 @@
 				<spring:message code="appslist.filter.title" />
 			</legend>
 			<div class="row rowWithPadding" style="margin-top: -7px !important; margin-bottom: 10px !important;">
-				<div class="col-sm-4 col-md-3 col-lg-3">
+				<div class="col-sm-4 col-md-3 col-lg-3 form-group">
 					<label for="applicationCategory" style="min-width: 100px;"><spring:message code="appslist.filter.application.category" /></label> <select class="selectpicker" id="applicationCategory">
 						<option value="ALL"><spring:message code="appslist.filter.application.category.all" /></option>
 						<c:forEach items="${applicationCategories}" var="applicationCategory">
@@ -63,7 +63,7 @@
 						</c:forEach>
 					</select>
 				</div>
-				<div class="col-sm-4 col-md-3 col-lg-3">
+				<div class="col-sm-4 col-md-3 col-lg-3 form-group">
 					<label for="applicationType" style="min-width: 100px;"><spring:message code="appslist.filter.application.type" /></label> <select class="selectpicker" id="applicationType">
 						<option value="ALL"><spring:message code="appslist.filter.application.type.all" /></option>
 						<c:forEach items="${applicationTypes}" var="applicationType">
