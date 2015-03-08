@@ -1,13 +1,10 @@
 package com.updapy.service.retriever.impl.k;
 
-import java.io.IOException;
-
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
-import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
@@ -36,11 +33,7 @@ public class KLiteCodecPackRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		try {
-			return RemoteServiceImpl.retrieveHtmlDocumentAgent32(doc.select("a:contains(Mirror)[href*=betanews]").first().attr("href").replace("/detail/", "/download/")).select("a:contains(click here)").attr("href");
-		} catch (IOException e) {
-			return null;
-		}
+		return doc.select("a:contains(Mirror)[href*=betanews]").first().attr("href").replace("/detail/", "/download/");
 	}
 
 	@Override

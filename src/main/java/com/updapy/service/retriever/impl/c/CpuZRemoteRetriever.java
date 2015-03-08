@@ -1,9 +1,12 @@
 package com.updapy.service.retriever.impl.c;
 
+import java.io.IOException;
+
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
@@ -34,7 +37,11 @@ public class CpuZRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a.icon-exe[href*=exe]:contains(english)").first().attr("href"));
+		try {
+			return RemoteServiceImpl.retrieveHtmlDocumentAgent32(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a.icon-exe[href*=exe]:contains(english)").first().attr("href"))).select("a:contains(DOWNLOAD NOW)[href*=.exe]").attr("href");
+		} catch (IOException e) {
+			return null;
+		}
 	}
 
 	@Override

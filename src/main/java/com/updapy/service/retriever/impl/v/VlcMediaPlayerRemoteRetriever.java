@@ -1,9 +1,12 @@
 package com.updapy.service.retriever.impl.v;
 
+import java.io.IOException;
+
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
@@ -22,7 +25,12 @@ public class VlcMediaPlayerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return ParsingUtils.addHttpPrefix(doc.select("a[href*=win64]").attr("href"));
+		try {
+			String dlLink = ParsingUtils.addHttpPrefix(doc.select("a[href*=win64]").attr("href"));
+			return ParsingUtils.buildUrl(dlLink, RemoteServiceImpl.retrieveHtmlDocumentAgent32(dlLink).select("a:contains(.exe)[href*=.exe]").first().attr("href"));
+		} catch (IOException e) {
+			return null;
+		}
 	}
 
 	@Override
