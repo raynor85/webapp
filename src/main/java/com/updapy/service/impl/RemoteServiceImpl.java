@@ -68,7 +68,8 @@ public class RemoteServiceImpl implements RemoteService {
 			return null;
 		}
 
-		retrievalErrorService.deleteRetrievalError(application);
+		retrievalErrorService.deleteRetrievalError(application, TypeRetrievalError.REMOTE_PARSING_ERROR);
+		retrievalErrorService.deleteRetrievalError(application, TypeRetrievalError.REMOTE_URL_VERSION_ERROR);
 		return version;
 	}
 

@@ -6,10 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.RetrievalError;
+import com.updapy.model.enumeration.TypeRetrievalError;
 
 public interface RetrievalErrorRepository extends JpaRepository<RetrievalError, Long> {
 
-	RetrievalError findByApplication(ApplicationReference application);
+	RetrievalError findByApplicationAndTypeLastError(ApplicationReference application, TypeRetrievalError type);
 
 	List<RetrievalError> findByCountGreaterThanEqual(int count);
 

@@ -23,24 +23,24 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 
 	@Override
 	public RetrievalError addRetrievalError(ApplicationReference application, TypeRetrievalError type) {
-		RetrievalError retrievalError = findRetrievalErrors(application);
+		RetrievalError retrievalError = findRetrievalErrors(application, type);
 		if (retrievalError == null) {
 			// first time there is an error on this app
 			retrievalError = new RetrievalError();
 			retrievalError.setApplication(application);
+			retrievalError.setTypeLastError(type);
 			retrievalError.setCount(1);
 		} else {
 			// not the first time, increment counter
 			retrievalError.setCount(retrievalError.getCount() + 1);
 		}
-		retrievalError.setTypeLastError(type);
 		retrievalErrorRepository.saveAndFlush(retrievalError);
 		return retrievalError;
 	}
 
 	@Override
-	public void deleteRetrievalError(ApplicationReference application) {
-		RetrievalError retrievalError = findRetrievalErrors(application);
+	public void deleteRetrievalError(ApplicationReference application, TypeRetrievalError type) {
+		RetrievalError retrievalError = findRetrievalErrors(application, type);
 		if (retrievalError != null) {
 			deleteRetrievalError(retrievalError);
 		}
@@ -50,8 +50,8 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 		retrievalErrorRepository.delete(retrievalError);
 	}
 
-	private RetrievalError findRetrievalErrors(ApplicationReference application) {
-		return retrievalErrorRepository.findByApplication(application);
+	private RetrievalError findRetrievalErrors(ApplicationReference application, TypeRetrievalError type) {
+		return retrievalErrorRepository.findByApplicationAndTypeLastError(application, type);
 	}
 
 	@Override
