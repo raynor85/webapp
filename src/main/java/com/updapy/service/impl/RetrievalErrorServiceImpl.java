@@ -61,7 +61,7 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 		for (RetrievalError retrievalError : retrievalErrors) {
 			if (!retrievalError.getApplication().getApiName().startsWith("teamspeak") || (retrievalError.getApplication().getApiName().startsWith("teamspeak") && retrievalError.getCount() >= 40)) {
 				boolean hasBeenSent = false;
-				if (TypeRetrievalError.URL_BASE_ERROR.equals(retrievalError.getTypeLastError())) {
+				if (TypeRetrievalError.REMOTE_URL_BASE_ERROR.equals(retrievalError.getTypeLastError())) {
 					hasBeenSent = emailSenderService.sendAdminConnectionError(retrievalError.getApplication().getGlobalUrl());
 				} else {
 					hasBeenSent = emailSenderService.sendAdminRetrieverError(retrievalError.getApplication().getName());

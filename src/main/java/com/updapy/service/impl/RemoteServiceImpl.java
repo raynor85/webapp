@@ -58,13 +58,13 @@ public class RemoteServiceImpl implements RemoteService {
 			}
 		} catch (Exception e) {
 			// parsing error
-			retrievalErrorService.addRetrievalError(application, TypeRetrievalError.PARSING_ERROR);
+			retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_PARSING_ERROR);
 			return null;
 		}
 
 		if (StringUtils.isBlank(version.getVersionNumber()) || StringUtils.isBlank(version.getWin32UrlEn()) || !version.isValidVersionNumber() || !isUrlValid(version.getWin32UrlEn()) || !isUrlValid(version.getWin32UrlFr()) || !isUrlValid(version.getWin64UrlEn()) || !isUrlValid(version.getWin64UrlFr())) {
 			// remote version not valid
-			retrievalErrorService.addRetrievalError(application, TypeRetrievalError.URL_VERSION_ERROR);
+			retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_URL_VERSION_ERROR);
 			return null;
 		}
 
@@ -72,7 +72,8 @@ public class RemoteServiceImpl implements RemoteService {
 		return version;
 	}
 
-	private boolean isUrlValid(String url) {
+	@Override
+	public boolean isUrlValid(String url) {
 		if (StringUtils.isBlank(url)) {
 			// empty url is fine
 			return true;
@@ -115,7 +116,7 @@ public class RemoteServiceImpl implements RemoteService {
 					doc = retrieveHtmlDocumentAgent64(url, 0);
 				} catch (Exception e3) {
 					// seems there is really a problem
-					retrievalErrorService.addRetrievalError(application, TypeRetrievalError.URL_BASE_ERROR);
+					retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_URL_BASE_ERROR);
 					return null;
 				}
 			}

@@ -104,7 +104,7 @@ public class ApplicationVersionScheduler {
 				applicationService.addVersion(latestRemoteVersion);
 			} else if (comparisonResult == 1 && !latestRemoteVersion.getVersionNumber().equals("0")) {
 				// the remote version has a smaller number
-				retrievalErrorService.addRetrievalError(application, TypeRetrievalError.NEW_VERSION_WITH_NUMBER_NOT_CONSISTENT);
+				retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_NEW_VERSION_WITH_NUMBER_NOT_CONSISTENT);
 			}
 		}
 	}
@@ -213,6 +213,24 @@ public class ApplicationVersionScheduler {
 		for (User userToNotify : userToNotifys) {
 			newsletterService.addEmailNewsletter(userToNotify, newsletter);
 		}
+	}
+
+	// fire one a day (5pm)
+	@Scheduled(cron = "0 0 17 * * *")
+	@Transactional
+	public void checkThatDownloadLinksAreValid() {
+		log.info("> Starting download links validity");
+		List<ApplicationReference> applications = applicationService.getApplications();
+		for (ApplicationReference application : applications) {
+			ApplicationVersion version = applicationService.getLatestVersion(application);
+			if (version != null && (!remoteService.isUrlValid(version.getWin32UrlEn()) || !remoteService.isUrlValid(version.getWin32UrlFr()) || !remoteService.isUrlValid(version.getWin64UrlEn()) || !remoteService.isUrlValid(version.getWin64UrlFr()))) {
+				log.info("There is a download link invalid for application: " + application.getName());
+				retrievalErrorService.addRetrievalError(application, TypeRetrievalError.LOCAL_URL_VERSION_ERROR);
+			} else {
+				retrievalErrorService.deleteRetrievalError(application);
+			}
+		}
+		log.info("< Download links validated sucessfully.");
 	}
 
 	// fire twice a day (5am and 5pm)

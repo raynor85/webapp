@@ -10,4 +10,6 @@ public interface RemoteService {
 
 	ApplicationVersion retrieveRemoteLatestVersion(ApplicationReference application);
 
+	boolean isUrlValid(String url);
+
 }

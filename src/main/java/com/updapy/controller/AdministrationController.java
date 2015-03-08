@@ -25,6 +25,13 @@ public class AdministrationController {
 		applicationVersionScheduler.updateApplicationRepositoryAndCreateEmailSingleUpdates();
 		return jsonResponseUtils.buildSuccessfulJsonResponse("administration.repository.update.confirm");
 	}
+	
+	@RequestMapping(value = "/repository/check")
+	public @ResponseBody
+	JsonResponse checkRepository() {
+		applicationVersionScheduler.checkThatDownloadLinksAreValid();
+		return jsonResponseUtils.buildSuccessfulJsonResponse("administration.repository.check.confirm");
+	}
 
 	@RequestMapping(value = "/email/application/added")
 	public @ResponseBody
