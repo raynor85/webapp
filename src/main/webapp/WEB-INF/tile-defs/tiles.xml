@@ -67,6 +67,12 @@
 		<put-attribute name="content" value="/WEB-INF/pages/privacy/privacy.jsp" />
 	</definition>
 
+	<!-- Thanks -->
+	<definition name="thanks" extends="baseLayoutNormal">
+		<put-attribute name="title" value="thanks.title" />
+		<put-attribute name="content" value="/WEB-INF/pages/thanks/thanks.jsp" />
+	</definition>
+
 	<!-- Apps -->
 	<!-- List -->
 	<definition name="apps-list" extends="baseLayoutNormal">

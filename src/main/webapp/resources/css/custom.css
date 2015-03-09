@@ -305,6 +305,11 @@ body {
 	border-bottom: 0;
 }
 
+.dropdown-menu>li.donatePaypal {
+	margin-left: 14px;
+	margin-top: 7px
+}
+
 /* ===== Jumbotron ===== */
 .jumbotron {
 	background: #ecf0f1;

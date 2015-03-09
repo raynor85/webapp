@@ -65,6 +65,11 @@ public class PageController {
 		return "sign-up-activate";
 	}
 
+	@RequestMapping("/thanks")
+	public ModelAndView thanksPage() {
+		return addNotifications(new ModelAndView("thanks"));
+	}
+
 	private ModelAndView addNotifications(ModelAndView modelAndView) {
 		User user = userService.getCurrentUserLight();
 		if (user != null) {
