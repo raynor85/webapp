@@ -1,6 +1,7 @@
 package com.updapy.service.scheduler;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -227,7 +228,7 @@ public class ApplicationVersionScheduler {
 				log.info("There is a download link invalid for application: " + application.getName());
 				retrievalErrorService.addRetrievalError(application, TypeRetrievalError.LOCAL_URL_VERSION_ERROR);
 			} else {
-				retrievalErrorService.deleteRetrievalError(application, TypeRetrievalError.LOCAL_URL_VERSION_ERROR);
+				retrievalErrorService.deleteRetrievalErrors(application, Arrays.asList(TypeRetrievalError.LOCAL_URL_VERSION_ERROR));
 			}
 		}
 		log.info("< Download links validated sucessfully.");

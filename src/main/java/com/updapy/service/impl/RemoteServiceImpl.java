@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -68,8 +69,7 @@ public class RemoteServiceImpl implements RemoteService {
 			return null;
 		}
 
-		retrievalErrorService.deleteRetrievalError(application, TypeRetrievalError.REMOTE_PARSING_ERROR);
-		retrievalErrorService.deleteRetrievalError(application, TypeRetrievalError.REMOTE_URL_VERSION_ERROR);
+		retrievalErrorService.deleteRetrievalErrors(application, Arrays.asList(TypeRetrievalError.REMOTE_PARSING_ERROR, TypeRetrievalError.REMOTE_URL_VERSION_ERROR, TypeRetrievalError.REMOTE_NEW_VERSION_WITH_NUMBER_NOT_CONSISTENT, TypeRetrievalError.REMOTE_URL_BASE_ERROR));
 		return version;
 	}
 

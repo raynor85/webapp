@@ -23,7 +23,7 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 
 	@Override
 	public RetrievalError addRetrievalError(ApplicationReference application, TypeRetrievalError type) {
-		RetrievalError retrievalError = findRetrievalErrors(application, type);
+		RetrievalError retrievalError = findRetrievalError(application, type);
 		if (retrievalError == null) {
 			// first time there is an error on this app
 			retrievalError = new RetrievalError();
@@ -39,19 +39,11 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 	}
 
 	@Override
-	public void deleteRetrievalError(ApplicationReference application, TypeRetrievalError type) {
-		RetrievalError retrievalError = findRetrievalErrors(application, type);
-		if (retrievalError != null) {
-			deleteRetrievalError(retrievalError);
+	public void deleteRetrievalErrors(ApplicationReference application, List<TypeRetrievalError> types) {
+		List<RetrievalError> retrievalErrors = findRetrievalErrors(application, types);
+		if (retrievalErrors != null && !retrievalErrors.isEmpty()) {
+			deleteRetrievalErrors(retrievalErrors);
 		}
-	}
-
-	private void deleteRetrievalError(RetrievalError retrievalError) {
-		retrievalErrorRepository.delete(retrievalError);
-	}
-
-	private RetrievalError findRetrievalErrors(ApplicationReference application, TypeRetrievalError type) {
-		return retrievalErrorRepository.findByApplicationAndTypeLastError(application, type);
 	}
 
 	@Override
@@ -73,6 +65,22 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 			}
 		}
 		return count;
+	}
+
+	private void deleteRetrievalErrors(List<RetrievalError> retrievalErrors) {
+		retrievalErrorRepository.delete(retrievalErrors);
+	}
+
+	private void deleteRetrievalError(RetrievalError retrievalError) {
+		retrievalErrorRepository.delete(retrievalError);
+	}
+
+	private RetrievalError findRetrievalError(ApplicationReference application, TypeRetrievalError type) {
+		return retrievalErrorRepository.findByApplicationAndTypeLastError(application, type);
+	}
+
+	private List<RetrievalError> findRetrievalErrors(ApplicationReference application, List<TypeRetrievalError> types) {
+		return retrievalErrorRepository.findByApplicationAndTypeLastErrorIn(application, types);
 	}
 
 }
