@@ -56,6 +56,16 @@ public class SendEmailTest {
 		Locale locale = Locale.ENGLISH;
 		emailSenderService.sendPersonalEmail(email, subject, title, message, locale);
 	}
+	
+	@Test
+	public void sendPersonalEmailAnswer5En() {
+		String email = "";
+		String subject = "Hi";
+		String title = "New apps";
+		String message = "Yes, we send an email when new apps are available. In <a style='color: #27ae60; text-decoration: none;' target='_blank' href='http://www.updapy.com/settings'>your settings</a>, verify that 'Receive an email for each app added' is checked. There will be new apps available in the following days.<br><br>The Updapy team.";
+		Locale locale = Locale.ENGLISH;
+		emailSenderService.sendPersonalEmail(email, subject, title, message, locale);
+	}
 
 	// French
 

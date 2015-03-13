@@ -3522,71 +3522,113 @@ a.caption {
 }
 
 .sprite-argenteutilities {
-	background: url(../img/application/sprite/08-2.png) no-repeat top left;
+	background: url(../img/application/sprite/08-3.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -5px -5px;
 }
 
 .sprite-ashampooantivirus {
-	background: url(../img/application/sprite/08-2.png) no-repeat top left;
+	background: url(../img/application/sprite/08-3.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -79px -5px;
 }
 
-.sprite-junkwareremovaltool {
-	background: url(../img/application/sprite/08-2.png) no-repeat top left;
+.sprite-baiduantivirus {
+	background: url(../img/application/sprite/08-3.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -153px -5px;
 }
 
-.sprite-lockhunter {
-	background: url(../img/application/sprite/08-2.png) no-repeat top left;
+.sprite-bazookaadwarespywarescanner {
+	background: url(../img/application/sprite/08-3.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -227px -5px;
+}
+
+.sprite-clipx {
+	background: url(../img/application/sprite/08-3.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -5px -79px;
 }
 
-.sprite-passwordsafe {
-	background: url(../img/application/sprite/08-2.png) no-repeat top left;
+.sprite-comodointernetsecurity {
+	background: url(../img/application/sprite/08-3.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -79px -79px;
 }
 
-.sprite-privazer {
-	background: url(../img/application/sprite/08-2.png) no-repeat top left;
+.sprite-foxitreader {
+	background: url(../img/application/sprite/08-3.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -153px -79px;
 }
 
-.sprite-rjtexted {
-	background: url(../img/application/sprite/08-2.png) no-repeat top left;
+.sprite-junkwareremovaltool {
+	background: url(../img/application/sprite/08-3.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -227px -79px;
+}
+
+.sprite-lockhunter {
+	background: url(../img/application/sprite/08-3.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -5px -153px;
 }
 
-.sprite-slimjet {
-	background: url(../img/application/sprite/08-2.png) no-repeat top left;
+.sprite-passwordsafe {
+	background: url(../img/application/sprite/08-3.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -79px -153px;
 }
 
-.sprite-spyshelterpersonal {
-	background: url(../img/application/sprite/08-2.png) no-repeat top left;
+.sprite-pestudio {
+	background: url(../img/application/sprite/08-3.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -153px -153px;
 }
 
-.sprite-trustportinternetsecurity {
-	background: url(../img/application/sprite/08-2.png) no-repeat top left;
+.sprite-privazer {
+	background: url(../img/application/sprite/08-3.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
-	background-position: -227px -5px;
+	background-position: -227px -153px;
+}
+
+.sprite-rjtexted {
+	background: url(../img/application/sprite/08-3.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -5px -227px;
+}
+
+.sprite-slimjet {
+	background: url(../img/application/sprite/08-3.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -79px -227px;
+}
+
+.sprite-spyshelterpersonal {
+	background: url(../img/application/sprite/08-3.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -153px -227px;
+}
+
+.sprite-trustportinternetsecurity {
+	background: url(../img/application/sprite/08-3.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -227px -227px;
 }

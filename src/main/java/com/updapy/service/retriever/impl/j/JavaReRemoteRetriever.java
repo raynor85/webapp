@@ -32,7 +32,7 @@ public class JavaReRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a:containsOwn(Windows Offline (32-bit))").attr("href");
+		return doc.select("a:containsOwn(Windows Offline)").first().attr("href");
 	}
 
 	@Override
