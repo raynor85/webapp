@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,6 +46,9 @@ public class DashboardController {
 	private ApplicationService applicationService;
 
 	@Autowired
+	private Validator requestApplicationCustomValidator;
+	
+	@Autowired
 	private UserService userService;
 
 	@Autowired
@@ -56,6 +62,11 @@ public class DashboardController {
 
 	@Autowired
 	private JsonResponseUtils jsonResponseUtils;
+
+	@InitBinder("requestApplication")
+	private void initBinderChangePassword(WebDataBinder binder) {
+		binder.addValidators(requestApplicationCustomValidator);
+	}
 
 	@RequestMapping({ "/", "" })
 	public ModelAndView dashboardPage() {
