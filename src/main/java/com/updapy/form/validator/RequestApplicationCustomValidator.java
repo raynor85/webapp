@@ -31,7 +31,7 @@ public class RequestApplicationCustomValidator implements Validator {
 	}
 
 	private String transform(String name) {
-		return StringUtils.lowerCase(StringUtils.deleteWhitespace(name));
+		return StringUtils.lowerCase(StringUtils.remove(StringUtils.remove(StringUtils.deleteWhitespace(name), '.'), '-'));
 	}
 
 }
