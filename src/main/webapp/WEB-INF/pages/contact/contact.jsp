@@ -49,6 +49,17 @@
 </div>
 
 <script type="text/javascript">
+	// focus
+	mainFocus();
+	function mainFocus() {
+		var field = "email";
+		if ($("#email").is("[readonly]")) {
+			field = "message";
+		}
+		setTimeout(function() {
+			$("#" + field).focus();
+		}, 1000);
+	}
 	function ajaxSendMessage() {
 		var json = {
 			"email" : $("#email").val(),
