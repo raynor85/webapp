@@ -33,7 +33,11 @@ public class BaiduAntivirusRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a[href*=exe]:contains(Offline Installer)").attr("href");
+		String dlLink = doc.select("a[href*=exe]:contains(Offline Installer)").attr("href");
+		if (StringUtils.isBlank(dlLink)) {
+			return doc.select("a#dlBtn[href*=exe]:contains(Download)").attr("href");
+		}
+		return dlLink;
 	}
 
 	@Override
