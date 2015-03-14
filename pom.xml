@@ -31,6 +31,7 @@
 		<jackson.version>2.5.0</jackson.version>
 		<dozer.version>5.5.1</dozer.version>
 		<org.jsoup.version>1.8.1</org.jsoup.version>
+		<json-simple.version>1.1.1</json-simple.version>
 		<rome.version>1.5.0</rome.version>
 		<ziplet.version>2.0.0</ziplet.version>
 
@@ -69,6 +70,12 @@
 			<artifactId>jsoup</artifactId>
 			<version>${org.jsoup.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>${json-simple.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.batch</groupId>
 			<artifactId>spring-batch-core</artifactId>

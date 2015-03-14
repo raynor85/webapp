@@ -1,5 +1,6 @@
 package com.updapy.service.impl;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,7 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 	public int sendEmailRetrievalErrors() {
 		int count = 0;
 		List<RetrievalError> retrievalErrors = retrievalErrorRepository.findByCountGreaterThanEqual(10); // 10 errors really mean there is a problem!
+		retrievalErrors.addAll(retrievalErrorRepository.findByTypeLastErrorInAndCountGreaterThanEqual(Arrays.asList(TypeRetrievalError.LOCAL_URL_VERSION_ERROR), 2)); // 2 errors is enough in case of "local" URL
 		for (RetrievalError retrievalError : retrievalErrors) {
 			if (!retrievalError.getApplication().getApiName().startsWith("teamspeak") || (retrievalError.getApplication().getApiName().startsWith("teamspeak") && retrievalError.getCount() >= 40)) {
 				boolean hasBeenSent = false;

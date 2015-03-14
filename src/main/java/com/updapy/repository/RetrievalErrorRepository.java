@@ -16,4 +16,6 @@ public interface RetrievalErrorRepository extends JpaRepository<RetrievalError, 
 
 	List<RetrievalError> findByCountGreaterThanEqual(int count);
 
+	List<RetrievalError> findByTypeLastErrorInAndCountGreaterThanEqual(List<TypeRetrievalError> types, int count);
+
 }
