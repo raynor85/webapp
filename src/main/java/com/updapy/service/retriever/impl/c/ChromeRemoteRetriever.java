@@ -26,12 +26,12 @@ public class ChromeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return null;
+		return DOWNLOAD_WEBSITE_PLATFORM_64_BIT;
 	}
 
 	@Override
 	public String retrieveWin32UrlFr(Document doc) {
-		return DOWNLOAD_WEBSITE_PLATFORM_64_BIT;
+		return null;
 	}
 
 	@Override
