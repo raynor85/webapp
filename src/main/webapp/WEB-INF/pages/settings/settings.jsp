@@ -385,6 +385,7 @@
 		// display success
 		$("#successPasswordUserResponse").html(
 				$("#changePasswordUserResponse").html());
+		setTimeout(function() { $("html, body").scrollTop(0); }, 1000);
 	};
 	function ajaxChangeEmailUser() {
 		var json = {
@@ -406,6 +407,7 @@
 		// display success
 		$("#successEmailUserResponse").html(
 				$("#changeEmailUserResponse").html());
+		setTimeout(function() { $("html, body").scrollTop(0); }, 1000);
 		// Disconnect
 		setTimeout(function() {
 			logout();

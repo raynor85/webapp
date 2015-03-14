@@ -401,6 +401,7 @@
 		// display success
 		$("#successRequestApplicationResponse").html(
 				$("#requestApplicationResponse").html());
+		setTimeout(function() { $("html, body").scrollTop(0); }, 1000);
 	};
 	$("#filter").keydown(function() {
 		setTimeout(function() {

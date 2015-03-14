@@ -212,7 +212,7 @@ $(function() {
 function ajaxCallPost(button, form, json, divResult, jsToExecuteWhenSucess,
 		noSpaceBefore) {
 	ajaxCallPostWithUrl(button, $(form).attr("action"), json, divResult,
-			jsToExecuteWhenSucess, noSpaceBefore)
+			jsToExecuteWhenSucess, noSpaceBefore);
 }
 
 function ajaxCallPostWithUrl(button, urlAction, json, divResult,
