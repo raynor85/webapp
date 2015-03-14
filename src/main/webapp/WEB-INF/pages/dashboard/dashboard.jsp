@@ -99,7 +99,7 @@
 					<c:choose>
 						<c:when test="${isEmailOnEachUpdateDisabled}">
 							<c:set var="disableStyle" value="display: none;" />
-							<c:set var="enableStyle" value="display: none;" />
+							<c:set var="enableStyle" value="visibility: hidden;" />
 						</c:when>
 						<c:otherwise>
 							<c:choose>
