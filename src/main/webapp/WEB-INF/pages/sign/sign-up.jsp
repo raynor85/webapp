@@ -21,3 +21,11 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	// focus
+	mainFocus();
+	function mainFocus() {
+		setTimeout(function() { $("#email").focus(); }, 1000);
+	}
+</script>

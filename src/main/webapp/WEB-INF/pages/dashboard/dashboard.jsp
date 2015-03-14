@@ -222,7 +222,7 @@
 								</legend>
 								<div class="row rowWithPadding" style="margin-top: -7px !important;">
 									<div class="inner-addon left-addon col-md-4">
-										<i class="fa fa-search"></i> <input id="filter" type="search" class="form-control filter" placeholder="${filterPlaceholder}">
+										<i class="fa fa-search"></i> <input id="filter" type="search" class="form-control filter" placeholder="${filterPlaceholder}" />
 									</div>
 									<div id="filter-count" class="col-md-3">&nbsp;</div>
 								</div>
@@ -322,6 +322,12 @@
 		}
 		$("form#newFollowedApplicationsForm").submit();
 	}
+	$("#followApplicationsModal").on("show.bs.modal", function (e) {
+		setTimeout(function() { $("#filter").focus(); }, 1000);
+	});
+	$("#requestApplicationModal").on("show.bs.modal", function (e) {
+		setTimeout(function() { $("#requestedAppName").focus(); }, 1000);
+	});
 	var showModalIfNoFollowedApps = function() {
 		if ("${nbAppFollow}" == 0) {
 			$("#followApplicationsModal").modal("show");

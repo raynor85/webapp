@@ -80,7 +80,7 @@
 			<div class="row">
 				<div class="col-sm-9">
 					<div class="inner-addon left-addon col-sm-6 col-md-5 col-lg-4">
-						<i class="fa fa-search"></i> <input id="filter" type="search" class="form-control filter" placeholder="${filterPlaceholder}">
+						<i class="fa fa-search"></i> <input id="filter" type="search" class="form-control filter" placeholder="${filterPlaceholder}" />
 					</div>
 					<div id="filter-count-list" class="col-sm-5">&nbsp;</div>
 				</div>
@@ -148,6 +148,12 @@
 </div>
 
 <script>
+	// focus
+	mainFocus();
+	function mainFocus() {
+		setTimeout(function() { $("#filter").focus(); }, 1000);
+	}
+
 	// filter by category or type
 	$(".selectpicker").change(function() {
 		setTimeout(function() {

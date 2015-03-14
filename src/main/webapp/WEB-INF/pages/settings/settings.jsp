@@ -314,7 +314,20 @@
 	// activate elements
 	$(".selectpicker").selectpicker();
 	$("input[type='checkbox']").bootstrapSwitch();
-
+	// focus
+	mainFocus();
+	function mainFocus() {
+		setTimeout(function() { $("#name").focus(); }, 1000);
+	}
+	$("#changePasswordModal").on("show.bs.modal", function (e) {
+		setTimeout(function() { $("#currentPassword").focus(); }, 1000);
+	});
+	$("#changeEmailModal").on("show.bs.modal", function (e) {
+		setTimeout(function() { $("#newEmail").focus(); }, 1000);
+	});
+	$("#deleteAccountModal").on("show.bs.modal", function (e) {
+		setTimeout(function() { $("#feedback").focus(); }, 1000);
+	});
 	function ajaxUpdateSettings() {
 		var json = {
 			"name" : $("#name").val(),
