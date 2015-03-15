@@ -102,6 +102,9 @@
 							</span></li>
 							<li id="user-bar" class="hidden-sm noHover"><span class="user-bar-avatar pull-right"> <c:choose>
 										<c:when test="${isAuthenticated}">
+											<c:set var="isSocialUser">
+												<sec:authentication property="principal.socialUser" />
+											</c:set>
 											<c:choose>
 												<c:when test="${isSocialUser}">
 													<img src="<sec:authentication property="principal.avatarUrl" />" alt="User avatar">

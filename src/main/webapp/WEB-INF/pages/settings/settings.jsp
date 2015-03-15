@@ -8,6 +8,10 @@
 <link href="<spring:url value="/resources/css/bootstrap-switch.min.css" />" rel="stylesheet">
 <script src="<spring:url value="/resources/js/bootstrap-switch.min.js" />"></script>
 
+<c:set var="isSocialUser">
+	<sec:authentication property="principal.socialUser" />
+</c:set>
+
 <div class="container">
 
 	<div class="form-white">

@@ -25,12 +25,6 @@
 	<c:set var="isAdmin" value="true" scope="session" />
 </sec:authorize>
 
-<c:if test="isAuthenticated">
-	<c:set var="isSocialUser" scope="session">
-		<sec:authentication property="principal.socialUser" />
-	</c:set>
-</c:if>
-
 <!DOCTYPE html>
 <html lang="${lang}">
 
