@@ -44,11 +44,11 @@
 								<td>${administrationRetrievalError.retrievalError.application.name}</td>
 								<td><spring:message code="administration.error.type.${administrationRetrievalError.retrievalError.typeLastError}" /></td>
 								<td>${administrationRetrievalError.retrievalError.count}</td>
-								<td><a href="${administrationRetrievalError.retrievalError.application.globalUrl}"><i class="fa fa-external-link"></i></a></td>
-								<td><a href="${administrationRetrievalError.latestVersion.win32UrlEn}"><i class="fa fa-external-link"></i></a></td>
+								<td><a href="${administrationRetrievalError.retrievalError.application.globalUrl}" target="_blank"><i class="fa fa-external-link"></i></a></td>
+								<td><a href="${administrationRetrievalError.latestVersion.win32UrlEn}" target="_blank"><i class="fa fa-external-link"></i></a></td>
 								<td><c:choose>
 										<c:when test="${not empty administrationRetrievalError.latestVersion.win64UrlEn}">
-											<a href="${administrationRetrievalError.latestVersion.win64UrlEn}"><i class="fa fa-external-link"></i></a>
+											<a href="${administrationRetrievalError.latestVersion.win64UrlEn}" target="_blank"><i class="fa fa-external-link"></i></a>
 										</c:when>
 										<c:otherwise>-</c:otherwise>
 									</c:choose></td>
