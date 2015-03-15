@@ -220,6 +220,8 @@ public class ApplicationServiceImpl implements ApplicationService {
 		return true;
 	}
 
-
+	@Override
+	public void clearApplicationsCache() {
+	}
 
 }

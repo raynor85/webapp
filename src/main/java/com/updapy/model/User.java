@@ -19,6 +19,7 @@ import com.updapy.model.common.BaseEntity;
 import com.updapy.model.enumeration.DashboardGridSize;
 import com.updapy.model.enumeration.Lang;
 import com.updapy.model.enumeration.OsVersion;
+import com.updapy.model.enumeration.Profile;
 import com.updapy.model.enumeration.SocialMediaService;
 
 @Entity(name = "person")
@@ -98,6 +99,9 @@ public class User extends BaseEntity {
 
 	@Enumerated(EnumType.STRING)
 	private DashboardGridSize dashboardGridSize;
+
+	@Enumerated(EnumType.STRING)
+	private Profile profile;
 
 	public String getEmail() {
 		return email;
@@ -317,6 +321,14 @@ public class User extends BaseEntity {
 
 	public void setDashboardGridSize(DashboardGridSize dashboardGridSize) {
 		this.dashboardGridSize = dashboardGridSize;
+	}
+
+	public Profile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(Profile profile) {
+		this.profile = profile;
 	}
 
 }

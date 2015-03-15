@@ -36,6 +36,7 @@ import com.updapy.model.enumeration.DashboardGridSize;
 import com.updapy.model.enumeration.Lang;
 import com.updapy.model.enumeration.OsVersion;
 import com.updapy.model.enumeration.Parameter;
+import com.updapy.model.enumeration.Profile;
 import com.updapy.model.enumeration.SocialMediaService;
 import com.updapy.model.enumeration.TypeHelpMessage;
 import com.updapy.model.enumeration.TypeNotification;
@@ -199,6 +200,8 @@ public class UserServiceImpl implements UserService {
 	private void fillDefaultValuesAccount(User user) {
 		// not yet activate
 		user.setActive(false);
+		// user profile
+		user.setProfile(Profile.USER);
 		// generate keys
 		generateNewApiKeyWithoutSaving(user);
 		generateNewRssKeyWithoutSaving(user);

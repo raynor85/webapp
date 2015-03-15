@@ -19,6 +19,13 @@ import com.updapy.model.User;
 public interface ApplicationService {
 
 	/**
+	 * Global
+	 */
+
+	@CacheEvict(value = { "applications", "descriptions", "versions" }, allEntries = true)
+	void clearApplicationsCache();
+
+	/**
 	 * Application References
 	 */
 

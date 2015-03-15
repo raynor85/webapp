@@ -10,6 +10,7 @@ import com.updapy.model.User;
 import com.updapy.model.enumeration.DashboardGridSize;
 import com.updapy.model.enumeration.Lang;
 import com.updapy.model.enumeration.OsVersion;
+import com.updapy.model.enumeration.Profile;
 import com.updapy.service.UserService;
 
 public class UserServiceImplTest {
@@ -147,6 +148,7 @@ public class UserServiceImplTest {
 
 	private User createUser(Lang lang, OsVersion osVersion) {
 		User user = new User();
+		user.setProfile(Profile.USER);
 		user.setLangUpdate(lang);
 		user.setOsVersion(osVersion);
 		user.setDashboardGridSize(DashboardGridSize.BIG);

@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.updapy.model.User;
+import com.updapy.model.enumeration.Profile;
 import com.updapy.service.UserService;
 
 @Service
@@ -37,12 +38,11 @@ public class UserAuthenticateServiceImpl implements UserDetailsService {
 		}
 		// give roles
 		Collection<? extends GrantedAuthority> authorities = null;
-		if (user.getEmail().endsWith("@updapy.com")) {
+		if (Profile.ADMIN.equals(user.getProfile())) {
 			authorities = AuthorityUtils.createAuthorityList("ROLE_ADMIN", "ROLE_USER");
 		} else {
 			authorities = AuthorityUtils.createAuthorityList("ROLE_USER");
 		}
 		return UpdapyUser.createUpdapyUser(user, userService.getAvatarUrl(user), authorities);
 	}
-
 }

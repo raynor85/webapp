@@ -20,6 +20,17 @@
 	<c:set var="isAuthenticated" value="true" scope="session" />
 </sec:authorize>
 
+<c:set var="isAdmin" value="false" scope="session" />
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+	<c:set var="isAdmin" value="true" scope="session" />
+</sec:authorize>
+
+<c:if test="isAuthenticated">
+	<c:set var="isSocialUser" scope="session">
+		<sec:authentication property="principal.socialUser" />
+	</c:set>
+</c:if>
+
 <!DOCTYPE html>
 <html lang="${lang}">
 

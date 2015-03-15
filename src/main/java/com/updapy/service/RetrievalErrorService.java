@@ -8,6 +8,8 @@ import com.updapy.model.enumeration.TypeRetrievalError;
 
 public interface RetrievalErrorService {
 
+	List<RetrievalError> getAllRetrievalErrors();
+
 	RetrievalError addRetrievalError(ApplicationReference application, TypeRetrievalError type);
 
 	void deleteRetrievalErrors(ApplicationReference application, List<TypeRetrievalError> types);

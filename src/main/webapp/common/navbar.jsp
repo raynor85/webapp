@@ -28,7 +28,19 @@
 				<c:if test="${not isAuthenticated}">
 					<li id="nav-faq"><a href="${root}/faq"><spring:message code="menu.faq" /></a></li>
 				</c:if>
-				<li id="nav-developers"><a href="${root}/developers"><spring:message code="menu.developers" /></a></li>
+				<c:choose>
+					<c:when test="${isAdmin}">
+						<li id="dropdown-admin" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="menu.administration" /> <i class="fa fa-angle-down "></i></a>
+							<ul class="dropdown-menu">
+								<li id="nav-administration"><a href="${root}/administration"><spring:message code="menu.administration" /></a></li>
+								<li id="nav-log"><a href="https://papertrailapp.com/systems/updapy/events" target="_blank"><spring:message code="menu.log" /></a></li>
+								<li id="nav-developers"><a href="${root}/developers"><spring:message code="menu.developers" /></a></li>
+							</ul></li>
+					</c:when>
+					<c:otherwise>
+						<li id="nav-developers"><a href="${root}/developers"><spring:message code="menu.developers" /></a></li>
+					</c:otherwise>
+				</c:choose>
 				<c:if test="${not isAuthenticated}">
 					<li id="nav-appslist"><a href="${root}/applications"><spring:message code="menu.appslist" /></a></li>
 				</c:if>
@@ -90,9 +102,6 @@
 							</span></li>
 							<li id="user-bar" class="hidden-sm noHover"><span class="user-bar-avatar pull-right"> <c:choose>
 										<c:when test="${isAuthenticated}">
-											<c:set var="isSocialUser">
-												<sec:authentication property="principal.socialUser" />
-											</c:set>
 											<c:choose>
 												<c:when test="${isSocialUser}">
 													<img src="<sec:authentication property="principal.avatarUrl" />" alt="User avatar">
@@ -148,7 +157,13 @@
 		if (location.href.match(/faq.?/)) {
 			$("#nav-faq").addClass("active");
 		} else if (location.href.match(/developers.?/)) {
-			$("#nav-developers").addClass("active");
+			if ("${isAdmin}" === "true") {
+				$("#dropdown-admin").addClass("active");
+				$("#nav-administration a").addClass("notActive");
+				$("#nav-log a").addClass("notActive");
+			} else {
+				$("#nav-developers").addClass("active");
+			}
 		} else if (location.href.match(/applications.?/)) {
 			$("#nav-appslist").addClass("active");
 		} else if (location.href.match(/dashboard.?/)) {
@@ -157,11 +172,15 @@
 			$("#nav-contact").addClass("active");
 		} else if (location.href.match(/settings.?/)) {
 			$("#nav-settings").addClass("active");
+		} else if (location.href.match(/administration.?/)) {
+			$("#dropdown-admin").addClass("active");
+			$("#nav-log a").addClass("notActive");
+			$("#nav-developers a").addClass("notActive");
 		}
 	}();
 	// Google+1
 	window.___gcfg = {
-		lang : "${lang}"
+		lang : "${lang}",
 	};
 	(function() {
 		var po = document.createElement('script');
@@ -188,7 +207,7 @@
 				currentUrl = currentUrl + "?";
 			}
 			location.href = currentUrl + newLang;
-		}
+		};
 	}
 	function ajaxChangeLocale(newLocale) {
 		var token = $("meta[name='_csrf']").attr("content");
@@ -202,7 +221,7 @@
 			data : newLocale,
 			contentType : "text/plain",
 			async : false,
-			cache : false
+			cache : false,
 		});
 	};
 </script>
@@ -315,6 +334,6 @@
 									"badge-notification");
 						}
 					});
-		}
+		};
 	</script>
 </c:if>
