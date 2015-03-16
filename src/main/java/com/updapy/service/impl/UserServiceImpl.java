@@ -137,6 +137,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public User updateAccessDate(User user) {
+		user.setAccessDate(new Date());
+		return save(user);
+	}
+
+	@Override
 	public User getUserLightFromRssKey(String key) {
 		return userRepository.findByRssKey(key);
 	}

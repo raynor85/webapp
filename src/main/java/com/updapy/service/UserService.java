@@ -31,6 +31,8 @@ public interface UserService {
 
 	User getCurrentUserFull();
 
+	User updateAccessDate(User user);
+
 	void changeLocale(Locale locale);
 
 	User findByEmail(String email);

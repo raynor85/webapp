@@ -35,6 +35,8 @@ public class RssController {
 		if (user == null) {
 			throw new UnauthorizedException();
 		}
+		// update access date
+		user = userService.updateAccessDate(user);
 		Locale locale = user.getLangEmail();
 		List<RssNotification> rssNotifications = new ArrayList<RssNotification>();
 		for (ApplicationNotification notification : userService.getLastNbNotifications(user, 50)) {

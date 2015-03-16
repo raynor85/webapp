@@ -100,6 +100,9 @@ public class User extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	private Profile profile;
 
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date accessDate;
+
 	public String getEmail() {
 		return email;
 	}
@@ -318,6 +321,14 @@ public class User extends BaseEntity {
 
 	public void setProfile(Profile profile) {
 		this.profile = profile;
+	}
+
+	public Date getAccessDate() {
+		return accessDate;
+	}
+
+	public void setAccessDate(Date accessDate) {
+		this.accessDate = accessDate;
 	}
 
 }

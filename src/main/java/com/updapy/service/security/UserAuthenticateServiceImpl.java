@@ -27,7 +27,7 @@ public class UserAuthenticateServiceImpl implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws AuthenticationException {
-		final User user = userService.findByEmail(email);
+		User user = userService.findByEmail(email);
 		// check if user exist
 		if (user == null) {
 			throw new UsernameNotFoundException(emailInvalid);
@@ -36,6 +36,8 @@ public class UserAuthenticateServiceImpl implements UserDetailsService {
 		if (!user.isActive()) {
 			throw new DisabledException(emailInactive);
 		}
+		// update access date
+		user = userService.updateAccessDate(user);
 		// give roles
 		Collection<? extends GrantedAuthority> authorities = null;
 		if (Profile.ADMIN.equals(user.getProfile())) {
