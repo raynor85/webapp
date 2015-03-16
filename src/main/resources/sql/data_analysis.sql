@@ -26,6 +26,11 @@ where feedback is not null
 and feedback != ''
 order by removedate desc;  
 
+-- What are the users not in use?
+select accessdate, name, email, socialmediaservice
+from person
+order by accessdate desc;
+
 -- What are the most probable failures?
 select application_id, name, globalurl, count, typelasterror
 from applicationreference a, retrievalerror e
