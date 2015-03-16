@@ -15,7 +15,7 @@
 		<intercept-url pattern="/administration**/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/1.0**/**" access="hasRole('ROLE_USER')" />
 		<!-- Enable remember me - 2 weeks -->
-		<remember-me token-validity-seconds="1209600" remember-me-parameter="remember-me" data-source-ref="dataSource" />
+		<remember-me token-validity-seconds="1209600" remember-me-parameter="remember-me" data-source-ref="dataSource" user-service-ref="userAuthenticateServiceImpl" />
 		<!-- Adds social authentication filter to the Spring Security filter chain. -->
 		<custom-filter ref="socialAuthenticationFilter" before="PRE_AUTH_FILTER" />
 	</http>
@@ -47,8 +47,22 @@
 		<beans:property name="signupUrl" value="/user/register" />
 		<!-- Sets the url of the dashboard - use in case the sign in has succeed -->
 		<beans:property name="postLoginUrl" value="/dashboard" />
+		<beans:property name="rememberMeServices" ref="springSocialSecurityRememberMeServices" />
 	</beans:bean>
 
+	<!-- Social remember me -->
+	<beans:bean id="springSocialSecurityRememberMeServices" class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
+		<beans:property name="userDetailsService" ref="userAuthenticateServiceImpl" />
+		<beans:property name="tokenRepository" ref="tokenRepository" />
+		<beans:property name="key" value="#{systemEnvironment['REMEMBER_ME_KEY']}" />
+		<beans:property name="alwaysRemember" value="true" />
+		<beans:property name="tokenValiditySeconds" value="1209600" />
+	</beans:bean>
+	<beans:bean id="tokenRepository" class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
+		<beans:property name="createTableOnStartup" value="false" />
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
+	
 	<!-- This bean encrypts the authorization details of the connection -->
 	<beans:bean id="textEncryptor" class="org.springframework.security.crypto.encrypt.Encryptors" factory-method="noOpText" />
 

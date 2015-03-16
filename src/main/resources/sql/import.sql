@@ -349,7 +349,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- MobaXterm
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://mobaxterm.mobatek.net/download-home-edition.html', 'http://mobaxterm.mobatek.net/', 'mobaxterm.png', 'MobaXterm', 'mobaxterm', false, 'DEVELOPMENT', 'FREE');
 -- Zedeo
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://neo-net.fr/forum/viewtopic.php?f=15&t=3449', 'http://neo-net.fr/zedeo-telechargeur-de-video-streaming-replay/', 'zedeo.png', 'Zedeo', 'zedeo', false, 'VIDEO', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://neo-net.fr/forum/viewtopic.php?f=34&t=23898', 'http://neo-net.fr/zedeo-telechargeur-de-video-streaming-replay/', 'zedeo.png', 'Zedeo', 'zedeo', false, 'VIDEO', 'FREE');
 -- ZedTV
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://neo-net.fr/forum/viewtopic.php?f=39&t=5563', 'http://neo-net.fr/zedtv-regarder-enregistrer-la-tele-en-direct/', 'zedtv.png', 'ZedTV', 'zedtv', false, 'VIDEO', 'FREE');
 -- Git

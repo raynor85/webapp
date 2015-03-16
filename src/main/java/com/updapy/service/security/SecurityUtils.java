@@ -13,6 +13,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 
 import com.updapy.model.User;
 
@@ -51,10 +52,11 @@ public class SecurityUtils {
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 	}
 
-	public static void logout(HttpServletRequest request, HttpServletResponse response) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (auth != null) {
-			new SecurityContextLogoutHandler().logout(request, response, auth);
+	public static void logout(HttpServletRequest request, HttpServletResponse response, PersistentTokenBasedRememberMeServices springSocialSecurityRememberMeServices) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication != null) {
+			new SecurityContextLogoutHandler().logout(request, response, authentication);
+			springSocialSecurityRememberMeServices.logout(request, response, authentication);
 		}
 	}
 

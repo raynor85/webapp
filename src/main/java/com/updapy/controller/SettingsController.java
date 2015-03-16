@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
@@ -51,6 +52,9 @@ public class SettingsController {
 	
 	@Autowired
 	private Validator changeEmailUserCustomValidator;
+	
+	@Autowired
+	PersistentTokenBasedRememberMeServices springSocialSecurityRememberMeServices;
 	
 	@InitBinder("changePasswordUser")
 	private void initBinderChangePassword(WebDataBinder binder) {
@@ -125,7 +129,7 @@ public class SettingsController {
 		settingsService.addFeedback(deleteAccount.getFeedback());
 		boolean isDeleted = userService.delete(userService.getCurrentUserLight());
 		if (isDeleted) {
-			SecurityUtils.logout(request, response);
+			SecurityUtils.logout(request, response, springSocialSecurityRememberMeServices);
 			return "delete-account-complete";
 		} else {
 			return "error-delete";
