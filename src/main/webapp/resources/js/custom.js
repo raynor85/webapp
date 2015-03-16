@@ -194,14 +194,6 @@ $(function() {
 
 	$("a").click(function() {
 		var href = $.attr(this, 'href');
-		if (href == '#early-user') {
-			$root.animate({
-				scrollTop : $(href).offset().top
-			}, 500, function() {
-				window.location.hash = href;
-			});
-			return false;
-		}
 		return true;
 	});
 });

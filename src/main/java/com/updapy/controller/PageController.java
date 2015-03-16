@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.updapy.form.model.RegisterEarlyUser;
 import com.updapy.form.model.RegisterUser;
 import com.updapy.form.model.ResetUserEmail;
 import com.updapy.model.User;
@@ -18,8 +17,8 @@ public class PageController {
 	private UserService userService;
 
 	@RequestMapping("/")
-	public ModelAndView welcomePage() {
-		return addNotifications(new ModelAndView("welcome", "registerEarlyUser", new RegisterEarlyUser()));
+	public String welcomePage() {
+		return "welcome";
 	}
 
 	@RequestMapping("/error/404")

@@ -24,7 +24,6 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.updapy.form.ajax.JsonResponse;
-import com.updapy.form.model.RegisterEarlyUser;
 import com.updapy.form.model.RegisterUser;
 import com.updapy.form.model.ResetUser;
 import com.updapy.form.model.ResetUserEmail;
@@ -55,18 +54,10 @@ public class UserController {
 	private Validator registerUserCustomValidator;
 
 	@Autowired
-	private Validator registerEarlyUserCustomValidator;
-
-	@Autowired
 	private Validator resetUserEmailCustomValidator;
 
 	@Autowired
 	private Validator resetUserCustomValidator;
-
-	@InitBinder("registerEarlyUser")
-	private void initBinderEarly(WebDataBinder binder) {
-		binder.addValidators(registerEarlyUserCustomValidator);
-	}
 
 	@InitBinder("registerUser")
 	private void initBinderRegisterUser(WebDataBinder binder) {
@@ -91,17 +82,6 @@ public class UserController {
 		}
 		userService.changeLocale(new Locale(locale));
 		return jsonResponseUtils.buildSuccessfulJsonResponse("language.change.confirm");
-	}
-
-	@RequestMapping(value = "/register/early", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody
-	JsonResponse registerEarly(@Valid @RequestBody RegisterEarlyUser registerEarlyUser, BindingResult result) {
-		if (result.hasErrors()) {
-			return jsonResponseUtils.buildFailedJsonResponseFromErrorObject(result.getAllErrors());
-		} else {
-			userService.registerEarly(registerEarlyUser.getEmail());
-			return jsonResponseUtils.buildSuccessfulJsonResponse("early.interest.add.confirm");
-		}
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)

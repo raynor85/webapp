@@ -156,19 +156,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User registerEarly(String email) {
-		User user = new User();
-		fillDefaultValuesUser(user);
-		user.setEarly(true);
-		user.setEmail(email);
-		return save(user);
-	}
-
-	@Override
 	public User register(User user) {
 		fillDefaultValuesUser(user);
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		user.setEarly(false);
 		return save(user);
 	}
 

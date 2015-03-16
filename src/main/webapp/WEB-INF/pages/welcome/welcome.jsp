@@ -16,15 +16,7 @@
 				</h3>
 				<c:if test="${not isAuthenticated}">
 					<div class="text-center actions animated2 fadeInDown delay2">
-						<c:choose>
-							<c:when test="${phase == 'early'}">
-								<a class="btn btn-color ladda-button" href="#early-user"><spring:message code="welcome.action.early" /></a>
-							</c:when>
-							<c:otherwise>
-								<a class="btn btn-color ladda-button" href="${root}/signup"><spring:message code="welcome.action" /></a>
-							</c:otherwise>
-						</c:choose>
-
+						<a class="btn btn-color ladda-button" href="${root}/signup"><spring:message code="welcome.action" /></a>
 					</div>
 				</c:if>
 				<c:if test="${isAuthenticated}">
@@ -160,61 +152,4 @@
 			</div>
 		</div>
 	</div>
-
-	<c:if test="${phase == 'early'}">
-		<!-- Early user -->
-		<a id="early-user"> </a>
-		<div class="row">
-			<div class="col-sm-8 col-sm-offset-2">
-				<h2 class="oswald text-center">
-					<spring:message code="early.interest.title" />
-				</h2>
-				<hr>
-			</div>
-		</div>
-		<div class="row crp-desc">
-			<div class="col-sm-5 col-sm-offset-1">
-				<img width="553" height="337" src="<spring:url value="/resources/img/welcome/macbook-first.jpg" />" alt="Updapy Newsletter" class="img-responsive">
-			</div>
-			<div class="col-sm-5">
-				<h3 class="text-color text-center-xs">
-					<spring:message code="early.interest.subtitle" />
-				</h3>
-				<p class="text-muted text-center-xs lh">
-					<spring:message code="early.interest.description" />
-				</p>
-				<form:form id="registerEarlyUserForm" commandName="registerEarlyUser" action="${root}/user/register/early" class="form-vertical">
-					<p>
-						<c:set var="emailPlaceholder">
-							<spring:message code="early.interest.add.field.email.tip" />
-						</c:set>
-						<form:input path="email" id="email" class="form-control" placeholder="${emailPlaceholder}" />
-					</p>
-					<p class="text-center-xs button-ladda">
-						<button type="button" id="registerEarlyUserButton" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxRegisterEarlyUser();">
-							<spring:message code="early.interest.add.button" />
-						</button>
-					</p>
-					<div id="registerEarlyUserResponse"></div>
-				</form:form>
-			</div>
-		</div>
-	</c:if>
 </div>
-
-<c:if test="${phase == 'early'}">
-	<script type="text/javascript">
-		function ajaxRegisterEarlyUser() {
-			var json = {
-				"email" : $("#email").val()
-			};
-			ajaxCallPost("#registerEarlyUserButton", "#registerEarlyUserForm",
-					json, "#registerEarlyUserResponse", null, true);
-		};
-		$("#registerEarlyUserForm").submit(function() {
-			ajaxRegisterEarlyUser();
-			return false;
-		});
-	</script>
-</c:if>
-

@@ -89,59 +89,57 @@
 						</li>
 					</ul></li>
 			</ul>
-			<c:if test="${phase != 'early'}">
-				<c:choose>
-					<c:when test="${isAuthenticated}">
-						<c:url value="/j_spring_security_logout" var="logoutUrl" />
-						<!-- csrt for log out-->
-						<form action="${logoutUrl}" method="post" id="logoutForm">
-							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-						</form>
-						<ul class="nav navbar-nav navbar-right hidden-xs">
-							<li class="noHover"><span class="user-bar-icons"> <a href="javascript:logout()" title="<spring:message code="menu.logout" />"><i class="fa fa-sign-out" id="sign-out"></i></a>&nbsp;<a href="${root}/settings" title="<spring:message code="menu.settings" />"><i class="fa fa-cog"></i></a>
-							</span></li>
-							<li id="user-bar" class="hidden-sm noHover"><span class="user-bar-avatar pull-right"> <c:choose>
-										<c:when test="${isAuthenticated}">
-											<c:set var="isSocialUser">
-												<sec:authentication property="principal.socialUser" />
-											</c:set>
-											<c:choose>
-												<c:when test="${isSocialUser}">
-													<img src="<sec:authentication property="principal.avatarUrl" />" alt="User avatar">
-												</c:when>
-												<c:otherwise>
-													<img width="116" height="116" src="<spring:url value="/resources/img/dashboard/user-normal.png" />" alt="User default avatar">
-												</c:otherwise>
-											</c:choose>
-										</c:when>
-										<c:otherwise>
-											<img width="116" height="116" src="<spring:url value="/resources/img/dashboard/user-normal.png" />" alt="User default avatar">
-										</c:otherwise>
-									</c:choose>
-							</span> <c:set var="username">
-									<sec:authentication property="principal.name" />
-								</c:set> <a class="pull-right text-muted" id="username" title="<c:out value='${username}' escapeXml='false' />"> <c:out value="${username}" escapeXml="false" />
-							</a></li>
-						</ul>
-						<ul class="nav navbar-nav navbar-right visible-xs">
-							<li id="nav-settings"><a href="${root}/settings"><i class="fa fa-cog fa-1-4x" title="<spring:message code="menu.settings" />"></i>&nbsp;&nbsp;<spring:message code="menu.settings" /></a></li>
-							<li><a href="javascript:logout();"><i class="fa fa-sign-out fa-1-4x" title="<spring:message code="menu.logout" />"></i>&nbsp; <spring:message code="menu.logout" /></a></li>
-						</ul>
-					</c:when>
-					<c:otherwise>
-						<ul class="nav navbar-nav navbar-right hidden-xs">
-							<li class="noHover"><div>
-									<a id="menu-sign" class="btn btn-color ladda-button" href="${root}/sign" style="margin-top: 10px !important; font-size: 15px !important; padding: 8px 10px !important;"><spring:message code="menu.sign" /></a>
-								</div></li>
-						</ul>
-						<ul class="nav navbar-form navbar-nav navbar-right visible-xs">
-							<li class="noHover"><div class="text-center">
-									<a class="btn btn-color ladda-button" href="${root}/sign" style="font-size: 15px !important; padding: 8px 14px !important;"><spring:message code="menu.sign" /></a>
-								</div></li>
-						</ul>
-					</c:otherwise>
-				</c:choose>
-			</c:if>
+			<c:choose>
+				<c:when test="${isAuthenticated}">
+					<c:url value="/j_spring_security_logout" var="logoutUrl" />
+					<!-- csrt for log out-->
+					<form action="${logoutUrl}" method="post" id="logoutForm">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					</form>
+					<ul class="nav navbar-nav navbar-right hidden-xs">
+						<li class="noHover"><span class="user-bar-icons"> <a href="javascript:logout()" title="<spring:message code="menu.logout" />"><i class="fa fa-sign-out" id="sign-out"></i></a>&nbsp;<a href="${root}/settings" title="<spring:message code="menu.settings" />"><i class="fa fa-cog"></i></a>
+						</span></li>
+						<li id="user-bar" class="hidden-sm noHover"><span class="user-bar-avatar pull-right"> <c:choose>
+									<c:when test="${isAuthenticated}">
+										<c:set var="isSocialUser">
+											<sec:authentication property="principal.socialUser" />
+										</c:set>
+										<c:choose>
+											<c:when test="${isSocialUser}">
+												<img src="<sec:authentication property="principal.avatarUrl" />" alt="User avatar">
+											</c:when>
+											<c:otherwise>
+												<img width="116" height="116" src="<spring:url value="/resources/img/dashboard/user-normal.png" />" alt="User default avatar">
+											</c:otherwise>
+										</c:choose>
+									</c:when>
+									<c:otherwise>
+										<img width="116" height="116" src="<spring:url value="/resources/img/dashboard/user-normal.png" />" alt="User default avatar">
+									</c:otherwise>
+								</c:choose>
+						</span> <c:set var="username">
+								<sec:authentication property="principal.name" />
+							</c:set> <a class="pull-right text-muted" id="username" title="<c:out value='${username}' escapeXml='false' />"> <c:out value="${username}" escapeXml="false" />
+						</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right visible-xs">
+						<li id="nav-settings"><a href="${root}/settings"><i class="fa fa-cog fa-1-4x" title="<spring:message code="menu.settings" />"></i>&nbsp;&nbsp;<spring:message code="menu.settings" /></a></li>
+						<li><a href="javascript:logout();"><i class="fa fa-sign-out fa-1-4x" title="<spring:message code="menu.logout" />"></i>&nbsp; <spring:message code="menu.logout" /></a></li>
+					</ul>
+				</c:when>
+				<c:otherwise>
+					<ul class="nav navbar-nav navbar-right hidden-xs">
+						<li class="noHover"><div>
+								<a id="menu-sign" class="btn btn-color ladda-button" href="${root}/sign" style="margin-top: 10px !important; font-size: 15px !important; padding: 8px 10px !important;"><spring:message code="menu.sign" /></a>
+							</div></li>
+					</ul>
+					<ul class="nav navbar-form navbar-nav navbar-right visible-xs">
+						<li class="noHover"><div class="text-center">
+								<a class="btn btn-color ladda-button" href="${root}/sign" style="font-size: 15px !important; padding: 8px 14px !important;"><spring:message code="menu.sign" /></a>
+							</div></li>
+					</ul>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 </div>

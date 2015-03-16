@@ -1,14 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:choose>
-	<c:when test="${phase == 'early'}">
-		<c:set var="end" value="6" />
-	</c:when>
-	<c:otherwise>
-		<c:set var="end" value="11" />
-	</c:otherwise>
-</c:choose>
+<c:set var="end" value="11" />
 
 <div class="container">
 	<div class="row">

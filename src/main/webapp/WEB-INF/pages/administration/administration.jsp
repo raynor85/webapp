@@ -33,6 +33,7 @@
 							<th><spring:message code="administration.error.table.head.application" /></th>
 							<th><spring:message code="administration.error.table.head.type" /></th>
 							<th><spring:message code="administration.error.table.head.counter" /> <i class="fa fa-sort-numeric-desc"></i></th>
+							<th><spring:message code="administration.error.table.head.version" /></th>
 							<th><spring:message code="administration.error.table.head.globalUrl" /></th>
 							<th><spring:message code="administration.error.table.head.version32Url" /></th>
 							<th><spring:message code="administration.error.table.head.version64Url" /></th>
@@ -44,6 +45,7 @@
 								<td>${administrationRetrievalError.retrievalError.application.name}</td>
 								<td><spring:message code="administration.error.type.${administrationRetrievalError.retrievalError.typeLastError}" /></td>
 								<td>${administrationRetrievalError.retrievalError.count}</td>
+								<td>${administrationRetrievalError.latestVersion.versionNumber}</td>
 								<td><a href="${administrationRetrievalError.retrievalError.application.globalUrl}" target="_blank"><i class="fa fa-external-link"></i></a></td>
 								<td><a href="${administrationRetrievalError.latestVersion.win32UrlEn}" target="_blank"><i class="fa fa-external-link"></i></a></td>
 								<td><c:choose>

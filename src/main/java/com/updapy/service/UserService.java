@@ -35,8 +35,6 @@ public interface UserService {
 
 	User findByEmail(String email);
 
-	User registerEarly(String email);
-
 	User register(User user);
 
 	User registerSocial(Connection<?> connection);

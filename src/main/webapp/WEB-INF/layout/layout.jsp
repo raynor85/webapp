@@ -11,10 +11,6 @@
 	<spring:message code="application.root.url" />
 </c:set>
 
-<c:set var="phase" scope="application">
-	<spring:message code="phase.name" />
-</c:set>
-
 <c:set var="isAuthenticated" value="false" scope="session" />
 <sec:authorize access="isAuthenticated()">
 	<c:set var="isAuthenticated" value="true" scope="session" />

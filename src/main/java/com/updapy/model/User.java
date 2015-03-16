@@ -44,9 +44,6 @@ public class User extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	private OsVersion osVersion;
 
-	// Early user = register before the service was available
-	private boolean early;
-
 	private boolean active;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -109,14 +106,6 @@ public class User extends BaseEntity {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public boolean getEarly() {
-		return early;
-	}
-
-	public void setEarly(boolean early) {
-		this.early = early;
 	}
 
 	public String getPassword() {

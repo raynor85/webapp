@@ -9,13 +9,13 @@
 				<small><spring:message code="developers.subtitle" /></small>
 			</h3>
 			<hr>
-			<c:if test="${not isAuthenticated && phase != 'early'}">
+			<c:if test="${not isAuthenticated}">
 				<div class="alert alert-info">
 					<spring:message code="developers.accountNeeded" />
 				</div>
 			</c:if>
 			<spring:message code="developers.description" />
-			<c:if test="${not isAuthenticated && phase != 'early'}">
+			<c:if test="${not isAuthenticated}">
 				<br />
 				<br />
 				<br />
