@@ -34,6 +34,7 @@
 							<ul class="dropdown-menu">
 								<li id="nav-administration"><a href="${root}/administration"><spring:message code="menu.administration" /></a></li>
 								<li id="nav-log"><a href="https://papertrailapp.com/systems/updapy/events" target="_blank"><spring:message code="menu.log" /></a></li>
+								<li id="nav-error"><a href="https://errorapp.com/183/projects/314" target="_blank"><spring:message code="menu.error" /></a></li>
 								<li id="nav-developers"><a href="${root}/developers"><spring:message code="menu.developers" /></a></li>
 							</ul></li>
 					</c:when>
@@ -162,6 +163,7 @@
 				$("#dropdown-admin").addClass("active");
 				$("#nav-administration a").addClass("notActive");
 				$("#nav-log a").addClass("notActive");
+				$("#nav-error a").addClass("notActive");
 			} else {
 				$("#nav-developers").addClass("active");
 			}
@@ -176,6 +178,7 @@
 		} else if (location.href.match(/administration.?/)) {
 			$("#dropdown-admin").addClass("active");
 			$("#nav-log a").addClass("notActive");
+			$("#nav-error a").addClass("notActive");
 			$("#nav-developers a").addClass("notActive");
 		}
 	}();
