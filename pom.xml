@@ -40,7 +40,7 @@
 		<commons-lang.version>3.3.2</commons-lang.version>
 
 		<!-- Root -->
-		<org.apache.httpcomponents.httpclient.version>4.4</org.apache.httpcomponents.httpclient.version>
+		<org.apache.httpcomponents.httpclient.version>4.3.6</org.apache.httpcomponents.httpclient.version>
 		<javax.activation.version>1.1.1</javax.activation.version>
 		<javax.mail.version>1.4.7</javax.mail.version>
 		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
