@@ -1,6 +1,5 @@
 package com.updapy.service.retriever.impl.h;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +10,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class HandbrakeRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://sourceforge.net";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "https://handbrake.fr/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -25,7 +24,7 @@ public class HandbrakeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return null;
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("h4:contains(Window)").parents().select("a:contains(Download (64 bit))").attr("href"));
 	}
 
 	@Override
@@ -35,11 +34,11 @@ public class HandbrakeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download HandBrake)").attr("href"));
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("h4:contains(Window)").parents().select("a:contains(Download (32 bit))").attr("href"));
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(doc.select("a:contains(Download HandBrake)").attr("title"), "^.*Download /HandBrake"), "/HandBrake.*$"));
+		return ParsingUtils.extractVersionNumberFromString(doc.select("h2:contains(Current Version)").text());
 	}
 }

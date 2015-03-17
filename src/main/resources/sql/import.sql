@@ -327,7 +327,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- qBittorrent
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.qbittorrent.org/download.php', 'http://www.qbittorrent.org/', 'qbittorrent.png', 'qBittorrent', 'qbittorrent', false, 'INTERNET', 'FREE');
 -- HandBrake
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://sourceforge.net/projects/handbrake/', 'https://handbrake.fr/', 'handbrake.png', 'HandBrake', 'handbrake', false, 'VIDEO', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://handbrake.fr/downloads.php', 'https://handbrake.fr/', 'handbrake.png', 'HandBrake', 'handbrake', false, 'VIDEO', 'FREE');
 -- K-meleon
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://kmeleon.sourceforge.net/download.php', 'http://kmeleon.sourceforge.net/', 'kmeleon.png', 'K-meleon', 'kmeleon', false, 'INTERNET', 'FREE');
 -- Blender

@@ -8,7 +8,13 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLHandshakeException;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
@@ -126,10 +132,12 @@ public class RemoteServiceImpl implements RemoteService {
 	}
 
 	public static Document retrieveHtmlDocumentAgent64(String url, int timeout) throws IOException {
+		setTrustAllCerts();
 		return Jsoup.connect(url).ignoreContentType(true).userAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0").referrer("http://www.google.com").timeout(timeout).followRedirects(true).get();
 	}
 
 	public static Document retrieveHtmlDocumentAgent32(String url, int timeout) throws IOException {
+		setTrustAllCerts();
 		return Jsoup.connect(url).ignoreContentType(true).userAgent("Mozilla/5.0 (Windows NT 6.1; Win32; rv:25.0) Gecko/20100101 Firefox/25.0").referrer("http://www.google.com").timeout(timeout).followRedirects(true).get();
 	}
 
@@ -139,6 +147,35 @@ public class RemoteServiceImpl implements RemoteService {
 
 	public static Document retrieveHtmlDocumentAgent32(String url) throws IOException {
 		return retrieveHtmlDocumentAgent32(url, 15 * 1000);
+	}
+
+	private static void setTrustAllCerts() {
+		TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+			public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+				return null;
+			}
+
+			public void checkClientTrusted(java.security.cert.X509Certificate[] certs, String authType) {
+			}
+
+			public void checkServerTrusted(java.security.cert.X509Certificate[] certs, String authType) {
+			}
+		} };
+
+		// install the all-trusting trust manager
+		try {
+			SSLContext sc = SSLContext.getInstance("SSL");
+			sc.init(null, trustAllCerts, new java.security.SecureRandom());
+			HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+			HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+				public boolean verify(String urlHostName, SSLSession session) {
+					return true;
+				}
+			});
+		} catch (Exception e) {
+			// we can not recover from this exception.
+			e.printStackTrace();
+		}
 	}
 
 }
