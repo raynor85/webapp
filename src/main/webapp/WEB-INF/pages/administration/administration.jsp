@@ -11,7 +11,8 @@
 			</h3>
 			<hr>
 			<ul class="fa-ul">
-				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <a href="javascript:runJobAdministration('${root}/administration/clear/cache', 'cache-clear');"><spring:message code="administration.action.cache.clear.button" /></a> <i id="cache-clear" style="color: #777; display: none;" class="fa fa-refresh fa-spin"></i></li>
+				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <a href="javascript:runJobAdministration('${root}/administration/cache/clear', 'cache-clear');"><spring:message code="administration.action.cache.clear.button" /></a> <i id="cache-clear" style="color: #777; display: none;" class="fa fa-refresh fa-spin"></i></li>
+				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <a href="javascript:runJobAdministration('${root}/administration/database/cleanup', 'database-cleanup', refreshNumberOfRowsInDatabase);"><spring:message code="administration.action.database.cleanup.button" /></a> (<span id="numberOfRowsInDatabase">${numberOfRowsInDatabase}</span> <spring:message code="administration.action.database.row" />) <i id="database-cleanup" style="color: #777; display: none;" class="fa fa-refresh fa-spin"></i></li>
 				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <a href="javascript:runJobAdministration('${root}/administration/repository/update', 'repository-update');"><spring:message code="administration.action.repository.update.button" /></a> <i id="repository-update" style="color: #777; display: none;" class="fa fa-refresh fa-spin"></i></li>
 				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <a href="javascript:runJobAdministration('${root}/administration/repository/check', 'repository-check');"><spring:message code="administration.action.repository.check.button" /></a> <i id="repository-check" style="color: #777; display: none;" class="fa fa-refresh fa-spin"></i></li>
 				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <a href="javascript:runJobAdministration('${root}/administration/email/application/added', 'email-added-app');"><spring:message code="administration.action.email.application.added.button" /></a> <i id="email-added-app" style="color: #777; display: none;" class="fa fa-refresh fa-spin"></i></li>
@@ -64,7 +65,7 @@
 </div>
 
 <script type="text/javascript">
-	function runJobAdministration(url, idspin) {
+	function runJobAdministration(url, idspin, jsToExecuteWhenSucess) {
 		var token = $("meta[name='_csrf']").attr("content");
 		var header = $("meta[name='_csrf_header']").attr("content");
 		$.ajax({
@@ -92,7 +93,13 @@
 				responseInDiv += "</div>";
 				$("#" + idspin).hide();
 				$("#jobAdministrationResponse").html(responseInDiv);
+				if (response.status == "SUCCESS" && jsToExecuteWhenSucess != null) {
+					jsToExecuteWhenSucess();
+				}
 			}
 		});
+	};
+	var refreshNumberOfRowsInDatabase = function() {
+		ajaxCallGetAndRefresh("${root}/administration/numberOfRowsInDatabase", "#numberOfRowsInDatabase");
 	};
 </script>

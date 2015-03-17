@@ -268,7 +268,12 @@ function ajaxCallGetAndRefresh(urlWithElementNameToGet, elementIdToUpdate) {
 		contentType : "text/plain",
 		cache : false,
 		success : function(response) {
-			$(elementIdToUpdate).val(response);
+			var elmt = $(elementIdToUpdate);
+			if (elmt.is("input")) {
+				elmt.val(response);
+			} else {
+				elmt.html(response);
+			}
 		}
 	});
 };

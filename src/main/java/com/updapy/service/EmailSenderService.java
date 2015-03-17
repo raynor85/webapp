@@ -3,11 +3,14 @@ package com.updapy.service;
 import java.util.List;
 import java.util.Locale;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.updapy.form.model.NewVersion;
 import com.updapy.form.model.UpdateUrl;
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.Newsletter;
 
+@Transactional
 public interface EmailSenderService {
 
 	int getNonPriorEmailsMaxSentPerDay();

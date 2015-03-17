@@ -45,3 +45,16 @@ update applicationreference
 set active = true
 where id in (1, 2, 3); -- Replace with the ids
 
+-- Return the number of rows (estimation) in the database
+CREATE OR REPLACE FUNCTION getNumberOfRowsDatabase() RETURNS integer AS $$
+	SELECT CAST(sum(reltuples) AS integer) from pg_class
+	WHERE relname IN (
+		SELECT c.relname
+		FROM pg_catalog.pg_class c
+		LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+		WHERE c.relkind = 'r'
+		AND n.nspname <> 'pg_catalog'
+		AND n.nspname <> 'information_schema'
+		AND n.nspname !~ '^pg_toast'
+		AND pg_catalog.pg_table_is_visible(c.oid));
+$$ LANGUAGE sql;

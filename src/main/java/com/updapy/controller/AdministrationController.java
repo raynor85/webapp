@@ -24,6 +24,7 @@ import com.updapy.model.User;
 import com.updapy.model.enumeration.Lang;
 import com.updapy.service.ApplicationService;
 import com.updapy.service.EmailSenderService;
+import com.updapy.service.ProcedureService;
 import com.updapy.service.RetrievalErrorService;
 import com.updapy.service.UserService;
 import com.updapy.service.scheduler.ApplicationVersionScheduler;
@@ -53,6 +54,9 @@ public class AdministrationController {
 	private UserService userService;
 
 	@Autowired
+	private ProcedureService procedureService;
+
+	@Autowired
 	private MessageUtils messageUtils;
 
 	@RequestMapping({ "/", "" })
@@ -65,6 +69,7 @@ public class AdministrationController {
 		modelAndView.addObject("nbNotifications", userService.getNbNotifications(user));
 		List<RetrievalError> retrievalErrors = retrievalErrorService.getAllRetrievalErrors();
 		modelAndView.addObject("administrationRetrievalErrors", convertToAdministrationRetrievalError(retrievalErrors));
+		modelAndView.addObject("numberOfRowsInDatabase", procedureService.getNumberOfRowsInDatabase());
 		return addNotifications(user, modelAndView);
 	}
 
@@ -79,11 +84,25 @@ public class AdministrationController {
 		return administrationRetrievalErrors;
 	}
 
-	@RequestMapping(value = "/clear/cache")
+	@RequestMapping(value = "/cache/clear")
 	public @ResponseBody
 	JsonResponse clearCache() {
 		applicationService.clearApplicationsCache();
 		return jsonResponseUtils.buildSuccessfulJsonResponse("administration.action.cache.clear.confirm");
+	}
+
+	@RequestMapping(value = "/database/cleanup")
+	public @ResponseBody
+	JsonResponse cleanupDatabase() {
+		procedureService.cleanDatabase();
+		procedureService.analyzeAllTablesInDatabase();
+		return jsonResponseUtils.buildSuccessfulJsonResponse("administration.action.database.cleanup.confirm");
+	}
+
+	@RequestMapping(value = "/numberOfRowsInDatabase/get")
+	public @ResponseBody
+	int getNumberOfRowsInDatabase() {
+		return procedureService.getNumberOfRowsInDatabase();
 	}
 
 	@RequestMapping(value = "/repository/update")
