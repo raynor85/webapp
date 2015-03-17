@@ -33,6 +33,7 @@
 						<li id="dropdown-admin" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="menu.administration" /> <i class="fa fa-angle-down "></i></a>
 							<ul class="dropdown-menu">
 								<li id="nav-administration"><a href="${root}/administration"><spring:message code="menu.administration" /></a></li>
+								<li id="nav-message"><a href="${root}/administration/message"><spring:message code="menu.message" /></a></li>
 								<li id="nav-log"><a href="https://papertrailapp.com/systems/updapy/events" target="_blank"><spring:message code="menu.log" /></a></li>
 								<li id="nav-error"><a href="https://errorapp.com/183/projects/314" target="_blank"><spring:message code="menu.error" /></a></li>
 								<li id="nav-developers"><a href="${root}/developers"><spring:message code="menu.developers" /></a></li>
@@ -162,6 +163,7 @@
 			if ("${isAdmin}" === "true") {
 				$("#dropdown-admin").addClass("active");
 				$("#nav-administration a").addClass("notActive");
+				$("#nav-message a").addClass("notActive");
 				$("#nav-log a").addClass("notActive");
 				$("#nav-error a").addClass("notActive");
 			} else {
@@ -175,8 +177,15 @@
 			$("#nav-contact").addClass("active");
 		} else if (location.href.match(/settings.?/)) {
 			$("#nav-settings").addClass("active");
+		} else if (location.href.match(/administration\/message.?/)) {
+			$("#dropdown-admin").addClass("active");
+			$("#nav-administration a").addClass("notActive");
+			$("#nav-log a").addClass("notActive");
+			$("#nav-error a").addClass("notActive");
+			$("#nav-developers a").addClass("notActive");
 		} else if (location.href.match(/administration.?/)) {
 			$("#dropdown-admin").addClass("active");
+			$("#nav-message a").addClass("notActive");
 			$("#nav-log a").addClass("notActive");
 			$("#nav-error a").addClass("notActive");
 			$("#nav-developers a").addClass("notActive");

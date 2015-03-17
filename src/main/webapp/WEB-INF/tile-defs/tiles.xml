@@ -49,10 +49,16 @@
 		<put-attribute name="content" value="/WEB-INF/pages/welcome/welcome.jsp" />
 	</definition>
 
-	<!-- Contact -->
+	<!-- Contact: email from users -->
 	<definition name="contact" extends="baseLayoutInverse">
 		<put-attribute name="title" value="contact.title" />
 		<put-attribute name="content" value="/WEB-INF/pages/contact/contact.jsp" />
+	</definition>
+
+	<!-- Message: email to users -->
+	<definition name="message" extends="baseLayoutInverse">
+		<put-attribute name="title" value="message.title" />
+		<put-attribute name="content" value="/WEB-INF/pages/administration/message.jsp" />
 	</definition>
 
 	<!-- FAQ -->

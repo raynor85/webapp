@@ -2,22 +2,33 @@ package com.updapy.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.updapy.form.ajax.JsonResponse;
 import com.updapy.form.model.AdministrationRetrievalError;
+import com.updapy.form.model.SendPersonalMessage;
 import com.updapy.model.RetrievalError;
 import com.updapy.model.User;
+import com.updapy.model.enumeration.Lang;
 import com.updapy.service.ApplicationService;
+import com.updapy.service.EmailSenderService;
 import com.updapy.service.RetrievalErrorService;
 import com.updapy.service.UserService;
 import com.updapy.service.scheduler.ApplicationVersionScheduler;
 import com.updapy.util.JsonResponseUtils;
+import com.updapy.util.MessageUtils;
 
 @Controller
 @RequestMapping("/administration")
@@ -36,7 +47,13 @@ public class AdministrationController {
 	private RetrievalErrorService retrievalErrorService;
 
 	@Autowired
+	private EmailSenderService emailSenderService;
+
+	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private MessageUtils messageUtils;
 
 	@RequestMapping({ "/", "" })
 	public ModelAndView administrationPage() {
@@ -48,7 +65,7 @@ public class AdministrationController {
 		modelAndView.addObject("nbNotifications", userService.getNbNotifications(user));
 		List<RetrievalError> retrievalErrors = retrievalErrorService.getAllRetrievalErrors();
 		modelAndView.addObject("administrationRetrievalErrors", convertToAdministrationRetrievalError(retrievalErrors));
-		return modelAndView;
+		return addNotifications(user, modelAndView);
 	}
 
 	private List<AdministrationRetrievalError> convertToAdministrationRetrievalError(List<RetrievalError> retrievalErrors) {
@@ -109,6 +126,40 @@ public class AdministrationController {
 	JsonResponse sendEmails() {
 		applicationVersionScheduler.sendEmails();
 		return jsonResponseUtils.buildSuccessfulJsonResponse("administration.action.email.send.confirm");
+	}
+
+	@RequestMapping(value = "/message")
+	public ModelAndView personalMessagePage() {
+		User user = userService.getCurrentUserLight();
+		ModelAndView modelAndView = new ModelAndView("message");
+		SendPersonalMessage sendPersonalMessage = new SendPersonalMessage();
+		sendPersonalMessage.setLangEmail(Lang.valueOf(user.getLangEmail().toLanguageTag()));
+		sendPersonalMessage.setMessage(messageUtils.getSimpleMessage("message.field.message.sample"));
+		modelAndView.addObject("sendPersonalMessage", sendPersonalMessage);
+		return addNotifications(user, modelAndView);
+	}
+
+	@RequestMapping(value = "/message/send", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody
+	JsonResponse sendPersonalMessage(@Valid @RequestBody SendPersonalMessage sendPersonalMessage, BindingResult result) {
+		if (result.hasErrors()) {
+			return jsonResponseUtils.buildFailedJsonResponseFromErrorObject(result.getAllErrors());
+		} else {
+			// Send the message via email
+			boolean isSent = emailSenderService.sendPersonalEmail(sendPersonalMessage.getEmail(), sendPersonalMessage.getSubject(), sendPersonalMessage.getTitle(), sendPersonalMessage.getMessage(), new Locale(sendPersonalMessage.getLangEmail().name()));
+			if (!isSent) {
+				return jsonResponseUtils.buildFailedJsonResponse("message.send.error");
+			}
+			return jsonResponseUtils.buildSuccessfulJsonResponse("message.send.confirm");
+		}
+	}
+
+	private ModelAndView addNotifications(User user, ModelAndView modelAndView) {
+		if (user != null) {
+			modelAndView.addObject("nbNotifications", userService.getNbNotifications(user));
+			modelAndView.addObject("rssKey", user.getRssKey());
+		}
+		return modelAndView;
 	}
 
 }

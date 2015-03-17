@@ -17,8 +17,8 @@ public class PageController {
 	private UserService userService;
 
 	@RequestMapping("/")
-	public String welcomePage() {
-		return "welcome";
+	public ModelAndView welcomePage() {
+		return addNotifications(new ModelAndView("welcome"));
 	}
 
 	@RequestMapping("/error/404")
