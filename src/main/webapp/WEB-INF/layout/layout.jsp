@@ -109,28 +109,7 @@
 <link href="<spring:url value="/resources/css/combined.css" />" rel="stylesheet">
 <script src="<spring:url value="/resources/js/combined.begin.js" />"></script>
 
-<!-- JQuery -->
-<%-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> --%>
-<%-- <script src="<spring:url value="/resources/js/jquery.color.min.js" />"></script> --%>
-
-<!-- Bootstrap and plugins -->
-<%-- <link href="<spring:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet"> --%>
-<%-- <script src="<spring:url value="/resources/js/bootstrap.min.js" />"></script> --%>
-<%-- <link href="<spring:url value="/resources/css/social-buttons-3.min.css" />" rel="stylesheet"> --%>
-<%-- <link href="<spring:url value="/resources/css/awesome-bootstrap-checkbox.min.css" />" rel="stylesheet"> --%>
-
-<!-- Custom styles for this template -->
-<%-- <link href="<spring:url value="/resources/css/color-styles.min.css" />" rel="stylesheet"> --%>
-<%-- <link href="<spring:url value="/resources/css/ui-elements.min.css" />" rel="stylesheet"> --%>
-<%-- <link href="<spring:url value="/resources/css/custom.min.css" />" rel="stylesheet"> --%>
-
-<!-- Ladda -->
-<%-- <link href="<spring:url value="/resources/css/ladda.min.css" />" rel="stylesheet"> --%>
-<%-- <script src="<spring:url value="/resources/js/spin.min.js" />"></script> --%>
-<%-- <script src="<spring:url value="/resources/js/ladda.min.js" />"></script> --%>
-
 <!-- Resources -->
-<%-- <link href="<spring:url value="/resources/css/animate.min.css" />" rel="stylesheet"> --%>
 <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
@@ -162,9 +141,6 @@
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="<spring:url value="/resources/js/combined.end.js" />"></script>
-	<%-- 	<script src="<spring:url value="/resources/js/custom.min.js" />"></script> --%>
-	<%-- 	<script src="<spring:url value="/resources/js/scrolltopcontrol.min.js" />"></script> --%>
-	<%-- 	<script src="<spring:url value="/resources/js/jquery.placeholder.min.js" />"></script> --%>
 
 	<!-- Sharebar -->
 	<tiles:insertAttribute name="sharebar" />
