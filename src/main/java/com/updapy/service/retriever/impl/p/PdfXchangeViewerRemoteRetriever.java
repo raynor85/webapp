@@ -50,7 +50,7 @@ public class PdfXchangeViewerRemoteRetriever implements RemoteRetriever {
 		String version1 = ParsingUtils.extractVersionNumberFromString(doc.select("item").first().select("title").text());
 		String version2 = null;
 		try {
-			version2 = ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgent32(VERSION_HISTORY_WEBSITE).select("span.versionname").text());
+			version2 = ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(VERSION_HISTORY_WEBSITE).select("span.versionname").text());
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}

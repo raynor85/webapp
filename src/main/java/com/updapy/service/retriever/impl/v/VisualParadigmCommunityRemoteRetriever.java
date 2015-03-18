@@ -42,7 +42,7 @@ public class VisualParadigmCommunityRemoteRetriever implements RemoteRetriever {
 
 	public String retrieveDirectLink(String downloadPage) {
 		try {
-			return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgent32(downloadPage).select("a:contains(direct link)[href*=.exe]").attr("href"));
+			return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(downloadPage).select("a:contains(direct link)[href*=.exe]").attr("href"));
 		} catch (IOException e) {
 			return null;
 		}

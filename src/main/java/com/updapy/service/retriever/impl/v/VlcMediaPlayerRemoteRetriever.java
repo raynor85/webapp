@@ -27,7 +27,7 @@ public class VlcMediaPlayerRemoteRetriever implements RemoteRetriever {
 	public String retrieveWin64UrlEn(Document doc) {
 		try {
 			String dlLink = ParsingUtils.addHttpPrefix(doc.select("a[href*=win64]").attr("href"));
-			return ParsingUtils.buildUrl(dlLink, RemoteServiceImpl.retrieveHtmlDocumentAgent32(dlLink).select("a:contains(.exe)[href*=.exe]").first().attr("href"));
+			return ParsingUtils.buildUrl(dlLink, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(dlLink).select("a:contains(.exe)[href*=.exe]").first().attr("href"));
 		} catch (IOException e) {
 			return null;
 		}

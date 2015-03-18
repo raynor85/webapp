@@ -41,7 +41,7 @@ public class KasperskyVirusRemovalToolRemoteRetriever implements RemoteRetriever
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
 		try {
-			return StringUtils.removePattern(StringUtils.removePattern(RemoteServiceImpl.retrieveHtmlDocumentAgent32(DOWNLOAD_WEBSITE).select("body").text(), "^.*\"KAT-EN\" : \""), "\".*$");
+			return StringUtils.removePattern(StringUtils.removePattern(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("body").text(), "^.*\"KAT-EN\" : \""), "\".*$");
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}

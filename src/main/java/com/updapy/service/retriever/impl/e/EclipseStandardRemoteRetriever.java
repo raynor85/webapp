@@ -44,7 +44,7 @@ public class EclipseStandardRemoteRetriever implements RemoteRetriever {
 
 	private String retrieveDirectLink(String dlLink) {
 		try {
-			return RemoteServiceImpl.retrieveHtmlDocumentAgent32(dlLink).select("a:contains(Direct link to file)").attr("href");
+			return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(dlLink).select("a:contains(Direct link to file)").attr("href");
 		} catch (IOException e) {
 			return null;
 		}

@@ -39,7 +39,7 @@ public class MediaMonkeyRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
 		try {
-			return ParsingUtils.addHttpPrefix(StringUtils.removePattern(StringUtils.removeEnd(RemoteServiceImpl.retrieveHtmlDocumentAgent32(DOWNLOAD_WEBSITE).select("div[onclick*=.exe]").first().attr("onclick"), "';"), "^.*http://"));
+			return ParsingUtils.addHttpPrefix(StringUtils.removePattern(StringUtils.removeEnd(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("div[onclick*=.exe]").first().attr("onclick"), "';"), "^.*http://"));
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}

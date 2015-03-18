@@ -43,7 +43,7 @@ public class BitTorrentSyncRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveVersionNumber(Document doc) {
 		try {
-			return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgent32(VERSION_HISTORY_WEBSITE).select("#support-main").select("strong").first().text());
+			return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(VERSION_HISTORY_WEBSITE).select("#support-main").select("strong").first().text());
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}

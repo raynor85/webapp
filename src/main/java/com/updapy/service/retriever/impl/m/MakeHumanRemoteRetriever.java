@@ -40,7 +40,7 @@ public class MakeHumanRemoteRetriever implements RemoteRetriever {
 	public String retrieveWin32UrlEn(Document doc) {
 		String downloadPageLink = ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, getDownloadLinkElement(doc).attr("href"));
 		try {
-			return RemoteServiceImpl.retrieveHtmlDocumentAgent32(downloadPageLink).select("a[href*=win32]").attr("href");
+			return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(downloadPageLink).select("a[href*=win32]").attr("href");
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}

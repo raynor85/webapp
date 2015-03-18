@@ -45,7 +45,7 @@ public class TotalCommanderRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveVersionNumber(Document doc) {
 		try {
-			String version = StringUtils.removePattern(StringUtils.removePattern(RemoteServiceImpl.retrieveHtmlDocumentAgent32(DOWNLOAD_WEBSITE).select("h3:contains(Download)").get(0).html().split("<br>")[0], "^.*Download version( |)"), "( |)of.*$");
+			String version = StringUtils.removePattern(StringUtils.removePattern(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("h3:contains(Download)").get(0).html().split("<br>")[0], "^.*Download version( |)"), "( |)of.*$");
 			return convertCharToDigit(version);
 		} catch (IOException e) {
 			throw new RuntimeException();

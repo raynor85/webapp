@@ -37,7 +37,7 @@ public class AshampooAntivirusRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
 		try {
-			return getDownloadLink(RemoteServiceImpl.retrieveHtmlDocumentAgent32(doc.select("a.btn_download").attr("href")));
+			return getDownloadLink(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(doc.select("a.btn_download").attr("href")));
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}

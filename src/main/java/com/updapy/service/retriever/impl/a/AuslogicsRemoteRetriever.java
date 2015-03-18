@@ -39,7 +39,7 @@ public class AuslogicsRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
 		try {
-			return RemoteServiceImpl.retrieveHtmlDocumentAgent32(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a.software-download").get(0).attr("href"))).select("a:contains(Click here)[href*=.exe]").attr("href");
+			return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a.software-download").get(0).attr("href"))).select("a:contains(Click here)[href*=.exe]").attr("href");
 		} catch (IOException e) {
 			return null;
 		}

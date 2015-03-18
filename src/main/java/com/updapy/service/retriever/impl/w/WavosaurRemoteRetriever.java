@@ -50,7 +50,7 @@ public class WavosaurRemoteRetriever implements RemoteRetriever {
 
 	private String getDownloadLinkFr(String pattern) {
 		try {
-			return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE_FR, RemoteServiceImpl.retrieveHtmlDocumentAgent32(DOWNLOAD_WEBSITE_FR).select("a[href*=" + pattern + "]").attr("href"));
+			return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE_FR, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE_FR).select("a[href*=" + pattern + "]").attr("href"));
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}

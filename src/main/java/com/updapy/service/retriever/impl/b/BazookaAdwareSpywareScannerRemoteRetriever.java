@@ -38,7 +38,7 @@ public class BazookaAdwareSpywareScannerRemoteRetriever implements RemoteRetriev
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
 		try {
-			return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgent32(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("p:containsOwn(Download Bazooka)").select("a:contains(here)").attr("href"))).select("a[href*=exe]:contains(directly)").attr("href"));
+			return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("p:containsOwn(Download Bazooka)").select("a:contains(here)").attr("href"))).select("a[href*=exe]:contains(directly)").attr("href"));
 		} catch (IOException e) {
 			return null;
 		}

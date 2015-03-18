@@ -39,7 +39,7 @@ public class TorchBrowserRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
 		try {
-			return RemoteServiceImpl.retrieveHtmlDocumentAgent32(DOWNLOAD_WEBSITE).select("a:contains(Offline installer)").attr("href");
+			return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("a:contains(Offline installer)").attr("href");
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}

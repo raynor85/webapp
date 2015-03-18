@@ -43,7 +43,7 @@ public class AdobeAirRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveVersionNumber(Document doc) {
 		try {
-			return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgent32(DOWNLOAD_WEBSITE).select("p#AUTO_ID_columnleft_p_version").text());
+			return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("p#AUTO_ID_columnleft_p_version").text());
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}

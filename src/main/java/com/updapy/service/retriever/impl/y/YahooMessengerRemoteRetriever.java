@@ -33,7 +33,7 @@ public class YahooMessengerRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveWin32UrlFr(Document doc) {
 		try {
-			return getDownloadLink(RemoteServiceImpl.retrieveHtmlDocumentAgent32(ROOT_DOWNLOAD_WEBSITE_VERSION_FR));
+			return getDownloadLink(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ROOT_DOWNLOAD_WEBSITE_VERSION_FR));
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}

@@ -38,7 +38,7 @@ public class PdfCreatorRemoteRetriever implements RemoteRetriever {
 	public String retrieveWin32UrlEn(Document doc) {
 		try {
 			String dlLink = doc.select(".pdf-select-footer").first().select("a:contains(Download)").attr("href");
-			return HttpUtils.getRedirectionUrl(ParsingUtils.buildUrl(dlLink, RemoteServiceImpl.retrieveHtmlDocumentAgent32(dlLink).select("a:contains(direct link)").attr("href")));
+			return HttpUtils.getRedirectionUrl(ParsingUtils.buildUrl(dlLink, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(dlLink).select("a:contains(direct link)").attr("href")));
 		} catch (IOException e) {
 			return null;
 		}

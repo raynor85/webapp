@@ -38,7 +38,7 @@ public class SpyShelterPersonalRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
 		try {
-			return RemoteServiceImpl.retrieveHtmlDocumentAgent32(DOWNLOAD_WEBSITE).select("a:contains(click here)").attr("href");
+			return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("a:contains(click here)").attr("href");
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}

@@ -29,7 +29,7 @@ public class SlimjetRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
 		try {
-			return getDownloadLink(RemoteServiceImpl.retrieveHtmlDocumentAgent32(DOWNLOAD_WEBSITE_VERSION_64));
+			return getDownloadLink(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE_VERSION_64));
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}

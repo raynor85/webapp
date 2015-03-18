@@ -38,7 +38,7 @@ public class SyncBackProRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
 		try {
-			return RemoteServiceImpl.retrieveHtmlDocumentAgent32(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download SyncBackPro)").attr("href"))).select("a:contains(Download)[href*=.exe]").attr("href");
+			return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download SyncBackPro)").attr("href"))).select("a:contains(Download)[href*=.exe]").attr("href");
 		} catch (IOException e) {
 			return null;
 		}

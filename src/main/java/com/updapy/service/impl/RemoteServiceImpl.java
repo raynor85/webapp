@@ -112,15 +112,16 @@ public class RemoteServiceImpl implements RemoteService {
 		Document doc = null;
 		String url = application.getGlobalUrl();
 		try {
-			doc = retrieveHtmlDocumentAgent64(url);
+			doc = retrieveHtmlDocumentAgentIE(url);
 		} catch (Exception e1) {
 			try {
 				// let's try a second time, network can be unreliable sometimes!
-				doc = retrieveHtmlDocumentAgent64(url);
+				doc = retrieveHtmlDocumentAgentMozilla(url);
 			} catch (Exception e2) {
 				try {
 					// let's try a third time WITHOUT timeout and SSL...
-					doc = retrieveHtmlDocumentAgent64(url, 0, false);
+					setTrustAllCerts();
+					doc = Jsoup.connect(url).userAgent("Mozilla").timeout(0).get();
 				} catch (Exception e3) {
 					// seems there is really a problem
 					retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_URL_BASE_ERROR, e3.toString());
@@ -131,23 +132,20 @@ public class RemoteServiceImpl implements RemoteService {
 		return doc;
 	}
 
-	public static Document retrieveHtmlDocumentAgent64(String url, int timeout, boolean verifySsl) throws IOException {
-		if (!verifySsl) {
-			setTrustAllCerts();
-		}
-		return Jsoup.connect(url).ignoreContentType(true).userAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0").referrer("http://www.google.com").timeout(timeout).followRedirects(true).get();
+	public static Document retrieveHtmlDocumentAgentMozilla(String url, int timeout) throws IOException {
+		return Jsoup.connect(url).ignoreContentType(true).userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:36.0) Gecko/20100101 Firefox/36.0").referrer("http://www.google.com").timeout(timeout).followRedirects(true).get();
 	}
 
-	public static Document retrieveHtmlDocumentAgent32(String url, int timeout) throws IOException {
-		return Jsoup.connect(url).ignoreContentType(true).userAgent("Mozilla/5.0 (Windows NT 6.1; Win32; rv:25.0) Gecko/20100101 Firefox/25.0").referrer("http://www.google.com").timeout(timeout).followRedirects(true).get();
+	public static Document retrieveHtmlDocumentAgentIE(String url, int timeout) throws IOException {
+		return Jsoup.connect(url).ignoreContentType(true).userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko").referrer("http://www.google.com").timeout(timeout).followRedirects(true).get();
 	}
 
-	public static Document retrieveHtmlDocumentAgent64(String url) throws IOException {
-		return retrieveHtmlDocumentAgent64(url, 15 * 1000, true);
+	public static Document retrieveHtmlDocumentAgentMozilla(String url) throws IOException {
+		return retrieveHtmlDocumentAgentMozilla(url, 15 * 1000);
 	}
 
-	public static Document retrieveHtmlDocumentAgent32(String url) throws IOException {
-		return retrieveHtmlDocumentAgent32(url, 15 * 1000);
+	public static Document retrieveHtmlDocumentAgentIE(String url) throws IOException {
+		return retrieveHtmlDocumentAgentIE(url, 15 * 1000);
 	}
 
 	private static void setTrustAllCerts() {
