@@ -119,9 +119,9 @@ public class RemoteServiceImpl implements RemoteService {
 				doc = retrieveHtmlDocumentAgentMozilla(url);
 			} catch (Exception e2) {
 				try {
-					// let's try a third time WITHOUT timeout and SSL...
+					// let's try a third time WITH a longer user agent and WITHOUT timeout & SSL...
 					setTrustAllCerts();
-					doc = Jsoup.connect(url).userAgent("Mozilla").timeout(0).get();
+					doc = Jsoup.connect(url).userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/600.1.17 (KHTML, like Gecko) Version/8.0 Safari/600.1.17").timeout(0).followRedirects(true).get();
 				} catch (Exception e3) {
 					// seems there is really a problem
 					retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_URL_BASE_ERROR, e3.toString());
