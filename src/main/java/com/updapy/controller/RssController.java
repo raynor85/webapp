@@ -39,7 +39,7 @@ public class RssController {
 		user = userService.updateAccessDate(user);
 		Locale locale = user.getLangEmail();
 		List<RssNotification> rssNotifications = new ArrayList<RssNotification>();
-		for (ApplicationNotification notification : userService.getLastNbNotifications(user, 50)) {
+		for (ApplicationNotification notification : userService.getLastNbNotifications(user, 20)) {
 			RssNotification rssNotification = new RssNotification();
 			rssNotification.setDate(notification.getCreationDate());
 			String prefix = messageUtils.getSimpleMessage("rss." + notification.getType().name(), locale) + " - ";

@@ -90,7 +90,7 @@ CREATE OR REPLACE FUNCTION cleanDatabase() RETURNS boolean AS $$
 	WHERE sent = true;
 	
 	-- Remove old notifications
-	SELECT cleanNotifications(50);
+	SELECT cleanNotifications(20);
 	
 	-- Remove old versions
 	SELECT cleanVersions(1);
