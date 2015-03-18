@@ -119,8 +119,8 @@ public class RemoteServiceImpl implements RemoteService {
 				doc = retrieveHtmlDocumentAgent64(url);
 			} catch (Exception e2) {
 				try {
-					// let's try a third time WITHOUT timeout, network can be unreliable sometimes!
-					doc = retrieveHtmlDocumentAgent64(url, 0);
+					// let's try a third time WITHOUT timeout and SSL...
+					doc = retrieveHtmlDocumentAgent64(url, 0, false);
 				} catch (Exception e3) {
 					// seems there is really a problem
 					retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_URL_BASE_ERROR);
@@ -131,18 +131,19 @@ public class RemoteServiceImpl implements RemoteService {
 		return doc;
 	}
 
-	public static Document retrieveHtmlDocumentAgent64(String url, int timeout) throws IOException {
-		setTrustAllCerts();
+	public static Document retrieveHtmlDocumentAgent64(String url, int timeout, boolean verifySsl) throws IOException {
+		if (!verifySsl) {
+			setTrustAllCerts();
+		}
 		return Jsoup.connect(url).ignoreContentType(true).userAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0").referrer("http://www.google.com").timeout(timeout).followRedirects(true).get();
 	}
 
 	public static Document retrieveHtmlDocumentAgent32(String url, int timeout) throws IOException {
-		setTrustAllCerts();
 		return Jsoup.connect(url).ignoreContentType(true).userAgent("Mozilla/5.0 (Windows NT 6.1; Win32; rv:25.0) Gecko/20100101 Firefox/25.0").referrer("http://www.google.com").timeout(timeout).followRedirects(true).get();
 	}
 
 	public static Document retrieveHtmlDocumentAgent64(String url) throws IOException {
-		return retrieveHtmlDocumentAgent64(url, 15 * 1000);
+		return retrieveHtmlDocumentAgent64(url, 15 * 1000, true);
 	}
 
 	public static Document retrieveHtmlDocumentAgent32(String url) throws IOException {

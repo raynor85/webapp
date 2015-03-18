@@ -1,15 +1,20 @@
 package com.updapy.service.retriever.impl.b;
 
+import java.io.IOException;
+
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
 public class BitTorrentRemoteRetriever implements RemoteRetriever {
+
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.bittorrent.com/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -33,7 +38,11 @@ public class BitTorrentRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a:contains(Download Now)").attr("href");
+		try {
+			return RemoteServiceImpl.retrieveHtmlDocumentAgent32(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download Now)").attr("href"))).select("a:contains(click here)").attr("href");
+		} catch (IOException e) {
+			return null;
+		}
 	}
 
 	@Override
