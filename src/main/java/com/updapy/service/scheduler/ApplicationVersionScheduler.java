@@ -105,7 +105,7 @@ public class ApplicationVersionScheduler {
 				applicationService.addVersion(latestRemoteVersion);
 			} else if (comparisonResult == 1 && !latestRemoteVersion.getVersionNumber().equals("0")) {
 				// the remote version has a smaller number
-				retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_NEW_VERSION_WITH_NUMBER_NOT_CONSISTENT);
+				retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_NEW_VERSION_WITH_NUMBER_NOT_CONSISTENT, "Got remote version '" + latestRemoteVersion.getVersionNumber() + "' but current version is '" + latestVersion.getVersionNumber() + "'");
 			}
 		}
 	}

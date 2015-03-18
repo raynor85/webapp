@@ -1,5 +1,6 @@
 package com.updapy.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -20,6 +21,9 @@ public class RetrievalError extends BaseEntity {
 
 	@ManyToOne(optional = false)
 	private ApplicationReference application;
+
+	@Column(columnDefinition = "text")
+	private String message;
 
 	public int getCount() {
 		return count;
@@ -43,6 +47,14 @@ public class RetrievalError extends BaseEntity {
 
 	public void setApplication(ApplicationReference application) {
 		this.application = application;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 }

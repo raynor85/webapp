@@ -65,7 +65,7 @@ public class RemoteServiceImpl implements RemoteService {
 			}
 		} catch (Exception e) {
 			// parsing error
-			retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_PARSING_ERROR);
+			retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_PARSING_ERROR, e.getMessage());
 			return null;
 		}
 
@@ -123,7 +123,7 @@ public class RemoteServiceImpl implements RemoteService {
 					doc = retrieveHtmlDocumentAgent64(url, 0, false);
 				} catch (Exception e3) {
 					// seems there is really a problem
-					retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_URL_BASE_ERROR);
+					retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_URL_BASE_ERROR, e3.getMessage());
 					return null;
 				}
 			}

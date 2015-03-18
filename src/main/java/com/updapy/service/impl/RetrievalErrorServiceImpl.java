@@ -30,14 +30,22 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 
 	@Override
 	public RetrievalError addRetrievalError(ApplicationReference application, TypeRetrievalError type) {
+		return addRetrievalError(application, type, null);
+	}
+
+	@Override
+	public RetrievalError addRetrievalError(ApplicationReference application, TypeRetrievalError type, String message) {
 		RetrievalError retrievalError = findRetrievalError(application, type);
 		if (retrievalError == null) {
 			// first time there is an error on this app
 			retrievalError = new RetrievalError();
 			retrievalError.setApplication(application);
 			retrievalError.setTypeLastError(type);
+			retrievalError.setMessage(message);
 			retrievalError.setCount(1);
 		} else {
+			// refresh the message
+			retrievalError.setMessage(message);
 			// not the first time, increment counter
 			retrievalError.setCount(retrievalError.getCount() + 1);
 		}
