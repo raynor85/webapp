@@ -83,10 +83,9 @@
 						<li id="socialMenuDropdownFb" class="socialMenu"><iframe src="//www.facebook.com/plugins/like.php?locale=${langFb}&href=http%3A%2F%2Ffacebook.com%2Fupdapy&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=true&amp;height=21&amp;appId=242605515939525" scrolling="no" frameborder="0" style="margin-bottom: -5px; border: none; overflow: hidden; height: 21px; width: 200px;" allowTransparency="true"></iframe></li>
 						<li id="socialMenuDropdownG+" class="socialMenuGoogle"><div class="g-plusone" data-annotation="bubble" data-href="http://www.updapy.com" data-size="medium" style="margin-bottom: -5px;"></div></li>
 						<li id="socialMenuDropdownTw" class="socialMenu"><iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/follow_button.html?screen_name=updapy&lang=${lang}" style="margin-bottom: -6px; height: 20px; width: 200px;"></iframe></li>
-						<li class="donatePaypal">
-							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-								<input type="hidden" name="cmd" value="_s-xclick"> <input type="hidden" name="hosted_button_id" value="M4URMQRZH7J2G"> <input type="image" src="https://www.paypalobjects.com/${langPaypal}/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"> <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-							</form>
+						<li class="donatePaypal" onclick="location.href='https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M4URMQRZH7J2G';" style="cursor: pointer;">
+							<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M4URMQRZH7J2G" style="padding: 0 !important; margin-right: 12px; background-color: transparent !important;"><img width="86" height="21" class="pull-right" border="0" src="<spring:url value="/resources/img/other/paypal.png" />"></a>
+							<input type="image" src="https://www.paypalobjects.com/${langPaypal}/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 						</li>
 					</ul></li>
 			</ul>
