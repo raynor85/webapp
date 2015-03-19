@@ -15,6 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.social.connect.Connection;
@@ -40,6 +41,7 @@ import com.updapy.model.enumeration.Profile;
 import com.updapy.model.enumeration.SocialMediaService;
 import com.updapy.model.enumeration.TypeHelpMessage;
 import com.updapy.model.enumeration.TypeNotification;
+import com.updapy.model.stats.Follower;
 import com.updapy.repository.UserConnectionRepository;
 import com.updapy.repository.UserRepository;
 import com.updapy.service.ApplicationService;
@@ -611,6 +613,21 @@ public class UserServiceImpl implements UserService {
 			return userConnections.get(0).getImageUrl();
 		}
 		return "http://www.updapy.com/resources/img/dashboard/user-normal.png";
+	}
+
+	@Override
+	public Long getNumberOfUsers() {
+		return userRepository.count();
+	}
+
+	@Override
+	public Long getNumberOfUsersInactive() {
+		return userRepository.countByActiveFalse();
+	}
+
+	@Override
+	public List<Follower> getNbTopFollowers(int nb) {
+		return userRepository.getTopFollowers(new PageRequest(0, nb));
 	}
 
 }

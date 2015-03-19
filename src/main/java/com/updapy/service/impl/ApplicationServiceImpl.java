@@ -17,6 +17,7 @@ import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationRequest;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.User;
+import com.updapy.model.stats.FollowedApplication;
 import com.updapy.repository.ApplicationDescriptionRepository;
 import com.updapy.repository.ApplicationFollowRepository;
 import com.updapy.repository.ApplicationNotificationRepository;
@@ -49,6 +50,21 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	@Autowired
 	private UserService userService;
+
+	@Override
+	public void clearApplicationsCache() {
+		// empty as the annotation is taking care of the work
+	}
+
+	@Override
+	public Long getNumberOfApplications() {
+		return applicationReferenceRepository.count();
+	}
+	
+	@Override
+	public Long getNumberOfApplicationsInactive() {
+		return applicationReferenceRepository.countByActiveFalse();
+	}
 
 	@Override
 	public List<ApplicationReference> getApplications() {
@@ -159,6 +175,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
+	public List<FollowedApplication> getNbTopFollowedApplications(int nb) {
+		return applicationFollowRepository.getTopFollowedApplications(new PageRequest(0, nb));
+	}
+
+	@Override
 	public ApplicationRequest saveRequestedApplication(ApplicationRequest requestedApplication) {
 		return applicationRequestRepository.saveAndFlush(requestedApplication);
 	}
@@ -218,10 +239,6 @@ public class ApplicationServiceImpl implements ApplicationService {
 			applicationNotificationRepository.saveAndFlush(notification);
 		}
 		return true;
-	}
-
-	@Override
-	public void clearApplicationsCache() {
 	}
 
 }

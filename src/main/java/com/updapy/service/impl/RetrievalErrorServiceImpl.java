@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.updapy.model.ApplicationReference;
@@ -25,7 +24,7 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 
 	@Override
 	public List<RetrievalError> getAllRetrievalErrors() {
-		return retrievalErrorRepository.findAll(new Sort(Sort.Direction.DESC, "count"));
+		return retrievalErrorRepository.findByOrderByCountDesc();
 	}
 
 	@Override

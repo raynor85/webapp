@@ -28,7 +28,7 @@
 			</h3>
 			<hr>
 			<div class="table-responsive">
-				<table class="table table-hover">
+				<table class="table">
 					<thead>
 						<tr class="active">
 							<th><spring:message code="administration.error.table.head.application" /></th>

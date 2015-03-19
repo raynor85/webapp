@@ -73,6 +73,12 @@
 		<put-attribute name="content" value="/WEB-INF/pages/administration/administration.jsp" />
 	</definition>
 
+	<!-- Stats -->
+	<definition name="stats" extends="baseLayoutNormal">
+		<put-attribute name="title" value="stats.title" />
+		<put-attribute name="content" value="/WEB-INF/pages/administration/stats.jsp" />
+	</definition>
+
 	<!-- Privacy -->
 	<definition name="privacy" extends="baseLayoutNormal">
 		<put-attribute name="title" value="privacy.title" />

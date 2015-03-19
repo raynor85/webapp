@@ -22,6 +22,7 @@ import com.updapy.form.model.SendPersonalMessage;
 import com.updapy.model.RetrievalError;
 import com.updapy.model.User;
 import com.updapy.model.enumeration.Lang;
+import com.updapy.service.AccountRemovalService;
 import com.updapy.service.ApplicationService;
 import com.updapy.service.EmailSenderService;
 import com.updapy.service.ProcedureService;
@@ -55,6 +56,9 @@ public class AdministrationController {
 
 	@Autowired
 	private ProcedureService procedureService;
+
+	@Autowired
+	private AccountRemovalService accountRemovalService;
 
 	@Autowired
 	private MessageUtils messageUtils;
@@ -145,6 +149,21 @@ public class AdministrationController {
 	JsonResponse sendEmails() {
 		applicationVersionScheduler.sendEmails();
 		return jsonResponseUtils.buildSuccessfulJsonResponse("administration.action.email.send.confirm");
+	}
+
+	@RequestMapping(value = "/stats")
+	public ModelAndView showStats() {
+		User user = userService.getCurrentUserLight();
+		ModelAndView modelAndView = new ModelAndView("stats");
+		modelAndView.addObject("numberOfApplications", applicationService.getNumberOfApplications());
+		modelAndView.addObject("numberOfApplicationsInactive", applicationService.getNumberOfApplicationsInactive());
+		modelAndView.addObject("numberOfUsers", userService.getNumberOfUsers());
+		modelAndView.addObject("numberOfUsersInactive", userService.getNumberOfUsersInactive());
+		modelAndView.addObject("numberOfAccountDeletions", accountRemovalService.getNumberOfAccountDeletions());
+		modelAndView.addObject("topFollowedApplications", applicationService.getNbTopFollowedApplications(25));
+		modelAndView.addObject("topFollowers", userService.getNbTopFollowers(10));
+		modelAndView.addObject("latestAccountDeletions", accountRemovalService.getLatestNbAccountRemovals(5));
+		return addNotifications(user, modelAndView);
 	}
 
 	@RequestMapping(value = "/message")

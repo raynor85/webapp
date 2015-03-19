@@ -14,6 +14,7 @@ import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationRequest;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.User;
+import com.updapy.model.stats.FollowedApplication;
 
 @Transactional
 public interface ApplicationService {
@@ -28,6 +29,10 @@ public interface ApplicationService {
 	/**
 	 * Application References
 	 */
+
+	Long getNumberOfApplications();
+
+	Long getNumberOfApplicationsInactive();
 
 	@Cacheable(value = "applications", key = "'applications.all'")
 	List<ApplicationReference> getApplications();
@@ -87,6 +92,8 @@ public interface ApplicationService {
 	ApplicationFollow enableEmailAlertFollowedApplication(ApplicationFollow followedApplication);
 
 	ApplicationFollow disableEmailAlertFollowedApplication(ApplicationFollow followedApplication);
+
+	List<FollowedApplication> getNbTopFollowedApplications(int nb);
 
 	/**
 	 * Application Request

@@ -15,6 +15,7 @@ import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.User;
 import com.updapy.model.enumeration.TypeHelpMessage;
+import com.updapy.model.stats.Follower;
 
 @Transactional
 public interface UserService {
@@ -100,5 +101,11 @@ public interface UserService {
 	void addDownloadLinksToNotifications(List<Notification> notifications, User user);
 
 	String getAvatarUrl(User user);
+
+	Long getNumberOfUsers();
+
+	Long getNumberOfUsersInactive();
+
+	List<Follower> getNbTopFollowers(int nb);
 
 }
