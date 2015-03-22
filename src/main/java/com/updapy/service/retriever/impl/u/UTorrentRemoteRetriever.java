@@ -11,6 +11,8 @@ import com.updapy.util.ParsingUtils;
 @Component(value = "uTorrentRemoteRetriever")
 public class UTorrentRemoteRetriever implements RemoteRetriever {
 
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.utorrent.com/";
+
 	@Override
 	public boolean support(ApplicationReference application) {
 		return application.getApiName().equalsIgnoreCase("utorrent");
@@ -33,7 +35,7 @@ public class UTorrentRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a:contains(Download Now)").attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download Now)").attr("href"));
 	}
 
 	@Override
