@@ -321,7 +321,8 @@
 		<ref bean="clipXRemoteRetriever" />
 		<ref bean="comodoInternetSecurityRemoteRetriever" />
 		<ref bean="foxitReaderRemoteRetriever" />
-		<ref bean="peStudioRemoteRetriever" />
+		<ref bean="bandisoftRemoteRetriever" />
+		<ref bean="driverFusionRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
