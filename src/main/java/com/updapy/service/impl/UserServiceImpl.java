@@ -630,4 +630,9 @@ public class UserServiceImpl implements UserService {
 		return userRepository.getTopFollowers(new PageRequest(0, nb));
 	}
 
+	@Override
+	public Long getNumberOfSocialUsers(SocialMediaService socialMediaService) {
+		return userRepository.countByActiveTrueAndSocialMediaService(socialMediaService);
+	}
+
 }

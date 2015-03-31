@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.User;
+import com.updapy.model.enumeration.SocialMediaService;
 import com.updapy.model.stats.Follower;
 
 public interface UserRepository extends JpaRepository<User, Long> {
@@ -26,4 +27,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	List<Follower> getTopFollowers(Pageable pageable);
 
 	Long countByActiveFalse();
+
+	Long countByActiveTrueAndSocialMediaService(SocialMediaService socialMediaService);
 }

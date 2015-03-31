@@ -12,6 +12,7 @@
 			<ul class="fa-ul">
 				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <spring:message code="stats.metrics.numberOfApplications" arguments="${numberOfApplications},${numberOfApplicationsInactive}" /></li>
 				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <spring:message code="stats.metrics.numberOfUsers" arguments="${numberOfUsers},${numberOfUsersInactive}" /></li>
+				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <spring:message code="stats.metrics.numberOfSocialUsers" arguments="${numberOfSocialUsers},${numberOfFacebookSocialUsers},${numberOfLinkedInSocialUsers},${numberOfGoogleSocialUsers}" /></li>
 				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <spring:message code="stats.metrics.numberOfAccountDeletions" arguments="${numberOfAccountDeletions}" /></li>
 			</ul>
 			<br />

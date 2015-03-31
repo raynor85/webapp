@@ -14,6 +14,7 @@ import com.updapy.model.ApplicationNotification;
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.User;
+import com.updapy.model.enumeration.SocialMediaService;
 import com.updapy.model.enumeration.TypeHelpMessage;
 import com.updapy.model.stats.Follower;
 
@@ -103,6 +104,8 @@ public interface UserService {
 	String getAvatarUrl(User user);
 
 	Long getNumberOfUsers();
+	
+	Long getNumberOfSocialUsers(SocialMediaService socialMediaService);
 
 	Long getNumberOfUsersInactive();
 
