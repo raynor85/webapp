@@ -397,7 +397,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Security Essentials
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.microsoft.com/en-gb/download/details.aspx?id=5201', 'http://windows.microsoft.com/en-GB/windows/security-essentials-download', 'securityessentials.png', 'Security Essentials', 'securityessentials', false, 'SECURITY', 'FREE');
 -- TeraCopy
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://codesector.com/downloads', 'https://codesector.com/teracopy', 'teracopy.png', 'TeraCopy', 'teracopy', false, 'SYSTEM', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://codesector.com/downloads', 'http://codesector.com/teracopy', 'teracopy.png', 'TeraCopy', 'teracopy', false, 'SYSTEM', 'FREE');
 -- Total Commander
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://alpinefile.ru/total-commander.html', 'http://www.ghisler.com', 'totalcommander.png', 'Total Commander', 'totalcommander', false, 'SYSTEM', 'FREE');
 -- Trillian
