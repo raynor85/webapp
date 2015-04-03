@@ -445,7 +445,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- QTranslate
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://quest-app.appspot.com/download', 'http://quest-app.appspot.com/', 'qtranslate.png', 'QTranslate', 'qtranslate', false, 'SYSTEM', 'FREE');
 -- SecureAPlus
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://secureaplus.secureage.com/Main/download_ty.php?opt=1', 'https://secureaplus.secureage.com/', 'secureaplus.png', 'SecureAPlus', 'secureaplus', false, 'SECURITY', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.secureaplus.com/Main/download_ty.php?opt=1', 'https://secureaplus.secureage.com/', 'secureaplus.png', 'SecureAPlus', 'secureaplus', false, 'SECURITY', 'FREE');
 -- PowerArchiver
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.powerarchiver.com/download-powerarchiver/', 'http://www.powerarchiver.com/', 'powerarchiver.png', 'PowerArchiver', 'powerarchiver', false, 'TOOLS', 'FREE');
 -- HaoZip
