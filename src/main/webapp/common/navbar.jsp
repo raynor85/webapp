@@ -195,7 +195,7 @@
 			$("#nav-developers a").addClass("notActive");
 		}
 		if ($.browser.mozilla) {
-			$("#socialMenuDropdown").css("list-style", "outside url\('resources/img/other/transparent.gif'\)"); // hack for twitter buttons
+			$("#socialMenuDropdown").css("list-style", "outside url\('/resources/img/other/transparent.gif'\)"); // hack for twitter buttons
 		}
 	}();
 	// Google+1
