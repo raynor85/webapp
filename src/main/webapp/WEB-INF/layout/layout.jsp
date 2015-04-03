@@ -110,9 +110,9 @@
 <script src="<spring:url value="/resources/js/combined.begin.js" />"></script>
 
 <!-- Resources -->
-<link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css">
 
 <!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>

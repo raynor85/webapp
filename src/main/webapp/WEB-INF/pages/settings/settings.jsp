@@ -452,9 +452,6 @@
 			});
 	$("input[type='checkbox']").on("click.bootstrapSwitch", function(e, data) {
 		$(this).bootstrapSwitch("toggleState");
-		if ($.browser.mozilla) {
-			$(this).bootstrapSwitch("toggleState");
-		}
 	});
 	updateEmailOptions();
 </script>
