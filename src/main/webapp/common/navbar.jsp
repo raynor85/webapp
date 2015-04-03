@@ -85,7 +85,7 @@
 						</c:choose>
 						<li id="socialMenuDropdownFb" class="socialMenu"><iframe src="//www.facebook.com/plugins/like.php?locale=${langFb}&href=http%3A%2F%2Ffacebook.com%2Fupdapy&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=true&amp;height=21&amp;appId=242605515939525" scrolling="no" frameborder="0" style="margin-bottom: -5px; border: none; overflow: hidden; height: 21px; width: 200px;" allowTransparency="true"></iframe></li>
 						<li id="socialMenuDropdownG+" class="socialMenuTwitterGoogle"><div class="g-plusone" data-annotation="bubble" data-href="http://www.updapy.com" data-size="medium" style="margin-bottom: -5px;"></div></li>
-						<li id="socialMenuDropdownTw" class="socialMenuTwitterGoogle"><a style="padding: 0 !important; margin-right: 12px; background-color: transparent !important;" class="twitter-follow-button" href="https://twitter.com/updapy" data-show-screen-name="false" data-show-count="false" data-lang="${langTwitter}">Follow</a> <a class="twitter-share-button" href="https://twitter.com/share" data-lang="${langTwitter}" data-url="http://www.updapy.com" data-via="updapy" data-text="<spring:message code='application.share.message' />" data-hashtags="<spring:message code='application.share.hashtags' />">Tweet</a></li>
+						<li id="socialMenuDropdownTw" class="socialMenuTwitterGoogle"><iframe frameborder="0" id="twitter-widget-1" scrolling="no" allowtransparency="true" src="http://platform.twitter.com/widgets/follow_button.html?dnt=true&id=twitter-widget-1&lang=${langTwitter}&screen_name=updapy&show_count=false&show_screen_name=false&size=m" class="twitter-follow-button twitter-follow-button" title="Twitter Follow Button" data-twttr-rendered="true" style="width: 60px; height: 20px;"></iframe> <iframe frameborder="0" id="twitter-widget-0" scrolling="no" allowtransparency="true" src="http://platform.twitter.com/widgets/tweet_button.html?count=horizontal&dnt=true&hashtags=<spring:message code='application.share.hashtags' />&id=twitter-widget-0&lang=${langTwitter}&original_referer=<spring:message code='application.url' />&size=m&text=<spring:message code='application.share.message' />&url=<spring:message code='application.url' />&via=updapy" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 109px; height: 20px;"></iframe></li>
 						<li class="donatePaypal" onclick="location.href='https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M4URMQRZH7J2G';" style="cursor: pointer;">
 							<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M4URMQRZH7J2G" style="padding: 0 !important; margin-right: 12px; background-color: transparent !important;"><img width="86" height="21" class="pull-right" border="0" src="<spring:url value="/resources/img/other/paypal.png" />"></a>
 							<input type="image" src="https://www.paypalobjects.com/${langPaypal}/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
@@ -210,8 +210,6 @@
 		var s = document.getElementsByTagName('script')[0];
 		s.parentNode.insertBefore(po, s);
 	})();
-	// Twitter
-	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 	function logout() {
 		$("#logoutForm").submit();
 	}

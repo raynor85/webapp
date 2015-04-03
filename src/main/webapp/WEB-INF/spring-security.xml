@@ -1,7 +1,7 @@
 <beans:beans xmlns="http://www.springframework.org/schema/security" xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/security
-	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+	http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<beans:import resource="classpath*:applicationContext.xml" />
 
@@ -52,9 +52,9 @@
 
 	<!-- Social remember me -->
 	<beans:bean id="springSocialSecurityRememberMeServices" class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
-		<beans:property name="userDetailsService" ref="userAuthenticateServiceImpl" />
-		<beans:property name="tokenRepository" ref="tokenRepository" />
-		<beans:property name="key" value="#{systemEnvironment['REMEMBER_ME_KEY']}" />
+		<beans:constructor-arg name="userDetailsService" ref="userAuthenticateServiceImpl" />
+		<beans:constructor-arg name="tokenRepository" ref="tokenRepository" />
+		<beans:constructor-arg name="key" value="#{systemEnvironment['REMEMBER_ME_KEY']}" />
 		<beans:property name="alwaysRemember" value="true" />
 		<beans:property name="tokenValiditySeconds" value="1209600" />
 	</beans:bean>
