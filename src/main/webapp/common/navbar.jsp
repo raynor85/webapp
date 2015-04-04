@@ -177,6 +177,7 @@
 			$("#nav-contact").addClass("active");
 		} else if (location.href.match(/settings.?/)) {
 			$("#nav-settings").addClass("active");
+			$(".fa-cog").css("color", "#1a7440");
 		} else if (location.href.match(/administration\/message.?/)) {
 			$("#dropdown-admin").addClass("active");
 			$("#nav-administration a").addClass("notActive");
