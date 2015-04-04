@@ -24,7 +24,10 @@
 						<c:set var="emailPlaceholder">
 							<spring:message code="contact.field.email.tip" />
 						</c:set>
-						<form:input path="email" class="form-control show" id="email" type="email" placeholder="${emailPlaceholder}" readonly="${emailReadonly}" />
+						<div class="input-group">
+							<span class="input-group-addon">@</span>
+							<form:input path="email" class="form-control show" id="email" type="email" placeholder="${emailPlaceholder}" readonly="${emailReadonly}" />
+						</div>
 					</div>
 					<div class="form-group">
 						<label for="message"><spring:message code="contact.field.message" /> </label>

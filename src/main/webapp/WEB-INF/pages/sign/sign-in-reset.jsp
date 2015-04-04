@@ -38,7 +38,9 @@
 					<form:hidden path="key" id="key" />
 					<spring:hasBindErrors name="resetUser">
 						<br />
-						<div class="alert alert-danger alert-dismissable">
+						<div class="alert alert-danger alert-dismissable" role="alert">
+							<i class="fa fa-exclamation-circle"></i>
+							<span class="sr-only">Error:</span>
 							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 							<form:errors path="*" htmlEscape="false" />
 						</div>

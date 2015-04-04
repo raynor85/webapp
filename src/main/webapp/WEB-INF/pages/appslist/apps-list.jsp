@@ -27,7 +27,9 @@
 		<div class="col-sm-12">
 			<c:choose>
 				<c:when test="${not isAuthenticated}">
-					<div class="alert alert-info">
+					<div class="alert alert-info" role="alert">
+						<i class="fa fa-info-circle"></i>
+						<span class="sr-only">Info:</span>
 						<spring:message code="appslist.description.notRegistered" />
 					</div>
 					<br />
@@ -38,7 +40,9 @@
 					<br />
 				</c:when>
 				<c:otherwise>
-					<div class="alert alert-info">
+					<div class="alert alert-info" role="alert">
+						<i class="fa fa-info-circle"></i>
+						<span class="sr-only">Info:</span>
 						<spring:message code="appslist.description.registered" />
 					</div>
 				</c:otherwise>
@@ -79,8 +83,11 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-9">
-					<div class="inner-addon left-addon col-sm-6 col-md-5 col-lg-4">
-						<i class="fa fa-search"></i> <input id="filter" type="search" class="form-control filter" placeholder="${filterPlaceholder}" />
+					<div class="col-sm-6 col-md-5 col-lg-4">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-search"></i></span>
+							<input id="filter" type="search" class="form-control" placeholder="${filterPlaceholder}" />
+						</div>
 					</div>
 					<div id="filter-count-list" class="col-sm-5">&nbsp;</div>
 				</div>

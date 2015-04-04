@@ -14,7 +14,10 @@
 		<br />
 		<div class="form-group">
 			<div class="col-sm-7">
-				<form:input class="form-control" path="apiKey" id="apiKey" readonly="true" />
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-key"></i></span>
+					<form:input class="form-control" path="apiKey" id="apiKey" readonly="true" />
+				</div>
 				<br /> <a id="clipboard-link"><spring:message code="developers.api.apiKey.clipboard.link" /></a>
 			</div>
 			<div class="col-sm-2">

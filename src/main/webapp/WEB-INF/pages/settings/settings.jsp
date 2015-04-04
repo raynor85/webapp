@@ -36,7 +36,10 @@
 					<c:set var="email">
 						<sec:authentication property="principal.email" />
 					</c:set>
-					<input class="form-control" value="${email}" readonly="true" />
+					<div class="input-group">
+						<span class="input-group-addon">@</span>
+						<input class="form-control" value="${email}" readonly />
+					</div>
 				</div>
 				<c:if test="${not isSocialUser}">
 					<div class="col-lg-3 pull-right">
@@ -51,7 +54,9 @@
 				<small><spring:message code="settings.update.subtitle" /></small>
 			</h3>
 			<hr>
-			<div class="alert alert-info">
+			<div class="alert alert-info" role="alert">
+				<i class="fa fa-info-circle"></i>
+				<span class="sr-only">Info:</span>
 				<spring:message code="settings.update.tip" />
 			</div>
 			<div class="form-group">
@@ -247,14 +252,20 @@
 							<c:set var="newEmailPlaceholder">
 								<spring:message code="settings.profile.changeEmail.field.new.email.tip" />
 							</c:set>
-							<form:input type="email" path="newEmail" class="form-control" id="newEmail" placeholder="${newEmailPlaceholder}" />
+							<div class="input-group">
+								<span class="input-group-addon">@</span>
+								<form:input type="email" path="newEmail" class="form-control" id="newEmail" placeholder="${newEmailPlaceholder}" />
+							</div>
 						</div>
 						<div class="form-group">
 							<label for="repeatNewEmail"><spring:message code="settings.profile.changeEmail.field.repeat.email" /></label>
 							<c:set var="repeatEmailPlaceholder">
 								<spring:message code="settings.profile.changeEmail.field.repeat.email.tip" />
 							</c:set>
-							<form:input type="email" path="repeatNewEmail" class="form-control" id="repeatNewEmail" placeholder="${repeatEmailPlaceholder}" />
+							<div class="input-group">
+								<span class="input-group-addon">@</span>
+								<form:input type="email" path="repeatNewEmail" class="form-control" id="repeatNewEmail" placeholder="${repeatEmailPlaceholder}" />
+							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -283,7 +294,9 @@
 					</h4>
 				</div>
 				<div class="modal-body">
-					<div class="alert alert-danger">
+					<div class="alert alert-danger" role="alert">
+						<i class="fa fa-exclamation-circle"></i>
+						<span class="sr-only">Error:</span>
 						<spring:message code="settings.account.delete.field.warning" />
 					</div>
 					<spring:message code="settings.account.delete.field.feedback" />
@@ -317,16 +330,24 @@
 	// focus
 	mainFocus();
 	function mainFocus() {
-		setTimeout(function() { $("#name").focus(); }, 1000);
+		setTimeout(function() {
+			$("#name").focus();
+		}, 1000);
 	}
-	$("#changePasswordModal").on("show.bs.modal", function (e) {
-		setTimeout(function() { $("#currentPassword").focus(); }, 1000);
+	$("#changePasswordModal").on("show.bs.modal", function(e) {
+		setTimeout(function() {
+			$("#currentPassword").focus();
+		}, 1000);
 	});
-	$("#changeEmailModal").on("show.bs.modal", function (e) {
-		setTimeout(function() { $("#newEmail").focus(); }, 1000);
+	$("#changeEmailModal").on("show.bs.modal", function(e) {
+		setTimeout(function() {
+			$("#newEmail").focus();
+		}, 1000);
 	});
-	$("#deleteAccountModal").on("show.bs.modal", function (e) {
-		setTimeout(function() { $("#feedback").focus(); }, 1000);
+	$("#deleteAccountModal").on("show.bs.modal", function(e) {
+		setTimeout(function() {
+			$("#feedback").focus();
+		}, 1000);
 	});
 	function ajaxUpdateSettings() {
 		var json = {
@@ -385,7 +406,9 @@
 		// display success
 		$("#successPasswordUserResponse").html(
 				$("#changePasswordUserResponse").html());
-		setTimeout(function() { $("html, body").scrollTop(0); }, 1000);
+		setTimeout(function() {
+			$("html, body").scrollTop(0);
+		}, 1000);
 	};
 	function ajaxChangeEmailUser() {
 		var json = {
@@ -407,7 +430,9 @@
 		// display success
 		$("#successEmailUserResponse").html(
 				$("#changeEmailUserResponse").html());
-		setTimeout(function() { $("html, body").scrollTop(0); }, 1000);
+		setTimeout(function() {
+			$("html, body").scrollTop(0);
+		}, 1000);
 		// Disconnect
 		setTimeout(function() {
 			logout();

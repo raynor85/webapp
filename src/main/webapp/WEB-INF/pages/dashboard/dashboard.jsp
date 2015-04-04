@@ -28,7 +28,7 @@
 		<div id="successRequestApplicationResponse"></div>
 		<c:if test="${nbAppFollow != 0 && not isDashboardHowToTipHidden}">
 			<form:form id="helpMessageHowToDismissMessageForm" commandName="dismissMessage" action="${root}/dashboard/dismiss">
-				<div id="helpMessageHowTo" class="alert alert-info pull-right-lg">
+				<div id="helpMessageHowTo" class="alert alert-info pull-right-lg" role="alert">
 					<spring:message code="dashboard.applications.tip.howto" />
 					<a class="alert-link" href="javascript:ajaxDismissMessage('DASHBOARD_HOW_TO','helpMessageHowTo');"><spring:message code="dashboard.applications.tip.dismiss" /></a>
 				</div>
@@ -42,7 +42,8 @@
 				</div>
 			</form:form>
 		</c:if>
-		<div class="alert alert-info pull-right">
+		<div class="alert alert-info pull-right" role="alert">
+			<i class="fa fa-info-circle"></i>
 			<c:choose>
 				<c:when test="${nbAppFollow == 0}">
 					<spring:message code="dashboard.application.status.nothing" />
@@ -191,7 +192,9 @@
 							<spring:message code="dashboard.applications.followApplications.empty" />
 						</c:when>
 						<c:otherwise>
-							<div class="alert alert-info">
+							<div class="alert alert-info" role="alert">
+								<i class="fa fa-info-circle"></i>
+								<span class="sr-only">Info:</span>
 								<c:choose>
 									<c:when test="${fn:length(currentFollowedApplications) == 0}">
 										<spring:message code="dashboard.applications.followApplications.first.description" />
@@ -221,8 +224,11 @@
 									<spring:message code="dashboard.applications.followApplications.filter.title" />
 								</legend>
 								<div class="row rowWithPadding" style="margin-top: -7px !important;">
-									<div class="inner-addon left-addon col-md-4">
-										<i class="fa fa-search"></i> <input id="filter" type="search" class="form-control filter" placeholder="${filterPlaceholder}" />
+									<div class="col-md-4">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-search"></i></span>
+											<input id="filter" type="search" class="form-control" placeholder="${filterPlaceholder}" />
+										</div>
 									</div>
 									<div id="filter-count" class="col-md-3">&nbsp;</div>
 								</div>
@@ -297,7 +303,10 @@
 						<c:set var="requestedAppUrlPlaceholder">
 							<spring:message code="dashboard.applications.request.field.url.tip" />
 						</c:set>
-						<form:input path="url" class="form-control" id="requestedAppUrl" placeholder="${requestedAppUrlPlaceholder}" />
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-home"></i></span>
+							<form:input path="url" class="form-control" id="requestedAppUrl" placeholder="${requestedAppUrlPlaceholder}" />
+						</div>
 					</div>
 				</div>
 				<div class="modal-footer">

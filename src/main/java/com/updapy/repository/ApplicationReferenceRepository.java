@@ -21,6 +21,6 @@ public interface ApplicationReferenceRepository extends JpaRepository<Applicatio
 
 	List<ApplicationReference> findByActiveTrueOrderByCreationDateDesc(Pageable pageable);
 
-	Long countByActiveFalse();
+	Long countByActiveTrue();
 
 }

@@ -60,10 +60,15 @@ public class ApplicationServiceImpl implements ApplicationService {
 	public Long getNumberOfApplications() {
 		return applicationReferenceRepository.count();
 	}
-	
+
+	@Override
+	public Long getNumberOfApplicationsActive() {
+		return applicationReferenceRepository.countByActiveTrue();
+	}
+
 	@Override
 	public Long getNumberOfApplicationsInactive() {
-		return applicationReferenceRepository.countByActiveFalse();
+		return getNumberOfApplications() - getNumberOfApplicationsActive();
 	}
 
 	@Override

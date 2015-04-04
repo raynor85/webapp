@@ -11,7 +11,10 @@
 				<c:set var="emailPlaceholder">
 					<spring:message code="sign.up.field.email.tip" />
 				</c:set>
-				<form:input path="email" id="email" class="form-control" placeholder="${emailPlaceholder}" type="email" />
+				<div class="input-group">
+					<span class="input-group-addon">@</span>
+					<form:input path="email" id="email" class="form-control" placeholder="${emailPlaceholder}" type="email" />
+				</div>
 			</div>
 			<div class="form-group">
 				<div class="row">
@@ -41,7 +44,9 @@
 			<input type="hidden" name="requestUri" value="${requestUri}" />
 			<spring:hasBindErrors name="registerUser">
 				<br />
-				<div class="alert alert-danger alert-dismissable">
+				<div class="alert alert-danger alert-dismissable" role="alert">
+					<i class="fa fa-exclamation-circle"></i>
+					<span class="sr-only">Error:</span>
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 					<form:errors path="*" htmlEscape="false" />
 				</div>

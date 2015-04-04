@@ -22,7 +22,10 @@
 						<c:set var="emailPlaceholder">
 							<spring:message code="message.field.email.tip" />
 						</c:set>
-						<form:input path="email" class="form-control show" id="email" type="email" placeholder="${emailPlaceholder}" />
+						<div class="input-group">
+							<span class="input-group-addon">@</span>
+							<form:input path="email" class="form-control show" id="email" type="email" placeholder="${emailPlaceholder}" />
+						</div>
 					</div>
 					<div class="form-group" style="margin-top: 20px;">
 						<label for="langEmail"><spring:message code="message.field.langEmail" /></label>

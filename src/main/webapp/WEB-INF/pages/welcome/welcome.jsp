@@ -14,15 +14,21 @@
 				<h3 class="text-center animated2 fadeInDown shadow">
 					<spring:message code="welcome.introduction" />
 				</h3>
+				<h4 class="text-center animated2 fadeInDown shadow delay3" style="margin-top: 30px !important;">
+					<spring:message code="welcome.applications.text" arguments="${numberOfApplicationsActive}" />
+				</h4>
+				<div class="h3 text-center animated2 fadeInDown delay3">
+					<spring:message code="welcome.applications.button" arguments="${root}" />
+				</div>
 				<c:if test="${not isAuthenticated}">
-					<div class="text-center actions animated2 fadeInDown delay2">
+					<div class="text-center actions animated2 fadeInUp delay7">
 						<a class="btn btn-color ladda-button" href="${root}/signup"><spring:message code="welcome.action" /></a>
 					</div>
 				</c:if>
 				<c:if test="${isAuthenticated}">
 					<div>
 						<div>
-							<h2 class="text-center animated2 fadeInDown shadow delay4">
+							<h2 class="text-center animated2 fadeInUp shadow delay7">
 								<spring:message code="welcome.thanks" />
 							</h2>
 						</div>

@@ -190,10 +190,16 @@ function ajaxCallPostWithUrl(button, urlAction, json, divResult,
 				cache : false,
 				success : function(response) {
 					var type = "";
+					var substText = "";
+					var icon = "";
 					if (response.status == "SUCCESS") {
 						type = "success";
+						substText = "Success";
+						icon = "check";
 					} else if (response.status == "FAIL") {
 						type = "danger";
+						substText = "Error";
+						icon = "exclamation";
 					}
 					if (Boolean(noSpaceBefore)) {
 						responseInDiv = "";
@@ -201,7 +207,9 @@ function ajaxCallPostWithUrl(button, urlAction, json, divResult,
 						responseInDiv = "<br />";
 					}
 					responseInDiv += "<div class='alert alert-" + type
-							+ " alert-dismissable'>";
+							+ " alert-dismissable'  role='alert'>";
+					responseInDiv += "<i class='fa fa-" + icon + "-circle'></i> ";
+					responseInDiv += "<span class='sr-only'>" + substText + ":</span>";
 					responseInDiv += "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
 					for (var i = 0; i < response.result.length; i++) {
 						responseInDiv += response.result[i] + "<br />";

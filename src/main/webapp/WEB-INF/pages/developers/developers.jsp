@@ -10,7 +10,9 @@
 			</h3>
 			<hr>
 			<c:if test="${not isAuthenticated}">
-				<div class="alert alert-info">
+				<div class="alert alert-info" role="alert">
+					<i class="fa fa-info-circle"></i>
+					<span class="sr-only">Info:</span>
 					<spring:message code="developers.accountNeeded" />
 				</div>
 			</c:if>

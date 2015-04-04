@@ -32,6 +32,9 @@ public interface ApplicationService {
 
 	Long getNumberOfApplications();
 
+	@Cacheable(value = "applications", key = "'applications.count'")
+	Long getNumberOfApplicationsActive();
+
 	Long getNumberOfApplicationsInactive();
 
 	@Cacheable(value = "applications", key = "'applications.all'")

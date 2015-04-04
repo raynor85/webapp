@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.updapy.form.model.RegisterUser;
 import com.updapy.form.model.ResetUserEmail;
 import com.updapy.model.User;
+import com.updapy.service.ApplicationService;
 import com.updapy.service.UserService;
 
 @Controller
@@ -16,9 +17,14 @@ public class PageController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private ApplicationService applicationService;
+	
 	@RequestMapping("/")
 	public ModelAndView welcomePage() {
-		return addNotifications(new ModelAndView("welcome"));
+		ModelAndView modelAndView = new ModelAndView("welcome");
+		modelAndView.addObject("numberOfApplicationsActive", applicationService.getNumberOfApplicationsActive());
+		return addNotifications(modelAndView);
 	}
 
 	@RequestMapping("/error/404")
