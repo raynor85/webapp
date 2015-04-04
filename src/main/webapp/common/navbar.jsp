@@ -144,6 +144,8 @@
 	</div>
 </div>
 
+<img width="1" height="1" src="<spring:url value="/resources/img/other/transparent.gif" />" style="display: none">
+
 <script>
 	var setActiveMenu = function() {
 		// current lang
@@ -195,7 +197,7 @@
 			$("#nav-developers a").addClass("notActive");
 		}
 		if ($.browser.mozilla) {
-			$("#socialMenuDropdown").css("list-style", "outside url\('/resources/img/other/transparent.gif'\)"); // hack for twitter buttons
+			$("#socialMenuDropdown").css("list-style", "outside url\('/resources/img/other/transparent.gif'\) none"); // hack for twitter buttons
 		}
 	}();
 	// Google+1

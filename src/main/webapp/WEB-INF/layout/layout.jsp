@@ -145,6 +145,5 @@
 	<!-- Sharebar -->
 	<tiles:insertAttribute name="sharebar" />
 
-	<img width="1" height="1" src="<spring:url value="/resources/img/other/transparent.gif" />" style="display: none">
 </body>
 </html>
