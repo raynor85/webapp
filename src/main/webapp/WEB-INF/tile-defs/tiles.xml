@@ -14,19 +14,15 @@
 	</definition>
 	<definition name="baseLayoutNormal" extends="baseLayout">
 		<put-attribute name="contentWrapperCss" value=" " />
-		<put-attribute name="sharebar" value=" " />
 	</definition>
 	<definition name="baseLayoutInverse" extends="baseLayout">
 		<put-attribute name="contentWrapperCss" value="body-inverse" />
-		<put-attribute name="sharebar" value=" " />
 	</definition>
 	<definition name="baseLayoutWithShareNormal" extends="baseLayout">
 		<put-attribute name="contentWrapperCss" value=" " />
-		<put-attribute name="sharebar" value="/common/sharebar.jsp" />
 	</definition>
 	<definition name="baseLayoutWithShareInverse" extends="baseLayout">
 		<put-attribute name="contentWrapperCss" value="body-inverse" />
-		<put-attribute name="sharebar" value="/common/sharebar.jsp" />
 	</definition>
 
 	<!-- Error -->

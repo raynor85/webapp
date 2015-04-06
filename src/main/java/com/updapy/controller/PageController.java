@@ -1,5 +1,9 @@
 package com.updapy.controller;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +23,15 @@ public class PageController {
 
 	@Autowired
 	private ApplicationService applicationService;
-	
+
+	private static final List<String> animations = Arrays.asList("tada", "bounce", "flash", "rubberBand", "shake", "swing", "wobble");
+	private static final Random randomGenerator = new Random();
+
 	@RequestMapping("/")
 	public ModelAndView welcomePage() {
 		ModelAndView modelAndView = new ModelAndView("welcome");
 		modelAndView.addObject("numberOfApplicationsActive", applicationService.getNumberOfApplicationsActive());
+		modelAndView.addObject("shareIconEffect", animations.get(randomGenerator.nextInt(animations.size())));
 		return addNotifications(modelAndView);
 	}
 

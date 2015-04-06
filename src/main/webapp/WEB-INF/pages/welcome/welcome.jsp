@@ -29,10 +29,11 @@
 					<div>
 						<div>
 							<h2 class="text-center animated2 fadeInUp shadow delay7">
-								<spring:message code="welcome.thanks" />
+								<spring:message code="welcome.thanks.part1" />
+								<i class="fa fa-1-4x fa-share-alt animated2 ${shareIconEffect} delay10"></i>
+								<spring:message code="welcome.thanks.part2" />
 							</h2>
 						</div>
-						<div id="arrowShare" class="animated2 wobble delay10"></div>
 					</div>
 				</c:if>
 				<div class="alt-index">

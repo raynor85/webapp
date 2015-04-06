@@ -140,8 +140,5 @@
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="<spring:url value="/resources/js/combined.end.js" />"></script>
 
-	<!-- Sharebar -->
-	<tiles:insertAttribute name="sharebar" />
-
 </body>
 </html>

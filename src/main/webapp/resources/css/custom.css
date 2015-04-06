@@ -1688,27 +1688,6 @@ div.form-group div.col-sm-3 {
 	width: 100%;
 }
 
-/*** Arrow ***/
-#arrowShare {
-	margin-top: -100px;
-	float: right;
-	width: 185px;
-	height: 98px;
-	background-image: url("../img/welcome/arrow.png");
-}
-
-@media all and (max-width:990px) {
-	#arrowShare {
-		margin-top: -150px !important;
-	}
-}
-
-@media all and (max-width:800px) {
-	#arrowShare {
-		display: none;
-	}
-}
-
 /*** Discreet link ***/
 .discreetLink {
 	margin-top: 15px;
