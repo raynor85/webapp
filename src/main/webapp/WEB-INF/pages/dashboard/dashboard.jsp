@@ -82,16 +82,16 @@
 				<c:set var="appId">${currentFollowedApplication.apiName}</c:set>
 				<c:set var="appEmailActive">${currentFollowedApplication.emailNotificationActive}</c:set>
 				<c:set var="deleteTitle">
-					<spring:message code="dashboard.applications.unfollow.title" /> ${appName}
+					<spring:message code="dashboard.applications.unfollow.title" arguments="${appName}" />
 				</c:set>
 				<c:set var="disableTitle">
-					<spring:message code="dashboard.applications.alert.disable.title" /> ${appName}
+					<spring:message code="dashboard.applications.alert.disable.title" arguments="${appName}" />
 				</c:set>
 				<c:set var="enableTitle">
-					<spring:message code="dashboard.applications.alert.enable.title" /> ${appName}
+					<spring:message code="dashboard.applications.alert.enable.title" arguments="${appName}" />
 				</c:set>
 				<c:set var="downloadTitle">
-					<spring:message code="dashboard.applications.download.title" /> ${appName} - ${currentFollowedApplication.versionNumber}
+					<spring:message code="dashboard.applications.download.title" arguments="${appName},${currentFollowedApplication.versionNumber}" />
 				</c:set>
 				<div id="div-current-${appId}" class="col-xs-4 col-sm-3 col-md-2 col-lg-2 currentFollowedApplicationContainer">
 					<button title="${deleteTitle}" aria-hidden="true" class="close pull-right" type="button" onclick="ajaxUnfollowCurrentApplication('${appId}');">

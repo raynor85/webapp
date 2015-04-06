@@ -323,6 +323,9 @@
 		<ref bean="foxitReaderRemoteRetriever" />
 		<ref bean="bandisoftRemoteRetriever" />
 		<ref bean="driverFusionRemoteRetriever" />
+		<ref bean="actionaRemoteRetriever" />
+		<ref bean="cloudSystemBoosterRemoteRetriever" />
+		<ref bean="vivaldiRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

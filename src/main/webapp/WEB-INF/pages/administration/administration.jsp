@@ -1,4 +1,5 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="container">
@@ -28,39 +29,50 @@
 			</h3>
 			<hr>
 			<div class="table-responsive">
-				<table class="table">
-					<thead>
-						<tr class="active">
-							<th><spring:message code="administration.error.table.head.application" /></th>
-							<th><spring:message code="administration.error.table.head.type" /></th>
-							<th><spring:message code="administration.error.table.head.counter" /> <i class="fa fa-sort-numeric-desc"></i></th>
-							<th><spring:message code="administration.error.table.head.message" /></th>
-							<th><spring:message code="administration.error.table.head.version" /></th>
-							<th><spring:message code="administration.error.table.head.globalUrl" /></th>
-							<th><spring:message code="administration.error.table.head.version32Url" /></th>
-							<th><spring:message code="administration.error.table.head.version64Url" /></th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${administrationRetrievalErrors}" var="administrationRetrievalError">
-							<tr>
-								<td>${administrationRetrievalError.retrievalError.application.name}</td>
-								<td><spring:message code="administration.error.type.${administrationRetrievalError.retrievalError.typeLastError}" /></td>
-								<td>${administrationRetrievalError.retrievalError.count}</td>
-								<td>${administrationRetrievalError.retrievalError.message}</td>
-								<td>${administrationRetrievalError.latestVersion.versionNumber}</td>
-								<td><a href="${administrationRetrievalError.retrievalError.application.globalUrl}" target="_blank"><i class="fa fa-external-link"></i></a></td>
-								<td><a href="${administrationRetrievalError.latestVersion.win32UrlEn}" target="_blank"><i class="fa fa-external-link"></i></a></td>
-								<td><c:choose>
-										<c:when test="${not empty administrationRetrievalError.latestVersion.win64UrlEn}">
-											<a href="${administrationRetrievalError.latestVersion.win64UrlEn}" target="_blank"><i class="fa fa-external-link"></i></a>
-										</c:when>
-										<c:otherwise>-</c:otherwise>
-									</c:choose></td>
+				<form:form id="deleteRetrievalErrorForm" commandName="deleteRetrievalError" action="${root}/administration/retrievalError/delete">
+					<table class="table">
+						<thead>
+							<tr class="active">
+								<th><spring:message code="administration.error.table.head.application" /></th>
+								<th><spring:message code="administration.error.table.head.type" /></th>
+								<th><spring:message code="administration.error.table.head.counter" /> <i class="fa fa-sort-numeric-desc"></i></th>
+								<th><spring:message code="administration.error.table.head.message" /></th>
+								<th><spring:message code="administration.error.table.head.version" /></th>
+								<th><spring:message code="administration.error.table.head.globalUrl" /></th>
+								<th><spring:message code="administration.error.table.head.version32Url" /></th>
+								<th><spring:message code="administration.error.table.head.version64Url" /></th>
+								<th></th>
 							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							<c:forEach items="${administrationRetrievalErrors}" var="administrationRetrievalError">
+								<tr id="tr-${administrationRetrievalError.retrievalError.id}">
+									<td>${administrationRetrievalError.retrievalError.application.name}</td>
+									<td><spring:message code="administration.error.type.${administrationRetrievalError.retrievalError.typeLastError}" /></td>
+									<td>${administrationRetrievalError.retrievalError.count}</td>
+									<td>${administrationRetrievalError.retrievalError.message}</td>
+									<td>${administrationRetrievalError.latestVersion.versionNumber}</td>
+									<td><a href="${administrationRetrievalError.retrievalError.application.globalUrl}" target="_blank"><i class="fa fa-external-link"></i></a></td>
+									<td><a href="${administrationRetrievalError.latestVersion.win32UrlEn}" target="_blank"><i class="fa fa-external-link"></i></a></td>
+									<td><c:choose>
+											<c:when test="${not empty administrationRetrievalError.latestVersion.win64UrlEn}">
+												<a href="${administrationRetrievalError.latestVersion.win64UrlEn}" target="_blank"><i class="fa fa-external-link"></i></a>
+											</c:when>
+											<c:otherwise>-</c:otherwise>
+										</c:choose></td>
+									<td>
+										<c:set var="deleteTitle">
+											<spring:message code="administration.error.table.delete.title" arguments="${administrationRetrievalError.retrievalError.application.name}" />
+										</c:set>
+										<button title="${deleteTitle}" aria-hidden="true" class="close" type="button" onclick="ajaxDeleteRetrievalError('${administrationRetrievalError.retrievalError.id}');">
+											<i class="fa fa-trash-o fa-1x"></i>
+										</button>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</form:form>
 			</div>
 		</div>
 	</div>
@@ -110,5 +122,11 @@
 	};
 	var refreshNumberOfRowsInDatabase = function() {
 		ajaxCallGetAndRefresh("${root}/administration/numberOfRowsInDatabase", "#numberOfRowsInDatabase");
+	};
+	function ajaxDeleteRetrievalError(retrievalErrorId) {
+		$("#tr-" + retrievalErrorId).fadeOut();
+		ajaxCallPost(null, "#deleteRetrievalErrorForm", {
+			"retrievalErrorId" : retrievalErrorId
+		}, null);
 	};
 </script>

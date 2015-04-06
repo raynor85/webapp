@@ -53,6 +53,11 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 	}
 
 	@Override
+	public void deleteRetrievalError(long id) {
+		retrievalErrorRepository.delete(id);
+	}
+
+	@Override
 	public void deleteRetrievalErrors(ApplicationReference application, List<TypeRetrievalError> types) {
 		List<RetrievalError> retrievalErrors = findRetrievalErrors(application, types);
 		if (retrievalErrors != null && !retrievalErrors.isEmpty()) {

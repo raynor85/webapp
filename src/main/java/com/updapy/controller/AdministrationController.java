@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.updapy.form.ajax.JsonResponse;
 import com.updapy.form.model.AdministrationRetrievalError;
+import com.updapy.form.model.DeleteRetrievalError;
 import com.updapy.form.model.SendPersonalMessage;
 import com.updapy.model.RetrievalError;
 import com.updapy.model.User;
@@ -198,6 +199,13 @@ public class AdministrationController {
 			}
 			return jsonResponseUtils.buildSuccessfulJsonResponse("message.send.confirm");
 		}
+	}
+
+	@RequestMapping(value = "/retrievalError/delete", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody
+	JsonResponse deleteRetrievalError(@RequestBody DeleteRetrievalError deleteRetrievalError) {
+		retrievalErrorService.deleteRetrievalError(deleteRetrievalError.getRetrievalErrorId());
+		return jsonResponseUtils.buildSuccessfulJsonResponse("administration.action.retrievalError.delete.confirm");
 	}
 
 	private ModelAndView addNotifications(User user, ModelAndView modelAndView) {

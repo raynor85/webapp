@@ -17,6 +17,8 @@ public interface RetrievalErrorService {
 
 	RetrievalError addRetrievalError(ApplicationReference application, TypeRetrievalError type, String message);
 
+	void deleteRetrievalError(long id);
+
 	void deleteRetrievalErrors(ApplicationReference application, List<TypeRetrievalError> types);
 
 	int sendEmailRetrievalErrors();
