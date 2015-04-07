@@ -421,7 +421,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- WinPatrol
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.winpatrol.com/download.html', 'http://www.winpatrol.com/', 'winpatrol.png', 'WinPatrol', 'winpatrol', false, 'SECURITY', 'FREE');
 -- Wise Care 365
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.wisecleaner.com/wisecare365.html', 'http://www.wisecleaner.com/wisecare365.html', 'wisecare365.png', 'Wise Care 365', 'wisecare365', false, 'SYSTEM', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/Wise-Care-365-Free/3000-18512_4-75744630.html', 'http://www.wisecleaner.com/wisecare365.html', 'wisecare365.png', 'Wise Care 365', 'wisecare365', false, 'SYSTEM', 'FREE');
 -- Dr.Web CureIt
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/Dr-Web-CureIt/3000-2239_4-128071.html', 'http://www.freedrweb.com/cureit/', 'drwebcureit.png', 'Dr.Web CureIt', 'drwebcureit', false, 'SECURITY', 'FREE');
 -- Pale Moon Browser
