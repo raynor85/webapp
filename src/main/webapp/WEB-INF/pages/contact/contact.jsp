@@ -33,28 +33,28 @@
 						</div>
 					</div>
 					<div class="form-group" style="max-width: 300px;">
-						<label for="object"><spring:message code="contact.field.object" /></label>
-						<form:select class="form-control selectpicker" path="object" id="object">
-							<c:set var="objectImprovementSuggestion">
-								<spring:message code="contact.field.object.IMPROVEMENT_SUGGESTION" />
+						<label for="subject"><spring:message code="contact.field.subject" /></label>
+						<form:select class="form-control selectpicker" path="subject" id="subject">
+							<c:set var="subjectImprovementSuggestion">
+								<spring:message code="contact.field.subject.IMPROVEMENT_SUGGESTION" />
 							</c:set>
-							<c:set var="objectBrokenLink">
-								<spring:message code="contact.field.object.BROKEN_LINK" />
+							<c:set var="subjectBrokenLink">
+								<spring:message code="contact.field.subject.BROKEN_LINK" />
 							</c:set>
-							<c:set var="objectBug">
-								<spring:message code="contact.field.object.BUG" />
+							<c:set var="subjectBug">
+								<spring:message code="contact.field.subject.BUG" />
 							</c:set>
-							<c:set var="objectPartnership">
-								<spring:message code="contact.field.object.PARTNERSHIP" />
+							<c:set var="subjectPartnership">
+								<spring:message code="contact.field.subject.PARTNERSHIP" />
 							</c:set>
-							<c:set var="objectOther">
-								<spring:message code="contact.field.object.OTHER" />
+							<c:set var="subjectOther">
+								<spring:message code="contact.field.subject.OTHER" />
 							</c:set>
-							<form:option value="IMPROVEMENT_SUGGESTION" label="${objectImprovementSuggestion}" htmlEscape="false" selected="selected" />
-							<form:option value="BROKEN_LINK" label="${objectBrokenLink}" htmlEscape="false" />
-							<form:option value="BUG" label="${objectBug}" htmlEscape="false" />
-							<form:option value="PARTNERSHIP" label="${objectPartnership}" htmlEscape="false" />
-							<form:option value="OTHER" label="${objectOther}" htmlEscape="false" />
+							<form:option value="IMPROVEMENT_SUGGESTION" label="${subjectImprovementSuggestion}" htmlEscape="false" selected="selected" />
+							<form:option value="BROKEN_LINK" label="${subjectBrokenLink}" htmlEscape="false" />
+							<form:option value="BUG" label="${subjectBug}" htmlEscape="false" />
+							<form:option value="PARTNERSHIP" label="${subjectPartnership}" htmlEscape="false" />
+							<form:option value="OTHER" label="${subjectOther}" htmlEscape="false" />
 						</form:select>
 					</div>
 					<div class="form-group">
@@ -95,7 +95,7 @@
 	function ajaxSendMessage() {
 		var json = {
 			"email" : $("#email").val(),
-			"object" : $("#object").val(),
+			"subject" : $("#subject").val(),
 			"message" : $("#message").val(),
 			"anonymous" : $("#anonymous").val()
 		};

@@ -28,7 +28,7 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
 
 import com.updapy.form.model.NewVersion;
 import com.updapy.form.model.UpdateUrl;
-import com.updapy.form.model.enumeration.ObjectMessage;
+import com.updapy.form.model.enumeration.SubjectMessage;
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.Newsletter;
 import com.updapy.service.EmailCounterService;
@@ -183,15 +183,15 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 	}
 
 	@Override
-	public boolean sendAdminMessage(String email, ObjectMessage objectMessage, String text, boolean anonymous) {
+	public boolean sendAdminMessage(String email, SubjectMessage subject, String text, boolean anonymous) {
 		Locale locale = new Locale("en");
-		String subject;
+		String subjectAsString;
 		if (anonymous) {
-			subject = messageUtils.getSimpleMessage("email.contact.anonymous.subject", locale);
+			subjectAsString = messageUtils.getSimpleMessage("email.contact.anonymous.subject", locale);
 		} else {
-			subject = messageUtils.getSimpleMessage("email.contact.user.subject", locale);
+			subjectAsString = messageUtils.getSimpleMessage("email.contact.user.subject", locale);
 		}
-		subject += " - " + messageUtils.getSimpleMessage("contact.field.object." + objectMessage.name(), locale); 
+		subjectAsString += " - " + messageUtils.getSimpleMessage("contact.field.subject." + subject.name(), locale); 
 		Map<String, Object> model = new HashMap<String, Object>();
 		setLang(locale, model);
 		model.put("title", messageUtils.getCustomMessage("email.contact.content.title", new String[] { email }, locale));
@@ -202,7 +202,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		String message = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "simple.vm", "UTF-8", model);
 
 		try {
-			send(ADMIN_EMAIL, ADMIN_EMAIL, subject, message);
+			send(ADMIN_EMAIL, ADMIN_EMAIL, subjectAsString, message);
 			return true;
 		} catch (Exception e) {
 			return false;

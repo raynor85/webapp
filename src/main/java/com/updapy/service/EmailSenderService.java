@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.updapy.form.model.NewVersion;
 import com.updapy.form.model.UpdateUrl;
-import com.updapy.form.model.enumeration.ObjectMessage;
+import com.updapy.form.model.enumeration.SubjectMessage;
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.Newsletter;
 
@@ -38,6 +38,6 @@ public interface EmailSenderService {
 
 	boolean sendAdminRequestedApplication(String name, String url, Locale locale);
 
-	boolean sendAdminMessage(String email, ObjectMessage objectMessage, String text, boolean anonymous);
+	boolean sendAdminMessage(String email, SubjectMessage subject, String text, boolean anonymous);
 
 }
