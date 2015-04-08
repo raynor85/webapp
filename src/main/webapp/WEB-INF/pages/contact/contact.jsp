@@ -2,6 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<link href="<spring:url value="/resources/css/bootstrap-select.min.css" />" rel="stylesheet">
+<script src="<spring:url value="/resources/js/bootstrap-select.min.js" />"></script>
+
 <c:set var="emailReadonly" value="false" />
 <c:if test="${isAuthenticated}">
 	<c:set var="emailReadonly" value="true" />
@@ -30,6 +33,31 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label for="object"><spring:message code="contact.field.object" /></label>
+						<form:select class="form-control selectpicker" path="object" id="object">
+							<c:set var="objectImprovementSuggestion">
+								<spring:message code="contact.field.object.IMPROVEMENT_SUGGESTION" />
+							</c:set>
+							<c:set var="objectBrokenLink">
+								<spring:message code="contact.field.object.BROKEN_LINK" />
+							</c:set>
+							<c:set var="objectBug">
+								<spring:message code="contact.field.object.BUG" />
+							</c:set>
+							<c:set var="objectPartnership">
+								<spring:message code="contact.field.object.PARTNERSHIP" />
+							</c:set>
+							<c:set var="objectOther">
+								<spring:message code="contact.field.object.OTHER" />
+							</c:set>
+							<form:option value="IMPROVEMENT_SUGGESTION" label="${objectImprovementSuggestion}" htmlEscape="false" />
+							<form:option value="BROKEN_LINK" label="${objectBrokenLink}" htmlEscape="false" />
+							<form:option value="BUG" label="${objectBug}" htmlEscape="false" />
+							<form:option value="PARTNERSHIP" label="${objectPartnership}" htmlEscape="false" />
+							<form:option value="OTHER" label="${objectOther}" htmlEscape="false" />
+						</form:select>
+					</div>
+					<div class="form-group">
 						<label for="message"><spring:message code="contact.field.message" /> </label>
 						<c:set var="messagePlaceholder">
 							<spring:message code="contact.field.message.tip" />
@@ -53,6 +81,8 @@
 <script type="text/javascript">
 	// focus
 	mainFocus();
+	// activate elements
+	$(".selectpicker").selectpicker();
 	function mainFocus() {
 		var field = "email";
 		if ($("#email").is("[readonly]")) {
@@ -65,6 +95,7 @@
 	function ajaxSendMessage() {
 		var json = {
 			"email" : $("#email").val(),
+			"object" : $("#object").val(),
 			"message" : $("#message").val(),
 			"anonymous" : $("#anonymous").val()
 		};

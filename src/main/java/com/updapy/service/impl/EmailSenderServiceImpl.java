@@ -28,6 +28,7 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
 
 import com.updapy.form.model.NewVersion;
 import com.updapy.form.model.UpdateUrl;
+import com.updapy.form.model.enumeration.ObjectMessage;
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.Newsletter;
 import com.updapy.service.EmailCounterService;
@@ -182,7 +183,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 	}
 
 	@Override
-	public boolean sendAdminMessage(String email, String text, boolean anonymous) {
+	public boolean sendAdminMessage(String email, ObjectMessage objectMessage, String text, boolean anonymous) {
 		Locale locale = new Locale("en");
 		String subject;
 		if (anonymous) {
@@ -190,6 +191,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		} else {
 			subject = messageUtils.getSimpleMessage("email.contact.user.subject", locale);
 		}
+		subject += " - " + messageUtils.getSimpleMessage("contact.field.object." + objectMessage.name(), locale); 
 		Map<String, Object> model = new HashMap<String, Object>();
 		setLang(locale, model);
 		model.put("title", messageUtils.getCustomMessage("email.contact.content.title", new String[] { email }, locale));

@@ -58,7 +58,7 @@ public class ContactController {
 			return jsonResponseUtils.buildFailedJsonResponseFromErrorObject(result.getAllErrors());
 		} else {
 			// Send the message via email
-			boolean isSent = emailSenderService.sendAdminMessage(sendMessage.getEmail(), sendMessage.getMessage(), sendMessage.isAnonymous());
+			boolean isSent = emailSenderService.sendAdminMessage(sendMessage.getEmail(), sendMessage.getObject(), sendMessage.getMessage(), sendMessage.isAnonymous());
 			if (!isSent) {
 				return jsonResponseUtils.buildFailedJsonResponse("contact.send.error");
 			}

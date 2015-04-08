@@ -1,13 +1,20 @@
 package com.updapy.form.model;
 
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import com.updapy.form.model.enumeration.ObjectMessage;
 
 public class SendMessage {
 
 	@NotEmpty
 	@Email
 	private String email;
+
+	@NotNull
+	private ObjectMessage object;
 
 	@NotEmpty
 	private String message;
@@ -20,6 +27,14 @@ public class SendMessage {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public ObjectMessage getObject() {
+		return object;
+	}
+
+	public void setObject(ObjectMessage object) {
+		this.object = object;
 	}
 
 	public String getMessage() {
