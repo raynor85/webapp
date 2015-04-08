@@ -61,7 +61,7 @@
 			</div>
 			<div class="form-group">
 				<label for="langUpdate" class="col-sm-2 control-label" style="min-width: 130px;"><spring:message code="settings.update.field.langUpdate" /></label>
-				<div id="langUpdateDiv" class="col-sm-4">
+				<div id="langUpdateDiv" class="col-sm-4 col-md-3">
 					<form:select class="form-control selectpicker" path="langUpdate" id="langUpdate">
 						<c:set var="englishLangUpdate">
 							<spring:message code="settings.update.field.langUpdate.english" />
@@ -76,7 +76,7 @@
 			</div>
 			<div class="form-group">
 				<label for="osVersion" class="col-sm-2 control-label" style="min-width: 130px;"><spring:message code="settings.update.field.osVersion" /></label>
-				<div id="osVersionDiv" class="col-sm-4">
+				<div id="osVersionDiv" class="col-sm-4 col-md-3">
 					<form:select class="form-control selectpicker" path="osVersion" id="osVersion">
 						<c:set var="win32BitsOsVersion">
 							<spring:message code="settings.update.field.osVersion.win32" />
@@ -97,7 +97,7 @@
 			<hr>
 			<div class="form-group">
 				<label for="dashboardGridSize" class="col-sm-2 control-label" style="min-width: 130px;"><spring:message code="settings.dashboard.field.dashboardGridSize" /></label>
-				<div id="dashboardGridSizeDiv" class="col-sm-4">
+				<div id="dashboardGridSizeDiv" class="col-sm-4 col-md-3">
 					<form:select class="form-control selectpicker" path="dashboardGridSize" id="dashboardGridSize">
 						<c:set var="bigDashboardGridSize">
 							<spring:message code="settings.dashboard.field.dashboardGridSize.big" />

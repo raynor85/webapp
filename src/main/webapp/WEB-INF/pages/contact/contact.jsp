@@ -32,7 +32,7 @@
 							<form:input path="email" class="form-control show" id="email" type="email" placeholder="${emailPlaceholder}" readonly="${emailReadonly}" />
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group" style="max-width: 300px;">
 						<label for="object"><spring:message code="contact.field.object" /></label>
 						<form:select class="form-control selectpicker" path="object" id="object">
 							<c:set var="objectImprovementSuggestion">
@@ -50,7 +50,7 @@
 							<c:set var="objectOther">
 								<spring:message code="contact.field.object.OTHER" />
 							</c:set>
-							<form:option value="IMPROVEMENT_SUGGESTION" label="${objectImprovementSuggestion}" htmlEscape="false" />
+							<form:option value="IMPROVEMENT_SUGGESTION" label="${objectImprovementSuggestion}" htmlEscape="false" selected="selected" />
 							<form:option value="BROKEN_LINK" label="${objectBrokenLink}" htmlEscape="false" />
 							<form:option value="BUG" label="${objectBug}" htmlEscape="false" />
 							<form:option value="PARTNERSHIP" label="${objectPartnership}" htmlEscape="false" />
