@@ -144,6 +144,10 @@
 		<put-attribute name="title" value="sign.up.activate.error.send.title" />
 		<put-attribute name="content" value="/WEB-INF/pages/sign/sign-up-activate-error-send.jsp" />
 	</definition>
+	<definition name="sign-up-social-email" extends="baseLayoutInverse">
+		<put-attribute name="title" value="sign.up.social.email.title" />
+		<put-attribute name="content" value="/WEB-INF/pages/sign/sign-up-social-email.jsp" />
+	</definition>
 	<definition name="sign-up-social-complete" extends="baseLayoutNormal">
 		<put-attribute name="title" value="sign.up.social.complete.title" />
 		<put-attribute name="content" value="/WEB-INF/pages/sign/sign-up-social-complete.jsp" />

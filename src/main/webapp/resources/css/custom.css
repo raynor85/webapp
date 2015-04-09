@@ -1688,13 +1688,13 @@ div.form-group div.col-sm-3 {
 	width: 100%;
 }
 
-/*** Discreet link ***/
-.discreetLink {
-	margin-top: 15px;
+/*** Discreet text ***/
+div.discreetText {
+	margin-top: 15px !important;
 }
 
-.discreetLink a {
-	color: #999
+.discreetText {
+	color: #999 !important;
 }
 
 /*** Tooltip for favorite language ***/

@@ -114,6 +114,10 @@
 					<constructor-arg value="#{systemEnvironment['LINKEDIN_APP_ID']}" />
 					<constructor-arg value="#{systemEnvironment['LINKEDIN_APP_SECRET']}" />
 				</bean>
+				<bean class="org.springframework.social.twitter.security.TwitterAuthenticationService">
+					<constructor-arg value="#{systemEnvironment['TWITTER_CONSUMER_KEY']}" />
+					<constructor-arg value="#{systemEnvironment['TWITTER_CONSUMER_SECRET']}" />
+				</bean>
 			</list>
 		</property>
 	</bean>

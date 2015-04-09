@@ -19,6 +19,7 @@
 		<org.springframework.social.facebook.version>1.1.1.RELEASE</org.springframework.social.facebook.version>
 		<org.springframework.social.google.version>1.0.0.RELEASE</org.springframework.social.google.version>
 		<org.springframework.social.linkedin.version>1.0.0.RELEASE</org.springframework.social.linkedin.version>
+		<org.springframework.social.twitter.version>1.1.0.RELEASE</org.springframework.social.twitter.version>
 
 		<!-- Hibernate -->
 		<hibernate-entitymanager.version>4.3.8.Final</hibernate-entitymanager.version>
@@ -367,6 +368,11 @@
 			<groupId>org.springframework.social</groupId>
 			<artifactId>spring-social-google</artifactId>
 			<version>${org.springframework.social.google.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-twitter</artifactId>
+			<version>${org.springframework.social.twitter.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>taglibs</groupId>

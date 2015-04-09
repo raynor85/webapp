@@ -56,6 +56,8 @@ public class User extends BaseEntity {
 
 	private String apiKey;
 
+	private String socialKey;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date generationRssKeyDate;
 
@@ -197,6 +199,14 @@ public class User extends BaseEntity {
 
 	public void setAccountKey(String accountKey) {
 		this.accountKey = accountKey;
+	}
+
+	public String getSocialKey() {
+		return socialKey;
+	}
+
+	public void setSocialKey(String socialKey) {
+		this.socialKey = socialKey;
 	}
 
 	public Date getGenerationApiKeyDate() {

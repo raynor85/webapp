@@ -24,6 +24,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.updapy.form.ajax.JsonResponse;
+import com.updapy.form.model.RegisterSocialEmailUser;
 import com.updapy.form.model.RegisterUser;
 import com.updapy.form.model.ResetUser;
 import com.updapy.form.model.ResetUserEmail;
@@ -54,6 +55,9 @@ public class UserController {
 	private Validator registerUserCustomValidator;
 
 	@Autowired
+	private Validator registerSocialEmailUserCustomValidator;
+
+	@Autowired
 	private Validator resetUserEmailCustomValidator;
 
 	@Autowired
@@ -62,6 +66,11 @@ public class UserController {
 	@InitBinder("registerUser")
 	private void initBinderRegisterUser(WebDataBinder binder) {
 		binder.addValidators(registerUserCustomValidator);
+	}
+
+	@InitBinder("registerSocialEmailUser")
+	private void initBinderRegisterSocialEmailUser(WebDataBinder binder) {
+		binder.addValidators(registerSocialEmailUserCustomValidator);
 	}
 
 	@InitBinder("resetUserEmail")
@@ -104,15 +113,46 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String registerSocial(WebRequest request, ProviderSignInUtils providerSignInUtils) {
+	public ModelAndView registerSocial(WebRequest request, ProviderSignInUtils providerSignInUtils) {
+		ModelAndView modelAndView = new ModelAndView("error-social");
 		Connection<?> connection = providerSignInUtils.getConnectionFromSession(request);
 		User user = userService.registerSocial(connection);
 		if (user != null) {
-			providerSignInUtils.doPostSignUp(user.getEmail(), request);
-			SecurityUtils.logInSocialUser(user, userService.getAvatarUrl(user));
-			return "sign-up-social-complete";
+			if (user.isActive()) {
+				providerSignInUtils.doPostSignUp(user.getEmail(), request);
+				SecurityUtils.logInSocialUser(user, userService.getAvatarUrl(user));
+				modelAndView.setViewName("sign-up-social-complete");
+				return modelAndView;
+			} else {
+				modelAndView.addObject("registerSocialEmailUser", new RegisterSocialEmailUser());
+				modelAndView.addObject("key", user.getAccountKey());
+				modelAndView.setViewName("sign-up-social-email");
+				return modelAndView;
+			}
 		}
-		return "error-social";
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/register/social", method = RequestMethod.POST)
+	public ModelAndView registerSocialEmail(@Valid RegisterSocialEmailUser registerSocialEmailUser, BindingResult result) {
+		ModelAndView modelAndView = new ModelAndView("", "email", registerSocialEmailUser.getEmail());
+		if (result.hasErrors()) {
+			modelAndView.setViewName("sign-up-social-email");
+			return modelAndView;
+		} else {
+			User user = userService.findByAccountKey(registerSocialEmailUser.getKey());
+			if (user == null // user not found
+					|| user.isActive() // account already active
+			) {
+				modelAndView.setViewName("error-social");
+				return modelAndView;
+			}
+			user.setEmail(registerSocialEmailUser.getEmail());
+			String newKey = userService.generateNewAccountKey(user);
+			emailSenderService.sendActivationLink(registerSocialEmailUser.getEmail(), newKey, user.getLangEmail());
+			modelAndView.setViewName("sign-up-activate");
+			return modelAndView;
+		}
 	}
 
 	@RequestMapping(value = "/activate/send")
@@ -132,7 +172,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/activate")
-	public String activate(@RequestParam(value = "email", required = true) String email, @RequestParam(value = "key", required = true) String key) {
+	public String activate(@RequestParam(value = "email", required = true) String email, @RequestParam(value = "key", required = true) String key, WebRequest request, ProviderSignInUtils providerSignInUtils) {
 		User user = userService.findByEmail(email);
 		if (user == null // user not found
 				|| user.isActive() // account already active
@@ -142,6 +182,15 @@ public class UserController {
 			return "error-activate-link";
 		}
 		userService.activate(user);
+		if (user.isSocialUser() && StringUtils.isNotBlank(user.getSocialKey())) {
+			if (providerSignInUtils.getConnectionFromSession(request) != null) {
+				providerSignInUtils.doPostSignUp(user.getEmail(), request);
+				SecurityUtils.logInSocialUser(user, userService.getAvatarUrl(user));
+				return "sign-up-social-complete";
+			} else {
+				return "redirect:/auth/" + user.getSocialMediaService().name().toLowerCase();
+			}
+		}
 		return "sign-up-complete";
 	}
 

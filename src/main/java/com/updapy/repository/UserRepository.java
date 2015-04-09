@@ -19,6 +19,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	User findByRssKey(String key);
 
+	User findByAccountKey(String key);
+
+	User findBySocialKey(String key);
+
 	List<User> findByActiveTrue();
 
 	List<User> findByFollowedApplicationsApplication(ApplicationReference application);
@@ -29,4 +33,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	Long countByActiveFalse();
 
 	Long countByActiveTrueAndSocialMediaService(SocialMediaService socialMediaService);
+
 }

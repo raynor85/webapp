@@ -39,6 +39,8 @@ public interface UserService {
 
 	User findByEmail(String email);
 
+	User findByAccountKey(String key);
+
 	User register(User user);
 
 	User registerSocial(Connection<?> connection);
@@ -104,7 +106,7 @@ public interface UserService {
 	String getAvatarUrl(User user);
 
 	Long getNumberOfUsers();
-	
+
 	Long getNumberOfSocialUsers(SocialMediaService socialMediaService);
 
 	Long getNumberOfUsersInactive();

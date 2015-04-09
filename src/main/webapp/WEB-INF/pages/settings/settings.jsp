@@ -175,8 +175,8 @@
 						</button>
 					</p>
 				</div>
-				<div class="col-lg-3 pull-right discreetLink">
-					<a href="#" data-toggle="modal" data-target="#deleteAccountModal"><spring:message code="settings.account.delete.link" /></a>
+				<div class="col-lg-3 pull-right discreetText">
+					<a class="discreetText" href="#" data-toggle="modal" data-target="#deleteAccountModal"><spring:message code="settings.account.delete.link" /></a>
 				</div>
 			</div>
 		</form:form>

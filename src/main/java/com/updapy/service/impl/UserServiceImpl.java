@@ -155,6 +155,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public User findByAccountKey(String key) {
+		return userRepository.findByAccountKey(key);
+	}
+
+	@Override
 	public void changeLocale(Locale locale) {
 		User user = getCurrentUserLight();
 		if (user != null) {
@@ -205,13 +210,17 @@ public class UserServiceImpl implements UserService {
 		generateNewRssKeyWithoutSaving(user);
 		generateNewAccountKeyWithoutSaving(user);
 		// language
-		Locale currentLang = LocaleContextHolder.getLocale();
-		user.setLangUpdate(Lang.valueOf(currentLang.toLanguageTag()));
-		user.setLangEmail(currentLang);
+		fillLang(user);
 		// os version
 		user.setOsVersion(OsVersion.WIN_32_BITS);
 		// big icons
 		user.setDashboardGridSize(DashboardGridSize.BIG);
+	}
+
+	private void fillLang(User user) {
+		Locale currentLang = LocaleContextHolder.getLocale();
+		user.setLangUpdate(Lang.valueOf(currentLang.toLanguageTag()));
+		user.setLangEmail(currentLang);
 	}
 
 	@Override
@@ -320,23 +329,46 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 		UserProfile profile = connection.fetchUserProfile();
-		if (profile == null || profile.getEmail() == null) {
+		if (profile == null) {
 			return null;
 		}
-		User userExisting = userRepository.findByEmail(profile.getEmail());
-		if (userExisting != null) {
-			// user is already existing, overwrite some parameters
-			userExisting.setName(profile.getName());
-			userExisting.setSocialMediaService(getSocialMediaService(connection));
-			return save(userExisting);
+		SocialMediaService socialMediaService = getSocialMediaService(connection);
+		if (profile.getEmail() == null && !SocialMediaService.TWITTER.equals(socialMediaService)) {
+			return null;
 		}
-		User user = new User();
-		fillDefaultValuesUser(user);
-		user.setActive(true); // active by default
-		user.setEmail(profile.getEmail());
-		user.setName(profile.getName());
-		user.setSocialMediaService(getSocialMediaService(connection));
-		return save(user);
+		if (profile.getEmail() == null && SocialMediaService.TWITTER.equals(socialMediaService)) {
+			String twitterSocialKey = connection.getKey().getProviderId() + connection.getKey().getProviderUserId();
+			User userExisting = userRepository.findBySocialKey(twitterSocialKey);
+			if (userExisting != null) {
+				// user is already existing, overwrite some parameters
+				fillLang(userExisting);
+				userExisting.setName(profile.getName());
+				return userExisting;
+			}
+			User user = new User();
+			fillDefaultValuesUser(user);
+			user.setActive(false);
+			user.setName(profile.getName());
+			user.setSocialKey(twitterSocialKey);
+			user.setSocialMediaService(socialMediaService);
+			return save(user);
+		} else {
+			User userExisting = userRepository.findByEmail(profile.getEmail());
+			if (userExisting != null) {
+				// user is already existing, overwrite some parameters
+				fillLang(userExisting);
+				userExisting.setName(profile.getName());
+				userExisting.setSocialMediaService(socialMediaService);
+				return save(userExisting);
+			}
+			User user = new User();
+			fillDefaultValuesUser(user);
+			user.setActive(true); // active by default
+			user.setEmail(profile.getEmail());
+			user.setName(profile.getName());
+			user.setSocialMediaService(socialMediaService);
+			return save(user);
+		}
 	}
 
 	private SocialMediaService getSocialMediaService(Connection<?> connection) {

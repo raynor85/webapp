@@ -27,6 +27,17 @@
 				</a>
 			</div>
 		</div>
+		<div style="height: 15px"></div>
+		<div class="row social-button-row">
+			<div class="col-sm-12">
+				<!-- Twitter sign in button -->
+				<a id="social-sign-twitter" class="btn btn-block ladda-button btn-twitter" href="<c:url value="/auth/twitter"/>"> <i class="btn-social btn-social-border fa fa-twitter"></i> <spring:message code="sign.social.twitter.long" /> <spring:message code="sign.social.twitter.asterisk" />
+				</a>
+			</div>
+		</div>
+		<div>
+			<span class="discreetText"><spring:message code="sign.social.twitter.asterisk" /> <spring:message code="sign.social.twitter.info" /></span>
+		</div>
 	</div>
 </c:if>
 
@@ -43,22 +54,28 @@
 		var facebookText;
 		var googleText;
 		var linkedinText;
+		var twitterText;
 		var width = $("#social-sign").width();
 		if ( width >= 300) {
 			facebookText = "<i class='btn-social btn-social-border fa fa-facebook'></i> <spring:message code='sign.social.facebook.long' />";
 			googleText = "<i class='btn-social btn-social-border fa fa-google-plus'></i> <spring:message code='sign.social.google.long' />";
 			linkedinText = "<i class='btn-social btn-social-border fa fa-linkedin'></i> <spring:message code='sign.social.linkedin.long' />";
+			twitterText = "<i class='btn-social btn-social-border fa fa-twitter'></i> <spring:message code='sign.social.twitter.long' />";
 		} else if (width < 300 && width > 200) {
 			facebookText = "<i class='btn-social btn-social-border fa fa-facebook'></i> <spring:message code='sign.social.facebook.short' />";
 			googleText = "<i class='btn-social btn-social-border fa fa-google-plus'></i> <spring:message code='sign.social.google.short' />";
 			linkedinText = "<i class='btn-social btn-social-border fa fa-linkedin'></i> <spring:message code='sign.social.linkedin.short' />";
+			twitterText = "<i class='btn-social btn-social-border fa fa-twitter'></i> <spring:message code='sign.social.twitter.short' />";
 		} else {
 			facebookText = "<i class='btn-social fa fa-facebook'></i>";
 			googleText = "<i class='btn-social fa fa-google-plus'></i>";
 			linkedinText = "<i class='btn-social fa fa-linkedin'></i>";
+			twitterText = "<i class='btn-social fa fa-twitter'></i>";
 		}
+		twitterText += " <spring:message code='sign.social.twitter.asterisk' />";
 		$("#social-sign-facebook").html(facebookText);
 		$("#social-sign-google").html(googleText);
 		$("#social-sign-linkedin").html(linkedinText);
+		$("#social-sign-twitter").html(twitterText);
 	}();
 </script>
