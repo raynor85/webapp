@@ -137,6 +137,7 @@ public class UserController {
 	public ModelAndView registerSocialEmail(@Valid RegisterSocialEmailUser registerSocialEmailUser, BindingResult result) {
 		ModelAndView modelAndView = new ModelAndView("", "email", registerSocialEmailUser.getEmail());
 		if (result.hasErrors()) {
+			modelAndView.addObject("key", registerSocialEmailUser.getKey());
 			modelAndView.setViewName("sign-up-social-email");
 			return modelAndView;
 		} else {
