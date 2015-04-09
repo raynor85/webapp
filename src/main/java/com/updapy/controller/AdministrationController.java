@@ -166,7 +166,9 @@ public class AdministrationController {
 		modelAndView.addObject("numberOfLinkedInSocialUsers", numberOfLinkedInSocialUsers);
 		Long numberOfGoogleSocialUsers = userService.getNumberOfSocialUsers(SocialMediaService.GOOGLE);
 		modelAndView.addObject("numberOfGoogleSocialUsers", numberOfGoogleSocialUsers);
-		modelAndView.addObject("numberOfSocialUsers", numberOfFacebookSocialUsers + numberOfGoogleSocialUsers + numberOfLinkedInSocialUsers);
+		Long numberOfTwitterSocialUsers = userService.getNumberOfSocialUsers(SocialMediaService.TWITTER);
+		modelAndView.addObject("numberOfTwitterSocialUsers", numberOfTwitterSocialUsers);
+		modelAndView.addObject("numberOfSocialUsers", numberOfFacebookSocialUsers + numberOfGoogleSocialUsers + numberOfLinkedInSocialUsers + numberOfTwitterSocialUsers);
 		modelAndView.addObject("numberOfUsersInactive", userService.getNumberOfUsersInactive());
 		modelAndView.addObject("numberOfAccountDeletions", accountRemovalService.getNumberOfAccountDeletions());
 		modelAndView.addObject("topFollowedApplications", applicationService.getNbTopFollowedApplications(25));
