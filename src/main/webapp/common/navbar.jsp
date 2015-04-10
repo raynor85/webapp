@@ -219,6 +219,13 @@
 	function changeLocale(newLocale) {
 		ajaxChangeLocale(newLocale);
 		var currentUrl = location.href;
+		if (currentUrl.match(/user\/register.?/)) {
+			if (document.getElementById("loginForm")) {
+				currentUrl = "/sign";
+			} else if (document.getElementById("signUpForm")) {
+				currentUrl = "/signup";
+			}
+		}
 		var langParam = "lang=";
 		var newLang = langParam + newLocale;
 		if (currentUrl.indexOf(langParam) > -1) {

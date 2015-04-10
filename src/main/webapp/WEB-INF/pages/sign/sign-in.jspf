@@ -6,7 +6,7 @@
 <c:if test="${not isAuthenticated}">
 	<!-- Sign In form -->
 	<div class="form-white-sign">
-		<form role="form" name="loginForm" action="<c:url value='/j_spring_security_check' />" method="POST">
+		<form role="form" id="loginForm" name="loginForm" action="<c:url value='/j_spring_security_check' />" method="POST">
 			<div class="form-group">
 				<label for="username"><spring:message code="sign.in.field.email" /></label>
 				<div class="input-group">
