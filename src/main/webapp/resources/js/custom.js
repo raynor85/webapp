@@ -78,7 +78,7 @@ $('.style-toggle ul > li.amethyst').on('click', function() {
 // =============
 
 $('#lost-btn').on('click', function() {
-	$("#lost-form").toggleClass("show hidden");
+	$("#lost-form").slideToggle("slow");
 	setTimeout(function() { $("#email-lost").focus(); }, 1000);
 	return false;
 });

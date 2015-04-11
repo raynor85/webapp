@@ -48,7 +48,7 @@
 		<p>
 			<a href="#" id="lost-btn" title="<spring:message code="sign.in.forgot.link" />"><spring:message code="sign.in.forgot.link" /></a>
 		</p>
-		<div class="hidden" id="lost-form">
+		<div style="display: none;" id="lost-form">
 			<p>
 				<spring:message code="sign.in.forgot.description" />
 			</p>
