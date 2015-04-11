@@ -118,44 +118,44 @@
 	</a>
 </div>
 
-<div style="height: 50px;">
-	<hr>
-</div>
+<hr style="margin-bottom:0px !important;border-color: #ddd !important;">
 
-<div class="container">
-	<!-- Features -->
-	<div class="row">
-		<div class="col-sm-4">
-			<div class="crp-ft">
-				<i class="text-color fa fa-bookmark fa-6x"></i>
-				<h4>
-					<spring:message code="welcome.follow.title" />
-				</h4>
-				<p class="text-muted lh">
-					<spring:message code="welcome.follow.description" />
-				</p>
+<div class="wrapper body-inverse" style="padding-top: 50px !important;">
+	<div class="container">
+		<!-- Features -->
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="crp-ft">
+					<i class="text-color fa fa-bookmark fa-6x"></i>
+					<h4>
+						<spring:message code="welcome.follow.title" />
+					</h4>
+					<p class="text-muted lh">
+						<spring:message code="welcome.follow.description" />
+					</p>
+				</div>
 			</div>
-		</div>
-		<div class="col-sm-4">
-			<div class="crp-ft">
-				<i class="text-color fa fa-bell fa-6x"></i>
-				<h4>
-					<spring:message code="welcome.notify.title" />
-				</h4>
-				<p class="text-muted lh">
-					<spring:message code="welcome.notify.description" />
-				</p>
+			<div class="col-sm-4">
+				<div class="crp-ft">
+					<i class="text-color fa fa-bell fa-6x"></i>
+					<h4>
+						<spring:message code="welcome.notify.title" />
+					</h4>
+					<p class="text-muted lh">
+						<spring:message code="welcome.notify.description" />
+					</p>
+				</div>
 			</div>
-		</div>
-		<div class="col-sm-4">
-			<div class="crp-ft">
-				<i class="text-color fa fa-download fa-6x"></i>
-				<h4>
-					<spring:message code="welcome.download.title" />
-				</h4>
-				<p class="text-muted lh">
-					<spring:message code="welcome.download.description" />
-				</p>
+			<div class="col-sm-4">
+				<div class="crp-ft">
+					<i class="text-color fa fa-download fa-6x"></i>
+					<h4>
+						<spring:message code="welcome.download.title" />
+					</h4>
+					<p class="text-muted lh">
+						<spring:message code="welcome.download.description" />
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>
