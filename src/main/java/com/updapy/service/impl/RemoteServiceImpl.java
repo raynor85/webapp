@@ -65,7 +65,7 @@ public class RemoteServiceImpl implements RemoteService {
 			}
 		} catch (Exception e) {
 			// parsing error
-			retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_PARSING_ERROR, e.toString());
+			retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_PARSING_ERROR, "Error when parsing the page. Exception:" + e + ", Cause:" + e.getCause());
 			return null;
 		}
 
@@ -124,7 +124,7 @@ public class RemoteServiceImpl implements RemoteService {
 					doc = Jsoup.connect(url).userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/600.1.17 (KHTML, like Gecko) Version/8.0 Safari/600.1.17").timeout(0).followRedirects(true).validateTLSCertificates(false).get();
 				} catch (Exception e3) {
 					// seems there is really a problem
-					retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_URL_BASE_ERROR, e3.toString());
+					retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_URL_BASE_ERROR, "Error when retrieving the document. Exception:" + e3 + ", Cause:" + e3.getCause());
 					return null;
 				}
 			}

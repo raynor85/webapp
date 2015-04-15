@@ -41,7 +41,7 @@ public class PhotoFiltreStudioRemoteRetriever implements RemoteRetriever {
 		try {
 			return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE_EN).select("a[href*=.exe]").get(0).attr("href");
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 

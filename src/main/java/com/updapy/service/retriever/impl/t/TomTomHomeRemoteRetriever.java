@@ -41,7 +41,7 @@ public class TomTomHomeRemoteRetriever implements RemoteRetriever {
 		try {
 			return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("#BOX1").select("a[href*=.exe]").attr("href");
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 

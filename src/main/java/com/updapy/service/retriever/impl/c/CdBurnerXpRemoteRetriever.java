@@ -45,7 +45,7 @@ public class CdBurnerXpRemoteRetriever implements RemoteRetriever {
 		try {
 			return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE_VERSION).select("span:containsOwn(Version)").html().split("<br>")[0]);
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 

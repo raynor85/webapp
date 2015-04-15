@@ -43,7 +43,7 @@ public class KasperskyVirusRemovalToolRemoteRetriever implements RemoteRetriever
 		try {
 			return StringUtils.removePattern(StringUtils.removePattern(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("body").text(), "^.*\"KAT-EN\" : \""), "\".*$");
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 

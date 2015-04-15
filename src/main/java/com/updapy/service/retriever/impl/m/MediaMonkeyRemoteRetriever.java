@@ -41,7 +41,7 @@ public class MediaMonkeyRemoteRetriever implements RemoteRetriever {
 		try {
 			return ParsingUtils.addHttpPrefix(StringUtils.removePattern(StringUtils.removeEnd(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("div[onclick*=.exe]").first().attr("onclick"), "';"), "^.*http://"));
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 

@@ -42,7 +42,7 @@ public class MakeHumanRemoteRetriever implements RemoteRetriever {
 		try {
 			return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(downloadPageLink).select("a[href*=win32]").attr("href");
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 

@@ -41,7 +41,7 @@ public class LockHunterRemoteRetriever implements RemoteRetriever {
 		try {
 			return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("a:contains(here)[href*=exe]").attr("href");
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 

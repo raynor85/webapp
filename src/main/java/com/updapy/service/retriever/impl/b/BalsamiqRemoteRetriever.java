@@ -53,7 +53,7 @@ public class BalsamiqRemoteRetriever implements RemoteRetriever {
 			}
 			return StringUtils.replacePattern(ParsingUtils.selectFromPattern(ParsingUtils.selectFromPattern(script, "durl_windows = '.*'"), "http.*exe"), "'( |)\\+( |)data.version( |)\\+( |)'", retrieveVersionNumber(doc));
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 

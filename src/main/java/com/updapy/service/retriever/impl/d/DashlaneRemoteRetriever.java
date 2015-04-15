@@ -42,7 +42,7 @@ public class DashlaneRemoteRetriever implements RemoteRetriever {
 		try {
 			return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, StringUtils.removePattern(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("a:contains(Download)").attr("href"), "\\?.*$"));
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 

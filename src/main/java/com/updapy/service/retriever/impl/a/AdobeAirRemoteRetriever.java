@@ -45,7 +45,7 @@ public class AdobeAirRemoteRetriever implements RemoteRetriever {
 		try {
 			return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("p#AUTO_ID_columnleft_p_version").text());
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 

@@ -41,7 +41,7 @@ public class TorchBrowserRemoteRetriever implements RemoteRetriever {
 		try {
 			return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("a:contains(Offline installer)").attr("href");
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 

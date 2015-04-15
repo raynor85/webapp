@@ -31,7 +31,7 @@ public class SlimjetRemoteRetriever implements RemoteRetriever {
 		try {
 			return getDownloadLink(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE_VERSION_64));
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 

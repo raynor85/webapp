@@ -35,7 +35,7 @@ public class YahooMessengerRemoteRetriever implements RemoteRetriever {
 		try {
 			return getDownloadLink(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ROOT_DOWNLOAD_WEBSITE_VERSION_FR));
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 

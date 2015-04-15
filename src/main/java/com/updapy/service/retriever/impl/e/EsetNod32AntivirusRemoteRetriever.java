@@ -58,7 +58,7 @@ public class EsetNod32AntivirusRemoteRetriever implements RemoteRetriever {
 			Document doc = RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(downloadWebsite, 60 * 1000); // 1 minute because the website is slow...
 			return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, StringUtils.removePattern(doc.select("div#file-summary").select("p:contains(File name)").text(), "^.*:\\s?").toLowerCase());
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 }

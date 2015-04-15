@@ -41,7 +41,7 @@ public class WordPressRemoteRetriever implements RemoteRetriever {
 		try {
 			return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("a.download-button[href*=.zip]").attr("href"));
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 

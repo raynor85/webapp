@@ -39,7 +39,7 @@ public class AshampooAntivirusRemoteRetriever implements RemoteRetriever {
 		try {
 			return getDownloadLink(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(doc.select("a.btn_download").attr("href")));
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 

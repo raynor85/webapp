@@ -46,7 +46,7 @@ public class ShockwavePlayerRemoteRetriever implements RemoteRetriever {
 		try {
 			return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE_VERSION).select("p#AUTO_ID_columnleft_p_version").text());
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 

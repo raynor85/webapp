@@ -46,7 +46,7 @@ public class AdMuncherRemoteRetriever implements RemoteRetriever {
 		try {
 			return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(VERSION_HISTORY_WEBSITE).select("body").text(), "Release date.*$"));
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 

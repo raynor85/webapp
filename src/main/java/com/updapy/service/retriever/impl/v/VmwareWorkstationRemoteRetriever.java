@@ -41,7 +41,7 @@ public class VmwareWorkstationRemoteRetriever implements RemoteRetriever {
 		try {
 			return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE_VERSION).select("a.download_now_validation[href*=win]").attr("href"));
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 

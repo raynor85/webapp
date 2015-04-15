@@ -46,7 +46,7 @@ public class MySqlCommunityServerRemoteRetriever implements RemoteRetriever {
 			String dlLink = ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, getDocumentMsi(doc).select("td:contains(" + platform + ")").parents().select("td.col5").select("a").get(1).attr("href"));
 			return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(dlLink).select("a:contains(No thanks, just start my download.)").attr("href"));
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -59,7 +59,7 @@ public class MySqlCommunityServerRemoteRetriever implements RemoteRetriever {
 		try {
 			return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ParsingUtils.buildUrl(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a").first().attr("href")), SUFFIX_DOWNLOAD_WEBSITE));
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 

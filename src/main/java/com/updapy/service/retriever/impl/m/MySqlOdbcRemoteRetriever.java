@@ -45,7 +45,7 @@ public class MySqlOdbcRemoteRetriever implements RemoteRetriever {
 			String dlLink = ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("td:contains(" + platform + ")").parents().select("td.col5").select("a").attr("href"));
 			return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(dlLink).select("a:contains(No thanks, just start my download.)").attr("href"));
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 
