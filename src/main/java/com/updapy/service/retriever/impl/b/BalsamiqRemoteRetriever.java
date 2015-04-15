@@ -42,7 +42,7 @@ public class BalsamiqRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
 		try {
-			Elements scriptTags = RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).getElementsByTag("script");
+			Elements scriptTags = RemoteServiceImpl.retrieveHtmlDocumentWithoutSSL(DOWNLOAD_WEBSITE).getElementsByTag("script");
 			String script = "";
 			for (Element tag : scriptTags) {
 				for (DataNode node : tag.dataNodes()) {
