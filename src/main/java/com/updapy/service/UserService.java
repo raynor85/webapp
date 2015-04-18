@@ -77,6 +77,8 @@ public interface UserService {
 
 	UpdateUrl getDownloadUrlMatchingSettings(User user, ApplicationVersion version);
 
+	List<UpdateUrl> getOtherDownloadUrls(UpdateUrl defaultUpdateUrl, ApplicationVersion version) ;
+
 	boolean isMessageDismissed(User user, TypeHelpMessage typeHelpMessage);
 
 	User dismissMessage(User user, TypeHelpMessage typeHelpMessage);

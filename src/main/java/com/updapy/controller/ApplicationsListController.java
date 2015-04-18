@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.updapy.exception.ResourceNotFoundException;
 import com.updapy.exception.UnauthorizedException;
+import com.updapy.form.model.UpdateUrl;
 import com.updapy.model.ApplicationDescription;
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
@@ -62,7 +63,9 @@ public class ApplicationsListController {
 		ModelAndView modelAndView = new ModelAndView("app-download");
 		modelAndView.addObject("applicationDescription", applicationDescription);
 		ApplicationVersion latestVersion = applicationService.getLatestVersion(application);
-		modelAndView.addObject("downloadLink", userService.getDownloadUrlMatchingSettings(user, latestVersion).getUrl());
+		UpdateUrl defaultUpdateUrl = userService.getDownloadUrlMatchingSettings(user, latestVersion);
+		modelAndView.addObject("mainDownloadLink", defaultUpdateUrl.getUrl());
+		modelAndView.addObject("otherDownloadLinks", userService.getOtherDownloadUrls(defaultUpdateUrl, latestVersion));
 		modelAndView.addObject("versionNumber", latestVersion.getVersionNumber());
 		return addNotifications(modelAndView, user);
 	}

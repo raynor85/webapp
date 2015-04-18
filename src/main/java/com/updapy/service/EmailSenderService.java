@@ -5,10 +5,9 @@ import java.util.Locale;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.updapy.form.model.NewVersion;
-import com.updapy.form.model.UpdateUrl;
 import com.updapy.form.model.enumeration.SubjectMessage;
 import com.updapy.model.ApplicationReference;
+import com.updapy.model.ApplicationVersion;
 import com.updapy.model.Newsletter;
 
 @Transactional
@@ -20,9 +19,9 @@ public interface EmailSenderService {
 
 	boolean sendResetPasswordLink(String email, String key, Locale locale);
 
-	boolean sendSingleUpdate(String email, NewVersion newVersion, List<UpdateUrl> otherUpdateUrls, Locale locale);
+	boolean sendSingleUpdate(String email, String key, ApplicationVersion newVersion, Locale locale);
 
-	boolean sendWeeklyUpdates(String email, List<NewVersion> newVersions, Locale locale);
+	boolean sendWeeklyUpdates(String email, String key, List<ApplicationVersion> newVersions, Locale locale);
 
 	boolean sendAddedApplication(String email, List<ApplicationReference> applications, Locale locale);
 

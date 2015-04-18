@@ -31,7 +31,7 @@ public class RssNotificationViewer extends AbstractRssFeedView {
 	protected void buildFeedMetadata(Map<String, Object> model, Channel feed, HttpServletRequest request) {
 		feed.setTitle(messageUtils.getSimpleMessage("application.name", locale));
 		feed.setDescription(messageUtils.getSimpleMessage("rss.application.description", locale));
-		feed.setLink(messageUtils.getSimpleMessage("application.root.url", locale));
+		feed.setLink(messageUtils.getSimpleMessage("application.root.url"));
 		super.buildFeedMetadata(model, feed, request);
 	}
 

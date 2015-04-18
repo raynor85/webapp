@@ -1,13 +1,11 @@
 package com.updapy.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import com.updapy.form.model.NewVersion;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.EmailWeeklyUpdate;
 import com.updapy.model.User;
@@ -43,11 +41,7 @@ public class EmailWeeklyUpdateServiceImpl implements EmailWeeklyUpdateService {
 		int count = 0;
 		for (EmailWeeklyUpdate emailWeeklyUpdate : emailWeeklyUpdates) {
 			User user = emailWeeklyUpdate.getUser();
-			List<NewVersion> newVersions = new ArrayList<NewVersion>();
-			for (ApplicationVersion newVersion : emailWeeklyUpdate.getVersions()) {
-				newVersions.add(new NewVersion(newVersion.getApplication().getName(), newVersion.getVersionNumber(), userService.getDownloadUrlMatchingSettings(user, newVersion)));
-			}
-			boolean hasBeenSent = emailSenderService.sendWeeklyUpdates(user.getEmail(), newVersions, user.getLangEmail());
+			boolean hasBeenSent = emailSenderService.sendWeeklyUpdates(user.getEmail(), user.getRssKey(), emailWeeklyUpdate.getVersions(), user.getLangEmail());
 			if (hasBeenSent) {
 				emailWeeklyUpdate.setSent(true);
 				save(emailWeeklyUpdate);

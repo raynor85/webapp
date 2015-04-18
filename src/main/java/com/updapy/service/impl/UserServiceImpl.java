@@ -495,7 +495,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	private UpdateUrl getDownloadUrlMatchingSettings(ApplicationVersion appVersion, Lang lang, OsVersion osVersion) {
-
 		UpdateUrl defaultUrl = new UpdateUrl(appVersion.getWin32UrlEn(), Lang.en, OsVersion.WIN_32_BITS);
 		if (OsVersion.WIN_64_BITS.equals(osVersion) && StringUtils.isNotBlank(appVersion.getWin64UrlEn())) {
 			defaultUrl = new UpdateUrl(appVersion.getWin64UrlEn(), Lang.en, OsVersion.WIN_64_BITS);
@@ -516,6 +515,62 @@ public class UserServiceImpl implements UserService {
 			return StringUtils.isNotBlank(appVersion.getWin64UrlFr()) ? new UpdateUrl(appVersion.getWin64UrlFr(), Lang.fr, OsVersion.WIN_64_BITS) : defaultUrl;
 		}
 		return defaultUrl;
+	}
+
+	@Override
+	public List<UpdateUrl> getOtherDownloadUrls(UpdateUrl defaultUpdateUrl, ApplicationVersion version) {
+		List<UpdateUrl> otherUrls = new ArrayList<UpdateUrl>();
+		Lang defaultLang = defaultUpdateUrl.getLang();
+		OsVersion defaultOsVersion = defaultUpdateUrl.getOsVersion();
+		if (Lang.en.equals(defaultLang)) {
+			if (OsVersion.WIN_32_BITS.equals(defaultOsVersion)) {
+				if (StringUtils.isNotBlank(version.getWin64UrlEn())) {
+					otherUrls.add(new UpdateUrl(version.getWin64UrlEn(), Lang.en, OsVersion.WIN_64_BITS));
+				}
+				if (StringUtils.isNotBlank(version.getWin32UrlFr())) {
+					otherUrls.add(new UpdateUrl(version.getWin32UrlFr(), Lang.fr, OsVersion.WIN_32_BITS));
+				}
+				if (StringUtils.isNotBlank(version.getWin64UrlFr())) {
+					otherUrls.add(new UpdateUrl(version.getWin64UrlFr(), Lang.fr, OsVersion.WIN_64_BITS));
+				}
+			}
+			if (OsVersion.WIN_64_BITS.equals(defaultOsVersion)) {
+				if (StringUtils.isNotBlank(version.getWin32UrlEn())) {
+					otherUrls.add(new UpdateUrl(version.getWin32UrlEn(), Lang.en, OsVersion.WIN_32_BITS));
+				}
+				if (StringUtils.isNotBlank(version.getWin32UrlFr())) {
+					otherUrls.add(new UpdateUrl(version.getWin32UrlFr(), Lang.fr, OsVersion.WIN_32_BITS));
+				}
+				if (StringUtils.isNotBlank(version.getWin64UrlFr())) {
+					otherUrls.add(new UpdateUrl(version.getWin64UrlFr(), Lang.fr, OsVersion.WIN_64_BITS));
+				}
+			}
+		}
+		if (Lang.fr.equals(defaultLang)) {
+			if (OsVersion.WIN_32_BITS.equals(defaultOsVersion)) {
+				if (StringUtils.isNotBlank(version.getWin64UrlFr())) {
+					otherUrls.add(new UpdateUrl(version.getWin64UrlFr(), Lang.fr, OsVersion.WIN_64_BITS));
+				}
+				if (StringUtils.isNotBlank(version.getWin32UrlEn())) {
+					otherUrls.add(new UpdateUrl(version.getWin32UrlEn(), Lang.en, OsVersion.WIN_32_BITS));
+				}
+				if (StringUtils.isNotBlank(version.getWin64UrlEn())) {
+					otherUrls.add(new UpdateUrl(version.getWin64UrlEn(), Lang.en, OsVersion.WIN_64_BITS));
+				}
+			}
+			if (OsVersion.WIN_64_BITS.equals(defaultOsVersion)) {
+				if (StringUtils.isNotBlank(version.getWin32UrlFr())) {
+					otherUrls.add(new UpdateUrl(version.getWin32UrlFr(), Lang.fr, OsVersion.WIN_32_BITS));
+				}
+				if (StringUtils.isNotBlank(version.getWin32UrlEn())) {
+					otherUrls.add(new UpdateUrl(version.getWin32UrlEn(), Lang.en, OsVersion.WIN_32_BITS));
+				}
+				if (StringUtils.isNotBlank(version.getWin64UrlEn())) {
+					otherUrls.add(new UpdateUrl(version.getWin64UrlEn(), Lang.en, OsVersion.WIN_64_BITS));
+				}
+			}
+		}
+		return otherUrls;
 	}
 
 	private HelpMessage findHelpMessageFromType(User user, final TypeHelpMessage typeHelpMessage) {

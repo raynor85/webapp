@@ -26,10 +26,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
-import com.updapy.form.model.NewVersion;
-import com.updapy.form.model.UpdateUrl;
 import com.updapy.form.model.enumeration.SubjectMessage;
 import com.updapy.model.ApplicationReference;
+import com.updapy.model.ApplicationVersion;
 import com.updapy.model.Newsletter;
 import com.updapy.service.EmailCounterService;
 import com.updapy.service.EmailSenderService;
@@ -62,7 +61,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 
 	@Override
 	public boolean sendActivationLink(String email, String key, Locale locale) {
-		String link = messageUtils.getSimpleMessage("application.root.url", locale) + "/user/activate?email=" + email + "&key=" + key;
+		String link = messageUtils.getSimpleMessage("application.root.url") + "/user/activate?email=" + email + "&key=" + key;
 		String fromEmail = messageUtils.getSimpleMessage("email.noreply", locale);
 		String subject = messageUtils.getSimpleMessage("email.activate.subject", locale);
 		Map<String, Object> model = new HashMap<String, Object>();
@@ -86,7 +85,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 
 	@Override
 	public boolean sendResetPasswordLink(String email, String key, Locale locale) {
-		String link = messageUtils.getSimpleMessage("application.root.url", locale) + "/user/reset/password?email=" + email + "&key=" + key;
+		String link = messageUtils.getSimpleMessage("application.root.url") + "/user/reset/password?email=" + email + "&key=" + key;
 		String fromEmail = messageUtils.getSimpleMessage("email.noreply", locale);
 		String subject = messageUtils.getSimpleMessage("email.reset.subject", locale);
 		Map<String, Object> model = new HashMap<String, Object>();
@@ -191,7 +190,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		} else {
 			subjectAsString = messageUtils.getSimpleMessage("email.contact.user.subject", locale);
 		}
-		subjectAsString += " - " + messageUtils.getSimpleMessage("contact.field.subject." + subject.name(), locale); 
+		subjectAsString += " - " + messageUtils.getSimpleMessage("contact.field.subject." + subject.name(), locale);
 		Map<String, Object> model = new HashMap<String, Object>();
 		setLang(locale, model);
 		model.put("title", messageUtils.getCustomMessage("email.contact.content.title", new String[] { email }, locale));
@@ -210,16 +209,15 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 	}
 
 	@Override
-	public boolean sendSingleUpdate(String email, NewVersion newVersion, List<UpdateUrl> otherUpdateUrls, Locale locale) {
-		String subject = messageUtils.getCustomMessage("email.application.update.single.subject", new String[] { newVersion.getApplicationName() }, locale);
+	public boolean sendSingleUpdate(String email, String key, ApplicationVersion newVersion, Locale locale) {
+		String subject = messageUtils.getCustomMessage("email.application.update.single.subject", new String[] { newVersion.getApplication().getName() }, locale);
 		String fromEmail = messageUtils.getSimpleMessage("email.noreply", locale);
 		Map<String, Object> model = new HashMap<String, Object>();
 		setLang(locale, model);
 		model.put("title", messageUtils.getSimpleMessage("email.application.update.single.title", locale));
-		model.put("text1", messageUtils.getCustomMessage("email.application.update.single.text1", new String[] { newVersion.getApplicationName(), newVersion.getVersionNumber() }, locale));
+		model.put("text1", messageUtils.getCustomMessage("email.application.update.single.text1", new String[] { newVersion.getApplication().getName(), newVersion.getVersionNumber() }, locale));
 		model.put("button", messageUtils.getSimpleMessage("email.application.update.single.button", locale));
-		model.put("text2", buildMessageOtherUpdates(otherUpdateUrls, newVersion.getVersionNumber(), locale));
-		model.put("link", newVersion.getUpdateUrl().getUrl());
+		model.put("link", buildDownloadUrl(newVersion, key));
 		setFollowMessages(locale, model);
 		setDonateMessage(locale, model);
 		model.put("rsstiptext", messageUtils.getSimpleMessage("email.application.update.tip", locale));
@@ -237,22 +235,8 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		}
 	}
 
-	private String buildMessageOtherUpdates(List<UpdateUrl> otherUpdateUrls, String version, Locale locale) {
-		if (otherUpdateUrls.isEmpty()) {
-			return StringUtils.EMPTY;
-		}
-		StringBuilder message = new StringBuilder(messageUtils.getSimpleMessage("email.application.update.single.text2.part1", locale));
-		for (UpdateUrl updateUrl : otherUpdateUrls) {
-			message.append(messageUtils.getCustomMessage("email.application.update.single.text2.list.begin", new String[] { updateUrl.getUrl() }, locale));
-			message.append(messageUtils.getSimpleMessage("email.application.update.single.text2.list." + updateUrl.getKey(), locale));
-			message.append(messageUtils.getSimpleMessage("email.application.update.single.text2.list.end", locale));
-		}
-		message.append(messageUtils.getSimpleMessage("email.application.update.single.text2.part2", locale));
-		return message.toString();
-	}
-
 	@Override
-	public boolean sendWeeklyUpdates(String email, List<NewVersion> newVersions, Locale locale) {
+	public boolean sendWeeklyUpdates(String email, String key, List<ApplicationVersion> newVersions, Locale locale) {
 		String subject;
 		if (newVersions.size() == 1) {
 			subject = messageUtils.getSimpleMessage("email.application.update.weekly.subject.single", locale);
@@ -264,7 +248,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		setLang(locale, model);
 		model.put("title", messageUtils.getSimpleMessage("email.application.update.weekly.title", locale));
 		model.put("text1", messageUtils.getSimpleMessage("email.application.update.weekly.text1.part1", locale));
-		model.put("text1", buildMessageWeeklyUpdates(newVersions, locale));
+		model.put("text1", buildMessageWeeklyUpdates(newVersions, key, locale));
 		setFollowMessages(locale, model);
 		setDonateMessage(locale, model);
 		model.put("rsstiptext", messageUtils.getSimpleMessage("email.application.update.tip", locale));
@@ -282,15 +266,19 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		}
 	}
 
-	private String buildMessageWeeklyUpdates(List<NewVersion> newVersions, Locale locale) {
+	private String buildMessageWeeklyUpdates(List<ApplicationVersion> newVersions, String key, Locale locale) {
 		StringBuilder message = new StringBuilder(messageUtils.getSimpleMessage("email.application.update.weekly.text1.part1", locale));
-		for (NewVersion newVersion : newVersions) {
-			message.append(messageUtils.getCustomMessage("email.application.update.weekly.text1.list.begin", new String[] { newVersion.getUpdateUrl().getUrl() }, locale));
-			message.append(messageUtils.getCustomMessage("email.application.update.weekly.text1.list.version", new String[] { newVersion.getApplicationName(), newVersion.getVersionNumber() }, locale));
+		for (ApplicationVersion newVersion : newVersions) {
+			message.append(messageUtils.getCustomMessage("email.application.update.weekly.text1.list.begin", new String[] { buildDownloadUrl(newVersion, key) }, locale));
+			message.append(messageUtils.getCustomMessage("email.application.update.weekly.text1.list.version", new String[] { newVersion.getApplication().getName(), newVersion.getVersionNumber() }, locale));
 			message.append(messageUtils.getSimpleMessage("email.application.update.weekly.text1.list.end", locale));
 		}
 		message.append(messageUtils.getSimpleMessage("email.application.update.weekly.text1.part2", locale));
 		return message.toString();
+	}
+
+	private String buildDownloadUrl(ApplicationVersion newVersion, String key) {
+		return messageUtils.getSimpleMessage("application.root.url") + "/applications/" + newVersion.getApplication().getApiName() + "/download?key=" + key;
 	}
 
 	@Override

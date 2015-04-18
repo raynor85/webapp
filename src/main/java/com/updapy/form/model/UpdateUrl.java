@@ -43,7 +43,7 @@ public class UpdateUrl {
 		this.osVersion = osVersion;
 	}
 
-	public String getKey() {
+	public String getMessageKey() {
 		return lang.name() + '.' + StringUtils.lowerCase(osVersion.name());
 	}
 
