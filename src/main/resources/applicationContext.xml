@@ -318,7 +318,6 @@
 		<ref bean="trustPortInternetSecurityRemoteRetriever" />
 		<ref bean="argenteUtilitiesRemoteRetriever" />
 		<ref bean="ashampooAntivirusRemoteRetriever" />
-		<ref bean="kmPlayerRemoteRetriever" />
 		<ref bean="baiduAntivirusRemoteRetriever" />
 		<ref bean="bazookaAdwareSpywareScannerRemoteRetriever" />
 		<ref bean="clipXRemoteRetriever" />

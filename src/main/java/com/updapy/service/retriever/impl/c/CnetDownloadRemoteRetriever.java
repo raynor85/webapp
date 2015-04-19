@@ -16,7 +16,7 @@ public class CnetDownloadRemoteRetriever implements RemoteRetriever {
 		String apiName = application.getApiName();
 		return apiName.equalsIgnoreCase("avast") || apiName.equalsIgnoreCase("slimdrivers") || apiName.equalsIgnoreCase("skype") || apiName.equalsIgnoreCase("advancedsystemcare") || apiName.equalsIgnoreCase("faststoneimageviewer") || apiName.equalsIgnoreCase("ytdvideodownloader") || apiName.equalsIgnoreCase("adawarefree") || apiName.equalsIgnoreCase("gommediaplayer") || apiName.equalsIgnoreCase("smartdefrag") || apiName.equalsIgnoreCase("virtualdj") || apiName.equalsIgnoreCase("photoscape")
 				|| apiName.equalsIgnoreCase("drivermax") || apiName.equalsIgnoreCase("primopdf") || apiName.equalsIgnoreCase("avgfreeantivirus") || apiName.equalsIgnoreCase("driverbooster") || apiName.equalsIgnoreCase("freeyoutubedownloader") || apiName.equalsIgnoreCase("objectdock") || apiName.equalsIgnoreCase("drwebcureit") || apiName.equalsIgnoreCase("spywareblaster") || apiName.equalsIgnoreCase("slimcleaner") || apiName.equalsIgnoreCase("malwarefighter")
-				|| apiName.equalsIgnoreCase("spywareterminator") || apiName.equalsIgnoreCase("wisecare365") || apiName.equalsIgnoreCase("pandafreeantivirus") || apiName.equalsIgnoreCase("iobituninstaller");
+				|| apiName.equalsIgnoreCase("spywareterminator") || apiName.equalsIgnoreCase("wisecare365") || apiName.equalsIgnoreCase("pandafreeantivirus") || apiName.equalsIgnoreCase("iobituninstaller") || apiName.equalsIgnoreCase("kmplayer");
 	}
 
 	@Override
