@@ -1507,169 +1507,197 @@
 }
 
 .sprite-360totalsecurity {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -5px -5px;
 }
 
 .sprite-actiona {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -79px -5px;
 }
 
 .sprite-argenteutilities {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -153px -5px;
 }
 
 .sprite-ashampooantivirus {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -227px -5px;
 }
 
 .sprite-baiduantivirus {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
-	width: 64px;
-	height: 64px;
-	background-position: -5px -79px;
-}
-
-.sprite-bandizip {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
-	width: 64px;
-	height: 64px;
-	background-position: -79px -79px;
-}
-
-.sprite-bazookaadwarespywarescanner {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
-	width: 64px;
-	height: 64px;
-	background-position: -153px -79px;
-}
-
-.sprite-clipx {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
-	width: 64px;
-	height: 64px;
-	background-position: -227px -79px;
-}
-
-.sprite-cloudsystembooster {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
-	width: 64px;
-	height: 64px;
-	background-position: -5px -153px;
-}
-
-.sprite-comodointernetsecurity {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
-	width: 64px;
-	height: 64px;
-	background-position: -79px -153px;
-}
-
-.sprite-driverfusion {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
-	width: 64px;
-	height: 64px;
-	background-position: -153px -153px;
-}
-
-.sprite-foxitreader {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
-	width: 64px;
-	height: 64px;
-	background-position: -227px -153px;
-}
-
-.sprite-honeyview {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
-	width: 64px;
-	height: 64px;
-	background-position: -5px -227px;
-}
-
-.sprite-junkwareremovaltool {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
-	width: 64px;
-	height: 64px;
-	background-position: -79px -227px;
-}
-
-.sprite-lockhunter {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
-	width: 64px;
-	height: 64px;
-	background-position: -153px -227px;
-}
-
-.sprite-passwordsafe {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
-	width: 64px;
-	height: 64px;
-	background-position: -227px -227px;
-}
-
-.sprite-pestudio {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -301px -5px;
 }
 
-.sprite-privazer {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
+.sprite-bandizip {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -5px -79px;
+}
+
+.sprite-bazookaadwarespywarescanner {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -79px -79px;
+}
+
+.sprite-clipx {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -153px -79px;
+}
+
+.sprite-cloudsystembooster {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -227px -79px;
+}
+
+.sprite-comodointernetsecurity {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -301px -79px;
 }
 
-.sprite-rjtexted {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
+.sprite-driverfusion {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -5px -153px;
+}
+
+.sprite-foxitreader {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -79px -153px;
+}
+
+.sprite-honeyview {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -153px -153px;
+}
+
+.sprite-iobituninstaller {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -227px -153px;
+}
+
+.sprite-junkwareremovaltool {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -301px -153px;
 }
 
-.sprite-slimjet {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
+.sprite-lockhunter {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -5px -227px;
+}
+
+.sprite-pandafreeantivirus {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -79px -227px;
+}
+
+.sprite-passwordsafe {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -153px -227px;
+}
+
+.sprite-pestudio {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -227px -227px;
+}
+
+.sprite-privazer {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -301px -227px;
 }
 
-.sprite-spyshelterpersonal {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
+.sprite-rjtexted {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -5px -301px;
 }
 
-.sprite-spywareterminator {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
+.sprite-slimjet {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -79px -301px;
 }
 
-.sprite-trustportinternetsecurity {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
+.sprite-spyshelterpersonal {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -153px -301px;
 }
 
-.sprite-vivaldi {
-	background: url(../img/application/sprite/08-5.png) no-repeat top left;
+.sprite-spywareterminator {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -227px -301px;
+}
+
+.sprite-trustportinternetsecurity {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -301px -301px;
+}
+
+.sprite-vivaldi {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -375px -5px;
+}
+
+.sprite-winamp {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -375px -79px;
+}
+
+.sprite-zonealarmfirewall {
+	background: url(../img/application/sprite/08-6.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -375px -153px;
 }

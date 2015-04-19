@@ -329,6 +329,8 @@
 		<ref bean="actionaRemoteRetriever" />
 		<ref bean="cloudSystemBoosterRemoteRetriever" />
 		<ref bean="vivaldiRemoteRetriever" />
+		<ref bean="zoneAlarmFirewallRemoteRetriever" />
+		<ref bean="winampRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
