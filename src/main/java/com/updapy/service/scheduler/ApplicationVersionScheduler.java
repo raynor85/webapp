@@ -90,7 +90,7 @@ public class ApplicationVersionScheduler {
 			String currentVersion = (latestVersion == null) ? "undefined" : latestVersion.getVersionNumber();
 			String remoteVersion = (latestRemoteVersion == null) ? "undefined" : latestRemoteVersion.getVersionNumber();
 			log.info("Current version: '{}'", currentVersion);
-			log.info("Remote version: '{}'", remoteVersion);
+			log.info("Remote version : '{}'", remoteVersion);
 		}
 
 		if (latestVersion == null && latestRemoteVersion != null) {

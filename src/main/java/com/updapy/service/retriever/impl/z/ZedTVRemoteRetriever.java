@@ -39,7 +39,7 @@ public class ZedTVRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
 		try {
-			return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("a[href*=.exe]").get(0).attr("href").replace("?f=", "f/");
+			return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("a[href*=.exe]").get(0).attr("href").replace("?f=", "fic/");
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
