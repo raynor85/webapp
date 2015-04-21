@@ -181,7 +181,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- KMPlayer
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/KMPlayer/3000-13632_4-10659939.html', 'http://www.kmplayer.com/', 'kmplayer.png', 'KMPlayer', 'kmplayer', false, 'VIDEO', 'FREE');
 -- Audacity
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://audacity.sourceforge.net/download/windows', 'http://audacity.sourceforge.net/', 'audacity.png', 'Audacity', 'audacity', false, 'MUSIC', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://sourceforge.net/p/audacity/activity/feed', 'http://audacity.sourceforge.net/', 'audacity.png', 'Audacity', 'audacity', false, 'MUSIC', 'FREE');
 -- RoboForm
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.roboform.com/download', 'http://www.roboform.com/', 'roboform.png', 'RoboForm', 'roboform', false, 'TOOLS', 'FREE');
 -- USB Disk Security

@@ -173,6 +173,7 @@ public class AdministrationController {
 		modelAndView.addObject("numberOfAccountDeletions", accountRemovalService.getNumberOfAccountDeletions());
 		modelAndView.addObject("topFollowedApplications", applicationService.getNbTopFollowedApplications(25));
 		modelAndView.addObject("topFollowers", userService.getNbTopFollowers(10));
+		modelAndView.addObject("latestUserCreations", userService.getLatestNbUsers(5));
 		modelAndView.addObject("latestAccountDeletions", accountRemovalService.getLatestNbAccountRemovals(5));
 		return addNotifications(user, modelAndView);
 	}

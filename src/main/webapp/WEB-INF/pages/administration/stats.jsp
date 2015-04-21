@@ -64,6 +64,39 @@
 				</div>
 				<br />
 				<h3>
+					<spring:message code="stats.latestUserCreations" />
+				</h3>
+				<hr>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr class="active">
+								<th><spring:message code="stats.table.latestUserCreations.head.creationDate" /> <i class="fa fa-sort-desc"></i></th>
+								<th><spring:message code="stats.table.latestUserCreations.head.active" /></th>
+								<th><spring:message code="stats.table.latestUserCreations.head.name" /></th>
+								<th><spring:message code="stats.table.latestUserCreations.head.email" /></th>
+								<th><spring:message code="stats.table.latestUserCreations.head.langEmail" /></th>
+								<th><spring:message code="stats.table.latestUserCreations.head.langUpdate" /></th>
+								<th><spring:message code="stats.table.latestUserCreations.head.socialMediaService" /></th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${latestUserCreations}" var="latestUserCreation">
+								<tr>
+									<td><fmt:formatDate value="${latestUserCreation.creationDate}" type="both" timeStyle="short" /></td>
+									<td>${latestUserCreation.active}</td>
+									<td>${latestUserCreation.name}</td>
+									<td>${latestUserCreation.email}</td>
+									<td>${latestUserCreation.langEmail}</td>
+									<td>${latestUserCreation.langUpdate}</td>
+									<td>${latestUserCreation.socialMediaService}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+				<br />
+				<h3>
 					<spring:message code="stats.latestAccountDeletions" />
 				</h3>
 				<hr>

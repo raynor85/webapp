@@ -34,4 +34,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	Long countByActiveTrueAndSocialMediaService(SocialMediaService socialMediaService);
 
+	List<User> findByOrderByCreationDateDesc(Pageable pageable);
 }

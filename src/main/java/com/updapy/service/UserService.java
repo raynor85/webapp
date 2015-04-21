@@ -77,7 +77,7 @@ public interface UserService {
 
 	UpdateUrl getDownloadUrlMatchingSettings(User user, ApplicationVersion version);
 
-	List<UpdateUrl> getOtherDownloadUrls(UpdateUrl defaultUpdateUrl, ApplicationVersion version) ;
+	List<UpdateUrl> getOtherDownloadUrls(UpdateUrl defaultUpdateUrl, ApplicationVersion version);
 
 	boolean isMessageDismissed(User user, TypeHelpMessage typeHelpMessage);
 
@@ -114,5 +114,7 @@ public interface UserService {
 	Long getNumberOfUsersInactive();
 
 	List<Follower> getNbTopFollowers(int nb);
+
+	List<User> getLatestNbUsers(int nb);
 
 }

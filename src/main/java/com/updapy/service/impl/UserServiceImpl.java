@@ -722,4 +722,9 @@ public class UserServiceImpl implements UserService {
 		return userRepository.countByActiveTrueAndSocialMediaService(socialMediaService);
 	}
 
+	@Override
+	public List<User> getLatestNbUsers(int nb) {
+		return userRepository.findByOrderByCreationDateDesc(new PageRequest(0, nb));
+	}
+
 }
