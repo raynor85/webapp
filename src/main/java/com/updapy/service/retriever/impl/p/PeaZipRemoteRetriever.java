@@ -28,7 +28,7 @@ public class PeaZipRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
 		try {
-			return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE_64_BITS).select("a[href*=.exe][href*=peazip.org]").first().attr("href");
+			return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE_64_BITS).select("a[href*=.exe]").first().attr("href");
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -41,7 +41,7 @@ public class PeaZipRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a[href*=.exe][href*=peazip.org]").first().attr("href");
+		return doc.select("a[href*=.exe]").first().attr("href");
 	}
 
 	@Override
