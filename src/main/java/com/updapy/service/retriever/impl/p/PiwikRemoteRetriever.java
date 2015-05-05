@@ -1,6 +1,5 @@
 package com.updapy.service.retriever.impl.p;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -33,12 +32,12 @@ public class PiwikRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a#startDownloadButton").attr("href");
+		return doc.select("a.btn-download").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("a#startDownloadButton").html(), "<small>.*$"));
+		return ParsingUtils.extractVersionNumberFromString(ParsingUtils.selectFromPattern(doc.select("a.btn-download").html(), "^.*<span>"));
 	}
 
 }

@@ -117,7 +117,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Sublime Text 2
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.sublimetext.com/2', 'http://www.sublimetext.com/', 'sublimetext2.png', 'Sublime Text 2', 'sublimetext2', false, 'DEVELOPMENT', 'FREE');
 -- Balsamiq
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://s3.amazonaws.com/build_production/mockups-desktop/version.jsonp', 'https://balsamiq.com/', 'balsamiq.png', 'Balsamiq', 'balsamiq', false, 'DEVELOPMENT', 'COMMERCIAL');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://s3.amazonaws.com/build_production/mockups-desktop/version.jsonp', 'https://balsamiq.com/', 'balsamiq.png', 'Balsamiq', 'balsamiq', false, 'DEVELOPMENT', 'COMMERCIAL');
 -- PenguiNet
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.siliconcircus.com/', 'http://www.siliconcircus.com/', 'penguinet.png', 'PenguiNet', 'penguinet', false, 'INTERNET', 'COMMERCIAL');
 -- Unlocker
