@@ -1,5 +1,6 @@
 package com.updapy.service.retriever.impl.v;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +23,7 @@ public class VivaldiRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) {
-		return doc.select("a:contains(Windows 64bit)[href*=.exe]").attr("href");
+		return doc.select("div.platform-windows").select("a:contains(64bit)[href*=.exe]").attr("href");
 	}
 
 	@Override
@@ -32,13 +33,13 @@ public class VivaldiRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a:contains(Windows 32bit)[href*=.exe]").attr("href");
+		return doc.select("div.platform-windows").select("a:contains(32bit)[href*=.exe]").attr("href");
 
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(ParsingUtils.selectFromPattern(doc.select("p.versioninfo").text(), "v.* -"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.replacePattern(ParsingUtils.selectFromPattern(doc.select("div.platform-windows").select("a:contains(32bit)").attr("href"), "Vivaldi_.*.exe"), "TP", "0."));
 	}
 
 }

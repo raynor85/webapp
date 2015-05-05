@@ -1,6 +1,7 @@
 package com.updapy.service.retriever.impl.n;
 
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
@@ -32,12 +33,16 @@ public class NetFrameworkRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a:contains(Install .NET Framework)").get(0).attr("href");
+		return getDownloadLink(doc).attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("a:contains(Install .NET Framework)").get(0).text());
+		return ParsingUtils.extractVersionNumberFromString(getDownloadLink(doc).text());
+	}
+
+	private Element getDownloadLink(Document doc) {
+		return doc.select("a:contains(offline installer)").get(0);
 	}
 
 }

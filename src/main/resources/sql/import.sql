@@ -135,7 +135,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- HeidiSQL
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.heidisql.com/download.php', 'http://www.heidisql.com/', 'heidisql.png', 'HeidiSQL', 'heidisql', false, 'DEVELOPMENT', 'FREE');
 -- PDFsam
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.pdfsam.org/download/', 'http://www.pdfsam.org/', 'pdfsam.png', 'PDFsam', 'pdfsam', false, 'TEXT', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.pdfsam.org/basic-version/', 'http://www.pdfsam.org/', 'pdfsam.png', 'PDFsam', 'pdfsam', false, 'TEXT', 'FREE');
 -- Advanced SystemCare
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/Advanced-SystemCare-Free/3000-2086_4-10407614.html', 'http://www.iobit.com/advancedsystemcareper.php', 'advancedsystemcare.png', 'Advanced SystemCare', 'advancedsystemcare', false, 'SECURITY', 'FREE');
 -- IrfanView
@@ -307,7 +307,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- FeedDemon
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.feeddemon.com/', 'http://www.feeddemon.com/', 'feeddemon.png', 'FeedDemon', 'feeddemon', false, 'SOCIAL_COMMUNICATION', 'FREE');
 -- .NET Framework
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.microsoft.com/net/downloads', 'http://www.microsoft.com/net', 'netframework.png', '.NET Framework', 'netframework', false, 'SYSTEM_OTHER', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://msdn.microsoft.com/en-us/library/5a4x27ek%28v=vs.110%29.aspx', 'http://www.microsoft.com/net', 'netframework.png', '.NET Framework', 'netframework', false, 'SYSTEM_OTHER', 'FREE');
 -- WinDjView
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://windjview.sourceforge.net/', 'http://windjview.sourceforge.net/', 'windjview.png', 'WinDjView', 'windjview', false, 'IMAGE', 'FREE');
 -- Sumatra PDF
@@ -495,7 +495,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Cloud System Booster
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.anvisoft.com/cloud-system-booster.html', 'http://www.anvisoft.com/cloud-system-booster.html', 'cloudsystembooster.png', 'Cloud System Booster', 'cloudsystembooster', false, 'SECURITY', 'COMMERCIAL');
 -- Vivaldi
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://vivaldi.com/', 'https://vivaldi.com/', 'vivaldi.png', 'Vivaldi', 'vivaldi', false, 'INTERNET', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://vivaldi.com/download/', 'https://vivaldi.com/', 'vivaldi.png', 'Vivaldi', 'vivaldi', false, 'INTERNET', 'FREE');
 --  360 Total Security
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.360totalsecurity.com/en/download-free-antivirus/360-total-security/', 'http://www.360totalsecurity.com/', '360totalsecurity.png', '360 Total Security', '360totalsecurity', false, 'SECURITY', 'FREE');
 -- Winamp

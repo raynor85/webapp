@@ -75,7 +75,7 @@ public class PdfsamRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("span[itemprop=softwareVersion]").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("div#content").select("p:contains(PDFsam basic v)").first().text());
 	}
 
 }
