@@ -1,6 +1,7 @@
 package com.updapy.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -10,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,9 +21,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.updapy.form.ajax.JsonResponse;
+import com.updapy.form.model.AddVersion;
 import com.updapy.form.model.AdministrationRetrievalError;
 import com.updapy.form.model.DeleteRetrievalError;
 import com.updapy.form.model.SendPersonalMessage;
+import com.updapy.model.ApplicationVersion;
 import com.updapy.model.RetrievalError;
 import com.updapy.model.User;
 import com.updapy.model.enumeration.Lang;
@@ -31,6 +37,7 @@ import com.updapy.service.ProcedureService;
 import com.updapy.service.RetrievalErrorService;
 import com.updapy.service.UserService;
 import com.updapy.service.scheduler.ApplicationVersionScheduler;
+import com.updapy.util.DozerHelper;
 import com.updapy.util.JsonResponseUtils;
 import com.updapy.util.MessageUtils;
 
@@ -40,6 +47,9 @@ public class AdministrationController {
 
 	@Autowired
 	private JsonResponseUtils jsonResponseUtils;
+
+	@Autowired
+	private DozerHelper dozerHelper;
 
 	@Autowired
 	private ApplicationVersionScheduler applicationVersionScheduler;
@@ -64,6 +74,14 @@ public class AdministrationController {
 
 	@Autowired
 	private MessageUtils messageUtils;
+
+	@Autowired
+	private Validator addVersionCustomValidator;
+
+	@InitBinder("addVersion")
+	private void initBinderAddVersion(WebDataBinder binder) {
+		binder.addValidators(addVersionCustomValidator);
+	}
 
 	@RequestMapping({ "/", "" })
 	public ModelAndView administrationPage() {
@@ -153,6 +171,29 @@ public class AdministrationController {
 		return jsonResponseUtils.buildSuccessfulJsonResponse("administration.action.email.send.confirm");
 	}
 
+	@RequestMapping(value = "/version")
+	public ModelAndView versionPage() {
+		User user = userService.getCurrentUserLight();
+		ModelAndView modelAndView = new ModelAndView("add-version");
+		modelAndView.addObject("addVersion", new AddVersion());
+		return addNotifications(user, modelAndView);
+	}
+
+	@RequestMapping(value = "/version/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody
+	JsonResponse addVersion(@Valid @RequestBody AddVersion addVersion, BindingResult result) {
+		if (result.hasErrors()) {
+			return jsonResponseUtils.buildFailedJsonResponseFromErrorObject(result.getAllErrors());
+		} else {
+			ApplicationVersion version = dozerHelper.map(addVersion, ApplicationVersion.class);
+			version.setVersionDate(new Date());
+			version.setApplication(applicationService.getApplication(addVersion.getApiName()));
+			// Add the version
+			applicationService.addVersion(version);
+			return jsonResponseUtils.buildSuccessfulJsonResponse("administration.addVersion.confirm");
+		}
+	}
+
 	@RequestMapping(value = "/stats")
 	public ModelAndView showStats() {
 		User user = userService.getCurrentUserLight();
@@ -184,7 +225,7 @@ public class AdministrationController {
 		ModelAndView modelAndView = new ModelAndView("message");
 		SendPersonalMessage sendPersonalMessage = new SendPersonalMessage();
 		sendPersonalMessage.setLangEmail(Lang.valueOf(user.getLangEmail().toLanguageTag()));
-		sendPersonalMessage.setMessage(messageUtils.getSimpleMessage("message.field.message.sample"));
+		sendPersonalMessage.setMessage(messageUtils.getSimpleMessage("administration.message.field.message.sample"));
 		modelAndView.addObject("sendPersonalMessage", sendPersonalMessage);
 		return addNotifications(user, modelAndView);
 	}
@@ -198,9 +239,9 @@ public class AdministrationController {
 			// Send the message via email
 			boolean isSent = emailSenderService.sendPersonalEmail(sendPersonalMessage.getEmail(), sendPersonalMessage.getSubject(), sendPersonalMessage.getTitle(), sendPersonalMessage.getMessage(), new Locale(sendPersonalMessage.getLangEmail().name()));
 			if (!isSent) {
-				return jsonResponseUtils.buildFailedJsonResponse("message.send.error");
+				return jsonResponseUtils.buildFailedJsonResponse("administration.message.send.error");
 			}
-			return jsonResponseUtils.buildSuccessfulJsonResponse("message.send.confirm");
+			return jsonResponseUtils.buildSuccessfulJsonResponse("administration.message.send.confirm");
 		}
 	}
 

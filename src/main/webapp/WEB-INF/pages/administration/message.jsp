@@ -9,18 +9,18 @@
 	<div class="row">
 		<div class="col-sm-10 col-md-9 col-lg-8 col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
 			<h2 class="text-center">
-				<spring:message code="message.title" />
+				<spring:message code="administration.message.title" />
 			</h2>
 			<p class="text-muted text-center">
-				<spring:message code="message.description" />
+				<spring:message code="administration.message.description" />
 			</p>
 			<div class="form-white-contact form-contact">
 				<form:form id="sendPersonalMessageForm" commandName="sendPersonalMessage" action="${root}/administration/message/send">
 					<div id="sendPersonalMessageResponse" style="margin-top: 10px;">&nbsp;</div>
 					<div class="form-group" style="margin-top: 20px;">
-						<label for="email"><spring:message code="message.field.email" /> </label>
+						<label for="email"><spring:message code="administration.message.field.email" /> </label>
 						<c:set var="emailPlaceholder">
-							<spring:message code="message.field.email.tip" />
+							<spring:message code="administration.message.field.email.tip" />
 						</c:set>
 						<div class="input-group">
 							<span class="input-group-addon">@</span>
@@ -28,41 +28,41 @@
 						</div>
 					</div>
 					<div class="form-group" style="margin-top: 20px;">
-						<label for="langEmail"><spring:message code="message.field.langEmail" /></label>
+						<label for="langEmail"><spring:message code="administration.message.field.langEmail" /></label>
 						<form:select class="form-control selectpicker" path="langEmail" id="langEmail">
 							<c:set var="englishLangEmail">
-								<spring:message code="message.field.langEmail.english" />
+								<spring:message code="administration.message.field.langEmail.english" />
 							</c:set>
 							<c:set var="frenchLangEmail">
-								<spring:message code="message.field.langEmail.french" />
+								<spring:message code="administration.message.field.langEmail.french" />
 							</c:set>
 							<form:option value="en" label="${englishLangEmail}" htmlEscape="false" />
 							<form:option value="fr" label="${frenchLangEmail}" htmlEscape="false" />
 						</form:select>
 					</div>
 					<div class="form-group" style="margin-top: 20px;">
-						<label for="subject"><spring:message code="message.field.subject" /> </label>
+						<label for="subject"><spring:message code="administration.message.field.subject" /> </label>
 						<c:set var="subjectPlaceholder">
-							<spring:message code="message.field.subject.tip" />
+							<spring:message code="administration.message.field.subject.tip" />
 						</c:set>
-						<form:input path="subject" class="form-control show" id="subject" type="subject" placeholder="${subjectPlaceholder}" />
+						<form:input path="subject" class="form-control show" id="subject" placeholder="${subjectPlaceholder}" />
 					</div>
 					<div class="form-group" style="margin-top: 20px;">
-						<label for="title"><spring:message code="message.field.title" /> </label>
+						<label for="title"><spring:message code="administration.message.field.title" /> </label>
 						<c:set var="titlePlaceholder">
-							<spring:message code="message.field.title.tip" />
+							<spring:message code="administration.message.field.title.tip" />
 						</c:set>
-						<form:input path="title" class="form-control show" id="title" type="title" placeholder="${titlePlaceholder}" />
+						<form:input path="title" class="form-control show" id="title" placeholder="${titlePlaceholder}" />
 					</div>
 					<div class="form-group">
-						<label for="message"><spring:message code="message.field.message" /> </label>
+						<label for="message"><spring:message code="administration.message.field.message" /> </label>
 						<c:set var="messagePlaceholder">
-							<spring:message code="message.field.message.tip" />
+							<spring:message code="administration.message.field.message.tip" />
 						</c:set>
 						<form:textarea path="message" class="form-control" id="message" rows="5" placeholder="${messagePlaceholder}" htmlEscape="false" />
 					</div>
 					<button type="button" id="sendPersonalMessageButton" class="btn-block btn-color ladda-button" data-style="zoom-in" onclick="ajaxSendPersonalMessage();">
-						<spring:message code="message.send.button" />
+						<spring:message code="administration.message.send.button" />
 					</button>
 				</form:form>
 				<div class="form-contact">

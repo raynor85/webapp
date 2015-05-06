@@ -22,6 +22,9 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 	@Autowired
 	private EmailSenderService emailSenderService;
 
+	// Hardcoded list of ignored application (= no email sent except after 50 failures)
+	private static final List<String> ignoredApplications = Arrays.asList("dooscape", "cdburnerxp", "balsamiq", "teamspeakserver", "teamspeakclient");
+
 	@Override
 	public List<RetrievalError> getAllRetrievalErrors() {
 		return retrievalErrorRepository.findByOrderByCountDesc();
@@ -71,7 +74,8 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 		List<RetrievalError> retrievalErrors = retrievalErrorRepository.findByCountGreaterThanEqual(10); // 10 errors really mean there is a problem!
 		retrievalErrors.addAll(retrievalErrorRepository.findByTypeLastErrorInAndCountGreaterThanEqual(Arrays.asList(TypeRetrievalError.LOCAL_URL_VERSION_ERROR), 2)); // 2 errors is enough in case of "local" URL
 		for (RetrievalError retrievalError : retrievalErrors) {
-			if (!retrievalError.getApplication().getApiName().startsWith("teamspeak") || (retrievalError.getApplication().getApiName().startsWith("teamspeak") && retrievalError.getCount() >= 40)) {
+			boolean isIgnored = ignoredApplications.contains(retrievalError.getApplication().getApiName());
+			if (!isIgnored || (isIgnored && retrievalError.getCount() >= 50)) {
 				boolean hasBeenSent = false;
 				if (TypeRetrievalError.REMOTE_URL_BASE_ERROR.equals(retrievalError.getTypeLastError())) {
 					hasBeenSent = emailSenderService.sendAdminConnectionError(retrievalError.getApplication().getGlobalUrl());

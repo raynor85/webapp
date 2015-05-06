@@ -66,7 +66,6 @@ public class SettingsController {
 		binder.addValidators(changeEmailUserCustomValidator);
 	}
 
-
 	@RequestMapping({ "/", "" })
 	public ModelAndView settingsPage() {
 		User user = userService.getCurrentUserWithSettings();

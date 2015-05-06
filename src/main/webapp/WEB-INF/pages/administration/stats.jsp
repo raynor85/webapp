@@ -6,26 +6,26 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<h3>
-				<spring:message code="stats.metrics.title" />
+				<spring:message code="administration.stats.metrics.title" />
 			</h3>
 			<hr>
 			<ul class="fa-ul">
-				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <spring:message code="stats.metrics.numberOfApplications" arguments="${numberOfApplications},${numberOfApplicationsInactive}" /></li>
-				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <spring:message code="stats.metrics.numberOfUsers" arguments="${numberOfUsers},${numberOfUsersInactive}" /></li>
-				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <spring:message code="stats.metrics.numberOfSocialUsers" arguments="${numberOfSocialUsers},${numberOfFacebookSocialUsers},${numberOfLinkedInSocialUsers},${numberOfGoogleSocialUsers},${numberOfTwitterSocialUsers}" /></li>
-				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <spring:message code="stats.metrics.numberOfAccountDeletions" arguments="${numberOfAccountDeletions}" /></li>
+				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <spring:message code="administration.stats.metrics.numberOfApplications" arguments="${numberOfApplications},${numberOfApplicationsInactive}" /></li>
+				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <spring:message code="administration.stats.metrics.numberOfUsers" arguments="${numberOfUsers},${numberOfUsersInactive}" /></li>
+				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <spring:message code="administration.stats.metrics.numberOfSocialUsers" arguments="${numberOfSocialUsers},${numberOfFacebookSocialUsers},${numberOfLinkedInSocialUsers},${numberOfGoogleSocialUsers},${numberOfTwitterSocialUsers}" /></li>
+				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <spring:message code="administration.stats.metrics.numberOfAccountDeletions" arguments="${numberOfAccountDeletions}" /></li>
 			</ul>
 			<br />
 			<h3>
-				<spring:message code="stats.topFollowedApps" />
+				<spring:message code="administration.stats.topFollowedApps" />
 			</h3>
 			<hr>
 			<div class="table-responsive">
 				<table class="table">
 					<thead>
 						<tr class="active">
-							<th><spring:message code="stats.table.topFollowedApps.head.application" /></th>
-							<th width="250px"><spring:message code="stats.table.topFollowedApps.head.nbFollowers" /> <i class="fa fa-sort-numeric-desc"></i></th>
+							<th><spring:message code="administration.stats.table.topFollowedApps.head.application" /></th>
+							<th width="250px"><spring:message code="administration.stats.table.topFollowedApps.head.nbFollowers" /> <i class="fa fa-sort-numeric-desc"></i></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -39,16 +39,16 @@
 				</table>
 				<br />
 				<h3>
-					<spring:message code="stats.topFollowers" />
+					<spring:message code="administration.stats.topFollowers" />
 				</h3>
 				<hr>
 				<div class="table-responsive">
 					<table class="table">
 						<thead>
 							<tr class="active">
-								<th><spring:message code="stats.table.topFollowers.head.follower.name" /></th>
-								<th><spring:message code="stats.table.topFollowers.head.follower.email" /></th>
-								<th width="250px"><spring:message code="stats.table.topFollowers.head.nbApplications" /> <i class="fa fa-sort-numeric-desc"></i></th>
+								<th><spring:message code="administration.stats.table.topFollowers.head.follower.name" /></th>
+								<th><spring:message code="administration.stats.table.topFollowers.head.follower.email" /></th>
+								<th width="250px"><spring:message code="administration.stats.table.topFollowers.head.nbApplications" /> <i class="fa fa-sort-numeric-desc"></i></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -64,20 +64,20 @@
 				</div>
 				<br />
 				<h3>
-					<spring:message code="stats.latestUserCreations" />
+					<spring:message code="administration.stats.latestUserCreations" />
 				</h3>
 				<hr>
 				<div class="table-responsive">
 					<table class="table">
 						<thead>
 							<tr class="active">
-								<th><spring:message code="stats.table.latestUserCreations.head.creationDate" /> <i class="fa fa-sort-desc"></i></th>
-								<th><spring:message code="stats.table.latestUserCreations.head.active" /></th>
-								<th><spring:message code="stats.table.latestUserCreations.head.name" /></th>
-								<th><spring:message code="stats.table.latestUserCreations.head.email" /></th>
-								<th><spring:message code="stats.table.latestUserCreations.head.langEmail" /></th>
-								<th><spring:message code="stats.table.latestUserCreations.head.langUpdate" /></th>
-								<th><spring:message code="stats.table.latestUserCreations.head.socialMediaService" /></th>
+								<th><spring:message code="administration.stats.table.latestUserCreations.head.creationDate" /> <i class="fa fa-sort-desc"></i></th>
+								<th><spring:message code="administration.stats.table.latestUserCreations.head.active" /></th>
+								<th><spring:message code="administration.stats.table.latestUserCreations.head.name" /></th>
+								<th><spring:message code="administration.stats.table.latestUserCreations.head.email" /></th>
+								<th><spring:message code="administration.stats.table.latestUserCreations.head.langEmail" /></th>
+								<th><spring:message code="administration.stats.table.latestUserCreations.head.langUpdate" /></th>
+								<th><spring:message code="administration.stats.table.latestUserCreations.head.socialMediaService" /></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -97,15 +97,15 @@
 				</div>
 				<br />
 				<h3>
-					<spring:message code="stats.latestAccountDeletions" />
+					<spring:message code="administration.stats.latestAccountDeletions" />
 				</h3>
 				<hr>
 				<div class="table-responsive">
 					<table class="table">
 						<thead>
 							<tr class="active">
-								<th><spring:message code="stats.table.latestAccountDeletions.head.removeDate" /> <i class="fa fa-sort-desc"></i></th>
-								<th><spring:message code="stats.table.latestAccountDeletions.head.feedback" /></th>
+								<th><spring:message code="administration.stats.table.latestAccountDeletions.head.removeDate" /> <i class="fa fa-sort-desc"></i></th>
+								<th><spring:message code="administration.stats.table.latestAccountDeletions.head.feedback" /></th>
 							</tr>
 						</thead>
 						<tbody>

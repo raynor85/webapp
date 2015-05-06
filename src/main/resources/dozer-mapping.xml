@@ -99,4 +99,9 @@
 		</field>
 	</mapping>
 
+	<mapping map-empty-string="false">
+		<class-a>com.updapy.form.model.AddVersion</class-a>
+		<class-b>com.updapy.model.ApplicationVersion</class-b>
+	</mapping>
+
 </mappings>

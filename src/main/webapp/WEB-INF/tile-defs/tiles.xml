@@ -51,12 +51,6 @@
 		<put-attribute name="content" value="/WEB-INF/pages/contact/contact.jsp" />
 	</definition>
 
-	<!-- Message: email to users -->
-	<definition name="message" extends="baseLayoutInverse">
-		<put-attribute name="title" value="message.title" />
-		<put-attribute name="content" value="/WEB-INF/pages/administration/message.jsp" />
-	</definition>
-
 	<!-- FAQ -->
 	<definition name="faq" extends="baseLayoutNormal">
 		<put-attribute name="title" value="faq.title" />
@@ -64,15 +58,25 @@
 	</definition>
 
 	<!-- Administration -->
+	<!-- Main -->
 	<definition name="administration" extends="baseLayoutNormal">
 		<put-attribute name="title" value="administration.title" />
 		<put-attribute name="content" value="/WEB-INF/pages/administration/administration.jsp" />
 	</definition>
-
+	<!-- Add version -->
+	<definition name="add-version" extends="baseLayoutInverse">
+		<put-attribute name="title" value="administration.addVersion.title" />
+		<put-attribute name="content" value="/WEB-INF/pages/administration/add-version.jsp" />
+	</definition>
 	<!-- Stats -->
 	<definition name="stats" extends="baseLayoutNormal">
-		<put-attribute name="title" value="stats.title" />
+		<put-attribute name="title" value="administration.stats.title" />
 		<put-attribute name="content" value="/WEB-INF/pages/administration/stats.jsp" />
+	</definition>
+	<!-- Message: email to users -->
+	<definition name="message" extends="baseLayoutInverse">
+		<put-attribute name="title" value="administration.message.title" />
+		<put-attribute name="content" value="/WEB-INF/pages/administration/message.jsp" />
 	</definition>
 
 	<!-- Privacy -->
