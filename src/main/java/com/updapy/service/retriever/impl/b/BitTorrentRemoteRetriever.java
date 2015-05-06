@@ -15,6 +15,7 @@ import com.updapy.util.ParsingUtils;
 public class BitTorrentRemoteRetriever implements RemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.bittorrent.com/";
+	private static final String DOWNLOAD_WEBSITE = ROOT_DOWNLOAD_WEBSITE + "downloads/win";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -39,15 +40,19 @@ public class BitTorrentRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
 		try {
-			return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download Now)").attr("href"))).select("a:contains(click here)").attr("href");
+			return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("a:contains(Download Now)").attr("href"));
 		} catch (IOException e) {
-			return null;
+			throw new RuntimeException(e);
 		}
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.replacePattern(doc.select("h3.maindownloadtitle:contains(Stable)").text(), "(B|b)uild", "."));
+		try {
+			return ParsingUtils.extractVersionNumberFromString(StringUtils.replacePattern(StringUtils.removePattern(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(doc.select("a:contains(Current Stable Release)").attr("href")).select("div:contains(Version)").text(), "^.*Version"), "(B|b)uild", "."));
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }

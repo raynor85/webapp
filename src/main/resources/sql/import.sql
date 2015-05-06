@@ -163,9 +163,9 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- WinZip
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.winzip.com/dprob.html', 'http://www.winzip.com/', 'winzip.png', 'WinZip', 'winzip', false, 'TOOLS', 'COMMERCIAL');
 -- BitTorrent
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.bittorrent.com/downloads/win', 'http://www.bittorrent.com/', 'bittorrent.png', 'BitTorrent', 'bittorrent', false, 'INTERNET', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://releasenotes.bittorrent.com/', 'http://www.bittorrent.com/', 'bittorrent.png', 'BitTorrent', 'bittorrent', false, 'INTERNET', 'FREE');
 -- uTorrent
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.utorrent.com/downloads/win', 'http://www.utorrent.com/', 'utorrent.png', 'uTorrent', 'utorrent', false, 'INTERNET', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://releasenotes.utorrent.com/', 'http://www.utorrent.com/', 'utorrent.png', 'uTorrent', 'utorrent', false, 'INTERNET', 'FREE');
 -- Time 4 Popcorn
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://popcorn-time.se', 'http://popcorn-time.se/', 'popcorntime.png', 'Time 4 Popcorn', 'time4popcorn', false, 'VIDEO', 'FREE');
 -- Opera
