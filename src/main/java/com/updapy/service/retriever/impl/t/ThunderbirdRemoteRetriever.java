@@ -1,6 +1,7 @@
 package com.updapy.service.retriever.impl.t;
 
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
@@ -27,17 +28,24 @@ public class ThunderbirdRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlFr(Document doc) {
-		return doc.select("#fr").select("a.download-windows").attr("href");
+		return doc.select("#fr").select("td.win").select("a").attr("href");
 	}
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("#en-US").select("a.download-windows").attr("href");
+		return getDownloadLink(doc);
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("td.curVersion").first().text());
+		Element version = doc.select("td.curVersion").first();
+		if (version == null) {
+			return ParsingUtils.extractVersionNumberFromString(getDownloadLink(doc));
+		}
+		return ParsingUtils.extractVersionNumberFromString(version.text());
 	}
 
+	private String getDownloadLink(Document doc) {
+		return doc.select("#en-US").select("td.win").select("a").attr("href");
+	}
 }

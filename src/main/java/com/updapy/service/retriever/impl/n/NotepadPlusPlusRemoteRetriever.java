@@ -10,6 +10,8 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class NotepadPlusPlusRemoteRetriever implements RemoteRetriever {
 
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://notepad-plus-plus.org/";
+
 	@Override
 	public boolean support(ApplicationReference application) {
 		return application.getApiName().equalsIgnoreCase("notepadplusplus");
@@ -32,7 +34,7 @@ public class NotepadPlusPlusRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return doc.select("a:contains(Notepad++ Installer)").attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Notepad++ Installer)").attr("href"));
 	}
 
 	@Override
