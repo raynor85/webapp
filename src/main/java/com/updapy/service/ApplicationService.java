@@ -52,7 +52,7 @@ public interface ApplicationService {
 	ApplicationReference markAsNotified(ApplicationReference application);
 
 	@Cacheable(value = "applications", key = "'applications.latest'")
-	List<ApplicationReference> getNbLastApplications(int nb);
+	List<ApplicationReference> getNbLatestApplications(int nb);
 
 	/**
 	 * Application Descriptions
@@ -104,6 +104,8 @@ public interface ApplicationService {
 
 	ApplicationRequest saveRequestedApplication(ApplicationRequest requestedApplication);
 
+	List<ApplicationRequest> getNbLatestRequestedApplications(int nb);
+
 	/**
 	 * Application notification
 	 */
@@ -116,7 +118,7 @@ public interface ApplicationService {
 
 	Long countNewNotifications(User user);
 
-	List<ApplicationNotification> getNbLastNotifications(User user, int nb);
+	List<ApplicationNotification> getNbLatestNotifications(User user, int nb);
 
 	boolean markAsReadAllNotifications(User user);
 

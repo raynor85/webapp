@@ -118,6 +118,31 @@
 						</tbody>
 					</table>
 				</div>
+				<br />
+				<h3>
+					<spring:message code="administration.stats.latestApplicationRequests" />
+				</h3>
+				<hr>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr class="active">
+								<th><spring:message code="administration.stats.table.latestApplicationRequests.head.creationDate" /> <i class="fa fa-sort-desc"></i></th>
+								<th><spring:message code="administration.stats.table.latestApplicationRequests.head.application" /></th>
+								<th><spring:message code="administration.stats.table.latestApplicationRequests.head.user" /></th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${latestApplicationRequests}" var="latestApplicationRequest">
+								<tr>
+									<td><fmt:formatDate value="${latestApplicationRequest.creationDate}" type="both" timeStyle="short" /></td>
+									<td>${latestApplicationRequest.name}</td>
+									<td>${latestApplicationRequest.user.name} (${latestApplicationRequest.user.email})</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>

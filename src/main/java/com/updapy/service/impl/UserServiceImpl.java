@@ -676,7 +676,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<ApplicationNotification> getLastNbNotifications(User user, int nb) {
-		return applicationService.getNbLastNotifications(user, nb);
+		return applicationService.getNbLatestNotifications(user, nb);
 	}
 
 	@Override
@@ -723,7 +723,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> getLatestNbUsers(int nb) {
+	public List<User> getNbLatestUsers(int nb) {
 		return userRepository.findByOrderByCreationDateDesc(new PageRequest(0, nb));
 	}
 

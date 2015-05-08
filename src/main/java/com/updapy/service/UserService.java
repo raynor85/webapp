@@ -115,6 +115,6 @@ public interface UserService {
 
 	List<Follower> getNbTopFollowers(int nb);
 
-	List<User> getLatestNbUsers(int nb);
+	List<User> getNbLatestUsers(int nb);
 
 }

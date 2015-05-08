@@ -92,7 +92,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
-	public List<ApplicationReference> getNbLastApplications(int nb) {
+	public List<ApplicationReference> getNbLatestApplications(int nb) {
 		return applicationReferenceRepository.findByActiveTrueOrderByCreationDateDesc(new PageRequest(0, nb));
 	}
 
@@ -188,6 +188,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 	public ApplicationRequest saveRequestedApplication(ApplicationRequest requestedApplication) {
 		return applicationRequestRepository.saveAndFlush(requestedApplication);
 	}
+	
+	@Override
+	public List<ApplicationRequest> getNbLatestRequestedApplications(int nb) {
+		return applicationRequestRepository.findByOrderByCreationDateDesc(new PageRequest(0, nb));
+	}
 
 	@Override
 	public ApplicationNotification saveNotification(ApplicationNotification notification) {
@@ -210,7 +215,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
-	public List<ApplicationNotification> getNbLastNotifications(User user, int nb) {
+	public List<ApplicationNotification> getNbLatestNotifications(User user, int nb) {
 		List<ApplicationNotification> notifications = applicationNotificationRepository.findByUserOrderByCreationDateDesc(user, new PageRequest(0, nb));
 		CollectionUtils.filter(notifications, new Predicate() {
 			@Override

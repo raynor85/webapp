@@ -9,7 +9,7 @@ import com.updapy.model.AccountRemoval;
 @Transactional
 public interface AccountRemovalService {
 
-	List<AccountRemoval> getLatestNbAccountRemovals(int nb);
+	List<AccountRemoval> getNbLatestAccountRemovals(int nb);
 
 	Long getNumberOfAccountDeletions();
 

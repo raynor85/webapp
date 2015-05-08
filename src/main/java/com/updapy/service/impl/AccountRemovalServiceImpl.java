@@ -17,7 +17,7 @@ public class AccountRemovalServiceImpl implements AccountRemovalService {
 	private AccountRemovalRepository accountRemovalRepository;
 
 	@Override
-	public List<AccountRemoval> getLatestNbAccountRemovals(int nb) {
+	public List<AccountRemoval> getNbLatestAccountRemovals(int nb) {
 		return accountRemovalRepository.findByOrderByRemoveDateDesc(new PageRequest(0, nb));
 	}
 
