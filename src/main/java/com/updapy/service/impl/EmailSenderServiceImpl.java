@@ -162,12 +162,12 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 	}
 
 	@Override
-	public boolean sendAdminRequestedApplication(String name, String url, Locale locale) {
+	public boolean sendAdminRequestedApplication(String email, String name, String url, Locale locale) {
 		String subject = messageUtils.getSimpleMessage("email.application.request.subject", locale);
 		Map<String, Object> model = new HashMap<String, Object>();
 		setLang(locale, model);
 		model.put("title", messageUtils.getSimpleMessage("email.application.request.content.title", locale));
-		model.put("text", messageUtils.getCustomMessage("email.application.request.content.text", new String[] { name, url }, locale));
+		model.put("text", messageUtils.getCustomMessage("email.application.request.content.text", new String[] { email, name, url }, locale));
 		setFollowMessages(locale, model);
 		model.put("unsubscribetext", StringUtils.EMPTY);
 		model.put("donate", StringUtils.EMPTY);

@@ -35,7 +35,7 @@ public interface EmailSenderService {
 
 	boolean sendAdminRetrieverError(String applicationName);
 
-	boolean sendAdminRequestedApplication(String name, String url, Locale locale);
+	boolean sendAdminRequestedApplication(String email, String name, String url, Locale locale);
 
 	boolean sendAdminMessage(String email, SubjectMessage subject, String text, boolean anonymous);
 

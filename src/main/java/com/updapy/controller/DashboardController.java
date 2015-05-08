@@ -47,7 +47,7 @@ public class DashboardController {
 
 	@Autowired
 	private Validator requestApplicationCustomValidator;
-	
+
 	@Autowired
 	private UserService userService;
 
@@ -150,7 +150,7 @@ public class DashboardController {
 			User user = userService.getCurrentUserLight();
 			requestedApplication.setUser(user);
 			applicationService.saveRequestedApplication(requestedApplication);
-			emailSenderService.sendAdminRequestedApplication(requestApplication.getName(), requestedApplication.getUrl(), user.getLangEmail());
+			emailSenderService.sendAdminRequestedApplication(user.getEmail(), requestApplication.getName(), requestedApplication.getUrl(), user.getLangEmail());
 			return jsonResponseUtils.buildSuccessfulJsonResponse("dashboard.applications.request.confirm");
 		}
 	}
