@@ -330,6 +330,14 @@
 		<ref bean="vivaldiRemoteRetriever" />
 		<ref bean="zoneAlarmFirewallRemoteRetriever" />
 		<ref bean="winampRemoteRetriever" />
+		<ref bean="kasperskySecurityScanRemoteRetriever" />
+		<ref bean="plexRemoteRetriever" />
+		<ref bean="phraseExpressRemoteRetriever" />
+		<ref bean="resophNotesRemoteRetriever" />
+		<ref bean="musicBeeRemoteRetriever" />
+		<ref bean="autoHotkeyRemoteRetriever" />
+		<ref bean="superAntiSpywareRemoteRetriever" />
+		<ref bean="vagrantRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
