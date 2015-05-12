@@ -21,32 +21,28 @@ public class BitTorrentSyncRemoteRetriever implements RemoteRetriever {
 	}
 
 	@Override
-	public String retrieveWin64UrlFr(Document doc) {
+	public String retrieveWin64UrlFr(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin64UrlEn(Document doc) {
+	public String retrieveWin64UrlEn(Document doc) throws IOException {
 		return doc.select("button.gat-Downloads-Download_Links-Windows64").get(0).attr("href");
 	}
 
 	@Override
-	public String retrieveWin32UrlFr(Document doc) {
+	public String retrieveWin32UrlFr(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin32UrlEn(Document doc) {
+	public String retrieveWin32UrlEn(Document doc) throws IOException {
 		return doc.select("button.gat-Downloads-Download_Links-Windows32").get(0).attr("href");
 	}
 
 	@Override
-	public String retrieveVersionNumber(Document doc) {
-		try {
-			return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(VERSION_HISTORY_WEBSITE).select("#support-main").select("strong").first().text());
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+	public String retrieveVersionNumber(Document doc) throws IOException {
+		return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(VERSION_HISTORY_WEBSITE).select("#support-main").select("strong").first().text());
 	}
 
 }

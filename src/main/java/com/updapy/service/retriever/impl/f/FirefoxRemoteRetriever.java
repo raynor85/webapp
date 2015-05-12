@@ -1,5 +1,7 @@
 package com.updapy.service.retriever.impl.f;
 
+import java.io.IOException;
+
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -15,27 +17,27 @@ public class FirefoxRemoteRetriever implements RemoteRetriever {
 	}
 
 	@Override
-	public String retrieveWin64UrlFr(Document doc) {
+	public String retrieveWin64UrlFr(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin64UrlEn(Document doc) {
+	public String retrieveWin64UrlEn(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin32UrlFr(Document doc) {
+	public String retrieveWin32UrlFr(Document doc) throws IOException {
 		return doc.select("#fr").select(".win").select("a").attr("href");
 	}
 
 	@Override
-	public String retrieveWin32UrlEn(Document doc) {
+	public String retrieveWin32UrlEn(Document doc) throws IOException {
 		return doc.select("#en-US").select(".win").select("a").attr("href");
 	}
 
 	@Override
-	public String retrieveVersionNumber(Document doc) {
+	public String retrieveVersionNumber(Document doc) throws IOException {
 		return doc.select("html").attr("data-latest-firefox");
 	}
 

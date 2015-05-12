@@ -1,5 +1,7 @@
 package com.updapy.service.retriever.impl.s;
 
+import java.io.IOException;
+
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
@@ -19,27 +21,27 @@ public class SevenZipRemoteRetriever implements RemoteRetriever {
 	}
 
 	@Override
-	public String retrieveWin64UrlFr(Document doc) {
+	public String retrieveWin64UrlFr(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin64UrlEn(Document doc) {
+	public String retrieveWin64UrlEn(Document doc) throws IOException {
 		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download)[href*=x64]").get(0).attr("href"));
 	}
 
 	@Override
-	public String retrieveWin32UrlFr(Document doc) {
+	public String retrieveWin32UrlFr(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin32UrlEn(Document doc) {
+	public String retrieveWin32UrlEn(Document doc) throws IOException {
 		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download)[href*=.exe]").get(0).attr("href"));
 	}
 
 	@Override
-	public String retrieveVersionNumber(Document doc) {
+	public String retrieveVersionNumber(Document doc) throws IOException {
 		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(doc.select("p:contains(Download 7-Zip):not(p:contains(beta)):not(p:contains(Beta))").first().html(), "7-Zip"), "\\(.*\\)"));
 	}
 

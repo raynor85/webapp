@@ -19,32 +19,28 @@ public class VlcMediaPlayerRemoteRetriever implements RemoteRetriever {
 	}
 
 	@Override
-	public String retrieveWin64UrlFr(Document doc) {
+	public String retrieveWin64UrlFr(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin64UrlEn(Document doc) {
-		try {
-			String dlLink = ParsingUtils.addHttpPrefix(doc.select("a[href*=win64]").attr("href"));
-			return ParsingUtils.buildUrl(dlLink, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(dlLink).select("a:contains(.exe)[href*=.exe]").first().attr("href"));
-		} catch (IOException e) {
-			return null;
-		}
+	public String retrieveWin64UrlEn(Document doc) throws IOException {
+		String dlLink = ParsingUtils.addHttpPrefix(doc.select("a[href*=win64]").attr("href"));
+		return ParsingUtils.buildUrl(dlLink, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(dlLink).select("a:contains(.exe)[href*=.exe]").first().attr("href"));
 	}
 
 	@Override
-	public String retrieveWin32UrlFr(Document doc) {
+	public String retrieveWin32UrlFr(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin32UrlEn(Document doc) {
+	public String retrieveWin32UrlEn(Document doc) throws IOException {
 		return ParsingUtils.addHttpPrefix(doc.select("a[href*=win32]").attr("href"));
 	}
 
 	@Override
-	public String retrieveVersionNumber(Document doc) {
+	public String retrieveVersionNumber(Document doc) throws IOException {
 		return ParsingUtils.extractVersionNumberFromString(doc.select("h1:contains(Download latest)").text());
 	}
 

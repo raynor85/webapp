@@ -20,32 +20,28 @@ public class PdfCreatorRemoteRetriever implements RemoteRetriever {
 	}
 
 	@Override
-	public String retrieveWin64UrlFr(Document doc) {
+	public String retrieveWin64UrlFr(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin64UrlEn(Document doc) {
+	public String retrieveWin64UrlEn(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin32UrlFr(Document doc) {
+	public String retrieveWin32UrlFr(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin32UrlEn(Document doc) {
-		try {
-			String dlLink = doc.select(".pdf-select-footer").first().select("a:contains(Download)").attr("href");
-			return HttpUtils.getRedirectionUrl(ParsingUtils.buildUrl(dlLink, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(dlLink).select("a:contains(direct link)").attr("href")));
-		} catch (IOException e) {
-			return null;
-		}
+	public String retrieveWin32UrlEn(Document doc) throws IOException {
+		String dlLink = doc.select(".pdf-select-footer").first().select("a:contains(Download)").attr("href");
+		return HttpUtils.getRedirectionUrl(ParsingUtils.buildUrl(dlLink, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(dlLink).select("a:contains(direct link)").attr("href")));
 	}
 
 	@Override
-	public String retrieveVersionNumber(Document doc) {
+	public String retrieveVersionNumber(Document doc) throws IOException {
 		return ParsingUtils.extractVersionNumberFromString(ParsingUtils.selectFromPattern(retrieveWin32UrlEn(doc), "PDF.*.exe").replace('_', '.'));
 	}
 

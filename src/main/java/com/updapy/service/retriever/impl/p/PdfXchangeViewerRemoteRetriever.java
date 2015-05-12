@@ -23,22 +23,22 @@ public class PdfXchangeViewerRemoteRetriever implements RemoteRetriever {
 	}
 
 	@Override
-	public String retrieveWin64UrlFr(Document doc) {
+	public String retrieveWin64UrlFr(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin64UrlEn(Document doc) {
+	public String retrieveWin64UrlEn(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin32UrlFr(Document doc) {
+	public String retrieveWin32UrlFr(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin32UrlEn(Document doc) {
+	public String retrieveWin32UrlEn(Document doc) throws IOException {
 		String version = retrieveVersionNumber(doc);
 		String[] subVersions = StringUtils.split(version, '.');
 		String rebuildVersion = subVersions[0] + StringUtils.removePattern(subVersions[2], "^0*");
@@ -46,14 +46,9 @@ public class PdfXchangeViewerRemoteRetriever implements RemoteRetriever {
 	}
 
 	@Override
-	public String retrieveVersionNumber(Document doc) {
+	public String retrieveVersionNumber(Document doc) throws IOException {
 		String version1 = ParsingUtils.extractVersionNumberFromString(doc.select("item").first().select("title").text());
-		String version2 = null;
-		try {
-			version2 = ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(VERSION_HISTORY_WEBSITE).select("span.versionname").text());
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+		String version2 = ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(VERSION_HISTORY_WEBSITE).select("span.versionname").text());
 		if (version2 == null) {
 			return version1;
 		}

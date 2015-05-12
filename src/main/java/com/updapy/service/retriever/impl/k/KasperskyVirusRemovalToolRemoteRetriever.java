@@ -24,31 +24,27 @@ public class KasperskyVirusRemovalToolRemoteRetriever implements RemoteRetriever
 	}
 
 	@Override
-	public String retrieveWin64UrlFr(Document doc) {
+	public String retrieveWin64UrlFr(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin64UrlEn(Document doc) {
+	public String retrieveWin64UrlEn(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin32UrlFr(Document doc) {
+	public String retrieveWin32UrlFr(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin32UrlEn(Document doc) {
-		try {
-			return StringUtils.removePattern(StringUtils.removePattern(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("body").text(), "^.*\"KAT-EN\" : \""), "\".*$");
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+	public String retrieveWin32UrlEn(Document doc) throws IOException {
+		return StringUtils.removePattern(StringUtils.removePattern(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("body").text(), "^.*\"KAT-EN\" : \""), "\".*$");
 	}
 
 	@Override
-	public String retrieveVersionNumber(Document doc) {
+	public String retrieveVersionNumber(Document doc) throws IOException {
 		Pattern pattern = Pattern.compile("\\(.*\\)");
 		String version = doc.select("td:contains(Version)").text();
 		Matcher matcher = pattern.matcher(version);

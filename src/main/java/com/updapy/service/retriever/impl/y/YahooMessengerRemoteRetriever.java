@@ -21,31 +21,27 @@ public class YahooMessengerRemoteRetriever implements RemoteRetriever {
 	}
 
 	@Override
-	public String retrieveWin64UrlFr(Document doc) {
+	public String retrieveWin64UrlFr(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin64UrlEn(Document doc) {
+	public String retrieveWin64UrlEn(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin32UrlFr(Document doc) {
-		try {
-			return getDownloadLink(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ROOT_DOWNLOAD_WEBSITE_VERSION_FR));
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+	public String retrieveWin32UrlFr(Document doc) throws IOException {
+		return getDownloadLink(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ROOT_DOWNLOAD_WEBSITE_VERSION_FR));
 	}
 
 	@Override
-	public String retrieveWin32UrlEn(Document doc) {
+	public String retrieveWin32UrlEn(Document doc) throws IOException {
 		return getDownloadLink(doc);
 	}
 
 	@Override
-	public String retrieveVersionNumber(Document doc) {
+	public String retrieveVersionNumber(Document doc) throws IOException {
 		return ParsingUtils.extractVersionNumberFromString(doc.select("span.sgray").first().text());
 	}
 

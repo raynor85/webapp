@@ -23,35 +23,31 @@ public class EclipseStandardRemoteRetriever implements RemoteRetriever {
 	}
 
 	@Override
-	public String retrieveWin64UrlFr(Document doc) {
+	public String retrieveWin64UrlFr(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin64UrlEn(Document doc) {
+	public String retrieveWin64UrlEn(Document doc) throws IOException {
 		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, retrieveDirectLink(ParsingUtils.addHttpPrefix(doc.select("a.downloadLink:contains(Windows 64 Bit)[href*=standard]").attr("href"))));
 	}
 
 	@Override
-	public String retrieveWin32UrlFr(Document doc) {
+	public String retrieveWin32UrlFr(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin32UrlEn(Document doc) {
+	public String retrieveWin32UrlEn(Document doc) throws IOException {
 		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, retrieveDirectLink(ParsingUtils.addHttpPrefix(doc.select("a.downloadLink:contains(Windows 32 Bit)[href*=standard]").attr("href"))));
 	}
 
-	private String retrieveDirectLink(String dlLink) {
-		try {
-			return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(dlLink).select("a:contains(Direct link to file)").attr("href");
-		} catch (IOException e) {
-			return null;
-		}
+	private String retrieveDirectLink(String dlLink) throws IOException {
+		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(dlLink).select("a:contains(Direct link to file)").attr("href");
 	}
 
 	@Override
-	public String retrieveVersionNumber(Document doc) {
+	public String retrieveVersionNumber(Document doc) throws IOException {
 		Pattern pattern = Pattern.compile("\\(.*\\)");
 		String version = doc.select("#descriptionText").text();
 		Matcher matcher = pattern.matcher(version);

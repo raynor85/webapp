@@ -1,5 +1,6 @@
 package com.updapy.service.retriever.impl.s;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,22 +26,22 @@ public class SpeedyFoxRemoteRetriever implements RemoteRetriever {
 	}
 
 	@Override
-	public String retrieveWin64UrlFr(Document doc) {
+	public String retrieveWin64UrlFr(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin64UrlEn(Document doc) {
+	public String retrieveWin64UrlEn(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin32UrlFr(Document doc) {
+	public String retrieveWin32UrlFr(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin32UrlEn(Document doc) {
+	public String retrieveWin32UrlEn(Document doc) throws IOException {
 		Elements scriptTags = doc.getElementsByTag("script");
 		String script = "";
 		for (Element tag : scriptTags) {
@@ -58,7 +59,7 @@ public class SpeedyFoxRemoteRetriever implements RemoteRetriever {
 	}
 
 	@Override
-	public String retrieveVersionNumber(Document doc) {
+	public String retrieveVersionNumber(Document doc) throws IOException {
 		Pattern pattern = Pattern.compile("\\(.*\\)");
 		String version = doc.select("p:contains(Download)").text();
 		Matcher matcher = pattern.matcher(version);

@@ -28,37 +28,33 @@ public class EsetNod32AntivirusRemoteRetriever implements RemoteRetriever {
 	}
 
 	@Override
-	public String retrieveWin64UrlFr(Document doc) {
+	public String retrieveWin64UrlFr(Document doc) throws IOException {
 		return getDownloadLink(ROOT_DOWNLOAD_WEBSITE_VERSION_FR_64);
 	}
 
 	@Override
-	public String retrieveWin64UrlEn(Document doc) {
+	public String retrieveWin64UrlEn(Document doc) throws IOException {
 		return getDownloadLink(ROOT_DOWNLOAD_WEBSITE_VERSION_EN_64);
 	}
 
 	@Override
-	public String retrieveWin32UrlFr(Document doc) {
+	public String retrieveWin32UrlFr(Document doc) throws IOException {
 		return getDownloadLink(ROOT_DOWNLOAD_WEBSITE_VERSION_FR_32);
 	}
 
 	@Override
-	public String retrieveWin32UrlEn(Document doc) {
+	public String retrieveWin32UrlEn(Document doc) throws IOException {
 		return getDownloadLink(ROOT_DOWNLOAD_WEBSITE_VERSION_EN_32);
 	}
 
 	@Override
-	public String retrieveVersionNumber(Document doc) {
+	public String retrieveVersionNumber(Document doc) throws IOException {
 		Document docXml = Jsoup.parse(doc.text(), "", Parser.xmlParser());
 		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(docXml.select("div#file-summary").select("p:contains(Version)").text(), "Size.*$"));
 	}
 
-	private String getDownloadLink(String downloadWebsite) {
-		try {
-			Document doc = RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(downloadWebsite, 60 * 1000); // 1 minute because the website is slow...
-			return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, StringUtils.removePattern(doc.select("div#file-summary").select("p:contains(File name)").text(), "^.*:\\s?").toLowerCase());
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+	private String getDownloadLink(String downloadWebsite) throws IOException {
+		Document doc = RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(downloadWebsite, 60 * 1000); // 1 minute because the website is slow...
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, StringUtils.removePattern(doc.select("div#file-summary").select("p:contains(File name)").text(), "^.*:\\s?").toLowerCase());
 	}
 }

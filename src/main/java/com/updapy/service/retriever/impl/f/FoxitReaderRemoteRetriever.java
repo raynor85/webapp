@@ -1,5 +1,6 @@
 package com.updapy.service.retriever.impl.f;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -25,28 +26,28 @@ public class FoxitReaderRemoteRetriever implements RemoteRetriever {
 	}
 
 	@Override
-	public String retrieveWin64UrlFr(Document doc) {
+	public String retrieveWin64UrlFr(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin64UrlEn(Document doc) {
+	public String retrieveWin64UrlEn(Document doc) throws IOException {
 		return null;
 	}
 
 	@Override
-	public String retrieveWin32UrlFr(Document doc) {
+	public String retrieveWin32UrlFr(Document doc) throws IOException {
 		return "http://www.foxitsoftware.com/downloads/latest.php?product=Foxit-Reader&platform=Windows&package_type=exe&Language=French";
 	}
 
 	@Override
-	public String retrieveWin32UrlEn(Document doc) {
+	public String retrieveWin32UrlEn(Document doc) throws IOException {
 		return "http://www.foxitsoftware.com/downloads/latest.php?product=Foxit-Reader&platform=Windows&package_type=exe&language=English";
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public String retrieveVersionNumber(Document doc) {
+	public String retrieveVersionNumber(Document doc) throws IOException {
 		String jsonText = doc.text();
 		JSONParser parser = new JSONParser();
 		ContainerFactory containerFactory = new ContainerFactory() {
@@ -54,6 +55,7 @@ public class FoxitReaderRemoteRetriever implements RemoteRetriever {
 			public List<String> creatArrayContainer() {
 				return new ArrayList<String>();
 			}
+
 			@Override
 			public Map<String, Object> createObjectContainer() {
 				return new LinkedHashMap<String, Object>();

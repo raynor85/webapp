@@ -24,36 +24,32 @@ public class WavosaurRemoteRetriever implements RemoteRetriever {
 	}
 
 	@Override
-	public String retrieveWin64UrlFr(Document doc) {
+	public String retrieveWin64UrlFr(Document doc) throws IOException {
 		return getDownloadLinkFr("x64");
 	}
 
 	@Override
-	public String retrieveWin64UrlEn(Document doc) {
+	public String retrieveWin64UrlEn(Document doc) throws IOException {
 		return getDownloadLinkEn(doc, "x64");
 	}
 
 	@Override
-	public String retrieveWin32UrlFr(Document doc) {
+	public String retrieveWin32UrlFr(Document doc) throws IOException {
 		return getDownloadLinkFr("x86");
 	}
 
 	@Override
-	public String retrieveWin32UrlEn(Document doc) {
+	public String retrieveWin32UrlEn(Document doc) throws IOException {
 		return getDownloadLinkEn(doc, "x86");
 	}
 
 	@Override
-	public String retrieveVersionNumber(Document doc) {
+	public String retrieveVersionNumber(Document doc) throws IOException {
 		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(getDownloadLinkEn(doc, "x86"), "x86.*$"));
 	}
 
-	private String getDownloadLinkFr(String pattern) {
-		try {
-			return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE_FR, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE_FR).select("a[href*=" + pattern + "]").attr("href"));
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+	private String getDownloadLinkFr(String pattern) throws IOException {
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE_FR, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE_FR).select("a[href*=" + pattern + "]").attr("href"));
 	}
 
 	private String getDownloadLinkEn(Document doc, String pattern) {
