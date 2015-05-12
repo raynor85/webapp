@@ -269,7 +269,6 @@
 		<ref bean="zedTVRemoteRetriever" />
 		<ref bean="gitRemoteRetriever" />
 		<ref bean="blueflapRemoteRetriever" />
-		<ref bean="dooscapeRemoteRetriever" />
 		<ref bean="uncheckyRemoteRetriever" />
 		<ref bean="dashlaneRemoteRetriever" />
 		<ref bean="veraCryptRemoteRetriever" />
