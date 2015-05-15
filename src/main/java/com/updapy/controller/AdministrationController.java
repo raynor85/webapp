@@ -253,6 +253,13 @@ public class AdministrationController {
 		return jsonResponseUtils.buildSuccessfulJsonResponse("administration.action.retrievalError.delete.confirm");
 	}
 
+	@RequestMapping(value = "/retrievalErrors/clear")
+	public @ResponseBody
+	JsonResponse clearRetrievalErrors() {
+		retrievalErrorService.deleteRetrievalErrors();
+		return jsonResponseUtils.buildSuccessfulJsonResponse("administration.action.retrievalErrors.clear.confirm");
+	}
+
 	private ModelAndView addNotifications(User user, ModelAndView modelAndView) {
 		if (user != null) {
 			modelAndView.addObject("nbNotifications", userService.getNbNotifications(user));

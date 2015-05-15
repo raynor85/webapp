@@ -41,7 +41,7 @@ public class LinphoneRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("a[href*=.exe]").attr("href"), "^.*win32"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(ParsingUtils.selectFromPattern(doc.select("a[href*=.exe]").attr("href"), "Linphone-.*win32.exe"), "-win32.exe$"));
 	}
 
 }

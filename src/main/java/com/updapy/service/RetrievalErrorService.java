@@ -21,6 +21,8 @@ public interface RetrievalErrorService {
 
 	void deleteRetrievalErrors(ApplicationReference application, List<TypeRetrievalError> types);
 
+	void deleteRetrievalErrors();
+
 	int sendEmailRetrievalErrors();
 
 }

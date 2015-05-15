@@ -13,6 +13,7 @@
 			<hr>
 			<ul class="fa-ul">
 				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <a href="javascript:runJobAdministration('${root}/administration/cache/clear', 'cache-clear');"><spring:message code="administration.action.cache.clear.button" /></a> <i id="cache-clear" style="color: #777; display: none;" class="fa fa-refresh fa-spin"></i></li>
+				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <a href="javascript:runJobAdministration('${root}/administration/retrievalErrors/clear', 'retrieval-errors-clear', clearRetrievalErrors);"><spring:message code="administration.action.retrievalErrors.clear.button" /></a> <i id="errors-clear" style="color: #777; display: none;" class="fa fa-refresh fa-spin"></i></li>
 				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <a href="javascript:runJobAdministration('${root}/administration/database/cleanup', 'database-cleanup', refreshNumberOfRowsInDatabase);"><spring:message code="administration.action.database.cleanup.button" /></a> (<span id="numberOfRowsInDatabase">${numberOfRowsInDatabase}</span> <spring:message code="administration.action.database.row" />) <i id="database-cleanup" style="color: #777; display: none;" class="fa fa-refresh fa-spin"></i></li>
 				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <a href="javascript:runJobAdministration('${root}/administration/repository/update', 'repository-update');"><spring:message code="administration.action.repository.update.button" /></a> <i id="repository-update" style="color: #777; display: none;" class="fa fa-refresh fa-spin"></i></li>
 				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <a href="javascript:runJobAdministration('${root}/administration/repository/check', 'repository-check');"><spring:message code="administration.action.repository.check.button" /></a> <i id="repository-check" style="color: #777; display: none;" class="fa fa-refresh fa-spin"></i></li>
@@ -128,5 +129,8 @@
 		ajaxCallPost(null, "#deleteRetrievalErrorForm", {
 			"retrievalErrorId" : retrievalErrorId
 		}, null);
+	};
+	var clearRetrievalErrors = function() {
+		$("tr[id^=tr-]").fadeOut();
 	};
 </script>
