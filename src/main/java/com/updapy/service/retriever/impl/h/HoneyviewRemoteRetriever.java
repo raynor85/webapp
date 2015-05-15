@@ -1,4 +1,4 @@
-package com.updapy.service.retriever.impl.b;
+package com.updapy.service.retriever.impl.h;
 
 import java.io.IOException;
 
@@ -13,14 +13,13 @@ import com.updapy.util.HttpUtils;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class BandisoftRemoteRetriever implements RemoteRetriever {
+public class HoneyviewRemoteRetriever implements RemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.bandisoft.com";
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		String apiName = application.getApiName();
-		return apiName.equalsIgnoreCase("bandizip") || apiName.equalsIgnoreCase("honeyview");
+		return application.getApiName().equalsIgnoreCase("honeyview");
 	}
 
 	@Override

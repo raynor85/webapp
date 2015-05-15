@@ -322,7 +322,8 @@
 		<ref bean="clipXRemoteRetriever" />
 		<ref bean="comodoInternetSecurityRemoteRetriever" />
 		<ref bean="foxitReaderRemoteRetriever" />
-		<ref bean="bandisoftRemoteRetriever" />
+		<ref bean="bandizipRemoteRetriever" />
+		<ref bean="honeyviewRemoteRetriever" />
 		<ref bean="driverFusionRemoteRetriever" />
 		<ref bean="actionaRemoteRetriever" />
 		<ref bean="cloudSystemBoosterRemoteRetriever" />
