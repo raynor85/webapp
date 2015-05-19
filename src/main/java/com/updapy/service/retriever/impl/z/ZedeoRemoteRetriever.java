@@ -38,7 +38,7 @@ public class ZedeoRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("a[href*=.exe]").get(0).attr("href").replace("?f=", "fic/");
+		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("a[href*=.exe]").get(0).attr("href").replace("?f=", "fich/");
 	}
 
 	@Override
