@@ -42,7 +42,7 @@ public class NeroBurningRomRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("div.row:contains(Version :)").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("div.row:contains(Version)").text());
 	}
 
 }

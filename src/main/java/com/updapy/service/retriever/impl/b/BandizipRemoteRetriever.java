@@ -7,12 +7,15 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.HttpUtils;
 import com.updapy.util.ParsingUtils;
 
 @Component
 public class BandizipRemoteRetriever implements RemoteRetriever {
+
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.bandisoft.com";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -36,7 +39,7 @@ public class BandizipRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return HttpUtils.getRedirectionUrl(doc.select("li:contains(Download Bandizip)").select("a").attr("href"));
+		return HttpUtils.getRedirectionUrl(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("li:contains(Download Bandizip)").select("a").attr("href"))).select("li:contains(from Bandisoft)").select("a").attr("href")));
 	}
 
 	@Override
