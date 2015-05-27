@@ -92,7 +92,7 @@
 			</ul>
 			<c:choose>
 				<c:when test="${isAuthenticated}">
-					<c:url value="/j_spring_security_logout" var="logoutUrl" />
+					<c:url value="/logout" var="logoutUrl" />
 					<!-- csrt for log out-->
 					<form action="${logoutUrl}" method="post" id="logoutForm">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
