@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.util.ParsingUtils;
 
 @Component
 public class TotalCommanderRemoteRetriever implements RemoteRetriever {
@@ -29,7 +30,7 @@ public class TotalCommanderRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return doc.select("a[href*=exe][href*=64]").first().attr("href");
+		return ParsingUtils.selectFromPattern(doc.select("a[href*=exe][href*=64]").first().attr("href"), "http.*");
 	}
 
 	@Override
@@ -39,7 +40,7 @@ public class TotalCommanderRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a[href*=exe][href*=32]").first().attr("href");
+		return ParsingUtils.selectFromPattern(doc.select("a[href*=exe][href*=32]").first().attr("href"), "http.*");
 	}
 
 	@Override

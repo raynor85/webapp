@@ -273,7 +273,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Power ISO
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.poweriso.com/download.htm', 'http://www.poweriso.com/', 'poweriso.png', 'Power ISO', 'poweriso', false, 'TOOLS', 'FREE');
 -- Nero Burning ROM
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.nero.com/eng/products/nero-burning-rom/free-trial-download.php', 'http://www.nero.com/', 'neroburningrom.png', 'Nero Burning ROM', 'neroburningrom', false, 'TOOLS', 'COMMERCIAL');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.nero.com/fra/products/nero-burning-rom/free-trial-download.php', 'http://www.nero.com/', 'neroburningrom.png', 'Nero Burning ROM', 'neroburningrom', false, 'TOOLS', 'COMMERCIAL');
 -- WordPress
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://fr.wordpress.org', 'http://wordpress.org/', 'wordpress.png', 'WordPress', 'wordpress', false, 'DEVELOPMENT', 'FREE');
 -- GlassWire
