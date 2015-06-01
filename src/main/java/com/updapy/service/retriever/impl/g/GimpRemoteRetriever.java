@@ -39,7 +39,7 @@ public class GimpRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("a:contains(Download GIMP)[href*=windows]").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("a:contains(Download GIMP)[href*=windows]").first().text());
 	}
 
 }
