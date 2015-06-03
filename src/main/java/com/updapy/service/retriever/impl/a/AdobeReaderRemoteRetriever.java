@@ -37,12 +37,12 @@ public class AdobeReaderRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("table").get(1).select("a:contains(Adobe Reader)[href*=ftpID]").first().attr("href"))).select("a:contains(Proceed to Download)").attr("href"))).select("a:contains(Download Now)").attr("href");
+		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("h3:contains(Updates)").first().nextElementSibling().select("table").select("a:contains(Adobe Reader)[href*=ftpID]").first().attr("href"))).select("a:contains(Proceed to Download)").attr("href"))).select("a:contains(Download Now)").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("table").get(1).select("a:contains(Adobe Reader)[href*=ftpID]").first().text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("h3:contains(Updates)").first().nextElementSibling().select("table").select("a:contains(Adobe Reader)[href*=ftpID]").first().text());
 	}
 
 }
