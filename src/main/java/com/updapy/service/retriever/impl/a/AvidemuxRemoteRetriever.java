@@ -24,7 +24,7 @@ public class AvidemuxRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return doc.select("a:contains(SourceForge)[href*=win64]").attr("href");
+		return doc.select("a:matches(SourceForge|FossHub)[href*=win64]").attr("href");
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class AvidemuxRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a:contains(SourceForge)[href*=win32]").attr("href");
+		return doc.select("a:matches(SourceForge|FossHub)[href*=win32]").attr("href");
 	}
 
 	@Override

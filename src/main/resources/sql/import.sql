@@ -489,7 +489,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Spyware Terminator
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/3000-8022_4-10468541.html', 'http://www.pcrx.com/spywareterminator/', 'spywareterminator.png', 'Spyware Terminator', 'spywareterminator', false, 'SECURITY', 'FREE');
 -- Driver Fusion
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://treexy.com/support/release-notes/driver-fusion', 'http://treexy.com/products/driver-fusion/', 'driverfusion.png', 'Driver Fusion', 'driverfusion', false, 'SYSTEM', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://treexy.com/support/driver-fusion/release-notes/', 'https://treexy.com/products/driver-fusion/', 'driverfusion.png', 'Driver Fusion', 'driverfusion', false, 'SYSTEM', 'FREE');
 -- Actiona
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://wiki.actiona.tools/', 'http://actiona.tools/', 'actiona.png', 'Actiona', 'actiona', false, 'TOOLS', 'FREE');
 -- Cloud System Booster
