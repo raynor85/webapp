@@ -338,6 +338,7 @@
 		<ref bean="autoHotkeyRemoteRetriever" />
 		<ref bean="superAntiSpywareRemoteRetriever" />
 		<ref bean="vagrantRemoteRetriever" />
+		<ref bean="adobeDcRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

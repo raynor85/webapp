@@ -1716,58 +1716,65 @@
 	background-position: -375px -227px;
 }
 
+.sprite-zonealarmfirewall {
+	background: url(../img/application/sprite/08.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -375px -301px;
+}
+
 .sprite-fences {
-	background: url(../img/application/sprite/09-01.png) no-repeat top left;
+	background: url(../img/application/sprite/09-02.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -5px -5px;
 }
 
 .sprite-musicbee {
-	background: url(../img/application/sprite/09-01.png) no-repeat top left;
+	background: url(../img/application/sprite/09-02.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -79px -5px;
 }
 
 .sprite-phraseexpress {
-	background: url(../img/application/sprite/09-01.png) no-repeat top left;
+	background: url(../img/application/sprite/09-02.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -5px -79px;
 }
 
 .sprite-plex {
-	background: url(../img/application/sprite/09-01.png) no-repeat top left;
+	background: url(../img/application/sprite/09-02.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -79px -79px;
 }
 
 .sprite-resophnotes {
-	background: url(../img/application/sprite/09-01.png) no-repeat top left;
+	background: url(../img/application/sprite/09-02.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -153px -5px;
 }
 
 .sprite-superantispyware {
-	background: url(../img/application/sprite/09-01.png) no-repeat top left;
+	background: url(../img/application/sprite/09-02.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -153px -79px;
 }
 
 .sprite-vagrant {
-	background: url(../img/application/sprite/09-01.png) no-repeat top left;
+	background: url(../img/application/sprite/09-02.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -5px -153px;
 }
 
-.sprite-zonealarmfirewall {
-	background: url(../img/application/sprite/08.png) no-repeat top left;
+.sprite-adobedc {
+	background: url(../img/application/sprite/09-02.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
-	background-position: -375px -301px;
+	background-position: -79px -153px;
 }
