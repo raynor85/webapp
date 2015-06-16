@@ -29,7 +29,7 @@ public class EclipseJeeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, retrieveDirectLink(ParsingUtils.addHttpPrefix(doc.select("a.downloadLink:contains(Windows 64 Bit)[href*=jee]").attr("href"))));
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, retrieveDirectLink(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a.downloadLink:contains(64 Bit)[href*=jee]").attr("href"))));
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class EclipseJeeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, retrieveDirectLink(ParsingUtils.addHttpPrefix(doc.select("a.downloadLink:contains(Windows 32 Bit)[href*=jee]").attr("href"))));
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, retrieveDirectLink(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a.downloadLink:contains(32 Bit)[href*=jee]").attr("href"))));
 	}
 
 	private String retrieveDirectLink(String dlLink) throws IOException {
