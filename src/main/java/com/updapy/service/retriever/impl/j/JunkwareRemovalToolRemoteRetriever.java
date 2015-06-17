@@ -40,7 +40,7 @@ public class JunkwareRemovalToolRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("p:containsOwn(Click to download latest version of JRT)").select("strong").text(), "\\(.*\\)"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("p:containsOwn(Click to download latest version of JRT)").text(), "\\(.*\\)"));
 	}
 
 }
