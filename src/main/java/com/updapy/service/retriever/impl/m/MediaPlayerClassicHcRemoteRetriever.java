@@ -40,7 +40,7 @@ public class MediaPlayerClassicHcRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("p:contains(latest stable build of is)").text(), "was compiled from.*$"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("p:contains(latest stable build is)").text(), "was compiled from.*$"));
 	}
 
 }
