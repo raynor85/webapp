@@ -1,6 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <div class="container">
 	<div class="row">
@@ -42,6 +43,7 @@
 								<th><spring:message code="administration.error.table.head.globalUrl" /></th>
 								<th><spring:message code="administration.error.table.head.version32Url" /></th>
 								<th><spring:message code="administration.error.table.head.version64Url" /></th>
+								<th><spring:message code="administration.error.table.head.creationDate" /></th>
 								<th></th>
 							</tr>
 						</thead>
@@ -61,6 +63,7 @@
 											</c:when>
 											<c:otherwise>-</c:otherwise>
 										</c:choose></td>
+									<td><fmt:formatDate value="${administrationRetrievalError.retrievalError.creationDate}" type="both" timeStyle="short" /></td>
 									<td>
 										<c:set var="deleteTitle">
 											<spring:message code="administration.error.table.delete.title" arguments="${administrationRetrievalError.retrievalError.application.name}" />
