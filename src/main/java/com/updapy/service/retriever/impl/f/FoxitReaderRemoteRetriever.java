@@ -2,14 +2,11 @@ package com.updapy.service.retriever.impl.f;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.json.simple.parser.ContainerFactory;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
@@ -37,38 +34,25 @@ public class FoxitReaderRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlFr(Document doc) throws IOException {
-		return "http://www.foxitsoftware.com/downloads/latest.php?product=Foxit-Reader&platform=Windows&package_type=exe&Language=French";
+		return "https://download.foxitsoftware.com/latest.php?product=Foxit-Reader&platform=Windows&package_type=exe&language=French";
 	}
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return "http://www.foxitsoftware.com/downloads/latest.php?product=Foxit-Reader&platform=Windows&package_type=exe&language=English";
+		return "https://download.foxitsoftware.com/latest.php?product=Foxit-Reader&platform=Windows&package_type=exe&language=English";
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		String jsonText = doc.text();
-		JSONParser parser = new JSONParser();
-		ContainerFactory containerFactory = new ContainerFactory() {
-			@Override
-			public List<String> creatArrayContainer() {
-				return new ArrayList<String>();
-			}
+		return ParsingUtils.extractVersionNumberFromString(getHighestVersion(doc.select("div.version_row").select("option")));
+	}
 
-			@Override
-			public Map<String, Object> createObjectContainer() {
-				return new LinkedHashMap<String, Object>();
-			}
-		};
-		try {
-			Map<String, Object> json = (Map<String, Object>) parser.parse(jsonText, containerFactory);
-			List<String> versions = ((List<String>) json.get("version"));
-			return ParsingUtils.extractVersionNumberFromString(getHighestVersion(versions));
-		} catch (ParseException pe) {
-			return null;
+	private String getHighestVersion(Elements versions) {
+		List<String> versionLists = new ArrayList<String>();
+		for (Element version : versions) {
+			versionLists.add(version.text());
 		}
-
+		return getHighestVersion(versionLists);
 	}
 
 	private String getHighestVersion(List<String> versions) {

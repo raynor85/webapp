@@ -39,7 +39,7 @@ public class PuTTYRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("i:containsOwn(The latest release version)").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("div.buildtype:containsOwn(The latest release version)").text());
 	}
 
 }
