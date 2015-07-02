@@ -3,6 +3,7 @@ package com.updapy.service.retriever.impl.b;
 import java.io.IOException;
 
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
@@ -24,7 +25,11 @@ public class BlenderRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return doc.select("a[href*=windows64.exe]").get(0).attr("href");
+		Elements element = doc.select("a[href*=windows64.exe]");
+		if (element.isEmpty()) {
+			element = doc.select("a[href*=windows64.msi]");
+		}
+		return element.get(0).attr("href");
 	}
 
 	@Override
@@ -34,7 +39,11 @@ public class BlenderRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a[href*=windows32.exe]").get(0).attr("href");
+		Elements element = doc.select("a[href*=windows32.exe]");
+		if (element.isEmpty()) {
+			element = doc.select("a[href*=windows32.msi]");
+		}
+		return element.get(0).attr("href");
 	}
 
 	@Override
