@@ -3,7 +3,6 @@ package com.updapy.service.retriever.impl.m;
 import java.io.IOException;
 
 import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
@@ -38,17 +37,13 @@ public class MakeHumanRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		String downloadPageLink = ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, getDownloadLinkElement(doc).attr("href"));
+		String downloadPageLink = ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("img[alt*=Download makehuman stable]").parents().select("a").first().attr("href"));
 		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(downloadPageLink).select("a[href*=win32]").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(getDownloadLinkElement(doc).text());
-	}
-
-	private Elements getDownloadLinkElement(Document doc) {
-		return doc.select("a#stable");
+		return ParsingUtils.extractVersionNumberFromString(doc.select("h1:contains(Current version)").text());
 	}
 
 }
