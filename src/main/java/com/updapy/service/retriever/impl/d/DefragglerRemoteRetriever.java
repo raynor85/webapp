@@ -37,7 +37,7 @@ public class DefragglerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a[href*=download/standard]").get(0).attr("href"))).select("a:contains(click here)[href*=.exe]").attr("href");
+		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a[href*=download/standard]").get(0).attr("href"))).select("a:contains(download)[href*=.exe]").attr("href");
 	}
 
 	@Override
