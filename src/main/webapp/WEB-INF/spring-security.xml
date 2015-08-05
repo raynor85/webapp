@@ -63,11 +63,16 @@
 		<beans:property name="createTableOnStartup" value="false" />
 		<beans:property name="dataSource" ref="dataSource" />
 	</beans:bean>
-	
+
 	<!-- This bean encrypts the authorization details of the connection -->
 	<beans:bean id="textEncryptor" class="org.springframework.security.crypto.encrypt.Encryptors" factory-method="noOpText" />
 
 	<!-- This bean determines the account ID of the user -->
 	<beans:bean id="userIdSource" class="org.springframework.social.security.AuthenticationNameUserIdSource" />
+
+	<beans:bean id="providerSignInUtils" class="org.springframework.social.connect.web.ProviderSignInUtils">
+		<beans:constructor-arg index="0" ref="connectionFactoryLocator" />
+		<beans:constructor-arg index="1" ref="usersConnectionRepository" />
+	</beans:bean>
 
 </beans:beans>

@@ -63,6 +63,9 @@ public class UserController {
 	@Autowired
 	private Validator resetUserCustomValidator;
 
+	@Autowired
+	private ProviderSignInUtils providerSignInUtils;
+
 	@InitBinder("registerUser")
 	private void initBinderRegisterUser(WebDataBinder binder) {
 		binder.addValidators(registerUserCustomValidator);
@@ -113,7 +116,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public ModelAndView registerSocial(WebRequest request, ProviderSignInUtils providerSignInUtils) {
+	public ModelAndView registerSocial(WebRequest request) {
 		ModelAndView modelAndView = new ModelAndView("error-social");
 		Connection<?> connection = providerSignInUtils.getConnectionFromSession(request);
 		User user = userService.registerSocial(connection);
@@ -173,7 +176,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/activate")
-	public String activate(@RequestParam(value = "email", required = true) String email, @RequestParam(value = "key", required = true) String key, WebRequest request, ProviderSignInUtils providerSignInUtils) {
+	public String activate(@RequestParam(value = "email", required = true) String email, @RequestParam(value = "key", required = true) String key, WebRequest request) {
 		User user = userService.findByEmail(email);
 		if (user == null // user not found
 				|| user.isActive() // account already active
