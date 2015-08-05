@@ -43,7 +43,7 @@ public class PlayClawRemoteRetriever implements RemoteRetriever {
 	}
 
 	private String getDownloadLink(Document doc) {
-		return doc.select("a.download_trial[href*=.exe]").attr("href");
+		return doc.select("a:contains(Download)[href*=.exe]").attr("href");
 	}
 
 }
