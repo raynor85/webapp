@@ -26,7 +26,7 @@ public class AddVersionCustomValidator implements Validator {
 
 		AddVersion addVersion = (AddVersion) target;
 
-		ApplicationReference application = applicationService.getApplication(addVersion.getApiName());
+		ApplicationReference application = applicationService.getApplication(addVersion.getApiName().toLowerCase());
 		if (application == null) {
 			errors.rejectValue("apiName", "Mismatch.addVersion.apiName");
 		}
@@ -36,7 +36,7 @@ public class AddVersionCustomValidator implements Validator {
 			newVersion.setVersionNumber(addVersion.getVersionNumber());
 			if (!newVersion.isValidVersionNumber()) {
 				errors.rejectValue("versionNumber", "Invalid.addVersion.versionNumber");
-			} else if (applicationService.getLatestVersion(application).getFormatedVersionNumber().compareTo(newVersion.getFormatedVersionNumber()) >= 0) {
+			} else if (application != null && applicationService.getLatestVersion(application).getFormatedVersionNumber().compareTo(newVersion.getFormatedVersionNumber()) >= 0) {
 				errors.rejectValue("versionNumber", "Mismatch.addVersion.versionNumber");
 			}
 		}
