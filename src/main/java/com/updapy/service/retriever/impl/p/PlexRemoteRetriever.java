@@ -40,7 +40,7 @@ public class PlexRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.replacePattern(ParsingUtils.selectFromPattern(doc.select("div#pms-desktop").select("div.brand:contains(Windows)").text(), "(V|v)ersion .*$"), "-", "."));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.replacePattern(StringUtils.removePattern(ParsingUtils.selectFromPattern(doc.select("div#pms-desktop").select("div.brand:contains(Windows)").text(), "(V|v)ersion .*$"), "-.*$"), "-", "."));
 	}
 
 }
