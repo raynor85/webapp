@@ -78,7 +78,7 @@ public class GreenshotRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("item:containsOwn(exe)").first().select("title").text(), "^.*/Greenshot"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("title:containsOwn(exe)").select("title:containsOwn(INSTALLER)").first().text(), "^.*/Greenshot"));
 	}
 
 }
