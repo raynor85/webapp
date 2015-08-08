@@ -48,6 +48,6 @@ public class TeamspeakClientRemoteRetriever implements RemoteRetriever {
 	}
 
 	private String getVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("table.download_category_content").get(0).select("td:contains(Client)").get(0).text(), "SHA1.*$"));
+		return ParsingUtils.extractVersionNumberFromString(doc.select("div:containsOwn(Client 32-bit").select("span.version").get(0).text());
 	}
 }

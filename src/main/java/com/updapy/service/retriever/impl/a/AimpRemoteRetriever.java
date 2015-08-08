@@ -40,7 +40,7 @@ public class AimpRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.replacePattern(doc.select("h3.card_title").get(0).text(), "(B|b)uild", "."));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.replacePattern(doc.select("span.button_download_text").get(0).text(), "(B|b)uild", "."), "\\(.*\\)"));
 	}
 
 }
