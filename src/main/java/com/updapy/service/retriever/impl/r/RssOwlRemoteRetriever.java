@@ -34,12 +34,12 @@ public class RssOwlRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a:contains(Download RSSOwl)").attr("href");
+		return doc.select("h3:contains(Windows)").parents().select("a:contains(Download Now)").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("a:contains(Download RSSOwl)").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("h3:contains(Windows)").parents().select("p:contains(Windows Setup)").text());
 	}
 
 }
