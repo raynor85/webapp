@@ -339,6 +339,7 @@
 		<ref bean="superAntiSpywareRemoteRetriever" />
 		<ref bean="vagrantRemoteRetriever" />
 		<ref bean="adobeDcRemoteRetriever" />
+		<ref bean="fastStoneImageViewerRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

@@ -157,7 +157,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- PrimoPDF
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/PrimoPDF/3000-18497_4-10264577.html', 'http://www.primopdf.com/', 'primopdf.png', 'PrimoPDF', 'primopdf', false, 'TEXT', 'FREE');
 -- FastStone Image Viewer
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/FastStone-Image-Viewer/3000-2192_4-10324485.html', 'http://www.faststone.org/', 'faststoneimageviewer.png', 'FastStone Image Viewer', 'faststoneimageviewer', false, 'IMAGE', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.faststone.org/FSViewerDownload.htm', 'http://www.faststone.org/', 'faststoneimageviewer.png', 'FastStone Image Viewer', 'faststoneimageviewer', false, 'IMAGE', 'FREE');
 -- WinRAR
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.rarlab.com/download.htm', 'http://www.rarlab.com/', 'winrar.png', 'WinRAR', 'winrar', false, 'TOOLS', 'COMMERCIAL');
 -- WinZip
