@@ -287,7 +287,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- TortoiseSVN
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://tortoisesvn.net/downloads.html', 'http://tortoisesvn.net/', 'tortoisesvn.png', 'TortoiseSVN', 'tortoisesvn', false, 'DEVELOPMENT', 'FREE');
 -- TortoiseGit
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://code.google.com/p/tortoisegit/wiki/Download', 'http://code.google.com/p/tortoisegit/', 'tortoisegit.png', 'TortoiseGit', 'tortoisegit', false, 'DEVELOPMENT', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://tortoisegit.org/download/', 'https://tortoisegit.org/', 'tortoisegit.png', 'TortoiseGit', 'tortoisegit', false, 'DEVELOPMENT', 'FREE');
 -- Foobar2000
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.foobar2000.org/download', 'http://www.foobar2000.org/', 'foobar2000.png', 'Foobar2000', 'foobar2000', false, 'MUSIC', 'FREE');
 -- Launchy

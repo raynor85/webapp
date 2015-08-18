@@ -43,7 +43,7 @@ public class MediaMonkeyRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("h1:contains(Download MediaMonkey)").text());
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.remove(doc.select("h1:contains(Download MediaMonkey)").text(), "Windows"));
 	}
 
 }

@@ -36,12 +36,12 @@ public class SubsonicRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a[href*=.exe]").get(0).attr("href"));
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a[href*=.exe]:not(a:contains(beta))").get(0).attr("href"));
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("a[href*=.exe]").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("a[href*=.exe]:not(a:contains(beta))").get(0).text());
 	}
 
 }

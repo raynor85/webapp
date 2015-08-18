@@ -24,7 +24,7 @@ public class TortoiseGitRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return doc.select("a[href*=64bit]:contains(Download TortoiseGit)").attr("href");
+		return ParsingUtils.addHttpPrefix(doc.select("a[href*=64bit]:contains(Download TortoiseGit)").attr("href"));
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class TortoiseGitRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a[href*=32bit]:contains(Download TortoiseGit)").attr("href");
+		return ParsingUtils.addHttpPrefix(doc.select("a[href*=32bit]:contains(Download TortoiseGit)").attr("href"));
 	}
 
 	@Override
