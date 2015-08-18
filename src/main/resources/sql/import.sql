@@ -353,7 +353,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- ZedTV
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://neo-net.fr/forum/viewtopic.php?f=39&t=5563', 'http://neo-net.fr/zedtv-regarder-enregistrer-la-tele-en-direct/', 'zedtv.png', 'ZedTV', 'zedtv', false, 'VIDEO', 'FREE');
 -- Git
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://msysgit.github.io/', 'https://msysgit.github.io/', 'git.png', 'Git', 'git', false, 'DEVELOPMENT', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://github.com/git-for-windows/git/releases/latest', 'https://git-for-windows.github.io/', 'git.png', 'Git', 'git', false, 'DEVELOPMENT', 'FREE');
 -- Blueflap
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://personali.zz.mu/en/download', 'http://personali.zz.mu/', 'blueflap.png', 'Blueflap', 'blueflap', false, 'INTERNET', 'FREE');
 -- Dooscape
