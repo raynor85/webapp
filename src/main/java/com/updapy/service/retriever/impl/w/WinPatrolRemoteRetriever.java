@@ -2,6 +2,7 @@ package com.updapy.service.retriever.impl.w;
 
 import java.io.IOException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -34,12 +35,12 @@ public class WinPatrolRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a:contains(Download WinPatrol)[href*=.exe]").attr("href");
+		return doc.select("a:contains(download)[href*=.exe]").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("a:contains(Download WinPatrol)[href*=.exe]").text());
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("div:containsOwn(What's new in)").first().text(), "\\(.*\\)"));
 	}
 
 }
