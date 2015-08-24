@@ -22,7 +22,7 @@
 		<org.springframework.social.google.version>1.0.0.RELEASE</org.springframework.social.google.version>
 
 		<!-- Hibernate -->
-		<hibernate-entitymanager.version>4.3.11.Final</hibernate-entitymanager.version>
+		<hibernate-entitymanager.version>5.0.0.Final</hibernate-entitymanager.version>
 		<hibernate-validator.version>5.2.1.Final</hibernate-validator.version>
 
 		<!-- Utils -->
