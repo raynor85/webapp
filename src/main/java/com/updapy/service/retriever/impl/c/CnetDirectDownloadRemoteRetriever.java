@@ -17,7 +17,7 @@ public class CnetDirectDownloadRemoteRetriever implements RemoteRetriever {
 	@Override
 	public boolean support(ApplicationReference application) {
 		String apiName = application.getApiName();
-		return apiName.equalsIgnoreCase("spotify") || apiName.equalsIgnoreCase("daemontoolslite") || apiName.equalsIgnoreCase("anyvideoconverter") || apiName.equalsIgnoreCase("wiseuninstaller") || apiName.equalsIgnoreCase("wiseregistrycleaner");
+		return apiName.equalsIgnoreCase("spotify") || apiName.equalsIgnoreCase("daemontoolslite") || apiName.equalsIgnoreCase("anyvideoconverter") || apiName.equalsIgnoreCase("wiseuninstaller") || apiName.equalsIgnoreCase("wiseregistrycleaner") || apiName.equalsIgnoreCase("wisediskcleaner");
 	}
 
 	@Override
@@ -44,9 +44,9 @@ public class CnetDirectDownloadRemoteRetriever implements RemoteRetriever {
 	public String retrieveVersionNumber(Document doc) throws IOException {
 		Elements versionElement = doc.select(".product-landing-quick-specs-row");
 		if (!versionElement.isEmpty()) {
-			return ParsingUtils.extractVersionNumberFromString(versionElement.select(".product-landing-quick-specs-row-content").get(0).text());
+			return ParsingUtils.extractVersionNumberFromString(StringUtils.replacePattern(versionElement.select(".product-landing-quick-specs-row-content").get(0).text(), "(B|b)uild", "."));
 		} else {
-			return ParsingUtils.extractVersionNumberFromString(doc.select("tr#specsPubVersion").text());
+			return ParsingUtils.extractVersionNumberFromString(StringUtils.replacePattern(doc.select("tr#specsPubVersion").text(), "(B|b)uild", "."));
 		}
 	}
 

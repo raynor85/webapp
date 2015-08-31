@@ -340,6 +340,9 @@
 		<ref bean="vagrantRemoteRetriever" />
 		<ref bean="adobeDcRemoteRetriever" />
 		<ref bean="fastStoneImageViewerRemoteRetriever" />
+		<ref bean="avantBrowserRemoteRetriever" />
+		<ref bean="driverMagicianRemoteRetriever" />
+		<ref bean="chemTableRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
