@@ -1,7 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:set var="end" value="11" />
+<c:set var="end" value="12" />
 
 <div class="container">
 	<div class="row">
@@ -29,12 +29,9 @@
 						<c:if test="${i == 1}">
 							<c:set var="in" value="in" />
 						</c:if>
-						<c:if test="${i == 11}">
-							<c:set var="arguments" value="${root}" />
-						</c:if>
 						<div id="collapse${i}" class="panel-collapse collapse ${in}">
 							<div class="panel-body">
-								<spring:message code="faq.answer.${i}" arguments="${arguments}" />
+								<spring:message code="faq.answer.${i}" />
 							</div>
 						</div>
 					</div>
