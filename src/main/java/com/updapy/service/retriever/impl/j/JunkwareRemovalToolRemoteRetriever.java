@@ -7,6 +7,7 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
@@ -35,7 +36,7 @@ public class JunkwareRemovalToolRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a:contains(HERE)[href*=exe]").first().attr("href");
+		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(doc.select("a:contains(HERE)").first().attr("href")).select("a:contains(@Author's Site)").attr("href")).select("a:containsOwn(click here)").attr("href");
 	}
 
 	@Override
