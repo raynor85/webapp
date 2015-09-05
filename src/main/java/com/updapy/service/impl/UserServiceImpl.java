@@ -404,7 +404,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean isValidApiKey(String key) {
-		return userRepository.findByApiKey(key) != null;
+		User user = userRepository.findByApiKey(key);
+		if (user == null) {
+			return false;
+		}
+		return getCurrentUserLight().getApiKey().equals(key);
 	}
 
 	@Override

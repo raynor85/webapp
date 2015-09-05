@@ -14,7 +14,7 @@
 		<intercept-url pattern="/dashboard**/**" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/settings**/**" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/administration**/**" access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/1.0**/**" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/api/v1**/**" access="hasRole('ROLE_USER')" />
 		<!-- Enable remember me - 2 weeks -->
 		<remember-me token-validity-seconds="1209600" remember-me-parameter="remember-me" data-source-ref="dataSource" user-service-ref="userAuthenticateServiceImpl" />
 		<!-- Adds social authentication filter to the Spring Security filter chain. -->

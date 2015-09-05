@@ -25,7 +25,7 @@ import com.updapy.service.UserService;
 import com.updapy.util.DozerHelper;
 
 @Controller
-@RequestMapping("/1.0")
+@RequestMapping("/api/v1")
 public class ApiV1Controller {
 
 	@Autowired
@@ -37,7 +37,7 @@ public class ApiV1Controller {
 	@Autowired
 	private DozerHelper dozerHelper;
 
-	@RequestMapping(value = "/applicationnames")
+	@RequestMapping(value = "/application-names")
 	public @ResponseBody
 	HttpEntity<ApplicationNameResources> getApplicationNames(@RequestParam(value = "key", required = true) String key) {
 		if (!userService.isValidApiKey(key)) {
@@ -53,9 +53,9 @@ public class ApiV1Controller {
 		return new ResponseEntity<ApplicationNameResources>(applicationNameResources, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/lastversion")
+	@RequestMapping(value = "/last-version")
 	public @ResponseBody
-	HttpEntity<LatestApplicationVersion> getLastVersion(@RequestParam(value = "application_name", required = true) String apiName, @RequestParam(value = "key", required = true) String key) {
+	HttpEntity<LatestApplicationVersion> getLastVersion(@RequestParam(value = "application", required = true) String apiName, @RequestParam(value = "key", required = true) String key) {
 		if (!userService.isValidApiKey(key)) {
 			throw new UnauthorizedException();
 		}
