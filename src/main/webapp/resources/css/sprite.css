@@ -358,6 +358,13 @@
 	height: 64px;
 }
 
+.sprite-lightfirefox {
+	background: url(../img/application/sprite/02.png) no-repeat top left;
+	background-position: -114px -114px;
+	width: 64px;
+	height: 64px;
+}
+
 .sprite-flashplayer {
 	background: url(../img/application/sprite/02.png) no-repeat top left;
 	background-position: -228px -114px;
@@ -1723,121 +1730,170 @@
 	background-position: -375px -301px;
 }
 
+.sprite-zonealarmextremesecurity {
+	background: url(../img/application/sprite/08.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -375px -301px;
+}
+
 .sprite-adfender {
-	background: url(../img/application/sprite/09-03.png) no-repeat top left;
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -5px -5px;
 }
 
 .sprite-avantbrowser {
-	background: url(../img/application/sprite/09-03.png) no-repeat top left;
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -79px -5px;
 }
 
-.sprite-drivermagician {
-	background: url(../img/application/sprite/09-03.png) no-repeat top left;
+.sprite-dopdf {
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -153px -5px;
 }
 
-.sprite-fences {
-	background: url(../img/application/sprite/09-03.png) no-repeat top left;
+.sprite-drivermagician {
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -227px -5px;
 }
 
-.sprite-musicbee {
-	background: url(../img/application/sprite/09-03.png) no-repeat top left;
+.sprite-emsisoftinternetsecurity {
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -5px -79px;
 }
 
-.sprite-phraseexpress {
-	background: url(../img/application/sprite/09-03.png) no-repeat top left;
+.sprite-fences {
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -79px -79px;
 }
 
-.sprite-plex {
-	background: url(../img/application/sprite/09-03.png) no-repeat top left;
+.sprite-freemakevideoconverter {
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -153px -79px;
 }
 
-.sprite-registrycleaner {
-	background: url(../img/application/sprite/09-03.png) no-repeat top left;
+.sprite-maxthonnitro {
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -227px -79px;
 }
 
-.sprite-registrydefrag {
-	background: url(../img/application/sprite/09-03.png) no-repeat top left;
+.sprite-musicbee {
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -5px -153px;
 }
 
-.sprite-registrylife {
-	background: url(../img/application/sprite/09-03.png) no-repeat top left;
+.sprite-phraseexpress {
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -79px -153px;
 }
 
-.sprite-regorganizer {
-	background: url(../img/application/sprite/09-03.png) no-repeat top left;
+.sprite-plex {
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -153px -153px;
 }
 
-.sprite-resophnotes {
-	background: url(../img/application/sprite/09-03.png) no-repeat top left;
+.sprite-registrycleaner {
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -227px -153px;
 }
 
-.sprite-superantispyware {
-	background: url(../img/application/sprite/09-03.png) no-repeat top left;
+.sprite-registrydefrag {
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -5px -227px;
 }
 
-.sprite-vagrant {
-	background: url(../img/application/sprite/09-03.png) no-repeat top left;
+.sprite-registrylife {
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -79px -227px;
 }
 
-.sprite-wadobedc {
-	background: url(../img/application/sprite/09-03.png) no-repeat top left;
+.sprite-regorganizer {
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -153px -227px;
 }
 
-.sprite-wisediskcleaner {
-	background: url(../img/application/sprite/09-03.png) no-repeat top left;
+.sprite-resophnotes {
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -227px -227px;
 }
 
-.sprite-zonerphotostudio {
-	background: url(../img/application/sprite/09-03.png) no-repeat top left;
+.sprite-sugarsync {
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -301px -5px;
+}
+
+.sprite-superantispyware {
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -301px -79px;
+}
+
+.sprite-ucbrowser {
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -301px -153px;
+}
+
+.sprite-vagrant {
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -301px -227px;
+}
+
+.sprite-wadobedc {
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -5px -301px;
+}
+
+.sprite-wisediskcleaner {
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -79px -301px;
+}
+
+.sprite-zonerphotostudio {
+	background: url(../img/application/sprite/09-04.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -153px -301px;
 }

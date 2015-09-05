@@ -1,8 +1,7 @@
-package com.updapy.service.retriever.impl.z;
+package com.updapy.service.retriever.impl.f;
 
 import java.io.IOException;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -11,11 +10,13 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class ZoneAlarmFirewallRemoteRetriever implements RemoteRetriever {
+public class FreemakeVideoConverterRemoteRetriever implements RemoteRetriever {
+
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.freemake.com/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getApiName().equalsIgnoreCase("zonealarmfirewall");
+		return application.getApiName().equalsIgnoreCase("freemakevideoconverter");
 	}
 
 	@Override
@@ -35,15 +36,12 @@ public class ZoneAlarmFirewallRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return getDownloadLink(doc);
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("span#btn_Download").select("a").attr("href"));
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(getDownloadLink(doc), ".*/").replace('_', '.'));
+		return ParsingUtils.extractVersionNumberFromString(doc.select("span.ver").first().text());
 	}
 
-	private String getDownloadLink(Document doc) {
-		return doc.select("a:contains(click here)[href*=.exe]").attr("href");
-	}
 }

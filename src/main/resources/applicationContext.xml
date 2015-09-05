@@ -328,7 +328,7 @@
 		<ref bean="actionaRemoteRetriever" />
 		<ref bean="cloudSystemBoosterRemoteRetriever" />
 		<ref bean="vivaldiRemoteRetriever" />
-		<ref bean="zoneAlarmFirewallRemoteRetriever" />
+		<ref bean="zoneAlarmRemoteRetriever" />
 		<ref bean="winampRemoteRetriever" />
 		<ref bean="kasperskySecurityScanRemoteRetriever" />
 		<ref bean="plexRemoteRetriever" />
@@ -343,6 +343,13 @@
 		<ref bean="avantBrowserRemoteRetriever" />
 		<ref bean="driverMagicianRemoteRetriever" />
 		<ref bean="chemTableRemoteRetriever" />
+		<ref bean="doPdfRemoteRetriever" />
+		<ref bean="emsisoftInternetSecurityRemoteRetriever" />
+		<ref bean="freemakeVideoConverterRemoteRetriever" />
+		<ref bean="lightFirefoxRemoteRetriever" />
+		<ref bean="maxthonNitroRemoteRetriever" />
+		<ref bean="sugarSyncRemoteRetriever" />
+		<ref bean="ucBrowserRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 public class Version implements Comparable<Version> {
 
 	private String version;
+	public static final String REGEX_VERSION_NUMBER  = "^(?:(\\d+)\\.)*(\\d+)$";
 
 	public final String get() {
 		return this.version;
@@ -13,7 +14,7 @@ public class Version implements Comparable<Version> {
 	public Version(String version) {
 		if (version == null)
 			throw new IllegalArgumentException("Version cannot be null");
-		if (!version.matches("[0-9]+(\\.[0-9]+)*"))
+		if (!version.matches(REGEX_VERSION_NUMBER))
 			throw new IllegalArgumentException("Invalid version format");
 		this.version = version;
 	}
