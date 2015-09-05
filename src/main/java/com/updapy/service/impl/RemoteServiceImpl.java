@@ -119,12 +119,17 @@ public class RemoteServiceImpl implements RemoteService {
 				doc = retrieveHtmlDocumentAgentMozilla(url);
 			} catch (Exception e2) {
 				try {
-					// let's try a third time WITH a longer user agent and WITHOUT timeout & SSL...
+					// let's try a third time WITH another user agent and WITHOUT SSL...
 					doc = retrieveHtmlDocumentWithoutSSL(url);
 				} catch (Exception e3) {
-					// seems there is really a problem
-					retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_URL_BASE_ERROR, "Error when retrieving the document. Exception:" + e3 + ", Cause:" + e3.getCause());
-					return null;
+					try {
+						// let's try a last time WITH another user agent and WITHOUT timeout and SSL...
+						doc = retrieveHtmlDocumentWithoutSSL(url, 0);
+					} catch (Exception e4) {
+						// seems there is really a problem
+						retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_URL_BASE_ERROR, "Error when retrieving the document. Exception:" + e4 + ", Cause:" + e4.getCause());
+						return null;
+					}
 				}
 			}
 		}
@@ -147,9 +152,13 @@ public class RemoteServiceImpl implements RemoteService {
 		return retrieveHtmlDocumentAgentIE(url, 15 * 1000);
 	}
 
-	public static Document retrieveHtmlDocumentWithoutSSL(String url) throws IOException {
+	public static Document retrieveHtmlDocumentWithoutSSL(String url, int timeout) throws IOException {
 		setTrustAllCerts();
-		return Jsoup.connect(url).userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/600.1.17 (KHTML, like Gecko) Version/8.0 Safari/600.1.17").timeout(0).followRedirects(true).validateTLSCertificates(false).get();
+		return Jsoup.connect(url).userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/600.1.17 (KHTML, like Gecko) Version/8.0 Safari/600.1.17").timeout(timeout).followRedirects(true).validateTLSCertificates(false).get();
+	}
+
+	public static Document retrieveHtmlDocumentWithoutSSL(String url) throws IOException {
+		return retrieveHtmlDocumentWithoutSSL(url, 15 * 1000);
 	}
 
 	private static void setTrustAllCerts() {
