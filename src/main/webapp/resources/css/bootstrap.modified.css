@@ -3640,6 +3640,10 @@ tbody.collapse.in {
 }
 .open > .dropdown-menu {
   display: block;
+  visibility: visible !important;
+}
+.open > .dropdown-menu > .socialMenuTwitterGoogle {
+  display: block !important;
 }
 .open > a {
   outline: 0;
