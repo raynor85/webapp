@@ -350,6 +350,7 @@
 		<ref bean="maxthonNitroRemoteRetriever" />
 		<ref bean="sugarSyncRemoteRetriever" />
 		<ref bean="ucBrowserRemoteRetriever" />
+		<ref bean="cnetJavaJdkRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
