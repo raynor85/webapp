@@ -12,8 +12,6 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class WiresharkRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "https://www.wireshark.org";
-
 	@Override
 	public boolean support(ApplicationReference application) {
 		return application.getApiName().equalsIgnoreCase("wireshark");
@@ -26,7 +24,7 @@ public class WiresharkRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a.dl_link[href*=win64]").get(0).attr("href"));
+		return doc.select("a:contains(Windows Installer (64-bit))").first().attr("href");
 	}
 
 	@Override
@@ -36,16 +34,12 @@ public class WiresharkRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, getDownloadLink32(doc));
+		return doc.select("a:contains(Windows Installer (32-bit))").first().attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(getDownloadLink32(doc));
-	}
-
-	private String getDownloadLink32(Document doc) {
-		return doc.select("a.dl_link[href*=win32]").get(0).attr("href");
+		return ParsingUtils.extractVersionNumberFromString(doc.select("div.panel-heading:contains(Stable Release)").text());
 	}
 
 }

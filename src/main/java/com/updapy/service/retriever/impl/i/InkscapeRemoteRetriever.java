@@ -25,7 +25,7 @@ public class InkscapeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return getDownloadLink(doc, "64bit");
+		return getDownloadLink(doc, "64-bit");
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class InkscapeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return getDownloadLink(doc, "32bit");
+		return getDownloadLink(doc, "32-bit");
 	}
 
 	private String getDownloadLink(Document doc, String version) {
