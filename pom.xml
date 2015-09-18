@@ -53,7 +53,7 @@
 		<commons-dbcp.version>1.4</commons-dbcp.version>
 
 		<!-- Production -->
-		<jsimone.webapp-runner.version>8.0.24.0</jsimone.webapp-runner.version>
+		<jsimone.webapp-runner.version>7.0.57.2</jsimone.webapp-runner.version>
 		<com.newrelic.agent.java.version>3.20.0</com.newrelic.agent.java.version>
 
 		<!-- Log -->
