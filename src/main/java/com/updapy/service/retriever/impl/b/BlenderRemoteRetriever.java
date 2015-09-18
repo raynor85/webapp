@@ -25,9 +25,9 @@ public class BlenderRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		Elements element = doc.select("a[href*=windows64.exe]");
+		Elements element = doc.select("a[href*=win64.exe]");
 		if (element.isEmpty()) {
-			element = doc.select("a[href*=windows64.msi]");
+			element = doc.select("a[href*=win64.msi]");
 		}
 		return element.get(0).attr("href");
 	}
@@ -39,16 +39,16 @@ public class BlenderRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		Elements element = doc.select("a[href*=windows32.exe]");
+		Elements element = doc.select("a[href*=win32.exe]");
 		if (element.isEmpty()) {
-			element = doc.select("a[href*=windows32.msi]");
+			element = doc.select("a[href*=win32.msi]");
 		}
 		return element.get(0).attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("div.title").select("h1:contains(Blender)").get(0).text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("div.title").select("h1:contains(Blender)").get(0).text().replace("-rc", "."));
 	}
 
 }
