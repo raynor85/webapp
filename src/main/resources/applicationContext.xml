@@ -351,6 +351,7 @@
 		<ref bean="sugarSyncRemoteRetriever" />
 		<ref bean="ucBrowserRemoteRetriever" />
 		<ref bean="cnetJavaJdkRemoteRetriever" />
+		<ref bean="anyVideoConverterRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
