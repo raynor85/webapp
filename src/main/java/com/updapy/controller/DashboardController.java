@@ -68,6 +68,11 @@ public class DashboardController {
 		binder.addValidators(requestApplicationCustomValidator);
 	}
 
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+	    binder.setAutoGrowCollectionLimit(1024);
+	}
+
 	@RequestMapping({ "/", "" })
 	public ModelAndView dashboardPage() {
 		User user = userService.getCurrentUserFull();
