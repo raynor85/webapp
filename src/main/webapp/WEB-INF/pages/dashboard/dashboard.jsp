@@ -29,7 +29,10 @@
 		<c:if test="${nbAppFollow != 0 && not isDashboardHowToTipHidden}">
 			<form:form id="helpMessageHowToDismissMessageForm" commandName="dismissMessage" action="${root}/dashboard/dismiss">
 				<div id="helpMessageHowTo" class="alert alert-info pull-right-lg" role="alert">
-					<spring:message code="dashboard.applications.tip.howto" />
+					<spring:message code="dashboard.applications.tip.howto.part1" />
+					<c:if test="${not isEmailDisabled}">
+						<spring:message code="dashboard.applications.tip.howto.part2" />
+					</c:if>
 					<a class="alert-link" href="javascript:ajaxDismissMessage('DASHBOARD_HOW_TO','helpMessageHowTo');"><spring:message code="dashboard.applications.tip.dismiss" /></a>
 				</div>
 			</form:form>
