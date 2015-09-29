@@ -37,7 +37,7 @@ public class CnetDirectDownloadRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return StringUtils.removePattern(doc.select("a:contains(Direct Download Link)").attr("href"), "&onid=.*$");
+		return StringUtils.removePattern(doc.select("a:contains(Direct Download Link)").attr("data-href"), "&onid=.*$");
 	}
 
 	@Override
