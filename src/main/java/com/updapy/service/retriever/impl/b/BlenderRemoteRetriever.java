@@ -25,9 +25,9 @@ public class BlenderRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		Elements element = doc.select("a[href*=win64.exe]");
+		Elements element = doc.select("a[href*=64.exe]");
 		if (element.isEmpty()) {
-			element = doc.select("a[href*=win64.msi]");
+			element = doc.select("a[href*=64.msi]");
 		}
 		return element.get(0).attr("href");
 	}
@@ -39,9 +39,9 @@ public class BlenderRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		Elements element = doc.select("a[href*=win32.exe]");
+		Elements element = doc.select("a[href*=32.exe]");
 		if (element.isEmpty()) {
-			element = doc.select("a[href*=win32.msi]");
+			element = doc.select("a[href*=32.msi]");
 		}
 		return element.get(0).attr("href");
 	}
