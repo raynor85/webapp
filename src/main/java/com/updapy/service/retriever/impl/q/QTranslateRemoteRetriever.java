@@ -36,7 +36,7 @@ public class QTranslateRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a.btn-download[href*=exe]").first().attr("href"));
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("h3").parents().select("a.btn").first().attr("href"));
 	}
 
 	@Override
