@@ -22,8 +22,8 @@
 		<org.springframework.social.google.version>1.0.0.RELEASE</org.springframework.social.google.version>
 
 		<!-- Hibernate -->
-		<hibernate-entitymanager.version>5.0.1.Final</hibernate-entitymanager.version>
-		<hibernate-validator.version>5.2.1.Final</hibernate-validator.version>
+		<hibernate-entitymanager.version>5.0.2.Final</hibernate-entitymanager.version>
+		<hibernate-validator.version>5.2.2.Final</hibernate-validator.version>
 
 		<!-- Utils -->
 		<org.apache.tiles.version>3.0.5</org.apache.tiles.version>
@@ -49,12 +49,12 @@
 		<javax.servlet.jsp.jstl-api.version>1.2.1</javax.servlet.jsp.jstl-api.version>
 
 		<!-- Database -->
-		<postgresql.version>9.4-1202-jdbc42</postgresql.version>
+		<postgresql.version>9.4-1203-jdbc42</postgresql.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
 
 		<!-- Production -->
 		<jsimone.webapp-runner.version>7.0.57.2</jsimone.webapp-runner.version>
-		<com.newrelic.agent.java.version>3.20.0</com.newrelic.agent.java.version>
+		<com.newrelic.agent.java.version>3.21.0</com.newrelic.agent.java.version>
 
 		<!-- Log -->
 		<slf4j.version>1.7.12</slf4j.version>
