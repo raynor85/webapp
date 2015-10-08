@@ -574,6 +574,18 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/Java-Development-Kit-64-Bit/3000-2218_4-75317068.html', 'http://www.oracle.com/technetwork/java/index.html', 'javare.png', 'Java JDK', 'javadk', false, 'SYSTEM_OTHER', 'FREE');
 -- AVG Internet Security
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/AVG-Internet-Security/3000-2239_4-10710160.html', 'http://www.avg.com/internet-security', 'avgfreeantivirus.png', 'AVG Internet Security', 'avginternetsecurity', false, 'SECURITY', 'COMMERCIAL');
+-- Trend Micro Internet Security
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.trendmicro.com/us/home/products/software/maximum-security/installation-instructions/', 'http://www.trendmicro.com/us/home/products/software/internet-security/', 'trendmicrointernetsecurity.png', 'Trend Micro Internet Security', 'trendmicrointernetsecurity', false, 'SECURITY', 'COMMERCIAL');
+-- EaseUs Partition Master
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.easeus.com/scripts/en_easeus/version.js', 'http://www.easeus.com/partition-manager/epm-free.html', 'easeuspartitionmaster.png', 'EaseUs Partition Master', 'easeuspartitionmaster', false, 'SYSTEM', 'FREE');
+-- Evernote
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://evernote.com/download/', 'https://evernote.com/', 'evernote.png', 'Evernote', 'evernote', false, 'TOOLS', 'FREE');
+-- FileHippo App Manager
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://filehippo.com/download_app_manager/', 'http://filehippo.com/download_app_manager/', 'filehippoappmanager.png', 'FileHippo App Manager', 'filehippoappmanager', false, 'TOOLS', 'FREE');
+-- jv16 PowerTools X
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.macecraft.com/download/jv16-powertools-x/', 'https://www.macecraft.com/jv16-powertools-x/', 'jv16powertoolsx.png', 'jv16 PowerTools X', 'jv16powertoolsx', false, 'SYSTEM', 'FREE');
+-- Norton Security
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://us.norton.com/norton-security-downloads-trial', 'http://us.norton.com/norton-security-antivirus', 'nortonsecurity.png', 'Norton Security', 'nortonsecurity', false, 'SECURITY', 'COMMERCIAL');
 
 -- Application description
 -- Firefox

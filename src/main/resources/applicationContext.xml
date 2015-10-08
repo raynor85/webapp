@@ -352,6 +352,12 @@
 		<ref bean="ucBrowserRemoteRetriever" />
 		<ref bean="cnetJavaJdkRemoteRetriever" />
 		<ref bean="anyVideoConverterRemoteRetriever" />
+		<ref bean="trendMicroInternetSecurityRemoteRetriever" />
+		<ref bean="easeUsPartitionMasterRemoteRetriever" />
+		<ref bean="evernoteRemoteRetriever" />
+		<ref bean="filehippoAppManagerRemoteRetriever" />
+		<ref bean="jv16PowerToolsXRemoteRetriever" />
+		<ref bean="nortonSecurityRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

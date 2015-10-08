@@ -23,7 +23,7 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 	private EmailSenderService emailSenderService;
 
 	// Hardcoded list of ignored application (= no email sent except after 50 failures)
-	private static final List<String> ignoredApplications = Arrays.asList("balsamiq", "neroburningrom", "glasswire");
+	private static final List<String> ignoredApplications = Arrays.asList("balsamiq", "neroburningrom", "glasswire", "winamp", "poweriso");
 
 	@Override
 	public List<RetrievalError> getAllRetrievalErrors() {
@@ -76,8 +76,8 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 	@Override
 	public int sendEmailRetrievalErrors() {
 		int count = 0;
-		List<RetrievalError> retrievalErrors = retrievalErrorRepository.findByCountGreaterThanEqual(10); // 10 errors really mean there is a problem!
-		retrievalErrors.addAll(retrievalErrorRepository.findByTypeLastErrorInAndCountGreaterThanEqual(Arrays.asList(TypeRetrievalError.LOCAL_URL_VERSION_ERROR), 2)); // 2 errors is enough in case of "local" URL
+		List<RetrievalError> retrievalErrors = retrievalErrorRepository.findByCountGreaterThanEqual(15); // 15 errors really mean there is a problem!
+		retrievalErrors.addAll(retrievalErrorRepository.findByTypeLastErrorInAndCountGreaterThanEqual(Arrays.asList(TypeRetrievalError.LOCAL_URL_VERSION_ERROR), 3)); // 3 errors is enough in case of "local" URL
 		for (RetrievalError retrievalError : retrievalErrors) {
 			boolean isIgnored = ignoredApplications.contains(retrievalError.getApplication().getApiName());
 			if (!isIgnored || (isIgnored && retrievalError.getCount() >= 50)) {
