@@ -13,7 +13,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class WinampRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://winampplugins.co.uk/Winamp/";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://meggamusic.co.uk/";
 
 	@Override
 	public boolean support(ApplicationReference application) {

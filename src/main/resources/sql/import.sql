@@ -499,7 +499,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 --  360 Total Security
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.360totalsecurity.com/en/download-free-antivirus/360-total-security/?offline=1', 'http://www.360totalsecurity.com/', '360totalsecurity.png', '360 Total Security', '360totalsecurity', false, 'SECURITY', 'FREE');
 -- Winamp
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://winampplugins.co.uk/Winamp/', 'http://winampplugins.co.uk/Winamp/', 'winamp.png', 'Winamp', 'winamp', false, 'MUSIC', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://meggamusic.co.uk/winamp/Winamp_Download.htm', 'http://www.winamp.com/', 'winamp.png', 'Winamp', 'winamp', false, 'MUSIC', 'FREE');
 -- ZoneAlarm Firewall
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.zonealarm.com/security/en-us/fza-install-steps.htm', 'http://www.zonealarm.com/', 'zonealarmfirewall.png', 'ZoneAlarm Firewall', 'zonealarmfirewall', false, 'SECURITY', 'FREE');
 -- Panda Antivirus
