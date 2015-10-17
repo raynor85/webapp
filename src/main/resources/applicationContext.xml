@@ -358,6 +358,7 @@
 		<ref bean="filehippoAppManagerRemoteRetriever" />
 		<ref bean="jv16PowerToolsXRemoteRetriever" />
 		<ref bean="nortonSecurityRemoteRetriever" />
+		<ref bean="gomMediaPlayerRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
