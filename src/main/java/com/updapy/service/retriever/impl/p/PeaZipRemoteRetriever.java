@@ -13,7 +13,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class PeaZipRemoteRetriever implements RemoteRetriever {
 
-	private static final String DOWNLOAD_WEBSITE_64_BITS = "http://peazip.sourceforge.net/peazip-64bit.html";
+	private static final String DOWNLOAD_WEBSITE_64_BITS = "http://www.peazip.org/peazip-64bit.html";
 
 	@Override
 	public boolean support(ApplicationReference application) {

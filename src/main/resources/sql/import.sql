@@ -385,7 +385,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- MediaMonkey
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.mediamonkey.com/download/', 'http://www.mediamonkey.com', 'mediamonkey.png', 'MediaMonkey', 'mediamonkey', false, 'MUSIC', 'FREE');
 -- PeaZip
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://peazip.sourceforge.net', 'http://peazip.sourceforge.net', 'peazip.png', 'PeaZip', 'peazip', false, 'TOOLS', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.peazip.org', 'http://www.peazip.org', 'peazip.png', 'PeaZip', 'peazip', false, 'TOOLS', 'FREE');
 -- PuTTY
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html', 'http://www.chiark.greenend.org.uk/~sgtatham/putty/', 'putty.png', 'PuTTY', 'putty', false, 'DEVELOPMENT', 'FREE');
 -- Python
