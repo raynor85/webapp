@@ -337,7 +337,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- MakeHuman
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.makehuman.org/content/download.html', 'http://www.makehuman.org/', 'makehuman.png', 'MakeHuman', 'makehuman', false, 'VIDEO', 'FREE');
 -- PhotoFiltre Studio
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.photofiltre-studio.com/download.htm', 'http://photofiltre-studio.com/', 'photofiltrestudio.png', 'PhotoFiltre Studio', 'photofiltrestudio', false, 'IMAGE', 'COMMERCIAL');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.photofiltre-studio.com/download-en.htm', 'http://photofiltre-studio.com/', 'photofiltrestudio.png', 'PhotoFiltre Studio', 'photofiltrestudio', false, 'IMAGE', 'COMMERCIAL');
 -- Clementine Player
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://github.com/clementine-player/Clementine/releases/', 'https://www.clementine-player.org/', 'clementineplayer.png', 'Clementine Player', 'clementineplayer', false, 'MUSIC', 'FREE');
 -- SeaMonkey

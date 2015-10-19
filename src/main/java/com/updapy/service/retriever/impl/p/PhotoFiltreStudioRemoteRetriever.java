@@ -14,7 +14,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class PhotoFiltreStudioRemoteRetriever implements RemoteRetriever {
 
-	private static final String DOWNLOAD_WEBSITE_EN = "http://photofiltre-studio.com/download-en.htm";
+	private static final String DOWNLOAD_WEBSITE_FR = "http://photofiltre-studio.com/download.htm";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -33,12 +33,12 @@ public class PhotoFiltreStudioRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlFr(Document doc) throws IOException {
-		return doc.select("a[href*=.exe]").get(0).attr("href");
+		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE_FR).select("a[href*=.exe]").get(0).attr("href");
 	}
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE_EN).select("a[href*=.exe]").get(0).attr("href");
+		return doc.select("a[href*=.exe]").get(0).attr("href");
 	}
 
 	@Override
