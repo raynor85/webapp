@@ -13,8 +13,6 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class Time4PopcornRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://popcorn-time.se/";
-
 	@Override
 	public boolean support(ApplicationReference application) {
 		return application.getApiName().equalsIgnoreCase("time4popcorn");
@@ -37,7 +35,7 @@ public class Time4PopcornRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("li.dl-win").select("a").attr("href"));
+		return ParsingUtils.addHttpPrefix(doc.select("li.dl-win").select("a").attr("href"));
 	}
 
 	@Override
