@@ -14,7 +14,6 @@ import com.updapy.util.ParsingUtils;
 public class MySqlCommunityServerRemoteRetriever implements RemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://dev.mysql.com/";
-	private static final String SUFFIX_DOWNLOAD_WEBSITE = "?tpl=files&os=3";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -52,7 +51,7 @@ public class MySqlCommunityServerRemoteRetriever implements RemoteRetriever {
 	}
 
 	private Document getDocumentMsi(Document doc) throws IOException {
-		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ParsingUtils.buildUrl(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a").first().attr("href")), SUFFIX_DOWNLOAD_WEBSITE));
+		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a").first().attr("href")));
 	}
 
 }

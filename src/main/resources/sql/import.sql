@@ -167,7 +167,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- uTorrent
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://releasenotes.utorrent.com/', 'http://www.utorrent.com/', 'utorrent.png', 'uTorrent', 'utorrent', false, 'INTERNET', 'FREE');
 -- Time 4 Popcorn
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://popcorn-time.se', 'http://popcorn-time.se/', 'popcorntime.png', 'Time 4 Popcorn', 'time4popcorn', false, 'VIDEO', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://popcorn-time.se', 'https://popcorn-time.se/', 'popcorntime.png', 'Time 4 Popcorn', 'time4popcorn', false, 'VIDEO', 'FREE');
 -- Opera
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.opera.com/download/guide/?os=windows&list=all', 'http://www.opera.com/', 'opera.png', 'Opera', 'opera', false, 'INTERNET', 'FREE');
 -- Captvty
