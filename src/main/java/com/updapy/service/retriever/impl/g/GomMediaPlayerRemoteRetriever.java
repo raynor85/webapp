@@ -6,11 +6,14 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
 public class GomMediaPlayerRemoteRetriever implements RemoteRetriever {
+
+	private static final String VERSION_HISTORY_WEBSITE = "http://player.gomlab.com/history.gom?language=eng";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -39,7 +42,7 @@ public class GomMediaPlayerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("div.rbox").select("li:contains(Latest Version)").first().text());
+		return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(VERSION_HISTORY_WEBSITE).select("table.tbl_history").select("tbody").select("th").first().html().split("<br")[0]);
 	}
 
 }

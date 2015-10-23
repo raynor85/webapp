@@ -6,12 +6,15 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.HttpUtils;
 import com.updapy.util.ParsingUtils;
 
 @Component
 public class NortonSecurityRemoteRetriever implements RemoteRetriever {
+
+	private static final String FR_DOWNLOAD_WEBSITE = "http://fr.norton.com/norton-security-downloads-trial";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -30,7 +33,7 @@ public class NortonSecurityRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlFr(Document doc) throws IOException {
-		return null;
+		return getDownloadLink(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(FR_DOWNLOAD_WEBSITE));
 	}
 
 	@Override
@@ -42,7 +45,7 @@ public class NortonSecurityRemoteRetriever implements RemoteRetriever {
 	public String retrieveVersionNumber(Document doc) throws IOException {
 		return ParsingUtils.extractVersionNumberFromString(ParsingUtils.selectFromPattern(HttpUtils.getRedirectionUrl(getDownloadLink(doc)), "/NS-TW-.*exe"));
 	}
-	
+
 	public String getDownloadLink(Document doc) throws IOException {
 		return doc.select("a:contains(Download Now)[href*=exe]").first().attr("href");
 	}
