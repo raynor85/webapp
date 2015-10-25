@@ -9,10 +9,11 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.OriginalUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class CnetDownloadRemoteRetriever implements RemoteRetriever {
+public class CnetDownloadRemoteRetriever extends OriginalUrlRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -40,7 +41,13 @@ public class CnetDownloadRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.baseUri().replace("/3000", "/3001");
+		String url;
+		if (doc.baseUri().contains("/3000")) {
+			url = doc.baseUri();
+		} else {
+			url = getOriginalUrl();
+		}
+		return url.replace("/3000", "/3001");
 	}
 
 	@Override

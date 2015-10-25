@@ -33,21 +33,21 @@ public class NortonSecurityRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlFr(Document doc) throws IOException {
-		return getDownloadLink(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(FR_DOWNLOAD_WEBSITE));
+		return getDownloadLink(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(FR_DOWNLOAD_WEBSITE), "Version d'évaluation");
 	}
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return getDownloadLink(doc);
+		return getDownloadLink(doc, "Download Now");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(ParsingUtils.selectFromPattern(HttpUtils.getRedirectionUrl(getDownloadLink(doc)), "/NS-TW-.*exe"));
+		return ParsingUtils.extractVersionNumberFromString(ParsingUtils.selectFromPattern(HttpUtils.getRedirectionUrl(getDownloadLink(doc, "Download Now")), "/NS-TW-.*exe"));
 	}
 
-	public String getDownloadLink(Document doc) throws IOException {
-		return doc.select("a:contains(Download Now)[href*=exe]").first().attr("href");
+	public String getDownloadLink(Document doc, String buttonText) throws IOException {
+		return doc.select("a:contains(" + buttonText + ")[href*=exe]").first().attr("href");
 	}
 
 }

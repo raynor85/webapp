@@ -36,12 +36,12 @@ public class SyncBackFreeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download SyncBackFree)").attr("href"));
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download SyncBackFree)[href*=.exe]").attr("href"));
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("h3:contains(Download SyncBackFree)").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("h3.subTitle:contains(Download SyncBackFree)").text());
 	}
 
 }

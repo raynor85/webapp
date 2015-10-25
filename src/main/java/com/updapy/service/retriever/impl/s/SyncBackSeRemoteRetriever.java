@@ -36,12 +36,12 @@ public class SyncBackSeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download SyncBackSE)").attr("href"));
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download SyncBackSE)[href*=.exe]").attr("href"));
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("h3:contains(Download SyncBackSE)").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("h3.subTitle:contains(Download SyncBackSE)").text());
 	}
 
 }

@@ -29,6 +29,7 @@ import com.updapy.model.enumeration.TypeRetrievalError;
 import com.updapy.service.RemoteService;
 import com.updapy.service.RetrievalErrorService;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.OriginalUrlRemoteRetriever;
 
 @Service
 public class RemoteServiceImpl implements RemoteService {
@@ -54,6 +55,9 @@ public class RemoteServiceImpl implements RemoteService {
 			retrieveInformation: {
 				for (RemoteRetriever remoteRetriever : remoteRetrievers) {
 					if (remoteRetriever.support(application)) {
+						if (remoteRetriever instanceof OriginalUrlRemoteRetriever) {
+							((OriginalUrlRemoteRetriever) remoteRetriever).setOriginalUrl(application.getGlobalUrl());
+						}
 						version.setVersionNumber(remoteRetriever.retrieveVersionNumber(doc));
 						version.setWin32UrlEn(remoteRetriever.retrieveWin32UrlEn(doc));
 						version.setWin32UrlFr(remoteRetriever.retrieveWin32UrlFr(doc));
