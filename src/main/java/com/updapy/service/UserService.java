@@ -70,6 +70,7 @@ public interface UserService {
 	@CacheEvict(value = "ratings", key = "{'ratings', #apiName}")
 	boolean rateApplication(User user, String apiName, Integer rating);
 
+	@CacheEvict(value = "ratings", key = "{'ratings', #apiName}")
 	boolean deleteFollowedApplication(User user, String apiName);
 
 	boolean disableEmailAlertFollowedApplication(User user, String apiName);
