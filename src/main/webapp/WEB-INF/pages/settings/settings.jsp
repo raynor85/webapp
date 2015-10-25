@@ -110,6 +110,18 @@
 					</form:select>
 				</div>
 			</div>
+			<c:set var="enable">
+				<spring:message code="settings.dashboard.radio.enable" />
+			</c:set>
+			<c:set var="disable">
+				<spring:message code="settings.dashboard.radio.disable" />
+			</c:set>
+			<div class="form-group">
+				<label for="dashboardShowRating" class="col-sm-2 control-label" style="min-width: 130px;"><spring:message code="settings.dashboard.field.showRating" /></label>
+				<div id="dashboardShowRatingDiv" class="col-sm-4 col-md-3">
+					<form:checkbox data-off-text="${disable}" data-on-text="${enable}" path="showRating" id="dashboardShowRating" />
+				</div>
+			</div>
 			<br />
 			<h3>
 				<spring:message code="settings.emails.title" />
@@ -355,13 +367,13 @@
 			"langUpdate" : $("#langUpdate").val(),
 			"osVersion" : $("#osVersion").val(),
 			"dashboardGridSize" : $("#dashboardGridSize").val(),
+			"showRating" : $("input[name='showRating']:checked").val(),
 			"emailAlert" : $("input[name='emailAlert']:checked").val(),
 			"emailEachUpdate" : $("input[name='emailEachUpdate']:checked")
 					.val(),
 			"emailWeekly" : $("input[name='emailWeekly']:checked").val(),
 			"emailAppAdded" : $("input[name='emailAppAdded']:checked").val(),
-			"emailNewsletter" : $("input[name='emailNewsletter']:checked")
-					.val()
+			"emailNewsletter" : $("input[name='emailNewsletter']:checked").val()
 		};
 		ajaxCallPost("#updateSettingsButton", "#updateSettingsForm", json,
 				"#updateSettingsResponse", refreshUsername);

@@ -215,6 +215,8 @@ public class UserServiceImpl implements UserService {
 		user.setOsVersion(OsVersion.WIN_32_BITS);
 		// big icons
 		user.setDashboardGridSize(DashboardGridSize.BIG);
+		// rating is displayed
+		user.setShowRating(true);
 	}
 
 	private void fillLang(User user) {
@@ -463,6 +465,14 @@ public class UserServiceImpl implements UserService {
 			return false;
 		}
 		applicationService.disableEmailAlertFollowedApplication(followedApplication);
+		return true;
+	}
+
+	@Override
+	public boolean rateApplication(User user, String apiName, Integer rating) {
+		ApplicationFollow applicationFollow = applicationService.getFollowedApplication(user, apiName);
+		applicationFollow.setRating(rating);
+		applicationService.saveFollowedApplication(applicationFollow);
 		return true;
 	}
 

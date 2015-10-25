@@ -24,6 +24,7 @@ import com.updapy.form.model.CurrentFollowedApplication;
 import com.updapy.form.model.DismissMessage;
 import com.updapy.form.model.FollowNewApplications;
 import com.updapy.form.model.Notification;
+import com.updapy.form.model.RateApplication;
 import com.updapy.form.model.RequestApplication;
 import com.updapy.model.ApplicationFollow;
 import com.updapy.model.ApplicationNotification;
@@ -97,6 +98,17 @@ public class DashboardController {
 			return jsonResponseUtils.buildSuccessfulJsonResponse("dashboard.applications.unfollow.confirm");
 		} else {
 			return jsonResponseUtils.buildFailedJsonResponse("dashboard.applications.unfollow.error");
+		}
+	}
+	
+	@RequestMapping(value = "/rate", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody
+	JsonResponse rateApplication(@RequestBody RateApplication rateApplication) {
+		boolean isDone = userService.rateApplication(userService.getCurrentUserLight(), rateApplication.getApiName(), rateApplication.getRating());
+		if (isDone) {
+			return jsonResponseUtils.buildSuccessfulJsonResponse("dashboard.applications.rating.confirm");
+		} else {
+			return jsonResponseUtils.buildFailedJsonResponse("dashboard.applications.rating.error");
 		}
 	}
 
@@ -174,6 +186,7 @@ public class DashboardController {
 		modelAndView.addObject("nbNotifications", userService.getNbNotifications(user));
 		modelAndView.addObject("rssKey", user.getRssKey());
 		modelAndView.addObject("dashboardGridSize", user.getDashboardGridSize());
+		modelAndView.addObject("showRating", user.getShowRating());
 		return initModel(user, modelAndView);
 	}
 
@@ -192,6 +205,7 @@ public class DashboardController {
 			CurrentFollowedApplication currentFollowedApplication = dozerHelper.map(version, CurrentFollowedApplication.class);
 			currentFollowedApplication.setDownloadUrl(userService.getDownloadUrlMatchingSettings(user, version).getUrl());
 			currentFollowedApplication.setEmailNotificationActive(followedApplication.isEmailNotificationActive());
+			currentFollowedApplication.setRating(followedApplication.getRating());
 			currentFollowedApplications.add(currentFollowedApplication);
 		}
 		modelAndView.addObject("currentFollowedApplications", currentFollowedApplications);

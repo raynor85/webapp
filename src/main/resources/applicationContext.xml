@@ -37,6 +37,7 @@
 				<bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" name="applications" />
 				<bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" name="descriptions" />
 				<bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" name="versions" />
+				<bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" name="ratings" />
 			</set>
 		</property>
 	</bean>

@@ -23,6 +23,15 @@
 	</c:otherwise>
 </c:choose>
 
+<c:choose>
+	<c:when test="${showRating}">
+		<c:set var="deleteButtonClass" value="pull-left" />
+	</c:when>
+	<c:otherwise>
+		<c:set var="deleteButtonClass" value="pull-right" />
+	</c:otherwise>
+</c:choose>
+
 <div class="container">
 	<div class="row rowWithPadding">
 		<div id="successRequestApplicationResponse"></div>
@@ -32,6 +41,9 @@
 					<spring:message code="dashboard.applications.tip.howto.part1" />
 					<c:if test="${not isEmailDisabled}">
 						<spring:message code="dashboard.applications.tip.howto.part2" />
+					</c:if>
+					<c:if test="${showRating}">
+						<spring:message code="dashboard.applications.tip.howto.part3" />
 					</c:if>
 					<a class="alert-link" href="javascript:ajaxDismissMessage('DASHBOARD_HOW_TO','helpMessageHowTo');"><spring:message code="dashboard.applications.tip.dismiss" /></a>
 				</div>
@@ -97,9 +109,6 @@
 					<spring:message code="dashboard.applications.download.title" arguments="${appName},${currentFollowedApplication.versionNumber}" />
 				</c:set>
 				<div id="div-current-${appId}" class="col-xs-4 col-sm-3 col-md-2 col-lg-2 currentFollowedApplicationContainer">
-					<button title="${deleteTitle}" aria-hidden="true" class="close pull-right" type="button" onclick="ajaxUnfollowCurrentApplication('${appId}');">
-						<i class="fa fa-trash-o fa-1x"></i>
-					</button>
 					<c:choose>
 						<c:when test="${isEmailOnEachUpdateDisabled}">
 							<c:set var="disableStyle" value="display: none;" />
@@ -118,12 +127,20 @@
 							</c:choose>
 						</c:otherwise>
 					</c:choose>
-					<button id="button-current-disable-${appId}" title="${disableTitle}" aria-hidden="true" style="margin-left: -3px;${disableStyle}" class="close pull-left" type="button" onclick="ajaxDisableAlertCurrentApplication('${appId}');">
-						<i class="fa fa-envelope-o fa-1x" style="color: green;"></i>
-					</button>
-					<button id="button-current-enable-${appId}" title="${enableTitle}" aria-hidden="true" class="close pull-left" style="${enableStyle}" type="button" onclick="ajaxEnableAlertCurrentApplication('${appId}');">
-						<i class="fa fa-ban fa-1x" style="color: red;"></i>
-					</button>
+					<div style="height: 25px">
+						<button id="button-current-disable-${appId}" title="${disableTitle}" aria-hidden="true" style="margin-left: -3px;${disableStyle}" class="close pull-left" type="button" onclick="ajaxDisableAlertCurrentApplication('${appId}');">
+							<i class="fa fa-envelope-o fa-1x" style="color: green;"></i>
+						</button>
+						<button id="button-current-enable-${appId}" title="${enableTitle}" aria-hidden="true" style="${enableStyle}" class="close pull-left" type="button" onclick="ajaxEnableAlertCurrentApplication('${appId}');">
+							<i class="fa fa-ban fa-1x" style="color: red;"></i>
+						</button>
+						<button title="${deleteTitle}" aria-hidden="true" class="close ${deleteButtonClass}" type="button" style="margin-left: 10px;" onclick="ajaxUnfollowCurrentApplication('${appId}');">
+							<i class="fa fa-trash-o fa-1x"></i>
+						</button>
+						<c:if test="${showRating}">
+							<input type="number" id="rating-${appId}" value="${currentFollowedApplication.rating}" class="rating" onchange="ajaxRateApplication('${appId}');" style="visibility: hidden;"/>
+						</c:if>
+					</div>
 					<div class="application ${gridSize}-icon">
 						<div class="icon">
 							<c:set var="descriptionCaptionTitle">
@@ -390,7 +407,12 @@
 			"typeHelpMessage" : typeHelpMessage
 		}, null);
 	};
-
+	function ajaxRateApplication(appId) {
+		ajaxCallPostWithUrl(null, "${root}/dashboard/rate", {
+			"apiName" : appId,
+			"rating" : $("#rating-" + appId).val()
+		}, null);
+	};
 	function ajaxRequestApplication() {
 		var json = {
 			"name" : $("#requestedAppName").val(),
@@ -451,6 +473,7 @@
 						+ app + " " + found + "</small>");
 	}
 	$(document).ready(function() {
+		$('.rating-input i:first-child').trigger('mouseleave');
 		updateCounter('${fn:length(leftApplications)}');
 	});
 </script>

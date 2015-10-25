@@ -75,6 +75,14 @@
 						</c:forEach>
 					</select>
 				</div>
+				<div class="col-sm-4 col-md-3 col-lg-3 form-group">
+					<label for="applicationRating" style="min-width: 100px;"><spring:message code="appslist.filter.application.rating" /></label> <select class="selectpicker" id="applicationRating">
+						<option value="ALL"><spring:message code="appslist.filter.application.rating.all" /></option>
+						<option value="1"><spring:message code="appslist.filter.application.rating.good" /></option>
+						<option value="2"><spring:message code="appslist.filter.application.rating.average" /></option>
+						<option value="3"><spring:message code="appslist.filter.application.rating.bad" /></option>
+					</select>
+				</div>
 			</div>
 			<div class="row rowWithPadding">
 				<div class="col-sm-2">
@@ -138,9 +146,32 @@
 													out.println(applicationDescription.getDescriptionEn());
 												}
 										%>
-										<div class="row" style="margin-top: 15px; margin-bottom: 3px;">
+										<div class="row" style="margin-top: 15px;">
 											<div class="col-lg-2 pull-left">
 												<span class="badge${applicationDescription.application.category} label label-default"><i class="fa fa-tag" style="margin-right: 2px;"></i>&nbsp;<spring:message code="appslist.category.${applicationDescription.application.category}" /></span>
+												<span class="currentRating" style="display: none;">${applicationDescription.rating.averageRating}</span>
+											</div>
+											<div class="col-lg-2 pull-right">
+												<div class="pull-right" style="margin-left: 10px">
+													<c:choose>
+														<c:when test="${applicationDescription.rating.nbVotes > 1}">
+															<spring:message code="appslist.detail.votes" arguments="${applicationDescription.rating.nbVotes}" />
+														</c:when>
+														<c:otherwise>
+															<spring:message code="appslist.detail.vote" arguments="${applicationDescription.rating.nbVotes}" />
+														</c:otherwise>
+													</c:choose>
+												</div>
+												<div class="rating-input" style="cursor: default !important;">
+													<c:choose>
+														<c:when test="${not empty applicationDescription.rating.averageRating}">
+															<c:forEach begin="1" end="${applicationDescription.rating.averageRating}" var="i"><i class="fa fa-star"></i></c:forEach><c:if test="${applicationDescription.rating.averageRating % 1 != 0}"><i class="fa fa-star-half-full"></i></c:if><c:forEach begin="${applicationDescription.rating.averageRating + 1.5}" end="5" var="j"><i class="fa fa-star-o"></i></c:forEach>
+														</c:when>
+														<c:otherwise>
+															<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>
+														</c:otherwise>
+													</c:choose>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -180,6 +211,7 @@
 		var filter = $("#filter").val();
 		var category = $("#applicationCategory").val();
 		var type = $("#applicationType").val();
+		var rating = $("#applicationRating").val();
 		var count = 0;
 		// loop through the app list
 		$("#accordion div.panel")
@@ -199,6 +231,25 @@
 									toFade = true;
 								}
 							}
+							if (rating != 'ALL') {
+								// filter on rating
+								var minRating;
+								var maxRating;
+								if (rating == 1){
+									minRating = 4;
+									maxRating = 5.2;
+								} else if (rating == 2){
+									minRating = 2;
+									maxRating = 3.7;
+								} else {
+									minRating = 0;
+									maxRating = 1.8;
+								}
+								var currentRating = (jQuery(this)).find("span.currentRating").text();
+								if (!currentRating || currentRating < minRating || currentRating > maxRating) {
+									toFade = true;
+								};
+							}
 							// filter on app name
 							if (jQuery(this).find("a.panel-app-name").text()
 									.search(new RegExp(filter, "i")) < 0) {
@@ -211,7 +262,7 @@
 								// show the app if all filters match and increase the count by 1
 								$(this).show();
 								count++;
-							}
+							};
 
 						});
 		updateCounter(count);

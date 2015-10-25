@@ -1,5 +1,7 @@
 package com.updapy.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,7 +34,11 @@ public class ApplicationsListController {
 	@RequestMapping({ "/", "" })
 	public ModelAndView getApplicationsListPage() {
 		ModelAndView modelAndView = new ModelAndView("apps-list");
-		modelAndView.addObject("applicationDescriptions", applicationService.getApplicationDescriptions());
+		List<ApplicationDescription> applicationDescriptions = applicationService.getApplicationDescriptions();
+		for (ApplicationDescription applicationDescription : applicationDescriptions) {
+			applicationDescription.setRating(applicationService.getAverageRating(applicationDescription.getApplication().getApiName()));
+		}
+		modelAndView.addObject("applicationDescriptions", applicationDescriptions);
 		modelAndView.addObject("applicationCategories", ApplicationCategory.values());
 		modelAndView.addObject("applicationTypes", ApplicationType.values());
 		return addNotifications(modelAndView);
@@ -45,6 +51,7 @@ public class ApplicationsListController {
 			throw new ResourceNotFoundException();
 		}
 		ModelAndView modelAndView = new ModelAndView("app-detail");
+		applicationDescription.setRating(applicationService.getAverageRating(apiName));
 		modelAndView.addObject("applicationDescription", applicationDescription);
 		return addNotifications(modelAndView);
 	}

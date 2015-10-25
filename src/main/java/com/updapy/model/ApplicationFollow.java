@@ -21,6 +21,8 @@ public class ApplicationFollow extends BaseEntity {
 
 	private boolean emailNotificationActive;
 
+	private Integer rating;
+
 	public ApplicationReference getApplication() {
 		return application;
 	}
@@ -43,6 +45,14 @@ public class ApplicationFollow extends BaseEntity {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Integer getRating() {
+		return rating;
+	}
+
+	public void setRating(Integer rating) {
+		this.rating = rating;
 	}
 
 }

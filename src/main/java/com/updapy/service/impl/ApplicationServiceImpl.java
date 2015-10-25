@@ -18,6 +18,7 @@ import com.updapy.model.ApplicationRequest;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.User;
 import com.updapy.model.stats.FollowedApplication;
+import com.updapy.model.stats.Rating;
 import com.updapy.repository.ApplicationDescriptionRepository;
 import com.updapy.repository.ApplicationFollowRepository;
 import com.updapy.repository.ApplicationNotificationRepository;
@@ -54,6 +55,20 @@ public class ApplicationServiceImpl implements ApplicationService {
 	@Override
 	public void clearApplicationsCache() {
 		// empty as the annotation is taking care of the work
+	}
+
+	@Override
+	public Rating getAverageRating(String apiName) {
+		Rating rating = applicationFollowRepository.findAverageRatingByApplication(apiName);
+		rating.setAverageRating(roundToHalf(rating.getAverageRating()));
+		return rating;
+	}
+
+	private Double roundToHalf(Double number) {
+		if (number == null) {
+			return null;
+		}
+		return 0.5 * Math.round(number * 2);
 	}
 
 	@Override
@@ -163,6 +178,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
+	public ApplicationFollow getFollowedApplication(User user, String apiName) {
+		return applicationFollowRepository.findByUserAndApplicationApiName(user, apiName);
+	}
+
+	@Override
 	public void deleteFollowedApplication(ApplicationFollow followedApplication) {
 		applicationFollowRepository.delete(followedApplication);
 	}
@@ -188,7 +208,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 	public ApplicationRequest saveRequestedApplication(ApplicationRequest requestedApplication) {
 		return applicationRequestRepository.saveAndFlush(requestedApplication);
 	}
-	
+
 	@Override
 	public List<ApplicationRequest> getNbLatestRequestedApplications(int nb) {
 		return applicationRequestRepository.findByOrderByCreationDateDesc(new PageRequest(0, nb));

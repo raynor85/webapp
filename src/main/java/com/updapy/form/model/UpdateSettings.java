@@ -34,6 +34,9 @@ public class UpdateSettings {
 	@NotNull
 	private DashboardGridSize dashboardGridSize;
 
+	@NotNull
+	private boolean showRating;
+
 	public String getName() {
 		return name;
 	}
@@ -104,6 +107,14 @@ public class UpdateSettings {
 
 	public void setDashboardGridSize(DashboardGridSize dashboardGridSize) {
 		this.dashboardGridSize = dashboardGridSize;
+	}
+
+	public boolean getShowRating() {
+		return showRating;
+	}
+
+	public void setShowRating(boolean showRating) {
+		this.showRating = showRating;
 	}
 
 }

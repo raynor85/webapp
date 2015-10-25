@@ -67,6 +67,9 @@ public interface UserService {
 
 	List<ApplicationFollow> addFollowedApplications(User user, List<String> followedApiNames);
 
+	@CacheEvict(value = "ratings", key = "{'ratings', #apiName}")
+	boolean rateApplication(User user, String apiName, Integer rating);
+
 	boolean deleteFollowedApplication(User user, String apiName);
 
 	boolean disableEmailAlertFollowedApplication(User user, String apiName);

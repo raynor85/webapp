@@ -99,6 +99,8 @@ public class User extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	private DashboardGridSize dashboardGridSize;
 
+	private Boolean showRating;
+
 	@Enumerated(EnumType.STRING)
 	private Profile profile;
 
@@ -323,6 +325,14 @@ public class User extends BaseEntity {
 
 	public void setDashboardGridSize(DashboardGridSize dashboardGridSize) {
 		this.dashboardGridSize = dashboardGridSize;
+	}
+
+	public Boolean getShowRating() {
+		return showRating;
+	}
+
+	public void setShowRating(Boolean showRating) {
+		this.showRating = showRating;
 	}
 
 	public Profile getProfile() {

@@ -16,6 +16,8 @@ public class CurrentFollowedApplication {
 
 	private boolean emailNotificationActive;
 
+	private Integer rating;
+
 	public String getApplicationName() {
 		return applicationName;
 	}
@@ -70,6 +72,14 @@ public class CurrentFollowedApplication {
 
 	public void setWebsiteUrl(String websiteUrl) {
 		this.websiteUrl = websiteUrl;
+	}
+
+	public Integer getRating() {
+		return rating;
+	}
+
+	public void setRating(Integer rating) {
+		this.rating = rating;
 	}
 
 }

@@ -1815,7 +1815,7 @@ div.currentFollowedApplicationContainer div.medium-icon {
 }
 
 div.currentFollowedApplicationContainer div.small-icon {
-	height: 120px;
+	height: 130px;
 }
 
 div.currentFollowedApplicationContainer div.application div.title {
@@ -1993,4 +1993,11 @@ img.shadowHover:hover {
 
 a.caption {
 	color: #fff;
+}
+
+.rating-input {
+	cursor: pointer;
+	font-size: 15px;
+	color: orange;
+	float: right;
 }

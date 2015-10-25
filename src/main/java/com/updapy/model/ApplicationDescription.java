@@ -5,8 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Transient;
 
 import com.updapy.model.common.BaseEntity;
+import com.updapy.model.stats.Rating;
 
 @Entity
 @SequenceGenerator(allocationSize = 1, name = "idSequence", sequenceName = "application_description_seq")
@@ -20,6 +22,9 @@ public class ApplicationDescription extends BaseEntity {
 
 	@Column(columnDefinition = "text")
 	private String descriptionFr;
+
+	@Transient
+	private Rating rating;
 
 	public ApplicationReference getApplication() {
 		return application;
@@ -43,6 +48,14 @@ public class ApplicationDescription extends BaseEntity {
 
 	public void setDescriptionFr(String descriptionFr) {
 		this.descriptionFr = descriptionFr;
+	}
+
+	public Rating getRating() {
+		return rating;
+	}
+
+	public void setRating(Rating rating) {
+		this.rating = rating;
 	}
 
 }
