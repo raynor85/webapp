@@ -15,7 +15,7 @@ import com.updapy.model.ApplicationRequest;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.User;
 import com.updapy.model.stats.FollowedApplication;
-import com.updapy.model.stats.Rating;
+import com.updapy.model.stats.AverageRating;
 
 @Transactional
 public interface ApplicationService {
@@ -28,7 +28,7 @@ public interface ApplicationService {
 	void clearApplicationsCache();
 
 	@Cacheable(value = "ratings", key = "{'ratings', #apiName}")
-	Rating getAverageRating(String apiName);
+	AverageRating getAverageRating(String apiName);
 
 	/**
 	 * Application References

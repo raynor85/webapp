@@ -17,8 +17,8 @@ import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationRequest;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.User;
+import com.updapy.model.stats.AverageRating;
 import com.updapy.model.stats.FollowedApplication;
-import com.updapy.model.stats.Rating;
 import com.updapy.repository.ApplicationDescriptionRepository;
 import com.updapy.repository.ApplicationFollowRepository;
 import com.updapy.repository.ApplicationNotificationRepository;
@@ -58,17 +58,10 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
-	public Rating getAverageRating(String apiName) {
-		Rating rating = applicationFollowRepository.findAverageRatingByApplication(apiName);
-		rating.setAverageRating(roundToHalf(rating.getAverageRating()));
+	public AverageRating getAverageRating(String apiName) {
+		AverageRating rating = applicationFollowRepository.findAverageRatingByApplication(apiName);
+		rating.setScore(rating.getScore());
 		return rating;
-	}
-
-	private Double roundToHalf(Double number) {
-		if (number == null) {
-			return null;
-		}
-		return 0.5 * Math.round(number * 2);
 	}
 
 	@Override

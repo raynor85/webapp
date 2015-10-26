@@ -123,7 +123,6 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		setLang(locale, model);
 		model.put("title", messageUtils.getSimpleMessage("email.error.connection.content.title", locale));
 		model.put("text", messageUtils.getCustomMessage("email.error.connection.content.text", new String[] { url }, locale));
-		setSignature(locale, model);
 		setFollowMessages(locale, model);
 		model.put("unsubscribetext", StringUtils.EMPTY);
 		model.put("donate", StringUtils.EMPTY);
@@ -149,7 +148,6 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		setLang(locale, model);
 		model.put("title", messageUtils.getSimpleMessage("email.error.retriever.content.title", locale));
 		model.put("text", messageUtils.getCustomMessage("email.error.retriever.content.text", new String[] { applicationName }, locale));
-		setSignature(locale, model);
 		setFollowMessages(locale, model);
 		model.put("unsubscribetext", StringUtils.EMPTY);
 		model.put("donate", StringUtils.EMPTY);
@@ -170,7 +168,6 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		setLang(locale, model);
 		model.put("title", messageUtils.getSimpleMessage("email.application.request.content.title", locale));
 		model.put("text", messageUtils.getCustomMessage("email.application.request.content.text", new String[] { email, name, url }, locale));
-		setSignature(locale, model);
 		setFollowMessages(locale, model);
 		model.put("unsubscribetext", StringUtils.EMPTY);
 		model.put("donate", StringUtils.EMPTY);
@@ -198,7 +195,6 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		setLang(locale, model);
 		model.put("title", messageUtils.getCustomMessage("email.contact.content.title", new String[] { email }, locale));
 		model.put("text", text);
-		setSignature(locale, model);
 		setFollowMessages(locale, model);
 		model.put("unsubscribetext", StringUtils.EMPTY);
 		model.put("donate", StringUtils.EMPTY);
@@ -405,11 +401,11 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 	private void setLang(Locale locale, Map<String, Object> model) {
 		model.put("lang", messageUtils.getSimpleMessage("email.lang", locale));
 	}
-	
+
 	private void setSignature(Locale locale, Map<String, Object> model) {
 		model.put("signature", messageUtils.getSimpleMessage("email.signature", locale));
 	}
-	
+
 	private void setFollowMessages(Locale locale, Map<String, Object> model) {
 		model.put("follow1", messageUtils.getSimpleMessage("email.follow.part1", locale));
 		model.put("follow2", messageUtils.getSimpleMessage("email.follow.part2", locale));

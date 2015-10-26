@@ -1697,11 +1697,6 @@ div.discreetText {
 	color: #999 !important;
 }
 
-/*** Tooltip for favorite language ***/
-#langDiv .tooltip-inner {
-	width: 200px;
-}
-
 /*** Tables ***/
 .table-inner {
 	width: 75%;
@@ -1984,7 +1979,7 @@ img.shadowHover:hover {
 }
 
 .caption-figure figcaption.figcaption-medium {
-	width: 90px;
+	width: 100px;
 }
 
 .caption-figure:hover figcaption {
@@ -2000,4 +1995,8 @@ a.caption {
 	font-size: 15px;
 	color: orange;
 	float: right;
+}
+
+.rating-input+.tooltip>.tooltip-arrow,.rating-input+.tooltip>.tooltip-inner {
+	opacity: 0.75 !important;
 }

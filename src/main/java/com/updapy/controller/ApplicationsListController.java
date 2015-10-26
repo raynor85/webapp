@@ -36,7 +36,7 @@ public class ApplicationsListController {
 		ModelAndView modelAndView = new ModelAndView("apps-list");
 		List<ApplicationDescription> applicationDescriptions = applicationService.getApplicationDescriptions();
 		for (ApplicationDescription applicationDescription : applicationDescriptions) {
-			applicationDescription.setRating(applicationService.getAverageRating(applicationDescription.getApplication().getApiName()));
+			applicationDescription.setAverageRating(applicationService.getAverageRating(applicationDescription.getApplication().getApiName()));
 		}
 		modelAndView.addObject("applicationDescriptions", applicationDescriptions);
 		modelAndView.addObject("applicationCategories", ApplicationCategory.values());
@@ -51,7 +51,7 @@ public class ApplicationsListController {
 			throw new ResourceNotFoundException();
 		}
 		ModelAndView modelAndView = new ModelAndView("app-detail");
-		applicationDescription.setRating(applicationService.getAverageRating(apiName));
+		applicationDescription.setAverageRating(applicationService.getAverageRating(apiName));
 		modelAndView.addObject("applicationDescription", applicationDescription);
 		return addNotifications(modelAndView);
 	}

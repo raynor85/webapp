@@ -54,25 +54,25 @@
 										out.println(applicationDescription.getDescriptionEn());
 									}
 								%>
-								<div class="row" style="margin-top: 15px;">
+								<div class="row" style="margin-top: 15px; margin-bottom: 3px;">
 									<div class="col-lg-2 pull-left">
 										<span class="badge${applicationDescription.application.category} label label-default"><i class="fa fa-tag" style="margin-right: 2px;"></i>&nbsp;<spring:message code="appslist.category.${applicationDescription.application.category}" /></span>
 									</div>
 									<div class="col-lg-2 pull-right">
 										<div class="pull-right" style="margin-left: 10px">
 											<c:choose>
-												<c:when test="${applicationDescription.rating.nbVotes > 1}">
-													<spring:message code="appslist.detail.votes" arguments="${applicationDescription.rating.nbVotes}" />
+												<c:when test="${applicationDescription.averageRating.nbVotes > 1}">
+													<spring:message code="appslist.detail.votes" arguments="${applicationDescription.averageRating.nbVotes}" />
 												</c:when>
 												<c:otherwise>
-													<spring:message code="appslist.detail.vote" arguments="${applicationDescription.rating.nbVotes}" />
+													<spring:message code="appslist.detail.vote" arguments="${applicationDescription.averageRating.nbVotes}" />
 												</c:otherwise>
 											</c:choose>
 										</div>
-										<div class="rating-input" style="cursor: default !important;">
+										<div class="rating-input" style="cursor: default !important;" data-toggle="tooltip" data-placement="left" title="${applicationDescription.averageRating.scoreRounded}">
 											<c:choose>
-												<c:when test="${not empty applicationDescription.rating.averageRating}">
-													<c:forEach begin="1" end="${applicationDescription.rating.averageRating}" var="i"><i class="fa fa-star"></i></c:forEach><c:if test="${applicationDescription.rating.averageRating % 1 != 0}"><i class="fa fa-star-half-full"></i></c:if><c:forEach begin="${applicationDescription.rating.averageRating + 1.5}" end="5" var="j"><i class="fa fa-star-o"></i></c:forEach>
+												<c:when test="${not empty applicationDescription.averageRating.scoreRoundedToHalf}">
+													<c:forEach begin="1" end="${applicationDescription.averageRating.scoreRoundedToHalf}" var="i"><i class="fa fa-star"></i></c:forEach><c:if test="${applicationDescription.averageRating.scoreRoundedToHalf % 1 != 0}"><i class="fa fa-star-half-full"></i></c:if><c:forEach begin="${applicationDescription.averageRating.scoreRoundedToHalf + 1.5}" end="5" var="j"><i class="fa fa-star-o"></i></c:forEach>
 												</c:when>
 												<c:otherwise>
 													<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>
@@ -90,3 +90,8 @@
 	</div>
 </div>
 
+<script>
+	$(document).ready(function() {
+		$('[data-toggle="tooltip"]').tooltip();
+	});
+</script>

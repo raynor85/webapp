@@ -206,6 +206,7 @@ public class DashboardController {
 			currentFollowedApplication.setDownloadUrl(userService.getDownloadUrlMatchingSettings(user, version).getUrl());
 			currentFollowedApplication.setEmailNotificationActive(followedApplication.isEmailNotificationActive());
 			currentFollowedApplication.setRating(followedApplication.getRating());
+			currentFollowedApplication.setAverageRating(applicationService.getAverageRating(currentFollowedApplication.getApiName()));
 			currentFollowedApplications.add(currentFollowedApplication);
 		}
 		modelAndView.addObject("currentFollowedApplications", currentFollowedApplications);

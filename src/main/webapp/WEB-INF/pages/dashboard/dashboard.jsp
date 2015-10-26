@@ -112,7 +112,7 @@
 					<c:choose>
 						<c:when test="${isEmailOnEachUpdateDisabled}">
 							<c:set var="disableStyle" value="display: none;" />
-							<c:set var="enableStyle" value="visibility: hidden;" />
+							<c:set var="enableStyle" value="display: none;" />
 						</c:when>
 						<c:otherwise>
 							<c:choose>
@@ -154,10 +154,42 @@
 								<figcaption class="figcaption-${gridSize}" itemprop="name">
 									<c:choose>
 										<c:when test="${gridSize == 'small'}">
-											<a class="caption" href="${root}/applications/${appId}" target="_blank" title="${descriptionCaptionTitle}"><i class="fa fa-book"></i></a><br><a class="caption" href="${currentFollowedApplication.websiteUrl}" target="_blank" title="${websiteCaptionTitle}"><i class="fa fa-home"></i></a>
+											<c:set var="ratingCaptionTitle"><c:out value="${currentFollowedApplication.averageRating.scoreRounded}" /> <c:choose><c:when test="${currentFollowedApplication.averageRating.nbVotes > 1}"><spring:message code="appslist.detail.votes" arguments="${currentFollowedApplication.averageRating.nbVotes}" /></c:when><c:otherwise><spring:message code="appslist.detail.vote" arguments="${currentFollowedApplication.averageRating.nbVotes}" /></c:otherwise></c:choose></c:set>
+											<div data-toggle="tooltip" title="${ratingCaptionTitle}">
+												<c:choose>
+													<c:when test="${currentFollowedApplication.averageRating.nbVotes > 0}">
+														<i class="fa fa-star" style="cursor: pointer;"></i>
+													</c:when>
+													<c:otherwise>
+														<i class="fa fa-star-o" style="cursor: pointer;"></i>
+													</c:otherwise>
+												</c:choose>
+											</div>
+											<a class="caption" href="${root}/applications/${appId}" title="${descriptionCaptionTitle}"><i class="fa fa-book"></i></a>
+											<br><a class="caption" href="${currentFollowedApplication.websiteUrl}" target="_blank" title="${websiteCaptionTitle}"><i class="fa fa-home"></i></a>
 										</c:when>
 										<c:otherwise>
-											<i class="fa fa-book"></i>&nbsp;<a class="caption" href="${root}/applications/${appId}" target="_blank" title="${descriptionCaptionTitle}"><spring:message code="dashboard.applications.caption.description" /></a><br><i class="fa fa-home"></i>&nbsp;<a class="caption" href="${currentFollowedApplication.websiteUrl}" target="_blank" title="${websiteCaptionTitle}"><spring:message code="dashboard.applications.caption.website" /></a>
+											<c:choose>
+												<c:when test="${currentFollowedApplication.averageRating.nbVotes > 0}">
+													<i class="fa fa-star"></i>
+												</c:when>
+												<c:otherwise>
+													<i class="fa fa-star-o"></i>
+												</c:otherwise>
+											</c:choose>
+											<c:if test="${not empty currentFollowedApplication.averageRating.scoreRounded}">
+												<c:out value="${currentFollowedApplication.averageRating.scoreRounded}" />
+											</c:if>
+											<c:choose>
+												<c:when test="${currentFollowedApplication.averageRating.nbVotes > 1}">
+													<spring:message code="appslist.detail.votes" arguments="${currentFollowedApplication.averageRating.nbVotes}" />
+												</c:when>
+												<c:otherwise>
+													<spring:message code="appslist.detail.vote" arguments="${currentFollowedApplication.averageRating.nbVotes}" />
+												</c:otherwise>
+											</c:choose>
+											<br><i class="fa fa-book"></i>&nbsp;<a class="caption" href="${root}/applications/${appId}" title="${descriptionCaptionTitle}"><spring:message code="dashboard.applications.caption.description" /></a>
+											<br><i class="fa fa-home"></i>&nbsp;<a class="caption" href="${currentFollowedApplication.websiteUrl}" target="_blank" title="${websiteCaptionTitle}"><spring:message code="dashboard.applications.caption.website" /></a>
 										</c:otherwise>
 									</c:choose>
 								</figcaption>
@@ -477,3 +509,11 @@
 		updateCounter('${fn:length(leftApplications)}');
 	});
 </script>
+
+<c:if test="${gridSize == 'small'}">
+	<script>
+		$(document).ready(function() {
+			$('[data-toggle="tooltip"]').tooltip();
+		});
+	</script>
+</c:if>

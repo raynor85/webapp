@@ -1,5 +1,9 @@
 package com.updapy.form.model;
 
+import javax.persistence.Transient;
+
+import com.updapy.model.stats.AverageRating;
+
 public class CurrentFollowedApplication {
 
 	private String applicationName;
@@ -17,6 +21,9 @@ public class CurrentFollowedApplication {
 	private boolean emailNotificationActive;
 
 	private Integer rating;
+
+	@Transient
+	private AverageRating averageRating;
 
 	public String getApplicationName() {
 		return applicationName;
@@ -80,6 +87,14 @@ public class CurrentFollowedApplication {
 
 	public void setRating(Integer rating) {
 		this.rating = rating;
+	}
+
+	public AverageRating getAverageRating() {
+		return averageRating;
+	}
+
+	public void setAverageRating(AverageRating averageRating) {
+		this.averageRating = averageRating;
 	}
 
 }

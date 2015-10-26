@@ -8,7 +8,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
 
 import com.updapy.model.common.BaseEntity;
-import com.updapy.model.stats.Rating;
+import com.updapy.model.stats.AverageRating;
 
 @Entity
 @SequenceGenerator(allocationSize = 1, name = "idSequence", sequenceName = "application_description_seq")
@@ -24,7 +24,7 @@ public class ApplicationDescription extends BaseEntity {
 	private String descriptionFr;
 
 	@Transient
-	private Rating rating;
+	private AverageRating averageRating;
 
 	public ApplicationReference getApplication() {
 		return application;
@@ -50,12 +50,12 @@ public class ApplicationDescription extends BaseEntity {
 		this.descriptionFr = descriptionFr;
 	}
 
-	public Rating getRating() {
-		return rating;
+	public AverageRating getAverageRating() {
+		return averageRating;
 	}
 
-	public void setRating(Rating rating) {
-		this.rating = rating;
+	public void setAverageRating(AverageRating averageRating) {
+		this.averageRating = averageRating;
 	}
 
 }

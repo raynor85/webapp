@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import com.updapy.model.ApplicationFollow;
 import com.updapy.model.User;
 import com.updapy.model.stats.FollowedApplication;
-import com.updapy.model.stats.Rating;
+import com.updapy.model.stats.AverageRating;
 
 public interface ApplicationFollowRepository extends JpaRepository<ApplicationFollow, Long> {
 
@@ -19,7 +19,7 @@ public interface ApplicationFollowRepository extends JpaRepository<ApplicationFo
 
 	ApplicationFollow findByUserAndApplicationApiName(User user, String apiName);
 
-	@Query("select new com.updapy.model.stats.Rating(avg(rating), count(*)) from ApplicationFollow where application.apiName = :apiName and rating is not null")
-	Rating findAverageRatingByApplication(@Param("apiName") String apiName);
+	@Query("select new com.updapy.model.stats.AverageRating(avg(rating), count(*)) from ApplicationFollow where application.apiName = :apiName and rating is not null")
+	AverageRating findAverageRatingByApplication(@Param("apiName") String apiName);
 
 }
