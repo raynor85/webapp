@@ -123,6 +123,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		setLang(locale, model);
 		model.put("title", messageUtils.getSimpleMessage("email.error.connection.content.title", locale));
 		model.put("text", messageUtils.getCustomMessage("email.error.connection.content.text", new String[] { url }, locale));
+		model.put("signature", StringUtils.EMPTY);
 		setFollowMessages(locale, model);
 		model.put("unsubscribetext", StringUtils.EMPTY);
 		model.put("donate", StringUtils.EMPTY);
@@ -148,6 +149,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		setLang(locale, model);
 		model.put("title", messageUtils.getSimpleMessage("email.error.retriever.content.title", locale));
 		model.put("text", messageUtils.getCustomMessage("email.error.retriever.content.text", new String[] { applicationName }, locale));
+		model.put("signature", StringUtils.EMPTY);
 		setFollowMessages(locale, model);
 		model.put("unsubscribetext", StringUtils.EMPTY);
 		model.put("donate", StringUtils.EMPTY);
@@ -168,6 +170,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		setLang(locale, model);
 		model.put("title", messageUtils.getSimpleMessage("email.application.request.content.title", locale));
 		model.put("text", messageUtils.getCustomMessage("email.application.request.content.text", new String[] { email, name, url }, locale));
+		model.put("signature", StringUtils.EMPTY);
 		setFollowMessages(locale, model);
 		model.put("unsubscribetext", StringUtils.EMPTY);
 		model.put("donate", StringUtils.EMPTY);
@@ -195,6 +198,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		setLang(locale, model);
 		model.put("title", messageUtils.getCustomMessage("email.contact.content.title", new String[] { email }, locale));
 		model.put("text", text);
+		model.put("signature", StringUtils.EMPTY);
 		setFollowMessages(locale, model);
 		model.put("unsubscribetext", StringUtils.EMPTY);
 		model.put("donate", StringUtils.EMPTY);
