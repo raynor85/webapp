@@ -39,7 +39,7 @@ public class VagrantRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(getDownloadLink(doc));
+		return ParsingUtils.extractVersionNumberFromString(ParsingUtils.selectFilenameFromUrl(getDownloadLink(doc)));
 	}
 
 	private String getDownloadLink(Document doc) {
