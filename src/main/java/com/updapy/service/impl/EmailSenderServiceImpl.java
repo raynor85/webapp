@@ -20,6 +20,7 @@ import javax.mail.internet.MimeMultipart;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.velocity.app.VelocityEngine;
+import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -441,9 +442,13 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 
 		Multipart multipart = new MimeMultipart("alternative");
 
-		BodyPart bodyPart = new MimeBodyPart();
-		bodyPart.setContent(htmlContent, "text/html");
-		multipart.addBodyPart(bodyPart);
+		BodyPart bodyPartHtml = new MimeBodyPart();
+		bodyPartHtml.setContent(htmlContent, "text/html");
+		multipart.addBodyPart(bodyPartHtml);
+
+		BodyPart bodyPartPlain = new MimeBodyPart();
+		bodyPartPlain.setContent(Jsoup.parse(htmlContent).text(), "text/plain");
+		multipart.addBodyPart(bodyPartPlain);
 
 		message.setContent(multipart);
 		message.setFrom(new InternetAddress(fromEmail, messageUtils.getSimpleMessage("application.name")));
