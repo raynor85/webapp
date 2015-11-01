@@ -38,6 +38,8 @@ import com.updapy.util.MessageUtils;
 @Service
 public class EmailSenderServiceImpl implements EmailSenderService {
 
+	private static final String RETURN_LINE = "br2n";
+
 	private Logger log = LoggerFactory.getLogger(EmailSenderServiceImpl.class);
 
 	@Autowired
@@ -443,7 +445,12 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 		Multipart multipart = new MimeMultipart("alternative");
 
 		BodyPart bodyPartPlain = new MimeBodyPart();
-		bodyPartPlain.setContent(Jsoup.parse(htmlContent).text(), "text/plain");
+		String plainContent = Jsoup.parse(htmlContent.replaceAll("(?i)<br[^>]*>", RETURN_LINE)).text();
+		plainContent = plainContent.replaceAll(" " + RETURN_LINE + " ", "\n");
+		plainContent = plainContent.replaceAll(RETURN_LINE + " ", "\n");
+		plainContent = plainContent.replaceAll(" " + RETURN_LINE, "\n");
+		plainContent = plainContent.replaceAll(RETURN_LINE, "\n");
+		bodyPartPlain.setContent(plainContent, "text/plain");
 		multipart.addBodyPart(bodyPartPlain);
 
 		BodyPart bodyPartHtml = new MimeBodyPart();
