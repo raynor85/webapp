@@ -442,13 +442,13 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 
 		Multipart multipart = new MimeMultipart("alternative");
 
-		BodyPart bodyPartHtml = new MimeBodyPart();
-		bodyPartHtml.setContent(htmlContent, "text/html");
-		multipart.addBodyPart(bodyPartHtml);
-
 		BodyPart bodyPartPlain = new MimeBodyPart();
 		bodyPartPlain.setContent(Jsoup.parse(htmlContent).text(), "text/plain");
 		multipart.addBodyPart(bodyPartPlain);
+
+		BodyPart bodyPartHtml = new MimeBodyPart();
+		bodyPartHtml.setContent(htmlContent, "text/html");
+		multipart.addBodyPart(bodyPartHtml);
 
 		message.setContent(multipart);
 		message.setFrom(new InternetAddress(fromEmail, messageUtils.getSimpleMessage("application.name")));
