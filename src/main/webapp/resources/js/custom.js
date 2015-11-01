@@ -223,6 +223,23 @@ function ajaxCallPostWithUrl(button, urlAction, json, divResult,
 					if (button != null) {
 						l.stop();
 					}
+				},
+			    error: function(xhr, textStatus, errorThrown){
+					if (Boolean(noSpaceBefore)) {
+						responseInDiv = "";
+					} else {
+						responseInDiv = "<br />";
+					}
+					responseInDiv += "<div class='alert alert-danger alert-dismissable' role='alert'>";
+					responseInDiv += "<i class='fa fa-exclamation-circle'></i> ";
+					responseInDiv += "<span class='sr-only'>Error:</span>";
+					responseInDiv += "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+					responseInDiv += genericErrorMessage + "<br />";
+					responseInDiv += "</div>";
+					$(divResult).html(responseInDiv);
+			    	if (button != null) {
+						l.stop();
+					}
 				}
 			});
 };

@@ -1,3 +1,7 @@
+/**
+ * Version 0.3.0
+ * https://github.com/javiertoledo/bootstrap-rating-input/
+ */
 (function($) {
 
   var clearClass = 'rating-clear';

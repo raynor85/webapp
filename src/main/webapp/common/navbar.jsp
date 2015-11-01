@@ -374,6 +374,11 @@
 											"<spring:message code='menu.notification.single' />");
 							$("#badge-notification").removeClass(
 									"badge-notification");
+						},
+					    error: function(xhr, textStatus, errorThrown){
+					    	responseNotifications = "<li><a style='color: #777 !important; background-color: transparent !important;'>" + genericErrorMessage + "</a></li>";							
+							responseNotifications += "<li><a tabindex='-1' href='${root}/rss/notifications?key=${rssKey}' target='_blank' onmouseover=\"javascript:$('#rss-icon').css('color', '#1a7440');\" onmouseout=\"javascript:$('#rss-icon').css('color', '#FF6600');\" style='color: #333;min-width: 310px;'><i id='rss-icon' class='fa fa-rss fa-1-4x pull-right color-rss' style='display: block;'></i> <spring:message code='menu.notification.rss' /></a></li>";
+							$("#notifications").html(responseNotifications);
 						}
 					});
 		};

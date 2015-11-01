@@ -96,6 +96,7 @@
 			document.body.scrollLeft = scroll.left;
 		}
 	}
+	genericErrorMessage = "<spring:message code='error.generic.message' />";
 </script>
 
 <c:set var="title">
