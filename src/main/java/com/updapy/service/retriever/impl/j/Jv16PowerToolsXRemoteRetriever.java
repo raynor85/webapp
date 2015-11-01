@@ -2,6 +2,7 @@ package com.updapy.service.retriever.impl.j;
 
 import java.io.IOException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -39,7 +40,7 @@ public class Jv16PowerToolsXRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(ParsingUtils.selectFromPattern(doc.select("p:contains(Product version)").text(), "Product version.*,").split(",")[0]);
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("div.wpb_wrapper").select("p").first().text().split(", setup file")[0], "^.*:"));
 	}
 
 }
