@@ -7,11 +7,14 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component(value = "kLiteCodecPackRemoteRetriever")
 public class KLiteCodecPackRemoteRetriever implements RemoteRetriever {
+
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.majorgeeks.com/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -35,7 +38,7 @@ public class KLiteCodecPackRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a:contains(Mirror)[href*=betanews]").first().attr("href").replace("/detail/", "/download/");
+		return ParsingUtils.selectFromPattern(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(doc.select("a:contains(Mirror)[href*=majorgeeks]").first().attr("href")).select("a:contains(Download Now)").attr("href"))).select("img[alt*=Click here]").parents().select("a").first().attr("href")), "^.*download");
 	}
 
 	@Override

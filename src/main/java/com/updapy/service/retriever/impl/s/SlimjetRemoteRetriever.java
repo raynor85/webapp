@@ -43,7 +43,7 @@ public class SlimjetRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(ParsingUtils.selectFromPattern(doc.select("h4:contains(Stable Release)").first().text(), "\\(.*\\)"));
+		return ParsingUtils.extractVersionNumberFromString(ParsingUtils.selectFromPattern(doc.select("h3:contains(Stable Release)").first().text(), "\\(.*\\)"));
 	}
 
 }
