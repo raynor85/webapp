@@ -43,7 +43,7 @@ public class ActionaRemoteRetriever implements RemoteRetriever {
 	}
 
 	private String getVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("p:contains(Latest version)").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("p:contains(version)").first().text());
 	}
 
 }
