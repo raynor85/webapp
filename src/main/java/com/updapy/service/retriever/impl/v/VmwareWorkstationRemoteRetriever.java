@@ -6,15 +6,14 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
-import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.util.HttpUtils;
 import com.updapy.util.ParsingUtils;
 
 @Component
 public class VmwareWorkstationRemoteRetriever implements RemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.vmware.com";
-	private static final String DOWNLOAD_WEBSITE_VERSION = "http://www.vmware.com/products/workstation/workstation-evaluation";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -38,12 +37,13 @@ public class VmwareWorkstationRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE_VERSION).select("a.download_now_validation[href*=win]").attr("href"));
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a.download_now_validation[href*=win]").attr("href"));
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("tr.more-details").select("td.midProductColumn:contains(for Windows)").text());
+		String filename = HttpUtils.getFilenameFromUrl(HttpUtils.getRedirectionUrl(retrieveWin32UrlEn(doc)));
+		return ParsingUtils.extractVersionNumberFromString(filename.substring(0, filename.lastIndexOf('-')));
 	}
 
 }
