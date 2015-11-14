@@ -37,7 +37,9 @@
 					</div>
 				</c:if>
 				<div class="alt-index">
-					<img width="710" height="319" src="<spring:url value="/resources/img/welcome/updapy-preview.png" />" alt="Updapy Preview">
+					<a href="https://twitter.com/hashtag/PrayForParis" title="Pray for the People in Paris">
+						<img width="710" height="319" src="<spring:url value="/resources/img/welcome/updapy-preview.png" />" alt="Updapy Preview">
+					</a>
 				</div>
 			</div>
 		</div>
