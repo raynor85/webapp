@@ -13,6 +13,8 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class LinphoneRemoteRetriever implements RemoteRetriever {
 
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.linphone.org/";
+
 	@Override
 	public boolean support(ApplicationReference application) {
 		return application.getApiName().equalsIgnoreCase("linphone");
@@ -35,7 +37,7 @@ public class LinphoneRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a[href*=.exe]").attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a[href*=.exe]").attr("href"));
 
 	}
 
