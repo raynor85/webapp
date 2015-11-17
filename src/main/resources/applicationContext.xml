@@ -360,6 +360,10 @@
 		<ref bean="jv16PowerToolsXRemoteRetriever" />
 		<ref bean="nortonSecurityRemoteRetriever" />
 		<ref bean="gomMediaPlayerRemoteRetriever" />
+		<ref bean="quintessentialMediaPlayerRemoteRetriever" />
+		<ref bean="patchMyPcRemoteRetriever" />
+		<ref bean="mediaPlayerClassicRemoteRetriever" />
+		<ref bean="imagineRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

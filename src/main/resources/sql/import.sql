@@ -586,6 +586,14 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.macecraft.com/download/jv16-powertools-x/', 'https://www.macecraft.com/jv16-powertools-x/', 'jv16powertoolsx.png', 'jv16 PowerTools X', 'jv16powertoolsx', false, 'SYSTEM', 'FREE');
 -- Norton Security
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://us.norton.com/norton-security-downloads-trial', 'http://us.norton.com/norton-security-antivirus', 'nortonsecurity.png', 'Norton Security', 'nortonsecurity', false, 'SECURITY', 'COMMERCIAL');
+-- Imagine
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://totalcmd.net/plugring/imagine.html', 'http://totalcmd.net/plugring/imagine.html', 'imagine.png', 'Imagine', 'imagine', false, 'IMAGE', 'FREE');
+-- Media Player Classic
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.mpcdl.com/', 'http://www.mpcdl.com/', 'mpclassic.png', 'Media Player Classic', 'mpclassic', false, 'VIDEO', 'FREE');
+-- Patch My PC
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://patchmypc.net/download', 'https://patchmypc.net', 'patchmypc.png', 'Patch My PC', 'patchmypc', false, 'TOOLS', 'FREE');
+-- Quintessential Media Player
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.quinnware.com', 'http://www.quinnware.com', 'quintessentialmediaplayer.png', 'Quintessential Media Player', 'quintessentialmediaplayer', false, 'MUSIC', 'FREE');
 
 -- Application description
 -- Firefox
@@ -1150,9 +1158,17 @@ INSERT INTO applicationdescription(id, creationdate, dbversion, updatedate, desc
 INSERT INTO applicationdescription(id, creationdate, dbversion, updatedate, descriptionen, descriptionfr, application_id) VALUES (nextval('application_description_seq'), now(), 0, now(), 'jv16 PowerTools X is an optimization software designed to automatically fix system errors, improve the PC''s overall performance, and clean unneeded data and the Windows registry.', 'jv16 PowerTools X est un logiciel d''optimisation conçu pour corriger automatiquement les erreurs système, améliorer les performances générales du PC, supprimer les données inutiles et nettoyer le registre Windows.', 281);
 -- Norton Security
 INSERT INTO applicationdescription(id, creationdate, dbversion, updatedate, descriptionen, descriptionfr, application_id) VALUES (nextval('application_description_seq'), now(), 0, now(), 'Norton Security protects your PC against the latest viruses, spyware, and other threats. It delivers fast, powerful online protection to keep you a step ahead of cyber attacks.', 'Norton Security protège votre PC contre les derniers virus, les logiciels espions et autres types de menace. Il offre une protection en ligne rapide et puissante qui vous permettra de garder une longueur d''avance sur les cyber-attaques.', 282);
+-- Imagine
+INSERT INTO applicationdescription(id, creationdate, dbversion, updatedate, descriptionen, descriptionfr, application_id) VALUES (nextval('application_description_seq'), now(), 0, now(), 'Imagine is an image & animation viewer that enables you to view and save these types of file. Imagine supports numerous file formats.', 'Imagine est une visionneuse d''image et d''animation qui vous permet de visualiser et d''enregistrer ces types de fichier. Imagine supporte de nombreux formats.', 283);
+-- Media Player Classic
+INSERT INTO applicationdescription(id, creationdate, dbversion, updatedate, descriptionen, descriptionfr, application_id) VALUES (nextval('application_description_seq'), now(), 0, now(), 'Media Player Classic''s interface reflects its title: retro, old school, basic. Its small size, low memory footprint, and numerous features make this the media player of choice.', 'L''interface de Media Player Classic reflète son titre: rétro, vieille école, basique. Sa petite taille, sa faible empreinte mémoire, mais ses nombreuses caractéristiques en font un lecteur multimédia de choix.', 284);
+-- Patch My PC
+INSERT INTO applicationdescription(id, creationdate, dbversion, updatedate, descriptionen, descriptionfr, application_id) VALUES (nextval('application_description_seq'), now(), 0, now(), 'Patch My PC Updater is a program that keeps over 100 programs up-to-date on your computer. It is also an easy way to install any of these programs.', 'Patch My PC Updater est un programme qui maintient à jour plus de 100 programmes sur votre ordinateur. C''est aussi un moyen facile pour installer un de ces programmes.', 285);
+-- Quintessential Media Player
+INSERT INTO applicationdescription(id, creationdate, dbversion, updatedate, descriptionen, descriptionfr, application_id) VALUES (nextval('application_description_seq'), now(), 0, now(), 'Quintessential Player is a fully skinnable audio player that uses a plug-in architecture, allowing it to be as simple or as feature-laden as you like.', 'Quintessential Player est un lecteur audio entièrement skinnable qui utilise une architecture de plug-in, ce qui lui permet d''être très simple ou au contraire très complet selon vos envies.', 286);
 
 -- Template
-INSERT INTO applicationdescription(id, creationdate, dbversion, updatedate, descriptionen, descriptionfr, application_id) VALUES (nextval('application_description_seq'), now(), 0, now(), 'ENGLISH', 'FRENCH', 283);
+INSERT INTO applicationdescription(id, creationdate, dbversion, updatedate, descriptionen, descriptionfr, application_id) VALUES (nextval('application_description_seq'), now(), 0, now(), 'ENGLISH', 'FRENCH', 287);
 
 -- Users
 -- test@updapy.com / UpdapyPwd
