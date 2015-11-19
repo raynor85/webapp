@@ -67,6 +67,7 @@ public class ApplicationsListController {
 		if (applicationDescription == null) {
 			throw new ResourceNotFoundException();
 		}
+		applicationDescription.setAverageRating(applicationService.getAverageRating(apiName));
 		ModelAndView modelAndView = new ModelAndView("app-download");
 		modelAndView.addObject("applicationDescription", applicationDescription);
 		ApplicationVersion latestVersion = applicationService.getLatestVersion(application);
