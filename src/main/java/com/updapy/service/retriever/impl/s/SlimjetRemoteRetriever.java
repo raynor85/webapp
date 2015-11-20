@@ -13,7 +13,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class SlimjetRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.slimjet.com/";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.slimjet.com/en/";
 	private static final String DOWNLOAD_WEBSITE_VERSION_64 = "http://www.slimjet.com/en/dlpage_win64.php";
 
 	@Override
@@ -28,7 +28,7 @@ public class SlimjetRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE + "en/", RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE_VERSION_64).select("a:contains(Regular installer)").attr("href"));
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE_VERSION_64).select("a:contains(Regular installer)").attr("href"));
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class SlimjetRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(full setup file)").attr("href"));
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Regular installer)").attr("href"));
 	}
 
 	@Override
