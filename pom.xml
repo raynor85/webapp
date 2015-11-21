@@ -10,25 +10,25 @@
 	<properties>
 
 		<!-- Spring -->
-		<org.springframework.version>4.2.2.RELEASE</org.springframework.version>
-		<org.springframework.data.version>1.9.0.RELEASE</org.springframework.data.version>
+		<org.springframework.version>4.2.3.RELEASE</org.springframework.version>
+		<org.springframework.data.version>1.9.1.RELEASE</org.springframework.data.version>
 		<org.springframework.batch.version>3.0.5.RELEASE</org.springframework.batch.version>
 		<org.springframework.security.version>4.0.3.RELEASE</org.springframework.security.version>
 		<org.springframework.hateoas.version>0.19.0.RELEASE</org.springframework.hateoas.version>
-		<org.springframework.social.version>1.1.2.RELEASE</org.springframework.social.version>
+		<org.springframework.social.version>1.1.3.RELEASE</org.springframework.social.version>
 		<org.springframework.social.facebook.version>2.0.1.RELEASE</org.springframework.social.facebook.version>
 		<org.springframework.social.twitter.version>1.1.0.RELEASE</org.springframework.social.twitter.version>
 		<org.springframework.social.linkedin.version>1.0.0.RELEASE</org.springframework.social.linkedin.version>
 		<org.springframework.social.google.version>1.0.0.RELEASE</org.springframework.social.google.version>
 
 		<!-- Hibernate -->
-		<hibernate-entitymanager.version>5.0.2.Final</hibernate-entitymanager.version>
+		<hibernate-entitymanager.version>5.0.4.Final</hibernate-entitymanager.version>
 		<hibernate-validator.version>5.2.2.Final</hibernate-validator.version>
 
 		<!-- Utils -->
 		<org.apache.tiles.version>3.0.5</org.apache.tiles.version>
 		<org.apache.velocity.version>1.7</org.apache.velocity.version>
-		<joda-time.version>2.9</joda-time.version>
+		<joda-time.version>2.9.1</joda-time.version>
 		<jackson.version>2.6.3</jackson.version>
 		<dozer.version>5.5.1</dozer.version>
 		<org.jsoup.version>1.8.3</org.jsoup.version>
@@ -41,23 +41,24 @@
 		<commons-lang.version>3.4</commons-lang.version>
 
 		<!-- Root -->
-		<org.apache.httpcomponents.httpclient.version>4.3.6</org.apache.httpcomponents.httpclient.version>
+		<org.apache.httpcomponents.httpclient.version>4.5.1</org.apache.httpcomponents.httpclient.version>
 		<javax.activation.version>1.1.1</javax.activation.version>
 		<javax.mail.version>1.4.7</javax.mail.version>
 		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
 		<taglibs-standard-impl.version>1.2.5</taglibs-standard-impl.version>
 		<javax.servlet.jsp.jstl-api.version>1.2.1</javax.servlet.jsp.jstl-api.version>
+		<javax.transaction.jta.version>1.1</javax.transaction.jta.version>
 
 		<!-- Database -->
-		<postgresql.version>9.4-1204-jdbc42</postgresql.version>
+		<postgresql.version>9.4-1205-jdbc42</postgresql.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
 
 		<!-- Production -->
 		<jsimone.webapp-runner.version>7.0.57.2</jsimone.webapp-runner.version>
-		<com.newrelic.agent.java.version>3.21.0</com.newrelic.agent.java.version>
+		<com.newrelic.agent.java.version>3.22.1</com.newrelic.agent.java.version>
 
 		<!-- Log -->
-		<slf4j.version>1.7.12</slf4j.version>
+		<slf4j.version>1.7.13</slf4j.version>
 		<logback.version>1.1.3</logback.version>
 		<commons-logging.version>1.2</commons-logging.version>
 
@@ -386,6 +387,11 @@
 			<groupId>javax.servlet.jsp.jstl</groupId>
 			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
 			<version>${javax.servlet.jsp.jstl-api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>${javax.transaction.jta.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.postgresql</groupId>

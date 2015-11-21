@@ -7,7 +7,6 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
-import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
@@ -36,12 +35,12 @@ public class JunkwareRemovalToolRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(doc.select("a:contains(HERE)").first().attr("href")).select("a:contains(@Author's Site)").attr("href")).select("a:containsOwn(click here)").attr("href");
+		return doc.select("a:contains(Get My Free Download)").first().attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("p:containsOwn(Click to download latest version of JRT)").text(), "\\(.*\\)"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("#specs").select("p:contains(Version)").text(), "\\(.*\\)"));
 	}
 
 }
