@@ -34,7 +34,7 @@ public class GimpRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a[href~=.*exe$]").first().attr("href");
+		return ParsingUtils.addHttpPrefix(doc.select("a[href~=.*exe$]").first().attr("href"));
 	}
 
 	@Override
