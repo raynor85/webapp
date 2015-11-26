@@ -2,16 +2,8 @@ package com.updapy.service.retriever.impl.p;
 
 import java.io.IOException;
 
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
-
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
@@ -20,7 +12,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class PdfsamRemoteRetriever implements RemoteRetriever {
 
-	private static final String DOWNLOAD_WEBSITE = "http://sourceforge.net/projects/pdfsam/rss";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "https://github.com";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -44,40 +36,12 @@ public class PdfsamRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return matchingLink(DOWNLOAD_WEBSITE, "^.*/pdfsam/.*/.*\\.msi.*$");
-	}
-
-	private String matchingLink(String url, String regex) {
-		NodeList nodes = extractLinks(url);
-		if (nodes == null) {
-			return null;
-		}
-		for (int i = 0, len = nodes.getLength(); i < len; i++) {
-			Node node = nodes.item(i);
-			String link = node.getTextContent();
-			if (link.matches(regex)) {
-				return link;
-			}
-		}
-		return null;
-	}
-
-	private NodeList extractLinks(String url) {
-		XPathFactory xpf = XPathFactory.newInstance();
-		XPath xp = xpf.newXPath();
-		InputSource is = new InputSource(url);
-		NodeList nodes = null;
-		try {
-			nodes = (NodeList) xp.evaluate("//link", is, XPathConstants.NODESET);
-		} catch (XPathExpressionException e) {
-			return null;
-		}
-		return nodes;
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("div.label-latest").select("a[href*=.msi]").attr("href"));
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("div#content").select("p:contains(PDFsam basic v)").first().text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("div.label-latest").select("div.release-body").select("h1.release-title").text());
 	}
 
 }

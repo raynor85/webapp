@@ -35,7 +35,7 @@ public class TotalSecurityRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return getDownloadLink(doc);
+		return ParsingUtils.addHttpPrefix(getDownloadLink(doc));
 
 	}
 

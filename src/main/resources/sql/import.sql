@@ -135,7 +135,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- HeidiSQL
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.heidisql.com/download.php', 'http://www.heidisql.com/', 'heidisql.png', 'HeidiSQL', 'heidisql', false, 'DEVELOPMENT', 'FREE');
 -- PDFsam
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.pdfsam.org/basic-version/', 'http://www.pdfsam.org/', 'pdfsam.png', 'PDFsam', 'pdfsam', false, 'TEXT', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://github.com/torakiki/pdfsam/releases', 'http://www.pdfsam.org/', 'pdfsam.png', 'PDFsam', 'pdfsam', false, 'TEXT', 'FREE');
 -- Advanced SystemCare
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/Advanced-SystemCare-Free/3000-2086_4-10407614.html', 'http://www.iobit.com/advancedsystemcareper.php', 'advancedsystemcare.png', 'Advanced SystemCare', 'advancedsystemcare', false, 'SECURITY', 'FREE');
 -- IrfanView
