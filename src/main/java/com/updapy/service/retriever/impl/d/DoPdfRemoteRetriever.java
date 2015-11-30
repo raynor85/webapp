@@ -39,7 +39,7 @@ public class DoPdfRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("h1:contains(Download doPDF)").select("span").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("span#app-title-version").text());
 	}
 
 }
