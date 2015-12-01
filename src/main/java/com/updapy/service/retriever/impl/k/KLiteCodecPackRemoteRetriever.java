@@ -38,7 +38,7 @@ public class KLiteCodecPackRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.selectFromPattern(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(doc.select("a:contains(Mirror)[href*=majorgeeks]").first().attr("href")).select("a:contains(Download Now)").attr("href"))).select("img[alt*=Click here]").parents().select("a").first().attr("href")), "^.*download");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(doc.select("a:contains(Mirror)[href*=majorgeeks]").first().attr("href")).select("a:contains(Download Now)").attr("href"));
 	}
 
 	@Override
