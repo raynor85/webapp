@@ -23,14 +23,6 @@ public class ParsingUtils {
 		return null;
 	}
 
-	public static String selectFilenameFromUrl(String url) {
-		if (url.contains(HTTP_PATH_SEPARATOR)) {
-			String[] urlSeparateds = url.split(HTTP_PATH_SEPARATOR);
-			return urlSeparateds[urlSeparateds.length - 1];
-		}
-		return null;
-	}
-
 	public static String extractVersionNumberFromString(String str) {
 		List<String> patternToRemoves = new ArrayList<String>();
 		patternToRemoves.add("(U|u)pdate for.*$");

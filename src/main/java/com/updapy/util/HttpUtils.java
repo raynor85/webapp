@@ -43,6 +43,9 @@ public class HttpUtils {
 			} else {
 				// extracts file name from URL
 				fileName = urlAsString.substring(urlAsString.lastIndexOf("/") + 1, urlAsString.length());
+				if (fileName.contains("?")) {
+					fileName = fileName.substring(0, fileName.indexOf("?")); 
+				}
 			}
 		}
 		httpConn.disconnect();

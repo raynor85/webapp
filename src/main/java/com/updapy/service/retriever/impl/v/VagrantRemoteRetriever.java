@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.util.HttpUtils;
 import com.updapy.util.ParsingUtils;
 
 @Component
@@ -39,7 +40,7 @@ public class VagrantRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(ParsingUtils.selectFilenameFromUrl(getDownloadLink(doc)));
+		return ParsingUtils.extractVersionNumberFromString(HttpUtils.getFilenameFromUrl(getDownloadLink(doc)));
 	}
 
 	private String getDownloadLink(Document doc) {

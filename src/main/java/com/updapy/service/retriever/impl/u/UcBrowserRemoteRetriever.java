@@ -6,14 +6,12 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
-import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.util.HttpUtils;
 import com.updapy.util.ParsingUtils;
 
 @Component
 public class UcBrowserRemoteRetriever implements RemoteRetriever {
-
-	private static final String VERSION_HISTORY_WEBSITE = "http://pc.ucweb.com/log.html";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -42,7 +40,7 @@ public class UcBrowserRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(VERSION_HISTORY_WEBSITE).select("dt:containsOwn(Version)").first().html().split("<span>")[0]);
+		return ParsingUtils.extractVersionNumberFromString(ParsingUtils.selectFromPattern(HttpUtils.getFilenameFromUrl(HttpUtils.getRedirectionUrl(doc.select("a.download-btn").attr("href"))), ".*_windows"));
 	}
 
 }
