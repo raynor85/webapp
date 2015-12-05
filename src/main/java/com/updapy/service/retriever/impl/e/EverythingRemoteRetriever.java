@@ -12,6 +12,8 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class EverythingRemoteRetriever implements RemoteRetriever {
 
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.voidtools.com/";
+
 	@Override
 	public boolean support(ApplicationReference application) {
 		return application.getApiName().equalsIgnoreCase("everything");
@@ -24,7 +26,7 @@ public class EverythingRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return doc.select("a:contains(x64):contains(Multilingual)[href*=.exe]").get(0).attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(x64):contains(Multilingual)[href*=.exe]").get(0).attr("href"));
 	}
 
 	@Override
@@ -34,7 +36,7 @@ public class EverythingRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a:contains(x86):contains(Multilingual)[href*=.exe]").get(0).attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(x86):contains(Multilingual)[href*=.exe]").get(0).attr("href"));
 	}
 
 	@Override
