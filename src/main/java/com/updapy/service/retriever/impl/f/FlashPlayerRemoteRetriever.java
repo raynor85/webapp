@@ -43,10 +43,10 @@ public class FlashPlayerRemoteRetriever implements RemoteRetriever {
 		String title = doc.select(".TextH3:contains(Win)").text();
 		if (StringUtils.contains(title, ';')) {
 			String[] titles = StringUtils.split(title, ';');
-			String toFind = "firefox";
+			String toFind = "browsers";
 			if (StringUtils.containsIgnoreCase(titles[0], toFind)) {
 				return ParsingUtils.extractVersionNumberFromString(titles[0]);
-			} else if (StringUtils.containsIgnoreCase(titles[1], toFind)) {
+			} else {
 				return ParsingUtils.extractVersionNumberFromString(titles[1]);
 			}
 		}
