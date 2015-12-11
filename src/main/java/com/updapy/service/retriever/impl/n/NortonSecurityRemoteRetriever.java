@@ -2,6 +2,7 @@ package com.updapy.service.retriever.impl.n;
 
 import java.io.IOException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -43,7 +44,7 @@ public class NortonSecurityRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(ParsingUtils.selectFromPattern(HttpUtils.getRedirectionUrl(getDownloadLink(doc, "Download Now")), "/NS-TW-.*exe"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(HttpUtils.getFilenameFromUrl(HttpUtils.getRedirectionUrl(getDownloadLink(doc, "Download Now"))), ".*-TW"));
 	}
 
 	public String getDownloadLink(Document doc, String buttonText) throws IOException {
