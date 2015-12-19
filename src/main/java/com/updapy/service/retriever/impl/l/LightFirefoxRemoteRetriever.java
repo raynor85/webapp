@@ -33,7 +33,7 @@ public class LightFirefoxRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return matchingLink(doc.baseUri(), "^.*lightfirefox.*/\\d+(rc|)/.*win64.*\\.exe.*$");
+		return matchingLink(doc.baseUri(), "^.*lightfirefox.*/\\d+(rc|)/.*win64.*\\.exe/.*$");
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class LightFirefoxRemoteRetriever implements RemoteRetriever {
 	}
 
 	private String getDownloadLink32(Document doc) {
-		return matchingLink(doc.baseUri(), "^.*lightfirefox.*/\\d+(rc|)/.*win32.*\\.exe.*$");
+		return matchingLink(doc.baseUri(), "^.*lightfirefox.*/\\d+(rc|)/.*win32.*\\.exe/.*$");
 	}
 
 }

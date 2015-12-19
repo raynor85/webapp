@@ -41,7 +41,7 @@ public class VivaldiRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.replacePattern(ParsingUtils.selectFromPattern(doc.select("div.platform-windows").select("a:contains(32bit)").attr("href"), "Vivaldi_.*.exe"), "TP", "0."));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.replacePattern(ParsingUtils.selectFromPattern(doc.select("div.platform-windows").select("a:contains(32bit)").attr("href"), "Vivaldi.*.exe"), "TP", "0."));
 	}
 
 }

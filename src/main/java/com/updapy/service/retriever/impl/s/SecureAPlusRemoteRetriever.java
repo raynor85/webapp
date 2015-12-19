@@ -34,7 +34,7 @@ public class SecureAPlusRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a:contains(here)[href*=exe]").attr("href");
+		return doc.select("a:contains(here)[href*=exe]").attr("href").replace("\n", "").replace("\r", "");
 	}
 
 	@Override
