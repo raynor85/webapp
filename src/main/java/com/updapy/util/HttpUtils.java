@@ -39,19 +39,27 @@ public class HttpUtils {
 				int index = disposition.indexOf("filename=");
 				if (index > 0) {
 					fileName = disposition.substring(index + 10, disposition.length() - 1);
+				} else {
+					fileName = extractFilenameFromUrl(urlAsString);
 				}
 			} else {
-				// extracts file name from URL
-				fileName = urlAsString.substring(urlAsString.lastIndexOf("/") + 1, urlAsString.length());
-				if (fileName.contains("?")) {
-					fileName = fileName.substring(0, fileName.indexOf("?")); 
-				}
+				fileName = extractFilenameFromUrl(urlAsString);
 			}
 		}
 		httpConn.disconnect();
 		return fileName;
 	}
-	
+
+	private static String extractFilenameFromUrl(String urlAsString) {
+		String fileName;
+		// extracts file name from URL
+		fileName = urlAsString.substring(urlAsString.lastIndexOf("/") + 1, urlAsString.length());
+		if (fileName.contains("?")) {
+			fileName = fileName.substring(0, fileName.indexOf("?"));
+		}
+		return fileName;
+	}
+
 	public static String executeGetRequest(String urlAsString) throws ClientProtocolException, IOException {
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpGet request = new HttpGet(urlAsString);
