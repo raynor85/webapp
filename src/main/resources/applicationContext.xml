@@ -364,6 +364,16 @@
 		<ref bean="patchMyPcRemoteRetriever" />
 		<ref bean="mediaPlayerClassicRemoteRetriever" />
 		<ref bean="imagineRemoteRetriever" />
+		<ref bean="linuxLiveUsbCreatorRemoteRetriever" />
+		<ref bean="jpegViewRemoteRetriever" />
+		<ref bean="uninstallToolRemoteRetriever" />
+		<ref bean="windowsUpdateDownloaderRemoteRetriever" />
+		<ref bean="samsungMagicianRemoteRetriever" />
+		<ref bean="nineLabRemovalToolRemoteRetriever" />
+		<ref bean="baiduBrowserRemoteRetriever" />
+		<ref bean="nomacsRemoteRetriever" />
+		<ref bean="lightAlloyRemoteRetriever" />
+		<ref bean="kerishDoctorRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
