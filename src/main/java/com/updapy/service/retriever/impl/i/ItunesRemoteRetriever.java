@@ -24,7 +24,7 @@ public class ItunesRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return doc.select("[id=system_OS_Hide_Show:6:winxpvistax64:64bit:OSdetect:radio:binaryUrl]").attr("value");
+		return doc.select("[id^=system_OS_Hide_Show:6:winxpvistax64:64bit]").select("[id$=binaryUrl]").attr("value");
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class ItunesRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("[id=system_OS_Hide_Show:4:win:OSdetect:radio:binaryUrl]").attr("value");
+		return doc.select("[id^=system_OS_Hide_Show:4:win]").select("[id$=binaryUrl]").attr("value");
 	}
 
 	@Override

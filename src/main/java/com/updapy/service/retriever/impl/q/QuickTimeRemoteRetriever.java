@@ -34,7 +34,7 @@ public class QuickTimeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("[id=system_OS_Hide_Show:2:win:radio:binaryUrl]").attr("value");
+		return doc.select("[id^=system_OS_Hide_Show]").select("[id$=binaryUrl]").attr("value");
 	}
 
 	@Override
