@@ -15,7 +15,8 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class PdfXchangeViewerRemoteRetriever implements RemoteRetriever {
 
-	private static final String VERSION_HISTORY_WEBSITE = "http://www.tracker-software.com/product/pdf-xchange-viewer";
+	private static final String ROOT_WEBSITE = "http://www.tracker-software.com";
+	private static final String VERSION_HISTORY_WEBSITE = ROOT_WEBSITE + "/product/pdf-xchange-viewer";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -42,7 +43,12 @@ public class PdfXchangeViewerRemoteRetriever implements RemoteRetriever {
 		String version = retrieveVersionNumber(doc);
 		String[] subVersions = StringUtils.split(version, '.');
 		String rebuildVersion = subVersions[0] + StringUtils.removePattern(subVersions[2], "^0*");
-		return StringUtils.replacePattern(doc.select("item").first().select("enclosure").attr("url"), "[0-9]+", rebuildVersion);
+		String url = StringUtils.replacePattern(doc.select("item").first().select("enclosure").attr("url"), "[0-9]+", rebuildVersion);
+		if (url.contains(ROOT_WEBSITE + "/")) {
+			return url;
+		} else {
+			return url.replace(ROOT_WEBSITE, ROOT_WEBSITE + "/");
+		}
 	}
 
 	@Override
