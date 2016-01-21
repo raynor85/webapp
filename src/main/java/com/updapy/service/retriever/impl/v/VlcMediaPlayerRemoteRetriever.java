@@ -36,12 +36,13 @@ public class VlcMediaPlayerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.addHttpPrefix(doc.select("a[href*=win32]").attr("href"));
+		String dlLink = ParsingUtils.addHttpPrefix(doc.select("a[href*=win32]").attr("href"));
+		return ParsingUtils.buildUrl(dlLink, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(dlLink).select("a:contains(.exe)[href*=.exe]").first().attr("href"));
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("h1:contains(Download latest)").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("span#downloadVersion").text());
 	}
 
 }
