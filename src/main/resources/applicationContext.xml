@@ -181,7 +181,6 @@
 		<ref bean="malwarebytesAntiMalwareFreeRemoteRetriever" />
 		<ref bean="squirrelSqlRemoteRetriever" />
 		<ref bean="heidiSqlRemoteRetriever" />
-		<ref bean="pdfsamRemoteRetriever" />
 		<ref bean="winrarRemoteRetriever" />
 		<ref bean="winzipRemoteRetriever" />
 		<ref bean="bitTorrentRemoteRetriever" />
@@ -204,6 +203,7 @@
 		<ref bean="esetNod32AntivirusRemoteRetriever" />
 		<ref bean="potPlayerRemoteRetriever" />
 		<ref bean="auslogicsRemoteRetriever" />
+		<ref bean="auslogicsAltRemoteRetriever" />
 		<ref bean="ultraDefragRemoteRetriever" />
 		<ref bean="xMediaRecodeRemoteRetriever" />
 		<ref bean="speccyRemoteRetriever" />
@@ -228,7 +228,8 @@
 		<ref bean="maxthonRemoteRetriever" />
 		<ref bean="cuteFTPRemoteRetriever" />
 		<ref bean="cpuZRemoteRetriever" />
-		<ref bean="githubRemoteRetriever" />
+		<ref bean="githubMsiRemoteRetriever" />
+		<ref bean="githubExeRemoteRetriever" />
 		<ref bean="dropboxRemoteRetriever" />
 		<ref bean="powerIsoRemoteRetriever" />
 		<ref bean="neroBurningRomRemoteRetriever" />
@@ -317,7 +318,7 @@
 		<ref bean="spyShelterPersonalRemoteRetriever" />
 		<ref bean="trustPortInternetSecurityRemoteRetriever" />
 		<ref bean="argenteUtilitiesRemoteRetriever" />
-		<ref bean="ashampooAntivirusRemoteRetriever" />
+		<ref bean="ashampooRemoteRetriever" />
 		<ref bean="baiduAntivirusRemoteRetriever" />
 		<ref bean="bazookaAdwareSpywareScannerRemoteRetriever" />
 		<ref bean="clipXRemoteRetriever" />
@@ -374,6 +375,12 @@
 		<ref bean="nomacsRemoteRetriever" />
 		<ref bean="lightAlloyRemoteRetriever" />
 		<ref bean="kerishDoctorRemoteRetriever" />
+		<ref bean="arjRemoteRetriever" />
+		<ref bean="bootstrapRemoteRetriever" />
+		<ref bean="cyberduckRemoteRetriever" />
+		<ref bean="hyperSqlRemoteRetriever" />
+		<ref bean="izArcRemoteRetriever" />
+		<ref bean="sourceTreeRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
@@ -405,7 +412,7 @@
 					<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 					<prop key="hibernate.show_sql">false</prop>
 					<prop key="hibernate.format_sql">true</prop>
-					<prop key="hibernate.hbm2ddl.import_files">/sql/import.sql</prop>
+					<prop key="hibernate.hbm2ddl.import_files">/sql/import.sql,/sql/import_reference.sql,/sql/import_description.sql,/sql/import_user.sql</prop>
 					<prop key="hibernate.hbm2ddl.auto">validate</prop>
 				</props>
 			</property>

@@ -12,11 +12,14 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class AshampooAntivirusRemoteRetriever implements RemoteRetriever {
+public class AuslogicsAltRemoteRetriever implements RemoteRetriever {
+
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.auslogics.com";
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getApiName().equalsIgnoreCase("ashampooantivirus");
+		String apiName = application.getApiName();
+		return apiName.equalsIgnoreCase("boostspeed");
 	}
 
 	@Override
@@ -36,16 +39,12 @@ public class AshampooAntivirusRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return getDownloadLink(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(doc.select("a.btn_download").attr("href")));
-	}
-
-	private String getDownloadLink(Document doc) {
-		return doc.select("a:contains(click here)").attr("href");
+		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("div.button-box").select("a").attr("href"))).select("a:contains(Download)[href*=.exe]").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("div#product_version").text(), ",.*$"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(doc.select("div.button-box").select("span").text(), "\\(.*\\)"), "\\|.*$"));
 	}
 
 }

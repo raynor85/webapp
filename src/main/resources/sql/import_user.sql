@@ -1,0 +1,10 @@
+-- Users
+-- test@updapy.com / UpdapyPwd
+INSERT INTO person(id, creationdate, updatedate, dbversion, early, email, name, password, activationdate, active, langupdate, osversion, generationaccountkeydate, accountkey, generationapikeydate, apikey, generationrsskeydate, rsskey, langemail, dashboardgridsize, profile, socialkey, showrating) VALUES (nextval('person_seq'), now(), null, 0, false, 'test@updapy.com', 'Updapy', '$2a$10$faNVhJX.ZrvmpklDMFa.4OBWwG4GbYEQCFzTPaR9hJ.aHYU7zCRrC', now(), true, 'en', 'WIN_32_BITS', now(), 'i8v3wb35qz17pxfa0exzmoy18gsmwwwzobhu5ne2nubb1hxs3i', now(), 'b06klbu3k7c582bjxmfd96psqg6katy6usrs067ge77bnleo0u', now(), 'updapy', 'en', 'BIG', 'ADMIN', '', false);
+INSERT INTO helpmessage(id, creationdate, updatedate, dbversion, hidden, type, person_id) VALUES (nextval('help_message_seq'), now(), null, 0, false, 'DASHBOARD_HOW_TO', currval('person_seq'));
+INSERT INTO helpmessage(id, creationdate, updatedate, dbversion, hidden, type, person_id) VALUES (nextval('help_message_seq'), now(), null, 0, false, 'DASHBOARD_ALERT_DISABLED', currval('person_seq'));
+INSERT INTO setting(id, creationdate, updatedate, dbversion, active, parameter, person_id) VALUES (nextval('setting_seq'), now(), null, 0, true, 'ALERT_BY_EMAIL', currval('person_seq'));
+INSERT INTO setting(id, creationdate, updatedate, dbversion, active, parameter, person_id) VALUES (nextval('setting_seq'), now(), null, 0, true, 'EMAIL_FOR_EACH_APPLICATION', currval('person_seq'));
+INSERT INTO setting(id, creationdate, updatedate, dbversion, active, parameter, person_id) VALUES (nextval('setting_seq'), now(), null, 0, false, 'EMAIL_WEEKLY_DIGEST', currval('person_seq'));
+INSERT INTO setting(id, creationdate, updatedate, dbversion, active, parameter, person_id) VALUES (nextval('setting_seq'), now(), null, 0, true, 'EMAIL_APP_ADDED', currval('person_seq'));
+INSERT INTO setting(id, creationdate, updatedate, dbversion, active, parameter, person_id) VALUES (nextval('setting_seq'), now(), null, 0, true, 'NEWSLETTER', currval('person_seq'));
