@@ -15,15 +15,15 @@
 			<ul class="nav navbar-nav">
 				<li id="dropdown-lang" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <c:choose>
 							<c:when test="${lang == 'en'}">
-								<img width="16" height="11" src="<spring:url value="/resources/img/flag/en.png" />">
+								<img width="16" height="11" src="<spring:url value="/resources/img/flag/en.png" />" alt="<spring:message code="menu.language.en" />">
 							</c:when>
 							<c:when test="${lang == 'fr'}">
-								<img width="16" height="11" src="<spring:url value="/resources/img/flag/fr.png" />">
+								<img width="16" height="11" src="<spring:url value="/resources/img/flag/fr.png" />" alt="<spring:message code="menu.language.fr" />">
 							</c:when>
 						</c:choose> <i class="fa fa-angle-down "></i></a>
 					<ul class="dropdown-menu">
-						<li id="lang-en"><a style="border-bottom: 0px !important;" href="javascript:changeLocale('en');"><img width="16" height="11" class="flag-lang pull-right" src="<spring:url value="/resources/img/flag/en.png" />"> <spring:message code="menu.language.en" /></a></li>
-						<li id="lang-fr"><a style="border-bottom: 0px !important;" href="javascript:changeLocale('fr');"><img width="16" height="11" class="flag-lang pull-right" src="<spring:url value="/resources/img/flag/fr.png" />"> <spring:message code="menu.language.fr" /></a></li>
+						<li id="lang-en"><a style="border-bottom: 0px !important;" href="javascript:changeLocale('en');"><img width="16" height="11" class="flag-lang pull-right" src="<spring:url value="/resources/img/flag/en.png" />" alt="<spring:message code="menu.language.en" />"> <spring:message code="menu.language.en" /></a></li>
+						<li id="lang-fr"><a style="border-bottom: 0px !important;" href="javascript:changeLocale('fr');"><img width="16" height="11" class="flag-lang pull-right" src="<spring:url value="/resources/img/flag/fr.png" />" alt="<spring:message code="menu.language.fr" />"> <spring:message code="menu.language.fr" /></a></li>
 					</ul></li>
 				<c:if test="${not isAuthenticated}">
 					<li id="nav-faq"><a href="${root}/faq"><spring:message code="menu.faq" /></a></li>
@@ -87,7 +87,7 @@
 						<li id="socialMenuDropdownFb" class="socialMenu"><iframe src="//www.facebook.com/plugins/like.php?locale=${langFb}&href=http%3A%2F%2Ffacebook.com%2Fupdapy&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=true&amp;height=21&amp;appId=242605515939525" scrolling="no" frameborder="0" style="margin-bottom: -5px; border: none; overflow: hidden; height: 21px; width: 200px;" allowTransparency="true"></iframe></li>
 						<li id="socialMenuDropdownG+" class="socialMenuTwitterGoogle" style="display: none;"><div class="g-plusone" data-annotation="bubble" data-href="http://www.updapy.com" data-size="medium" style="margin-bottom: -5px;"></div></li>
 						<li id="socialMenuDropdownTw" class="socialMenuTwitterGoogle"><iframe frameborder="0" id="twitter-widget-1" scrolling="no" allowtransparency="true" src="http://platform.twitter.com/widgets/follow_button.html?dnt=true&id=twitter-widget-1&lang=${langTwitter}&screen_name=updapy&show_count=true&show_screen_name=false&size=m" class="twitter-follow-button twitter-follow-button" title="Twitter Follow Button" data-twttr-rendered="true" style="width: 150px; height: 20px;"></iframe> <iframe frameborder="0" id="twitter-widget-0" scrolling="no" allowtransparency="true" src="http://platform.twitter.com/widgets/tweet_button.html?count=horizontal&dnt=true&hashtags=<spring:message code='application.share.hashtags' />&id=twitter-widget-0&lang=${langTwitter}&original_referer=<spring:message code='application.url' />&size=m&text=<spring:message code='application.share.message' />&url=<spring:message code='application.url' />&via=updapy" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 95px; height: 20px;"></iframe></li>
-						<li class="donatePaypal" onclick="location.href='https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M4URMQRZH7J2G';" style="cursor: pointer;"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M4URMQRZH7J2G" style="background-color: transparent !important;"><img width="86" height="21" class="pull-right" border="0" src="<spring:url value="/resources/img/other/paypal.png" />"></a><input type="image" src="https://www.paypalobjects.com/${langPaypal}/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" style="margin-top: -6px"></li>
+						<li class="donatePaypal" onclick="location.href='https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M4URMQRZH7J2G';" style="cursor: pointer;"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M4URMQRZH7J2G" style="background-color: transparent !important;"><img width="86" height="21" class="pull-right" border="0" src="<spring:url value="/resources/img/other/paypal.png" />" alt="Paypal"></a><input type="image" src="https://www.paypalobjects.com/${langPaypal}/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" style="margin-top: -6px"></li>
 					</ul></li>
 			</ul>
 			<c:choose>

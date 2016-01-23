@@ -57,7 +57,7 @@
 	<!-- Wrapper for slides -->
 	<div class="carousel-inner">
 		<div class="item active">
-			<img width="779" height="387" src="<spring:url value="/resources/img/welcome/carousel-time.png" />">
+			<img width="779" height="387" src="<spring:url value="/resources/img/welcome/carousel-time.png" />" alt="<spring:message code="welcome.carousel.time.title" />">
 			<div class="carousel-caption">
 				<h4>
 					<spring:message code="welcome.carousel.time.title" />
@@ -68,7 +68,7 @@
 			</div>
 		</div>
 		<div class="item">
-			<img width="779" height="387" src="<spring:url value="/resources/img/welcome/carousel-custom.png" />">
+			<img width="779" height="387" src="<spring:url value="/resources/img/welcome/carousel-custom.png" />" alt="<spring:message code="welcome.carousel.custom.title" />">
 			<div class="carousel-caption">
 				<h4>
 					<spring:message code="welcome.carousel.custom.title" />
@@ -79,7 +79,7 @@
 			</div>
 		</div>
 		<div class="item">
-			<img width="779" height="387" src="<spring:url value="/resources/img/welcome/carousel-security.png" />">
+			<img width="779" height="387" src="<spring:url value="/resources/img/welcome/carousel-security.png" />" alt="<spring:message code="welcome.carousel.security.title" />">
 			<div class="carousel-caption">
 				<h4>
 					<spring:message code="welcome.carousel.security.title" />
@@ -90,7 +90,7 @@
 			</div>
 		</div>
 		<div class="item">
-			<img width="779" height="387" src="<spring:url value="/resources/img/welcome/carousel-trust.png" />">
+			<img width="779" height="387" src="<spring:url value="/resources/img/welcome/carousel-trust.png" />" alt="<spring:message code="welcome.carousel.trust.title" />">
 			<div class="carousel-caption">
 				<h4>
 					<spring:message code="welcome.carousel.trust.title" />
@@ -101,7 +101,7 @@
 			</div>
 		</div>
 		<div class="item">
-			<img width="779" height="387" src="<spring:url value="/resources/img/welcome/carousel-free.png" />">
+			<img width="779" height="387" src="<spring:url value="/resources/img/welcome/carousel-free.png" />" alt="<spring:message code="welcome.carousel.free.title" />">
 			<div class="carousel-caption">
 				<h4>
 					<spring:message code="welcome.carousel.free.title" />

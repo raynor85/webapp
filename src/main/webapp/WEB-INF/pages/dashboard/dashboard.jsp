@@ -150,7 +150,7 @@
 								<spring:message code="dashboard.applications.caption.website.title" />
 							</c:set>
 							<figure class="caption-figure" itemscope="itemscope" itemtype="http://schema.org/Photograph">
-								<a href="${currentFollowedApplication.downloadUrl}" title="${downloadTitle}" target="_blank"><img width="${iconSize}" height="${iconSize}" id="img-${appId}" class="shadowHover caption" src="<spring:url value="/resources/img/application/${gridSize}/${currentFollowedApplication.iconFilename}" />" itemprop="image"></a>
+								<a href="${currentFollowedApplication.downloadUrl}" title="${downloadTitle}" target="_blank"><img width="${iconSize}" height="${iconSize}" id="img-${appId}" class="shadowHover caption" src="<spring:url value="/resources/img/application/${gridSize}/${currentFollowedApplication.iconFilename}" />" itemprop="image" alt="${appName}"></a>
 								<figcaption class="figcaption-${gridSize}" itemprop="name">
 									<c:choose>
 										<c:when test="${gridSize == 'small'}">
