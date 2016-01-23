@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-
-
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.slf4j.Logger;
@@ -34,6 +32,7 @@ import com.updapy.service.RemoteService;
 import com.updapy.service.RetrievalErrorService;
 import com.updapy.service.SettingsService;
 import com.updapy.service.UserService;
+import com.updapy.service.impl.RemoteServiceImpl;
 
 @Component
 public class ApplicationVersionScheduler {
@@ -104,7 +103,7 @@ public class ApplicationVersionScheduler {
 			if (comparisonResult == -1) {
 				// new version available
 				applicationService.addVersion(latestRemoteVersion);
-			} else if (comparisonResult == 1 && !latestRemoteVersion.getVersionNumber().equals("0")) {
+			} else if (comparisonResult == 1 && !latestRemoteVersion.getVersionNumber().equals(RemoteServiceImpl.VERSION_NOT_FOUND)) {
 				// the remote version has a smaller number
 				retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_NEW_VERSION_WITH_NUMBER_NOT_CONSISTENT, "Got remote version '" + latestRemoteVersion.getVersionNumber() + "' but current version is '" + latestVersion.getVersionNumber() + "'");
 			}

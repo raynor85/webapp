@@ -15,6 +15,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
@@ -48,7 +49,11 @@ public class AudacityRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(getDownloadLink(doc.location()), "^.*/audacity"));
+		String downloadLink = getDownloadLink(doc.location());
+		if (downloadLink == null) {
+			return RemoteServiceImpl.VERSION_NOT_FOUND;
+		}
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(downloadLink, "^.*/audacity"));
 	}
 
 	private String getDownloadLink(String pageLink) {

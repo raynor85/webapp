@@ -191,7 +191,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- SyncBackSE
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.2brightsparks.com/download-syncbackse.html', 'http://www.2brightsparks.com/syncback/sbse.html', 'syncbackse.png', 'SyncBackSE', 'syncbackse', false, 'TOOLS', 'COMMERCIAL');
 -- TomTom Home
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://uk.support.tomtom.com/app/answers/detail/a_id/10020/', 'http://www.tomtom.com/home/', 'tomtomhome.png', 'TomTom Home', 'tomtomhome', false, 'MISC', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://uk.support.tomtom.com/app/release_notes/type/home', 'http://www.tomtom.com/home/', 'tomtomhome.png', 'TomTom Home', 'tomtomhome', false, 'MISC', 'FREE');
 -- Chrome
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/Google-Chrome/3000-2356_4-10881381.html', 'https://www.google.com/chrome/', 'chrome.png', 'Chrome', 'chrome', false, 'INTERNET', 'FREE');
 -- QuiteRSS

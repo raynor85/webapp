@@ -9,12 +9,14 @@ import javax.xml.xpath.XPathFactory;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
@@ -78,6 +80,10 @@ public class MediaPlayerClassicBeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(StringUtils.removePattern(doc.select("item").select("title:containsOwn(x86)").select("title:containsOwn(/MPC-BE/)").first().text(), "^.*/MPC-BE").replace("build", "."), ".x...*$"), "/.*$"));
+		Elements items = doc.select("item").select("title:containsOwn(x86)");
+		if (items.isEmpty()) {
+			return RemoteServiceImpl.VERSION_NOT_FOUND;
+		}
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(StringUtils.removePattern(items.select("title:containsOwn(/MPC-BE/)").first().text(), "^.*/MPC-BE").replace("build", "."), ".x...*$"), "/.*$"));
 	}
 }

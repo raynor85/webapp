@@ -38,12 +38,12 @@ public class TomTomHomeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("#BOX1").select("a[href*=.exe]").attr("href");
+		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("div.info").select("a[href*=.exe]").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("div.first").select("h2:contains(Windows):contains(Version)").get(0).text(), "\\(Windows\\).*$"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("div.release").first().select("h3:contains(Windows):contains(Version)").text(), "\\(Windows\\).*$"));
 	}
 
 }

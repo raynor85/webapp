@@ -7,6 +7,7 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
@@ -44,7 +45,7 @@ public class WinrarRemoteRetriever implements RemoteRetriever {
 	public String retrieveVersionNumber(Document doc) throws IOException {
 		String versionFull = doc.select("a[href*=.exe]").get(0).text();
 		if (StringUtils.containsIgnoreCase(versionFull, "beta")) {
-			return "0"; // beta does not count
+			return RemoteServiceImpl.VERSION_NOT_FOUND; // beta does not count
 		}
 		return ParsingUtils.extractVersionNumberFromString(versionFull);
 	}

@@ -9,12 +9,14 @@ import javax.xml.xpath.XPathFactory;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
@@ -76,7 +78,11 @@ public class JpegViewRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("title:containsOwn(zip)").select("title:containsOwn(JPEGView)").first().text(), "^.*/JPEGView").replace('_', '.'));
+		Elements items = doc.select("title:containsOwn(zip)");
+		if (items.isEmpty()) {
+			return RemoteServiceImpl.VERSION_NOT_FOUND;
+		}
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(items.select("title:containsOwn(JPEGView)").first().text(), "^.*/JPEGView").replace('_', '.'));
 	}
 
 }

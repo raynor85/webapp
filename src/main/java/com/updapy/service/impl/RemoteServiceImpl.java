@@ -40,6 +40,8 @@ public class RemoteServiceImpl implements RemoteService {
 	@Autowired
 	private List<RemoteRetriever> remoteRetrievers;
 
+	public static final String VERSION_NOT_FOUND = "0";
+
 	@Override
 	public ApplicationVersion retrieveRemoteLatestVersion(ApplicationReference application) {
 		Document doc = retrieveHtmlDocument(application);
@@ -71,6 +73,10 @@ public class RemoteServiceImpl implements RemoteService {
 			// parsing error
 			retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_PARSING_ERROR, "Error when parsing the page. Exception:" + e + ", Cause:" + e.getCause());
 			return null;
+		}
+
+		if (VERSION_NOT_FOUND.equals(version.getVersionNumber())) {
+			return version;
 		}
 
 		if (StringUtils.isBlank(version.getVersionNumber()) || StringUtils.isBlank(version.getWin32UrlEn()) || !version.isValidVersionNumber() || !isUrlValid(version.getWin32UrlEn()) || !isUrlValid(version.getWin32UrlFr()) || !isUrlValid(version.getWin64UrlEn()) || !isUrlValid(version.getWin64UrlFr())) {
