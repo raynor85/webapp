@@ -12,6 +12,7 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLHandshakeException;
+import javax.net.ssl.SSLProtocolException;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
@@ -100,6 +101,8 @@ public class RemoteServiceImpl implements RemoteService {
 			code = getResponseCode(url);
 		} catch (SSLHandshakeException e) {
 			return true; // https error are fine; jsoup cannot handle this properly, the link should be valid
+		} catch (SSLProtocolException e) {
+			return true; // same
 		} catch (IOException e) {
 			return false;
 		}

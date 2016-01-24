@@ -37,12 +37,12 @@ public class AutoHotkeyRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Installer)").attr("href"));
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a.install_button").attr("href"));
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("div.notice").text(), "-.*$"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("p:containsOwn(Current version)").text(), "-.*$"));
 	}
 
 }
