@@ -22,14 +22,14 @@
 		<org.springframework.social.google.version>1.0.0.RELEASE</org.springframework.social.google.version>
 
 		<!-- Hibernate -->
-		<hibernate-entitymanager.version>5.0.6.Final</hibernate-entitymanager.version>
+		<hibernate-entitymanager.version>5.0.7.Final</hibernate-entitymanager.version>
 		<hibernate-validator.version>5.2.2.Final</hibernate-validator.version>
 
 		<!-- Utils -->
 		<org.apache.tiles.version>3.0.5</org.apache.tiles.version>
 		<org.apache.velocity.version>1.7</org.apache.velocity.version>
 		<joda-time.version>2.9.1</joda-time.version>
-		<jackson.version>2.6.4</jackson.version>
+		<jackson.version>2.6.5</jackson.version>
 		<dozer.version>5.5.1</dozer.version>
 		<org.jsoup.version>1.8.3</org.jsoup.version>
 		<json.version>20151123</json.version>
