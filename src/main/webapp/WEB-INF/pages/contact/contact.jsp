@@ -34,9 +34,12 @@
 					</div>
 					<div class="form-group" style="max-width: 300px;">
 						<label for="subject"><spring:message code="contact.field.subject" /></label>
-						<form:select class="form-control selectpicker" path="subject" id="subject">
+						<form:select class="form-control selectpicker" path="subject" id="subject" onchange="updateWarning();">
 							<c:set var="subjectImprovementSuggestion">
 								<spring:message code="contact.field.subject.IMPROVEMENT_SUGGESTION" />
+							</c:set>
+							<c:set var="subjectNewVersion">
+								<spring:message code="contact.field.subject.NEW_VERSION" />
 							</c:set>
 							<c:set var="subjectBrokenLink">
 								<spring:message code="contact.field.subject.BROKEN_LINK" />
@@ -51,11 +54,17 @@
 								<spring:message code="contact.field.subject.OTHER" />
 							</c:set>
 							<form:option value="IMPROVEMENT_SUGGESTION" label="${subjectImprovementSuggestion}" htmlEscape="false" selected="selected" />
+							<form:option value="NEW_VERSION" label="${subjectNewVersion}" htmlEscape="false" />
 							<form:option value="BROKEN_LINK" label="${subjectBrokenLink}" htmlEscape="false" />
 							<form:option value="BUG" label="${subjectBug}" htmlEscape="false" />
 							<form:option value="PARTNERSHIP" label="${subjectPartnership}" htmlEscape="false" />
 							<form:option value="OTHER" label="${subjectOther}" htmlEscape="false" />
 						</form:select>
+					</div>
+					<div id="newVersionAlert" role="alert" class="alert alert-warning hidden">
+						<i class="fa fa-exclamation-circle"></i>
+						<spring:message code="contact.field.subject.warning" />
+						<br>
 					</div>
 					<div class="form-group">
 						<label for="message"><spring:message code="contact.field.message" /> </label>
@@ -109,4 +118,14 @@
 		ajaxSendMessage();
 		return false;
 	});
+	function updateWarning() {
+		var subjectActive = $("#subject option:selected").val();
+		if (subjectActive === "NEW_VERSION") {
+			// show warning
+			$("#newVersionAlert").removeClass("hidden");
+		} else {
+			// hide warning
+			$("#newVersionAlert").addClass("hidden");
+		}
+	}
 </script>
