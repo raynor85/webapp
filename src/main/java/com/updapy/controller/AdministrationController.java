@@ -91,7 +91,7 @@ public class AdministrationController {
 		}
 		ModelAndView modelAndView = new ModelAndView("administration");
 		modelAndView.addObject("nbNotifications", userService.getNbNotifications(user));
-		List<RetrievalError> retrievalErrors = retrievalErrorService.getAllRetrievalErrors();
+		List<RetrievalError> retrievalErrors = retrievalErrorService.getAllRetrievalErrors(3);
 		modelAndView.addObject("administrationRetrievalErrors", convertToAdministrationRetrievalError(retrievalErrors));
 		modelAndView.addObject("numberOfRowsInDatabase", procedureService.getNumberOfRowsInDatabase());
 		return addNotifications(user, modelAndView);

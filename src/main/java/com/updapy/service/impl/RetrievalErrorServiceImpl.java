@@ -26,8 +26,8 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 	private static final List<String> ignoredApplications = Arrays.asList("balsamiq", "neroburningrom", "glasswire", "manycam", "popcorntime");
 
 	@Override
-	public List<RetrievalError> getAllRetrievalErrors() {
-		return retrievalErrorRepository.findByOrderByCountDesc();
+	public List<RetrievalError> getAllRetrievalErrors(int count) {
+		return retrievalErrorRepository.findByCountGreaterThanEqualOrderByCountDesc(count);
 	}
 
 	@Override

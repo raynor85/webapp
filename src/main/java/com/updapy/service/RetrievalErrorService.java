@@ -11,7 +11,7 @@ import com.updapy.model.enumeration.TypeRetrievalError;
 @Transactional
 public interface RetrievalErrorService {
 
-	List<RetrievalError> getAllRetrievalErrors();
+	List<RetrievalError> getAllRetrievalErrors(int count);
 
 	RetrievalError addRetrievalError(ApplicationReference application, TypeRetrievalError type);
 
