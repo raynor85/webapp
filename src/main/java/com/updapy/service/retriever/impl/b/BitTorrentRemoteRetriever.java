@@ -44,7 +44,7 @@ public class BitTorrentRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.replacePattern(StringUtils.removePattern(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(doc.select("a:contains(Current Stable Release)").attr("href")).select("div:contains(Version)").text(), "^.*Version"), "(B|b)uild", "."));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.replacePattern(StringUtils.removePattern(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(doc.select("a:contains(Current Stable Release)").attr("href")).select("h3:contains(Version)").text(), "^.*Version"), "(B|b)uild", "."));
 	}
 
 }
