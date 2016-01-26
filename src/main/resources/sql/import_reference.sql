@@ -188,7 +188,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- RAM Disk
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.softperfect.com/products/ramdisk/', 'http://www.softperfect.com/products/ramdisk/', 'ramdisk.png', 'RAM Disk', 'ramdisk', false, 'TOOLS', 'FREE');
 -- Popcorn Time
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://popcorntime.io/', 'https://popcorntime.io/', 'popcorntime.png', 'Popcorn Time', 'popcorntime', false, 'VIDEO', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, false, 'http://popcorntime.io/', 'https://popcorntime.io/', 'popcorntime.png', 'Popcorn Time', 'popcorntime', false, 'VIDEO', 'FREE');
 -- PlayClaw
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.playclaw.com/download.php', 'http://www.playclaw.com/', 'playclaw.png', 'PlayClaw', 'playclaw', false, 'VIDEO', 'COMMERCIAL');
 -- Subsonic
@@ -334,7 +334,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Blueflap
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://personali.zz.mu/en/download', 'http://personali.zz.mu/', 'blueflap.png', 'Blueflap', 'blueflap', false, 'INTERNET', 'FREE');
 -- Dooscape
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://doocode.esy.es/prod/dooscape.php', 'http://doocode.esy.es/prod/dooscape.php', 'dooscape.png', 'Dooscape', 'dooscape', false, 'INTERNET', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, false, 'http://doocode.esy.es/prod/dooscape.php', 'http://doocode.esy.es/prod/dooscape.php', 'dooscape.png', 'Dooscape', 'dooscape', false, 'INTERNET', 'FREE');
 -- Unchecky
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://unchecky.com/changelog', 'http://unchecky.com/', 'unchecky.png', 'Unchecky', 'unchecky', false, 'TOOLS', 'FREE');
 -- Dashlane
@@ -368,7 +368,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Python
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.python.org/downloads/', 'https://www.python.org', 'python.png', 'Python', 'python', false, 'DEVELOPMENT', 'FREE');
 -- SuperPutty
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://code.google.com/p/superputty/wiki/Downloads?tm=2', 'https://code.google.com/p/superputty/', 'superputty.png', 'SuperPutty', 'superputty', false, 'DEVELOPMENT', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://github.com/jimradford/superputty/releases', 'https://github.com/jimradford/superputty/', 'superputty.png', 'SuperPutty', 'superputty', false, 'DEVELOPMENT', 'FREE');
 -- RealVNC
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.realvnc.com/download/vnc/', 'https://www.realvnc.com', 'realvnc.png', 'RealVNC', 'realvnc', false, 'SOCIAL_COMMUNICATION', 'COMMERCIAL');
 -- Security Essentials
@@ -384,7 +384,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- WinSCP
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://winscp.net/eng/download.php', 'http://winscp.net', 'winscp.png', 'WinSCP', 'winscp', false, 'INTERNET', 'FREE');
 -- Yahoo Messenger
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://messenger.yahoo.com/download/', 'https://messenger.yahoo.com', 'yahoomessenger.png', 'Yahoo Messenger', 'yahoomessenger', false, 'SOCIAL_COMMUNICATION', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, false, 'https://messenger.yahoo.com/download/', 'https://messenger.yahoo.com', 'yahoomessenger.png', 'Yahoo Messenger', 'yahoomessenger', false, 'SOCIAL_COMMUNICATION', 'FREE');
 -- Ad Muncher
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.admuncher.com/download', 'https://www.admuncher.com/', 'admuncher.png', 'Ad Muncher', 'admuncher', false, 'SECURITY', 'FREE');
 -- Disk Defrag Free

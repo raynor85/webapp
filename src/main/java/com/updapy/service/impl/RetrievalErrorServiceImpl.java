@@ -23,7 +23,7 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 	private EmailSenderService emailSenderService;
 
 	// Hardcoded list of ignored application (= no email sent except after 50 failures)
-	private static final List<String> ignoredApplications = Arrays.asList("balsamiq", "neroburningrom", "glasswire", "manycam", "popcorntime");
+	private static final List<String> ignoredApplications = Arrays.asList("balsamiq", "neroburningrom", "glasswire", "manycam");
 
 	@Override
 	public List<RetrievalError> getAllRetrievalErrors(int count) {

@@ -1,4 +1,4 @@
-package com.updapy.service.retriever.impl.s;
+package com.updapy.service.retriever.impl.g;
 
 import java.io.IOException;
 
@@ -10,11 +10,14 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class SuperPuttyRemoteRetriever implements RemoteRetriever {
+public class GithubZipRemoteRetriever implements RemoteRetriever {
+
+	private static final String ROOT_DOWNLOAD_WEBSITE = "https://github.com";
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getApiName().equalsIgnoreCase("superputty");
+		String apiName = application.getApiName();
+		return apiName.equalsIgnoreCase("superputty");
 	}
 
 	@Override
@@ -34,12 +37,12 @@ public class SuperPuttyRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a[href*=.zip]").attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("div.label-latest").select("a[href*=.zip]").attr("href"));
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("a[href*=.zip]").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("div.label-latest").select("div.release-body").select("h1.release-title").text());
 	}
 
 }
