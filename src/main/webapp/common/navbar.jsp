@@ -285,6 +285,11 @@
 
 <c:if test="${isAuthenticated}">
 	<script>
+		$(document).ready(function() {
+			if ("${nbNotifications}" >= 1) {
+				document.title = "(${nbNotifications}) " + document.title;
+			}
+		});
 		function ajaxReadNotifications() {
 			var token = $("meta[name='_csrf']").attr("content");
 			var header = $("meta[name='_csrf_header']").attr("content");
@@ -374,6 +379,11 @@
 											"<spring:message code='menu.notification.single' />");
 							$("#badge-notification").removeClass(
 									"badge-notification");
+							var currentTitle = document.title;
+						    var prefix = currentTitle.match("\\([0-9]+\\) ");
+							if (prefix) {
+								document.title = currentTitle.substring(prefix[0].length);
+							};
 						},
 					    error: function(xhr, textStatus, errorThrown){
 					    	responseNotifications = "<li><a style='color: #777 !important; background-color: transparent !important;'>" + genericErrorMessage + "</a></li>";							
