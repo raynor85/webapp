@@ -9,10 +9,11 @@ import org.springframework.stereotype.Component;
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component(value = "uTorrentRemoteRetriever")
-public class UTorrentRemoteRetriever implements RemoteRetriever {
+public class UTorrentRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.utorrent.com/";
 	private static final String DOWNLOAD_WEBSITE = ROOT_DOWNLOAD_WEBSITE + "downloads/win";
@@ -45,6 +46,11 @@ public class UTorrentRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
 		return ParsingUtils.extractVersionNumberFromString(StringUtils.replacePattern(StringUtils.removePattern(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(doc.select("a:contains(Current Stable Release)").attr("href")).select("div:contains(Version)").text(), "^.*Version"), "(B|b)uild", "."));
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
 	}
 
 }

@@ -9,10 +9,11 @@ import org.springframework.stereotype.Component;
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class KasperskySecurityScanRemoteRetriever implements RemoteRetriever {
+public class KasperskySecurityScanRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://devbuilds.kaspersky-labs.com/devbuilds/KSS/";
 
@@ -49,6 +50,11 @@ public class KasperskySecurityScanRemoteRetriever implements RemoteRetriever {
 
 	private Element getDownloadLink(Document doc) {
 		return doc.select("a").last();
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
 	}
 
 }

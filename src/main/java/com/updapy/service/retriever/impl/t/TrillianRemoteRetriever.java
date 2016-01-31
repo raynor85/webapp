@@ -7,10 +7,11 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class TrillianRemoteRetriever implements RemoteRetriever {
+public class TrillianRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "https://www.trillian.im/";
 
@@ -48,4 +49,8 @@ public class TrillianRemoteRetriever implements RemoteRetriever {
 		return doc.select("div.personal").select("a#download_link").attr("href");
 	}
 
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
+	}
 }

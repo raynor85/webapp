@@ -7,10 +7,11 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class QuiteRssRemoteRetriever implements RemoteRetriever {
+public class QuiteRssRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://quiterss.org";
 
@@ -42,6 +43,11 @@ public class QuiteRssRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
 		return ParsingUtils.extractVersionNumberFromString(doc.select("a:contains(Installer Windows)").text());
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
 	}
 
 }

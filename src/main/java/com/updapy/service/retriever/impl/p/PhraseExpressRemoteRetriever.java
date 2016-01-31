@@ -8,10 +8,11 @@ import org.springframework.stereotype.Component;
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class PhraseExpressRemoteRetriever implements RemoteRetriever {
+public class PhraseExpressRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.phraseexpress.com/";
 	private static final String VERSION_HISTORY_WEBSITE = "http://changelog.phraseexpress.com/";
@@ -44,6 +45,11 @@ public class PhraseExpressRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
 		return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(VERSION_HISTORY_WEBSITE).select("h2:contains(PhraseExpress Client)").first().nextElementSibling().select("tr").get(1).select("td").get(1).text());
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
 	}
 
 }

@@ -9,10 +9,11 @@ import org.springframework.stereotype.Component;
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class WavosaurRemoteRetriever implements RemoteRetriever {
+public class WavosaurRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE_FR = "http://fr.wavosaur.com/";
 	private static final String ROOT_DOWNLOAD_WEBSITE_EN = "http://www.wavosaur.com/";
@@ -54,6 +55,11 @@ public class WavosaurRemoteRetriever implements RemoteRetriever {
 
 	private String getDownloadLinkEn(Document doc, String pattern) {
 		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE_EN, doc.select("a[href*=" + pattern + "]").attr("href"));
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE_EN;
 	}
 
 }

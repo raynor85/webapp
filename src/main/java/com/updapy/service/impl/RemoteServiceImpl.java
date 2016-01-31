@@ -30,6 +30,7 @@ import com.updapy.model.enumeration.TypeRetrievalError;
 import com.updapy.service.RemoteService;
 import com.updapy.service.RetrievalErrorService;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.service.retriever.impl.OriginalUrlRemoteRetriever;
 
 @Service
@@ -53,6 +54,7 @@ public class RemoteServiceImpl implements RemoteService {
 		ApplicationVersion version = new ApplicationVersion();
 		version.setApplication(application);
 		version.setVersionDate(new Date());
+		String baseUrl = null;
 
 		try {
 			retrieveInformation: {
@@ -61,11 +63,15 @@ public class RemoteServiceImpl implements RemoteService {
 						if (remoteRetriever instanceof OriginalUrlRemoteRetriever) {
 							((OriginalUrlRemoteRetriever) remoteRetriever).setOriginalUrl(application.getGlobalUrl());
 						}
+						if (remoteRetriever instanceof BaseUrlRemoteRetriever) {
+							baseUrl = ((BaseUrlRemoteRetriever) remoteRetriever).getBaseUrl();
+						}
 						version.setVersionNumber(remoteRetriever.retrieveVersionNumber(doc));
 						version.setWin32UrlEn(remoteRetriever.retrieveWin32UrlEn(doc));
 						version.setWin32UrlFr(remoteRetriever.retrieveWin32UrlFr(doc));
 						version.setWin64UrlEn(remoteRetriever.retrieveWin64UrlEn(doc));
 						version.setWin64UrlFr(remoteRetriever.retrieveWin64UrlFr(doc));
+
 						break retrieveInformation;
 					}
 				}
@@ -82,6 +88,12 @@ public class RemoteServiceImpl implements RemoteService {
 
 		if (StringUtils.isBlank(version.getVersionNumber()) || StringUtils.isBlank(version.getWin32UrlEn()) || !version.isValidVersionNumber() || !isUrlValid(version.getWin32UrlEn()) || !isUrlValid(version.getWin32UrlFr()) || !isUrlValid(version.getWin64UrlEn()) || !isUrlValid(version.getWin64UrlFr())) {
 			// remote version not valid
+			retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_URL_VERSION_ERROR);
+			return null;
+		}
+
+		if (StringUtils.isNotBlank(baseUrl) && (baseUrl.equals(version.getWin32UrlEn()) || (baseUrl + "/").equals(version.getWin32UrlEn()))) {
+			// remote version is the base url
 			retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_URL_VERSION_ERROR);
 			return null;
 		}

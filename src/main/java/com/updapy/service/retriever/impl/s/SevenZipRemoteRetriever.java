@@ -8,10 +8,11 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class SevenZipRemoteRetriever implements RemoteRetriever {
+public class SevenZipRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.7-zip.org/";
 
@@ -45,4 +46,8 @@ public class SevenZipRemoteRetriever implements RemoteRetriever {
 		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(doc.select("p:contains(Download 7-Zip):not(p:contains(beta)):not(p:contains(Beta))").first().html(), "7-Zip"), "\\(.*\\)"));
 	}
 
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
+	}
 }

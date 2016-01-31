@@ -7,10 +7,11 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class CaptvtyRemoteRetriever implements RemoteRetriever {
+public class CaptvtyRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://captvty.fr";
 
@@ -44,4 +45,8 @@ public class CaptvtyRemoteRetriever implements RemoteRetriever {
 		return ParsingUtils.extractVersionNumberFromString(doc.select("div.infos").select("span").text());
 	}
 
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
+	}
 }

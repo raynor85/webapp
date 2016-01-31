@@ -10,13 +10,14 @@ import com.updapy.model.ApplicationReference;
 import com.updapy.model.Version;
 import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class PdfXchangeViewerRemoteRetriever implements RemoteRetriever {
+public class PdfXchangeViewerRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
-	private static final String ROOT_WEBSITE = "http://www.tracker-software.com";
-	private static final String VERSION_HISTORY_WEBSITE = ROOT_WEBSITE + "/product/pdf-xchange-viewer";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.tracker-software.com";
+	private static final String VERSION_HISTORY_WEBSITE = ROOT_DOWNLOAD_WEBSITE + "/product/pdf-xchange-viewer";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -44,10 +45,10 @@ public class PdfXchangeViewerRemoteRetriever implements RemoteRetriever {
 		String[] subVersions = StringUtils.split(version, '.');
 		String rebuildVersion = subVersions[0] + StringUtils.removePattern(subVersions[2], "^0*");
 		String url = StringUtils.replacePattern(doc.select("item").first().select("enclosure").attr("url"), "[0-9]+", rebuildVersion);
-		if (url.contains(ROOT_WEBSITE + "/")) {
+		if (url.contains(ROOT_DOWNLOAD_WEBSITE + "/")) {
 			return url;
 		} else {
-			return url.replace(ROOT_WEBSITE, ROOT_WEBSITE + "/");
+			return url.replace(ROOT_DOWNLOAD_WEBSITE, ROOT_DOWNLOAD_WEBSITE + "/");
 		}
 	}
 
@@ -62,5 +63,10 @@ public class PdfXchangeViewerRemoteRetriever implements RemoteRetriever {
 			return version2;
 		}
 		return version1;
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
 	}
 }

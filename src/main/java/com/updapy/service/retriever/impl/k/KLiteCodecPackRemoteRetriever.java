@@ -9,10 +9,11 @@ import org.springframework.stereotype.Component;
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component(value = "kLiteCodecPackRemoteRetriever")
-public class KLiteCodecPackRemoteRetriever implements RemoteRetriever {
+public class KLiteCodecPackRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.majorgeeks.com/";
 
@@ -44,6 +45,11 @@ public class KLiteCodecPackRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
 		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("h4:contains(Version)").first().text(), "Standard.*$"));
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
 	}
 
 }

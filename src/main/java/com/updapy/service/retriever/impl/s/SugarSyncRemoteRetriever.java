@@ -9,10 +9,11 @@ import com.updapy.model.ApplicationReference;
 import com.updapy.model.Version;
 import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class SugarSyncRemoteRetriever implements RemoteRetriever {
+public class SugarSyncRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.sugarsync.com/";
 
@@ -44,5 +45,10 @@ public class SugarSyncRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
 		return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentWithoutSSL(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:containsOwn(release notes)").attr("href"))).select("p:matchesOwn(" + Version.REGEX_VERSION_NUMBER + ")").first().text());
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
 	}
 }

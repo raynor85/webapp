@@ -8,11 +8,12 @@ import org.springframework.stereotype.Component;
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.HttpUtils;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class KerishDoctorRemoteRetriever implements RemoteRetriever {
+public class KerishDoctorRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.kerish.org/";
 	private static final String ROOT_DOWNLOAD_WEBSITE_EN = ROOT_DOWNLOAD_WEBSITE + "en/";
@@ -45,6 +46,11 @@ public class KerishDoctorRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
 		return ParsingUtils.extractVersionNumberFromString(doc.select("font:contains(Current Version)").first().text());
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
 	}
 
 }

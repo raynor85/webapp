@@ -9,10 +9,11 @@ import org.springframework.stereotype.Component;
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class HyperSqlRemoteRetriever implements RemoteRetriever {
+public class HyperSqlRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://sourceforge.net/";
 
@@ -49,6 +50,11 @@ public class HyperSqlRemoteRetriever implements RemoteRetriever {
 
 	private Element getDownloadLink(Document doc) {
 		return doc.select("a:contains(Download latest stable)").first();
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
 	}
 
 }

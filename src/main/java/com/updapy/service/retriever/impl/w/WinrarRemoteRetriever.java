@@ -9,10 +9,11 @@ import org.springframework.stereotype.Component;
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class WinrarRemoteRetriever implements RemoteRetriever {
+public class WinrarRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.rarlab.com";
 
@@ -48,6 +49,11 @@ public class WinrarRemoteRetriever implements RemoteRetriever {
 			return RemoteServiceImpl.VERSION_NOT_FOUND; // beta does not count
 		}
 		return ParsingUtils.extractVersionNumberFromString(versionFull);
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
 	}
 
 }

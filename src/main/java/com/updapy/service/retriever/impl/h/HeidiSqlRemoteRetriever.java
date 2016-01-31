@@ -7,10 +7,11 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class HeidiSqlRemoteRetriever implements RemoteRetriever {
+public class HeidiSqlRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.heidisql.com";
 
@@ -46,6 +47,11 @@ public class HeidiSqlRemoteRetriever implements RemoteRetriever {
 
 	private String getDownloadLink(Document doc) {
 		return doc.select("ul.buttons").select("a:contains(Installer)").attr("href");
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
 	}
 
 }

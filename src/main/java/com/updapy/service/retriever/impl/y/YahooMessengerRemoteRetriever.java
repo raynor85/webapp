@@ -13,7 +13,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class YahooMessengerRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE_VERSION_FR = "https://fr.messenger.yahoo.com/download/";
+	private static final String DOWNLOAD_WEBSITE_VERSION_FR = "https://fr.messenger.yahoo.com/download/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -32,7 +32,7 @@ public class YahooMessengerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlFr(Document doc) throws IOException {
-		return getDownloadLink(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ROOT_DOWNLOAD_WEBSITE_VERSION_FR));
+		return getDownloadLink(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE_VERSION_FR));
 	}
 
 	@Override

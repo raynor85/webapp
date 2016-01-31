@@ -8,10 +8,11 @@ import org.springframework.stereotype.Component;
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class DriverGeniusRemoteRetriever implements RemoteRetriever {
+public class DriverGeniusRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private final String ROOT_DOWNLOAD_WEBSITE = "http://www.driver-soft.com/";
 	private final String DOWNLOAD_WEBSITE = ROOT_DOWNLOAD_WEBSITE;
@@ -44,6 +45,11 @@ public class DriverGeniusRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
 		return ParsingUtils.extractVersionNumberFromString(ParsingUtils.selectFromPattern(doc.select("span.STYLE2:contains(Version:)").first().text(), "\\(.*\\)"));
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
 	}
 
 }

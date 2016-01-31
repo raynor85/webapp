@@ -8,10 +8,11 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class WinampRemoteRetriever implements RemoteRetriever {
+public class WinampRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://meggamusic.co.uk/";
 
@@ -47,5 +48,10 @@ public class WinampRemoteRetriever implements RemoteRetriever {
 
 	private Elements getDownloadLink(Document doc) {
 		return doc.select("li:contains(Multi-national installer)").select("a");
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
 	}
 }

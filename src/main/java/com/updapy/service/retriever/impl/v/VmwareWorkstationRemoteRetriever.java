@@ -7,11 +7,12 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.HttpUtils;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class VmwareWorkstationRemoteRetriever implements RemoteRetriever {
+public class VmwareWorkstationRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.vmware.com";
 
@@ -44,6 +45,11 @@ public class VmwareWorkstationRemoteRetriever implements RemoteRetriever {
 	public String retrieveVersionNumber(Document doc) throws IOException {
 		String filename = HttpUtils.getFilenameFromUrl(HttpUtils.getRedirectionUrl(retrieveWin32UrlEn(doc)));
 		return ParsingUtils.extractVersionNumberFromString(filename.substring(0, filename.lastIndexOf('-')));
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
 	}
 
 }

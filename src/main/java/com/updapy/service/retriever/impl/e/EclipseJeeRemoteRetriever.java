@@ -10,10 +10,11 @@ import org.springframework.stereotype.Component;
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class EclipseJeeRemoteRetriever implements RemoteRetriever {
+public class EclipseJeeRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.eclipse.org/downloads/";
 
@@ -55,6 +56,11 @@ public class EclipseJeeRemoteRetriever implements RemoteRetriever {
 			version = version.substring(matcher.start(), matcher.end());
 		}
 		return ParsingUtils.extractVersionNumberFromString(version);
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
 	}
 
 }

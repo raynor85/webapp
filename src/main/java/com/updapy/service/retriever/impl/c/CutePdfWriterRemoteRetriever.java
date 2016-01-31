@@ -8,12 +8,13 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class CutePdfWriterRemoteRetriever implements RemoteRetriever {
+public class CutePdfWriterRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
-	private static final String DOWNLOAD_WEBSITE = "http://www.cutepdf.com/";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.cutepdf.com/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -37,12 +38,17 @@ public class CutePdfWriterRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(DOWNLOAD_WEBSITE, doc.select("a:contains(Download)[href*=.exe]").get(0).attr("href"));
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download)[href*=.exe]").get(0).attr("href"));
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
 		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("td:containsOwn(Ver.)").get(0).text(), "(,|;).*$"));
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
 	}
 
 }

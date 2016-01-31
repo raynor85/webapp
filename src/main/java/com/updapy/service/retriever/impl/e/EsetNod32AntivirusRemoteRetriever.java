@@ -19,7 +19,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class EsetNod32AntivirusRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.eset.com/us/support/download/home/nod32-antivirus/?type=13554&tx_esetdownloads_ajax[product]=3";
+	private static final String DOWNLOAD_WEBSITE = "http://www.eset.com/us/support/download/home/nod32-antivirus/?type=13554&tx_esetdownloads_ajax[product]=3";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -28,22 +28,22 @@ public class EsetNod32AntivirusRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlFr(Document doc) throws IOException {
-		return getDownloadLink(ROOT_DOWNLOAD_WEBSITE, "FR_FR", ".*64.*");
+		return getDownloadLink(DOWNLOAD_WEBSITE, "FR_FR", ".*64.*");
 	}
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return getDownloadLink(ROOT_DOWNLOAD_WEBSITE, "EN_US", ".*64.*");
+		return getDownloadLink(DOWNLOAD_WEBSITE, "EN_US", ".*64.*");
 	}
 
 	@Override
 	public String retrieveWin32UrlFr(Document doc) throws IOException {
-		return getDownloadLink(ROOT_DOWNLOAD_WEBSITE, "FR_FR", ".*32.*");
+		return getDownloadLink(DOWNLOAD_WEBSITE, "FR_FR", ".*32.*");
 	}
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return getDownloadLink(ROOT_DOWNLOAD_WEBSITE, "EN_US", ".*32.*");
+		return getDownloadLink(DOWNLOAD_WEBSITE, "EN_US", ".*32.*");
 	}
 
 	@Override

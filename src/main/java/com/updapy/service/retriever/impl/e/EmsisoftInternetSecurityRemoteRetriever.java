@@ -8,10 +8,11 @@ import org.springframework.stereotype.Component;
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class EmsisoftInternetSecurityRemoteRetriever implements RemoteRetriever {
+public class EmsisoftInternetSecurityRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "https://www.emsisoft.com/";
 
@@ -45,4 +46,8 @@ public class EmsisoftInternetSecurityRemoteRetriever implements RemoteRetriever 
 		return ParsingUtils.extractVersionNumberFromString(doc.select("div:containsOwn(Version):containsOwn(Released)").html().split("<br>")[0]);
 	}
 
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
+	}
 }

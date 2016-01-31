@@ -8,11 +8,12 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.HttpUtils;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class BaiduBrowserRemoteRetriever implements RemoteRetriever {
+public class BaiduBrowserRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://en.browser.baidu.com/";
 	private static final String VERSION_WEBSITE = "http://en.browser.baidu.com/query/package.json?stage=official";
@@ -47,6 +48,11 @@ public class BaiduBrowserRemoteRetriever implements RemoteRetriever {
 		String jsonContentString = HttpUtils.executeGetRequest(VERSION_WEBSITE);
 		JSONObject jsonObject = new JSONObject(jsonContentString);
 		return jsonObject.getString("version");
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
 	}
 
 }

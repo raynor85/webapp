@@ -7,10 +7,11 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class JitsiRemoteRetriever implements RemoteRetriever {
+public class JitsiRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "https://download.jitsi.org/jitsi/windows/";
 
@@ -50,6 +51,11 @@ public class JitsiRemoteRetriever implements RemoteRetriever {
 			dlLink = doc.select("a[href*=" + platform + "]").get(1).attr("href");
 		}
 		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, dlLink);
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
 	}
 
 }

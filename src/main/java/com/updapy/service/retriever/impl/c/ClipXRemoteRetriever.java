@@ -8,10 +8,11 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class ClipXRemoteRetriever implements RemoteRetriever {
+public class ClipXRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://bluemars.org/clipx/";
 
@@ -47,6 +48,11 @@ public class ClipXRemoteRetriever implements RemoteRetriever {
 
 	private Elements retrieveDownloadLink(Document doc) {
 		return doc.select("p:contains(Latest stable version)").select("a:contains(ClipX)");
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
 	}
 
 }

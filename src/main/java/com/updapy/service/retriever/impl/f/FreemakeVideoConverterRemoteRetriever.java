@@ -7,10 +7,11 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class FreemakeVideoConverterRemoteRetriever implements RemoteRetriever {
+public class FreemakeVideoConverterRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.freemake.com/";
 
@@ -44,4 +45,8 @@ public class FreemakeVideoConverterRemoteRetriever implements RemoteRetriever {
 		return ParsingUtils.extractVersionNumberFromString(doc.select("span.ver").first().text());
 	}
 
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
+	}
 }

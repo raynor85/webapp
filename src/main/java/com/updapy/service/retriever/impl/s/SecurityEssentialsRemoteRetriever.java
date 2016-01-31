@@ -7,10 +7,11 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class SecurityEssentialsRemoteRetriever implements RemoteRetriever {
+public class SecurityEssentialsRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
 	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.microsoft.com/";
 	private static final String ROOT_DOWNLOAD_WEBSITE_VERSION_FR = ROOT_DOWNLOAD_WEBSITE + "fr-FR/download/";
@@ -48,6 +49,11 @@ public class SecurityEssentialsRemoteRetriever implements RemoteRetriever {
 
 	private String getDownloadLink(Document doc) {
 		return doc.select("a.download-button").first().attr("href");
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE_VERSION_EN;
 	}
 
 }
