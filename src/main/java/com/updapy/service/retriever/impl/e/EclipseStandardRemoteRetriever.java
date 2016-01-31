@@ -30,7 +30,7 @@ public class EclipseStandardRemoteRetriever implements RemoteRetriever, BaseUrlR
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, retrieveDirectLink(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a.downloadLink:contains(64 Bit)[href*=standard]").attr("href"))));
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, retrieveDirectLink(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a.downloadLink:contains(64 Bit)[href*=java]").attr("href"))));
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class EclipseStandardRemoteRetriever implements RemoteRetriever, BaseUrlR
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, retrieveDirectLink(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a.downloadLink:contains(32 Bit)[href*=standard]").attr("href"))));
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, retrieveDirectLink(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a.downloadLink:contains(32 Bit)[href*=java]").attr("href"))));
 	}
 
 	private String retrieveDirectLink(String dlLink) throws IOException {

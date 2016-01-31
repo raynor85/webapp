@@ -39,7 +39,7 @@ public class SugarSyncRemoteRetriever implements RemoteRetriever, BaseUrlRemoteR
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a#download-win").attr("href"));
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a[href*=.exe]").attr("href"));
 	}
 
 	@Override
