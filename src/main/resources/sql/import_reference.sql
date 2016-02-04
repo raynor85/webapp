@@ -516,7 +516,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Driver Magician
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.drivermagician.com/download.htm', 'http://www.drivermagician.com/', 'drivermagician.png', 'Driver Magician', 'drivermagician', false, 'SYSTEM', 'FREE');
 -- AdFender
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/AdFender/3000-7786_4-75183968.html', 'http://www.adfender.com/', 'adfender.png', 'AdFender', 'adfender', false, 'SECURITY', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.adfender.com/download.html', 'http://www.adfender.com/', 'adfender.png', 'AdFender', 'adfender', false, 'SECURITY', 'FREE');
 -- Wise Disk Cleaner
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/Wise-Disk-Cleaner/3000-18512_4-10613345.html', 'http://www.wisecleaner.com/wise-disk-cleaner.html', 'wisediskcleaner.png', 'Wise Disk Cleaner', 'wisediskcleaner', false, 'SYSTEM', 'FREE');
 -- Reg Organizer

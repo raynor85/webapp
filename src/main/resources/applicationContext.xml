@@ -381,6 +381,7 @@
 		<ref bean="hyperSqlRemoteRetriever" />
 		<ref bean="izArcRemoteRetriever" />
 		<ref bean="sourceTreeRemoteRetriever" />
+		<ref bean="adFenderRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
