@@ -45,6 +45,6 @@ public class ZoneAlarmRemoteRetriever implements RemoteRetriever {
 	}
 
 	private String getDownloadLink(Document doc) {
-		return doc.select("a:contains(click here)[href*=.exe]").attr("href");
+		return doc.select("a:contains(download again)[href*=.exe]").attr("href");
 	}
 }
