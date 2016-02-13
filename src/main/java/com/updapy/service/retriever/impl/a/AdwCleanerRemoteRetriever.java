@@ -34,12 +34,12 @@ public class AdwCleanerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a:contains(AdwCleaner)").attr("href");
+		return doc.select("a:contains(Download Now)").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("h2:contains(AdwCleaner)").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("h1:contains(AdwCleaner)").text());
 	}
 
 }
