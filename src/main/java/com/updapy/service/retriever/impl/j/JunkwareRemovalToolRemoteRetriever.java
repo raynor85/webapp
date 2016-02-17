@@ -2,7 +2,6 @@ package com.updapy.service.retriever.impl.j;
 
 import java.io.IOException;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -35,12 +34,12 @@ public class JunkwareRemovalToolRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a:contains(Get My Free Download)").first().attr("href");
+		return doc.select("a:contains(Download)").first().attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("#specs").select("p:contains(Version)").text(), "\\(.*\\)"));
+		return ParsingUtils.extractVersionNumberFromString(doc.select("#tech-specs").select("dt:contains(Version)").first().nextElementSibling().text());
 	}
 
 }

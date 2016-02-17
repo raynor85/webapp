@@ -127,7 +127,6 @@
 	<!-- Remote retrievers -->
 	<util:list id="remoteRetrievers">
 		<ref bean="cnetDownloadRemoteRetriever" />
-		<ref bean="cnetDirectDownloadRemoteRetriever" />
 		<ref bean="irfanViewRemoteRetriever" />
 		<ref bean="firefoxRemoteRetriever" />
 		<ref bean="paintNetRemoteRetriever" />
@@ -178,7 +177,7 @@
 		<ref bean="aviraAntivirusFreeRemoteRetriever" />
 		<ref bean="bullzipPdfPrinterCommunityRemoteRetriever" />
 		<ref bean="revoUninstallerFreeRemoteRetriever" />
-		<ref bean="malwarebytesAntiMalwareFreeRemoteRetriever" />
+		<ref bean="malwarebytesAntiMalwareRemoteRetriever" />
 		<ref bean="squirrelSqlRemoteRetriever" />
 		<ref bean="heidiSqlRemoteRetriever" />
 		<ref bean="winrarRemoteRetriever" />
