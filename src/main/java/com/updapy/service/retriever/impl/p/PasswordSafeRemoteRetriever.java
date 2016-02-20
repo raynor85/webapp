@@ -39,7 +39,7 @@ public class PasswordSafeRemoteRetriever implements RemoteRetriever {
 	}
 
 	private String getDownloadLink(Document doc) {
-		return doc.select("a[href*=exe][href*=passwordsafe]").first().attr("href");
+		return doc.select("a[href*=exe]:contains(Alternate Mirror)").first().attr("href");
 	}
 
 	@Override

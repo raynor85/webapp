@@ -8,10 +8,13 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class SamsungMagicianRemoteRetriever implements RemoteRetriever {
+public class SamsungMagicianRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
+
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.samsung.com/global/business/semiconductor/minisite/SSD";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -35,11 +38,16 @@ public class SamsungMagicianRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("div#magician").select("table").select("tbody").select("tr").select("td").first().select("a").attr("href");
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("div#magician").select("table").select("tbody").select("tr").select("td").first().select("a").attr("href"));
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
 		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("div#magician").select("table").select("tbody").select("tr").select("td").first().text(), "\\(.*\\)"));
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
 	}
 }

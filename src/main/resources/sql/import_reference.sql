@@ -428,7 +428,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- HaoZip
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://haozip.2345.com/Eng/download.htm', 'http://haozip.2345.com/Eng/index_en.htm', 'haozip.png', 'HaoZip', 'haozip', false, 'TOOLS', 'FREE');
 -- Junkware Removal Tool
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://thisisudax.org/', 'http://thisisudax.org/', 'junkwareremovaltool.png', 'Junkware Removal Tool', 'junkwareremovaltool', false, 'SECURITY', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.malwarebytes.org/junkwareremovaltool/', 'https://www.malwarebytes.org/junkwareremovaltool/', 'junkwareremovaltool.png', 'Junkware Removal Tool', 'junkwareremovaltool', false, 'SECURITY', 'FREE');
 -- LockHunter
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://lockhunter.com/download.htm', 'http://lockhunter.com/', 'lockhunter.png', 'LockHunter', 'lockhunter', false, 'TOOLS', 'FREE');
 -- PrivaZer
@@ -438,7 +438,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Slimjet
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.slimjet.com/en/dlpage.php', 'http://www.slimjet.com/', 'slimjet.png', 'Slimjet', 'slimjet', false, 'INTERNET', 'FREE');
 -- Password Safe
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://passwordsafe.sourceforge.net/', 'http://passwordsafe.sourceforge.net/', 'passwordsafe.png', 'Password Safe', 'passwordsafe', false, 'SECURITY', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://pwsafe.org/', 'https://pwsafe.org/', 'passwordsafe.png', 'Password Safe', 'passwordsafe', false, 'SECURITY', 'FREE');
 -- SpyShelter Personal
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.spyshelter.com/download-spyshelter/', 'https://www.spyshelter.com/spyshelter-free/', 'spyshelterpersonal.png', 'SpyShelter Personal', 'spyshelterpersonal', false, 'SECURITY', 'FREE');
 -- TrustPort Internet Security
