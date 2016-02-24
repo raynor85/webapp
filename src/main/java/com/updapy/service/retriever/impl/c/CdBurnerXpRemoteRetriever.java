@@ -27,7 +27,7 @@ public class CdBurnerXpRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return doc.select("a[href*=exe]:contains(64 bit)").get(0).attr("href");
+		return ParsingUtils.addHttpPrefix(doc.select("a[href*=exe]:contains(64 bit)").get(0).attr("href"));
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class CdBurnerXpRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a[href*=exe]:contains(32 bit)").get(0).attr("href");
+		return ParsingUtils.addHttpPrefix(doc.select("a[href*=exe]:contains(32 bit)").get(0).attr("href"));
 	}
 
 	@Override

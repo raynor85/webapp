@@ -15,7 +15,7 @@ public class OpenOfficeRemoteRetriever implements RemoteRetriever {
 
 	private static final String PATTERN_VERSION = "{version}";
 	private static final String PATTERN_LANG = "{lang}";
-	private static final String DOWNLOAD_WEBSITE = "http://sourceforge.net/projects/openofficeorg.mirror/files/" + PATTERN_VERSION + "/binaries/" + PATTERN_LANG + "/Apache_OpenOffice_" + PATTERN_VERSION + "_Win_x86_install_" + PATTERN_LANG + ".exe/download";
+	private static final String DOWNLOAD_WEBSITE = "https://sourceforge.net/projects/openofficeorg.mirror/files/" + PATTERN_VERSION + "/binaries/" + PATTERN_LANG + "/Apache_OpenOffice_" + PATTERN_VERSION + "_Win_x86_install_" + PATTERN_LANG + ".exe/download";
 
 	@Override
 	public boolean support(ApplicationReference application) {

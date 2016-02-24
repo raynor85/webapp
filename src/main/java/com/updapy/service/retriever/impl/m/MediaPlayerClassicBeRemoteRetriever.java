@@ -23,7 +23,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class MediaPlayerClassicBeRemoteRetriever implements RemoteRetriever {
 
-	private static final String DOWNLOAD_WEBSITE = "http://sourceforge.net/p/mpcbe/activity/feed";
+	private static final String DOWNLOAD_WEBSITE = "https://sourceforge.net/p/mpcbe/activity/feed";
 
 	@Override
 	public boolean support(ApplicationReference application) {

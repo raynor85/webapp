@@ -14,7 +14,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class SongbirdRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://sourceforge.net";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "https://sourceforge.net";
 
 	@Override
 	public boolean support(ApplicationReference application) {

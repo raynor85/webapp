@@ -23,7 +23,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class GreenshotRemoteRetriever implements RemoteRetriever {
 
-	private static final String DOWNLOAD_WEBSITE = "http://sourceforge.net/p/greenshot/activity/feed";
+	private static final String DOWNLOAD_WEBSITE = "https://sourceforge.net/p/greenshot/activity/feed";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -71,7 +71,7 @@ public class GreenshotRemoteRetriever implements RemoteRetriever {
 		InputSource is = new InputSource(DOWNLOAD_WEBSITE);
 		NodeList nodes = null;
 		try {
-			nodes = (NodeList) xp.evaluate("//link", is, XPathConstants.NODESET);
+			nodes = ((NodeList) xp.evaluate("//link", is, XPathConstants.NODESET));
 		} catch (XPathExpressionException e) {
 			return null;
 		}

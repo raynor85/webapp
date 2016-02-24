@@ -30,7 +30,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- K-lite codecs
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.codecguide.com/download_k-lite_codec_pack_standard.htm', 'http://www.codecguide.com/', 'klitecodecs.png', 'K-lite Codec Pack', 'klitecodecs', true, 'SYSTEM_OTHER', 'FREE');
 -- Songbird
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, false, 'http://sourceforge.net/projects/songbird.mirror/', 'http://getsongbird.net/', 'songbird.png', 'Songbird', 'songbird', true, 'MUSIC', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, false, 'https://sourceforge.net/projects/songbird.mirror/', 'http://getsongbird.net/', 'songbird.png', 'Songbird', 'songbird', true, 'MUSIC', 'FREE');
 -- Picasa
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://picasa.google.com/', 'http://picasa.google.com/', 'picasa.png', 'Picasa', 'picasa', true, 'IMAGE', 'FREE');
 -- iTunes
@@ -46,7 +46,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- PDF-XChange Viewer
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.tracker-software.com/history/viewer_history.xml', 'http://www.tracker-software.com/product/pdf-xchange-viewer', 'pdfxchangeviewer.png', 'PDF-XChange Viewer', 'pdfxchangeviewer', false, 'TEXT', 'FREE');
 -- Media Player Classic - BE
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://sourceforge.net/p/mpcbe/activity/feed', 'http://sourceforge.net/projects/mpcbe/', 'mpclassicbe.png', 'MPC - BE', 'mediaplayerclassicbe', false, 'VIDEO', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://sourceforge.net/p/mpcbe/activity/feed', 'https://sourceforge.net/projects/mpcbe/', 'mpclassicbe.png', 'MPC - BE', 'mediaplayerclassicbe', false, 'VIDEO', 'FREE');
 -- XnView
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.xnview.com/en/xnview/', 'http://www.xnview.com/', 'xnview.png', 'XnView', 'xnview', false, 'IMAGE', 'FREE');
 -- Glary Utilities
@@ -158,7 +158,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- KMPlayer
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/KMPlayer/3000-13632_4-10659939.html', 'http://www.kmplayer.com/', 'kmplayer.png', 'KMPlayer', 'kmplayer', false, 'VIDEO', 'FREE');
 -- Audacity
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://sourceforge.net/p/audacity/activity/feed', 'http://audacity.sourceforge.net/', 'audacity.png', 'Audacity', 'audacity', false, 'MUSIC', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://sourceforge.net/p/audacity/activity/feed', 'https://audacity.sourceforge.net/', 'audacity.png', 'Audacity', 'audacity', false, 'MUSIC', 'FREE');
 -- RoboForm
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.roboform.com/download', 'http://www.roboform.com/', 'roboform.png', 'RoboForm', 'roboform', false, 'TOOLS', 'FREE');
 -- USB Disk Security
@@ -278,7 +278,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Sandboxie
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.sandboxie.com/index.php?DownloadSandboxie', 'http://www.sandboxie.com/', 'sandboxie.png', 'Sandboxie', 'sandboxie', false, 'SECURITY', 'COMMERCIAL');
 -- SMPlayer
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://sourceforge.net/projects/smplayer/rss', 'http://smplayer.sourceforge.net/', 'smplayer.png', 'SMPlayer', 'smplayer', false, 'VIDEO', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://sourceforge.net/projects/smplayer/rss', 'https://smplayer.sourceforge.net/', 'smplayer.png', 'SMPlayer', 'smplayer', false, 'VIDEO', 'FREE');
 -- CDBurnerXP
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://cdburnerxp.se/en/download', 'https://cdburnerxp.se/', 'cdburnerxp.png', 'CDBurnerXP', 'cdburnerxp', false, 'TOOLS', 'FREE');
 -- FeedDemon
@@ -352,7 +352,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- ExtraPuTTY
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.extraputty.com/thanks.php', 'http://www.extraputty.com/', 'extraputty.png', 'ExtraPuTTY', 'extraputty', false, 'DEVELOPMENT', 'FREE');
 -- Greenshot
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://sourceforge.net/p/greenshot/activity/feed', 'http://getgreenshot.org', 'greenshot.png', 'Greenshot', 'greenshot', false, 'MISC', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://sourceforge.net/p/greenshot/activity/feed', 'http://getgreenshot.org', 'greenshot.png', 'Greenshot', 'greenshot', false, 'MISC', 'FREE');
 -- ImgBurn
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.imgburn.com/index.php?act=download', 'http://www.imgburn.com', 'imgburn.png', 'ImgBurn', 'imgburn', false, 'TOOLS', 'FREE');
 -- InfraRecorder
@@ -534,7 +534,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Maxthon Nitro
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.maxthon.com/nitro/', 'http://www.maxthon.com/nitro/', 'maxthonnitro.png', 'Maxthon Nitro', 'maxthonnitro', false, 'INTERNET', 'FREE');
 -- Light Firefox
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://sourceforge.net/p/lightfirefox/activity/feed', 'http://sourceforge.net/projects/lightfirefox/', 'firefox.png', 'Light Firefox', 'lightfirefox', false, 'INTERNET', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://sourceforge.net/p/lightfirefox/activity/feed', 'https://sourceforge.net/projects/lightfirefox/', 'firefox.png', 'Light Firefox', 'lightfirefox', false, 'INTERNET', 'FREE');
 -- doPDF
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://dopdf-free-pdf-converter.soft112.com/quick-download.html', 'http://www.dopdf.com/', 'dopdf.png', 'doPDF', 'dopdf', false, 'TEXT', 'FREE');
 -- UC Browser
@@ -574,7 +574,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- LinuxLive USB Creator
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.linuxliveusb.com/en/download', 'http://www.linuxliveusb.com/', 'linuxliveusbcreator.png', 'LinuxLive USB Creator', 'linuxliveusbcreator', false, 'TOOLS', 'FREE');
 -- JPEGView
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://sourceforge.net/p/jpegview/activity/feed', 'http://sourceforge.net/projects/jpegview/', 'jpegview.png', 'JPEGView', 'jpegview', false, 'IMAGE', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://sourceforge.net/p/jpegview/activity/feed', 'https://sourceforge.net/projects/jpegview/', 'jpegview.png', 'JPEGView', 'jpegview', false, 'IMAGE', 'FREE');
 -- Uninstall Tool
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.crystalidea.com/uninstall-tool-version-history', 'http://www.crystalidea.com/uninstall-tool', 'uninstalltool.png', 'Uninstall Tool', 'uninstalltool', false, 'SYSTEM', 'FREE');
 -- Windows Updates Downloader
