@@ -3,11 +3,11 @@ package com.updapy.service.retriever.impl.c;
 import java.io.IOException;
 
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.util.HttpUtils;
 import com.updapy.util.ParsingUtils;
 
 @Component
@@ -35,16 +35,16 @@ public class CyberduckRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return getDownloadLink(doc).attr("href");
+		return getDownloadLink(doc);
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(getDownloadLink(doc).text());
+		return ParsingUtils.extractVersionNumberFromString(HttpUtils.getFilenameFromUrl(getDownloadLink(doc)));
 	}
 
-	private Element getDownloadLink(Document doc) {
-		return doc.select("a:contains(Download)[href*=exe]").first();
+	private String getDownloadLink(Document doc) {
+		return doc.select("a:contains(Download)[href*=exe]").first().attr("href");
 	}
 
 }
