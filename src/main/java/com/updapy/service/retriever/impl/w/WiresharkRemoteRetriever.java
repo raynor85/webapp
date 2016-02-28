@@ -39,7 +39,7 @@ public class WiresharkRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("div.panel-heading:contains(Stable Release)").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("div.panel-heading:contains(Stable Release)").first().text());
 	}
 
 }
