@@ -30,17 +30,17 @@ public class TeamViewerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlFr(Document doc) throws IOException {
-		return StringUtils.replacePattern(doc.select("a.button-a[href*=.exe]").get(0).attr("href"), "_Setup.*.exe", "_Setup_fr.exe");
+		return StringUtils.replacePattern(doc.select("a:contains(Download TeamViewer)[href*=.exe]").get(0).attr("href"), "_Setup.*.exe", "_Setup_fr.exe");
 	}
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return StringUtils.replacePattern(doc.select("a.button-a[href*=.exe]").get(0).attr("href"), "_Setup.*.exe", "_Setup_en.exe");
+		return StringUtils.replacePattern(doc.select("a:contains(Download TeamViewer)[href*=.exe]").get(0).attr("href"), "_Setup.*.exe", "_Setup_en.exe");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("span.download-button-windows").get(0).text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("p.DownloadVersion").text());
 	}
 
 }
