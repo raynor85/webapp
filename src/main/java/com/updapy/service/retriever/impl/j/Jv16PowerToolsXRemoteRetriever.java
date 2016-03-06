@@ -40,7 +40,7 @@ public class Jv16PowerToolsXRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("div.wpb_wrapper").select("p").first().text().split(", setup file")[0], "^.*:"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("div.wpb_wrapper").select("p:contains(Version)").first().text(), "^.*Version"));
 	}
 
 }
