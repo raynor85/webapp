@@ -40,7 +40,7 @@ public class HoneyviewRemoteRetriever implements RemoteRetriever, BaseUrlRemoteR
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return HttpUtils.getRedirectionUrl(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:matches(Download.*Bandisoft)").attr("href"))).select("li:contains(Server)").first().select("a").attr("href")));
+		return HttpUtils.getRedirectionUrl(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:matches(Download.*(Bandisoft|Honeyview))").attr("href"))).select("li:contains(Server)").first().select("a").attr("href")));
 	}
 
 	@Override
