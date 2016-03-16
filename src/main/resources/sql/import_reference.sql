@@ -332,7 +332,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Git
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://github.com/git-for-windows/git/releases/latest', 'https://git-for-windows.github.io/', 'git.png', 'Git', 'git', false, 'DEVELOPMENT', 'FREE');
 -- Blueflap
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://personali.zz.mu/en/download', 'http://personali.zz.mu/', 'blueflap.png', 'Blueflap', 'blueflap', false, 'INTERNET', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, false, 'http://personali.zz.mu/en/download', 'http://personali.zz.mu/', 'blueflap.png', 'Blueflap', 'blueflap', false, 'INTERNET', 'FREE');
 -- Dooscape
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, false, 'http://doocode.esy.es/prod/dooscape.php', 'http://doocode.esy.es/prod/dooscape.php', 'dooscape.png', 'Dooscape', 'dooscape', false, 'INTERNET', 'FREE');
 -- Unchecky
@@ -608,7 +608,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- HyperSQL
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://hsqldb.org/', 'http://hsqldb.org/', 'hypersql.png', 'HyperSQL', 'hypersql', false, 'DEVELOPMENT', 'FREE');
 -- IZArc
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.izarc.org/download.html', 'http://www.izarc.org/', 'izarc.png', 'IZArc', 'izarc', false, 'TOOLS', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.izarc.org/download', 'http://www.izarc.org/', 'izarc.png', 'IZArc', 'izarc', false, 'TOOLS', 'FREE');
 -- SourceTree
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.sourcetreeapp.com/download/', 'https://www.sourcetreeapp.com/', 'sourcetree.png', 'SourceTree', 'sourcetree', false, 'DEVELOPMENT', 'FREE');
 

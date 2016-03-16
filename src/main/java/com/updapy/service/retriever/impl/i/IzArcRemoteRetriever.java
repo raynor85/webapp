@@ -37,12 +37,12 @@ public class IzArcRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetri
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("td:contains(IZArc)").first().parent().select("a").first().attr("href"));
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download)[href*=IZArc_" + retrieveVersionNumber(doc) + ".exe]").first().attr("href"));
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("td:contains(IZArc)").first().parent().select("span:contains(version)").first().text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("strong:contains(version)").first().text());
 	}
 
 	@Override
