@@ -45,7 +45,7 @@ public class KerishDoctorRemoteRetriever implements RemoteRetriever, BaseUrlRemo
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("font:contains(Current Version)").first().text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("font:contains(Current application version)").first().text());
 	}
 
 	@Override

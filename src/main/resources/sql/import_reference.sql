@@ -608,7 +608,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- HyperSQL
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://hsqldb.org/', 'http://hsqldb.org/', 'hypersql.png', 'HyperSQL', 'hypersql', false, 'DEVELOPMENT', 'FREE');
 -- IZArc
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.izarc.org/download', 'http://www.izarc.org/', 'izarc.png', 'IZArc', 'izarc', false, 'TOOLS', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.izarc.org/downloads', 'http://www.izarc.org/', 'izarc.png', 'IZArc', 'izarc', false, 'TOOLS', 'FREE');
 -- SourceTree
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.sourcetreeapp.com/download/', 'https://www.sourcetreeapp.com/', 'sourcetree.png', 'SourceTree', 'sourcetree', false, 'DEVELOPMENT', 'FREE');
 
