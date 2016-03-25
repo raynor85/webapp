@@ -611,4 +611,9 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.izarc.org/downloads', 'http://www.izarc.org/', 'izarc.png', 'IZArc', 'izarc', false, 'TOOLS', 'FREE');
 -- SourceTree
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.sourcetreeapp.com/download/', 'https://www.sourcetreeapp.com/', 'sourcetree.png', 'SourceTree', 'sourcetree', false, 'DEVELOPMENT', 'FREE');
-
+-- ConEmu
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://github.com/Maximus5/ConEmu/releases', 'https://conemu.github.io/', 'conemu.png', 'ConEmu', 'conemu', false, 'SYSTEM', 'FREE');
+-- MuseScore
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://musescore.org/en/download', 'https://musescore.org/', 'musescore.png', 'MuseScore', 'musescore', false, 'MUSIC', 'FREE');
+-- XMind
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.xmind.net/download/win/', 'http://www.xmind.net/', 'xmind.png', 'XMind', 'xmind', false, 'TOOLS', 'FREE');
