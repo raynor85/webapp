@@ -383,6 +383,7 @@
 		<ref bean="adFenderRemoteRetriever" />
 		<ref bean="museScoreRemoteRetriever" />
 		<ref bean="xMindRemoteRetriever" />
+		<ref bean="kmPlayerRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

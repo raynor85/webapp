@@ -55,7 +55,7 @@ public class PdfXchangeViewerRemoteRetriever implements RemoteRetriever, BaseUrl
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
 		String version1 = ParsingUtils.extractVersionNumberFromString(doc.select("item").first().select("title").text());
-		String version2 = ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(VERSION_HISTORY_WEBSITE).select("span.versionname").text());
+		String version2 = ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(VERSION_HISTORY_WEBSITE).select("span.variation_name:contains(PDF-XChange Viewer)").first().parent().text());
 		if (version2 == null) {
 			return version1;
 		}

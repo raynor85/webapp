@@ -38,7 +38,7 @@ public class ManyCamRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a:containsOwn(Download)[href*=exe]").first().attr("href");
+		return ParsingUtils.selectFromPattern(doc.select("a:containsOwn(Download)[onclick*=exe]").first().attr("onclick"), "http.*.exe");
 	}
 
 	@Override

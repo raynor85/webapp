@@ -7,15 +7,15 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
-import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
-import com.updapy.util.HttpUtils;
 import com.updapy.util.ParsingUtils;
 
 @Component
 public class NortonSecurityRemoteRetriever implements RemoteRetriever {
 
-	private static final String FR_DOWNLOAD_WEBSITE = "http://fr.norton.com/norton-security-downloads-trial";
+	private static final String PATTERN_VERSION_SHORT = "{version_short}";
+	private static final String PATTERN_VERSION = "{version}";
+	private static final String DOWNLOAD_WEBSITE = "http://buy-download.norton.com/downloads/2015/" + PATTERN_VERSION_SHORT + "/NISNAV/US/NIS-ESD-" + PATTERN_VERSION + "-EN.exe";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -34,21 +34,23 @@ public class NortonSecurityRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlFr(Document doc) throws IOException {
-		return getDownloadLink(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(FR_DOWNLOAD_WEBSITE), "Version d'évaluation");
+		return null;
 	}
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return getDownloadLink(doc, "Download Now");
+		String version = getVersionNumber(doc);
+		String[] versionSplited = version.split("\\.");
+		return StringUtils.replace(StringUtils.replace(DOWNLOAD_WEBSITE, PATTERN_VERSION, version), PATTERN_VERSION_SHORT, versionSplited[0] + '.' + versionSplited[1]);
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(HttpUtils.getFilenameFromUrl(HttpUtils.getRedirectionUrl(getDownloadLink(doc, "Download Now"))), ".*-TW"));
+		return getVersionNumber(doc);
 	}
 
-	public String getDownloadLink(Document doc, String buttonText) throws IOException {
-		return doc.select("a:contains(" + buttonText + ")[href*=exe]").first().attr("href");
-	}
+	private String getVersionNumber(Document doc) {
+		return ParsingUtils.extractVersionNumberFromString(doc.select("h1:contains(Norton Security)").text());
 
+	}
 }

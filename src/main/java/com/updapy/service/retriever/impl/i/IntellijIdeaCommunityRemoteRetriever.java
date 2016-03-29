@@ -2,19 +2,15 @@ package com.updapy.service.retriever.impl.i;
 
 import java.io.IOException;
 
-import org.apache.commons.lang3.StringUtils;
+import org.json.JSONObject;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
-import com.updapy.util.ParsingUtils;
 
 @Component
 public class IntellijIdeaCommunityRemoteRetriever implements RemoteRetriever {
-
-	private static final String PATTERN_VERSION = "{version}";
-	private static final String DOWNLOAD_WEBSITE = "http://download-cf.jetbrains.com/idea/ideaIC-" + PATTERN_VERSION + ".exe";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -38,16 +34,12 @@ public class IntellijIdeaCommunityRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return StringUtils.replace(DOWNLOAD_WEBSITE, PATTERN_VERSION, StringUtils.removeEnd(getVersionNumber(doc), ".0"));
+		return new JSONObject(doc.select("body").text()).getJSONArray("IIC").getJSONObject(0).getJSONObject("downloads").getJSONObject("windows").getString("link");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return getVersionNumber(doc);
-	}
-
-	private String getVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(doc.select("body").text(), "function versionIDEA\\(el\\).*$"), "^.*versionIDEALong"));
+		return new JSONObject(doc.select("body").text()).getJSONArray("IIC").getJSONObject(0).getString("version");
 	}
 
 }
