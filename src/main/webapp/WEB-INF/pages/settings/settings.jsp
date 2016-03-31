@@ -214,21 +214,21 @@
 							<c:set var="currentPasswordPlaceholder">
 								<spring:message code="settings.profile.changePassword.field.current.password.tip" />
 							</c:set>
-							<form:input type="password" path="currentPassword" class="form-control" id="currentPassword" placeholder="${currentPasswordPlaceholder}" />
+							<form:input type="password" maxlength="25" path="currentPassword" class="form-control" id="currentPassword" placeholder="${currentPasswordPlaceholder}" />
 						</div>
 						<div class="form-group">
 							<label for="newPassword"><spring:message code="settings.profile.changePassword.field.new.password" /></label>
 							<c:set var="newPasswordPlaceholder">
 								<spring:message code="settings.profile.changePassword.field.new.password.tip" />
 							</c:set>
-							<form:input type="password" path="newPassword" class="form-control" id="newPassword" placeholder="${newPasswordPlaceholder}" />
+							<form:input type="password" maxlength="25" path="newPassword" class="form-control" id="newPassword" placeholder="${newPasswordPlaceholder}" />
 						</div>
 						<div class="form-group">
 							<label for="repeatNewPassword"><spring:message code="settings.profile.changePassword.field.repeat.password" /></label>
 							<c:set var="repeatPasswordPlaceholder">
 								<spring:message code="settings.profile.changePassword.field.repeat.password.tip" />
 							</c:set>
-							<form:input type="password" path="repeatNewPassword" class="form-control" id="repeatNewPassword" placeholder="${repeatPasswordPlaceholder}" />
+							<form:input type="password" maxlength="25" path="repeatNewPassword" class="form-control" id="repeatNewPassword" placeholder="${repeatPasswordPlaceholder}" />
 						</div>
 					</div>
 					<div class="modal-footer">

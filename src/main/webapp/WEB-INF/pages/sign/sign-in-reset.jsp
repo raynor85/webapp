@@ -21,14 +21,14 @@
 						<c:set var="passwordPlaceholder">
 							<spring:message code="sign.in.reset.field.password.tip" />
 						</c:set>
-						<form:input type="password" path="newPassword" id="newPassword" class="form-control" placeholder="${passwordPlaceholder}" />
+						<form:input type="password" maxlength="25" path="newPassword" id="newPassword" class="form-control" placeholder="${passwordPlaceholder}" />
 					</div>
 					<div class="form-group">
 						<label for="repeatNewPassword"><spring:message code="sign.in.reset.field.password.repeat" /></label>
 						<c:set var="passwordRepeatPlaceholder">
 							<spring:message code="sign.in.reset.field.password.repeat.tip" />
 						</c:set>
-						<form:input type="password" path="repeatNewPassword" id="repeatNewPassword" class="form-control" placeholder="${passwordRepeatPlaceholder}" />
+						<form:input type="password" maxlength="25" path="repeatNewPassword" id="repeatNewPassword" class="form-control" placeholder="${passwordRepeatPlaceholder}" />
 					</div>
 					<button type="submit" class="btn-block btn-color ladda-button">
 						<spring:message code="sign.in.reset.button" />

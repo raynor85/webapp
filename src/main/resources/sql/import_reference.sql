@@ -32,7 +32,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Songbird
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, false, 'https://sourceforge.net/projects/songbird.mirror/', 'http://getsongbird.net/', 'songbird.png', 'Songbird', 'songbird', true, 'MUSIC', 'FREE');
 -- Picasa
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://picasa.google.com/', 'http://picasa.google.com/', 'picasa.png', 'Picasa', 'picasa', true, 'IMAGE', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, false, 'http://picasa.google.com/', 'http://picasa.google.com/', 'picasa.png', 'Picasa', 'picasa', true, 'IMAGE', 'FREE');
 -- iTunes
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://swdlp.apple.com/iframes/82/en_us/82_en_us.html', 'https://www.apple.com/itunes/', 'itunes.png', 'iTunes', 'itunes', true, 'MUSIC', 'FREE');
 -- Winmerge

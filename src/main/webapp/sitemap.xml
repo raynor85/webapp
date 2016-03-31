@@ -252,11 +252,6 @@
 		<priority>0.2</priority>
 	</url>
 	<url>
-		<loc>http://www.updapy.com/applications/picasa</loc>
-		<changefreq>yearly</changefreq>
-		<priority>0.2</priority>
-	</url>
-	<url>
 		<loc>http://www.updapy.com/applications/klitecodecs</loc>
 		<changefreq>yearly</changefreq>
 		<priority>0.2</priority>
@@ -587,11 +582,6 @@
 		<priority>0.2</priority>
 	</url>
 	<url>
-		<loc>http://www.updapy.com/applications/popcorntime</loc>
-		<changefreq>yearly</changefreq>
-		<priority>0.2</priority>
-	</url>
-	<url>
 		<loc>http://www.updapy.com/applications/playclaw</loc>
 		<changefreq>yearly</changefreq>
 		<priority>0.2</priority>
@@ -857,11 +847,6 @@
 		<priority>0.2</priority>
 	</url>
 	<url>
-		<loc>http://www.updapy.com/applications/blueflap</loc>
-		<changefreq>yearly</changefreq>
-		<priority>0.2</priority>
-	</url>
-	<url>
 		<loc>http://www.updapy.com/applications/unchecky</loc>
 		<changefreq>yearly</changefreq>
 		<priority>0.2</priority>
@@ -978,11 +963,6 @@
 	</url>
 	<url>
 		<loc>http://www.updapy.com/applications/winscp</loc>
-		<changefreq>yearly</changefreq>
-		<priority>0.2</priority>
-	</url>
-	<url>
-		<loc>http://www.updapy.com/applications/yahoomessenger</loc>
 		<changefreq>yearly</changefreq>
 		<priority>0.2</priority>
 	</url>
