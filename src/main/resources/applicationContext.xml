@@ -6,7 +6,6 @@
                         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
                         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
                         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
-						http://www.springframework.org/schema/social http://docs.spring.io/autorepo/schema/spring-social/current/social/spring-social.xsd
 						http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
 						http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
 						http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
@@ -122,7 +121,11 @@
 			</list>
 		</property>
 	</bean>
-	<social:jdbc-connection-repository /> <!-- Save social connections in database -->
+	<bean id="usersConnectionRepository" class="org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository">
+		<constructor-arg ref="dataSource" />
+		<constructor-arg ref="connectionFactoryLocator" />
+		<constructor-arg ref="textEncryptor" />
+	</bean>
 
 	<!-- Remote retrievers -->
 	<util:list id="remoteRetrievers">
