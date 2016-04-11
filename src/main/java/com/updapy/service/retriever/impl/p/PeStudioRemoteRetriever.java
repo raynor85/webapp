@@ -14,7 +14,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class PeStudioRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.winitor.com/";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "https://www.winitor.com/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -47,7 +47,7 @@ public class PeStudioRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRe
 	}
 
 	private Elements retrieveDownloadLink(Document doc) {
-		return doc.select("a.download:contains(Download pestudio)");
+		return doc.select("a:contains(Download pestudio)");
 	}
 
 	@Override

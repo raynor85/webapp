@@ -458,7 +458,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Foxit Reader
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.foxitsoftware.com/downloads/downloadForm.php?product=Foxit-Reader&language=English&platform=Windows', 'https://www.foxitsoftware.com/products/pdf-reader/', 'foxitreader.png', 'Foxit Reader', 'foxitreader', false, 'TEXT', 'FREE');
 -- PeStudio
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.winitor.com/', 'http://www.winitor.com/', 'pestudio.png', 'PeStudio', 'pestudio', false, 'SECURITY', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.winitor.com/free.html', 'http://www.winitor.com/', 'pestudio.png', 'PeStudio', 'pestudio', false, 'SECURITY', 'FREE');
 -- Bandizip
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.bandisoft.com/bandizip/', 'http://www.bandisoft.com/bandizip/', 'bandizip.png', 'Bandizip', 'bandizip', false, 'TOOLS', 'FREE');
 -- Honeyview
