@@ -387,6 +387,7 @@
 		<ref bean="museScoreRemoteRetriever" />
 		<ref bean="xMindRemoteRetriever" />
 		<ref bean="kmPlayerRemoteRetriever" />
+		<ref bean="daemonToolsLiteRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

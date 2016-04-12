@@ -2,6 +2,7 @@ package com.updapy.service.impl;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Arrays;
@@ -114,6 +115,8 @@ public class RemoteServiceImpl implements RemoteService {
 		} catch (SSLHandshakeException e) {
 			return true; // https error are fine; jsoup cannot handle this properly, the link should be valid
 		} catch (SSLProtocolException e) {
+			return true; // same
+		} catch (ProtocolException e) {
 			return true; // same
 		} catch (IOException e) {
 			return false;

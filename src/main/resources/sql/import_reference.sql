@@ -204,7 +204,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- OpenOffice
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.openoffice.org/download/globalvars.js', 'https://www.openoffice.org/', 'openoffice.png', 'OpenOffice', 'openoffice', false, 'TEXT', 'FREE');
 -- DAEMON Tools Lite
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/DAEMON-Tools-Lite/3000-2094_4-10778842.html', 'http://www.daemon-tools.cc/products/dtLite', 'daemontoolslite.png', 'DAEMON Tools Lite', 'daemontoolslite', false, 'TOOLS', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.disc-soft.com/products/dtLite', 'http://www.disc-soft.com/products/dtLite', 'daemontoolslite.png', 'DAEMON Tools Lite', 'daemontoolslite', false, 'TOOLS', 'FREE');
 -- AVG Free Antivirus
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/AVG-AntiVirus-Free/3000-2239_4-10320142.html', 'http://free.avg.com/', 'avgfreeantivirus.png', 'AVG Free Antivirus', 'avgfreeantivirus', false, 'SECURITY', 'FREE');
 -- Free YouTube Downloader
@@ -458,7 +458,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Foxit Reader
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.foxitsoftware.com/downloads/downloadForm.php?product=Foxit-Reader&language=English&platform=Windows', 'https://www.foxitsoftware.com/products/pdf-reader/', 'foxitreader.png', 'Foxit Reader', 'foxitreader', false, 'TEXT', 'FREE');
 -- PeStudio
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.winitor.com/free.html', 'http://www.winitor.com/', 'pestudio.png', 'PeStudio', 'pestudio', false, 'SECURITY', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.winitor.com/binaries.html', 'http://www.winitor.com/', 'pestudio.png', 'PeStudio', 'pestudio', false, 'SECURITY', 'FREE');
 -- Bandizip
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.bandisoft.com/bandizip/', 'http://www.bandisoft.com/bandizip/', 'bandizip.png', 'Bandizip', 'bandizip', false, 'TOOLS', 'FREE');
 -- Honeyview
