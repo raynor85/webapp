@@ -2,20 +2,18 @@ package com.updapy.service.retriever.impl.d;
 
 import java.io.IOException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
-import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class DaemonToolsLiteRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
+public class DaemonToolsLiteRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.disc-soft.com/";
-
-	@Override
+@Override
 	public boolean support(ApplicationReference application) {
 		return application.getApiName().equalsIgnoreCase("daemontoolslite");
 	}
@@ -37,17 +35,12 @@ public class DaemonToolsLiteRemoteRetriever implements RemoteRetriever, BaseUrlR
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a.button:contains(Download)").attr("href"));
+		return doc.baseUri();
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("div._productVersion").text());
-	}
-
-	@Override
-	public String getBaseUrl() {
-		return ROOT_DOWNLOAD_WEBSITE;
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("h1:contains(DAEMON Tools Lite)").text(), "\\(.*\\)"));
 	}
 
 }

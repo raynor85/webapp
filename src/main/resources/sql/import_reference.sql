@@ -204,7 +204,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- OpenOffice
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.openoffice.org/download/globalvars.js', 'https://www.openoffice.org/', 'openoffice.png', 'OpenOffice', 'openoffice', false, 'TEXT', 'FREE');
 -- DAEMON Tools Lite
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.disc-soft.com/products/dtLite', 'http://www.disc-soft.com/products/dtLite', 'daemontoolslite.png', 'DAEMON Tools Lite', 'daemontoolslite', false, 'TOOLS', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.disk-tools.com/download/daemon', 'http://www.disc-soft.com/products/dtLite', 'daemontoolslite.png', 'DAEMON Tools Lite', 'daemontoolslite', false, 'TOOLS', 'FREE');
 -- AVG Free Antivirus
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/AVG-AntiVirus-Free/3000-2239_4-10320142.html', 'http://free.avg.com/', 'avgfreeantivirus.png', 'AVG Free Antivirus', 'avgfreeantivirus', false, 'SECURITY', 'FREE');
 -- Free YouTube Downloader
@@ -362,7 +362,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- MediaMonkey
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.mediamonkey.com/download/', 'http://www.mediamonkey.com', 'mediamonkey.png', 'MediaMonkey', 'mediamonkey', false, 'MUSIC', 'FREE');
 -- PeaZip
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.peazip.org', 'http://www.peazip.org', 'peazip.png', 'PeaZip', 'peazip', false, 'TOOLS', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.peazip.org/download-installer-p-windows.html', 'http://www.peazip.org', 'peazip.png', 'PeaZip', 'peazip', false, 'TOOLS', 'FREE');
 -- PuTTY
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html', 'http://www.chiark.greenend.org.uk/~sgtatham/putty/', 'putty.png', 'PuTTY', 'putty', false, 'DEVELOPMENT', 'FREE');
 -- Python

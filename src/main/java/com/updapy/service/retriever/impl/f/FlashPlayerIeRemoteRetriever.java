@@ -1,6 +1,7 @@
 package com.updapy.service.retriever.impl.f;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
@@ -43,10 +44,10 @@ public class FlashPlayerIeRemoteRetriever implements RemoteRetriever {
 		String title = doc.select(".TextH3:contains(Win)").text();
 		if (StringUtils.contains(title, ';')) {
 			String[] titles = StringUtils.split(title, ';');
-			String toFind = "ie";
-			if (StringUtils.containsIgnoreCase(titles[0], toFind)) {
+			String reg = "(.*ie.*)|(.*(W|w)in.*)";
+			if (Pattern.matches(reg, titles[0])) {
 				return ParsingUtils.extractVersionNumberFromString(titles[0]);
-			} else if (StringUtils.containsIgnoreCase(titles[1], toFind)) {
+			} else if (Pattern.matches(reg, titles[1])) {
 				return ParsingUtils.extractVersionNumberFromString(titles[1]);
 			}
 		}
