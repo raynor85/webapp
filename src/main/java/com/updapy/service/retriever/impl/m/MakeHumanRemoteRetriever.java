@@ -39,12 +39,16 @@ public class MakeHumanRemoteRetriever implements RemoteRetriever, BaseUrlRemoteR
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
 		String downloadPageLink = ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("img[alt*=Download makehuman stable]").parents().select("a").first().attr("href"));
-		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(downloadPageLink).select("a[href*=win32]").attr("href");
+		String dlLink = RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(downloadPageLink).select("a[href*=win32]").attr("href");
+		if (!dlLink.contains(retrieveVersionNumber(doc))) {
+			return null;
+		}
+		return dlLink;
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("h1:contains(Current version)").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("h1:contains(MakeHuman)").first().text());
 	}
 
 	@Override
