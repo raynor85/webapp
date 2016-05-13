@@ -38,7 +38,7 @@ public class ComodoInternetSecurityRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return StringUtils.removePattern(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("a[title*=Download Comodo Internet Security Free Version][href*=exe]").attr("href"), "\\?.*");
+		return StringUtils.removePattern(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("a:contains(FREE DOWNLOAD)[href*=exe]").attr("href"), "\\?.*");
 	}
 
 	@Override

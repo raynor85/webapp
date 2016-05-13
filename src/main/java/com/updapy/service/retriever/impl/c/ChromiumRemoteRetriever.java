@@ -40,7 +40,7 @@ public class ChromiumRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(doc.select(".os").select("p").get(1).text(), "Revision.*"), ".*Version"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(StringUtils.removePattern(doc.select(".os").select("p").get(1).text(), "Date.*"), ".*Version"));
 	}
 
 }
