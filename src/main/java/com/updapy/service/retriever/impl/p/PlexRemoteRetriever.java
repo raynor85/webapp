@@ -35,7 +35,7 @@ public class PlexRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("div#pms-desktop").select("div.brand:contains(Windows)").parents().select("div.pop-btn").select("a:contains(Download English)").attr("href");
+		return doc.select("div#pms-desktop").select("div.brand:contains(Windows)").parents().select("div.pop-btn").select("a:contains(Download)").select("a[href~=.*plex-media-server.*exe.*]").attr("href");
 	}
 
 	@Override

@@ -49,7 +49,7 @@ public class HyperSqlRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRe
 	}
 
 	private Element getDownloadLink(Document doc) {
-		return doc.select("a:contains(Download latest stable)").first();
+		return doc.select("a:contains(Download latest version)").first();
 	}
 
 	@Override

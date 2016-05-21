@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.util.ParsingUtils;
 
 @Component
 public class IntellijIdeaUltimateRemoteRetriever implements RemoteRetriever {
@@ -39,7 +40,7 @@ public class IntellijIdeaUltimateRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return new JSONObject(doc.select("body").text()).getJSONArray("IIU").getJSONObject(0).getString("version");
+		return ParsingUtils.extractVersionNumberFromString(new JSONObject(doc.select("body").text()).getJSONArray("IIU").getJSONObject(0).getString("version"));
 	}
 
 }
