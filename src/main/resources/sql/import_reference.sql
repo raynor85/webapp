@@ -478,7 +478,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Winamp
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://meggamusic.co.uk/winamp/Winamp_Download.htm', 'http://www.winamp.com/', 'winamp.png', 'Winamp', 'winamp', false, 'MUSIC', 'FREE');
 -- ZoneAlarm Firewall
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.zonealarm.com/security/en-us/fza-install-steps.htm', 'http://www.zonealarm.com/', 'zonealarmfirewall.png', 'ZoneAlarm Firewall', 'zonealarmfirewall', false, 'SECURITY', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.zonealarm.com/security/en-us/trial-download-zap.htm', 'http://www.zonealarm.com/', 'zonealarmfirewall.png', 'ZoneAlarm Firewall', 'zonealarmfirewall', false, 'SECURITY', 'FREE');
 -- Panda Antivirus
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/Panda-Free-Antivirus/3000-2239_4-10914099.html', 'http://www.cloudantivirus.com/', 'pandafreeantivirus.png', 'Panda Antivirus', 'pandafreeantivirus', false, 'SECURITY', 'FREE');
 -- IObit Uninstaller
@@ -503,8 +503,8 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.vagrantup.com/downloads.html', 'http://www.vagrantup.com/', 'vagrant.png', 'Vagrant', 'vagrant', false, 'DEVELOPMENT', 'FREE');
 -- Driver Genius
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.driver-soft.com/download.html', 'http://www.driver-soft.com/', 'drivergenius.png', 'Driver Genius', 'drivergenius', false, 'SYSTEM', 'FREE');
--- Adobe DC
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://get.adobe.com/reader/', 'https://acrobat.adobe.com/', 'adobedc.png', 'Adobe DC', 'adobedc', false, 'TEXT', 'FREE');
+-- Adobe Reader DC
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://get.adobe.com/reader/', 'https://acrobat.adobe.com/', 'adobereaderdc.png', 'Adobe Reader DC', 'adobereaderdc', false, 'TEXT', 'FREE');
 -- Registry Defrag
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.auslogics.com/en/software/registry-defrag/', 'http://www.auslogics.com/en/software/registry-defrag/', 'registrydefrag.png', 'Registry Defrag', 'registrydefrag', false, 'SYSTEM', 'FREE');
 -- Registry Cleaner

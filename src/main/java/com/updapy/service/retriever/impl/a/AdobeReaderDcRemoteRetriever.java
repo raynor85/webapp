@@ -11,7 +11,7 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class AdobeDcRemoteRetriever implements RemoteRetriever {
+public class AdobeReaderDcRemoteRetriever implements RemoteRetriever {
 
 	private static final String PATTERN_VERSION = "{version}";
 	private static final String PATTERN_LANG = "{language}";
@@ -22,7 +22,7 @@ public class AdobeDcRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getApiName().equalsIgnoreCase("adobedc");
+		return application.getApiName().equalsIgnoreCase("adobereaderdc");
 	}
 
 	@Override

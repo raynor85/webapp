@@ -342,7 +342,7 @@
 		<ref bean="autoHotkeyRemoteRetriever" />
 		<ref bean="superAntiSpywareRemoteRetriever" />
 		<ref bean="vagrantRemoteRetriever" />
-		<ref bean="adobeDcRemoteRetriever" />
+		<ref bean="adobeReaderDcRemoteRetriever" />
 		<ref bean="fastStoneImageViewerRemoteRetriever" />
 		<ref bean="avantBrowserRemoteRetriever" />
 		<ref bean="driverMagicianRemoteRetriever" />
