@@ -388,6 +388,8 @@
 		<ref bean="xMindRemoteRetriever" />
 		<ref bean="kmPlayerRemoteRetriever" />
 		<ref bean="daemonToolsLiteRemoteRetriever" />
+		<ref bean="nitroPdfReaderRemoteRetriever" />
+		<ref bean="bliskRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

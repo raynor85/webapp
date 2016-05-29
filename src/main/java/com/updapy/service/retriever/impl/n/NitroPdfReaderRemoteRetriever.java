@@ -1,24 +1,23 @@
-package com.updapy.service.retriever.impl.g;
+package com.updapy.service.retriever.impl.n;
 
 import java.io.IOException;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
-import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class GmailNotifierProRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
+public class NitroPdfReaderRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.gmailnotifier.se/";
+	private static final String VERSION_HISTORY_WEBSITE = "https://www.gonitro.com/pdf-reader/technical";
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getApiName().equalsIgnoreCase("gmailnotifier");
+		return application.getApiName().equalsIgnoreCase("nitropdfreader");
 	}
 
 	@Override
@@ -28,7 +27,7 @@ public class GmailNotifierProRemoteRetriever implements RemoteRetriever, BaseUrl
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return null;
+		return doc.select("a#64bit-link").attr("href");
 	}
 
 	@Override
@@ -38,17 +37,12 @@ public class GmailNotifierProRemoteRetriever implements RemoteRetriever, BaseUrl
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a[href*=msi]").attr("href"));
+		return doc.select("a#32bit-link").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("div:containsOwn(Version:)").get(0).text(), "(r|R)eleased.*$"));
-	}
-
-	@Override
-	public String getBaseUrl() {
-		return ROOT_DOWNLOAD_WEBSITE;
+		return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(VERSION_HISTORY_WEBSITE).select("li:contains(Latest version)").text());
 	}
 
 }

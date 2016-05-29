@@ -617,3 +617,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://musescore.org/en/download', 'https://musescore.org/', 'musescore.png', 'MuseScore', 'musescore', false, 'MUSIC', 'FREE');
 -- XMind
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.xmind.net/download/win/', 'http://www.xmind.net/', 'xmind.png', 'XMind', 'xmind', false, 'TOOLS', 'FREE');
+-- Blisk
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://blisk.io/', 'https://blisk.io/', 'blisk.png', 'Blisk', 'blisk', false, 'DEVELOPMENT', 'FREE');
+-- Nitro PDF Reader
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.gonitro.com/pdf-reader/download-signup', 'https://www.gonitro.com/pdf-reader', 'nitropdfreader.png', 'Nitro PDF Reader', 'nitropdfreader', false, 'TEXT', 'FREE');

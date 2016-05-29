@@ -1,4 +1,4 @@
-package com.updapy.service.retriever.impl.g;
+package com.updapy.service.retriever.impl.b;
 
 import java.io.IOException;
 
@@ -7,18 +7,18 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
-import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class GmailNotifierProRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
+public class BliskRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.gmailnotifier.se/";
+	private static final String DOWNLOAD_WEBSITE = "https://blisk.io/download";
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getApiName().equalsIgnoreCase("gmailnotifier");
+		return application.getApiName().equalsIgnoreCase("blisk");
 	}
 
 	@Override
@@ -38,17 +38,16 @@ public class GmailNotifierProRemoteRetriever implements RemoteRetriever, BaseUrl
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a[href*=msi]").attr("href"));
+		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("a:contains(CLICK HERE)[href*=.exe]").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("div:containsOwn(Version:)").get(0).text(), "(r|R)eleased.*$"));
+		return getVersionNumber(doc);
 	}
 
-	@Override
-	public String getBaseUrl() {
-		return ROOT_DOWNLOAD_WEBSITE;
+	private String getVersionNumber(Document doc) {
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("p:contains(last build)").first().text(), "(r|R)eleased.*$"));
 	}
 
 }

@@ -1546,5 +1546,14 @@
 		<changefreq>yearly</changefreq>
 		<priority>0.2</priority>
 	</url>
-
+	<url>
+		<loc>http://www.updapy.com/applications/blisk</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/nitropdfreader</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
 </urlset>
