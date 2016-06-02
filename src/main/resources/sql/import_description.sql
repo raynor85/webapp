@@ -619,6 +619,8 @@ INSERT INTO applicationdescription(id, creationdate, dbversion, updatedate, desc
 INSERT INTO applicationdescription(id, creationdate, dbversion, updatedate, descriptionen, descriptionfr, application_id) VALUES (nextval('application_description_seq'), now(), 0, now(), 'Blisk is a free Chromium-based browser built to increase quality and speed of web development and testing.', 'Blisk est un navigateur libre basé sur Chromium conçu pour augmenter la qualité et la vitesse de développement web ainsi que le testing.', 310);
 -- Nitro PDF Reader
 INSERT INTO applicationdescription(id, creationdate, dbversion, updatedate, descriptionen, descriptionfr, application_id) VALUES (nextval('application_description_seq'), now(), 0, now(), 'Nitro PDF Reader allows you to make notes and edit PDFs as well as simply read them.', 'Nitro PDF Reader vous permet de prendre des notes et de modifier des fichiers PDF sans oublier de simplement les lire.', 311);
+-- Polarity
+INSERT INTO applicationdescription(id, creationdate, dbversion, updatedate, descriptionen, descriptionfr, application_id) VALUES (nextval('application_description_seq'), now(), 0, now(), 'Polarity is a feature packed, fast, secure, stable, and a highly customizable web browser that offers the latest web standards.', 'Polarity est un navigateur Web personnalisable, rapide, sûr et stable avec de nombreuses caractéristiques tout en offrant les derniers standards du web.', 312);
 
 -- Template
-INSERT INTO applicationdescription(id, creationdate, dbversion, updatedate, descriptionen, descriptionfr, application_id) VALUES (nextval('application_description_seq'), now(), 0, now(), 'ENGLISH', 'FRENCH', 312);
+INSERT INTO applicationdescription(id, creationdate, dbversion, updatedate, descriptionen, descriptionfr, application_id) VALUES (nextval('application_description_seq'), now(), 0, now(), 'ENGLISH', 'FRENCH', 313);

@@ -390,6 +390,7 @@
 		<ref bean="daemonToolsLiteRemoteRetriever" />
 		<ref bean="nitroPdfReaderRemoteRetriever" />
 		<ref bean="bliskRemoteRetriever" />
+		<ref bean="polarityRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

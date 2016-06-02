@@ -1,4 +1,4 @@
-package com.updapy.service.retriever.impl.i;
+package com.updapy.service.retriever.impl.p;
 
 import java.io.IOException;
 
@@ -6,16 +6,15 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
-import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class ImgBurnRemoteRetriever implements RemoteRetriever {
+public class PolarityRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getApiName().equalsIgnoreCase("imgburn");
+		return application.getApiName().equalsIgnoreCase("polarity");
 	}
 
 	@Override
@@ -35,12 +34,12 @@ public class ImgBurnRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(doc.select("a:contains(BetaNews)").attr("href").replace("/detail/", "/download/")).select("a:contains(click here)").attr("href");
+		return doc.select("span:contains(Download \\(.net 4.5\\))").parents().select("a").first().attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("td:containsOwn(Current version)").get(0).html().split("<br>")[0]);
+		return ParsingUtils.extractVersionNumberFromString(doc.select("h2:contains(Polarity Browser v.)").first().text());
 	}
 
 }
