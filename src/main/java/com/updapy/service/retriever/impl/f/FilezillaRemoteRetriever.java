@@ -24,7 +24,7 @@ public class FilezillaRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return null;
+		return doc.select("a:contains(win64-setup)[href*=win64-setup]").attr("href");
 	}
 
 	@Override
