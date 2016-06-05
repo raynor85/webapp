@@ -13,8 +13,9 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class ChromeRemoteRetriever implements RemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "https://www.google.com/chrome/browser/";
-	private static final String PLATFORM_64_BIT = "?platform=win64";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "https://dl.google.com/chrome/install/";
+	private static final String PLATFORM_32_BIT = "standalonesetup.exe";
+	private static final String PLATFORM_64_BIT = "standalonesetup64.exe ";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -38,7 +39,7 @@ public class ChromeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ROOT_DOWNLOAD_WEBSITE;
+		return ROOT_DOWNLOAD_WEBSITE + PLATFORM_32_BIT;
 	}
 
 	@Override

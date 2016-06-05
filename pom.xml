@@ -28,7 +28,7 @@
 		<!-- Utils -->
 		<org.apache.tiles.version>3.0.5</org.apache.tiles.version>
 		<org.apache.velocity.version>1.7</org.apache.velocity.version>
-		<joda-time.version>2.9.3</joda-time.version>
+		<joda-time.version>2.9.4</joda-time.version>
 		<jackson.version>2.7.4</jackson.version>
 		<dozer.version>5.5.1</dozer.version>
 		<org.jsoup.version>1.9.2</org.jsoup.version>
@@ -55,7 +55,7 @@
 
 		<!-- Production -->
 		<jsimone.webapp-runner.version>8.0.33.0</jsimone.webapp-runner.version>
-		<com.newrelic.agent.java.version>3.28.0</com.newrelic.agent.java.version>
+		<com.newrelic.agent.java.version>3.29.0</com.newrelic.agent.java.version>
 
 		<!-- Log -->
 		<slf4j.version>1.7.21</slf4j.version>
