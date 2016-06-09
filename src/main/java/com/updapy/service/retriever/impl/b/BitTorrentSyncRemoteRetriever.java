@@ -24,7 +24,7 @@ public class BitTorrentSyncRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return doc.select("button.gat-Downloads-Download_Links-Windows64").get(0).attr("href");
+		return doc.select("div.platform-dl:matches(.*Windows.*64)").select("a").attr("href");
 	}
 
 	@Override
@@ -34,12 +34,12 @@ public class BitTorrentSyncRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("button.gat-Downloads-Download_Links-Windows32").get(0).attr("href");
+		return doc.select("div.platform-dl:matches(.*Windows.*32)").select("a").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("h3:containsOwn(Windows)").parents().select("span").first().text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("div.platform-dl:contains(Windows)").first().select("span.platform-dl__version").text());
 	}
 
 }

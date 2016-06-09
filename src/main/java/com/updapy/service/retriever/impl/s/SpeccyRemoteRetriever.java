@@ -43,7 +43,7 @@ public class SpeccyRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetr
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("ul.versionHistory").select("li").select("strong").get(0).text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("p:contains(Latest version)").select("b").get(0).text());
 	}
 
 	@Override
