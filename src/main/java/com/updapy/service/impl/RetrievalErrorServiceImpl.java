@@ -76,11 +76,11 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 	@Override
 	public int sendEmailRetrievalErrors() {
 		int count = 0;
-		List<RetrievalError> retrievalErrors = retrievalErrorRepository.findByCountGreaterThanEqual(15); // 15 errors really mean there is a problem!
-		retrievalErrors.addAll(retrievalErrorRepository.findByTypeLastErrorInAndCountGreaterThanEqual(Arrays.asList(TypeRetrievalError.LOCAL_URL_VERSION_ERROR), 3)); // 3 errors is enough in case of "local" URL
+		List<RetrievalError> retrievalErrors = retrievalErrorRepository.findByCountGreaterThanEqual(100); // 15 errors really mean there is a problem!
+		retrievalErrors.addAll(retrievalErrorRepository.findByTypeLastErrorInAndCountGreaterThanEqual(Arrays.asList(TypeRetrievalError.LOCAL_URL_VERSION_ERROR), 50)); // 3 errors is enough in case of "local" URL
 		for (RetrievalError retrievalError : retrievalErrors) {
 			boolean isIgnored = ignoredApplications.contains(retrievalError.getApplication().getApiName());
-			if (!isIgnored || (isIgnored && retrievalError.getCount() >= 50)) {
+			if (!isIgnored || (isIgnored && retrievalError.getCount() >= 200)) {
 				boolean hasBeenSent = false;
 				if (TypeRetrievalError.REMOTE_URL_BASE_ERROR.equals(retrievalError.getTypeLastError())) {
 					hasBeenSent = emailSenderService.sendAdminConnectionError(retrievalError.getApplication().getGlobalUrl());
