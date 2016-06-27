@@ -2,7 +2,7 @@ package com.updapy.service.retriever.impl.p;
 
 import java.io.IOException;
 
-import org.apache.commons.lang3.StringUtils;
+import org.json.JSONObject;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -35,12 +35,14 @@ public class PlexRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("div#pms-desktop").select("div.brand:contains(Windows)").parents().select("div.pop-btn").select("a:contains(Download)").select("a[href~=.*plex-media-server.*exe.*]").attr("href");
+		JSONObject jsonObject = new JSONObject(doc.text());
+		return jsonObject.getJSONObject("computer").getJSONObject("Windows").getJSONArray("releases").getJSONObject(0).getString("url");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.replacePattern(StringUtils.removePattern(ParsingUtils.selectFromPattern(doc.select("div#pms-desktop").select("div.brand:contains(Windows)").text(), "(V|v)ersion .*$"), "-.*$"), "-", "."));
+		JSONObject jsonObject = new JSONObject(doc.text());
+		return ParsingUtils.extractVersionNumberFromString(jsonObject.getJSONObject("computer").getJSONObject("Windows").getString("version"));
 	}
 
 }

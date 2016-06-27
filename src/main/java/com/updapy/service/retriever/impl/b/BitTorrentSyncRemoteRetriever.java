@@ -6,11 +6,14 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
 public class BitTorrentSyncRemoteRetriever implements RemoteRetriever {
+
+	private static final String VERSION_WEBSITE = "https://download-cdn.getsync.com/stable/version.txt";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -39,7 +42,7 @@ public class BitTorrentSyncRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("div.platform-dl:contains(Windows)").first().select("span.platform-dl__version").text());
+		return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(VERSION_WEBSITE).text());
 	}
 
 }

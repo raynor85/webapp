@@ -16,7 +16,8 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class EclipseJeeRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.eclipse.org/downloads/";
+	private static final String ROOT_WEBSITE = "http://www.eclipse.org/";
+	private static final String ROOT_DOWNLOAD_WEBSITE = ROOT_WEBSITE + "downloads/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -30,7 +31,7 @@ public class EclipseJeeRemoteRetriever implements RemoteRetriever, BaseUrlRemote
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, retrieveDirectLink(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a.downloadLink:contains(64 Bit)[href*=jee]").attr("href"))));
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, retrieveDirectLink(ParsingUtils.buildUrl(ROOT_WEBSITE, doc.select("a.downloadLink:contains(64 Bit)[href*=jee]").attr("href"))));
 	}
 
 	@Override
@@ -40,7 +41,7 @@ public class EclipseJeeRemoteRetriever implements RemoteRetriever, BaseUrlRemote
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, retrieveDirectLink(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a.downloadLink:contains(32 Bit)[href*=jee]").attr("href"))));
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, retrieveDirectLink(ParsingUtils.buildUrl(ROOT_WEBSITE, doc.select("a.downloadLink:contains(32 Bit)[href*=jee]").attr("href"))));
 	}
 
 	private String retrieveDirectLink(String dlLink) throws IOException {
