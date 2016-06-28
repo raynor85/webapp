@@ -10,8 +10,8 @@
 	<properties>
 
 		<!-- Spring -->
-		<org.springframework.version>4.2.6.RELEASE</org.springframework.version>
-		<org.springframework.data.version>1.10.1.RELEASE</org.springframework.data.version>
+		<org.springframework.version>4.3.0.RELEASE</org.springframework.version>
+		<org.springframework.data.version>1.10.2.RELEASE</org.springframework.data.version>
 		<org.springframework.batch.version>3.0.7.RELEASE</org.springframework.batch.version>
 		<org.springframework.security.version>4.1.0.RELEASE</org.springframework.security.version>
 		<org.springframework.hateoas.version>0.19.0.RELEASE</org.springframework.hateoas.version>
@@ -29,11 +29,11 @@
 		<org.apache.tiles.version>3.0.5</org.apache.tiles.version>
 		<org.apache.velocity.version>1.7</org.apache.velocity.version>
 		<joda-time.version>2.9.4</joda-time.version>
-		<jackson.version>2.7.4</jackson.version>
+		<jackson.version>2.7.5</jackson.version>
 		<dozer.version>5.5.1</dozer.version>
 		<org.jsoup.version>1.9.2</org.jsoup.version>
 		<json.version>20160212</json.version>
-		<rome.version>1.6.0</rome.version>
+		<rome.version>1.6.1</rome.version>
 		<ziplet.version>2.1.2</ziplet.version>
 
 		<!-- Common libs -->

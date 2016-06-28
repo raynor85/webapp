@@ -13,7 +13,7 @@ import com.updapy.util.ParsingUtils;
 public class RealVncRemoteRetriever implements RemoteRetriever {
 
 	private static final String PATTERN_ID = "{id}";
-	private static final String DOWNLOAD_WEBSITE = "https://www.realvnc.com/download/binary/" + PATTERN_ID + "/";
+	private static final String DOWNLOAD_WEBSITE = "https://www.realvnc.com/download/file/vnc.files/VNC-" + PATTERN_ID + "-Windows.exe";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -37,12 +37,12 @@ public class RealVncRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return DOWNLOAD_WEBSITE.replace(PATTERN_ID, ParsingUtils.extractVersionNumberFromString(doc.select("h2.title:contains(Windows)").parents().select("ul.binaries").select("a").get(0).attr("href")));
+		return DOWNLOAD_WEBSITE.replace(PATTERN_ID, retrieveVersionNumber(doc));
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("h2.title:contains(Windows)").parents().select("li.version").get(0).text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("button#download").get(0).text());
 	}
 
 }

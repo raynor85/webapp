@@ -2,7 +2,6 @@ package com.updapy.service.retriever.impl.a;
 
 import java.io.IOException;
 
-import org.apache.commons.lang.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -38,7 +37,7 @@ public class AnyVideoConverterRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return StringUtils.replace(ParsingUtils.selectFromPattern(doc.select("img#download_button").parents().first().select("a[href*=.exe]").attr("href"), "&fallback_url=.*"), "&fallback_url=http%3A", "http:").replaceAll("%2F", "/");
+		return doc.select("img#download_button").parents().first().select("a").attr("href").replaceAll(".com/.*==-", ".com/==-:");
 	}
 
 	@Override
