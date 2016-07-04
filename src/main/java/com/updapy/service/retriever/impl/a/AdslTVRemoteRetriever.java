@@ -14,7 +14,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class AdslTVRemoteRetriever implements RemoteRetriever {
 
-	private static final String PAGE_DOWNLOAD_WEBSITE = "telechargement-2.htm";
+	private static final String PAGE_DOWNLOAD_WEBSITE = "telechargement-2-vlc2.htm";
 	private static final String DOWNLOAD_WEBSITE = "http://www.adsltv.org/site/divers/" + PAGE_DOWNLOAD_WEBSITE;
 
 	@Override
