@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -60,12 +62,15 @@ public class HttpUtils {
 		return fileName;
 	}
 
-	public static String executeGetRequest(String urlAsString) throws ClientProtocolException, IOException {
+	public static String executeGetRequest(String urlAsString, Map<String, String> headers) throws ClientProtocolException, IOException {
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpGet request = new HttpGet(urlAsString);
-
+		if (!headers.isEmpty()) {
+			for (Map.Entry<String, String> header : headers.entrySet()) {
+				request.addHeader(header.getKey(), header.getValue());
+			}
+		}
 		HttpResponse response = client.execute(request);
-
 		BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 
 		StringBuffer result = new StringBuffer();
@@ -74,5 +79,9 @@ public class HttpUtils {
 			result.append(line);
 		}
 		return result.toString();
+	}
+
+	public static String executeGetRequest(String urlAsString) throws ClientProtocolException, IOException {
+		return executeGetRequest(urlAsString, new HashMap<String, String>());
 	}
 }

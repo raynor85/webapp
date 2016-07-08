@@ -22,8 +22,8 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 	@Autowired
 	private EmailSenderService emailSenderService;
 
-	// Hardcoded list of ignored application (= no email sent except after 50 failures)
-	private static final List<String> ignoredApplications = Arrays.asList("tortoisesvn", "neroburningrom", "glasswire", "manycam", "balsamiq");
+	// Hardcoded list of ignored application (= no email sent except after 100 failures)
+	private static final List<String> ignoredApplications = Arrays.asList("tortoisesvn", "glasswire", "manycam", "balsamiq");
 
 	@Override
 	public List<RetrievalError> getAllRetrievalErrors(int count) {
@@ -80,7 +80,7 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 		retrievalErrors.addAll(retrievalErrorRepository.findByTypeLastErrorInAndCountGreaterThanEqual(Arrays.asList(TypeRetrievalError.LOCAL_URL_VERSION_ERROR), 3)); // 3 errors is enough in case of "local" URL
 		for (RetrievalError retrievalError : retrievalErrors) {
 			boolean isIgnored = ignoredApplications.contains(retrievalError.getApplication().getApiName());
-			if (!isIgnored || (isIgnored && retrievalError.getCount() >= 50)) {
+			if (!isIgnored || (isIgnored && retrievalError.getCount() >= 100)) {
 				boolean hasBeenSent = false;
 				if (TypeRetrievalError.REMOTE_URL_BASE_ERROR.equals(retrievalError.getTypeLastError())) {
 					hasBeenSent = emailSenderService.sendAdminConnectionError(retrievalError.getApplication().getGlobalUrl());
