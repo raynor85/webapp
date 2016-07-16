@@ -38,7 +38,7 @@ public class VmwareWorkstationRemoteRetriever implements RemoteRetriever, BaseUr
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a.download_now_validation[href*=win]").attr("href"));
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download Now)[href*=win]").attr("href"));
 	}
 
 	@Override
