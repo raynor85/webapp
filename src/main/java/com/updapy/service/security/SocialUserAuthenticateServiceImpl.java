@@ -1,6 +1,7 @@
 package com.updapy.service.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SocialUserAuthenticateServiceImpl implements SocialUserDetailsService {
 
-	@Autowired
+	@Inject
 	private UserAuthenticateServiceImpl userAuthenticateServiceImpl;
 
 	@Override

@@ -1,8 +1,9 @@
 package com.updapy.service.impl;
 
+import javax.inject.Inject;
+
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.updapy.model.EmailCounter;
@@ -12,7 +13,7 @@ import com.updapy.service.EmailCounterService;
 @Service
 public class EmailCounterServiceImpl implements EmailCounterService {
 
-	@Autowired
+	@Inject
 	private EmailCounterRepository emailCounterRepository;
 
 	@Override

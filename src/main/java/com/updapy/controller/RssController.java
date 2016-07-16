@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,10 +24,10 @@ import com.updapy.util.MessageUtils;
 @RequestMapping("/rss")
 public class RssController {
 
-	@Autowired
+	@Inject
 	private UserService userService;
 
-	@Autowired
+	@Inject
 	private MessageUtils messageUtils;
 
 	@RequestMapping("/notifications")

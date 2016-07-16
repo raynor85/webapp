@@ -2,8 +2,9 @@ package com.updapy.service.impl;
 
 import java.util.Date;
 
+import javax.inject.Inject;
+
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.updapy.form.model.UpdateSettings;
@@ -18,10 +19,10 @@ import com.updapy.service.UserService;
 @Service
 public class SettingsServiceImpl implements SettingsService {
 
-	@Autowired
+	@Inject
 	private UserService userService;
 
-	@Autowired
+	@Inject
 	private AccountRemovalRepository accountRemovalRepository;
 
 	@Override

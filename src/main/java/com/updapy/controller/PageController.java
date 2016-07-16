@@ -4,7 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,10 +19,10 @@ import com.updapy.service.UserService;
 @Controller
 public class PageController {
 
-	@Autowired
+	@Inject
 	private UserService userService;
 
-	@Autowired
+	@Inject
 	private ApplicationService applicationService;
 
 	private static final List<String> animations = Arrays.asList("tada", "bounce", "flash", "rubberBand", "shake", "swing", "wobble");

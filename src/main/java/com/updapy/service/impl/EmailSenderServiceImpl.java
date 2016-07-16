@@ -6,6 +6,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.inject.Inject;
 import javax.mail.Authenticator;
 import javax.mail.BodyPart;
 import javax.mail.Message;
@@ -23,7 +24,6 @@ import org.apache.velocity.app.VelocityEngine;
 import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
@@ -42,13 +42,13 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 
 	private Logger log = LoggerFactory.getLogger(EmailSenderServiceImpl.class);
 
-	@Autowired
+	@Inject
 	private EmailCounterService emailCounterService;
 
-	@Autowired
+	@Inject
 	private MessageUtils messageUtils;
 
-	@Autowired
+	@Inject
 	private VelocityEngine velocityEngine;
 
 	private static final String ADMIN_EMAIL = System.getenv("ADMIN_EMAIL");

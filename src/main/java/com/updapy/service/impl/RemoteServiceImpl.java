@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -21,7 +22,6 @@ import javax.net.ssl.X509TrustManager;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -37,10 +37,10 @@ import com.updapy.service.retriever.impl.OriginalUrlRemoteRetriever;
 @Service
 public class RemoteServiceImpl implements RemoteService {
 
-	@Autowired
+	@Inject
 	private RetrievalErrorService retrievalErrorService;
 
-	@Autowired
+	@Inject
 	private List<RemoteRetriever> remoteRetrievers;
 
 	public static final String VERSION_NOT_FOUND = "0";

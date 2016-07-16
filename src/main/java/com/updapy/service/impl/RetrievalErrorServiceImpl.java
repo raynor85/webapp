@@ -3,7 +3,8 @@ package com.updapy.service.impl;
 import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Service;
 
 import com.updapy.model.ApplicationReference;
@@ -16,10 +17,10 @@ import com.updapy.service.RetrievalErrorService;
 @Service
 public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 
-	@Autowired
+	@Inject
 	private RetrievalErrorRepository retrievalErrorRepository;
 
-	@Autowired
+	@Inject
 	private EmailSenderService emailSenderService;
 
 	// Hardcoded list of ignored application (= no email sent except after 100 failures)

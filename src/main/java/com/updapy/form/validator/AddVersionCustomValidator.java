@@ -1,6 +1,7 @@
 package com.updapy.form.validator;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -13,7 +14,7 @@ import com.updapy.service.ApplicationService;
 @Component
 public class AddVersionCustomValidator implements Validator {
 
-	@Autowired
+	@Inject
 	private ApplicationService applicationService;
 
 	@Override

@@ -7,13 +7,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.inject.Inject;
+
 import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Hibernate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -45,10 +46,8 @@ import com.updapy.model.stats.Follower;
 import com.updapy.repository.UserConnectionRepository;
 import com.updapy.repository.UserRepository;
 import com.updapy.service.ApplicationService;
-import com.updapy.service.EmailAddedApplicationService;
 import com.updapy.service.EmailDeletedApplicationService;
 import com.updapy.service.EmailSingleUpdateService;
-import com.updapy.service.EmailWeeklyUpdateService;
 import com.updapy.service.SettingsService;
 import com.updapy.service.UserService;
 import com.updapy.service.security.SecurityUtils;
@@ -56,34 +55,28 @@ import com.updapy.service.security.SecurityUtils;
 @Service
 public class UserServiceImpl implements UserService {
 
-	@Autowired
+	@Inject
 	private UserRepository userRepository;
 
-	@Autowired
+	@Inject
 	private UserConnectionRepository userConnectionRepository;
 
-	@Autowired(required = false)
+	@Inject
 	private AuthenticationManager authenticationManager;
 
-	@Autowired(required = false)
+	@Inject
 	private BCryptPasswordEncoder passwordEncoder;
 
-	@Autowired
+	@Inject
 	private ApplicationService applicationService;
 
-	@Autowired
+	@Inject
 	private SettingsService settingsService;
 
-	@Autowired
+	@Inject
 	private EmailSingleUpdateService emailSingleUpdateService;
 
-	@Autowired
-	private EmailWeeklyUpdateService emailWeeklyUpdateService;
-
-	@Autowired
-	private EmailAddedApplicationService emailAddedApplicationService;
-
-	@Autowired
+	@Inject
 	private EmailDeletedApplicationService emailDeletedApplicationService;
 
 	@Override

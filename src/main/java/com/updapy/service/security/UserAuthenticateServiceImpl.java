@@ -2,7 +2,8 @@ package com.updapy.service.security;
 
 import java.util.Collection;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,7 +20,7 @@ import com.updapy.service.UserService;
 @Service
 public class UserAuthenticateServiceImpl implements UserDetailsService {
 
-	@Autowired
+	@Inject
 	private UserService userService;
 
 	private final String emailInvalid = "Invalid.logUser.email";

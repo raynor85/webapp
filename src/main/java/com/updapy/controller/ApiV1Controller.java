@@ -5,7 +5,8 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,13 +29,13 @@ import com.updapy.util.DozerHelper;
 @RequestMapping("/api/v1")
 public class ApiV1Controller {
 
-	@Autowired
+	@Inject
 	private UserService userService;
 
-	@Autowired
+	@Inject
 	private ApplicationService applicationService;
 
-	@Autowired
+	@Inject
 	private DozerHelper dozerHelper;
 
 	@RequestMapping(value = "/application-names")

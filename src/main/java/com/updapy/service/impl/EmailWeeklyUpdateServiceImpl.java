@@ -2,7 +2,8 @@ package com.updapy.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -12,18 +13,14 @@ import com.updapy.model.User;
 import com.updapy.repository.EmailWeeklyUpdateRepository;
 import com.updapy.service.EmailSenderService;
 import com.updapy.service.EmailWeeklyUpdateService;
-import com.updapy.service.UserService;
 
 @Service
 public class EmailWeeklyUpdateServiceImpl implements EmailWeeklyUpdateService {
 
-	@Autowired
+	@Inject
 	private EmailSenderService emailSenderService;
 
-	@Autowired
-	private UserService userService;
-
-	@Autowired
+	@Inject
 	private EmailWeeklyUpdateRepository emailWeeklyUpdateRepository;
 
 	@Override

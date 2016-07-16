@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.ObjectError;
 
@@ -16,7 +16,7 @@ public class JsonResponseUtils {
 	private static String STATUS_FAIL = "FAIL";
 	private static String STATUS_SUCCESS = "SUCCESS";
 
-	@Autowired
+	@Inject
 	private MessageUtils messageUtils;
 
 	public JsonResponse buildFailedJsonResponse(String messageKey) {

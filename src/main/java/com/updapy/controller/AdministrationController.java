@@ -5,9 +5,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.inject.Inject;
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -45,37 +45,37 @@ import com.updapy.util.MessageUtils;
 @RequestMapping("/administration")
 public class AdministrationController {
 
-	@Autowired
+	@Inject
 	private JsonResponseUtils jsonResponseUtils;
 
-	@Autowired
+	@Inject
 	private DozerHelper dozerHelper;
 
-	@Autowired
+	@Inject
 	private ApplicationVersionScheduler applicationVersionScheduler;
 
-	@Autowired
+	@Inject
 	private ApplicationService applicationService;
 
-	@Autowired
+	@Inject
 	private RetrievalErrorService retrievalErrorService;
 
-	@Autowired
+	@Inject
 	private EmailSenderService emailSenderService;
 
-	@Autowired
+	@Inject
 	private UserService userService;
 
-	@Autowired
+	@Inject
 	private ProcedureService procedureService;
 
-	@Autowired
+	@Inject
 	private AccountRemovalService accountRemovalService;
 
-	@Autowired
+	@Inject
 	private MessageUtils messageUtils;
 
-	@Autowired
+	@Inject
 	private Validator addVersionCustomValidator;
 
 	@InitBinder("addVersion")

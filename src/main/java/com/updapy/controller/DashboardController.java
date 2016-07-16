@@ -3,9 +3,9 @@ package com.updapy.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -43,25 +43,25 @@ import com.updapy.util.JsonResponseUtils;
 @RequestMapping("/dashboard")
 public class DashboardController {
 
-	@Autowired
+	@Inject
 	private ApplicationService applicationService;
 
-	@Autowired
+	@Inject
 	private Validator requestApplicationCustomValidator;
 
-	@Autowired
+	@Inject
 	private UserService userService;
 
-	@Autowired
+	@Inject
 	private SettingsService settingsService;
 
-	@Autowired
+	@Inject
 	private EmailSenderService emailSenderService;
 
-	@Autowired
+	@Inject
 	private DozerHelper dozerHelper;
 
-	@Autowired
+	@Inject
 	private JsonResponseUtils jsonResponseUtils;
 
 	@InitBinder("requestApplication")

@@ -8,13 +8,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.inject.Inject;
+
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.updapy.model.ApplicationReference;
@@ -34,39 +35,39 @@ import com.updapy.service.SettingsService;
 import com.updapy.service.UserService;
 import com.updapy.service.impl.RemoteServiceImpl;
 
-@Component
+@Service
 public class ApplicationVersionScheduler {
 
 	private Logger log = LoggerFactory.getLogger(ApplicationVersionScheduler.class);
 
-	@Autowired
+	@Inject
 	private ApplicationService applicationService;
 
-	@Autowired
+	@Inject
 	private UserService userService;
 
-	@Autowired
+	@Inject
 	private SettingsService settingsService;
 
-	@Autowired
+	@Inject
 	private RemoteService remoteService;
 
-	@Autowired
+	@Inject
 	private EmailSingleUpdateService emailSingleUpdateService;
 
-	@Autowired
+	@Inject
 	private EmailWeeklyUpdateService emailWeeklyUpdateService;
 
-	@Autowired
+	@Inject
 	private EmailDeletedApplicationService emailDeletedApplicationService;
 
-	@Autowired
+	@Inject
 	private EmailAddedApplicationService emailAddedApplicationService;
 
-	@Autowired
+	@Inject
 	private NewsletterService newsletterService;
 
-	@Autowired
+	@Inject
 	private RetrievalErrorService retrievalErrorService;
 
 	// fire every 3 hours

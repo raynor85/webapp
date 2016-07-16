@@ -1,6 +1,7 @@
 package com.updapy.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Service;
 
 import com.updapy.repository.ProcedureRepository;
@@ -9,7 +10,7 @@ import com.updapy.service.ProcedureService;
 @Service
 public class ProcedureServiceImpl implements ProcedureService {
 
-	@Autowired
+	@Inject
 	private ProcedureRepository procedureRepository;
 
 	@Override

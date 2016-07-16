@@ -1,11 +1,11 @@
 package com.updapy.controller;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.stereotype.Controller;
@@ -35,25 +35,25 @@ import com.updapy.util.JsonResponseUtils;
 @RequestMapping("/settings")
 public class SettingsController {
 
-	@Autowired
+	@Inject
 	private JsonResponseUtils jsonResponseUtils;
 
-	@Autowired
+	@Inject
 	private SettingsService settingsService;
 
-	@Autowired
+	@Inject
 	private UserService userService;
 
-	@Autowired
+	@Inject
 	private EmailSenderService emailSenderService;
 
-	@Autowired
+	@Inject
 	private Validator changePasswordUserCustomValidator;
 	
-	@Autowired
+	@Inject
 	private Validator changeEmailUserCustomValidator;
 	
-	@Autowired
+	@Inject
 	PersistentTokenBasedRememberMeServices springSocialSecurityRememberMeServices;
 	
 	@InitBinder("changePasswordUser")

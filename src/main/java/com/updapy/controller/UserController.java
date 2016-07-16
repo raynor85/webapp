@@ -2,11 +2,11 @@ package com.updapy.controller;
 
 import java.util.Locale;
 
+import javax.inject.Inject;
 import javax.validation.Valid;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.web.ProviderSignInUtils;
@@ -39,31 +39,31 @@ import com.updapy.util.JsonResponseUtils;
 @RequestMapping("/user")
 public class UserController {
 
-	@Autowired
+	@Inject
 	private JsonResponseUtils jsonResponseUtils;
 
-	@Autowired
+	@Inject
 	private DozerHelper dozerHelper;
 
-	@Autowired
+	@Inject
 	private UserService userService;
 
-	@Autowired
+	@Inject
 	private EmailSenderService emailSenderService;
 
-	@Autowired
+	@Inject
 	private Validator registerUserCustomValidator;
 
-	@Autowired
+	@Inject
 	private Validator registerSocialEmailUserCustomValidator;
 
-	@Autowired
+	@Inject
 	private Validator resetUserEmailCustomValidator;
 
-	@Autowired
+	@Inject
 	private Validator resetUserCustomValidator;
 
-	@Autowired
+	@Inject
 	private ProviderSignInUtils providerSignInUtils;
 
 	@InitBinder("registerUser")

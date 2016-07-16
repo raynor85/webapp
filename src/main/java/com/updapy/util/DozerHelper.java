@@ -4,15 +4,16 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.dozer.DozerBeanMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DozerHelper {
 
-	@Autowired
+	@Inject
 	private DozerBeanMapper dozerMapper;
 
 	public <T, U> ArrayList<U> map(List<T> source, Class<U> destType) {

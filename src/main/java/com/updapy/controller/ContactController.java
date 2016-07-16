@@ -1,8 +1,8 @@
 package com.updapy.controller;
 
+import javax.inject.Inject;
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -23,13 +23,13 @@ import com.updapy.util.JsonResponseUtils;
 @Controller
 public class ContactController {
 
-	@Autowired
+	@Inject
 	private JsonResponseUtils jsonResponseUtils;
 
-	@Autowired
+	@Inject
 	private UserService userService;
 
-	@Autowired
+	@Inject
 	private EmailSenderService emailSenderService;
 
 	@RequestMapping({ "/", "" })
