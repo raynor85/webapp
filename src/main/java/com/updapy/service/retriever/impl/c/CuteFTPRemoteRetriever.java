@@ -6,11 +6,14 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
 public class CuteFTPRemoteRetriever implements RemoteRetriever {
+
+	private static final String VERSION_HISTORY_WEBSITE = "https://www.globalscape.com/support/cuteftp/version-history";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -34,12 +37,12 @@ public class CuteFTPRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a#cpContentMain_VersionDownload1_rptrTableRow_httpLink_0").attr("href");
+		return doc.select("a:contains(Download Trial)").first().attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("span#cpContentMain_VersionDownload1_rptrTableRow_Build_0").text());
+		return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(VERSION_HISTORY_WEBSITE).select("h2").first().text());
 	}
 
 }
