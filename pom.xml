@@ -10,7 +10,7 @@
 	<properties>
 
 		<!-- Spring -->
-		<org.springframework.version>4.3.1.RELEASE</org.springframework.version>
+		<org.springframework.version>4.3.2.RELEASE</org.springframework.version>
 		<org.springframework.data.version>1.10.2.RELEASE</org.springframework.data.version>
 		<org.springframework.batch.version>3.0.7.RELEASE</org.springframework.batch.version>
 		<org.springframework.security.version>4.1.1.RELEASE</org.springframework.security.version>
@@ -22,7 +22,7 @@
 		<org.springframework.social.google.version>1.0.0.RELEASE</org.springframework.social.google.version>
 
 		<!-- Hibernate -->
-		<hibernate-entitymanager.version>5.2.1.Final</hibernate-entitymanager.version>
+		<hibernate-entitymanager.version>5.2.2.Final</hibernate-entitymanager.version>
 		<hibernate-validator.version>5.2.4.Final</hibernate-validator.version>
 
 		<!-- Utils -->
@@ -55,7 +55,7 @@
 
 		<!-- Production -->
 		<jsimone.webapp-runner.version>8.0.33.1</jsimone.webapp-runner.version>
-		<com.newrelic.agent.java.version>3.30.1</com.newrelic.agent.java.version>
+		<com.newrelic.agent.java.version>3.31.0</com.newrelic.agent.java.version>
 
 		<!-- Log -->
 		<slf4j.version>1.7.21</slf4j.version>
