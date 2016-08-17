@@ -35,12 +35,12 @@ public class MusicBeeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a:contains(Direct)").attr("href");
+		return doc.select("a:contains(Mirror 1)").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.replacePattern(doc.select("td:containsOwn(Version:)").parents().select("td").get(1).text(), "(U|u)pdate", "."));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.replacePattern(doc.select("div.installer_layer_wrapper").first().select("h2").text(), "(U|u)pdate", "."));
 	}
 
 }
