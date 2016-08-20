@@ -13,7 +13,7 @@
 		<org.springframework.version>4.3.2.RELEASE</org.springframework.version>
 		<org.springframework.data.version>1.10.2.RELEASE</org.springframework.data.version>
 		<org.springframework.batch.version>3.0.7.RELEASE</org.springframework.batch.version>
-		<org.springframework.security.version>4.1.1.RELEASE</org.springframework.security.version>
+		<org.springframework.security.version>4.1.2.RELEASE</org.springframework.security.version>
 		<org.springframework.hateoas.version>0.20.0.RELEASE</org.springframework.hateoas.version>
 		<org.springframework.social.version>1.1.4.RELEASE</org.springframework.social.version>
 		<org.springframework.social.facebook.version>2.0.3.RELEASE</org.springframework.social.facebook.version>
@@ -32,7 +32,7 @@
 		<jackson.version>2.8.1</jackson.version>
 		<dozer.version>5.5.1</dozer.version>
 		<org.jsoup.version>1.9.2</org.jsoup.version>
-		<json.version>20160212</json.version>
+		<json.version>20160810</json.version>
 		<rome.version>1.7.0</rome.version>
 		<ziplet.version>2.1.2</ziplet.version>
 
@@ -55,7 +55,7 @@
 
 		<!-- Production -->
 		<jsimone.webapp-runner.version>8.0.33.1</jsimone.webapp-runner.version>
-		<com.newrelic.agent.java.version>3.31.0</com.newrelic.agent.java.version>
+		<com.newrelic.agent.java.version>3.31.1</com.newrelic.agent.java.version>
 
 		<!-- Log -->
 		<slf4j.version>1.7.21</slf4j.version>
