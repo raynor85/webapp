@@ -58,6 +58,9 @@ public class ParsingUtils {
 		if (pageUrl.startsWith(HTTP_PATH_RELATIVE)) {
 			return buildUrl(rootUrl, StringUtils.removeStart(pageUrl, HTTP_PATH_RELATIVE));
 		}
+		if (pageUrl.startsWith(HTTP_SEPARATOR)) {
+			return buildUrl(rootUrl, StringUtils.removeStart(pageUrl, HTTP_SEPARATOR));
+		}
 		return StringUtils.removeEnd(rootUrl, HTTP_PATH_SEPARATOR) + HTTP_PATH_SEPARATOR + StringUtils.removeStart(pageUrl.replaceAll("\\.\\." + HTTP_PATH_SEPARATOR, StringUtils.EMPTY), HTTP_PATH_SEPARATOR);
 	}
 
