@@ -13,7 +13,7 @@ import com.updapy.util.ParsingUtils;
 @Component(value = "qTranslateRemoteRetriever")
 public class QTranslateRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http:";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://";
 
 	@Override
 	public boolean support(ApplicationReference application) {
