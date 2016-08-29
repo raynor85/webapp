@@ -1561,4 +1561,24 @@
 		<changefreq>yearly</changefreq>
 		<priority>0.2</priority>
 	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/ultraedit</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/excelcompare</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/rproject</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/dia</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
 </urlset>

@@ -391,6 +391,10 @@
 		<ref bean="nitroPdfReaderRemoteRetriever" />
 		<ref bean="bliskRemoteRetriever" />
 		<ref bean="polarityRemoteRetriever" />
+		<ref bean="ultraEditRemoteRetriever" />
+		<ref bean="excelCompareRemoteRetriever" />
+		<ref bean="rProjectRemoteRetriever" />
+		<ref bean="diaRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
