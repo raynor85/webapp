@@ -15,6 +15,7 @@ import com.updapy.util.ParsingUtils;
 public class ManyCamRemoteRetriever implements RemoteRetriever {
 
 	private static final String VERSION_HISTORY_WEBSITE = "https://download.manycam.com/win_changes";
+	private static final String DOWNLOAD_WEBSITE = "https://download.manycam.com/thank_you_page?os=win";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -38,7 +39,7 @@ public class ManyCamRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.selectFromPattern(doc.select("a:containsOwn(Download)[onclick*=exe]").first().attr("onclick"), "http.*.exe");
+		return ParsingUtils.selectFromPattern(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("a:containsOwn(click here)[onclick*=exe]").first().attr("onclick"), "http.*.exe");
 	}
 
 	@Override

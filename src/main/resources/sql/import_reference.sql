@@ -496,7 +496,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Fences
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/Fences/3000-2072_4-10909535.html', 'http://www.stardock.com/products/fences/', 'fences.png', 'Fences', 'fences', false, 'MISC', 'COMMERCIAL');
 -- AutoHotkey
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://ahkscript.org/download/', 'http://ahkscript.org/', 'autohotkey.png', 'AutoHotkey', 'autohotkey', false, 'MISC', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://autohotkey.com/download/', 'https://autohotkey.com/', 'autohotkey.png', 'AutoHotkey', 'autohotkey', false, 'MISC', 'FREE');
 -- SUPERAntiSpyware
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.superantispyware.com/downloadfile.html?productid=SUPERANTISPYWAREFREE', 'http://www.superantispyware.com/', 'superantispyware.png', 'SUPERAntiSpyware', 'superantispyware', false, 'SECURITY', 'FREE');
 -- Vagrant

@@ -14,7 +14,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class AutoHotkeyRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://ahkscript.org/download/";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "https://autohotkey.com/download/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
