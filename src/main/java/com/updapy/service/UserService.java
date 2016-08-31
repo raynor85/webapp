@@ -65,6 +65,8 @@ public interface UserService {
 
 	List<ApplicationFollow> getFollowedApplications(User user);
 
+	boolean isFollowingApplication(String apiName);
+
 	List<ApplicationFollow> addFollowedApplications(User user, List<String> followedApiNames);
 
 	@CacheEvict(value = "ratings", key = "{'ratings', #apiName}")

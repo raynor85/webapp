@@ -1,6 +1,7 @@
 package com.updapy.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -22,6 +23,7 @@ import com.updapy.form.ajax.JsonResponse;
 import com.updapy.form.model.ChangeCurrentApplication;
 import com.updapy.form.model.CurrentFollowedApplication;
 import com.updapy.form.model.DismissMessage;
+import com.updapy.form.model.FollowNewApplication;
 import com.updapy.form.model.FollowNewApplications;
 import com.updapy.form.model.Notification;
 import com.updapy.form.model.RateApplication;
@@ -71,7 +73,7 @@ public class DashboardController {
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-	    binder.setAutoGrowCollectionLimit(1024);
+		binder.setAutoGrowCollectionLimit(1024);
 	}
 
 	@RequestMapping({ "/", "" })
@@ -90,6 +92,18 @@ public class DashboardController {
 		return initModelAndViewForRedirect(user, "redirect:/dashboard");
 	}
 
+	@RequestMapping(value = "/follow-single", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody
+	JsonResponse followApplication(@Valid @RequestBody FollowNewApplication followNewApplication, BindingResult result) {
+		if (result.hasErrors()) {
+			return jsonResponseUtils.buildFailedJsonResponseFromErrorObject(result.getAllErrors());
+		} else {
+			User user = userService.getCurrentUserWithApplicationFolloweds();
+			userService.addFollowedApplications(user, Arrays.asList(followNewApplication.getApiName()));
+			return jsonResponseUtils.buildSuccessfulJsonResponse("dashboard.application.follow.confirm");
+		}
+	}
+
 	@RequestMapping(value = "/unfollow", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	JsonResponse unfollowApplication(@RequestBody ChangeCurrentApplication unfollowCurrentApplication) {
@@ -100,7 +114,7 @@ public class DashboardController {
 			return jsonResponseUtils.buildFailedJsonResponse("dashboard.applications.unfollow.error");
 		}
 	}
-	
+
 	@RequestMapping(value = "/rate", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	JsonResponse rateApplication(@RequestBody RateApplication rateApplication) {

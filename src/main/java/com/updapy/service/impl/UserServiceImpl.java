@@ -424,6 +424,14 @@ public class UserServiceImpl implements UserService {
 		return followedApplications;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean isFollowingApplication(String apiName) {
+		User user = getCurrentUserWithApplicationFolloweds();
+		List<String> followedApplicationApiNames = (List<String>) CollectionUtils.collect(getFollowedApplications(user), new BeanToPropertyValueTransformer("application.apiName"));
+		return followedApplicationApiNames.contains(apiName);
+	}
+
 	@Override
 	public List<ApplicationFollow> addFollowedApplications(User user, List<String> apiNames) {
 		List<ApplicationFollow> followedApplications = new ArrayList<ApplicationFollow>();

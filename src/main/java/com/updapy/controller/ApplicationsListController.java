@@ -54,6 +54,11 @@ public class ApplicationsListController {
 		ModelAndView modelAndView = new ModelAndView("app-detail");
 		applicationDescription.setAverageRating(applicationService.getAverageRating(apiName));
 		modelAndView.addObject("applicationDescription", applicationDescription);
+		if (userService.getCurrentUserLight() != null && userService.isFollowingApplication(apiName)) {
+			modelAndView.addObject("isFollowingApplication", true);
+		} else {
+			modelAndView.addObject("isFollowingApplication", false);
+		}
 		return addNotifications(modelAndView);
 	}
 
