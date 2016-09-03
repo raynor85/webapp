@@ -244,7 +244,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Docker
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://github.com/boot2docker/windows-installer/releases', 'https://www.docker.com/', 'docker.png', 'Docker', 'docker', false, 'DEVELOPMENT', 'FREE');
 -- Dropbox
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.dropbox.com/install', 'https://www.dropbox.com/', 'dropbox.png', 'Dropbox', 'dropbox', false, 'TOOLS', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.dropbox.com/release_notes', 'https://www.dropbox.com/', 'dropbox.png', 'Dropbox', 'dropbox', false, 'TOOLS', 'FREE');
 -- Torch Browser
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/Torch-Browser/3000-2356_4-75740051.html', 'http://www.torchbrowser.com/', 'torchbrowser.png', 'Torch Browser', 'torchbrowser', false, 'INTERNET', 'FREE');
 -- Power ISO
