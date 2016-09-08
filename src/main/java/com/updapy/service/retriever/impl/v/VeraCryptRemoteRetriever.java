@@ -37,7 +37,8 @@ public class VeraCryptRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a[title*=for Windows]").attr("href");
+		String fileId = doc.select("a#download_button").attr("d:fileid");
+		return doc.select("a[title*=for Windows]").attr("href").replaceFirst("&DownloadId=[0-9]+", "&DownloadId=" + fileId);
 	}
 
 	@Override

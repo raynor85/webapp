@@ -1,22 +1,20 @@
 package com.updapy.service.retriever.impl.k;
 
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
+import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class KasperskyVirusRemovalToolRemoteRetriever implements RemoteRetriever {
+public class KasperskyVirusRemovalToolRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
-	private static final String DOWNLOAD_WEBSITE = "http://devbuilds.kaspersky-labs.com/devbuilds/AVPTool/index.js";
+	private static final String ROOT_DOWNLOAD_WEBSITE = "http://support.kaspersky.com/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -40,18 +38,21 @@ public class KasperskyVirusRemovalToolRemoteRetriever implements RemoteRetriever
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return StringUtils.removePattern(StringUtils.removePattern(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("body").text(), "^.*\"KAT-EN\" : \""), "\".*$");
+		return retrieveDownloadDocument(doc).select("a:contains(Download)[href*=.exe]").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		Pattern pattern = Pattern.compile("\\(.*\\)");
-		String version = doc.select("td:contains(Version)").text();
-		Matcher matcher = pattern.matcher(version);
-		if (matcher.find()) {
-			version = version.substring(matcher.start(), matcher.end());
-		}
-		return ParsingUtils.extractVersionNumberFromString(version);
+		return ParsingUtils.extractVersionNumberFromString(retrieveDownloadDocument(doc).select("h1").first().text());
+	}
+
+	private Document retrieveDownloadDocument(Document doc) throws IOException {
+		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Kaspersky Virus Removal Tool (Windows))").attr("href")));
+	}
+
+	@Override
+	public String getBaseUrl() {
+		return ROOT_DOWNLOAD_WEBSITE;
 	}
 
 }
