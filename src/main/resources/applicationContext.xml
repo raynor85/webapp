@@ -278,7 +278,7 @@
 		<ref bean="dashlaneRemoteRetriever" />
 		<ref bean="veraCryptRemoteRetriever" />
 		<ref bean="aimpRemoteRetriever" />
-		<ref bean="bitTorrentSyncRemoteRetriever" />
+		<ref bean="resilioSyncRemoteRetriever" />
 		<ref bean="cutePdfWriterRemoteRetriever" />
 		<ref bean="everythingRemoteRetriever" />
 		<ref bean="extraPuttyRemoteRetriever" />

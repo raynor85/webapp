@@ -11,13 +11,13 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class BitTorrentSyncRemoteRetriever implements RemoteRetriever {
+public class ResilioSyncRemoteRetriever implements RemoteRetriever {
 
 	private static final String VERSION_WEBSITE = "https://download-cdn.getsync.com/stable/version.txt";
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getApiName().equalsIgnoreCase("bittorrentsync");
+		return application.getApiName().equalsIgnoreCase("resiliosync");
 	}
 
 	@Override

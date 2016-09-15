@@ -343,8 +343,8 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://veracrypt.codeplex.com/', 'https://veracrypt.codeplex.com/', 'veracrypt.png', 'VeraCrypt', 'veracrypt', false, 'SECURITY', 'FREE');
 -- AIMP
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.aimp.ru/index.php?do=download', 'http://www.aimp.ru', 'aimp.png', 'AIMP', 'aimp', false, 'MUSIC', 'FREE');
--- BitTorrent Sync
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.getsync.com/platforms/desktop', 'http://www.getsync.com', 'bittorrentsync.png', 'BitTorrent Sync', 'bittorrentsync', false, 'INTERNET', 'FREE');
+-- Resilio Sync
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.getsync.com/platforms/desktop', 'http://www.getsync.com', 'resiliosync.png', 'Resilio Sync', 'resiliosync', false, 'INTERNET', 'FREE');
 -- CutePDF Writer
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.cutepdf.com/Products/CutePDF/writer.asp', 'http://www.cutepdf.com/Products/CutePDF/writer.asp', 'cutepdfwriter.png', 'CutePDF Writer', 'cutepdfwriter', false, 'TEXT', 'FREE');
 -- Everything Search Engine
