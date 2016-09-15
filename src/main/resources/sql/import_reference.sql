@@ -156,7 +156,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- TeamViewer
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.teamviewer.com/en/download/windows.aspx', 'http://www.teamviewer.com/', 'teamviewer.png', 'TeamViewer', 'teamviewer', false, 'SOCIAL_COMMUNICATION', 'FREE');
 -- KMPlayer
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://mirror.downloadnet1210.com/js/kmp.js', 'http://www.kmplayer.com/', 'kmplayer.png', 'KMPlayer', 'kmplayer', false, 'VIDEO', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.kmplayer.com/url/get/index', 'http://www.kmplayer.com/', 'kmplayer.png', 'KMPlayer', 'kmplayer', false, 'VIDEO', 'FREE');
 -- Audacity
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://sourceforge.net/p/audacity/activity/feed', 'https://audacity.sourceforge.net/', 'audacity.png', 'Audacity', 'audacity', false, 'MUSIC', 'FREE');
 -- RoboForm

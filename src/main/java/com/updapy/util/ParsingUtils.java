@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 public class ParsingUtils {
 
-	private static final String HTTP_PREFIX = "http";
+	public static final String HTTP_PREFIX = "http";
 	private static final String HTTP_SEPARATOR = "//";
 	private static final String HTTP_PATH_SEPARATOR = "/";
 	private static final String HTTP_PATH_RELATIVE = "." + HTTP_PATH_SEPARATOR;

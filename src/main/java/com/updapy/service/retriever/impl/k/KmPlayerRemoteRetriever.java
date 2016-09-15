@@ -12,7 +12,6 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class KmPlayerRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
 
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://cdn.kmplayer.com";
 	private static final String FILE_EXTENSION = ".exe";
 
 	@Override
@@ -37,7 +36,7 @@ public class KmPlayerRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRe
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) {
-		return ROOT_DOWNLOAD_WEBSITE + StringUtils.removePattern(StringUtils.removePattern(doc.select("body").text(), FILE_EXTENSION + ".*$"), "^.*" + ROOT_DOWNLOAD_WEBSITE) + FILE_EXTENSION;
+		return StringUtils.replace(ParsingUtils.HTTP_PREFIX + StringUtils.removePattern(StringUtils.removePattern(doc.select("body").text(), FILE_EXTENSION + ".*$"), "^.*" + ParsingUtils.HTTP_PREFIX) + FILE_EXTENSION, "\\/", "/");
 	}
 
 	@Override
@@ -47,7 +46,7 @@ public class KmPlayerRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRe
 
 	@Override
 	public String getBaseUrl() {
-		return ROOT_DOWNLOAD_WEBSITE + FILE_EXTENSION;
+		return ParsingUtils.HTTP_PREFIX + FILE_EXTENSION;
 	}
 
 }
