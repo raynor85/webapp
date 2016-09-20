@@ -44,7 +44,7 @@ public class BullzipPdfPrinterCommunityRemoteRetriever implements RemoteRetrieve
 	}
 
 	private String getDownloadLink(Document doc) {
-		return doc.select("a:contains(download)[href*=.exe]").attr("href");
+		return doc.select("a:contains(download)[href*=FREE.exe]").attr("href");
 	}
 
 }
