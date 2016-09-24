@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -19,7 +18,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class EsetNod32AntivirusRemoteRetriever implements RemoteRetriever {
 
-	private static final String DOWNLOAD_WEBSITE = "http://www.eset.com/us/support/download/home/nod32-antivirus/?type=13554&tx_esetdownloads_ajax[product]=3";
+	private static final String DOWNLOAD_WEBSITE = "https://www.eset.com/us/support/download/home/nod32-antivirus/?type=13554&tx_esetdownloads_ajax[product]=88&tx_esetdownloads_ajax[plugin_id]=16650";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -57,20 +56,16 @@ public class EsetNod32AntivirusRemoteRetriever implements RemoteRetriever {
 		JSONObject jsonObject = new JSONObject(jsonContentString);
 		JSONObject jsonAvailableLanguages = jsonObject.getJSONObject("availableLanguages");
 		Integer languageId = null;
-		for (int i = 1; i < jsonAvailableLanguages.length(); i++) {
-			try {
-				JSONObject jsonLanguage = (JSONObject) jsonAvailableLanguages.get(i + "");
-				if (((String) jsonLanguage.get("code")).equalsIgnoreCase(languageCode)) {
-					languageId = i;
-				}
-			} catch (JSONException e) {
-				// ignore
+		for (String key : jsonAvailableLanguages.keySet()) {
+			JSONObject jsonLanguage = (JSONObject) jsonAvailableLanguages.get(key);
+			if (((String) jsonLanguage.get("code")).equalsIgnoreCase(languageCode)) {
+				languageId = Integer.parseInt(key);
 			}
 		}
 		JSONArray jsonInstallationFiles = jsonObject.getJSONArray("installationFiles");
 		for (Object jsonInstallationFile : jsonInstallationFiles) {
 			String url = ((JSONObject) jsonInstallationFile).getString("file");
-			if (languageId == ((JSONObject) jsonInstallationFile).getInt("language") && url.matches(versionPattern)) {
+			if (languageId != null && languageId == ((JSONObject) jsonInstallationFile).getInt("language") && url.matches(versionPattern)) {
 				return url;
 			}
 		}

@@ -27,7 +27,7 @@ public class NotepadPlusPlusRemoteRetriever implements RemoteRetriever, BaseUrlR
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return null;
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Notepad++ Installer 64-bit)").attr("href"));
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class NotepadPlusPlusRemoteRetriever implements RemoteRetriever, BaseUrlR
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Notepad++ Installer)").attr("href"));
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Notepad++ Installer 32-bit)").attr("href"));
 	}
 
 	@Override
