@@ -165,7 +165,6 @@
 		<ref bean="gmailNotifierProRemoteRetriever" />
 		<ref bean="javaReRemoteRetriever" />
 		<ref bean="flashPlayerRemoteRetriever" />
-		<ref bean="flashPlayerIeRemoteRetriever" />
 		<ref bean="silverlightRemoteRetriever" />
 		<ref bean="shockwavePlayerRemoteRetriever" />
 		<ref bean="adobeAirRemoteRetriever" />

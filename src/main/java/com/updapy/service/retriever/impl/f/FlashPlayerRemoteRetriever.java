@@ -1,9 +1,7 @@
 package com.updapy.service.retriever.impl.f;
 
 import java.io.IOException;
-import java.util.regex.Pattern;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -36,22 +34,12 @@ public class FlashPlayerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a:contains(Download EXE Installer):not([href*=active_x])").get(0).attr("href");
+		return doc.baseUri();
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		String title = doc.select(".TextH3:contains(Win)").text();
-		if (StringUtils.contains(title, ';')) {
-			String[] titles = StringUtils.split(title, ';');
-			String reg = "(.*(W|w)in.*)";
-			if (Pattern.matches(reg, titles[0])) {
-				return ParsingUtils.extractVersionNumberFromString(titles[0]);
-			} else {
-				return ParsingUtils.extractVersionNumberFromString(titles[1]);
-			}
-		}
-		return ParsingUtils.extractVersionNumberFromString(title);
+		return ParsingUtils.extractVersionNumberFromString(doc.select("#AUTO_ID_columnleft_p_version").text());
 	}
 
 }
