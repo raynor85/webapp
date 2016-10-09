@@ -394,6 +394,10 @@
 		<ref bean="excelCompareRemoteRetriever" />
 		<ref bean="rProjectRemoteRetriever" />
 		<ref bean="diaRemoteRetriever" />
+		<ref bean="nXPowerliteRemoteRetriever" />
+		<ref bean="uSBDeviewRemoteRetriever" />
+		<ref bean="crashPlanRemoteRetriever" />
+		<ref bean="hotspotShieldRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

@@ -2171,58 +2171,80 @@
 	background-position: -375px -301px;
 }
 
+.sprite-antimalware {
+    background: url(../img/application/sprite/11-5.png) no-repeat top left; width: 64px;
+    height: 64px;
+    background-position: -5px -5px;
+}
+
 .sprite-blisk {
-	background: url(../img/application/sprite/11-4.png) no-repeat top left;
-	width: 64px;
-	height: 64px;
-	background-position: -5px -5px;
+    background: url(../img/application/sprite/11-5.png) no-repeat top left; width: 64px;
+    height: 64px;
+    background-position: -79px -5px;
+}
+
+.sprite-crashplan {
+    background: url(../img/application/sprite/11-5.png) no-repeat top left; width: 64px;
+    height: 64px;
+    background-position: -153px -5px;
 }
 
 .sprite-dia {
-	background: url(../img/application/sprite/11-4.png) no-repeat top left;
-	width: 64px;
-	height: 64px;
-	background-position: -79px -5px;
+    background: url(../img/application/sprite/11-5.png) no-repeat top left; width: 64px;
+    height: 64px;
+    background-position: -5px -79px;
 }
 
 .sprite-excelcompare {
-	background: url(../img/application/sprite/11-4.png) no-repeat top left;
-	width: 64px;
-	height: 64px;
-	background-position: -5px -79px;
+    background: url(../img/application/sprite/11-5.png) no-repeat top left; width: 64px;
+    height: 64px;
+    background-position: -79px -79px;
+}
+
+.sprite-hotspotshield {
+    background: url(../img/application/sprite/11-5.png) no-repeat top left; width: 64px;
+    height: 64px;
+    background-position: -153px -79px;
 }
 
 .sprite-nitropdfreader {
-	background: url(../img/application/sprite/11-4.png) no-repeat top left;
-	width: 64px;
-	height: 64px;
-	background-position: -79px -79px;
+    background: url(../img/application/sprite/11-5.png) no-repeat top left; width: 64px;
+    height: 64px;
+    background-position: -5px -153px;
+}
+
+.sprite-nxpowerlite {
+    background: url(../img/application/sprite/11-5.png) no-repeat top left; width: 64px;
+    height: 64px;
+    background-position: -79px -153px;
 }
 
 .sprite-polarity {
-	background: url(../img/application/sprite/11-4.png) no-repeat top left;
-	width: 64px;
-	height: 64px;
-	background-position: -153px -5px;
+    background: url(../img/application/sprite/11-5.png) no-repeat top left; width: 64px;
+    height: 64px;
+    background-position: -153px -153px;
 }
 
 .sprite-rproject {
-	background: url(../img/application/sprite/11-4.png) no-repeat top left;
-	width: 64px;
-	height: 64px;
-	background-position: -153px -79px;
+    background: url(../img/application/sprite/11-5.png) no-repeat top left; width: 64px;
+    height: 64px;
+    background-position: -227px -5px;
 }
 
 .sprite-ultraedit {
-	background: url(../img/application/sprite/11-4.png) no-repeat top left;
-	width: 64px;
-	height: 64px;
-	background-position: -5px -153px;
+    background: url(../img/application/sprite/11-5.png) no-repeat top left; width: 64px;
+    height: 64px;
+    background-position: -227px -79px;
+}
+
+.sprite-usbdeview {
+    background: url(../img/application/sprite/11-5.png) no-repeat top left; width: 64px;
+    height: 64px;
+    background-position: -227px -153px;
 }
 
 .sprite-wiseautoshutdown {
-	background: url(../img/application/sprite/11-4.png) no-repeat top left;
-	width: 64px;
-	height: 64px;
-	background-position: -79px -153px;
+    background: url(../img/application/sprite/11-5.png) no-repeat top left; width: 64px;
+    height: 64px;
+    background-position: -5px -227px;
 }

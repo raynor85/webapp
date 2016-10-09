@@ -1576,4 +1576,29 @@
 		<changefreq>yearly</changefreq>
 		<priority>0.2</priority>
 	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/antimalware</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/crashplan</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/hotspotshield</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/nxpowerlite</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/usbdeview</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
 </urlset>
