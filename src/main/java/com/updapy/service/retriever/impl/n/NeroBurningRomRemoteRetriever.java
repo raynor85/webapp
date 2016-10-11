@@ -44,8 +44,7 @@ public class NeroBurningRomRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
 		String version = getJsonContent(doc).getString("dlTitle");
-		String[] date = ParsingUtils.selectFromPattern(version, "[0-9]{2}\\.[0-9]{2}\\.[0-9]{4}").split("\\.");
-		return date[2] + '.' + date[1] + '.' + date[0];
+		return ParsingUtils.extractVersionNumberFromString(ParsingUtils.selectFromPattern(version, "[0-9]{4}(\\.|-)([0-9]{1,2}\\.{0,1}){1,5}").replace('-', '.'));
 	}
 
 	public JSONObject getJsonContent(Document doc) throws IOException {
