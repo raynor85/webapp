@@ -11,13 +11,13 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class SpyShelterPersonalRemoteRetriever implements RemoteRetriever {
+public class SpyShelterPremiumRemoteRetriever implements RemoteRetriever {
 
-	private static final String DOWNLOAD_WEBSITE = "https://www.spyshelter.com/spyshelter-free-thank-you/";
+	private static final String DOWNLOAD_WEBSITE = "https://www.spyshelter.com/spyshelter-premium-thank-you/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		return application.getApiName().equalsIgnoreCase("spyshelterpersonal");
+		return application.getApiName().equalsIgnoreCase("spyshelterpremium");
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class SpyShelterPersonalRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("td.info:contains(Free)").first().html().split("<br>")[0]);
+		return ParsingUtils.extractVersionNumberFromString(doc.select("td.info:contains(Premium)").first().html().split("<br>")[0]);
 	}
 
 }

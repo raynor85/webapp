@@ -316,7 +316,7 @@
 		<ref bean="rJTextEdRemoteRetriever" />
 		<ref bean="slimjetRemoteRetriever" />
 		<ref bean="passwordSafeRemoteRetriever" />
-		<ref bean="spyShelterPersonalRemoteRetriever" />
+		<ref bean="spyShelterPremiumRemoteRetriever" />
 		<ref bean="trustPortInternetSecurityRemoteRetriever" />
 		<ref bean="argenteUtilitiesRemoteRetriever" />
 		<ref bean="ashampooRemoteRetriever" />
