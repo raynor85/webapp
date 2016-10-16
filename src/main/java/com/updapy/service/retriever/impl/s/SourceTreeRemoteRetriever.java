@@ -43,7 +43,7 @@ public class SourceTreeRemoteRetriever implements RemoteRetriever {
 	}
 
 	private String getDownloadLink(Document doc) {
-		return doc.select("a:contains(direct link)").attr("href");
+		return doc.select("a[href*=.exe]").first().attr("href");
 	}
 
 }

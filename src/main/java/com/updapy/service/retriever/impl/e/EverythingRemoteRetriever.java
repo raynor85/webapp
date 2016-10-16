@@ -42,7 +42,7 @@ public class EverythingRemoteRetriever implements RemoteRetriever, BaseUrlRemote
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("p.dh").get(0).text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("div.box-dl").first().select("tr").first().select("td").first().text());
 	}
 
 	@Override
