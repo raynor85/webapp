@@ -43,7 +43,7 @@ public class EmsisoftInternetSecurityRemoteRetriever implements RemoteRetriever,
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("div:containsOwn(Version):containsOwn(Released)").html().split("<br>")[0]);
+		return ParsingUtils.extractVersionNumberFromString(doc.select("p:containsOwn(Version):containsOwn(Released)").html().split("<br>")[0]);
 	}
 
 	@Override
