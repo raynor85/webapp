@@ -35,6 +35,7 @@ import com.updapy.service.ApplicationService;
 import com.updapy.service.EmailSenderService;
 import com.updapy.service.ProcedureService;
 import com.updapy.service.RetrievalErrorService;
+import com.updapy.service.TwitterService;
 import com.updapy.service.UserService;
 import com.updapy.service.scheduler.ApplicationVersionScheduler;
 import com.updapy.util.DozerHelper;
@@ -56,6 +57,9 @@ public class AdministrationController {
 
 	@Inject
 	private ApplicationService applicationService;
+
+	@Inject
+	private TwitterService twitterService;
 
 	@Inject
 	private RetrievalErrorService retrievalErrorService;
@@ -190,6 +194,7 @@ public class AdministrationController {
 			version.setApplication(applicationService.getApplication(addVersion.getApiName()));
 			// Add the version
 			applicationService.addVersion(version);
+			twitterService.sendStatusNewVersion(version);
 			return jsonResponseUtils.buildSuccessfulJsonResponse("administration.addVersion.confirm");
 		}
 	}
