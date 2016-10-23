@@ -3,7 +3,7 @@ package com.updapy.service.retriever.impl.i;
 import java.io.IOException;
 
 import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
+import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
@@ -39,11 +39,11 @@ public class InkscapeRemoteRetriever implements RemoteRetriever {
 	}
 
 	private String getDownloadLink(Document doc, String version) {
-		Elements elements = doc.select("p:contains(" + version + ")");
-		if (elements.select("a:contains(exe)").first() == null) {
-			return elements.select("a:contains(msi)").first().attr("href");
+		Element element = doc.select("p:contains(" + version + ")").first().parent();
+		if (element.select("a:contains(exe)").first() == null) {
+			return element.select("a:contains(msi)").first().attr("href");
 		}
-		return elements.select("a:contains(exe)").first().attr("href");
+		return element.select("a:contains(exe)").first().attr("href");
 	}
 
 	@Override
