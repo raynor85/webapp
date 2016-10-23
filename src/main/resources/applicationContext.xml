@@ -127,6 +127,13 @@
 		<constructor-arg ref="textEncryptor" />
 	</bean>
 
+	<bean id="twitter" class="org.springframework.social.twitter.api.impl.TwitterTemplate">
+		<constructor-arg value="#{systemEnvironment['TWITTER_CONSUMER_KEY']}" />
+		<constructor-arg value="#{systemEnvironment['TWITTER_CONSUMER_SECRET']}" />
+		<constructor-arg value="#{systemEnvironment['TWITTER_ACCESS_TOKEN']}" />
+		<constructor-arg value="#{systemEnvironment['TWITTER_ACCESS_TOKEN_SECRET']}" />
+	</bean>
+
 	<!-- Remote retrievers -->
 	<util:list id="remoteRetrievers">
 		<ref bean="cnetDownloadRemoteRetriever" />

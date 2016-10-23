@@ -32,6 +32,7 @@ import com.updapy.service.NewsletterService;
 import com.updapy.service.RemoteService;
 import com.updapy.service.RetrievalErrorService;
 import com.updapy.service.SettingsService;
+import com.updapy.service.TwitterService;
 import com.updapy.service.UserService;
 import com.updapy.service.impl.RemoteServiceImpl;
 
@@ -42,6 +43,9 @@ public class ApplicationVersionScheduler {
 
 	@Inject
 	private ApplicationService applicationService;
+
+	@Inject
+	private TwitterService twitterService;
 
 	@Inject
 	private UserService userService;
@@ -104,6 +108,7 @@ public class ApplicationVersionScheduler {
 			if (comparisonResult == -1) {
 				// new version available
 				applicationService.addVersion(latestRemoteVersion);
+				twitterService.sendStatusNewVersion(latestRemoteVersion);
 			} else if (comparisonResult == 1 && !latestRemoteVersion.getVersionNumber().equals(RemoteServiceImpl.VERSION_NOT_FOUND)) {
 				// the remote version has a smaller number
 				retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_NEW_VERSION_WITH_NUMBER_NOT_CONSISTENT, "Got remote version '" + latestRemoteVersion.getVersionNumber() + "' but current version is '" + latestVersion.getVersionNumber() + "'");
@@ -158,6 +163,7 @@ public class ApplicationVersionScheduler {
 			for (ApplicationReference addedApplication : addedApplications) {
 				notifyUsersForAddedApplication(userToNotifys, addedApplication);
 				applicationService.markAsNotified(addedApplication);
+				twitterService.sendStatusNewApplication(addedApplication);
 			}
 		}
 		log.info("< Emails and notifications for added app created sucessfully.");
