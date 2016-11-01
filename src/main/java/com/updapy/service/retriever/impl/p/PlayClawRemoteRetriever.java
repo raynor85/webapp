@@ -2,6 +2,7 @@ package com.updapy.service.retriever.impl.p;
 
 import java.io.IOException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -43,7 +44,7 @@ public class PlayClawRemoteRetriever implements RemoteRetriever {
 	}
 
 	private String getDownloadLink(Document doc) {
-		return doc.select("a:contains(Download)[href*=.exe]").attr("href");
+		return ParsingUtils.selectFromPattern(StringUtils.removePattern(StringUtils.removePattern(doc.select("body").text(), "^.*DownloadPlayClaw()"), "}.*$"), "http.*exe");
 	}
 
 }

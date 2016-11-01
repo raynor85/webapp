@@ -38,7 +38,7 @@ public class BliskRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("a:contains(CLICK HERE)[href*=.exe]").attr("href");
+		return RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE).select("a:contains(direct link)[href*=.exe]").attr("href");
 	}
 
 	@Override

@@ -38,7 +38,7 @@ public class RProjectRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRe
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download R 3.3.1 for Windows)[href*=.exe]").attr("href"));
+		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(for Windows)[href*=.exe]").attr("href"));
 	}
 
 	@Override

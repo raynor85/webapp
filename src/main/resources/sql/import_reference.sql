@@ -190,7 +190,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Popcorn Time
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, false, 'http://popcorntime.io/', 'https://popcorntime.io/', 'popcorntime.png', 'Popcorn Time', 'popcorntime', false, 'VIDEO', 'FREE');
 -- PlayClaw
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.playclaw.com/download.php', 'http://www.playclaw.com/', 'playclaw.png', 'PlayClaw', 'playclaw', false, 'VIDEO', 'COMMERCIAL');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.playclaw.com/common.js', 'http://www.playclaw.com/', 'playclaw.png', 'PlayClaw', 'playclaw', false, 'VIDEO', 'COMMERCIAL');
 -- Subsonic
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.subsonic.org/pages/download.jsp', 'http://www.subsonic.org/', 'subsonic.png', 'Subsonic', 'subsonic', false, 'MUSIC', 'FREE');
 -- Teamspeak Client
@@ -516,7 +516,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Driver Magician
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.drivermagician.com/download.htm', 'http://www.drivermagician.com/', 'drivermagician.png', 'Driver Magician', 'drivermagician', false, 'SYSTEM', 'FREE');
 -- AdFender
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.adfender.com/download.html', 'http://www.adfender.com/', 'adfender.png', 'AdFender', 'adfender', false, 'SECURITY', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.adfender.com/download.html', 'https://www.adfender.com/', 'adfender.png', 'AdFender', 'adfender', false, 'SECURITY', 'FREE');
 -- Wise Disk Cleaner
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/Wise-Disk-Cleaner/3000-18512_4-10613345.html', 'http://www.wisecleaner.com/wise-disk-cleaner.html', 'wisediskcleaner.png', 'Wise Disk Cleaner', 'wisediskcleaner', false, 'SYSTEM', 'FREE');
 -- Reg Organizer
