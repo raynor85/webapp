@@ -2,15 +2,19 @@ package com.updapy.service.retriever.impl.x;
 
 import java.io.IOException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
+import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component(value = "xMindRemoteRetriever")
 public class XMindRemoteRetriever implements RemoteRetriever {
+
+	private static final String VERSION_HISTORY_WEBSITE = "http://www.xmind.net/download/previous/";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -39,7 +43,7 @@ public class XMindRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(ParsingUtils.selectFromPattern(doc.select("p:contains(The latest release)").text(), "\\(.*\\)"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(ParsingUtils.selectFromPattern(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(VERSION_HISTORY_WEBSITE).select("p:contains(latest)").text(), "\\(.*\\)"), ".*v"));
 	}
 
 }
