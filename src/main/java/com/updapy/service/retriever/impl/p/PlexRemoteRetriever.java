@@ -42,7 +42,7 @@ public class PlexRemoteRetriever implements RemoteRetriever {
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
 		JSONObject jsonObject = new JSONObject(doc.text());
-		return ParsingUtils.extractVersionNumberFromString(jsonObject.getJSONObject("computer").getJSONObject("Windows").getString("version"));
+		return ParsingUtils.extractVersionNumberFromString(jsonObject.getJSONObject("computer").getJSONObject("Windows").getString("version").split("-")[0]);
 	}
 
 }
