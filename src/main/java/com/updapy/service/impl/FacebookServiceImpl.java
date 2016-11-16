@@ -4,20 +4,20 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.social.twitter.api.Tweet;
-import org.springframework.social.twitter.api.Twitter;
+import org.springframework.social.SocialException;
+import org.springframework.social.facebook.api.Facebook;
 import org.springframework.stereotype.Service;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
 
-@Service(value="twitterService")
-public class TwitterServiceImpl extends SocialServiceImpl {
+@Service(value = "facebookService")
+public class FacebookServiceImpl extends SocialServiceImpl {
 
-	private Logger log = LoggerFactory.getLogger(TwitterServiceImpl.class);
+	private Logger log = LoggerFactory.getLogger(FacebookServiceImpl.class);
 
 	@Inject
-	private Twitter twitter;
+	private Facebook facebook;
 
 	@Override
 	public void sendStatusNewApplication(ApplicationReference application) {
@@ -32,12 +32,13 @@ public class TwitterServiceImpl extends SocialServiceImpl {
 	private void sendStatus(String status) {
 		if (messageUtils.getSimpleMessage("environnement").equals("dev")) {
 			// skip status update
-			log.info("Sending status '{}' on Twitter", status);
+			log.info("Sending status '{}' on Facebook", status);
 			return;
 		}
-		Tweet tweet = twitter.timelineOperations().updateStatus(status);
-		if (tweet == null) {
-			log.error("An error occured when sending status on Twitter");
+		try {
+			facebook.feedOperations().updateStatus(status);
+		} catch (SocialException exception) {
+			log.error("An error occured when sending status on Facebook");
 		}
 	}
 

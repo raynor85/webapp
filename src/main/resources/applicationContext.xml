@@ -134,6 +134,10 @@
 		<constructor-arg value="#{systemEnvironment['TWITTER_ACCESS_TOKEN_SECRET']}" />
 	</bean>
 
+	<bean id="facebook" class="org.springframework.social.facebook.api.impl.FacebookTemplate">
+		<constructor-arg value="#{systemEnvironment['FACEBOOK_ACCESS_TOKEN']}" />
+	</bean>
+
 	<!-- Remote retrievers -->
 	<util:list id="remoteRetrievers">
 		<ref bean="cnetDownloadRemoteRetriever" />
