@@ -39,7 +39,7 @@ public class QuickTimeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("label.platform:contains(for Windows)").first().text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("label:contains(for Windows)").first().text());
 	}
 
 }

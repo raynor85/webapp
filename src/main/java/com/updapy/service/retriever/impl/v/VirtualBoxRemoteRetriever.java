@@ -34,12 +34,12 @@ public class VirtualBoxRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("strong:containsOwn(for Windows hosts)").parents().first().select("a[href*=.exe]").attr("href");
+		return doc.select("a:containsOwn(Windows hosts)").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("strong:containsOwn(for Windows hosts)").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("strong:containsOwn(platform packages)").text());
 	}
 
 }
