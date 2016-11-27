@@ -35,12 +35,12 @@ public class Jv16PowerToolsXRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return "https://www.macecraft.com/downloads/jv16pt_setup.exe";
+		return doc.select("a:contains(click here)[href*=exe]").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("div.wpb_wrapper").select("h2:contains(Version)").first().text(), "^.*Version"));
+		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("div.wpb_wrapper").select("h2:contains(is starting)").first().text(), "^.*PowerTools"));
 	}
 
 }
