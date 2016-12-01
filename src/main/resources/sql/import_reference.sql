@@ -274,7 +274,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- PNotes.NET
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://pnotes.sourceforge.net/index.php?page=5', 'http://pnotes.sourceforge.net/', 'pnotes.png', 'PNotes.NET', 'pnotesnet', false, 'TOOLS', 'FREE');
 -- Process Hacker
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://processhacker.sourceforge.net/downloads.php', 'http://processhacker.sourceforge.net/', 'processhacker.png', 'Process Hacker', 'processhacker', false, 'SYSTEM', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://github.com/processhacker2/processhacker2/releases', 'https://github.com/processhacker2/processhacker2', 'processhacker.png', 'Process Hacker', 'processhacker', false, 'SYSTEM', 'FREE');
 -- Sandboxie
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.sandboxie.com/index.php?DownloadSandboxie', 'http://www.sandboxie.com/', 'sandboxie.png', 'Sandboxie', 'sandboxie', false, 'SECURITY', 'COMMERCIAL');
 -- SMPlayer

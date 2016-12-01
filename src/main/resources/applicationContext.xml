@@ -256,7 +256,6 @@
 		<ref bean="launchyRemoteRetriever" />
 		<ref bean="pNotesRemoteRetriever" />
 		<ref bean="pNotesNetRemoteRetriever" />
-		<ref bean="processHackerRemoteRetriever" />
 		<ref bean="sandboxieRemoteRetriever" />
 		<ref bean="smPlayerRemoteRetriever" />
 		<ref bean="cdBurnerXpRemoteRetriever" />

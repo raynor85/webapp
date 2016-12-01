@@ -18,7 +18,7 @@ public class GithubExeRemoteRetriever implements RemoteRetriever, BaseUrlRemoteR
 	@Override
 	public boolean support(ApplicationReference application) {
 		String apiName = application.getApiName();
-		return apiName.equalsIgnoreCase("docker") || apiName.equalsIgnoreCase("openbroadcastersoftware") || apiName.equalsIgnoreCase("clementineplayer") || apiName.equalsIgnoreCase("dockertoolbox") || apiName.equalsIgnoreCase("conemu");
+		return apiName.equalsIgnoreCase("docker") || apiName.equalsIgnoreCase("openbroadcastersoftware") || apiName.equalsIgnoreCase("clementineplayer") || apiName.equalsIgnoreCase("dockertoolbox") || apiName.equalsIgnoreCase("conemu") || apiName.equalsIgnoreCase("processhacker");
 	}
 
 	@Override
