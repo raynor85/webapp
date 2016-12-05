@@ -37,7 +37,7 @@ public class nXPowerliteRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a:contains(Download For Windows)").attr("href");
+		return doc.select("a:contains(click here)").attr("href");
 	}
 
 	@Override
