@@ -1,9 +1,10 @@
 package com.updapy.service.retriever.impl.e;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.commons.lang3.StringUtils;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -18,7 +19,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class EsetNod32AntivirusRemoteRetriever implements RemoteRetriever {
 
-	private static final String DOWNLOAD_WEBSITE = "https://www.eset.com/us/support/download/home/nod32-antivirus/?type=13554&tx_esetdownloads_ajax[product]=88&tx_esetdownloads_ajax[plugin_id]=16650";
+	private static final String DOWNLOAD_WEBSITE = "https://www.eset.com/us/home/antivirus/download/?type=13554&tx_esetdownloads_ajax[product]=86&tx_esetdownloads_ajax[plugin_id]=70007";
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -27,22 +28,22 @@ public class EsetNod32AntivirusRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlFr(Document doc) throws IOException {
-		return getDownloadLink(DOWNLOAD_WEBSITE, "FR_FR", ".*64.*");
+		return getDownloadLink(DOWNLOAD_WEBSITE, "French - France", ".*64.*");
 	}
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return getDownloadLink(DOWNLOAD_WEBSITE, "EN_US", ".*64.*");
+		return getDownloadLink(DOWNLOAD_WEBSITE, "English - United States", ".*64.*");
 	}
 
 	@Override
 	public String retrieveWin32UrlFr(Document doc) throws IOException {
-		return getDownloadLink(DOWNLOAD_WEBSITE, "FR_FR", ".*32.*");
+		return getDownloadLink(DOWNLOAD_WEBSITE, "French - France", ".*32.*");
 	}
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return getDownloadLink(DOWNLOAD_WEBSITE, "EN_US", ".*32.*");
+		return getDownloadLink(DOWNLOAD_WEBSITE, "English - United States", ".*32.*");
 	}
 
 	@Override
@@ -51,21 +52,21 @@ public class EsetNod32AntivirusRemoteRetriever implements RemoteRetriever {
 		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(docXml.select("div#file-summary").select("p:contains(Version)").text(), "Size.*$"));
 	}
 
-	private String getDownloadLink(String downloadWebsite, String languageCode, String versionPattern) throws IOException {
+	@SuppressWarnings("unchecked")
+	private String getDownloadLink(String downloadWebsite, String languageName, String versionPattern) throws IOException {
 		String jsonContentString = HttpUtils.executeGetRequest(downloadWebsite);
 		JSONObject jsonObject = new JSONObject(jsonContentString);
-		JSONObject jsonAvailableLanguages = jsonObject.getJSONObject("availableLanguages");
-		Integer languageId = null;
+		JSONObject jsonAvailableLanguages = jsonObject.getJSONObject("selections").getJSONObject("2").getJSONObject("options");
+		String languageId = null;
 		for (String key : jsonAvailableLanguages.keySet()) {
-			JSONObject jsonLanguage = (JSONObject) jsonAvailableLanguages.get(key);
-			if (((String) jsonLanguage.get("code")).equalsIgnoreCase(languageCode)) {
-				languageId = Integer.parseInt(key);
+			if ((jsonAvailableLanguages.getString(key)).equalsIgnoreCase(languageName)) {
+				languageId = key;
 			}
 		}
-		JSONArray jsonInstallationFiles = jsonObject.getJSONArray("installationFiles");
-		for (Object jsonInstallationFile : jsonInstallationFiles) {
-			String url = ((JSONObject) jsonInstallationFile).getString("file");
-			if (languageId != null && languageId == ((JSONObject) jsonInstallationFile).getInt("language") && url.matches(versionPattern)) {
+		Map<String, Object> installationFiles = (Map<String, Object>) jsonObject.getJSONObject("files").getJSONObject("installer").toMap();
+		for (Entry<String, Object> entry : installationFiles.entrySet()) {
+			String url = ((Map<String, String>) entry.getValue()).get("url").toString();
+			if (languageId != null && languageId.equals(((Map<String, String>) entry.getValue()).get("language")) && url.matches(versionPattern)) {
 				return url;
 			}
 		}

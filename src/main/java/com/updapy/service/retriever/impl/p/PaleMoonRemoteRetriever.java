@@ -13,7 +13,7 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class PaleMoonRemoteRetriever implements RemoteRetriever {
 
-	private static final String DOWNLOAD_WEBSITE_VERSION_64 = "http://www.palemoon.org/palemoon-x64.shtml";
+	private static final String DOWNLOAD_WEBSITE_VERSION_64 = "http://www.palemoon.org/palemoon-win64.shtml";
 
 	@Override
 	public boolean support(ApplicationReference application) {

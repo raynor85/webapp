@@ -402,7 +402,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Dr.Web CureIt
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://download.cnet.com/Dr-Web-CureIt/3000-2239_4-128071.html', 'http://www.freedrweb.com/cureit/', 'drwebcureit.png', 'Dr.Web CureIt', 'drwebcureit', false, 'SECURITY', 'FREE');
 -- Pale Moon Browser
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.palemoon.org/download-ng.shtml', 'http://www.palemoon.org/', 'palemoon.png', 'Pale Moon Browser', 'palemoon', false, 'INTERNET', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.palemoon.org/palemoon-win32.shtml', 'http://www.palemoon.org/', 'palemoon.png', 'Pale Moon Browser', 'palemoon', false, 'INTERNET', 'FREE');
 -- SpeedyFox
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.crystalidea.com/speedyfox', 'http://www.crystalidea.com/speedyfox', 'speedyfox.png', 'SpeedyFox', 'speedyfox', false, 'SYSTEM', 'FREE');
 -- SpywareBlaster
