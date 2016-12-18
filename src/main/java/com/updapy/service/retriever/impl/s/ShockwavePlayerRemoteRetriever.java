@@ -6,16 +6,11 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
-import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
-import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class ShockwavePlayerRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetriever {
-
-	private static final String ROOT_DOWNLOAD_WEBSITE = "http://www.adobe.com";
-	private static final String DOWNLOAD_WEBSITE_VERSION = "http://get.adobe.com/shockwave/";
+public class ShockwavePlayerRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
@@ -39,17 +34,12 @@ public class ShockwavePlayerRemoteRetriever implements RemoteRetriever, BaseUrlR
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("a:contains(Download Full EXE Installer)").get(0).attr("href"));
+		return doc.baseUri();
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(DOWNLOAD_WEBSITE_VERSION).select("p#AUTO_ID_columnleft_p_version").text());
-	}
-
-	@Override
-	public String getBaseUrl() {
-		return ROOT_DOWNLOAD_WEBSITE;
+		return ParsingUtils.extractVersionNumberFromString(doc.select("#AUTO_ID_columnleft_p_version").text());
 	}
 
 }
