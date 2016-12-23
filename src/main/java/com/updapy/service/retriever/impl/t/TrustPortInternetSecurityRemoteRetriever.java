@@ -39,7 +39,7 @@ public class TrustPortInternetSecurityRemoteRetriever implements RemoteRetriever
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("h3.downloads:contains(Internet Security)").first().text());
+		return String.valueOf(Integer.parseInt(ParsingUtils.extractVersionNumberFromString(doc.select("p:contains(Older versions)").select("a").first().text())) + 1);
 	}
 
 }
