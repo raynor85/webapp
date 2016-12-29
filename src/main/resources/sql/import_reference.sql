@@ -340,7 +340,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Dashlane
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.pcworld.pl/ftp/dashlane.html', 'https://www.dashlane.com/', 'dashlane.png', 'Dashlane', 'dashlane', false, 'SECURITY', 'FREE');
 -- VeraCrypt
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://veracrypt.codeplex.com/', 'https://veracrypt.codeplex.com/', 'veracrypt.png', 'VeraCrypt', 'veracrypt', false, 'SECURITY', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://veracrypt.codeplex.com/wikipage?title=Downloads#Title', 'https://veracrypt.codeplex.com/', 'veracrypt.png', 'VeraCrypt', 'veracrypt', false, 'SECURITY', 'FREE');
 -- AIMP
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.aimp.ru/index.php?do=download', 'http://www.aimp.ru', 'aimp.png', 'AIMP', 'aimp', false, 'MUSIC', 'FREE');
 -- Resilio Sync

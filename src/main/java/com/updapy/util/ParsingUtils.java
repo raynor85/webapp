@@ -63,5 +63,15 @@ public class ParsingUtils {
 		}
 		return StringUtils.removeEnd(rootUrl, HTTP_PATH_SEPARATOR) + HTTP_PATH_SEPARATOR + StringUtils.removeStart(pageUrl.replaceAll("\\.\\." + HTTP_PATH_SEPARATOR, StringUtils.EMPTY), HTTP_PATH_SEPARATOR);
 	}
+	
+	public String convertCharToDigit(String version) {
+		Pattern pattern = Pattern.compile("[A-Za-z]");
+		Matcher matcher = pattern.matcher(version);
+		if (matcher.find()) {
+			String versionWithoutLetters = matcher.replaceAll(Integer.toString(Character.getNumericValue(version.charAt(matcher.end() - 1)) - 9));
+			return StringUtils.replaceChars(versionWithoutLetters, '-', '.');
+		}
+		return version;
+	}
 
 }
