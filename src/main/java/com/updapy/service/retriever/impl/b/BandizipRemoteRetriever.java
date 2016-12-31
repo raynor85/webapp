@@ -7,7 +7,6 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
-import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.service.retriever.impl.BaseUrlRemoteRetriever;
 import com.updapy.util.HttpUtils;
@@ -40,7 +39,7 @@ public class BandizipRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRe
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return HttpUtils.getRedirectionUrl(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("li:contains(Download)").select("a:contains(Bandi)").attr("href"))).select("li:contains(Server)").first().select("a").attr("href")));
+		return HttpUtils.getRedirectionUrl(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, doc.select("li:contains(Download)").select("a:contains(Bandi)").attr("href")));
 	}
 
 	@Override
