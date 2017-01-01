@@ -44,7 +44,7 @@ public class PhraseExpressRemoteRetriever implements RemoteRetriever, BaseUrlRem
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(VERSION_HISTORY_WEBSITE).select("h2:contains(PhraseExpress Client)").first().nextElementSibling().select("tr").get(1).select("td").get(1).text());
+		return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(VERSION_HISTORY_WEBSITE).select("h2:contains(PhraseExpress Windows Client)").first().nextElementSibling().select("tr").get(1).select("td").get(1).text());
 	}
 
 	@Override
