@@ -792,11 +792,6 @@
 		<priority>0.2</priority>
 	</url>
 	<url>
-		<loc>http://www.updapy.com/applications/openbroadcastersoftware</loc>
-		<changefreq>yearly</changefreq>
-		<priority>0.2</priority>
-	</url>
-	<url>
 		<loc>http://www.updapy.com/applications/makehuman</loc>
 		<changefreq>yearly</changefreq>
 		<priority>0.2</priority>
@@ -1598,6 +1593,26 @@
 	</url>
 	<url>
 		<loc>http://www.updapy.com/applications/usbdeview</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/openvpncommunity</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/windowsrepairallinone</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/obsstudio</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/ashampoowinoptimizer</loc>
 		<changefreq>yearly</changefreq>
 		<priority>0.2</priority>
 	</url>

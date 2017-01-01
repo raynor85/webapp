@@ -408,6 +408,8 @@
 		<ref bean="uSBDeviewRemoteRetriever" />
 		<ref bean="crashPlanRemoteRetriever" />
 		<ref bean="hotspotShieldRemoteRetriever" />
+		<ref bean="openVpnCommunityRemoteRetriever" />
+		<ref bean="windowsRepairRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

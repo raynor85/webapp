@@ -1,23 +1,20 @@
-package com.updapy.service.retriever.impl.a;
+package com.updapy.service.retriever.impl.o;
 
 import java.io.IOException;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import com.updapy.model.ApplicationReference;
-import com.updapy.service.impl.RemoteServiceImpl;
 import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class AshampooRemoteRetriever implements RemoteRetriever {
+public class OpenVpnCommunityRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		String apiName = application.getApiName();
-		return apiName.equalsIgnoreCase("ashampooantivirus") || apiName.equalsIgnoreCase("ashampoouninstaller") || apiName.equalsIgnoreCase("ashampoowinoptimizer");
+		return application.getApiName().equalsIgnoreCase("openvpncommunity");
 	}
 
 	@Override
@@ -37,16 +34,12 @@ public class AshampooRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return getDownloadLink(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(doc.select("a.btn_download").attr("href")));
-	}
-
-	private String getDownloadLink(Document doc) {
-		return doc.select("a:contains(click here)").attr("href");
+		return doc.select("td:contains(Installer, Windows Vista and later)").parents().first().select("a[href*=.exe]").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("div#product_version").text(), ",.*$"));
+		return ParsingUtils.extractVersionNumberFromString(doc.select("h2:contains(released)").first().text().split("(r|R)eleased")[0]);
 	}
 
 }

@@ -1,8 +1,7 @@
-package com.updapy.service.retriever.impl.a;
+package com.updapy.service.retriever.impl.w;
 
 import java.io.IOException;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -12,12 +11,13 @@ import com.updapy.service.retriever.RemoteRetriever;
 import com.updapy.util.ParsingUtils;
 
 @Component
-public class AshampooRemoteRetriever implements RemoteRetriever {
+public class WindowsRepairRemoteRetriever implements RemoteRetriever {
+
+	private static final String VERSION_HISTORY_WEBSITE = "http://www.tweaking.com/articles/pages/tweaking_com_windows_repair_change_log,1.html";
 
 	@Override
 	public boolean support(ApplicationReference application) {
-		String apiName = application.getApiName();
-		return apiName.equalsIgnoreCase("ashampooantivirus") || apiName.equalsIgnoreCase("ashampoouninstaller") || apiName.equalsIgnoreCase("ashampoowinoptimizer");
+		return application.getApiName().equalsIgnoreCase("windowsrepairallinone");
 	}
 
 	@Override
@@ -37,16 +37,12 @@ public class AshampooRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return getDownloadLink(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(doc.select("a.btn_download").attr("href")));
-	}
-
-	private String getDownloadLink(Document doc) {
-		return doc.select("a:contains(click here)").attr("href");
+		return doc.select("a[href*=exe]").attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(StringUtils.removePattern(doc.select("div#product_version").text(), ",.*$"));
+		return ParsingUtils.extractVersionNumberFromString(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(VERSION_HISTORY_WEBSITE).select("h1:contains(Change Log)").first().nextElementSibling().select("div.content").html().split("<br>")[0]);
 	}
 
 }
