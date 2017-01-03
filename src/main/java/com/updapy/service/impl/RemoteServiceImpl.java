@@ -169,7 +169,7 @@ public class RemoteServiceImpl implements RemoteService {
 	}
 
 	public static Document retrieveHtmlDocumentAgentIE(String url, int timeout) throws IOException {
-		return Jsoup.connect(url).ignoreContentType(true).userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko").referrer("http://www.google.com").timeout(timeout).followRedirects(true).get();
+		return Jsoup.connect(url).ignoreContentType(true).userAgent("Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko").referrer("http://www.google.com").timeout(timeout).followRedirects(true).get();
 	}
 
 	public static Document retrieveHtmlDocumentAgentMozilla(String url) throws IOException {
