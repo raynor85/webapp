@@ -23,8 +23,6 @@ import com.updapy.util.ParsingUtils;
 @Component
 public class MediaPlayerClassicBeRemoteRetriever implements RemoteRetriever {
 
-	private static final String DOWNLOAD_WEBSITE = "https://sourceforge.net/p/mpcbe/activity/feed";
-
 	@Override
 	public boolean support(ApplicationReference application) {
 		return application.getApiName().equalsIgnoreCase("mediaplayerclassicbe");
@@ -37,7 +35,7 @@ public class MediaPlayerClassicBeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return matchingLink(".*\\.x64-installer.*\\.zip.*");
+		return matchingLink(doc.location(), ".*\\.x64-installer.*\\.zip.*");
 	}
 
 	@Override
@@ -47,11 +45,11 @@ public class MediaPlayerClassicBeRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return matchingLink(".*\\.x86-installer.*\\.zip.*");
+		return matchingLink(doc.location(), ".*\\.x86-installer.*\\.zip.*");
 	}
 
-	private String matchingLink(String regex) {
-		NodeList nodes = extractLinks();
+	private String matchingLink(String pageLink, String regex) {
+		NodeList nodes = extractLinks(pageLink);
 		if (nodes == null) {
 			return null;
 		}
@@ -65,10 +63,10 @@ public class MediaPlayerClassicBeRemoteRetriever implements RemoteRetriever {
 		return null;
 	}
 
-	private NodeList extractLinks() {
+	private NodeList extractLinks(String pageLink) {
 		XPathFactory xpf = XPathFactory.newInstance();
 		XPath xp = xpf.newXPath();
-		InputSource is = new InputSource(DOWNLOAD_WEBSITE);
+		InputSource is = new InputSource(pageLink);
 		NodeList nodes = null;
 		try {
 			nodes = (NodeList) xp.evaluate("//link", is, XPathConstants.NODESET);
