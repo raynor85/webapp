@@ -1402,11 +1402,6 @@
 		<priority>0.2</priority>
 	</url>
 	<url>
-		<loc>http://www.updapy.com/applications/mpclassic</loc>
-		<changefreq>yearly</changefreq>
-		<priority>0.2</priority>
-	</url>
-	<url>
 		<loc>http://www.updapy.com/applications/patchmypc</loc>
 		<changefreq>yearly</changefreq>
 		<priority>0.2</priority>

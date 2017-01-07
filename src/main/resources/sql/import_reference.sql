@@ -566,7 +566,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- Imagine
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://totalcmd.net/plugring/imagine.html', 'http://totalcmd.net/plugring/imagine.html', 'imagine.png', 'Imagine', 'imagine', false, 'IMAGE', 'FREE');
 -- Media Player Classic
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.mpcdl.com/', 'http://www.mpcdl.com/', 'mpclassic.png', 'Media Player Classic', 'mpclassic', false, 'VIDEO', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, false, 'http://www.mpcdl.com/', 'http://www.mpcdl.com/', 'mpclassic.png', 'Media Player Classic', 'mpclassic', false, 'VIDEO', 'FREE');
 -- Patch My PC
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://patchmypc.net/download', 'https://patchmypc.net', 'patchmypc.png', 'Patch My PC', 'patchmypc', false, 'TOOLS', 'FREE');
 -- Quintessential Media Player
