@@ -1611,4 +1611,14 @@
 		<changefreq>yearly</changefreq>
 		<priority>0.2</priority>
 	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/wpsofficefree</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>http://www.updapy.com/applications/projectlibre</loc>
+		<changefreq>yearly</changefreq>
+		<priority>0.2</priority>
+	</url>
 </urlset>

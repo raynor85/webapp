@@ -374,7 +374,6 @@
 		<ref bean="gomMediaPlayerRemoteRetriever" />
 		<ref bean="quintessentialMediaPlayerRemoteRetriever" />
 		<ref bean="patchMyPcRemoteRetriever" />
-		<ref bean="mediaPlayerClassicRemoteRetriever" />
 		<ref bean="imagineRemoteRetriever" />
 		<ref bean="linuxLiveUsbCreatorRemoteRetriever" />
 		<ref bean="jpegViewRemoteRetriever" />
@@ -410,6 +409,8 @@
 		<ref bean="hotspotShieldRemoteRetriever" />
 		<ref bean="openVpnCommunityRemoteRetriever" />
 		<ref bean="windowsRepairRemoteRetriever" />
+		<ref bean="wPSOfficeFreeRemoteRetriever" />
+		<ref bean="projectLibreRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">

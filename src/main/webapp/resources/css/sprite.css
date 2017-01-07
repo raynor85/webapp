@@ -2179,113 +2179,127 @@
 }
 
 .sprite-antimalware {
-	background: url(../img/application/sprite/11-6.png) no-repeat top left;
+	background: url(../img/application/sprite/11-7.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -5px -5px;
 }
 
 .sprite-ashampoowinoptimizer {
-	background: url(../img/application/sprite/11-6.png) no-repeat top left;
+	background: url(../img/application/sprite/11-7.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -79px -5px;
 }
 
 .sprite-blisk {
-	background: url(../img/application/sprite/11-6.png) no-repeat top left;
+	background: url(../img/application/sprite/11-7.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -153px -5px;
 }
 
 .sprite-crashplan {
-	background: url(../img/application/sprite/11-6.png) no-repeat top left;
+	background: url(../img/application/sprite/11-7.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -227px -5px;
 }
 
 .sprite-dia {
-	background: url(../img/application/sprite/11-6.png) no-repeat top left;
+	background: url(../img/application/sprite/11-7.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -5px -79px;
 }
 
 .sprite-excelcompare {
-	background: url(../img/application/sprite/11-6.png) no-repeat top left;
+	background: url(../img/application/sprite/11-7.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -79px -79px;
 }
 
 .sprite-hotspotshield {
-	background: url(../img/application/sprite/11-6.png) no-repeat top left;
+	background: url(../img/application/sprite/11-7.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -153px -79px;
 }
 
 .sprite-nitropdfreader {
-	background: url(../img/application/sprite/11-6.png) no-repeat top left;
+	background: url(../img/application/sprite/11-7.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -227px -79px;
 }
 
 .sprite-nxpowerlite {
-	background: url(../img/application/sprite/11-6.png) no-repeat top left;
+	background: url(../img/application/sprite/11-7.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -5px -153px;
 }
 
 .sprite-openvpncommunity {
-	background: url(../img/application/sprite/11-6.png) no-repeat top left;
+	background: url(../img/application/sprite/11-7.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -79px -153px;
 }
 
 .sprite-polarity {
-	background: url(../img/application/sprite/11-6.png) no-repeat top left;
+	background: url(../img/application/sprite/11-7.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -153px -153px;
 }
 
-.sprite-rproject {
-	background: url(../img/application/sprite/11-6.png) no-repeat top left;
+.sprite-projectlibre {
+	background: url(../img/application/sprite/11-7.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -227px -153px;
 }
 
-.sprite-ultraedit {
-	background: url(../img/application/sprite/11-6.png) no-repeat top left;
+.sprite-rproject {
+	background: url(../img/application/sprite/11-7.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -5px -227px;
 }
 
-.sprite-usbdeview {
-	background: url(../img/application/sprite/11-6.png) no-repeat top left;
+.sprite-ultraedit {
+	background: url(../img/application/sprite/11-7.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -79px -227px;
 }
 
-.sprite-windowsrepairallinone {
-	background: url(../img/application/sprite/11-6.png) no-repeat top left;
+.sprite-usbdeview {
+	background: url(../img/application/sprite/11-7.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -153px -227px;
 }
 
-.sprite-wiseautoshutdown {
-	background: url(../img/application/sprite/11-6.png) no-repeat top left;
+.sprite-windowsrepairallinone {
+	background: url(../img/application/sprite/11-7.png) no-repeat top left;
 	width: 64px;
 	height: 64px;
 	background-position: -227px -227px;
+}
+
+.sprite-wiseautoshutdown {
+	background: url(../img/application/sprite/11-7.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -301px -5px;
+}
+
+.sprite-wpsofficefree {
+	background: url(../img/application/sprite/11-7.png) no-repeat top left;
+	width: 64px;
+	height: 64px;
+	background-position: -301px -79px;
 }
