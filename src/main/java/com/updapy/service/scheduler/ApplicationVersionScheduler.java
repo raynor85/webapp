@@ -121,7 +121,7 @@ public class ApplicationVersionScheduler {
 				} else {
 					retrievalErrorService.deleteRetrievalErrors(application, Arrays.asList(TypeRetrievalError.SAME_VERSION_DIFFERENT_URL));
 				}
-			} else if (comparisonResult == 1 && !latestRemoteVersion.getVersionNumber().equals(RemoteServiceImpl.VERSION_NOT_FOUND) && !RetrievalErrorIgnoredApplication.VERSION_HIGHER_IGNORED_APPLICATIONS.contains(latestRemoteVersion.getApplication().getApiName())) {
+			} else if (comparisonResult == 1 && !latestRemoteVersion.getVersionNumber().equals(RemoteServiceImpl.VERSION_NOT_FOUND) && !RetrievalErrorIgnoredApplication.LOCAL_VERSION_HIGHER_IGNORED_APPLICATIONS.contains(latestRemoteVersion.getApplication().getApiName())) {
 				// the remote version has a smaller number
 				retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_NEW_VERSION_WITH_NUMBER_NOT_CONSISTENT, "Got remote version '" + latestRemoteVersion.getVersionNumber() + "' but current version is '" + latestVersion.getVersionNumber() + "'");
 			}
