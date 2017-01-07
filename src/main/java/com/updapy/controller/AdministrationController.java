@@ -225,7 +225,7 @@ public class AdministrationController {
 		modelAndView.addObject("topFollowers", userService.getNbTopFollowers(10));
 		modelAndView.addObject("latestUserCreations", userService.getNbLatestUsers(5));
 		modelAndView.addObject("latestAccountDeletions", accountRemovalService.getNbLatestAccountRemovals(5));
-		modelAndView.addObject("latestApplicationRequests", applicationService.getNbLatestRequestedApplications(3));
+		modelAndView.addObject("latestApplicationRequests", applicationService.getNbLatestRequestedApplications(10));
 		return addNotifications(user, modelAndView);
 	}
 
