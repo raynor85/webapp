@@ -23,9 +23,6 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 	@Inject
 	private EmailSenderService emailSenderService;
 
-	// Hardcoded list of ignored application (= no email sent except after 100 failures)
-	private static final List<String> ignoredApplications = Arrays.asList("tortoisesvn", "glasswire", "manycam", "balsamiq", "autohotkey", "resiliosync", "hotspotshield", "admuncher");
-
 	@Override
 	public List<RetrievalError> getAllRetrievalErrors(int count) {
 		return retrievalErrorRepository.findByCountGreaterThanEqualOrderByCountDesc(count);
@@ -77,16 +74,16 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 	@Override
 	public int sendEmailRetrievalErrors() {
 		int count = 0;
-		List<RetrievalError> retrievalErrors = retrievalErrorRepository.findByCountGreaterThanEqual(15); // 15 errors really mean there is a problem!
+		List<RetrievalError> retrievalErrors = retrievalErrorRepository.findByCountGreaterThanEqual(2); // 2 errors really mean there is a problem!
 		retrievalErrors.addAll(retrievalErrorRepository.findByTypeLastErrorInAndCountGreaterThanEqual(Arrays.asList(TypeRetrievalError.LOCAL_URL_VERSION_ERROR, TypeRetrievalError.SAME_VERSION_DIFFERENT_URL), 3)); // 3 errors is enough in case of invalid URL
 		for (RetrievalError retrievalError : retrievalErrors) {
-			boolean isIgnored = ignoredApplications.contains(retrievalError.getApplication().getApiName());
+			boolean isIgnored = RetrievalErrorIgnoredApplication.FULLY_IGNORED_APPLICATIONS.contains(retrievalError.getApplication().getApiName());
 			if (!isIgnored || (isIgnored && retrievalError.getCount() >= 100)) {
 				boolean hasBeenSent = false;
 				if (TypeRetrievalError.REMOTE_URL_BASE_ERROR.equals(retrievalError.getTypeLastError())) {
 					hasBeenSent = emailSenderService.sendAdminConnectionError(retrievalError.getApplication().getGlobalUrl());
 				} else {
-					hasBeenSent = emailSenderService.sendAdminRetrieverError(retrievalError.getApplication().getName());
+					hasBeenSent = emailSenderService.sendAdminRetrieverError(retrievalError.getApplication().getName(), retrievalError.getTypeLastError());
 				}
 				if (hasBeenSent) {
 					count++;

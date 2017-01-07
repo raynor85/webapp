@@ -9,6 +9,7 @@ import com.updapy.form.model.enumeration.SubjectMessage;
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.Newsletter;
+import com.updapy.model.enumeration.TypeRetrievalError;
 
 @Transactional
 public interface EmailSenderService {
@@ -33,7 +34,7 @@ public interface EmailSenderService {
 
 	boolean sendAdminConnectionError(String url);
 
-	boolean sendAdminRetrieverError(String applicationName);
+	boolean sendAdminRetrieverError(String applicationName, TypeRetrievalError typeRetrievalError);
 
 	boolean sendAdminRequestedApplication(String email, String name, String url, Locale locale);
 

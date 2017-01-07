@@ -31,6 +31,7 @@ import com.updapy.form.model.enumeration.SubjectMessage;
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.Newsletter;
+import com.updapy.model.enumeration.TypeRetrievalError;
 import com.updapy.service.EmailCounterService;
 import com.updapy.service.EmailSenderService;
 import com.updapy.util.MessageUtils;
@@ -145,13 +146,13 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 	}
 
 	@Override
-	public boolean sendAdminRetrieverError(String applicationName) {
+	public boolean sendAdminRetrieverError(String applicationName, TypeRetrievalError typeRetrievalError) {
 		Locale locale = new Locale("en");
 		String subject = messageUtils.getSimpleMessage("email.error.subject", locale);
 		Map<String, Object> model = new HashMap<String, Object>();
 		setLang(locale, model);
 		model.put("title", messageUtils.getSimpleMessage("email.error.retriever.content.title", locale));
-		model.put("text", messageUtils.getCustomMessage("email.error.retriever.content.text", new String[] { applicationName }, locale));
+		model.put("text", messageUtils.getCustomMessage("email.error.retriever.content.text", new String[] { applicationName, messageUtils.getSimpleMessage("administration.error.type." + typeRetrievalError.name(), locale) }));
 		model.put("signature", StringUtils.EMPTY);
 		setFollowMessages(locale, model);
 		model.put("unsubscribetext", StringUtils.EMPTY);
