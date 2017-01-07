@@ -24,7 +24,7 @@ public class PowerIsoRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return doc.select("a:contains((64-bit))").attr("href");
+		return null;
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class PowerIsoRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a:contains((32-bit))").attr("href");
+		return doc.baseUri();
 	}
 
 	@Override
