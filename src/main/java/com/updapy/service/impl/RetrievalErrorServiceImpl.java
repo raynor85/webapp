@@ -74,7 +74,7 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 	@Override
 	public int sendEmailRetrievalErrors() {
 		int count = 0;
-		List<RetrievalError> retrievalErrors = retrievalErrorRepository.findByCountGreaterThanEqual(2); // 2 errors really mean there is a problem!
+		List<RetrievalError> retrievalErrors = retrievalErrorRepository.findByCountGreaterThanEqual(10); // 10 errors really mean there is a problem!
 		retrievalErrors.addAll(retrievalErrorRepository.findByTypeLastErrorInAndCountGreaterThanEqual(Arrays.asList(TypeRetrievalError.LOCAL_URL_VERSION_ERROR, TypeRetrievalError.SAME_VERSION_DIFFERENT_URL), 3)); // 3 errors is enough in case of invalid URL
 		for (RetrievalError retrievalError : retrievalErrors) {
 			boolean isIgnored = RetrievalErrorIgnoredApplication.FULLY_IGNORED_APPLICATIONS.contains(retrievalError.getApplication().getApiName());
