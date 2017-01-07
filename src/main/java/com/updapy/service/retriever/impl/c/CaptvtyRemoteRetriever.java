@@ -34,7 +34,7 @@ public class CaptvtyRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return ParsingUtils.addHttpPrefix(doc.select("a.dl[href*=.zip]").attr("href"));
+		return doc.baseUri();
 	}
 
 	@Override
