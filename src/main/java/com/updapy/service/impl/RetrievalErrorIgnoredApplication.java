@@ -6,7 +6,7 @@ import java.util.List;
 public class RetrievalErrorIgnoredApplication {
 
 	// List of ignored application (= no email sent except after 100 failures)
-	public static final List<String> FULLY_IGNORED_APPLICATIONS = Arrays.asList("tortoisesvn", "glasswire", "manycam", "balsamiq", "autohotkey", "resiliosync", "hotspotshield", "admuncher", "argenteutilities", "javare");
+	public static final List<String> FULLY_IGNORED_APPLICATIONS = Arrays.asList("tortoisesvn", "glasswire", "manycam", "balsamiq", "autohotkey", "resiliosync", "hotspotshield", "admuncher", "argenteutilities", "javare", "adfender");
 
 	// List of completely ignored application when the download link is different for the same version
 	public static final List<String> DIFFERENT_URL_IGNORED_APPLICATIONS = Arrays.asList("chromium", "aviraantivirusfree", "vlcmediaplayer", "opera", "adobereader");
