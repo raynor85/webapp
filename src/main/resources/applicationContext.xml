@@ -411,6 +411,12 @@
 		<ref bean="windowsRepairRemoteRetriever" />
 		<ref bean="wPSOfficeFreeRemoteRetriever" />
 		<ref bean="projectLibreRemoteRetriever" />
+		<ref bean="k7UltimateSecurityRemoteRetriever" />
+		<ref bean="k7AntivirusPlusRemoteRetriever" />
+		<ref bean="antRenamerRemoteRetriever" />
+		<ref bean="epicPrivacyBrowserRemoteRetriever" />
+		<ref bean="internetDownloadManagerRemoteRetriever" />
+		<ref bean="ultraCopierRemoteRetriever" />
 	</util:list>
 
 	<beans profile="default">
