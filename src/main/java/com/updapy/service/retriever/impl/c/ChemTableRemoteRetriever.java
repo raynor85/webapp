@@ -35,7 +35,7 @@ public class ChemTableRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a:contains(Download)[href*=.exe]").attr("href");
+		return ParsingUtils.addHttpsPrefix(doc.select("a:contains(Download)[href*=.exe]").attr("href"));
 	}
 
 	@Override

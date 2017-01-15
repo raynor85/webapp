@@ -50,7 +50,7 @@ public class NortonSecurityRemoteRetriever implements RemoteRetriever {
 	}
 
 	private String getVersionNumber(Document doc) {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("h1:contains(Norton Security)").text());
+		return ParsingUtils.extractVersionNumberFromString(doc.select("h1:contains(Norton Internet Security)").text());
 
 	}
 }

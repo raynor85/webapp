@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 public class ParsingUtils {
 
 	public static final String HTTP_PREFIX = "http";
+	public static final String HTTPS_PREFIX = "https";
 	private static final String HTTP_SEPARATOR = "//";
 	private static final String HTTP_PATH_SEPARATOR = "/";
 	private static final String HTTP_PATH_RELATIVE = "." + HTTP_PATH_SEPARATOR;
@@ -42,13 +43,22 @@ public class ParsingUtils {
 	}
 
 	public static String addHttpPrefix(String url) {
+		return addPrefix(url, HTTP_PREFIX);
+	}
+
+	public static String addHttpsPrefix(String url) {
+		return addPrefix(url, HTTPS_PREFIX);
+	}
+
+	private static String addPrefix(String url, String prefix) {
+		assert (prefix.equals(HTTPS_PREFIX) || prefix.equals(HTTP_PREFIX));
 		if (url.startsWith(HTTP_SEPARATOR)) {
-			return HTTP_PREFIX + ':' + url;
+			return prefix + ':' + url;
 		}
-		if (url.startsWith(HTTP_PREFIX)) {
+		if (url.startsWith(prefix)) {
 			return url;
 		}
-		return HTTP_PREFIX + ':' + HTTP_SEPARATOR + url;
+		return prefix + ':' + HTTP_SEPARATOR + url;
 	}
 
 	public static String buildUrl(String rootUrl, String pageUrl) {
@@ -63,7 +73,7 @@ public class ParsingUtils {
 		}
 		return StringUtils.removeEnd(rootUrl, HTTP_PATH_SEPARATOR) + HTTP_PATH_SEPARATOR + StringUtils.removeStart(pageUrl.replaceAll("\\.\\." + HTTP_PATH_SEPARATOR, StringUtils.EMPTY), HTTP_PATH_SEPARATOR);
 	}
-	
+
 	public String convertCharToDigit(String version) {
 		Pattern pattern = Pattern.compile("[A-Za-z]");
 		Matcher matcher = pattern.matcher(version);
