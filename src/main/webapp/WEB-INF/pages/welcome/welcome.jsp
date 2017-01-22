@@ -18,7 +18,15 @@
 					<spring:message code="welcome.applications.text" arguments="${numberOfApplicationsActive}" />
 				</h4>
 				<div class="h3 text-center animated2 fadeInDown delay3">
-					<spring:message code="welcome.applications.button" arguments="${root}" />
+					<c:choose>
+						<c:when test="${isAuthenticated}">
+							<c:set var="styleListAppButton">color</c:set>
+						</c:when>
+						<c:otherwise>
+							<c:set var="styleListAppButton">default</c:set>
+						</c:otherwise>
+					</c:choose>
+					<spring:message code="welcome.applications.button" arguments="${styleListAppButton},${root}" />
 				</div>
 				<c:if test="${not isAuthenticated}">
 					<div class="text-center actions animated2 fadeInUp delay7">
@@ -118,7 +126,7 @@
 	</a>
 </div>
 
-<hr style="margin-bottom:0px !important;border-color: #ddd !important;">
+<hr style="margin-bottom: 0px !important; border-color: #ddd !important;">
 
 <div class="wrapper body-inverse" style="padding-top: 50px !important;">
 	<div class="container">
