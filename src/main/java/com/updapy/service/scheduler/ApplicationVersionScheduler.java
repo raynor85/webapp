@@ -82,7 +82,7 @@ public class ApplicationVersionScheduler {
 	@Scheduled(cron = "0 0 */3 * * *")
 	public void updateApplicationRepositoryAndCreateEmailSingleUpdates() {
 		log.info("> Starting the update of the applications repository (with single emails creation)");
-		List<ApplicationReference> applications = applicationService.getAllActiveApplications();
+		List<ApplicationReference> applications = applicationService.getActiveApplications();
 		for (ApplicationReference application : applications) {
 			checkNewVersionApplication(application);
 		}

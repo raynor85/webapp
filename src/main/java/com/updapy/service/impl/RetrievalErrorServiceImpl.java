@@ -45,7 +45,7 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 	}
 
 	@Override
-	public List<RetrievalError> getAllRetrievalErrors(int count) {
+	public List<RetrievalError> getRetrievalErrors(int count) {
 		return retrievalErrorRepository.findByCountGreaterThanEqualOrderByCountDesc(count);
 	}
 

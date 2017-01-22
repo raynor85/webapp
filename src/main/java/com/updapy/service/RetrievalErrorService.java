@@ -14,7 +14,7 @@ public interface RetrievalErrorService {
 
 	boolean isIgnoredApplication(ApplicationReference application, IgnoranceType type);
 
-	List<RetrievalError> getAllRetrievalErrors(int count);
+	List<RetrievalError> getRetrievalErrors(int count);
 
 	RetrievalError addRetrievalError(ApplicationReference application, TypeRetrievalError type);
 

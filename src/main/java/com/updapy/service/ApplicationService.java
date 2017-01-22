@@ -47,7 +47,7 @@ public interface ApplicationService {
 	@Cacheable(value = "applications", key = "'applications.ignored'")
 	List<ApplicationReference> getIgnoredApplications();
 
-	List<ApplicationReference> getAllActiveApplications();
+	List<ApplicationReference> getActiveApplications();
 
 	List<ApplicationReference> getAddedApplications();
 

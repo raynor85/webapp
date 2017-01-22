@@ -86,7 +86,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
-	public List<ApplicationReference> getAllActiveApplications() {
+	public List<ApplicationReference> getActiveApplications() {
 		return applicationReferenceRepository.findByActiveTrue();
 	}
 
