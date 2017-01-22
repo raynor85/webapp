@@ -14,7 +14,7 @@
 				<h3 class="text-center animated2 fadeInDown shadow">
 					<spring:message code="welcome.introduction" />
 				</h3>
-				<h4 class="text-center animated2 fadeInDown shadow delay3" style="margin-top: 30px !important;">
+				<h4 class="text-center animated2 fadeInDown shadow delay3" style="margin-top: 20px !important;">
 					<spring:message code="welcome.applications.text" arguments="${numberOfApplicationsActive}" />
 				</h4>
 				<div class="h3 text-center animated2 fadeInDown delay3">
