@@ -34,12 +34,12 @@ public class PuTTYRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin32UrlEn(Document doc) throws IOException {
-		return doc.select("a[href*=.exe]").first().attr("href");
+		return doc.select("a[href*=.msi]:contains(putty)").first().attr("href");
 	}
 
 	@Override
 	public String retrieveVersionNumber(Document doc) throws IOException {
-		return ParsingUtils.extractVersionNumberFromString(doc.select("div.buildtype:containsOwn(The latest release version)").text());
+		return ParsingUtils.extractVersionNumberFromString(ParsingUtils.selectFromPattern(doc.select("h1:contains(latest release)").text(), "\\(.*\\)"));
 	}
 
 }

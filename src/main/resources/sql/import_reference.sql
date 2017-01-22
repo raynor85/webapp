@@ -364,7 +364,7 @@ INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active
 -- PeaZip
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.peazip.org/download-installer-p-windows.html', 'http://www.peazip.org', 'peazip.png', 'PeaZip', 'peazip', false, 'TOOLS', 'FREE');
 -- PuTTY
-INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html', 'http://www.chiark.greenend.org.uk/~sgtatham/putty/', 'putty.png', 'PuTTY', 'putty', false, 'DEVELOPMENT', 'FREE');
+INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'http://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html', 'http://www.chiark.greenend.org.uk/~sgtatham/putty/', 'putty.png', 'PuTTY', 'putty', false, 'DEVELOPMENT', 'FREE');
 -- Python
 INSERT INTO applicationreference(id, creationdate, updatedate, dbversion, active, globalurl, website, iconfilename, name, apiname, notified, category, type) VALUES (nextval('application_reference_seq'), now(), null, 0, true, 'https://www.python.org/downloads/', 'https://www.python.org', 'python.png', 'Python', 'python', false, 'DEVELOPMENT', 'FREE');
 -- SuperPutty
