@@ -2178,12 +2178,6 @@
 	background-position: -375px -301px;
 }
 
-.sprite {
-	background-image: url(spritesheet.png);
-	background-repeat: no-repeat;
-	display: block;
-}
-
 .sprite-antimalware {
 	background: url(../img/application/sprite/11-8.png) no-repeat top left;
 	width: 64px;
