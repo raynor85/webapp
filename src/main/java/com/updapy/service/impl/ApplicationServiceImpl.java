@@ -91,6 +91,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
+	public List<ApplicationReference> getIgnoredApplications() {
+		return applicationReferenceRepository.findByActiveTrueAndIgnoranceTypeNotNull();
+	}
+
+	@Override
 	public List<ApplicationReference> getAddedApplications() {
 		return applicationReferenceRepository.findByNotifiedFalseAndActiveTrue();
 	}

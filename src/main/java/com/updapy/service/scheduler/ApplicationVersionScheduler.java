@@ -22,6 +22,7 @@ import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.Newsletter;
 import com.updapy.model.User;
+import com.updapy.model.enumeration.IgnoranceType;
 import com.updapy.model.enumeration.TypeRetrievalError;
 import com.updapy.service.ApplicationService;
 import com.updapy.service.EmailAddedApplicationService;
@@ -35,7 +36,6 @@ import com.updapy.service.SettingsService;
 import com.updapy.service.SocialService;
 import com.updapy.service.UserService;
 import com.updapy.service.impl.RemoteServiceImpl;
-import com.updapy.service.impl.RetrievalErrorIgnoredApplication;
 
 @Service
 public class ApplicationVersionScheduler {
@@ -115,13 +115,13 @@ public class ApplicationVersionScheduler {
 				twitterService.sendStatusNewVersion(latestRemoteVersion);
 				facebookService.sendStatusNewVersion(latestRemoteVersion);
 			} else if (comparisonResult == 0) {
-				if (!latestRemoteVersion.getWin32UrlEn().equalsIgnoreCase(latestVersion.getWin32UrlEn()) && !RetrievalErrorIgnoredApplication.DIFFERENT_URL_IGNORED_APPLICATIONS.contains(latestRemoteVersion.getApplication().getApiName())) {
+				if (!latestRemoteVersion.getWin32UrlEn().equalsIgnoreCase(latestVersion.getWin32UrlEn()) && !retrievalErrorService.isIgnoredApplication(latestRemoteVersion.getApplication(), IgnoranceType.DIFFERENT_URL)) {
 					// the version is the same but the download URL has changed
 					retrievalErrorService.addRetrievalError(application, TypeRetrievalError.SAME_VERSION_DIFFERENT_URL, "Got remote URL '" + latestRemoteVersion.getWin32UrlEn() + "' but current URL is '" + latestVersion.getWin32UrlEn() + "'");
 				} else {
 					retrievalErrorService.deleteRetrievalErrors(application, Arrays.asList(TypeRetrievalError.SAME_VERSION_DIFFERENT_URL));
 				}
-			} else if (comparisonResult == 1 && !latestRemoteVersion.getVersionNumber().equals(RemoteServiceImpl.VERSION_NOT_FOUND) && !RetrievalErrorIgnoredApplication.LOCAL_VERSION_HIGHER_IGNORED_APPLICATIONS.contains(latestRemoteVersion.getApplication().getApiName())) {
+			} else if (comparisonResult == 1 && !latestRemoteVersion.getVersionNumber().equals(RemoteServiceImpl.VERSION_NOT_FOUND) && !retrievalErrorService.isIgnoredApplication(latestRemoteVersion.getApplication(), IgnoranceType.LOCAL_VERSION_HIGHER)) {
 				// the remote version has a smaller number
 				retrievalErrorService.addRetrievalError(application, TypeRetrievalError.REMOTE_NEW_VERSION_WITH_NUMBER_NOT_CONSISTENT, "Got remote version '" + latestRemoteVersion.getVersionNumber() + "' but current version is '" + latestVersion.getVersionNumber() + "'");
 			}

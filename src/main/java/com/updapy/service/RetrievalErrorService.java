@@ -6,10 +6,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.RetrievalError;
+import com.updapy.model.enumeration.IgnoranceType;
 import com.updapy.model.enumeration.TypeRetrievalError;
 
 @Transactional
 public interface RetrievalErrorService {
+
+	boolean isIgnoredApplication(ApplicationReference application, IgnoranceType type);
 
 	List<RetrievalError> getAllRetrievalErrors(int count);
 

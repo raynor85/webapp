@@ -1,16 +1,21 @@
 package com.updapy.service.impl;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.Predicate;
 import org.springframework.stereotype.Service;
 
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.RetrievalError;
+import com.updapy.model.enumeration.IgnoranceType;
 import com.updapy.model.enumeration.TypeRetrievalError;
 import com.updapy.repository.RetrievalErrorRepository;
+import com.updapy.service.ApplicationService;
 import com.updapy.service.EmailSenderService;
 import com.updapy.service.RetrievalErrorService;
 
@@ -22,6 +27,22 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 
 	@Inject
 	private EmailSenderService emailSenderService;
+
+	@Inject
+	private ApplicationService applicationService;
+
+	@SuppressWarnings("rawtypes")
+	@Override
+	public boolean isIgnoredApplication(ApplicationReference application, final IgnoranceType type) {
+		List<ApplicationReference> ignoredApplications = applicationService.getIgnoredApplications();
+		Collection ignoredApplicationFiltereds = CollectionUtils.select(ignoredApplications, new Predicate() {
+			@Override
+			public boolean evaluate(Object ignoredApplication) {
+				return type != null && type == ((ApplicationReference) ignoredApplication).getIgnoranceType();
+			}
+		});
+		return ignoredApplicationFiltereds.contains(application);
+	}
 
 	@Override
 	public List<RetrievalError> getAllRetrievalErrors(int count) {
@@ -77,7 +98,7 @@ public class RetrievalErrorServiceImpl implements RetrievalErrorService {
 		List<RetrievalError> retrievalErrors = retrievalErrorRepository.findByCountGreaterThanEqual(10); // 10 errors really mean there is a problem!
 		retrievalErrors.addAll(retrievalErrorRepository.findByTypeLastErrorInAndCountGreaterThanEqual(Arrays.asList(TypeRetrievalError.LOCAL_URL_VERSION_ERROR, TypeRetrievalError.SAME_VERSION_DIFFERENT_URL), 3)); // 3 errors is enough in case of invalid URL
 		for (RetrievalError retrievalError : retrievalErrors) {
-			boolean isIgnored = RetrievalErrorIgnoredApplication.FULLY_IGNORED_APPLICATIONS.contains(retrievalError.getApplication().getApiName());
+			boolean isIgnored = isIgnoredApplication(retrievalError.getApplication(), IgnoranceType.FULL);
 			if (!isIgnored || (isIgnored && retrievalError.getCount() >= 100)) {
 				boolean hasBeenSent = false;
 				if (TypeRetrievalError.REMOTE_URL_BASE_ERROR.equals(retrievalError.getTypeLastError())) {

@@ -13,6 +13,7 @@ import javax.persistence.SequenceGenerator;
 import com.updapy.model.common.BaseEntity;
 import com.updapy.model.enumeration.ApplicationCategory;
 import com.updapy.model.enumeration.ApplicationType;
+import com.updapy.model.enumeration.IgnoranceType;
 
 @Entity
 @SequenceGenerator(allocationSize = 1, name = "idSequence", sequenceName = "application_reference_seq")
@@ -42,6 +43,9 @@ public class ApplicationReference extends BaseEntity {
 
 	@Enumerated(EnumType.STRING)
 	private ApplicationType type;
+
+	@Enumerated(EnumType.STRING)
+	private IgnoranceType ignoranceType;
 
 	public String getName() {
 		return name;
@@ -121,6 +125,14 @@ public class ApplicationReference extends BaseEntity {
 
 	public void setWebsite(String website) {
 		this.website = website;
+	}
+
+	public IgnoranceType getIgnoranceType() {
+		return ignoranceType;
+	}
+
+	public void setIgnoranceType(IgnoranceType ignoranceType) {
+		this.ignoranceType = ignoranceType;
 	}
 
 	@Override
