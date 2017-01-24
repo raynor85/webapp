@@ -1,6 +1,7 @@
 package com.updapy.service.retriever.impl.o;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
@@ -48,7 +49,7 @@ public class OperaRemoteRetriever implements RemoteRetriever, BaseUrlRemoteRetri
 	}
 
 	private String getDownloadLink(Document doc) throws IOException {
-		return HttpUtils.getRedirectionUrl(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(doc.select("a:contains(Download the offline package)").attr("href")).select("a:contains(try again)").attr("href")));
+		return HttpUtils.getRedirectionUrl(ParsingUtils.buildUrl(ROOT_DOWNLOAD_WEBSITE, URLDecoder.decode(RemoteServiceImpl.retrieveHtmlDocumentAgentMozilla(doc.select("a:contains(Download the offline package)").attr("href")).select("a:contains(try again)").attr("href"), "UTF-8")));
 	}
 
 	@Override

@@ -18,12 +18,12 @@ public class FirefoxRemoteRetriever implements RemoteRetriever {
 
 	@Override
 	public String retrieveWin64UrlFr(Document doc) throws IOException {
-		return null;
+		return doc.select("#fr").select(".win64").select("a").attr("href");
 	}
 
 	@Override
 	public String retrieveWin64UrlEn(Document doc) throws IOException {
-		return null;
+		return doc.select("#en-US").select(".win64").select("a").attr("href");
 	}
 
 	@Override
