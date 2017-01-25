@@ -194,7 +194,7 @@ public class AdministrationController {
 		} else {
 			ApplicationVersion version = dozerHelper.map(addVersion, ApplicationVersion.class);
 			version.setVersionDate(new Date());
-			version.setApplication(applicationService.getApplication(addVersion.getApiName()));
+			version.setApplication(applicationService.getApplication(addVersion.getApiNameFormatted()));
 			// Add the version
 			applicationService.addVersion(version);
 			twitterService.sendStatusNewVersion(version);

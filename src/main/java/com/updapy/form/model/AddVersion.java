@@ -72,4 +72,8 @@ public class AddVersion {
 		this.versionNumber = versionNumber;
 	}
 
+	public String getApiNameFormatted() {
+		return apiName.toLowerCase().replaceAll("\\s+", "");
+	}
+
 }
