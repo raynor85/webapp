@@ -1716,6 +1716,10 @@ div.discreetText {
 	background-color: #FFFFFF !important;
 }
 
+.table-vertical-align>tbody>tr>td{
+    vertical-align: middle;
+}
+
 /*** Follow new apps ***/
 div.newFollowApplicationContainer {
 	height: 125px;

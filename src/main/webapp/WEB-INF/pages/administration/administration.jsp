@@ -42,7 +42,7 @@
 			<hr>
 			<div class="table-responsive">
 				<form:form id="deleteRetrievalErrorForm" commandName="deleteRetrievalError" action="${root}/administration/retrievalError/delete">
-					<table class="table">
+					<table class="table table-vertical-align">
 						<thead>
 							<tr class="active">
 								<th><spring:message code="administration.error.table.head.application" /></th>
