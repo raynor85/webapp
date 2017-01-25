@@ -98,6 +98,7 @@ public class AdministrationController {
 		}
 		ModelAndView modelAndView = new ModelAndView("administration");
 		modelAndView.addObject("nbNotifications", userService.getNbNotifications(user));
+		modelAndView.addObject("addVersion", new AddVersion());
 		List<RetrievalError> retrievalErrors = retrievalErrorService.getRetrievalErrors(2);
 		modelAndView.addObject("administrationRetrievalErrors", convertToAdministrationRetrievalError(retrievalErrors));
 		modelAndView.addObject("numberOfRowsInDatabase", procedureService.getNumberOfRowsInDatabase());
@@ -178,14 +179,6 @@ public class AdministrationController {
 		return jsonResponseUtils.buildSuccessfulJsonResponse("administration.action.email.send.confirm");
 	}
 
-	@RequestMapping(value = "/version")
-	public ModelAndView versionPage() {
-		User user = userService.getCurrentUserLight();
-		ModelAndView modelAndView = new ModelAndView("add-version");
-		modelAndView.addObject("addVersion", new AddVersion());
-		return addNotifications(user, modelAndView);
-	}
-
 	@RequestMapping(value = "/version/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	JsonResponse addVersion(@Valid @RequestBody AddVersion addVersion, BindingResult result) {
@@ -199,7 +192,7 @@ public class AdministrationController {
 			applicationService.addVersion(version);
 			twitterService.sendStatusNewVersion(version);
 			facebookService.sendStatusNewVersion(version);
-			return jsonResponseUtils.buildSuccessfulJsonResponse("administration.addVersion.confirm");
+			return jsonResponseUtils.buildSuccessfulJsonResponse("administration.version.add.confirm");
 		}
 	}
 

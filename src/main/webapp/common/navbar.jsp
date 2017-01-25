@@ -33,7 +33,6 @@
 						<li id="dropdown-admin" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="menu.administration" /> <i class="fa fa-angle-down "></i></a>
 							<ul class="dropdown-menu">
 								<li id="nav-administration"><a href="${root}/administration"><spring:message code="menu.administration" /></a></li>
-								<li id="nav-add-version"><a href="${root}/administration/version"><spring:message code="menu.administration.addVersion" /></a></li>
 								<li id="nav-stats"><a href="${root}/administration/stats"><spring:message code="menu.administration.stats" /></a></li>
 								<li id="nav-message"><a href="${root}/administration/message"><spring:message code="menu.administration.message" /></a></li>
 								<li id="nav-developers"><a href="${root}/developers"><spring:message code="menu.developers" /></a></li>
@@ -163,7 +162,6 @@
 			if ("${isAdmin}" === "true") {
 				$("#dropdown-admin").addClass("active");
 				$("#nav-administration a").addClass("notActive");
-				$("#nav-add-version a").addClass("notActive");
 				$("#nav-stats a").addClass("notActive");
 				$("#nav-message a").addClass("notActive");
 				$("#nav-log a").addClass("notActive");
@@ -182,7 +180,6 @@
 		} else if (location.href.match(/administration\/message.?/)) {
 			$("#dropdown-admin").addClass("active");
 			$("#nav-administration a").addClass("notActive");
-			$("#nav-add-version a").addClass("notActive");
 			$("#nav-stats a").addClass("notActive");
 			$("#nav-log a").addClass("notActive");
 			$("#nav-developers a").addClass("notActive");
@@ -196,13 +193,11 @@
 		} else if (location.href.match(/administration\/stats.?/)) {
 			$("#dropdown-admin").addClass("active");
 			$("#nav-administration a").addClass("notActive");
-			$("#nav-add-version a").addClass("notActive");
 			$("#nav-message a").addClass("notActive");
 			$("#nav-log a").addClass("notActive");
 			$("#nav-developers a").addClass("notActive");
 		} else if (location.href.match(/administration.?/)) {
 			$("#dropdown-admin").addClass("active");
-			$("#nav-add-version a").addClass("notActive");
 			$("#nav-stats a").addClass("notActive");
 			$("#nav-message a").addClass("notActive");
 			$("#nav-log a").addClass("notActive");

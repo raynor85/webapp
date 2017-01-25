@@ -24,8 +24,17 @@
 				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <a href="javascript:runJobAdministration('${root}/administration/email/send', 'email-send');"><spring:message code="administration.action.email.send.button" /></a> <i id="email-send" style="color: #777; display: none;" class="fa fa-refresh fa-spin"></i></li>
 				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <a href="https://papertrailapp.com/systems/updapy/events" target="_blank"><spring:message code="administration.action.logs.button" /> <i class="fa fa-external-link"></i></a></li>
 			</ul>
-			<br />
+		</div>
 
+		<div class="row rowWithPadding" align="center">
+			<div class="button-ladda">
+				<button type="button" class="btn-color ladda-button" data-toggle="modal" data-target="#addVersionModal">
+					<spring:message code="administration.version.add.button" />
+				</button>
+			</div>
+		</div>
+
+		<div class="row">
 			<h3>
 				<spring:message code="administration.error.title" />
 				<small><spring:message code="administration.error.subtitle" /></small>
@@ -79,6 +88,90 @@
 					</table>
 				</form:form>
 			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal: Add version -->
+<div class="modal fade" id="addVersionModal" tabindex="-1" role="dialog" aria-labelledby="addVersionModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form:form id="addVersionForm" commandName="addVersion" action="${root}/administration/version/add">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="addVersionModalLabel">
+						<spring:message code="administration.version.add.title" />
+					</h4>
+				</div>
+				<div class="modal-body">
+					<div id="addVersionResponse"></div>
+					<div class="form-group">
+						<label for="apiName"><spring:message code="administration.version.add.field.apiName" /> </label>
+						<c:set var="apiNamePlaceholder">
+							<spring:message code="administration.version.add.field.apiName.tip" />
+						</c:set>
+						<form:input path="apiName" class="form-control" id="apiName" placeholder="${apiNamePlaceholder}" />
+					</div>
+					<div class="form-group">
+						<label for="win32UrlEn"><spring:message code="administration.version.add.field.win32UrlEn" /> </label>
+						<c:set var="win32UrlEnPlaceholder">
+							<spring:message code="administration.version.add.field.url.tip" />
+						</c:set>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-home"></i></span>
+							<form:input path="win32UrlEn" class="form-control" id="win32UrlEn" placeholder="${win32UrlEnPlaceholder}" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="win64UrlEn"><spring:message code="administration.version.add.field.win64UrlEn" /> </label>
+						<c:set var="win64UrlEnPlaceholder">
+							<spring:message code="administration.version.add.field.url.tip" />
+						</c:set>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-home"></i></span>
+							<form:input path="win64UrlEn" class="form-control" id="win64UrlEn" placeholder="${win64UrlEnPlaceholder}" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="win32UrlFr"><spring:message code="administration.version.add.field.win32UrlFr" /> </label>
+						<c:set var="win32UrlFrPlaceholder">
+							<spring:message code="administration.version.add.field.url.tip" />
+						</c:set>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-home"></i></span>
+							<form:input path="win32UrlFr" class="form-control" id="win32UrlFr" placeholder="${win32UrlFrPlaceholder}" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="win64UrlFr"><spring:message code="administration.version.add.field.win64UrlFr" /> </label>
+						<c:set var="win64UrlFrPlaceholder">
+							<spring:message code="administration.version.add.field.url.tip" />
+						</c:set>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-home"></i></span>
+							<form:input path="win64UrlFr" class="form-control" id="win64UrlFr" placeholder="${win64UrlFrPlaceholder}" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="versionNumber"><spring:message code="administration.version.add.field.versionNumber" /> </label>
+						<c:set var="versionNumberPlaceholder">
+							<spring:message code="administration.version.add.field.versionNumber.tip" />
+						</c:set>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-tag"></i></span>
+							<form:input path="versionNumber" class="form-control" id="versionNumber" placeholder="${versionNumberPlaceholder}" />
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default pull-left btn-cancel-next-ladda" data-dismiss="modal">
+						<spring:message code="administration.version.add.button.cancel" />
+					</button>
+					<button type="button" id="addVersionButton" class="btn-color ladda-button" data-style="zoom-in" onclick="ajaxAddVersion();">
+						<spring:message code="administration.version.add.button.confirm" />
+					</button>
+				</div>
+			</form:form>
 		</div>
 	</div>
 </div>
@@ -137,4 +230,31 @@
 	var clearRetrievalErrors = function() {
 		$("tr[id^=tr-]").fadeOut();
 	};
+	$("#addVersionModal").on("show.bs.modal", function (e) {
+		setTimeout(function() { $("#apiName").focus(); }, 1000);
+	});
+	function ajaxAddVersion() {
+		var json = {
+			"apiName" : $("#apiName").val(),
+			"win32UrlEn" : $("#win32UrlEn").val(),
+			"win64UrlEn" : $("#win64UrlEn").val(),
+			"win32UrlFr" : $("#win32UrlFr").val(),
+			"win64UrlFr" : $("#win64UrlFr").val(),
+			"versionNumber" : $("#versionNumber").val()
+		};
+		ajaxCallPost("#addVersionButton", "#addVersionForm", json,
+				"#addVersionResponse", clearForm);
+	};
+	var clearForm = function() {
+		$("#apiName").val("");
+		$("#win32UrlEn").val("");
+		$("#win64UrlEn").val("");
+		$("#win32UrlFr").val("");
+		$("#win64UrlFr").val("");
+		$("#versionNumber").val("");
+	};
+	$("#addVersionForm").submit(function() {
+		ajaxAddVersion();
+		return false;
+	});
 </script>

@@ -29,7 +29,7 @@
 						</c:set>
 						<div class="input-group">
 							<span class="input-group-addon">@</span>
-							<form:input path="email" class="form-control show" id="email" type="email" placeholder="${emailPlaceholder}" readonly="${emailReadonly}" />
+							<form:input path="email" class="form-control" id="email" type="email" placeholder="${emailPlaceholder}" readonly="${emailReadonly}" />
 						</div>
 					</div>
 					<div class="form-group" style="max-width: 300px;">

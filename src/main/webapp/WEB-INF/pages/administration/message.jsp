@@ -24,7 +24,7 @@
 						</c:set>
 						<div class="input-group">
 							<span class="input-group-addon">@</span>
-							<form:input path="email" class="form-control show" id="email" type="email" placeholder="${emailPlaceholder}" />
+							<form:input path="email" class="form-control" id="email" type="email" placeholder="${emailPlaceholder}" />
 						</div>
 					</div>
 					<div class="form-group" style="margin-top: 20px;">
@@ -45,14 +45,14 @@
 						<c:set var="subjectPlaceholder">
 							<spring:message code="administration.message.field.subject.tip" />
 						</c:set>
-						<form:input path="subject" class="form-control show" id="subject" placeholder="${subjectPlaceholder}" />
+						<form:input path="subject" class="form-control" id="subject" placeholder="${subjectPlaceholder}" />
 					</div>
 					<div class="form-group" style="margin-top: 20px;">
 						<label for="title"><spring:message code="administration.message.field.title" /> </label>
 						<c:set var="titlePlaceholder">
 							<spring:message code="administration.message.field.title.tip" />
 						</c:set>
-						<form:input path="title" class="form-control show" id="title" placeholder="${titlePlaceholder}" />
+						<form:input path="title" class="form-control" id="title" placeholder="${titlePlaceholder}" />
 					</div>
 					<div class="form-group">
 						<label for="message"><spring:message code="administration.message.field.message" /> </label>
