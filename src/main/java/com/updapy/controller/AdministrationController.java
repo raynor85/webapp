@@ -1,6 +1,8 @@
 package com.updapy.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -25,6 +27,8 @@ import com.updapy.form.model.AddVersion;
 import com.updapy.form.model.AdministrationRetrievalError;
 import com.updapy.form.model.DeleteRetrievalError;
 import com.updapy.form.model.SendPersonalMessage;
+import com.updapy.model.ApplicationFollow;
+import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.RetrievalError;
 import com.updapy.model.User;
@@ -102,6 +106,14 @@ public class AdministrationController {
 		List<RetrievalError> retrievalErrors = retrievalErrorService.getRetrievalErrors(2);
 		modelAndView.addObject("administrationRetrievalErrors", convertToAdministrationRetrievalError(retrievalErrors));
 		modelAndView.addObject("numberOfRowsInDatabase", procedureService.getNumberOfRowsInDatabase());
+		List<ApplicationReference> ignoredApplications = applicationService.getIgnoredApplications();
+		Collections.sort(ignoredApplications, new Comparator<ApplicationReference>() {
+			@Override
+			public int compare(ApplicationReference a1, ApplicationReference a2) {
+				return a1.getApiName().compareTo(a2.getApiName());
+			}
+		});
+		modelAndView.addObject("ignoredApplications", applicationService.getIgnoredApplications());
 		return addNotifications(user, modelAndView);
 	}
 

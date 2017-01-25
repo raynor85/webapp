@@ -89,6 +89,32 @@
 				</form:form>
 			</div>
 		</div>
+
+		<div class="col-sm-12">
+			<h3>
+				<spring:message code="administration.ignored.title" />
+				<small><spring:message code="administration.ignored.subtitle" /></small>
+			</h3>
+			<hr>
+			<div class="table-responsive">
+				<table class="table table-vertical-align">
+					<thead>
+						<tr class="active">
+							<th><spring:message code="administration.ignored.table.head.application" /> <i class="fa fa-sort-alpha-asc"></i></th>
+							<th><spring:message code="administration.ignored.table.head.type" /></th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${ignoredApplications}" var="ignoredApplication">
+							<tr>
+								<td>${ignoredApplication.name}</td>
+								<td><spring:message code="administration.ignored.type.${ignoredApplication.ignoranceType}" /></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 </div>
 
