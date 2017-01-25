@@ -22,6 +22,7 @@
 				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <a href="javascript:runJobAdministration('${root}/administration/email/application/deleted', 'email-deleted-app');"><spring:message code="administration.action.email.application.deleted.button" /></a> <i id="email-deleted-app" style="color: #777; display: none;" class="fa fa-refresh fa-spin"></i></li>
 				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <a href="javascript:runJobAdministration('${root}/administration/email/newsletter', 'email-newsletter');"><spring:message code="administration.action.email.newsletter.button" /></a> <i id="email-newsletter" style="color: #777; display: none;" class="fa fa-refresh fa-spin"></i></li>
 				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <a href="javascript:runJobAdministration('${root}/administration/email/send', 'email-send');"><spring:message code="administration.action.email.send.button" /></a> <i id="email-send" style="color: #777; display: none;" class="fa fa-refresh fa-spin"></i></li>
+				<li><i class="fa-li text-color fa fa-chevron-circle-right fa-1x"></i> <a href="https://papertrailapp.com/systems/updapy/events" target="_blank"><spring:message code="administration.action.logs.button" /> <i class="fa fa-external-link"></i></a></li>
 			</ul>
 			<br />
 

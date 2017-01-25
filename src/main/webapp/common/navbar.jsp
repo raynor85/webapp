@@ -36,7 +36,6 @@
 								<li id="nav-add-version"><a href="${root}/administration/version"><spring:message code="menu.administration.addVersion" /></a></li>
 								<li id="nav-stats"><a href="${root}/administration/stats"><spring:message code="menu.administration.stats" /></a></li>
 								<li id="nav-message"><a href="${root}/administration/message"><spring:message code="menu.administration.message" /></a></li>
-								<li id="nav-log"><a href="https://papertrailapp.com/systems/updapy/events" target="_blank"><spring:message code="menu.administration.log" /></a></li>
 								<li id="nav-developers"><a href="${root}/developers"><spring:message code="menu.developers" /></a></li>
 							</ul></li>
 					</c:when>
