@@ -34,7 +34,7 @@
 			</div>
 		</div>
 
-		<div class="row">
+		<div class="col-sm-12">
 			<h3>
 				<spring:message code="administration.error.title" />
 				<small><spring:message code="administration.error.subtitle" /></small>
@@ -48,7 +48,7 @@
 								<th><spring:message code="administration.error.table.head.application" /></th>
 								<th><spring:message code="administration.error.table.head.type" /></th>
 								<th><spring:message code="administration.error.table.head.counter" /> <i class="fa fa-sort-numeric-desc"></i></th>
-								<th><spring:message code="administration.error.table.head.message" /></th>
+								<th style="width: 300px"><spring:message code="administration.error.table.head.message" /></th>
 								<th><spring:message code="administration.error.table.head.version" /></th>
 								<th><spring:message code="administration.error.table.head.globalUrl" /></th>
 								<th><spring:message code="administration.error.table.head.version32Url" /></th>
