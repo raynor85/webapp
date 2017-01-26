@@ -13,6 +13,10 @@
 		<location>/error/403</location>
 	</error-page>
 	<error-page>
+		<exception-type>org.springframework.security.web.authentication.rememberme.CookieTheftException</exception-type>
+		<location>/sign</location>
+	</error-page>
+	<error-page>
 		<location>/error</location>
 	</error-page>
 
