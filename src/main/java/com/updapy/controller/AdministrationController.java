@@ -25,9 +25,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.updapy.form.ajax.JsonResponse;
 import com.updapy.form.model.AddVersion;
 import com.updapy.form.model.AdministrationRetrievalError;
+import com.updapy.form.model.DeleteIgnoredApplication;
 import com.updapy.form.model.DeleteRetrievalError;
 import com.updapy.form.model.SendPersonalMessage;
-import com.updapy.model.ApplicationFollow;
 import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.RetrievalError;
@@ -272,6 +272,13 @@ public class AdministrationController {
 	JsonResponse clearRetrievalErrors() {
 		retrievalErrorService.deleteRetrievalErrors();
 		return jsonResponseUtils.buildSuccessfulJsonResponse("administration.action.retrievalErrors.clear.confirm");
+	}
+
+	@RequestMapping(value = "/ignoredApplication/delete", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody
+	JsonResponse deleteIgnoredApplication(@RequestBody DeleteIgnoredApplication deleteIgnoredApplication) {
+		applicationService.markAsIgnored(applicationService.getApplication(deleteIgnoredApplication.getIgnoredApplicationApiName()));
+		return jsonResponseUtils.buildSuccessfulJsonResponse("administration.action.ignoredApplication.delete.confirm");
 	}
 
 	private ModelAndView addNotifications(User user, ModelAndView modelAndView) {

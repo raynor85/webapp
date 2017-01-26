@@ -14,8 +14,8 @@ import com.updapy.model.ApplicationReference;
 import com.updapy.model.ApplicationRequest;
 import com.updapy.model.ApplicationVersion;
 import com.updapy.model.User;
-import com.updapy.model.stats.FollowedApplication;
 import com.updapy.model.stats.AverageRating;
+import com.updapy.model.stats.FollowedApplication;
 
 @Transactional
 public interface ApplicationService {
@@ -57,6 +57,9 @@ public interface ApplicationService {
 	ApplicationReference getApplication(String apiName);
 
 	ApplicationReference markAsNotified(ApplicationReference application);
+
+	@CacheEvict(value = "applications", key = "'applications.ignored'")
+	ApplicationReference markAsIgnored(ApplicationReference application);
 
 	@Cacheable(value = "applications", key = "'applications.latest'")
 	List<ApplicationReference> getNbLatestApplications(int nb);

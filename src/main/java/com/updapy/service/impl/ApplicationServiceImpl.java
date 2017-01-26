@@ -138,6 +138,12 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
+	public ApplicationReference markAsIgnored(ApplicationReference application) {
+		application.setIgnoranceType(null);
+		return applicationReferenceRepository.saveAndFlush(application);
+	}
+
+	@Override
 	public ApplicationVersion addVersion(ApplicationVersion version) {
 		ApplicationVersion versionSaved = applicationVersionRepository.saveAndFlush(version);
 		notifyUsers(versionSaved);

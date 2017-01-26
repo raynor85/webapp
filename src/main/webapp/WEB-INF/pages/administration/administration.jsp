@@ -59,7 +59,7 @@
 						</thead>
 						<tbody>
 							<c:forEach items="${administrationRetrievalErrors}" var="administrationRetrievalError">
-								<tr id="tr-${administrationRetrievalError.retrievalError.id}">
+								<tr id="tr-retrievalError-${administrationRetrievalError.retrievalError.id}">
 									<td>${administrationRetrievalError.retrievalError.application.name}</td>
 									<td><spring:message code="administration.error.type.${administrationRetrievalError.retrievalError.typeLastError}" /></td>
 									<td>${administrationRetrievalError.retrievalError.count}</td>
@@ -97,22 +97,33 @@
 			</h3>
 			<hr>
 			<div class="table-responsive">
-				<table class="table table-vertical-align">
-					<thead>
-						<tr class="active">
-							<th><spring:message code="administration.ignored.table.head.application" /> <i class="fa fa-sort-alpha-asc"></i></th>
-							<th><spring:message code="administration.ignored.table.head.type" /></th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${ignoredApplications}" var="ignoredApplication">
-							<tr>
-								<td>${ignoredApplication.name}</td>
-								<td><spring:message code="administration.ignored.type.${ignoredApplication.ignoranceType}" /></td>
+				<form:form id="deleteIgnoredApplicationForm" commandName="deleteIgnoredApplication" action="${root}/administration/ignoredApplication/delete">
+					<table class="table table-vertical-align">
+						<thead>
+							<tr class="active">
+								<th><spring:message code="administration.ignored.table.head.application" /> <i class="fa fa-sort-alpha-asc"></i></th>
+								<th><spring:message code="administration.ignored.table.head.type" /></th>
+								<th></th>
 							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							<c:forEach items="${ignoredApplications}" var="ignoredApplication">
+								<tr id="tr-ignoredApplication-${ignoredApplication.apiName}">
+									<td>${ignoredApplication.name}</td>
+									<td><spring:message code="administration.ignored.type.${ignoredApplication.ignoranceType}" /></td>
+									<td>
+										<c:set var="deleteTitle">
+											<spring:message code="administration.ignored.table.delete.title" arguments="${ignoredApplication.name}" />
+										</c:set>
+										<button title="${deleteTitle}" aria-hidden="true" class="close" type="button" onclick="ajaxDeleteIgnoredApplication('${ignoredApplication.apiName}');">
+											<i class="fa fa-trash-o fa-1x"></i>
+										</button>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</form:form>
 			</div>
 		</div>
 	</div>
@@ -248,13 +259,13 @@
 		ajaxCallGetAndRefresh("${root}/administration/numberOfRowsInDatabase", "#numberOfRowsInDatabase");
 	};
 	function ajaxDeleteRetrievalError(retrievalErrorId) {
-		$("#tr-" + retrievalErrorId).fadeOut();
+		$("#tr-retrievalError-" + retrievalErrorId).fadeOut();
 		ajaxCallPost(null, "#deleteRetrievalErrorForm", {
 			"retrievalErrorId" : retrievalErrorId
 		}, null);
 	};
 	var clearRetrievalErrors = function() {
-		$("tr[id^=tr-]").fadeOut();
+		$("tr[id^=tr-retrievalError-]").fadeOut();
 	};
 	$("#addVersionModal").on("show.bs.modal", function (e) {
 		setTimeout(function() { $("#apiName").focus(); }, 1000);
@@ -283,4 +294,10 @@
 		ajaxAddVersion();
 		return false;
 	});
+	function ajaxDeleteIgnoredApplication(ignoredApplicationApiName) {
+		$("#tr-ignoredApplication-" + ignoredApplicationApiName).fadeOut();
+		ajaxCallPost(null, "#deleteIgnoredApplicationForm", {
+			"ignoredApplicationApiName" : ignoredApplicationApiName
+		}, null);
+	};
 </script>
